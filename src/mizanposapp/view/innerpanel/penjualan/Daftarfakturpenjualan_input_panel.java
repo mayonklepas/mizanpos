@@ -5,7 +5,7 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
-import mizanposapp.controller.innerpanel.persediaan.DaftarpersedianinnerController;
+import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninnerController;
 
 /**
  *

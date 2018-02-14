@@ -473,5 +473,71 @@
         "20"
       ]
     }
+  ],
+"persediaan": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "KELOMPOK",
+        "Kelompok",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "SATUAN",
+        "Satuan",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "HARGAJUAL",
+        "Harga Jual",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "STOCK",
+        "Total",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "ID_IMAGE",
+        "Total",
+        "1",
+        "10"
+      ]
+    }
   ]
 }

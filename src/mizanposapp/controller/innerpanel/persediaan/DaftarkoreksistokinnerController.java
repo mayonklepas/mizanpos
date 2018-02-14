@@ -6,6 +6,7 @@
  */
 package mizanposapp.controller.innerpanel.persediaan;
 
+import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -225,13 +226,12 @@ public class DaftarkoreksistokinnerController {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
             id = idlist.get(row);
-            JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Daftarkoreksistok_input_panel());
-            jd.pack();
-            jd.setLocationRelativeTo(null);
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Edit Data Stock Opname");
-            jd.setVisible(true);
+            Daftarkoreksistok_inner_panel inpane = new Daftarkoreksistok_inner_panel();
+            Staticvar.psp.container.removeAll();
+            Staticvar.psp.container.setLayout(new BorderLayout());
+            Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.psp.container.revalidate();
+            Staticvar.psp.container.repaint();
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 loaddata(pane);
             } else {
@@ -243,14 +243,12 @@ public class DaftarkoreksistokinnerController {
     private void inputdata(Daftarkoreksistok_inner_panel pane) {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
-            JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Daftarkoreksistok_input_panel());
-            jd.pack();
-            jd.setLocationRelativeTo(null);
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Input Data Stock Opname");
-            jd.setVisible(true);
-            loaddata(pane);
+            Daftarkoreksistok_inner_panel inpane = new Daftarkoreksistok_inner_panel();
+            Staticvar.psp.container.removeAll();
+            Staticvar.psp.container.setLayout(new BorderLayout());
+            Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.psp.container.revalidate();
+            Staticvar.psp.container.repaint();
         });
     }
 

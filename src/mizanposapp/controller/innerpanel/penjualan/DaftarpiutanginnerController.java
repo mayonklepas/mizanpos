@@ -24,23 +24,23 @@ public class DaftarpiutanginnerController {
 
     }
 
-    private void inputdata(Daftarpiutang_inner_panel dpip) {
-        dpip.bbayar.addActionListener((ActionEvent e) -> {
-            Daftarpembayaranpiutangperinvoice_input_panel pane = new Daftarpembayaranpiutangperinvoice_input_panel();
+    private void inputdata(Daftarpiutang_inner_panel pane) {
+        pane.bbayar.addActionListener((ActionEvent e) -> {
+            Daftarpembayaranpiutangperinvoice_input_panel inpane = new Daftarpembayaranpiutangperinvoice_input_panel();
             Staticvar.pp.container.removeAll();
             Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pp.container.revalidate();
             Staticvar.pp.container.repaint();
         });
     }
 
-    private void editdata(Daftarpiutang_inner_panel dpip) {
-        dpip.bdetailbayar.addActionListener((ActionEvent e) -> {
-            Daftarpiutangrincian_inner_panel pane = new Daftarpiutangrincian_inner_panel();
+    private void editdata(Daftarpiutang_inner_panel pane) {
+        pane.bdetailbayar.addActionListener((ActionEvent e) -> {
+            Daftarpiutangrincian_inner_panel inpane = new Daftarpiutangrincian_inner_panel();
             Staticvar.pp.container.removeAll();
             Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pp.container.revalidate();
             Staticvar.pp.container.repaint();
         });
