@@ -15,6 +15,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,6 +67,7 @@ public class DaftarpersediaaninnerController {
         oncarienter(pane);
         onbuttoncari(pane);
         koreksistock(pane);
+        popupstok(pane);
     }
 
     private void loadheader(Daftarpersediaan_inner_panel pane) {
@@ -85,7 +89,7 @@ public class DaftarpersediaaninnerController {
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
-                if (jaaray.get(2).equals("0")) {
+                if (jaaray.get(2).equals("1")) {
                     dtm.addColumn(jaaray.get(1));
                     lsdata.add(String.valueOf(jaaray.get(0)));
                     lssize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
@@ -342,6 +346,19 @@ public class DaftarpersediaaninnerController {
             jd.setTitle("Koreksi Stock");
             jd.setVisible(true);
         });
+    }
+
+    private void popupstok(Daftarpersediaan_inner_panel pane) {
+        pane.tabledata.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    pane.persediaanpopup.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+
+        });
+
     }
 
 }

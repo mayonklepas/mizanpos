@@ -48,7 +48,15 @@ public class Daftarpersediaan_inner_panel extends javax.swing.JPanel {
         bupdate = new javax.swing.JButton();
         bfilter = new javax.swing.JButton();
 
-        mkoreksi_stock.setText("jMenuItem1");
+        persediaanpopup.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+
+        mkoreksi_stock.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        mkoreksi_stock.setText("Koreksi Stok");
+        mkoreksi_stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mkoreksi_stockActionPerformed(evt);
+            }
+        });
         persediaanpopup.add(mkoreksi_stock);
 
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
@@ -92,13 +100,13 @@ public class Daftarpersediaan_inner_panel extends javax.swing.JPanel {
         tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane6.setViewportView(tabledata);
@@ -184,6 +192,10 @@ public class Daftarpersediaan_inner_panel extends javax.swing.JPanel {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mkoreksi_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mkoreksi_stockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mkoreksi_stockActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bcari;

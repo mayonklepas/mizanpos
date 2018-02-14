@@ -226,7 +226,7 @@ public class DaftarkoreksistokinnerController {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
             id = idlist.get(row);
-            Daftarkoreksistok_inner_panel inpane = new Daftarkoreksistok_inner_panel();
+            Daftarkoreksistok_input_panel inpane = new Daftarkoreksistok_input_panel();
             Staticvar.psp.container.removeAll();
             Staticvar.psp.container.setLayout(new BorderLayout());
             Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
@@ -243,7 +243,7 @@ public class DaftarkoreksistokinnerController {
     private void inputdata(Daftarkoreksistok_inner_panel pane) {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
-            Daftarkoreksistok_inner_panel inpane = new Daftarkoreksistok_inner_panel();
+            Daftarkoreksistok_input_panel inpane = new Daftarkoreksistok_input_panel();
             Staticvar.psp.container.removeAll();
             Staticvar.psp.container.setLayout(new BorderLayout());
             Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
