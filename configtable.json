@@ -1,0 +1,477 @@
+{
+"merek": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "KETERANGAN",
+        "Keterangan",
+        "1",
+        "50"
+      ]
+    }
+  ],
+"satuan": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "70"
+      ]
+    }
+  ],
+"lokasi": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODELOKASI",
+        "Kode Lokasi",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMALOKASI",
+        "Nama Lokasi",
+        "1",
+        "40"
+      ]
+    },
+    {
+      "key": [
+        "IDPENANGGUNGJAWAB",
+        "ID Penanggungjawab",
+        "0",
+        "0"
+      ]
+    },    {
+      "key": [
+        "NAMAPENANGGUNGJAWAB",
+        "Nama Penanggungjawab",
+        "1",
+        "40"
+      ]
+    }
+  ],
+"service": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "PERSENSERVICE",
+        "Persen Service",
+        "1",
+        "10"
+      ]
+    },    {
+      "key": [
+        "AKUNSERVICE",
+        "Id Akun Service",
+        "0",
+        "10"
+      ]
+    },    {
+      "key": [
+        "NAMAAKUNSERVICE",
+        "Nama Akun Service",
+        "1",
+        "40"
+      ]
+    }
+  ],
+"supplierklasifikasi": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "KETERANGAN",
+        "Keterangan",
+        "1",
+        "50"
+      ]
+    }
+  ],
+"nama": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "INDEXTABLE",
+        "Index Table",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "TIPE",
+        "Tipe",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "NAMATIPE",
+        "Nama Tipe",
+        "1",
+        "20"
+      ]
+    },
+ {
+      "key": [
+        "NAMA_GOL",
+        "Golongan",
+        "1",
+        "20"
+      ]
+    },
+{
+      "key": [
+        "ISACTIVE",
+        "Status",
+        "1",
+        "10"
+      ]
+    }
+  ],
+"gudang": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODEGUDANG",
+        "Kode Gudang",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "NAMAGUDANG",
+        "Nama Gudang",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "IDPENANGGUNGJAWAB",
+        "ID Penanggungjawab",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMAPENANGGUNGJAWAB",
+        "Nama Penanggungjawab",
+        "1",
+        "40"
+      ]
+    }
+  ],
+"department": [
+    {
+      "key": [
+        "IDDEPT",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "NAMA_DEPT",
+        "Nama Dept",
+        "1",
+        "40"
+      ]
+    },
+    {
+      "key": [
+        "ISSUBDEPT",
+        "Is Subdept",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "ID_SUBDEPT",
+        "ID Subdept",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMA_SUBDEPT",
+        "Nama Subdept",
+        "1",
+        "30"
+      ]
+    }
+  ],
+"kelompokbarang": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "DEPTID",
+        "Dept ID",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "40"
+      ]
+    },
+    {
+      "key": [
+        "NAMASATUAN",
+        "Nama Satuan",
+        "1",
+        "30"
+      ]
+    }
+  ],
+"penyesuaian": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "TANGGAL",
+        "Tanggal",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NOREF",
+        "No. Ref",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "KETERANGAN",
+        "Ketarangan",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "TOTAL",
+        "Total",
+        "1",
+        "20"
+      ]
+    }
+  ],
+"stokopname": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "INDEXTABLE",
+        "Index Table",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "DEPTID",
+        "Dept ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "TANGGAL",
+        "Tanggal",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "NOREF",
+        "No. Ref",
+        "1",
+        "25"
+      ]
+    },
+    {
+      "key": [
+        "KETERANGAN",
+        "Keterangan",
+        "1",
+        "35"
+      ]
+    },
+    {
+      "key": [
+        "TOTAL",
+        "Total",
+        "1",
+        "20"
+      ]
+    }
+  ]
+}

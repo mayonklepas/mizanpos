@@ -1,0 +1,16 @@
+{
+  "merek": [
+    {
+      "key": "ID"
+    },
+    {
+      "key": "KODE"
+    },
+    {
+      "key": "NAMA"
+    },
+    {
+      "key": "KETERANGAN"
+    }
+  ]
+}
