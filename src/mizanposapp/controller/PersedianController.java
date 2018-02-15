@@ -24,7 +24,7 @@ import mizanposapp.view.innerpanel.persediaan.Daftardatasupplierklasifikasi_inne
 import mizanposapp.view.innerpanel.persediaan.Daftargudang_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarmerekbarang_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarservice_inner_panel;
-import mizanposapp.view.innerpanel.persediaan.Daftarstockminimum_inner_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarstokminimum_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarkoreksistok_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_inner_panel;
 
@@ -485,7 +485,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Daftarstockminimum_inner_panel pane = new Daftarstockminimum_inner_panel();
+                Daftarstokminimum_inner_panel pane = new Daftarstokminimum_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
                 pp.container.add(pane, BorderLayout.CENTER);

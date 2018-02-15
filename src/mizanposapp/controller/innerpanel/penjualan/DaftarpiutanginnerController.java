@@ -32,7 +32,7 @@ import static mizanposapp.controller.innerpanel.penjualan.DaftarpiutanginnerCont
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
-import mizanposapp.view.innerpanel.pembelian.Daftarpembayaranpiutangperinvoice_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarpembayaranpiutangperinvoice_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarpiutangrincian_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarpiutang_inner_panel;
 import org.json.simple.JSONArray;

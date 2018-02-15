@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.innerpanel.persediaan;
 
+import mizanposapp.controller.innerpanel.persediaan.DaftargudanginputController;
+
 /**
  *
  * @author Minami
@@ -16,6 +18,7 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
      */
     public Daftargudang_input_panel() {
         initComponents();
+        new DaftargudanginputController(this);
     }
 
     /**
@@ -43,7 +46,7 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        bcari_penanggungjawab = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
@@ -108,11 +111,11 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setText("Cari");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bcari_penanggungjawab.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_penanggungjawab.setText("Cari");
+        bcari_penanggungjawab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bcari_penanggungjawabActionPerformed(evt);
             }
         });
 
@@ -162,7 +165,7 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(bcari_penanggungjawab)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,7 +195,7 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(bcari_penanggungjawab))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -205,14 +208,14 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bcari_penanggungjawabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_penanggungjawabActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bcari_penanggungjawabActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_penanggungjawab;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

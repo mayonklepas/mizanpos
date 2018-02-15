@@ -5,17 +5,20 @@
  */
 package mizanposapp.view.innerpanel.persediaan;
 
+import mizanposapp.controller.innerpanel.persediaan.DaftarstokminimuminnerController;
+
 /**
  *
  * @author Minami
  */
-public class Daftarstockminimum_inner_panel extends javax.swing.JPanel {
+public class Daftarstokminimum_inner_panel extends javax.swing.JPanel {
 
     /**
      * Creates new form Persedian_inner_panel
      */
-    public Daftarstockminimum_inner_panel() {
+    public Daftarstokminimum_inner_panel() {
         initComponents();
+        new DaftarstokminimuminnerController(this);
 
     }
 
@@ -45,7 +48,7 @@ public class Daftarstockminimum_inner_panel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Daftar Stock Minimum");
+        jLabel1.setText("Daftar Stok Minimum");
 
         jPanel2.setBackground(new java.awt.Color(41, 39, 40));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

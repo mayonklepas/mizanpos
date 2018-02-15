@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mizanposapp.view.innerpanel.pembelian;
+package mizanposapp.view.innerpanel.penjualan;
 
 import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninnerController;
 

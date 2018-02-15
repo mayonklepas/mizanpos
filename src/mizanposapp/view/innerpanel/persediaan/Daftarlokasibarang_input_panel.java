@@ -6,7 +6,7 @@
 package mizanposapp.view.innerpanel.persediaan;
 
 import mizanposapp.controller.innerpanel.persediaan.DaftarlokasibaranginnerinputController;
-import mizanposapp.controller.innerpanel.persediaan.DaftarlokasinnerController;
+import mizanposapp.controller.innerpanel.persediaan.DaftarlokasibaranginnerController;
 
 /**
  *

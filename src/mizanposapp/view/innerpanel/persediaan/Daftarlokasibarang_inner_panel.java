@@ -7,7 +7,7 @@ package mizanposapp.view.innerpanel.persediaan;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import mizanposapp.controller.innerpanel.persediaan.DaftarlokasinnerController;
+import mizanposapp.controller.innerpanel.persediaan.DaftarlokasibaranginnerController;
 import mizanposapp.controller.innerpanel.persediaan.DaftarmerekinnerController;
 
 /**
@@ -21,7 +21,7 @@ public class Daftarlokasibarang_inner_panel extends javax.swing.JPanel {
      */
     public Daftarlokasibarang_inner_panel() {
         initComponents();
-        new DaftarlokasinnerController(this);
+        new DaftarlokasibaranginnerController(this);
     }
 
     /**

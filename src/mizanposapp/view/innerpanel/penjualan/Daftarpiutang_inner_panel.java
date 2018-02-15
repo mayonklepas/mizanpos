@@ -51,7 +51,7 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Daftar Gudang");
+        jLabel1.setText("Daftar Piutang");
 
         jPanel2.setBackground(new java.awt.Color(41, 39, 40));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

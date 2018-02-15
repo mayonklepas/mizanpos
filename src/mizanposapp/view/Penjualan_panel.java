@@ -22,7 +22,6 @@ public class Penjualan_panel extends javax.swing.JPanel {
      */
     public Penjualan_panel() {
         initComponents();
-        labelstyle(lcekpersediaan);
         labelstyle(ldaftarkaryawan);
         labelstyle(lsettingbonuspenjualan);
         labelstyle(lsettingharidiskon);
@@ -51,8 +50,6 @@ public class Penjualan_panel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         ldaftarkaryawan = new javax.swing.JLabel();
-        lcekpersediaan = new javax.swing.JLabel();
-        ldaftar_supplier = new javax.swing.JLabel();
         lsettingharidiskon = new javax.swing.JLabel();
         lsettingbonuspenjualan = new javax.swing.JLabel();
         lsettingdiskonkelompok = new javax.swing.JLabel();
@@ -116,14 +113,6 @@ public class Penjualan_panel extends javax.swing.JPanel {
         ldaftarkaryawan.setForeground(new java.awt.Color(58, 58, 255));
         ldaftarkaryawan.setText("Daftar Karyawan");
 
-        lcekpersediaan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        lcekpersediaan.setForeground(new java.awt.Color(58, 58, 255));
-        lcekpersediaan.setText("Cek Serial Persediaan");
-
-        ldaftar_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        ldaftar_supplier.setForeground(new java.awt.Color(240, 240, 240));
-        ldaftar_supplier.setText("Daftar Supplier");
-
         lsettingharidiskon.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         lsettingharidiskon.setForeground(new java.awt.Color(58, 58, 255));
         lsettingharidiskon.setText("Setting Diskon Pertanggal");
@@ -186,23 +175,19 @@ public class Penjualan_panel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lcekpersediaan)
-                            .addComponent(ldaftarkaryawan)
-                            .addComponent(lsettingharidiskon)
-                            .addComponent(lsettingbonuspenjualan)
-                            .addComponent(lsettingdiskonkelompok))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ldaftar_supplier)))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lsettingdiskonkelompok)
+                        .addComponent(ldaftarkaryawan)
+                        .addComponent(lsettingharidiskon)
+                        .addComponent(lsettingbonuspenjualan))
+                    .addGap(0, 183, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bpos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,26 +199,19 @@ public class Penjualan_panel extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(bpos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(ldaftar_supplier))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(ldaftarkaryawan)
-                        .addGap(2, 2, 2)
-                        .addComponent(lcekpersediaan)
-                        .addGap(2, 2, 2)
-                        .addComponent(lsettingharidiskon)
-                        .addGap(2, 2, 2)
-                        .addComponent(lsettingbonuspenjualan)
-                        .addGap(2, 2, 2)
-                        .addComponent(lsettingdiskonkelompok)))
-                .addContainerGap())
+                .addGap(2, 2, 2)
+                .addComponent(ldaftarkaryawan)
+                .addGap(2, 2, 2)
+                .addComponent(lsettingharidiskon)
+                .addGap(2, 2, 2)
+                .addComponent(lsettingbonuspenjualan)
+                .addGap(2, 2, 2)
+                .addComponent(lsettingdiskonkelompok)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
@@ -282,8 +260,6 @@ public class Penjualan_panel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    public javax.swing.JLabel lcekpersediaan;
-    public javax.swing.JLabel ldaftar_supplier;
     public javax.swing.JLabel ldaftarkaryawan;
     public javax.swing.JLabel lsettingbonuspenjualan;
     public javax.swing.JLabel lsettingdiskonkelompok;

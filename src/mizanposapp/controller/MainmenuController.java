@@ -17,7 +17,7 @@ import mizanposapp.view.Pembelian_panel;
 import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.Persedian_panel;
 import mizanposapp.view.frameform.Bantuan;
-import mizanposapp.view.innerpanel.penjualan.Daftarpelanggan_inner_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_inner_panel;
 
 /**
@@ -264,7 +264,7 @@ public class MainmenuController {
                 mm.panel_tengah.revalidate();
                 mm.panel_tengah.repaint();
 
-                Daftarpelanggan_inner_panel pin = new Daftarpelanggan_inner_panel();
+                Daftardatapelanggan_inner_panel pin = new Daftardatapelanggan_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
                 pp.container.add(pin, BorderLayout.CENTER);

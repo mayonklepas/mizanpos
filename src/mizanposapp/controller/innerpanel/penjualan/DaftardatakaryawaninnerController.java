@@ -1,11 +1,11 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mizanposapp.controller.innerpanel.pembelian;
+package mizanposapp.controller.innerpanel.penjualan;
 
-import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -29,12 +29,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
-import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_input_panel;
-import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_inner_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_inner_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -44,7 +43,7 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarfakturpembelianinnerController {
+public class DaftardatakaryawaninnerController {
 
     CrudHelper ch = new CrudHelper();
     public static String id;
@@ -53,7 +52,7 @@ public class DaftarfakturpembelianinnerController {
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
 
-    public DaftarfakturpembelianinnerController(Daftarfakturpembelian_inner_panel pane) {
+    public DaftardatakaryawaninnerController(Daftardatakaryawan_inner_panel pane) {
         loadheader(pane);
         loaddata(pane);
         loaddatadetail(pane);
@@ -64,10 +63,9 @@ public class DaftarfakturpembelianinnerController {
         selectdata(pane);
         oncarienter(pane);
         onbuttoncari(pane);
-
     }
 
-    private void loadheader(Daftarfakturpembelian_inner_panel pane) {
+    private void loadheader(Daftardatakaryawan_inner_panel pane) {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -81,7 +79,7 @@ public class DaftarfakturpembelianinnerController {
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("fakturpembelian");
+            JSONArray jaheader = (JSONArray) joheader.get("nama");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -100,11 +98,11 @@ public class DaftarfakturpembelianinnerController {
                 tcm.getColumn(i).setMaxWidth(wi);
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftardatakaryawaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void loaddata(Daftarfakturpembelian_inner_panel pane) {
+    private void loaddata(Daftardatakaryawan_inner_panel pane) {
         cleardata();
         disablebutton(pane);
         dtm.getDataVector().removeAllElements();
@@ -114,8 +112,9 @@ public class DaftarfakturpembelianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("daftarpembelian", param));
+                String param = "tipe=2";
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/daftarnama", param));
+                System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -143,7 +142,7 @@ public class DaftarfakturpembelianinnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarfakturpembelian_inner_panel pane) {
+    private void loaddatadetailraw(Daftardatakaryawan_inner_panel pane) {
         cleardata();
         disablebutton(pane);
         dtm.getDataVector().removeAllElements();
@@ -153,9 +152,9 @@ public class DaftarfakturpembelianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("tahun=%s&bulan=%s&cari=%s", Globalsession.PERIODE_TAHUN,
-                        Globalsession.PERIODE_BULAN, pane.tcari.getText());
-                Object objdata = jpdata.parse(ch.getdatadetails("caripembelian", param));
+                String param = String.format("tipe=2&cari=%s", pane.tcari.getText());
+                System.out.println(ch.getdatadetails("dm/carinama", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/carinama", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -167,6 +166,7 @@ public class DaftarfakturpembelianinnerController {
                     }
                     dtm.addRow(objindata);
                 }
+
                 return null;
             }
 
@@ -183,7 +183,7 @@ public class DaftarfakturpembelianinnerController {
 
     }
 
-    private void loaddatadetail(Daftarfakturpembelian_inner_panel pane) {
+    private void loaddatadetail(Daftardatakaryawan_inner_panel pane) {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -203,7 +203,7 @@ public class DaftarfakturpembelianinnerController {
         });
     }
 
-    private void selectdata(Daftarfakturpembelian_inner_panel pane) {
+    private void selectdata(Daftardatakaryawan_inner_panel pane) {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -221,7 +221,40 @@ public class DaftarfakturpembelianinnerController {
         id = "";
     }
 
-    private void deletedata(Daftarfakturpembelian_inner_panel pane) {
+    private void editdata(Daftardatakaryawan_inner_panel pane) {
+        pane.bedit.addActionListener((ActionEvent e) -> {
+            int row = pane.tabledata.getSelectedRow();
+            id = idlist.get(row);
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Daftardatakaryawan_input_panel());
+            jd.pack();
+            jd.setLocationRelativeTo(null);
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setTitle("Edit Data Karyawan");
+            jd.setVisible(true);
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                loaddata(pane);
+            } else {
+                loaddatadetailraw(pane);
+            }
+        });
+    }
+
+    private void inputdata(Daftardatakaryawan_inner_panel pane) {
+        pane.btambah.addActionListener((ActionEvent e) -> {
+            cleardata();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Daftardatakaryawan_input_panel());
+            jd.pack();
+            jd.setLocationRelativeTo(null);
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setTitle("Input Data Karyawan");
+            jd.setVisible(true);
+            loaddata(pane);
+        });
+    }
+
+    private void deletedata(Daftardatakaryawan_inner_panel pane) {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -230,7 +263,7 @@ public class DaftarfakturpembelianinnerController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletefakturpembelian", data);
+                    ch.deletedata("dm/deletedatakaryawan", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -255,7 +288,7 @@ public class DaftarfakturpembelianinnerController {
 
     }
 
-    private void updateloaddata(Daftarfakturpembelian_inner_panel pane) {
+    private void updateloaddata(Daftardatakaryawan_inner_panel pane) {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -265,7 +298,7 @@ public class DaftarfakturpembelianinnerController {
         });
     }
 
-    private void oncarienter(Daftarfakturpembelian_inner_panel pane) {
+    private void oncarienter(Daftardatakaryawan_inner_panel pane) {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -279,7 +312,7 @@ public class DaftarfakturpembelianinnerController {
         });
     }
 
-    private void onbuttoncari(Daftarfakturpembelian_inner_panel pane) {
+    private void onbuttoncari(Daftardatakaryawan_inner_panel pane) {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -290,36 +323,14 @@ public class DaftarfakturpembelianinnerController {
         });
     }
 
-    private void disablebutton(Daftarfakturpembelian_inner_panel pane) {
+    private void disablebutton(Daftardatakaryawan_inner_panel pane) {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarfakturpembelian_inner_panel pane) {
+    private void enablebutton(Daftardatakaryawan_inner_panel pane) {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
-    }
-
-    private void inputdata(Daftarfakturpembelian_inner_panel pane) {
-        pane.btambah.addActionListener((ActionEvent e) -> {
-            Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
-            Staticvar.pp.container.removeAll();
-            Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.pp.container.revalidate();
-            Staticvar.pp.container.repaint();
-        });
-    }
-
-    private void editdata(Daftarfakturpembelian_inner_panel pane) {
-        pane.bedit.addActionListener((ActionEvent e) -> {
-            Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
-            Staticvar.pp.container.removeAll();
-            Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(pane, BorderLayout.CENTER);
-            Staticvar.pp.container.revalidate();
-            Staticvar.pp.container.repaint();
-        });
     }
 
 }

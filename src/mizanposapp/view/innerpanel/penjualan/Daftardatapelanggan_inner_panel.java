@@ -5,19 +5,20 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
-import mizanposapp.controller.innerpanel.penjualan.DaftarpiutanginnerController;
+import mizanposapp.controller.innerpanel.penjualan.DaftardatapelangganinnerController;
 
 /**
  *
  * @author Minami
  */
-public class Daftarpelanggan_inner_panel extends javax.swing.JPanel {
+public class Daftardatapelanggan_inner_panel extends javax.swing.JPanel {
 
     /**
      * Creates new form Persedian_inner_panel
      */
-    public Daftarpelanggan_inner_panel() {
+    public Daftardatapelanggan_inner_panel() {
         initComponents();
+        new DaftardatapelangganinnerController(this);
     }
 
     /**
@@ -51,7 +52,7 @@ public class Daftarpelanggan_inner_panel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Daftar Gudang");
+        jLabel1.setText("Daftar Pelanggan");
 
         jPanel2.setBackground(new java.awt.Color(41, 39, 40));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,7 +81,7 @@ public class Daftarpelanggan_inner_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(14, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
         );
 
         tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

@@ -5,16 +5,18 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
+import mizanposapp.view.innerpanel.persediaan.*;
+
 /**
  *
  * @author Minami
  */
-public class Daftarpelanggan_input_panel extends javax.swing.JPanel {
+public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
 
     /**
      * Creates new form Daftarmerek_input_panel
      */
-    public Daftarpelanggan_input_panel() {
+    public Daftardatapelanggan_input_panel() {
         initComponents();
     }
 
@@ -234,8 +236,9 @@ public class Daftarpelanggan_input_panel extends javax.swing.JPanel {
                     .addComponent(jButton3))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel14)
+                    .addComponent(jLabel14)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel11))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)

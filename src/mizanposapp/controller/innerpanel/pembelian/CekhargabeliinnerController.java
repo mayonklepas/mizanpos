@@ -9,6 +9,6 @@ package mizanposapp.controller.innerpanel.pembelian;
  *
  * @author Minami
  */
-public class PopupcariController {
+public class CekhargabeliinnerController {
 
 }

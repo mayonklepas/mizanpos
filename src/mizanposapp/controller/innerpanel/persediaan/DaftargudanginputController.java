@@ -8,64 +8,69 @@ package mizanposapp.controller.innerpanel.persediaan;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import mizanposapp.helper.CrudHelper;
-import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
-import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.persediaan.Daftarlokasibarang_input_panel;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.persediaan.Daftargudang_input_panel;
 
 /**
  *
  * @author Minami
  */
-public class DaftarlokasibaranginnerinputController {
+public class DaftargudanginputController {
 
     String id;
     CrudHelper ch = new CrudHelper();
 
-    public DaftarlokasibaranginnerinputController(Daftarlokasibarang_input_panel pane) {
-        loaddata(pane);
-        tutup(pane);
-        simpandata(pane);
+    public DaftargudanginputController(Daftargudang_input_panel pane) {
+        //loaddata(pane);
+        //tutup(pane);
+        //simpandata(pane);
+        caripenanggungjawab(pane);
     }
 
-    private void loaddata(Daftarlokasibarang_input_panel pane) {
+    private void caripenanggungjawab(Daftargudang_input_panel pane) {
+        pane.bcari_penanggungjawab.addActionListener((ActionEvent e) -> {
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("gudang", "dm/daftargudang", "Gudang"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+        });
+
+    }
+
+    /* private void loaddata(Daftargudang_input_panel pane) {
         try {
-            id = DaftarlokasibaranginnerController.id;
+            id = DaftarmerekinnerController.id;
             JSONParser jpdata = new JSONParser();
             String param = String.format("id=%s", id);
-            Object objdata = jpdata.parse(ch.getdatadetails("dm/datalokasi", param));
+            Object objdata = jpdata.parse(ch.getdatadetails("dm/datamerek", param));
             JSONArray jadata = (JSONArray) objdata;
             for (int i = 0; i < jadata.size(); i++) {
                 JSONObject joindata = (JSONObject) jadata.get(i);
-                pane.edkode_lokasi.setText(String.valueOf(joindata.get("KODELOKASI")));
-                pane.ednama_lokasi.setText(String.valueOf(joindata.get("NAMALOKASI")));
-                pane.edpenanggungjawab.setText(String.valueOf(joindata.get("IDPENANGGUNGJAWAB")));
+                pane.edkode_merek.setText(String.valueOf(joindata.get("KODE")));
+                pane.ednama_merek.setText(String.valueOf(joindata.get("NAMA")));
+                pane.edketerangan.setText(String.valueOf(joindata.get("KETERANGAN")));
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarlokasibaranginnerinputController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftargudanginputController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    private void simpandata(Daftarlokasibarang_input_panel pane) {
+    }*/
+ /*private void simpandata(Daftargudang_input_panel pane) {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (id.equals("")) {
-                    String data = String.format("data=kodelokasi='%s'::namalokasi='%s'::idpenanggungjawab='%s'",
-                            pane.edkode_lokasi.getText(),
-                            pane.ednama_lokasi.getText(),
-                            pane.edpenanggungjawab.getText());
-                    ch.insertdata("dm/insertlokasi", data);
+                    String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
+                            pane.edkode_merek.getText(),
+                            pane.ednama_merek.getText(),
+                            pane.edketerangan.getText());
+                    ch.insertdata("dm/insertmerek", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -81,11 +86,11 @@ public class DaftarlokasibaranginnerinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kodelokasi='%s'::namalokasi='%s'::idpenanggungjawab='%s'",
-                            pane.edkode_lokasi.getText(),
-                            pane.ednama_lokasi.getText(),
-                            pane.edpenanggungjawab.getText());
-                    ch.updatedata("dm/updatelokasi", data, id);
+                    String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
+                            pane.edkode_merek.getText(),
+                            pane.ednama_merek.getText(),
+                            pane.edketerangan.getText());
+                    ch.updatedata("dm/updatemerek", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -103,9 +108,9 @@ public class DaftarlokasibaranginnerinputController {
                 }
             }
         });
-    }
+    }*/
 
-    private void tutup(Daftarlokasibarang_input_panel pane) {
+ /*private void tutup(Daftargudang_input_panel pane) {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,6 +118,5 @@ public class DaftarlokasibaranginnerinputController {
                 jd.dispose();
             }
         });
-    }
-
+    }*/
 }

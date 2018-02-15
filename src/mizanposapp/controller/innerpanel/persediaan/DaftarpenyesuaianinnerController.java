@@ -35,7 +35,7 @@ import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.pembelian.Daftarpembayaranpiutangperinvoice_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarpembayaranpiutangperinvoice_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_input_panel;
 import org.json.simple.JSONArray;
