@@ -26,8 +26,8 @@ public class Staticvar {
     public static Laporan_panel lp = null;
     public static Beranda_panel bp = null;
     //public static String url = "http://192.168.1.105:556/";
-    public static String url = "http://172619802169.ip-dynamic.com:556/";
-    //public static String url = "http://198.50.174.114:556/";
+    //public static String url = "http://172619802169.ip-dynamic.com:556/";
+    public static String url = "http://198.50.174.114:556/";
     public static ArrayList<Integer> stylecolum = new ArrayList<>();
     public static String getresult = "";
 }

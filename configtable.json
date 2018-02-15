@@ -539,5 +539,211 @@
         "10"
       ]
     }
+  ],
+"fakturpenjualan": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "TANGGAL",
+        "Tanggal",
+        "1",
+        "15"
+      ]
+    },
+    {
+      "key": [
+        "DEPTID",
+        "Deptid",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "NOREF",
+        "No. ref",
+        "1",
+        "15"
+      ]
+    },
+    {
+      "key": [
+        "NAMACUSTOMER",
+        "Nama Customer",
+        "1",
+        "25"
+      ]
+    },
+    {
+      "key": [
+        "KETERANGAN",
+        "Keterangan",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "TOTAL_PENJUALAN",
+        "Total Penjualan",
+        "1",
+        "15"
+      ]
+    },
+    {
+      "key": [
+        "ORDERCLOSE",
+        "Order Close",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "IDCUSTOMER",
+        "ID Customer",
+        "0",
+        "0"
+      ]
+    }
+  ],
+"returpenjualan": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "TANGGAL",
+        "Tanggal",
+        "1",
+        "15"
+      ]
+    },
+    {
+      "key": [
+        "DEPTID",
+        "Deptid",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "NOREF",
+        "No. ref",
+        "1",
+        "15"
+      ]
+    },
+    {
+      "key": [
+        "NAMACUSTOMER",
+        "Nama Customer",
+        "1",
+        "25"
+      ]
+    },
+    {
+      "key": [
+        "KETERANGAN",
+        "Keterangan",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "TOTAL_PENJUALAN",
+        "Total Penjualan",
+        "1",
+        "15"
+      ]
+    },
+    {
+      "key": [
+        "ORDERCLOSE",
+        "Order Close",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "IDCUSTOMER",
+        "ID Customer",
+        "0",
+        "0"
+      ]
+    }
+  ],
+"piutang": [
+    {
+      "key": [
+        "ID",
+        "ID",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "KODE",
+        "Kode",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "NAMA",
+        "Nama",
+        "1",
+        "30"
+      ]
+    },
+    {
+      "key": [
+        "TIPE",
+        "Tipe",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "key": [
+        "TOTAL_HUTANG",
+        "Total Hutang",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "TOTAL_CICILAN",
+        "Total Cicilan",
+        "1",
+        "20"
+      ]
+    },
+    {
+      "key": [
+        "SISA_HUTANG",
+        "Sisa Hutang",
+        "1",
+        "20"
+      ]
+    }
   ]
 }
