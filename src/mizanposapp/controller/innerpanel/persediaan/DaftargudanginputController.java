@@ -33,7 +33,7 @@ public class DaftargudanginputController {
     private void caripenanggungjawab(Daftargudang_input_panel pane) {
         pane.bcari_penanggungjawab.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("gudang", "dm/daftargudang", "Gudang"));
+            jd.add(new Popupcari("nama", "popupdatanama?tipe=2", "Daftar Karyawan"));
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);

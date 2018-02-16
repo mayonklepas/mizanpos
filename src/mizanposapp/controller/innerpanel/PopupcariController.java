@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -34,6 +35,7 @@ import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatadept_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatadept_input_panel;
 import org.json.simple.JSONArray;
@@ -46,25 +48,26 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class PopupcariController {
-
+    
     CrudHelper ch = new CrudHelper();
     public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
-
+    
     public PopupcariController(Popupcari pane, String tipe, String page, String header) {
+        pane.lheader.setText(header);
         loadheader(pane, tipe);
         loaddata(pane, page);
         loaddatadetail(pane, page);
-        inputdata(pane);
+        inputdata(pane, tipe);
         editdata(pane);
         deletedata(pane, page);
         selectdata(pane);
         oncarienter(pane);
     }
-
+    
     private void loadheader(Popupcari pane, String tipe) {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -90,7 +93,7 @@ public class PopupcariController {
                     lssize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 }
             }
-
+            
             for (int i = 0; i < lssize.size(); i++) {
                 Double wd = d.getWidth() - 344;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
@@ -101,7 +104,7 @@ public class PopupcariController {
             Logger.getLogger(PopupcariController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void loaddata(Popupcari pane, String page) {
         cleardata();
         disablebutton(pane);
@@ -126,20 +129,20 @@ public class PopupcariController {
                 }
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 //pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton(pane);
-
+                
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
+    
     private void loaddatadetailraw(Popupcari pane, String page) {
         cleardata();
         disablebutton(pane);
@@ -151,7 +154,7 @@ public class PopupcariController {
                 //pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("cari=%s", pane.tcari.getText());
-                Object objdata = jpdata.parse(ch.getdatadetails(page, param));
+                Object objdata = jpdata.parse(ch.getdatadetails(page.replace("daftar", "cari"), param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -165,40 +168,40 @@ public class PopupcariController {
                 }
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 //pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton(pane);
-
+                
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
+    
     private void loaddatadetail(Popupcari pane, String page) {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-
+            
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     loaddatadetailraw(pane, page);
                 }
             }
-
+            
             @Override
             public void keyReleased(KeyEvent e) {
-
+                
             }
         });
     }
-
+    
     private void selectdata(Popupcari pane) {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -207,16 +210,16 @@ public class PopupcariController {
                     enablebutton(pane);
                     //System.out.println(id);
                 }
-
+                
             }
         });
     }
-
+    
     private void cleardata() {
         idlist.clear();
         id = "";
     }
-
+    
     private void deletedata(Popupcari pane, String page) {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
@@ -226,7 +229,7 @@ public class PopupcariController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata(page, data);
+                    ch.deletedata(page.replace("daftar", "delete"), data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -245,53 +248,61 @@ public class PopupcariController {
                         }
                     }
                 }
-
+                
             }
         });
-
+        
     }
-
+    
     private void oncarienter(Popupcari pane) {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 pane.tcari.setText("");
             }
-
+            
             @Override
             public void focusLost(FocusEvent e) {
                 //pane.tcari.setText("Cari Data");
             }
         });
     }
-
+    
     private void disablebutton(Popupcari pane) {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
-
+    
     private void enablebutton(Popupcari pane) {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }
-
-    private void inputdata(Popupcari pane) {
+    
+    private void inputdata(Popupcari pane, String tipe) {
         pane.bbaru.addActionListener((ActionEvent e) -> {
-
+            JPanel inpane = new JPanel();
+            switch (tipe) {
+                case "nama":
+                    inpane = new Daftardatakaryawan_input_panel();
+                    break;
+                case "":
+                    break;
+                
+            }
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Daftardatadept_input_panel());
+            jd.add(inpane);
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-
+            
         });
     }
-
+    
     private void editdata(Popupcari pane) {
         pane.bedit.addActionListener((ActionEvent e) -> {
         });
     }
-
+    
 }
