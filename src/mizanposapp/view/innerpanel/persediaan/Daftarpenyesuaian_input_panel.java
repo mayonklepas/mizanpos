@@ -5,7 +5,7 @@
  */
 package mizanposapp.view.innerpanel.persediaan;
 
-import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninnerController;
+import mizanposapp.controller.innerpanel.persediaan.DaftarpenyesuaianinputController;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
      */
     public Daftarpenyesuaian_input_panel() {
         initComponents();
-
+        new DaftarpenyesuaianinputController(this);
     }
 
     /**
@@ -51,7 +51,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jCalendarCombo1 = new org.freixas.jcalendar.JCalendarCombo();
-        jButton4 = new javax.swing.JButton();
+        bcari_dept = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -172,11 +172,11 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton4.setText("Cari");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bcari_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_dept.setText("Cari");
+        bcari_dept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bcari_deptActionPerformed(evt);
             }
         });
 
@@ -257,7 +257,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(tcari2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGap(2, 2, 2)
-                                                .addComponent(jButton4))))))
+                                                .addComponent(bcari_dept))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -290,7 +290,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(tcari2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jButton4))
+                    .addComponent(bcari_dept))
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -322,9 +322,9 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tcari2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void bcari_deptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_deptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_bcari_deptActionPerformed
 
     private void tcari4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcari4ActionPerformed
         // TODO add your handling code here:
@@ -335,9 +335,9 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_jCalendarCombo1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_dept;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo1;
     private javax.swing.JCheckBox jCheckBox1;

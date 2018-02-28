@@ -47,27 +47,28 @@ import org.json.simple.parser.ParseException;
 public class DaftarreturpenjualaninnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarreturpenjualan_inner_panel pane;
 
     public DaftarreturpenjualaninnerController(Daftarreturpenjualan_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        editdata(pane);
-        deletedata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        editdata();
+        deletedata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
 
     }
 
-    private void loadheader(Daftarreturpenjualan_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,9 +105,9 @@ public class DaftarreturpenjualaninnerController {
         }
     }
 
-    private void loaddata(Daftarreturpenjualan_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -134,7 +135,7 @@ public class DaftarreturpenjualaninnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -143,9 +144,9 @@ public class DaftarreturpenjualaninnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarreturpenjualan_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -175,7 +176,7 @@ public class DaftarreturpenjualaninnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -184,7 +185,7 @@ public class DaftarreturpenjualaninnerController {
 
     }
 
-    private void loaddatadetail(Daftarreturpenjualan_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -193,7 +194,7 @@ public class DaftarreturpenjualaninnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -204,12 +205,12 @@ public class DaftarreturpenjualaninnerController {
         });
     }
 
-    private void selectdata(Daftarreturpenjualan_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -219,10 +220,10 @@ public class DaftarreturpenjualaninnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void deletedata(Daftarreturpenjualan_inner_panel pane) {
+    private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -244,9 +245,13 @@ public class DaftarreturpenjualaninnerController {
                         jd.toFront();
                     } else {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddata();
+                            }
                         } else {
-                            loaddatadetailraw(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw();
+                            }
                         }
                     }
                 }
@@ -256,17 +261,17 @@ public class DaftarreturpenjualaninnerController {
 
     }
 
-    private void updateloaddata(Daftarreturpenjualan_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarreturpenjualan_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -280,28 +285,28 @@ public class DaftarreturpenjualaninnerController {
         });
     }
 
-    private void onbuttoncari(Daftarreturpenjualan_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarreturpenjualan_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarreturpenjualan_inner_panel pane) {
+    private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }
 
-    private void inputdata(Daftarreturpenjualan_inner_panel pane) {
+    private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             Daftarreturpenjualan_input_panel inpane = new Daftarreturpenjualan_input_panel();
             Staticvar.pp.container.removeAll();
@@ -312,7 +317,7 @@ public class DaftarreturpenjualaninnerController {
         });
     }
 
-    private void editdata(Daftarreturpenjualan_inner_panel pane) {
+    private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             Daftarreturpenjualan_input_panel inpane = new Daftarreturpenjualan_input_panel();
             Staticvar.pp.container.removeAll();

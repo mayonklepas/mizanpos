@@ -53,7 +53,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="edpenanggungjawab" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="bcari" min="-2" max="-2" attributes="0"/>
+                              <Component id="bcari_penanggung_jawab" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="edpenanggungjawab" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bcari" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bcari_penanggung_jawab" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -246,7 +246,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="bcari">
+    <Component class="javax.swing.JToggleButton" name="bcari_penanggung_jawab">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>

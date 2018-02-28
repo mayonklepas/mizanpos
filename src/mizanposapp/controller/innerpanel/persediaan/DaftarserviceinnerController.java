@@ -45,26 +45,27 @@ import org.json.simple.parser.ParseException;
 public class DaftarserviceinnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarservice_inner_panel pane;
 
     public DaftarserviceinnerController(Daftarservice_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        editdata(pane);
-        deletedata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        editdata();
+        deletedata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
     }
 
-    private void loadheader(Daftarservice_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -101,9 +102,9 @@ public class DaftarserviceinnerController {
         }
     }
 
-    private void loaddata(Daftarservice_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -130,7 +131,7 @@ public class DaftarserviceinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -139,9 +140,9 @@ public class DaftarserviceinnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarservice_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -170,7 +171,7 @@ public class DaftarserviceinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -179,7 +180,7 @@ public class DaftarserviceinnerController {
 
     }
 
-    private void loaddatadetail(Daftarservice_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -188,7 +189,7 @@ public class DaftarserviceinnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -199,12 +200,12 @@ public class DaftarserviceinnerController {
         });
     }
 
-    private void selectdata(Daftarservice_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -214,13 +215,13 @@ public class DaftarserviceinnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void editdata(Daftarservice_inner_panel pane) {
+    private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
-            id = idlist.get(row);
+            Staticvar.ids = idlist.get(row);
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftarservice_input_panel());
             jd.pack();
@@ -229,14 +230,18 @@ public class DaftarserviceinnerController {
             jd.setTitle("Edit Data Service");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                loaddata(pane);
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
             } else {
-                loaddatadetailraw(pane);
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
             }
         });
     }
 
-    private void inputdata(Daftarservice_inner_panel pane) {
+    private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
             JDialog jd = new JDialog(new Mainmenu());
@@ -246,11 +251,19 @@ public class DaftarserviceinnerController {
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setTitle("Input Data Service");
             jd.setVisible(true);
-            loaddata(pane);
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
+            }
         });
     }
 
-    private void deletedata(Daftarservice_inner_panel pane) {
+    private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -272,9 +285,13 @@ public class DaftarserviceinnerController {
                         jd.toFront();
                     } else {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddata();
+                            }
                         } else {
-                            loaddatadetailraw(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw();
+                            }
                         }
                     }
                 }
@@ -284,17 +301,17 @@ public class DaftarserviceinnerController {
 
     }
 
-    private void updateloaddata(Daftarservice_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarservice_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -308,23 +325,23 @@ public class DaftarserviceinnerController {
         });
     }
 
-    private void onbuttoncari(Daftarservice_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarservice_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarservice_inner_panel pane) {
+    private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }

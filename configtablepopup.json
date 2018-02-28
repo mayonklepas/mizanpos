@@ -259,15 +259,15 @@
     },
     {
       "key": [
-        "KODEGUDANG",
+        "KODE",
         "Kode Gudang",
         "1",
-        "10"
+        "20"
       ]
     },
     {
       "key": [
-        "NAMAGUDANG",
+        "NAMA",
         "Nama Gudang",
         "1",
         "30"
@@ -277,7 +277,7 @@
       "key": [
         "IDPENANGGUNGJAWAB",
         "ID Penanggungjawab",
-        "1",
+        "0",
         "20"
       ]
     },
@@ -285,7 +285,7 @@
       "key": [
         "NAMAPENANGGUNGJAWAB",
         "Nama Penanggungjawab",
-        "1",
+        "0",
         "40"
       ]
     }
@@ -301,7 +301,7 @@
     },
     {
       "key": [
-        "NAMA_DEPT",
+        "DEPTNAME",
         "Nama Dept",
         "1",
         "40"
@@ -311,7 +311,7 @@
       "key": [
         "ISSUBDEPT",
         "Is Subdept",
-        "1",
+        "0",
         "10"
       ]
     },
@@ -319,13 +319,13 @@
       "key": [
         "ID_SUBDEPT",
         "ID Subdept",
-        "1",
+        "0",
         "20"
       ]
     },
     {
       "key": [
-        "NAMA_SUBDEPT",
+        "SUBDEPT",
         "Nama Subdept",
         "1",
         "30"

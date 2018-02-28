@@ -5,7 +5,7 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
-import mizanposapp.view.innerpanel.persediaan.*;
+import mizanposapp.controller.innerpanel.penjualan.DaftardatapelangganinputController;
 
 /**
  *
@@ -18,6 +18,7 @@ public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
      */
     public Daftardatapelanggan_input_panel() {
         initComponents();
+        new DaftardatapelangganinputController(this);
     }
 
     /**
@@ -59,7 +60,7 @@ public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        jButton3 = new javax.swing.JButton();
+        bcari_klasifikasi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -193,8 +194,8 @@ public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
         jEditorPane1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jScrollPane2.setViewportView(jEditorPane1);
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setText("Cari");
+        bcari_klasifikasi.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_klasifikasi.setText("Cari");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,7 +223,7 @@ public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField4)
                         .addGap(2, 2, 2)
-                        .addComponent(jButton3)))
+                        .addComponent(bcari_klasifikasi)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -233,7 +234,7 @@ public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jButton3))
+                    .addComponent(bcari_klasifikasi))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
@@ -585,9 +586,9 @@ public class Daftardatapelanggan_input_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_klasifikasi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;

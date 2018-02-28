@@ -6,7 +6,6 @@
 package mizanposapp.controller.innerpanel.pembelian;
 
 import java.awt.BorderLayout;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -19,8 +18,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -29,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
-import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutang_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
@@ -46,26 +42,27 @@ import org.json.simple.parser.ParseException;
 public class DaftarhutanginnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarhutang_inner_panel pane;
 
     public DaftarhutanginnerController(Daftarhutang_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        inputdetaildata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        inputdetaildata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
 
     }
 
-    private void loadheader(Daftarhutang_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -102,9 +99,9 @@ public class DaftarhutanginnerController {
         }
     }
 
-    private void loaddata(Daftarhutang_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -132,7 +129,7 @@ public class DaftarhutanginnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -141,9 +138,9 @@ public class DaftarhutanginnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarhutang_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -172,7 +169,7 @@ public class DaftarhutanginnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -181,7 +178,7 @@ public class DaftarhutanginnerController {
 
     }
 
-    private void loaddatadetail(Daftarhutang_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -190,7 +187,7 @@ public class DaftarhutanginnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -201,12 +198,12 @@ public class DaftarhutanginnerController {
         });
     }
 
-    private void selectdata(Daftarhutang_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -216,20 +213,20 @@ public class DaftarhutanginnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void updateloaddata(Daftarhutang_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarhutang_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -243,46 +240,46 @@ public class DaftarhutanginnerController {
         });
     }
 
-    private void onbuttoncari(Daftarhutang_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarhutang_inner_panel pane) {
+    private void disablebutton() {
         pane.bbayar.setEnabled(false);
         pane.bdetailbayar.setEnabled(false);
     }
 
-    private void enablebutton(Daftarhutang_inner_panel pane) {
+    private void enablebutton() {
         pane.bbayar.setEnabled(true);
         pane.bdetailbayar.setEnabled(true);
     }
 
-    private void inputdata(Daftarhutang_inner_panel pane) {
+    private void inputdata() {
         pane.bbayar.addActionListener((ActionEvent e) -> {
             Daftarpembayaranhutangperinvoice_input_panel inpane = new Daftarpembayaranhutangperinvoice_input_panel();
-            Staticvar.pp.container.removeAll();
-            Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.pp.container.revalidate();
-            Staticvar.pp.container.repaint();
+            Staticvar.pmp.container.removeAll();
+            Staticvar.pmp.container.setLayout(new BorderLayout());
+            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.pmp.container.revalidate();
+            Staticvar.pmp.container.repaint();
         });
     }
 
-    private void inputdetaildata(Daftarhutang_inner_panel pane) {
+    private void inputdetaildata() {
         pane.bdetailbayar.addActionListener((ActionEvent e) -> {
             Daftarhutangrincian_inner_panel inpane = new Daftarhutangrincian_inner_panel();
-            Staticvar.pp.container.removeAll();
-            Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.pp.container.revalidate();
-            Staticvar.pp.container.repaint();
+            Staticvar.pmp.container.removeAll();
+            Staticvar.pmp.container.setLayout(new BorderLayout());
+            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.pmp.container.revalidate();
+            Staticvar.pmp.container.repaint();
         });
     }
 

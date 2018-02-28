@@ -6,7 +6,6 @@
 package mizanposapp.controller.innerpanel.penjualan;
 
 import java.awt.BorderLayout;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -19,8 +18,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -28,9 +25,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
-import static mizanposapp.controller.innerpanel.penjualan.DaftarpiutanginnerController.id;
 import mizanposapp.helper.CrudHelper;
-import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.innerpanel.penjualan.Daftarpembayaranpiutangperinvoice_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarpiutangrincian_inner_panel;
@@ -47,26 +42,27 @@ import org.json.simple.parser.ParseException;
 public class DaftarpiutanginnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarpiutang_inner_panel pane;
 
     public DaftarpiutanginnerController(Daftarpiutang_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        inputdetaildata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        inputdetaildata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
 
     }
 
-    private void loadheader(Daftarpiutang_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -103,9 +99,9 @@ public class DaftarpiutanginnerController {
         }
     }
 
-    private void loaddata(Daftarpiutang_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -133,7 +129,7 @@ public class DaftarpiutanginnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -142,9 +138,9 @@ public class DaftarpiutanginnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarpiutang_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -173,7 +169,7 @@ public class DaftarpiutanginnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -182,7 +178,7 @@ public class DaftarpiutanginnerController {
 
     }
 
-    private void loaddatadetail(Daftarpiutang_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -191,7 +187,7 @@ public class DaftarpiutanginnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -202,12 +198,12 @@ public class DaftarpiutanginnerController {
         });
     }
 
-    private void selectdata(Daftarpiutang_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -217,20 +213,20 @@ public class DaftarpiutanginnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void updateloaddata(Daftarpiutang_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarpiutang_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -244,28 +240,28 @@ public class DaftarpiutanginnerController {
         });
     }
 
-    private void onbuttoncari(Daftarpiutang_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarpiutang_inner_panel pane) {
+    private void disablebutton() {
         pane.bbayar.setEnabled(false);
         pane.bdetailbayar.setEnabled(false);
     }
 
-    private void enablebutton(Daftarpiutang_inner_panel pane) {
+    private void enablebutton() {
         pane.bbayar.setEnabled(true);
         pane.bdetailbayar.setEnabled(true);
     }
 
-    private void inputdata(Daftarpiutang_inner_panel pane) {
+    private void inputdata() {
         pane.bbayar.addActionListener((ActionEvent e) -> {
             Daftarpembayaranpiutangperinvoice_input_panel inpane = new Daftarpembayaranpiutangperinvoice_input_panel();
             Staticvar.pp.container.removeAll();
@@ -276,7 +272,7 @@ public class DaftarpiutanginnerController {
         });
     }
 
-    private void inputdetaildata(Daftarpiutang_inner_panel pane) {
+    private void inputdetaildata() {
         pane.bdetailbayar.addActionListener((ActionEvent e) -> {
             Daftarpiutangrincian_inner_panel inpane = new Daftarpiutangrincian_inner_panel();
             Staticvar.pp.container.removeAll();

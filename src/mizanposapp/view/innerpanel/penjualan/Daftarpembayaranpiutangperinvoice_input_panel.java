@@ -5,6 +5,7 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
+import mizanposapp.controller.innerpanel.penjualan.DaftarpembayaranpiutangperinvoiceinputController;
 import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninnerController;
 
 /**
@@ -18,7 +19,7 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
      */
     public Daftarpembayaranpiutangperinvoice_input_panel() {
         initComponents();
-
+        new DaftarpembayaranpiutangperinvoiceinputController(this);
     }
 
     /**
@@ -47,7 +48,7 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
         tcari2 = new javax.swing.JTextField();
         tcari4 = new javax.swing.JTextField();
         jCalendarCombo1 = new org.freixas.jcalendar.JCalendarCombo();
-        jButton4 = new javax.swing.JButton();
+        bcari_pelanggan = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -167,11 +168,11 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
 
         jCalendarCombo1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton4.setText("Cari");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bcari_pelanggan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_pelanggan.setText("Cari");
+        bcari_pelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bcari_pelangganActionPerformed(evt);
             }
         });
 
@@ -389,7 +390,7 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGap(238, 238, 238)
-                                                .addComponent(jButton4))
+                                                .addComponent(bcari_pelanggan))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,7 +430,7 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel7)
                                 .addComponent(tcari2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton4))
+                                .addComponent(bcari_pelanggan))
                             .addGap(1, 1, 1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
@@ -471,9 +472,9 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
         // TODO add your handling code here:
     }//GEN-LAST:event_tcari2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void bcari_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_pelangganActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_bcari_pelangganActionPerformed
 
     private void tcari4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcari4ActionPerformed
         // TODO add your handling code here:
@@ -500,9 +501,9 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
     }//GEN-LAST:event_jCalendarCombo2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_pelanggan;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo1;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo2;

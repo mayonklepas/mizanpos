@@ -11,11 +11,11 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
+import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.persediaan.Daftarlokasibarang_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,16 +30,32 @@ public class DaftarlokasibaranginnerinputController {
 
     String id;
     CrudHelper ch = new CrudHelper();
+    Daftarlokasibarang_input_panel pane;
 
     public DaftarlokasibaranginnerinputController(Daftarlokasibarang_input_panel pane) {
-        loaddata(pane);
-        tutup(pane);
-        simpandata(pane);
+        this.pane = pane;
+        loaddata();
+        tutup();
+        simpandata();
+        caripenanggungjawab();
     }
 
-    private void loaddata(Daftarlokasibarang_input_panel pane) {
+    private void caripenanggungjawab() {
+        pane.bcari_penanggung_jawab.addActionListener((ActionEvent e) -> {
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("nama", "popupdaftarnama?tipe=2", "Daftar Karyawan"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+        });
+
+    }
+
+    private void loaddata() {
         try {
-            id = DaftarlokasibaranginnerController.id;
+            id = Staticvar.ids;
             JSONParser jpdata = new JSONParser();
             String param = String.format("id=%s", id);
             Object objdata = jpdata.parse(ch.getdatadetails("dm/datalokasi", param));
@@ -56,7 +72,7 @@ public class DaftarlokasibaranginnerinputController {
 
     }
 
-    private void simpandata(Daftarlokasibarang_input_panel pane) {
+    private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,7 +121,7 @@ public class DaftarlokasibaranginnerinputController {
         });
     }
 
-    private void tutup(Daftarlokasibarang_input_panel pane) {
+    private void tutup() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

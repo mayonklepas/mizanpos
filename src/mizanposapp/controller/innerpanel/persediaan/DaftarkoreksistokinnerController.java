@@ -17,7 +17,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +48,6 @@ import org.json.simple.parser.ParseException;
 public class DaftarkoreksistokinnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
@@ -219,13 +217,13 @@ public class DaftarkoreksistokinnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
     private void editdata(Daftarkoreksistok_inner_panel pane) {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
-            id = idlist.get(row);
+            Staticvar.ids = idlist.get(row);
             Daftarkoreksistok_input_panel inpane = new Daftarkoreksistok_input_panel();
             Staticvar.psp.container.removeAll();
             Staticvar.psp.container.setLayout(new BorderLayout());

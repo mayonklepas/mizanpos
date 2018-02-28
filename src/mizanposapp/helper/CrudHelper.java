@@ -5,9 +5,7 @@
  */
 package mizanposapp.helper;
 
-import java.awt.Dialog;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,7 +15,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -99,7 +96,7 @@ public class CrudHelper {
         } catch (IOException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(sbdata.toString());
+        //System.out.println(sbdata.toString());
         return sbdata.toString();
     }
 
@@ -125,7 +122,7 @@ public class CrudHelper {
         } catch (IOException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(sbdata.toString());
+        //System.out.println(sbdata.toString());
         return sbdata.toString();
     }
 

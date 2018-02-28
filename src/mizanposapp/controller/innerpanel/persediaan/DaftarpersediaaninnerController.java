@@ -17,7 +17,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,28 +48,29 @@ import org.json.simple.parser.ParseException;
 public class DaftarpersediaaninnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarpersediaan_inner_panel pane;
 
     public DaftarpersediaaninnerController(Daftarpersediaan_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane, "0");
-        loaddatadetail(pane);
-        inputdata(pane);
-        editdata(pane);
-        deletedata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
-        koreksistock(pane);
-        popupstok(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata("0");
+        loaddatadetail();
+        inputdata();
+        editdata();
+        deletedata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
+        koreksistock();
+        popupstok();
     }
 
-    private void loadheader(Daftarpersediaan_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -107,9 +107,9 @@ public class DaftarpersediaaninnerController {
         }
     }
 
-    private void loaddata(Daftarpersediaan_inner_panel pane, String halaman) {
+    private void loaddata(String halaman) {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -137,7 +137,7 @@ public class DaftarpersediaaninnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -146,9 +146,9 @@ public class DaftarpersediaaninnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarpersediaan_inner_panel pane, String halaman) {
+    private void loaddatadetailraw(String halaman) {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -177,7 +177,7 @@ public class DaftarpersediaaninnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -186,7 +186,7 @@ public class DaftarpersediaaninnerController {
 
     }
 
-    private void loaddatadetail(Daftarpersediaan_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -195,7 +195,7 @@ public class DaftarpersediaaninnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane, "0");
+                    loaddatadetailraw("0");
                 }
             }
 
@@ -206,12 +206,12 @@ public class DaftarpersediaaninnerController {
         });
     }
 
-    private void selectdata(Daftarpersediaan_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -221,13 +221,13 @@ public class DaftarpersediaaninnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void editdata(Daftarpersediaan_inner_panel pane) {
+    private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
-            id = idlist.get(row);
+            Staticvar.ids = idlist.get(row);
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftarpersediaan_input_panel());
             jd.pack();
@@ -236,14 +236,18 @@ public class DaftarpersediaaninnerController {
             jd.setTitle("Edit Data Service");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                loaddata(pane, "0");
+                if (Staticvar.isupdate == true) {
+                    loaddata("0");
+                }
             } else {
-                loaddatadetailraw(pane, "0");
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw("0");
+                }
             }
         });
     }
 
-    private void inputdata(Daftarpersediaan_inner_panel pane) {
+    private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
             JDialog jd = new JDialog(new Mainmenu());
@@ -253,11 +257,19 @@ public class DaftarpersediaaninnerController {
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setTitle("Input Data Service");
             jd.setVisible(true);
-            loaddata(pane, "0");
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata("0");
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw("0");
+                }
+            }
         });
     }
 
-    private void deletedata(Daftarpersediaan_inner_panel pane) {
+    private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -279,9 +291,13 @@ public class DaftarpersediaaninnerController {
                         jd.toFront();
                     } else {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(pane, "0");
+                            if (Staticvar.isupdate == true) {
+                                loaddata("0");
+                            }
                         } else {
-                            loaddatadetailraw(pane, "0");
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw("0");
+                            }
                         }
                     }
                 }
@@ -291,17 +307,17 @@ public class DaftarpersediaaninnerController {
 
     }
 
-    private void updateloaddata(Daftarpersediaan_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane, "0");
+                loaddata("0");
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarpersediaan_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -315,28 +331,28 @@ public class DaftarpersediaaninnerController {
         });
     }
 
-    private void onbuttoncari(Daftarpersediaan_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane, "0");
+                    loaddatadetailraw("0");
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarpersediaan_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarpersediaan_inner_panel pane) {
+    private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }
 
-    private void koreksistock(Daftarpersediaan_inner_panel pane) {
+    private void koreksistock() {
         pane.mkoreksi_stock.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Persedian_koreksistock_input_panel());
@@ -348,7 +364,7 @@ public class DaftarpersediaaninnerController {
         });
     }
 
-    private void popupstok(Daftarpersediaan_inner_panel pane) {
+    private void popupstok() {
         pane.tabledata.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {

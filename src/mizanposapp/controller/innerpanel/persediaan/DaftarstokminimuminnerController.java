@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
-import mizanposapp.view.innerpanel.persediaan.Daftargudang_inner_panel;
+import mizanposapp.helper.Staticvar;
 import mizanposapp.view.innerpanel.persediaan.Daftarstokminimum_inner_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -37,7 +37,6 @@ import org.json.simple.parser.ParseException;
 public class DaftarstokminimuminnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
@@ -184,7 +183,7 @@ public class DaftarstokminimuminnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
     private void oncarienter(Daftarstokminimum_inner_panel pane) {

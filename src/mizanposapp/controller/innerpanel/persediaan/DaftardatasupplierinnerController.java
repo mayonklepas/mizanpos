@@ -46,26 +46,27 @@ import org.json.simple.parser.ParseException;
 public class DaftardatasupplierinnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftardatasupplier_inner_panel pane;
 
     public DaftardatasupplierinnerController(Daftardatasupplier_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        editdata(pane);
-        deletedata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        editdata();
+        deletedata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
     }
 
-    private void loadheader(Daftardatasupplier_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -102,9 +103,9 @@ public class DaftardatasupplierinnerController {
         }
     }
 
-    private void loaddata(Daftardatasupplier_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -133,7 +134,8 @@ public class DaftardatasupplierinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
+                System.out.println(pane.tabledata.getRowCount());
 
             }
 
@@ -142,9 +144,9 @@ public class DaftardatasupplierinnerController {
 
     }
 
-    private void loaddatadetailraw(Daftardatasupplier_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -174,7 +176,7 @@ public class DaftardatasupplierinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -183,7 +185,7 @@ public class DaftardatasupplierinnerController {
 
     }
 
-    private void loaddatadetail(Daftardatasupplier_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -192,7 +194,7 @@ public class DaftardatasupplierinnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -203,12 +205,12 @@ public class DaftardatasupplierinnerController {
         });
     }
 
-    private void selectdata(Daftardatasupplier_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -218,13 +220,13 @@ public class DaftardatasupplierinnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void editdata(Daftardatasupplier_inner_panel pane) {
+    private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
-            id = idlist.get(row);
+            Staticvar.ids = idlist.get(row);
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftardatasupplier_input_panel());
             jd.pack();
@@ -233,14 +235,18 @@ public class DaftardatasupplierinnerController {
             jd.setTitle("Edit Data Supplier");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                loaddata(pane);
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
             } else {
-                loaddatadetailraw(pane);
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
             }
         });
     }
 
-    private void inputdata(Daftardatasupplier_inner_panel pane) {
+    private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
             JDialog jd = new JDialog(new Mainmenu());
@@ -250,11 +256,19 @@ public class DaftardatasupplierinnerController {
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setTitle("Input Data Supplier");
             jd.setVisible(true);
-            loaddata(pane);
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
+            }
         });
     }
 
-    private void deletedata(Daftardatasupplier_inner_panel pane) {
+    private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -276,9 +290,13 @@ public class DaftardatasupplierinnerController {
                         jd.toFront();
                     } else {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddata();
+                            }
                         } else {
-                            loaddatadetailraw(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw();
+                            }
                         }
                     }
                 }
@@ -288,17 +306,17 @@ public class DaftardatasupplierinnerController {
 
     }
 
-    private void updateloaddata(Daftardatasupplier_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftardatasupplier_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -312,23 +330,23 @@ public class DaftardatasupplierinnerController {
         });
     }
 
-    private void onbuttoncari(Daftardatasupplier_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftardatasupplier_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftardatasupplier_inner_panel pane) {
+    private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }

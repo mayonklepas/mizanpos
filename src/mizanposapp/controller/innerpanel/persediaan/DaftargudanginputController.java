@@ -7,7 +7,6 @@ package mizanposapp.controller.innerpanel.persediaan;
 
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.view.Mainmenu;
@@ -22,18 +21,20 @@ public class DaftargudanginputController {
 
     String id;
     CrudHelper ch = new CrudHelper();
+    Daftargudang_input_panel pane;
 
     public DaftargudanginputController(Daftargudang_input_panel pane) {
+        this.pane = pane;
         //loaddata(pane);
         //tutup(pane);
         //simpandata(pane);
-        caripenanggungjawab(pane);
+        caripenanggungjawab();
     }
 
-    private void caripenanggungjawab(Daftargudang_input_panel pane) {
+    private void caripenanggungjawab() {
         pane.bcari_penanggungjawab.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("nama", "popupdatanama?tipe=2", "Daftar Karyawan"));
+            jd.add(new Popupcari("nama", "popupdaftarnama?tipe=2", "Daftar Karyawan"));
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);
@@ -43,7 +44,7 @@ public class DaftargudanginputController {
 
     }
 
-    /* private void loaddata(Daftargudang_input_panel pane) {
+    /*private void loaddata(Daftargudang_input_panel pane) {
         try {
             id = DaftarmerekinnerController.id;
             JSONParser jpdata = new JSONParser();

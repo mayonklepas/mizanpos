@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -39,7 +38,7 @@ public class DaftarmerekinnerinputController {
 
     private void loaddata(Daftarmerekbarang_input_panel pane) {
         try {
-            id = DaftarmerekinnerController.id;
+            id = Staticvar.ids;
             JSONParser jpdata = new JSONParser();
             String param = String.format("id=%s", id);
             Object objdata = jpdata.parse(ch.getdatadetails("dm/datamerek", param));

@@ -47,27 +47,28 @@ import org.json.simple.parser.ParseException;
 public class DaftarfakturpembelianinnerController {
 
     CrudHelper ch = new CrudHelper();
-    public static String id;
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarfakturpembelian_inner_panel pane;
 
     public DaftarfakturpembelianinnerController(Daftarfakturpembelian_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        editdata(pane);
-        deletedata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        editdata();
+        deletedata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
 
     }
 
-    private void loadheader(Daftarfakturpembelian_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,9 +105,9 @@ public class DaftarfakturpembelianinnerController {
         }
     }
 
-    private void loaddata(Daftarfakturpembelian_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -134,7 +135,7 @@ public class DaftarfakturpembelianinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -143,9 +144,9 @@ public class DaftarfakturpembelianinnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarfakturpembelian_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -174,7 +175,7 @@ public class DaftarfakturpembelianinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -183,7 +184,7 @@ public class DaftarfakturpembelianinnerController {
 
     }
 
-    private void loaddatadetail(Daftarfakturpembelian_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -192,7 +193,7 @@ public class DaftarfakturpembelianinnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -203,12 +204,12 @@ public class DaftarfakturpembelianinnerController {
         });
     }
 
-    private void selectdata(Daftarfakturpembelian_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -218,10 +219,10 @@ public class DaftarfakturpembelianinnerController {
 
     private void cleardata() {
         idlist.clear();
-        id = "";
+        Staticvar.ids = "";
     }
 
-    private void deletedata(Daftarfakturpembelian_inner_panel pane) {
+    private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -243,9 +244,13 @@ public class DaftarfakturpembelianinnerController {
                         jd.toFront();
                     } else {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddata();
+                            }
                         } else {
-                            loaddatadetailraw(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw();
+                            }
                         }
                     }
                 }
@@ -255,17 +260,17 @@ public class DaftarfakturpembelianinnerController {
 
     }
 
-    private void updateloaddata(Daftarfakturpembelian_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarfakturpembelian_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -279,46 +284,46 @@ public class DaftarfakturpembelianinnerController {
         });
     }
 
-    private void onbuttoncari(Daftarfakturpembelian_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarfakturpembelian_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarfakturpembelian_inner_panel pane) {
+    private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }
 
-    private void inputdata(Daftarfakturpembelian_inner_panel pane) {
+    private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
-            Staticvar.pp.container.removeAll();
-            Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.pp.container.revalidate();
-            Staticvar.pp.container.repaint();
+            Staticvar.pmp.container.removeAll();
+            Staticvar.pmp.container.setLayout(new BorderLayout());
+            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.pmp.container.revalidate();
+            Staticvar.pmp.container.repaint();
         });
     }
 
-    private void editdata(Daftarfakturpembelian_inner_panel pane) {
+    private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
-            Staticvar.pp.container.removeAll();
-            Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(pane, BorderLayout.CENTER);
-            Staticvar.pp.container.revalidate();
-            Staticvar.pp.container.repaint();
+            Staticvar.pmp.container.removeAll();
+            Staticvar.pmp.container.setLayout(new BorderLayout());
+            Staticvar.pmp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pmp.container.revalidate();
+            Staticvar.pmp.container.repaint();
         });
     }
 

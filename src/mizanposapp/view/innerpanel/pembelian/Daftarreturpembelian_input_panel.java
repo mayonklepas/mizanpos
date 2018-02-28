@@ -5,7 +5,7 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
-import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninnerController;
+import mizanposapp.controller.innerpanel.pembelian.DaftarreturpembelianinputController;
 
 /**
  *
@@ -18,6 +18,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
      */
     public Daftarreturpembelian_input_panel() {
         initComponents();
+        new DaftarreturpembelianinputController(this);
 
     }
 
@@ -43,11 +44,11 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         tcari4 = new javax.swing.JTextField();
         jCalendarCombo1 = new org.freixas.jcalendar.JCalendarCombo();
-        jButton4 = new javax.swing.JButton();
+        bcari_supplier = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jButton13 = new javax.swing.JButton();
+        bcari_supplier3 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jCalendarCombo2 = new org.freixas.jcalendar.JCalendarCombo();
         jLabel16 = new javax.swing.JLabel();
@@ -92,10 +93,10 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         tcari7 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
+        bcari_supplier2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        bcari_department = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -177,11 +178,11 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
 
         jCalendarCombo1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton4.setText("Cari");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bcari_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_supplier.setText("Cari");
+        bcari_supplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bcari_supplierActionPerformed(evt);
             }
         });
 
@@ -193,11 +194,11 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         jComboBox3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton13.setText("Cari");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        bcari_supplier3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_supplier3.setText("Cari");
+        bcari_supplier3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                bcari_supplier3ActionPerformed(evt);
             }
         });
 
@@ -421,7 +422,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                                     .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(2, 2, 2)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton13)
+                                    .addComponent(bcari_supplier3)
                                     .addComponent(jButton15)))
                             .addComponent(jLabel41)))
                     .addComponent(jLabel40)
@@ -445,7 +446,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCalendarCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton13))
+                            .addComponent(bcari_supplier3))
                         .addGap(1, 1, 1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
@@ -520,11 +521,11 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton7.setText("Cari");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        bcari_supplier2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_supplier2.setText("Cari");
+        bcari_supplier2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                bcari_supplier2ActionPerformed(evt);
             }
         });
 
@@ -554,7 +555,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(tcari5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)
-                        .addComponent(jButton7))))
+                        .addComponent(bcari_supplier2))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,7 +564,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel19)
                     .addComponent(tcari5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
-                    .addComponent(jButton7))
+                    .addComponent(bcari_supplier2))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
@@ -583,11 +584,11 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         jComboBox2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton6.setText("Cari");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        bcari_department.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_department.setText("Cari");
+        bcari_department.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                bcari_departmentActionPerformed(evt);
             }
         });
 
@@ -690,13 +691,13 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGap(2, 2, 2)
-                                            .addComponent(jButton4))
+                                            .addComponent(bcari_supplier))
                                         .addComponent(tcari4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jCalendarCombo1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addComponent(tcari1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGap(2, 2, 2)
-                                            .addComponent(jButton6))))
+                                            .addComponent(bcari_department))))
                                 .addComponent(jLabel3)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -721,7 +722,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
-                            .addComponent(jButton4)
+                            .addComponent(bcari_supplier)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -738,7 +739,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
                             .addComponent(tcari1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6))
+                            .addComponent(bcari_department))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -756,9 +757,9 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void bcari_supplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_supplierActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_bcari_supplierActionPerformed
 
     private void tcari4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcari4ActionPerformed
         // TODO add your handling code here:
@@ -780,21 +781,21 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tcari7ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void bcari_departmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_departmentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_bcari_departmentActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void bcari_supplier2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_supplier2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_bcari_supplier2ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void bcari_supplier3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_supplier3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_bcari_supplier3ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
@@ -805,15 +806,15 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_department;
+    public javax.swing.JButton bcari_supplier;
+    public javax.swing.JButton bcari_supplier2;
+    private javax.swing.JButton bcari_supplier3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo1;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo2;
     private javax.swing.JCheckBox jCheckBox3;

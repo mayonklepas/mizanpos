@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.innerpanel.persediaan;
 
+import mizanposapp.controller.innerpanel.persediaan.DaftardatasupplierinputController;
+
 /**
  *
  * @author Minami
@@ -16,6 +18,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
      */
     public Daftardatasupplier_input_panel() {
         initComponents();
+        new DaftardatasupplierinputController(this);
     }
 
     /**
@@ -57,7 +60,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        jButton3 = new javax.swing.JButton();
+        bcari_klasifikasi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -191,8 +194,8 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jEditorPane1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jScrollPane2.setViewportView(jEditorPane1);
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setText("Cari");
+        bcari_klasifikasi.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_klasifikasi.setText("Cari");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -220,7 +223,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField4)
                         .addGap(2, 2, 2)
-                        .addComponent(jButton3)))
+                        .addComponent(bcari_klasifikasi)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -231,7 +234,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jButton3))
+                    .addComponent(bcari_klasifikasi))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
@@ -583,11 +586,11 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_klasifikasi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JEditorPane jEditorPane1;
+    public javax.swing.JCheckBox jCheckBox1;
+    public javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -633,23 +636,23 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
+    public javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField10;
+    public javax.swing.JTextField jTextField11;
+    public javax.swing.JTextField jTextField12;
+    public javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    public javax.swing.JTextField jTextField15;
+    public javax.swing.JTextField jTextField16;
+    public javax.swing.JTextField jTextField17;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField jTextField6;
+    public javax.swing.JTextField jTextField7;
+    public javax.swing.JTextField jTextField8;
+    public javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

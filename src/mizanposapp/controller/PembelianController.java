@@ -12,7 +12,7 @@ import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Pembelian_panel;
 import mizanposapp.view.innerpanel.pembelian.Cekhargabeli_inner_panel;
-import mizanposapp.view.innerpanel.persediaan.Daftardatasupplier_inner_panel;
+import mizanposapp.view.innerpanel.pembelian.Daftardatasupplier_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutang_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_inner_panel;

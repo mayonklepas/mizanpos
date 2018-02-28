@@ -5,6 +5,7 @@
  */
 package mizanposapp.view.innerpanel.persediaan;
 
+import mizanposapp.controller.innerpanel.persediaan.DaftarkoreksistokinputController;
 import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninnerController;
 
 /**
@@ -18,6 +19,7 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
      */
     public Daftarkoreksistok_input_panel() {
         initComponents();
+        new DaftarkoreksistokinputController(this);
 
     }
 
@@ -54,8 +56,8 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         tcari5 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        bcari_gudang = new javax.swing.JButton();
+        bcari_dept = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -175,19 +177,19 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
         tcari5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tcari5.setPreferredSize(new java.awt.Dimension(51, 20));
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton3.setText("Cari");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bcari_gudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_gudang.setText("Cari");
+        bcari_gudang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bcari_gudangActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton4.setText("Cari");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bcari_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_dept.setText("Cari");
+        bcari_dept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bcari_deptActionPerformed(evt);
             }
         });
 
@@ -278,8 +280,8 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
                                                     .addComponent(tcari4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addGap(2, 2, 2)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jButton3)
-                                                    .addComponent(jButton4)))
+                                                    .addComponent(bcari_gudang)
+                                                    .addComponent(bcari_dept)))
                                             .addComponent(jCalendarCombo1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
@@ -310,13 +312,13 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(tcari2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jButton4))
+                    .addComponent(bcari_dept))
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tcari4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jButton3))
+                    .addComponent(bcari_gudang))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -348,19 +350,19 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tcari2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bcari_gudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_gudangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bcari_gudangActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void bcari_deptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_deptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_bcari_deptActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton bcari_dept;
+    public javax.swing.JButton bcari_gudang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private org.freixas.jcalendar.JCalendarCombo jCalendarCombo1;
     private javax.swing.JCheckBox jCheckBox1;

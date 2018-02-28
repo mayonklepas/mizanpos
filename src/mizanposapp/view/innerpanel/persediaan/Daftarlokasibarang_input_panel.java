@@ -6,7 +6,6 @@
 package mizanposapp.view.innerpanel.persediaan;
 
 import mizanposapp.controller.innerpanel.persediaan.DaftarlokasibaranginnerinputController;
-import mizanposapp.controller.innerpanel.persediaan.DaftarlokasibaranginnerController;
 
 /**
  *
@@ -44,7 +43,7 @@ public class Daftarlokasibarang_input_panel extends javax.swing.JPanel {
         bsimpan = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         edpenanggungjawab = new javax.swing.JTextField();
-        bcari = new javax.swing.JToggleButton();
+        bcari_penanggung_jawab = new javax.swing.JToggleButton();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
@@ -101,8 +100,8 @@ public class Daftarlokasibarang_input_panel extends javax.swing.JPanel {
 
         edpenanggungjawab.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        bcari.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        bcari.setText("Cari");
+        bcari_penanggung_jawab.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_penanggung_jawab.setText("Cari");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,7 +132,7 @@ public class Daftarlokasibarang_input_panel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(edpenanggungjawab)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bcari))
+                                .addComponent(bcari_penanggung_jawab))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -166,7 +165,7 @@ public class Daftarlokasibarang_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
                     .addComponent(edpenanggungjawab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bcari))
+                    .addComponent(bcari_penanggung_jawab))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbatal)
@@ -181,7 +180,7 @@ public class Daftarlokasibarang_input_panel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
-    public javax.swing.JToggleButton bcari;
+    public javax.swing.JToggleButton bcari_penanggung_jawab;
     public javax.swing.JButton bsimpan;
     public javax.swing.JTextField edkode_lokasi;
     public javax.swing.JTextField ednama_lokasi;
