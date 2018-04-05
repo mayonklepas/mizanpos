@@ -253,6 +253,7 @@ public class DaftarreturpembelianinnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

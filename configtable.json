@@ -2,7 +2,7 @@
 "merek": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -10,7 +10,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "20"
@@ -18,7 +18,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -26,7 +26,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "50"
@@ -36,7 +36,7 @@
 "satuan": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -44,7 +44,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "30"
@@ -52,7 +52,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "70"
@@ -62,7 +62,7 @@
 "lokasi": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -70,7 +70,7 @@
     },
     {
       "key": [
-        "KODELOKASI",
+        "kode",
         "Kode Lokasi",
         "1",
         "20"
@@ -78,7 +78,7 @@
     },
     {
       "key": [
-        "NAMALOKASI",
+        "nama",
         "Nama Lokasi",
         "1",
         "40"
@@ -86,15 +86,16 @@
     },
     {
       "key": [
-        "IDPENANGGUNGJAWAB",
-        "ID Penanggungjawab",
+        "id_penanggung_jawab",
+        "ID Penanggung Jawab",
         "0",
         "0"
       ]
-    },    {
+    }, 
+    {
       "key": [
-        "NAMAPENANGGUNGJAWAB",
-        "Nama Penanggungjawab",
+        "nama_penanggung_jawab",
+        "Nama Penanggung jawab",
         "1",
         "40"
       ]
@@ -103,7 +104,7 @@
 "service": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -111,7 +112,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "20"
@@ -119,7 +120,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -127,21 +128,23 @@
     },
     {
       "key": [
-        "PERSENSERVICE",
+        "persen_service",
         "Persen Service",
         "1",
         "10"
       ]
-    },    {
+    },    
+    {
       "key": [
-        "AKUNSERVICE",
+        "akun_service",
         "Id Akun Service",
         "0",
         "10"
       ]
-    },    {
+    },    
+    {
       "key": [
-        "NAMAAKUNSERVICE",
+        "nama_akun_service",
         "Nama Akun Service",
         "1",
         "40"
@@ -151,7 +154,7 @@
 "supplierklasifikasi": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -159,7 +162,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "20"
@@ -167,7 +170,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -175,7 +178,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "50"
@@ -185,7 +188,7 @@
 "nama": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -193,15 +196,7 @@
     },
     {
       "key": [
-        "INDEXTABLE",
-        "Index Table",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "10"
@@ -209,7 +204,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -217,7 +212,7 @@
     },
     {
       "key": [
-        "TIPE",
+        "tipe",
         "Tipe",
         "1",
         "10"
@@ -225,7 +220,7 @@
     },
     {
       "key": [
-        "NAMATIPE",
+        "nama_tipe",
         "Nama Tipe",
         "1",
         "20"
@@ -233,16 +228,56 @@
     },
  {
       "key": [
-        "NAMA_GOL",
+        "nama_golongan",
         "Golongan",
         "1",
         "20"
       ]
     },
-{
+    {
       "key": [
-        "ISACTIVE",
+        "isactive",
         "Status",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "alamat",
+        "Alamat",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "kota",
+        "Kota",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "telp",
+        "Telp",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "hp",
+        "HP",
+        "1",
+        "10"
+      ]
+    },
+    {
+      "key": [
+        "kontak_person",
+        "Kontak Person",
         "1",
         "10"
       ]
@@ -251,7 +286,7 @@
 "gudang": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -259,32 +294,32 @@
     },
     {
       "key": [
-        "KODEGUDANG",
-        "Kode Gudang",
+        "kode",
+        "Kode",
         "1",
         "10"
       ]
     },
     {
       "key": [
-        "NAMAGUDANG",
-        "Nama Gudang",
+        "nama",
+        "Nama",
         "1",
         "30"
       ]
     },
     {
       "key": [
-        "IDPENANGGUNGJAWAB",
-        "ID Penanggungjawab",
+        "nama_penanggung_jawab",
+        "Nama Penanggungjawab",
         "1",
         "20"
       ]
     },
     {
       "key": [
-        "NAMAPENANGGUNGJAWAB",
-        "Nama Penanggungjawab",
+        "nama_dept",
+        "Nama Department",
         "1",
         "40"
       ]
@@ -293,7 +328,7 @@
 "department": [
     {
       "key": [
-        "IDDEPT",
+        "id",
         "ID",
         "0",
         "0"
@@ -301,7 +336,7 @@
     },
     {
       "key": [
-        "NAMA_DEPT",
+        "nama",
         "Nama Dept",
         "1",
         "40"
@@ -309,7 +344,7 @@
     },
     {
       "key": [
-        "ISSUBDEPT",
+        "issubdept",
         "Is Subdept",
         "1",
         "10"
@@ -317,16 +352,16 @@
     },
     {
       "key": [
-        "ID_SUBDEPT",
-        "ID Subdept",
+        "id_sub_dept",
+        "ID Sub Dept",
         "1",
         "20"
       ]
     },
     {
       "key": [
-        "NAMA_SUBDEPT",
-        "Nama Subdept",
+        "nama_sub_dept",
+        "Nama Sub Dept",
         "1",
         "30"
       ]
@@ -335,7 +370,7 @@
 "kelompokbarang": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -343,15 +378,7 @@
     },
     {
       "key": [
-        "DEPTID",
-        "Dept ID",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "20"
@@ -359,7 +386,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "40"
@@ -367,7 +394,7 @@
     },
     {
       "key": [
-        "NAMASATUAN",
+        "nama_satuan",
         "Nama Satuan",
         "1",
         "30"
@@ -377,7 +404,7 @@
 "penyesuaian": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -385,7 +412,7 @@
     },
     {
       "key": [
-        "TANGGAL",
+        "tanggal",
         "Tanggal",
         "1",
         "20"
@@ -393,7 +420,7 @@
     },
     {
       "key": [
-        "NOREF",
+        "no_ref",
         "No. Ref",
         "1",
         "30"
@@ -401,7 +428,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Ketarangan",
         "1",
         "30"
@@ -409,7 +436,7 @@
     },
     {
       "key": [
-        "TOTAL",
+        "total",
         "Total",
         "1",
         "20"
@@ -419,7 +446,7 @@
 "stokopname": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -427,7 +454,7 @@
     },
     {
       "key": [
-        "INDEXTABLE",
+        "index_table",
         "Index Table",
         "0",
         "0"
@@ -435,7 +462,7 @@
     },
     {
       "key": [
-        "DEPTID",
+        "dept_id",
         "Dept ID",
         "0",
         "0"
@@ -443,7 +470,7 @@
     },
     {
       "key": [
-        "TANGGAL",
+        "tanggal",
         "Tanggal",
         "1",
         "20"
@@ -451,7 +478,7 @@
     },
     {
       "key": [
-        "NOREF",
+        "no_ref",
         "No. Ref",
         "1",
         "25"
@@ -459,7 +486,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "35"
@@ -467,7 +494,7 @@
     },
     {
       "key": [
-        "TOTAL",
+        "total",
         "Total",
         "1",
         "20"
@@ -477,7 +504,7 @@
 "persediaan": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -485,7 +512,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "15"
@@ -493,7 +520,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -501,7 +528,7 @@
     },
     {
       "key": [
-        "KELOMPOK",
+        "kelompok",
         "Kelompok",
         "1",
         "15"
@@ -509,7 +536,7 @@
     },
     {
       "key": [
-        "SATUAN",
+        "satuan",
         "Satuan",
         "1",
         "10"
@@ -517,7 +544,7 @@
     },
     {
       "key": [
-        "HARGAJUAL",
+        "harga_jual",
         "Harga Jual",
         "1",
         "10"
@@ -525,7 +552,7 @@
     },
     {
       "key": [
-        "STOK",
+        "stok",
         "Stok",
         "1",
         "10"
@@ -533,7 +560,7 @@
     },
     {
       "key": [
-        "ID_IMAGE",
+        "id_image",
         "ID Image",
         "1",
         "10"
@@ -543,7 +570,7 @@
 "fakturpenjualan": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -551,7 +578,7 @@
     },
     {
       "key": [
-        "TANGGAL",
+        "tanggal",
         "Tanggal",
         "1",
         "15"
@@ -559,7 +586,7 @@
     },
     {
       "key": [
-        "DEPTID",
+        "deptid",
         "Deptid",
         "0",
         "0"
@@ -567,7 +594,7 @@
     },
     {
       "key": [
-        "NOREF",
+        "noref",
         "No. ref",
         "1",
         "15"
@@ -575,7 +602,7 @@
     },
     {
       "key": [
-        "NAMACUSTOMER",
+        "nama_customer",
         "Nama Customer",
         "1",
         "25"
@@ -583,7 +610,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "30"
@@ -591,7 +618,7 @@
     },
     {
       "key": [
-        "TOTAL_PENJUALAN",
+        "total_penjualan",
         "Total Penjualan",
         "1",
         "15"
@@ -599,7 +626,7 @@
     },
     {
       "key": [
-        "ORDERCLOSE",
+        "order_close",
         "Order Close",
         "0",
         "0"
@@ -617,7 +644,7 @@
 "returpenjualan": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -625,7 +652,7 @@
     },
     {
       "key": [
-        "TANGGAL",
+        "tanggal",
         "Tanggal",
         "1",
         "15"
@@ -633,7 +660,7 @@
     },
     {
       "key": [
-        "DEPTID",
+        "dept_id",
         "Deptid",
         "0",
         "0"
@@ -641,7 +668,7 @@
     },
     {
       "key": [
-        "NOREF",
+        "no_ref",
         "No. ref",
         "1",
         "15"
@@ -649,7 +676,7 @@
     },
     {
       "key": [
-        "NAMACUSTOMER",
+        "nama_customer",
         "Nama Customer",
         "1",
         "25"
@@ -657,7 +684,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "30"
@@ -665,7 +692,7 @@
     },
     {
       "key": [
-        "TOTAL_PENJUALAN",
+        "total_penjualan",
         "Total Penjualan",
         "1",
         "15"
@@ -673,7 +700,7 @@
     },
     {
       "key": [
-        "ORDERCLOSE",
+        "order_close",
         "Order Close",
         "0",
         "0"
@@ -681,7 +708,7 @@
     },
     {
       "key": [
-        "IDCUSTOMER",
+        "id_customer",
         "ID Customer",
         "0",
         "0"
@@ -691,7 +718,7 @@
 "piutang": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -699,7 +726,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "10"
@@ -707,7 +734,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -715,7 +742,7 @@
     },
     {
       "key": [
-        "TIPE",
+        "tipe",
         "Tipe",
         "0",
         "0"
@@ -723,7 +750,7 @@
     },
     {
       "key": [
-        "TOTAL_HUTANG",
+        "total_hutang",
         "Total Hutang",
         "1",
         "20"
@@ -731,7 +758,7 @@
     },
     {
       "key": [
-        "TOTAL_CICILAN",
+        "total_cicilan",
         "Total Cicilan",
         "1",
         "20"
@@ -739,7 +766,7 @@
     },
     {
       "key": [
-        "SISA_HUTANG",
+        "sisa_hutang",
         "Sisa Hutang",
         "1",
         "20"
@@ -749,7 +776,7 @@
 "fakturpembelian": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -757,7 +784,7 @@
     },
     {
       "key": [
-        "TANGGAL",
+        "tanggal",
         "Tanggal",
         "1",
         "15"
@@ -765,7 +792,7 @@
     },
     {
       "key": [
-        "DEPTID",
+        "dept_id",
         "Deptid",
         "0",
         "0"
@@ -773,7 +800,7 @@
     },
     {
       "key": [
-        "NOREF",
+        "no_ref",
         "No. ref",
         "1",
         "15"
@@ -781,7 +808,7 @@
     },
     {
       "key": [
-        "NAMASUPPLIER",
+        "nama_suplier",
         "Nama Suplier",
         "1",
         "25"
@@ -789,7 +816,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "30"
@@ -797,7 +824,7 @@
     },
     {
       "key": [
-        "TOTAL_PEMBELIAN",
+        "total_pembelian",
         "Total Pembelian",
         "1",
         "15"
@@ -805,7 +832,7 @@
     },
     {
       "key": [
-        "ORDERCLOSE",
+        "order_close",
         "Order Close",
         "0",
         "0"
@@ -813,7 +840,7 @@
     },
     {
       "key": [
-        "IDSUPPLIER",
+        "id_supplier",
         "ID Customer",
         "0",
         "0"
@@ -823,7 +850,7 @@
 "returpembelian": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -831,7 +858,7 @@
     },
     {
       "key": [
-        "TANGGAL",
+        "tanggal",
         "Tanggal",
         "1",
         "15"
@@ -839,7 +866,7 @@
     },
     {
       "key": [
-        "DEPTID",
+        "dept_id",
         "Deptid",
         "0",
         "0"
@@ -847,7 +874,7 @@
     },
     {
       "key": [
-        "NOREF",
+        "no_ref",
         "No. ref",
         "1",
         "15"
@@ -855,7 +882,7 @@
     },
     {
       "key": [
-        "NAMASUPPLIER",
+        "nama_supplier",
         "Nama Suplier",
         "1",
         "25"
@@ -863,7 +890,7 @@
     },
     {
       "key": [
-        "KETERANGAN",
+        "keterangan",
         "Keterangan",
         "1",
         "30"
@@ -871,7 +898,7 @@
     },
     {
       "key": [
-        "TOTAL_PEMBELIAN",
+        "total_pembelian",
         "Total Pembelian",
         "1",
         "15"
@@ -879,7 +906,7 @@
     },
     {
       "key": [
-        "ORDERCLOSE",
+        "order_close",
         "Order Close",
         "0",
         "0"
@@ -887,7 +914,7 @@
     },
     {
       "key": [
-        "IDSUPPLIER",
+        "id_supplier",
         "ID Customer",
         "0",
         "0"
@@ -897,7 +924,7 @@
 "hutang": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -905,7 +932,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "10"
@@ -913,7 +940,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -921,7 +948,7 @@
     },
     {
       "key": [
-        "TIPE",
+        "tipe",
         "Tipe",
         "0",
         "0"
@@ -929,7 +956,7 @@
     },
     {
       "key": [
-        "TOTAL_HUTANG",
+        "total_hutang",
         "Total Hutang",
         "1",
         "20"
@@ -937,7 +964,7 @@
     },
     {
       "key": [
-        "TOTAL_CICILAN",
+        "total_cicilan",
         "Total Cicilan",
         "1",
         "20"
@@ -955,7 +982,7 @@
 "stokminimum": [
     {
       "key": [
-        "ID",
+        "id",
         "ID",
         "0",
         "0"
@@ -963,7 +990,7 @@
     },
     {
       "key": [
-        "KODE",
+        "kode",
         "Kode",
         "1",
         "20"
@@ -971,7 +998,7 @@
     },
     {
       "key": [
-        "NAMA",
+        "nama",
         "Nama",
         "1",
         "30"
@@ -979,7 +1006,7 @@
     },
     {
       "key": [
-        "SATUAN",
+        "satuan",
         "Satuan",
         "1",
         "20"
@@ -987,7 +1014,7 @@
     },
     {
       "key": [
-        "STOCK",
+        "stok",
         "Stok",
         "1",
         "15"
@@ -995,7 +1022,7 @@
     },
     {
       "key": [
-        "STOCKMINIMUM",
+        "stok_minimum",
         "Stok Minimum",
         "1",
         "15"

@@ -262,6 +262,7 @@ public class DaftardatadeptinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -295,6 +296,7 @@ public class DaftardatadeptinnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

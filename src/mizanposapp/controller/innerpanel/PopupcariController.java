@@ -76,7 +76,7 @@ public class PopupcariController {
         deletedata(page);
         selectdata();
         oncarienter();
-        selectid();
+        //selectid();
         oke();
         tutup();
 
@@ -135,7 +135,7 @@ public class PopupcariController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -174,7 +174,7 @@ public class PopupcariController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -408,7 +408,10 @@ public class PopupcariController {
         pane.bok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Staticvar.isupdate = true;
+                //Staticvar.isupdate = true;
+                int i = pane.tabledata.getSelectedRow();
+                Staticvar.resid = idlist.get(i);
+                Staticvar.reslabel = String.valueOf(pane.tabledata.getValueAt(i, 1));
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }
@@ -419,7 +422,7 @@ public class PopupcariController {
         pane.btutup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Staticvar.isupdate = false;
+                //Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }

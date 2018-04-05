@@ -252,6 +252,7 @@ public class DaftarfakturpenjualaninnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

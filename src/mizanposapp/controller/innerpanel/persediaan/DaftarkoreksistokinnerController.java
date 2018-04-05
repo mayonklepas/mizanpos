@@ -52,21 +52,23 @@ public class DaftarkoreksistokinnerController {
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
+    Daftarkoreksistok_inner_panel pane;
 
     public DaftarkoreksistokinnerController(Daftarkoreksistok_inner_panel pane) {
-        loadheader(pane);
-        loaddata(pane);
-        loaddatadetail(pane);
-        inputdata(pane);
-        editdata(pane);
-        deletedata(pane);
-        updateloaddata(pane);
-        selectdata(pane);
-        oncarienter(pane);
-        onbuttoncari(pane);
+        this.pane = pane;
+        loadheader();
+        loaddata();
+        loaddatadetail();
+        inputdata();
+        editdata();
+        deletedata();
+        updateloaddata();
+        selectdata();
+        oncarienter();
+        onbuttoncari();
     }
 
-    private void loadheader(Daftarkoreksistok_inner_panel pane) {
+    private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -103,9 +105,9 @@ public class DaftarkoreksistokinnerController {
         }
     }
 
-    private void loaddata(Daftarkoreksistok_inner_panel pane) {
+    private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -133,7 +135,7 @@ public class DaftarkoreksistokinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -142,9 +144,9 @@ public class DaftarkoreksistokinnerController {
 
     }
 
-    private void loaddatadetailraw(Daftarkoreksistok_inner_panel pane) {
+    private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -173,7 +175,7 @@ public class DaftarkoreksistokinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -182,7 +184,7 @@ public class DaftarkoreksistokinnerController {
 
     }
 
-    private void loaddatadetail(Daftarkoreksistok_inner_panel pane) {
+    private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -191,7 +193,7 @@ public class DaftarkoreksistokinnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
 
@@ -202,12 +204,12 @@ public class DaftarkoreksistokinnerController {
         });
     }
 
-    private void selectdata(Daftarkoreksistok_inner_panel pane) {
+    private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -220,7 +222,7 @@ public class DaftarkoreksistokinnerController {
         Staticvar.ids = "";
     }
 
-    private void editdata(Daftarkoreksistok_inner_panel pane) {
+    private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlist.get(row);
@@ -231,14 +233,19 @@ public class DaftarkoreksistokinnerController {
             Staticvar.psp.container.revalidate();
             Staticvar.psp.container.repaint();
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                loaddata(pane);
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
             } else {
-                loaddatadetailraw(pane);
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
             }
+            Staticvar.isupdate = false;
         });
     }
 
-    private void inputdata(Daftarkoreksistok_inner_panel pane) {
+    private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
             Daftarkoreksistok_input_panel inpane = new Daftarkoreksistok_input_panel();
@@ -250,7 +257,7 @@ public class DaftarkoreksistokinnerController {
         });
     }
 
-    private void deletedata(Daftarkoreksistok_inner_panel pane) {
+    private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -272,10 +279,15 @@ public class DaftarkoreksistokinnerController {
                         jd.toFront();
                     } else {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddata();
+                            }
                         } else {
-                            loaddatadetailraw(pane);
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw();
+                            }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 
@@ -284,17 +296,17 @@ public class DaftarkoreksistokinnerController {
 
     }
 
-    private void updateloaddata(Daftarkoreksistok_inner_panel pane) {
+    private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(pane);
+                loaddata();
                 pane.tcari.setText("Cari Data");
             }
         });
     }
 
-    private void oncarienter(Daftarkoreksistok_inner_panel pane) {
+    private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -308,23 +320,23 @@ public class DaftarkoreksistokinnerController {
         });
     }
 
-    private void onbuttoncari(Daftarkoreksistok_inner_panel pane) {
+    private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw(pane);
+                    loaddatadetailraw();
                 }
             }
         });
     }
 
-    private void disablebutton(Daftarkoreksistok_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarkoreksistok_inner_panel pane) {
+    private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }

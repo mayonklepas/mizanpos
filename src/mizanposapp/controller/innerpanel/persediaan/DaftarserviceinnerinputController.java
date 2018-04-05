@@ -15,7 +15,8 @@ import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.persediaan.Daftarsatuanbarang_input_panel;
+import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.persediaan.Daftarservice_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,14 +26,16 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarsatuaninnerinputController {
+public class DaftarserviceinnerinputController {
 
     String id;
     CrudHelper ch = new CrudHelper();
-    Daftarsatuanbarang_input_panel pane;
+    Daftarservice_input_panel pane;
+    String tagid_akun;
 
-    public DaftarsatuaninnerinputController(Daftarsatuanbarang_input_panel pane) {
+    public DaftarserviceinnerinputController(Daftarservice_input_panel pane) {
         this.pane = pane;
+        cariakun();
         loaddata();
         tutup();
         simpandata();
@@ -41,17 +44,27 @@ public class DaftarsatuaninnerinputController {
     private void loaddata() {
         try {
             id = Staticvar.ids;
-            JSONParser jpdata = new JSONParser();
-            String param = String.format("id=%s", id);
-            Object objdata = jpdata.parse(ch.getdatadetails("dm/datasatuan", param));
-            JSONArray jadata = (JSONArray) objdata;
-            for (int i = 0; i < jadata.size(); i++) {
-                JSONObject joindata = (JSONObject) jadata.get(i);
-                pane.edkode_satuan.setText(String.valueOf(joindata.get("kode")));
-                pane.ednama_satuan.setText(String.valueOf(joindata.get("nama")));
+            if (id.equals("")) {
+                pane.edkode_service.setText("");
+                pane.ednama_service.setText("");
+                pane.edpersen_service.setText("0");
+                pane.edid_akun.setText("");
+
+            } else {
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", id);
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/dataservice", param));
+                JSONArray jadata = (JSONArray) objdata;
+                for (int i = 0; i < jadata.size(); i++) {
+                    JSONObject joindata = (JSONObject) jadata.get(i);
+                    pane.edkode_service.setText(String.valueOf(joindata.get("kode")));
+                    pane.ednama_service.setText(String.valueOf(joindata.get("nama")));
+                    pane.edpersen_service.setText(String.valueOf(joindata.get("persen_service")));
+                    pane.edid_akun.setText(String.valueOf(joindata.get("akun_service")) + " | " + String.valueOf(joindata.get("nama_akun_service")));
+                }
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarsatuaninnerinputController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftarserviceinnerinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -62,10 +75,12 @@ public class DaftarsatuaninnerinputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'",
-                            pane.edkode_satuan.getText(),
-                            pane.ednama_satuan.getText());
-                    ch.insertdata("dm/insertsatuan", data);
+                    String data = String.format("data=kode='%s'::nama='%s'::persen_service='%s'::akun_service='%s'",
+                            pane.edkode_service.getText(),
+                            pane.ednama_service.getText(),
+                            pane.edpersen_service.getText(),
+                            pane.edid_akun.getText().split(" | ")[0]);
+                    ch.insertdata("dm/insertservice", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -81,10 +96,12 @@ public class DaftarsatuaninnerinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'",
-                            pane.edkode_satuan.getText(),
-                            pane.ednama_satuan.getText());
-                    ch.updatedata("dm/updatesatuan", data, id);
+                    String data = String.format("data=kode='%s'::nama='%s'::persen_service='%s'::akun_service='%s'",
+                            pane.edkode_service.getText(),
+                            pane.ednama_service.getText(),
+                            pane.edpersen_service.getText(),
+                            pane.edid_akun.getText().split("|")[0].trim());
+                    ch.updatedata("dm/updateservice", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -112,6 +129,21 @@ public class DaftarsatuaninnerinputController {
                 jd.dispose();
             }
         });
+    }
+
+    private void cariakun() {
+        pane.bcari_akun.addActionListener((ActionEvent e) -> {
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            pane.edid_akun.setText(Staticvar.resid + " | " + Staticvar.reslabel);
+
+        });
+
     }
 
 }

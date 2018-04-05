@@ -238,6 +238,8 @@ public class DaftarlokasibaranginnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
+
         });
     }
 
@@ -260,6 +262,7 @@ public class DaftarlokasibaranginnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -293,6 +296,7 @@ public class DaftarlokasibaranginnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

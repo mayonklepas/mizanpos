@@ -239,6 +239,7 @@ public class DaftarkelompokinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -261,6 +262,7 @@ public class DaftarkelompokinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -294,6 +296,7 @@ public class DaftarkelompokinnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

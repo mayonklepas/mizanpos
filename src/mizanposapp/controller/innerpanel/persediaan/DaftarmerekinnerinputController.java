@@ -29,25 +29,33 @@ public class DaftarmerekinnerinputController {
 
     String id;
     CrudHelper ch = new CrudHelper();
+    Daftarmerekbarang_input_panel pane;
 
     public DaftarmerekinnerinputController(Daftarmerekbarang_input_panel pane) {
-        loaddata(pane);
-        tutup(pane);
-        simpandata(pane);
+        this.pane = pane;
+        loaddata();
+        tutup();
+        simpandata();
     }
 
-    private void loaddata(Daftarmerekbarang_input_panel pane) {
+    private void loaddata() {
         try {
             id = Staticvar.ids;
-            JSONParser jpdata = new JSONParser();
-            String param = String.format("id=%s", id);
-            Object objdata = jpdata.parse(ch.getdatadetails("dm/datamerek", param));
-            JSONArray jadata = (JSONArray) objdata;
-            for (int i = 0; i < jadata.size(); i++) {
-                JSONObject joindata = (JSONObject) jadata.get(i);
-                pane.edkode_merek.setText(String.valueOf(joindata.get("KODE")));
-                pane.ednama_merek.setText(String.valueOf(joindata.get("NAMA")));
-                pane.edketerangan.setText(String.valueOf(joindata.get("KETERANGAN")));
+            if (id.equals("")) {
+                pane.edkode_merek.setText("");
+                pane.ednama_merek.setText("");
+                pane.edketerangan.setText("");
+            } else {
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", id);
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/datamerek", param));
+                JSONArray jadata = (JSONArray) objdata;
+                for (int i = 0; i < jadata.size(); i++) {
+                    JSONObject joindata = (JSONObject) jadata.get(i);
+                    pane.edkode_merek.setText(String.valueOf(joindata.get("kode")));
+                    pane.ednama_merek.setText(String.valueOf(joindata.get("nama")));
+                    pane.edketerangan.setText(String.valueOf(joindata.get("keterangan")));
+                }
             }
         } catch (ParseException ex) {
             Logger.getLogger(DaftarmerekinnerinputController.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,10 +63,11 @@ public class DaftarmerekinnerinputController {
 
     }
 
-    private void simpandata(Daftarmerekbarang_input_panel pane) {
+    private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = true;
                 if (id.equals("")) {
                     String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
                             pane.edkode_merek.getText(),
@@ -104,7 +113,7 @@ public class DaftarmerekinnerinputController {
         });
     }
 
-    private void tutup(Daftarmerekbarang_input_panel pane) {
+    private void tutup() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -242,6 +242,7 @@ public class DaftardatapelangganinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -264,6 +265,7 @@ public class DaftardatapelangganinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -297,6 +299,7 @@ public class DaftardatapelangganinnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

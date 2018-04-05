@@ -253,6 +253,7 @@ public class DaftarreturpenjualaninnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

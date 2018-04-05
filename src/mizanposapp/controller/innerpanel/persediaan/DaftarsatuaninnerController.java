@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -238,6 +237,7 @@ public class DaftarsatuaninnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -251,51 +251,58 @@ public class DaftarsatuaninnerController {
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setTitle("Input Data Satuan");
             jd.setVisible(true);
-            loaddata();
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
+            }
+            Staticvar.isupdate = false;
         });
     }
 
     private void deletedata() {
-        pane.bhapus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                System.out.println(idlist.get(row));
-                if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
-                    String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletesatuan", data);
-                    if (!Staticvar.getresult.equals("berhasil")) {
-                        JDialog jd = new JDialog(new Mainmenu());
-                        Errorpanel ep = new Errorpanel();
-                        ep.ederror.setText(Staticvar.getresult);
-                        jd.add(ep);
-                        jd.pack();
-                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                        jd.setLocationRelativeTo(null);
-                        jd.setVisible(true);
-                        jd.toFront();
-                    } else {
-                        if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+        pane.bhapus.addActionListener((ActionEvent e) -> {
+            int row = pane.tabledata.getSelectedRow();
+            System.out.println(idlist.get(row));
+            if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                    "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                String data = String.format("id=%s", idlist.get(row));
+                ch.deletedata("dm/deletesatuan", data);
+                if (!Staticvar.getresult.equals("berhasil")) {
+                    JDialog jd = new JDialog(new Mainmenu());
+                    Errorpanel ep = new Errorpanel();
+                    ep.ederror.setText(Staticvar.getresult);
+                    jd.add(ep);
+                    jd.pack();
+                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                    jd.setLocationRelativeTo(null);
+                    jd.setVisible(true);
+                    jd.toFront();
+                } else {
+                    if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                        if (Staticvar.isupdate == true) {
                             loaddata();
-                        } else {
+                        }
+                    } else {
+                        if (Staticvar.isupdate == true) {
                             loaddatadetailraw();
                         }
                     }
+                    Staticvar.isupdate = false;
                 }
-
             }
         });
 
     }
 
     private void updateloaddata() {
-        pane.bupdate.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loaddata();
-                pane.tcari.setText("Cari Data");
-            }
+        pane.bupdate.addActionListener((ActionEvent e) -> {
+            loaddata();
+            pane.tcari.setText("Cari Data");
         });
     }
 
@@ -314,12 +321,9 @@ public class DaftarsatuaninnerController {
     }
 
     private void onbuttoncari() {
-        pane.bcari.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw();
-                }
+        pane.bcari.addActionListener((ActionEvent e) -> {
+            if (!pane.tcari.getText().equals("Cari Data")) {
+                loaddatadetailraw();
             }
         });
     }

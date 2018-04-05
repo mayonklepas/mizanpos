@@ -241,6 +241,7 @@ public class DaftarpenyesuaianinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -286,6 +287,7 @@ public class DaftarpenyesuaianinnerController {
                                 loaddatadetailraw();
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

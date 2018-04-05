@@ -244,6 +244,7 @@ public class DaftarpersediaaninnerController {
                     loaddatadetailraw("0");
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -266,6 +267,7 @@ public class DaftarpersediaaninnerController {
                     loaddatadetailraw("0");
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -299,6 +301,7 @@ public class DaftarpersediaaninnerController {
                                 loaddatadetailraw("0");
                             }
                         }
+                        Staticvar.isupdate = false;
                     }
                 }
 

@@ -7,11 +7,21 @@ package mizanposapp.controller.innerpanel.persediaan;
 
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
+import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
+import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.persediaan.Daftargudang_input_panel;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -22,13 +32,16 @@ public class DaftargudanginputController {
     String id;
     CrudHelper ch = new CrudHelper();
     Daftargudang_input_panel pane;
+    String idpenanggungjawab;
+    String iddepartment;
 
     public DaftargudanginputController(Daftargudang_input_panel pane) {
         this.pane = pane;
-        //loaddata(pane);
-        //tutup(pane);
-        //simpandata(pane);
+        loaddata();
+        tutup();
+        simpandata();
         caripenanggungjawab();
+        caridepartment();
     }
 
     private void caripenanggungjawab() {
@@ -40,38 +53,69 @@ public class DaftargudanginputController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
+            pane.edpenanggung_jawab.setText(Staticvar.reslabel);
+            idpenanggungjawab = Staticvar.resid;
         });
 
     }
 
-    /*private void loaddata(Daftargudang_input_panel pane) {
+    private void caridepartment() {
+        pane.bcari_department.addActionListener((ActionEvent e) -> {
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("department", "popupdaftardept", "Daftar Department"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            pane.eddepartment.setText(Staticvar.reslabel);
+            iddepartment = Staticvar.resid;
+        });
+
+    }
+
+    private void loaddata() {
         try {
-            id = DaftarmerekinnerController.id;
-            JSONParser jpdata = new JSONParser();
-            String param = String.format("id=%s", id);
-            Object objdata = jpdata.parse(ch.getdatadetails("dm/datamerek", param));
-            JSONArray jadata = (JSONArray) objdata;
-            for (int i = 0; i < jadata.size(); i++) {
-                JSONObject joindata = (JSONObject) jadata.get(i);
-                pane.edkode_merek.setText(String.valueOf(joindata.get("KODE")));
-                pane.ednama_merek.setText(String.valueOf(joindata.get("NAMA")));
-                pane.edketerangan.setText(String.valueOf(joindata.get("KETERANGAN")));
+            id = Staticvar.ids;
+            if (id.equals("")) {
+                pane.edkode_gudang.setText("");
+                pane.ednama_gudang.setText("");
+                pane.edpenanggung_jawab.setText("");
+                idpenanggungjawab = String.valueOf("");
+                pane.eddepartment.setText(Globalsession.DEFAULT_DEPT_NAME);
+                iddepartment = Globalsession.DEFAULT_DEPT_ID;
+            } else {
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", id);
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/datagudang", param));
+                JSONArray jadata = (JSONArray) objdata;
+                for (int i = 0; i < jadata.size(); i++) {
+                    JSONObject joindata = (JSONObject) jadata.get(i);
+                    pane.edkode_gudang.setText(String.valueOf(joindata.get("kode")));
+                    pane.ednama_gudang.setText(String.valueOf(joindata.get("nama")));
+                    pane.edpenanggung_jawab.setText(String.valueOf(joindata.get("nama_penanggung_jawab")));
+                    idpenanggungjawab = String.valueOf(joindata.get("id_penanggung_jawab"));
+                    pane.eddepartment.setText(String.valueOf(joindata.get("nama_dept")));
+                    iddepartment = String.valueOf(joindata.get("id_dept"));
+                }
             }
         } catch (ParseException ex) {
             Logger.getLogger(DaftargudanginputController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }*/
- /*private void simpandata(Daftargudang_input_panel pane) {
+    }
+
+    private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
-                            pane.edkode_merek.getText(),
-                            pane.ednama_merek.getText(),
-                            pane.edketerangan.getText());
-                    ch.insertdata("dm/insertmerek", data);
+                    String data = String.format("data=kode='%s'::nama='%s'::id_penanggung_jawab='%s'::id_dept='%s'",
+                            pane.edkode_gudang.getText(),
+                            pane.ednama_gudang.getText(),
+                            idpenanggungjawab, iddepartment);
+                    ch.insertdata("dm/insertgudang", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -87,11 +131,11 @@ public class DaftargudanginputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
-                            pane.edkode_merek.getText(),
-                            pane.ednama_merek.getText(),
-                            pane.edketerangan.getText());
-                    ch.updatedata("dm/updatemerek", data, id);
+                    String data = String.format("data=kode='%s'::nama='%s'::id_penanggung_jawab='%s'::id_dept='%s'",
+                            pane.edkode_gudang.getText(),
+                            pane.ednama_gudang.getText(),
+                            idpenanggungjawab, iddepartment);
+                    ch.updatedata("dm/updategudang", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -109,9 +153,9 @@ public class DaftargudanginputController {
                 }
             }
         });
-    }*/
+    }
 
- /*private void tutup(Daftargudang_input_panel pane) {
+    private void tutup() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,5 +163,5 @@ public class DaftargudanginputController {
                 jd.dispose();
             }
         });
-    }*/
+    }
 }

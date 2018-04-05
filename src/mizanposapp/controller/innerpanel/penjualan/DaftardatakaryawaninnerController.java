@@ -242,6 +242,7 @@ public class DaftardatakaryawaninnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -264,6 +265,7 @@ public class DaftardatakaryawaninnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -296,6 +298,7 @@ public class DaftardatakaryawaninnerController {
                             if (Staticvar.isupdate == true) {
                                 loaddatadetailraw();
                             }
+                            Staticvar.isupdate = false;
                         }
                     }
                 }

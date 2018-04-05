@@ -243,6 +243,7 @@ public class DaftardatasupplierinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -265,6 +266,7 @@ public class DaftardatasupplierinnerController {
                     loaddatadetailraw();
                 }
             }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -297,6 +299,7 @@ public class DaftardatasupplierinnerController {
                             if (Staticvar.isupdate == true) {
                                 loaddatadetailraw();
                             }
+                            Staticvar.isupdate = false;
                         }
                     }
                 }

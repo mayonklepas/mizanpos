@@ -76,6 +76,7 @@ public class DaftarlokasibaranginnerinputController {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = true;
                 if (id.equals("")) {
                     String data = String.format("data=kodelokasi='%s'::namalokasi='%s'::idpenanggungjawab='%s'",
                             pane.edkode_lokasi.getText(),
