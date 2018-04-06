@@ -79,7 +79,6 @@ public class PopupcariController {
         //selectid();
         oke();
         tutup();
-
     }
 
     private void loadheader(String tipe) {

@@ -119,7 +119,7 @@ public class DaftarkelompokinnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -158,7 +158,7 @@ public class DaftarkelompokinnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -228,7 +228,7 @@ public class DaftarkelompokinnerController {
             jd.pack();
             jd.setLocationRelativeTo(null);
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Edit Data Merek");
+            jd.setTitle("Edit Data Kelompok Barang");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 if (Staticvar.isupdate == true) {
@@ -245,13 +245,13 @@ public class DaftarkelompokinnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            cleardata();
+            Staticvar.ids = "";
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftarkelompokbarang_input_panel());
             jd.pack();
             jd.setLocationRelativeTo(null);
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Input Data Merek");
+            jd.setTitle("Input Data Kelompok Barang");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 if (Staticvar.isupdate == true) {
@@ -271,11 +271,10 @@ public class DaftarkelompokinnerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                System.out.println(idlist.get(row));
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletekelompok", data);
+                    ch.deletedata("dm/deletekelompokbarang", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -287,6 +286,7 @@ public class DaftarkelompokinnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata();

@@ -91,7 +91,6 @@ public class DaftardatadeptinnerController {
                     lssize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 }
             }
-
             for (int i = 0; i < lssize.size(); i++) {
                 Double wd = d.getWidth() - 344;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
@@ -113,13 +112,13 @@ public class DaftardatadeptinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                Object objdata = jpdata.parse(ch.getdatadetails("dm/daftardept", "subdept=-1"));
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/daftardept", "id_sub_dept=-1"));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -151,14 +150,14 @@ public class DaftardatadeptinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("subdept=-1&cari=%s", pane.tcari.getText());
+                String param = String.format("id_sub_dept=-1&cari=%s", pane.tcari.getText());
                 Object objdata = jpdata.parse(ch.getdatadetails("dm/caridept", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -228,7 +227,7 @@ public class DaftardatadeptinnerController {
             jd.pack();
             jd.setLocationRelativeTo(null);
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Edit Data Merek");
+            jd.setTitle("Edit Data Department");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 if (Staticvar.isupdate == true) {
@@ -245,13 +244,13 @@ public class DaftardatadeptinnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            cleardata();
+            Staticvar.ids = "";
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftardatadept_input_panel());
             jd.pack();
             jd.setLocationRelativeTo(null);
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Input Data Merek");
+            jd.setTitle("Input Data Department");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 if (Staticvar.isupdate == true) {
@@ -287,6 +286,7 @@ public class DaftardatadeptinnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata();

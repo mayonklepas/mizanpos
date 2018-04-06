@@ -1,1032 +1,992 @@
 {
-"merek": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "50"
-      ]
-    }
-  ],
-"satuan": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "70"
-      ]
-    }
-  ],
-"lokasi": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode Lokasi",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama Lokasi",
-        "1",
-        "40"
-      ]
-    },
-    {
-      "key": [
-        "id_penanggung_jawab",
-        "ID Penanggung Jawab",
-        "0",
-        "0"
-      ]
-    }, 
-    {
-      "key": [
-        "nama_penanggung_jawab",
-        "Nama Penanggung jawab",
-        "1",
-        "40"
-      ]
-    }
-  ],
-"service": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "persen_service",
-        "Persen Service",
-        "1",
-        "10"
-      ]
-    },    
-    {
-      "key": [
-        "akun_service",
-        "Id Akun Service",
-        "0",
-        "10"
-      ]
-    },    
-    {
-      "key": [
-        "nama_akun_service",
-        "Nama Akun Service",
-        "1",
-        "40"
-      ]
-    }
-  ],
-"supplierklasifikasi": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "50"
-      ]
-    }
-  ],
-"nama": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "tipe",
-        "Tipe",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "nama_tipe",
-        "Nama Tipe",
-        "1",
-        "20"
-      ]
-    },
- {
-      "key": [
-        "nama_golongan",
-        "Golongan",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "isactive",
-        "Status",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "alamat",
-        "Alamat",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "kota",
-        "Kota",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "telp",
-        "Telp",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "hp",
-        "HP",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "kontak_person",
-        "Kontak Person",
-        "1",
-        "10"
-      ]
-    }
-  ],
-"gudang": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "nama_penanggung_jawab",
-        "Nama Penanggungjawab",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama_dept",
-        "Nama Department",
-        "1",
-        "40"
-      ]
-    }
-  ],
-"department": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama Dept",
-        "1",
-        "40"
-      ]
-    },
-    {
-      "key": [
-        "issubdept",
-        "Is Subdept",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "id_sub_dept",
-        "ID Sub Dept",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama_sub_dept",
-        "Nama Sub Dept",
-        "1",
-        "30"
-      ]
-    }
-  ],
-"kelompokbarang": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "40"
-      ]
-    },
-    {
-      "key": [
-        "nama_satuan",
-        "Nama Satuan",
-        "1",
-        "30"
-      ]
-    }
-  ],
-"penyesuaian": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "tanggal",
-        "Tanggal",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "no_ref",
-        "No. Ref",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Ketarangan",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "total",
-        "Total",
-        "1",
-        "20"
-      ]
-    }
-  ],
-"stokopname": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "index_table",
-        "Index Table",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "dept_id",
-        "Dept ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "tanggal",
-        "Tanggal",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "no_ref",
-        "No. Ref",
-        "1",
-        "25"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "35"
-      ]
-    },
-    {
-      "key": [
-        "total",
-        "Total",
-        "1",
-        "20"
-      ]
-    }
-  ],
-"persediaan": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "kelompok",
-        "Kelompok",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "satuan",
-        "Satuan",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "harga_jual",
-        "Harga Jual",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "stok",
-        "Stok",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "id_image",
-        "ID Image",
-        "1",
-        "10"
-      ]
-    }
-  ],
-"fakturpenjualan": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "tanggal",
-        "Tanggal",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "deptid",
-        "Deptid",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "noref",
-        "No. ref",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "nama_customer",
-        "Nama Customer",
-        "1",
-        "25"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "total_penjualan",
-        "Total Penjualan",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "order_close",
-        "Order Close",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "IDCUSTOMER",
-        "ID Customer",
-        "0",
-        "0"
-      ]
-    }
-  ],
-"returpenjualan": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "tanggal",
-        "Tanggal",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "dept_id",
-        "Deptid",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "no_ref",
-        "No. ref",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "nama_customer",
-        "Nama Customer",
-        "1",
-        "25"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "total_penjualan",
-        "Total Penjualan",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "order_close",
-        "Order Close",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "id_customer",
-        "ID Customer",
-        "0",
-        "0"
-      ]
-    }
-  ],
-"piutang": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "tipe",
-        "Tipe",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "total_hutang",
-        "Total Hutang",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "total_cicilan",
-        "Total Cicilan",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "sisa_hutang",
-        "Sisa Hutang",
-        "1",
-        "20"
-      ]
-    }
-  ],
-"fakturpembelian": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "tanggal",
-        "Tanggal",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "dept_id",
-        "Deptid",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "no_ref",
-        "No. ref",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "nama_suplier",
-        "Nama Suplier",
-        "1",
-        "25"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "total_pembelian",
-        "Total Pembelian",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "order_close",
-        "Order Close",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "id_supplier",
-        "ID Customer",
-        "0",
-        "0"
-      ]
-    }
-  ],
-"returpembelian": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "tanggal",
-        "Tanggal",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "dept_id",
-        "Deptid",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "no_ref",
-        "No. ref",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "nama_supplier",
-        "Nama Suplier",
-        "1",
-        "25"
-      ]
-    },
-    {
-      "key": [
-        "keterangan",
-        "Keterangan",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "total_pembelian",
-        "Total Pembelian",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "order_close",
-        "Order Close",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "id_supplier",
-        "ID Customer",
-        "0",
-        "0"
-      ]
-    }
-  ],
-"hutang": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "10"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "tipe",
-        "Tipe",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "total_hutang",
-        "Total Hutang",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "total_cicilan",
-        "Total Cicilan",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "SISA_HUTANG",
-        "Sisa Hutang",
-        "1",
-        "20"
-      ]
-    }
-  ],
-"stokminimum": [
-    {
-      "key": [
-        "id",
-        "ID",
-        "0",
-        "0"
-      ]
-    },
-    {
-      "key": [
-        "kode",
-        "Kode",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "nama",
-        "Nama",
-        "1",
-        "30"
-      ]
-    },
-    {
-      "key": [
-        "satuan",
-        "Satuan",
-        "1",
-        "20"
-      ]
-    },
-    {
-      "key": [
-        "stok",
-        "Stok",
-        "1",
-        "15"
-      ]
-    },
-    {
-      "key": [
-        "stok_minimum",
-        "Stok Minimum",
-        "1",
-        "15"
-      ]
-    }
-  ]
+    "merek": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "50"
+            ]
+        }
+    ],
+    "satuan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "70"
+            ]
+        }
+    ],
+    "lokasi": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode Lokasi",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama Lokasi",
+                "1",
+                "40"
+            ]
+        },
+        {
+            "key": [
+                "id_penanggung_jawab",
+                "ID Penanggung Jawab",
+                "0",
+                "0"
+            ]
+        }, 
+        {
+            "key": [
+                "nama_penanggung_jawab",
+                "Nama Penanggung jawab",
+                "1",
+                "40"
+            ]
+        }
+    ],
+    "service": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "persen_service",
+                "Persen Service",
+                "1",
+                "10"
+            ]
+        },    
+        {
+            "key": [
+                "akun_service",
+                "Id Akun Service",
+                "0",
+                "10"
+            ]
+        },    
+        {
+            "key": [
+                "nama_akun_service",
+                "Nama Akun Service",
+                "1",
+                "40"
+            ]
+        }
+    ],
+    "supplierklasifikasi": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "50"
+            ]
+        }
+    ],
+    "nama": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama_golongan",
+                "Golongan",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "alamat",
+                "Alamat",
+                "1",
+                "24"
+            ]
+        },
+        {
+            "key": [
+                "kota",
+                "Kota",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "telp",
+                "Telp",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hp",
+                "HP",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "kontak_person",
+                "Kontak Person",
+                "1",
+                "10"
+            ]
+        }
+    ],
+    "gudang": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "nama_penanggung_jawab",
+                "Nama Penanggungjawab",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama_dept",
+                "Nama Department",
+                "1",
+                "40"
+            ]
+        }
+    ],
+    "department": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama Dept",
+                "1",
+                "40"
+            ]
+        },
+        {
+            "key": [
+                "nama_sub_dept",
+                "Nama Sub Dept",
+                "1",
+                "40"
+            ]
+        }
+    ],
+    "kelompokbarang": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "40"
+            ]
+        },
+        {
+            "key": [
+                "nama_satuan",
+                "Nama Satuan",
+                "1",
+                "30"
+            ]
+        }
+    ],
+    "penyesuaian": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "no_ref",
+                "No. Ref",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Ketarangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "stokopname": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "index_table",
+                "Index Table",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "dept_id",
+                "Dept ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "no_ref",
+                "No. Ref",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "35"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "persediaan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "kelompok",
+                "Kelompok",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "harga_jual",
+                "Harga Jual",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "stok",
+                "Stok",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "id_image",
+                "ID Image",
+                "1",
+                "10"
+            ]
+        }
+    ],
+    "fakturpenjualan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "deptid",
+                "Deptid",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. ref",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_customer",
+                "Nama Customer",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total_penjualan",
+                "Total Penjualan",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "order_close",
+                "Order Close",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "IDCUSTOMER",
+                "ID Customer",
+                "0",
+                "0"
+            ]
+        }
+    ],
+    "returpenjualan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "dept_id",
+                "Deptid",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "no_ref",
+                "No. ref",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_customer",
+                "Nama Customer",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total_penjualan",
+                "Total Penjualan",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "order_close",
+                "Order Close",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "id_customer",
+                "ID Customer",
+                "0",
+                "0"
+            ]
+        }
+    ],
+    "piutang": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "tipe",
+                "Tipe",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "total_hutang",
+                "Total Hutang",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "total_cicilan",
+                "Total Cicilan",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "sisa_hutang",
+                "Sisa Hutang",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "fakturpembelian": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "dept_id",
+                "Deptid",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "no_ref",
+                "No. ref",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_suplier",
+                "Nama Suplier",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total_pembelian",
+                "Total Pembelian",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "order_close",
+                "Order Close",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "id_supplier",
+                "ID Customer",
+                "0",
+                "0"
+            ]
+        }
+    ],
+    "returpembelian": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "dept_id",
+                "Deptid",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "no_ref",
+                "No. ref",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_supplier",
+                "Nama Suplier",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total_pembelian",
+                "Total Pembelian",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "order_close",
+                "Order Close",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "id_supplier",
+                "ID Customer",
+                "0",
+                "0"
+            ]
+        }
+    ],
+    "hutang": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "tipe",
+                "Tipe",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "total_hutang",
+                "Total Hutang",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "total_cicilan",
+                "Total Cicilan",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "SISA_HUTANG",
+                "Sisa Hutang",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "stokminimum": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "stok",
+                "Stok",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "stok_minimum",
+                "Stok Minimum",
+                "1",
+                "15"
+            ]
+        }
+    ]
 }

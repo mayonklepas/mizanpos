@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.innerpanel.persediaan;
 
+import mizanposapp.controller.innerpanel.persediaan.DaftardatadeptinputController;
+
 /**
  *
  * @author Minami
@@ -16,6 +18,7 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
      */
     public Daftardatadept_input_panel() {
         initComponents();
+        new DaftardatadeptinputController(this);
     }
 
     /**
@@ -33,14 +36,14 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        edid_dept = new javax.swing.JTextField();
+        ednama_dept = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bbatal = new javax.swing.JButton();
+        bsimpan = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        cmbsub_dept = new javax.swing.JComboBox<>();
+        ckis_subdept = new javax.swing.JCheckBox();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
@@ -62,9 +65,9 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setText(":");
 
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edid_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ednama_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -81,20 +84,19 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setText("Batal");
+        bbatal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bbatal.setText("Batal");
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setText("Simpan");
+        bsimpan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bsimpan.setText("Simpan");
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("Masukan Data Departemen");
 
-        jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbsub_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jCheckBox1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jCheckBox1.setText("Sub Dept");
+        ckis_subdept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ckis_subdept.setText("Sub Dept");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -105,9 +107,9 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 259, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(bsimpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(bbatal))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,17 +121,17 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1)
+                                .addComponent(edid_dept)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1))
+                                .addComponent(ckis_subdept))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cmbsub_dept, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2)))))
+                                .addComponent(ednama_dept)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(115, 115, 115)
@@ -147,31 +149,33 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(edid_dept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckis_subdept))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ednama_dept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbsub_dept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(bbatal)
+                    .addComponent(bsimpan))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JButton bbatal;
+    public javax.swing.JButton bsimpan;
+    public javax.swing.JCheckBox ckis_subdept;
+    public javax.swing.JComboBox<String> cmbsub_dept;
+    public javax.swing.JTextField edid_dept;
+    public javax.swing.JTextField ednama_dept;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -180,7 +184,5 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

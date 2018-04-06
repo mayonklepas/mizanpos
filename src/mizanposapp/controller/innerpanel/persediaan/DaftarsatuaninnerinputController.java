@@ -41,14 +41,19 @@ public class DaftarsatuaninnerinputController {
     private void loaddata() {
         try {
             id = Staticvar.ids;
-            JSONParser jpdata = new JSONParser();
-            String param = String.format("id=%s", id);
-            Object objdata = jpdata.parse(ch.getdatadetails("dm/datasatuan", param));
-            JSONArray jadata = (JSONArray) objdata;
-            for (int i = 0; i < jadata.size(); i++) {
-                JSONObject joindata = (JSONObject) jadata.get(i);
-                pane.edkode_satuan.setText(String.valueOf(joindata.get("kode")));
-                pane.ednama_satuan.setText(String.valueOf(joindata.get("nama")));
+            if (id.equals("")) {
+                pane.edkode_satuan.setText("");
+                pane.ednama_satuan.setText("");
+            } else {
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", id);
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/datasatuan", param));
+                JSONArray jadata = (JSONArray) objdata;
+                for (int i = 0; i < jadata.size(); i++) {
+                    JSONObject joindata = (JSONObject) jadata.get(i);
+                    pane.edkode_satuan.setText(String.valueOf(joindata.get("kode")));
+                    pane.ednama_satuan.setText(String.valueOf(joindata.get("nama")));
+                }
             }
         } catch (ParseException ex) {
             Logger.getLogger(DaftarsatuaninnerinputController.class.getName()).log(Level.SEVERE, null, ex);

@@ -228,7 +228,7 @@ public class DaftardatasupplierklasifikasiinnerController {
             jd.pack();
             jd.setLocationRelativeTo(null);
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Edit Data Merek");
+            jd.setTitle("Edit Data Klasifikasi");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 if (Staticvar.isupdate == true) {
@@ -251,7 +251,7 @@ public class DaftardatasupplierklasifikasiinnerController {
             jd.pack();
             jd.setLocationRelativeTo(null);
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setTitle("Input Data Merek");
+            jd.setTitle("Input Data Klasifikasi");
             jd.setVisible(true);
             if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                 if (Staticvar.isupdate == true) {

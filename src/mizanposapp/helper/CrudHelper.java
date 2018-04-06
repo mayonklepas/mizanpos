@@ -96,7 +96,7 @@ public class CrudHelper {
         } catch (IOException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //System.out.println(sbdata.toString());
+        System.out.println(sbdata.toString());
         return sbdata.toString();
     }
 
@@ -122,7 +122,7 @@ public class CrudHelper {
         } catch (IOException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //System.out.println(sbdata.toString());
+        System.out.println(sbdata.toString());
         return sbdata.toString();
     }
 

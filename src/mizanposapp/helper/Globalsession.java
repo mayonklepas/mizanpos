@@ -57,6 +57,12 @@ public class Globalsession {
     public static String AKUNONGKOSKIRIMPENJUALAN = "";
     public static String AKUNAPOTEKTUSLAH = "";
     public static String AKUNAPOTEKEMBALASE = "";
+    public static String DEFAULT_ID_SATUAN = "";
+    public static String DEFAULT_NAMA_SATUAN = "";
+    public static String DEFAULT_ID_LOKASI = "";
+    public static String DEFAULT_NAMA_LOKASI = "";
+    public static String DEFAULT_ID_GUDANG = "";
+    public static String DEFAULT_NAMA_GUDANG = "";
 
     public Globalsession() {
         StringBuilder sb = new StringBuilder();
@@ -108,6 +114,13 @@ public class Globalsession {
             AKUNONGKOSKIRIMPENJUALAN = String.valueOf(jodata.get("akun_ongkos_kirim_penjualan"));
             AKUNAPOTEKTUSLAH = String.valueOf(jodata.get("akun_apotek_tuslah"));
             AKUNAPOTEKEMBALASE = String.valueOf(jodata.get("akun_apotek_embalase"));
+            DEFAULT_ID_SATUAN = String.valueOf(jodata.get("default_id_satuan"));
+            DEFAULT_NAMA_SATUAN = String.valueOf(jodata.get("default_nama_satuan"));
+            DEFAULT_ID_LOKASI = String.valueOf(jodata.get("default_id_lokasi"));
+            DEFAULT_NAMA_LOKASI = String.valueOf(jodata.get("default_nama_lokasi"));
+            DEFAULT_ID_GUDANG = String.valueOf(jodata.get("default_id_gudang"));
+            DEFAULT_NAMA_GUDANG = String.valueOf(jodata.get("default_nama_gudang"));
+
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -37,16 +37,13 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        edkode_supplier = new javax.swing.JTextField();
+        ednama_supplier = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bbatal = new javax.swing.JButton();
+        bsimpan = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        ckaktif = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -55,49 +52,49 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        edklasifikasi_supplier = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taketeranga_supplier = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        bcari_klasifikasi = new javax.swing.JButton();
+        epgambar_supplier = new javax.swing.JEditorPane();
+        bcari_supplier = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        edalamat_supplier = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        edkota_supplier = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        edprovinsi_supplier = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        ednegara_supplier = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        edtelepon_supplier = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        edtelepon2_supplier = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        edhp_supplier = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        edcp_supplier = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        edpos_supplier = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        edfax_supplier = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        edemail_supplier = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        edweb_supplier = new javax.swing.JTextField();
 
         jLabel34.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel34.setText(":");
@@ -121,9 +118,9 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setText(":");
 
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edkode_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ednama_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -140,37 +137,24 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton1.setText("Batal");
+        bbatal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bbatal.setText("Batal");
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jButton2.setText("Simpan");
+        bsimpan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bsimpan.setText("Simpan");
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Masukan Data Supplier");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel3.setText("Jabatan");
-
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel6.setText(":");
-
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jCheckBox1.setText("Aktif");
+        ckaktif.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ckaktif.setText("Aktif");
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel10.setText("Klasifikasi");
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel11.setText("Catatan");
+        jLabel11.setText("Keterangan");
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel12.setText("Gambar");
@@ -184,18 +168,18 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel15.setText(":");
 
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edklasifikasi_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taketeranga_supplier.setColumns(20);
+        taketeranga_supplier.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
+        taketeranga_supplier.setRows(5);
+        jScrollPane1.setViewportView(taketeranga_supplier);
 
-        jEditorPane1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jScrollPane2.setViewportView(jEditorPane1);
+        epgambar_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jScrollPane2.setViewportView(epgambar_supplier);
 
-        bcari_klasifikasi.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        bcari_klasifikasi.setText("Cari");
+        bcari_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_supplier.setText("Cari");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,12 +202,12 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                         .addComponent(jLabel15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField4)
+                        .addComponent(edklasifikasi_supplier)
                         .addGap(2, 2, 2)
-                        .addComponent(bcari_klasifikasi)))
+                        .addComponent(bcari_supplier)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -232,9 +216,9 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edklasifikasi_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(bcari_klasifikasi))
+                    .addComponent(bcari_supplier))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
@@ -244,7 +228,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
@@ -261,7 +245,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel17.setText(":");
 
-        jTextField5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edalamat_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel18.setText("Kota");
@@ -269,7 +253,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel19.setText(":");
 
-        jTextField6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edkota_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel20.setText("Provinsi");
@@ -277,12 +261,12 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel21.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel21.setText(":");
 
-        jTextField7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edprovinsi_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel22.setText(":");
 
-        jTextField8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ednegara_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel23.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel23.setText("Negara");
@@ -290,10 +274,10 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel24.setText(":");
 
-        jTextField9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        edtelepon_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edtelepon_supplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                edtelepon_supplierActionPerformed(evt);
             }
         });
 
@@ -303,7 +287,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel26.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel26.setText(":");
 
-        jTextField10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edtelepon2_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel27.setText("Telepon 2");
@@ -311,7 +295,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel28.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel28.setText(":");
 
-        jTextField11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edhp_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel29.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel29.setText("Handphone");
@@ -319,7 +303,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel30.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel30.setText(":");
 
-        jTextField12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edcp_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel31.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel31.setText("CP");
@@ -327,7 +311,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel32.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel32.setText(":");
 
-        jTextField13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edpos_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel33.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel33.setText("Kode Pos");
@@ -335,7 +319,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel36.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel36.setText(":");
 
-        jTextField15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edfax_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel37.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel37.setText("FAX");
@@ -343,7 +327,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel38.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel38.setText("Email");
 
-        jTextField16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edemail_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel40.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel40.setText(":");
@@ -354,7 +338,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel41.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel41.setText(":");
 
-        jTextField17.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edweb_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -373,12 +357,12 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                             .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5)
+                            .addComponent(edalamat_supplier)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel36)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(edkota_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(16, 16, 16)
                                         .addComponent(jLabel33)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -386,9 +370,9 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                                     .addComponent(jLabel40))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                    .addComponent(jTextField15)
-                                    .addComponent(jTextField16)))))
+                                    .addComponent(edpos_supplier, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                    .addComponent(edfax_supplier)
+                                    .addComponent(edemail_supplier)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -405,9 +389,9 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                                 .addComponent(jLabel21)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(jTextField8)
-                            .addComponent(jTextField9)))
+                            .addComponent(edprovinsi_supplier, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(ednegara_supplier)
+                            .addComponent(edtelepon_supplier)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -424,9 +408,9 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                                 .addComponent(jLabel30)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(edcp_supplier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(edhp_supplier, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(edtelepon2_supplier, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
@@ -442,7 +426,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                                         .addGap(11, 11, 11)
                                         .addComponent(jLabel41)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField17)))))))
+                                        .addComponent(edweb_supplier)))))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -451,59 +435,59 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edalamat_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edkota_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel33)
                     .addComponent(jLabel32)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edpos_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edprovinsi_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ednegara_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtelepon_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtelepon2_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
                     .addComponent(jLabel37)
                     .addComponent(jLabel36)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edfax_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edhp_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edemail_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40)
                     .addComponent(jLabel38))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edcp_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edweb_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel41)
                     .addComponent(jLabel39))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Alamat", jPanel3);
+        jTabbedPane1.addTab("Lokasi", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -516,9 +500,9 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(bsimpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(bbatal))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -529,19 +513,14 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(48, 48, 48)
-                                .addComponent(jLabel5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)))
+                                .addComponent(jLabel5)))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
+                            .addComponent(ednama_supplier)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1)
+                                .addComponent(edkode_supplier)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1)))))
+                                .addComponent(ckaktif)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -555,42 +534,48 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(edkode_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ckaktif))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
+                    .addComponent(ednama_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                    .addComponent(bbatal)
+                    .addComponent(bsimpan))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void edtelepon_supplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtelepon_supplierActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_edtelepon_supplierActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton bcari_klasifikasi;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    public javax.swing.JCheckBox jCheckBox1;
-    public javax.swing.JEditorPane jEditorPane1;
+    public javax.swing.JButton bbatal;
+    public javax.swing.JButton bcari_supplier;
+    public javax.swing.JButton bsimpan;
+    public javax.swing.JCheckBox ckaktif;
+    public javax.swing.JTextField edalamat_supplier;
+    public javax.swing.JTextField edcp_supplier;
+    public javax.swing.JTextField edemail_supplier;
+    public javax.swing.JTextField edfax_supplier;
+    public javax.swing.JTextField edhp_supplier;
+    public javax.swing.JTextField edklasifikasi_supplier;
+    public javax.swing.JTextField edkode_supplier;
+    public javax.swing.JTextField edkota_supplier;
+    public javax.swing.JTextField ednama_supplier;
+    public javax.swing.JTextField ednegara_supplier;
+    public javax.swing.JTextField edpos_supplier;
+    public javax.swing.JTextField edprovinsi_supplier;
+    public javax.swing.JTextField edtelepon2_supplier;
+    public javax.swing.JTextField edtelepon_supplier;
+    public javax.swing.JTextField edweb_supplier;
+    public javax.swing.JEditorPane epgambar_supplier;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -613,7 +598,6 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -628,7 +612,6 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -636,23 +619,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTextArea jTextArea1;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField10;
-    public javax.swing.JTextField jTextField11;
-    public javax.swing.JTextField jTextField12;
-    public javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    public javax.swing.JTextField jTextField15;
-    public javax.swing.JTextField jTextField16;
-    public javax.swing.JTextField jTextField17;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
-    public javax.swing.JTextField jTextField6;
-    public javax.swing.JTextField jTextField7;
-    public javax.swing.JTextField jTextField8;
-    public javax.swing.JTextField jTextField9;
+    public javax.swing.JTextArea taketeranga_supplier;
     // End of variables declaration//GEN-END:variables
 }
