@@ -45,7 +45,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         edkode_persediaan = new javax.swing.JTextField();
         ednama_persediaan = new javax.swing.JTextField();
         edkelompok_persediaan = new javax.swing.JTextField();
-        edsupplier_kelompok = new javax.swing.JTextField();
+        edsupplier_persediaan = new javax.swing.JTextField();
         edketerangan_persediaan = new javax.swing.JTextField();
         ckaktif = new javax.swing.JCheckBox();
         bcari_kelompok = new javax.swing.JButton();
@@ -61,9 +61,9 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         edmerek_persedian = new javax.swing.JTextField();
-        edsatuan_merek = new javax.swing.JTextField();
-        edsatuan_lokasi = new javax.swing.JTextField();
-        eddepartment_persedian = new javax.swing.JTextField();
+        edsatuan_persediaan = new javax.swing.JTextField();
+        edlokasi_persediaan = new javax.swing.JTextField();
+        eddepartment_persediaan = new javax.swing.JTextField();
         bcari_merek = new javax.swing.JButton();
         bcari_satuan = new javax.swing.JButton();
         bcari_lokasi = new javax.swing.JButton();
@@ -116,7 +116,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel43 = new javax.swing.JLabel();
         bcalc = new javax.swing.JButton();
         jLabel46 = new javax.swing.JLabel();
-        tupharga_beli = new javax.swing.JTextField();
+        edupharga_beli = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         edgudang_persediaan = new javax.swing.JTextField();
@@ -188,10 +188,10 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
 
         edkelompok_persediaan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        edsupplier_kelompok.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        edsupplier_kelompok.addActionListener(new java.awt.event.ActionListener() {
+        edsupplier_persediaan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edsupplier_persediaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edsupplier_kelompokActionPerformed(evt);
+                edsupplier_persediaanActionPerformed(evt);
             }
         });
 
@@ -249,14 +249,14 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
 
         edmerek_persedian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        edsatuan_merek.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edsatuan_persediaan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        edsatuan_lokasi.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edlokasi_persediaan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        eddepartment_persedian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        eddepartment_persedian.addActionListener(new java.awt.event.ActionListener() {
+        eddepartment_persediaan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        eddepartment_persediaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eddepartment_persedianActionPerformed(evt);
+                eddepartment_persediaanActionPerformed(evt);
             }
         });
 
@@ -597,7 +597,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel41)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(edharga_jual, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
+                                .addComponent(edharga_jual, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))))
                     .addComponent(ckhpp))
                 .addContainerGap())
         );
@@ -643,7 +643,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel46.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel46.setText(":");
 
-        tupharga_beli.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edupharga_beli.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -663,7 +663,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(tupharga_beli)
+                        .addComponent(edupharga_beli)
                         .addGap(2, 2, 2)
                         .addComponent(bcalc, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(edharga_master))
@@ -679,7 +679,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(edharga_master, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tupharga_beli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edupharga_beli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcalc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel46)
                     .addComponent(jLabel44))
@@ -735,9 +735,9 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                             .addComponent(jLabel35))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(eddepartment_persedian, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(edsatuan_lokasi, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(edsatuan_merek)
+                            .addComponent(eddepartment_persediaan, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(edlokasi_persediaan, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(edsatuan_persediaan)
                             .addComponent(edmerek_persedian)
                             .addComponent(edgudang_persediaan, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
                         .addGap(2, 2, 2)
@@ -745,7 +745,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                             .addComponent(bcari_department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bcari_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(bcari_merek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bcari_merek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(bcari_satuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(bcari_gudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)))
@@ -761,40 +761,38 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12)
                             .addComponent(edmerek_persedian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bcari_merek, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(bcari_merek, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(jLabel16)
-                            .addComponent(edsatuan_merek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edsatuan_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bcari_satuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(jLabel17)
-                            .addComponent(edsatuan_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edlokasi_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bcari_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(jLabel18)
-                            .addComponent(eddepartment_persedian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eddepartment_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bcari_department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel35)
                             .addComponent(edgudang_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bcari_gudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34))
-                        .addGap(9, 9, 9)))
+                            .addComponent(jLabel34))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -828,7 +826,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -867,7 +865,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(ckharga_jual_persen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -910,7 +908,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -946,7 +944,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(tlokasi_gambar, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edcari_gambar)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1006,8 +1004,8 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -1023,21 +1021,19 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                                     .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edsupplier_kelompok)
+                                    .addComponent(edsupplier_persediaan)
                                     .addComponent(edketerangan_persediaan))
                                 .addGap(2, 2, 2)
                                 .addComponent(bcari_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(edkode_persediaan))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ednama_persediaan)))
-                                .addGap(10, 10, 10)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ednama_persediaan)
+                                    .addComponent(edkode_persediaan))
+                                .addGap(8, 8, 8)
                                 .addComponent(ckaktif))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
@@ -1084,7 +1080,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel9)
-                    .addComponent(edsupplier_kelompok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edsupplier_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari_supplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -1137,13 +1133,13 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_departmentActionPerformed
 
-    private void edsupplier_kelompokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edsupplier_kelompokActionPerformed
+    private void edsupplier_persediaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edsupplier_persediaanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edsupplier_kelompokActionPerformed
+    }//GEN-LAST:event_edsupplier_persediaanActionPerformed
 
-    private void eddepartment_persedianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eddepartment_persedianActionPerformed
+    private void eddepartment_persediaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eddepartment_persediaanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_eddepartment_persedianActionPerformed
+    }//GEN-LAST:event_eddepartment_persediaanActionPerformed
 
     private void bcari_supplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_supplierActionPerformed
         // TODO add your handling code here:
@@ -1180,7 +1176,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox ckhpp;
     public javax.swing.JComboBox<String> cmbharga_berdasarkan;
     public javax.swing.JButton edcari_gambar;
-    public javax.swing.JTextField eddepartment_persedian;
+    public javax.swing.JTextField eddepartment_persediaan;
     public javax.swing.JTextField edgudang_persediaan;
     public javax.swing.JTextField edharga_beli_akhir;
     public javax.swing.JTextField edharga_jual;
@@ -1188,15 +1184,16 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JTextField edkelompok_persediaan;
     public javax.swing.JTextField edketerangan_persediaan;
     public javax.swing.JTextField edkode_persediaan;
+    public javax.swing.JTextField edlokasi_persediaan;
     public javax.swing.JTextField edmerek_persedian;
     public javax.swing.JTextField ednama_persediaan;
     public javax.swing.JTextField edpajak_pembelian;
     public javax.swing.JTextField edpajak_penjualan;
-    public javax.swing.JTextField edsatuan_lokasi;
-    public javax.swing.JTextField edsatuan_merek;
+    public javax.swing.JTextField edsatuan_persediaan;
     public javax.swing.JTextField edservice;
     public javax.swing.JTextField edstock_minimal;
-    public javax.swing.JTextField edsupplier_kelompok;
+    public javax.swing.JTextField edsupplier_persediaan;
+    public javax.swing.JTextField edupharga_beli;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1274,6 +1271,5 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JTable tablemulti_harga_jual;
     public javax.swing.JTable tablemulti_satuan;
     public javax.swing.JTextField tlokasi_gambar;
-    public javax.swing.JTextField tupharga_beli;
     // End of variables declaration//GEN-END:variables
 }

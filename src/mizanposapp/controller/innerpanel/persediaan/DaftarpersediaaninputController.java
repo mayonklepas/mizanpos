@@ -19,6 +19,7 @@ import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_input_panel;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -62,25 +63,30 @@ public class DaftarpersediaaninputController {
             jd.toFront();
             valkelompok = Staticvar.resid;
             pane.edkelompok_persediaan.setText(Staticvar.reslabel);
-            
+
             try {
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", valkelompok);
                 Object objdata = jpdata.parse(ch.getdatadetails("dm/datakelompokbarang", param));
                 JSONArray jadata = (JSONArray) objdata;
                 for (int i = 0; i < jadata.size(); i++) {
-                   /* [{"id":"1-2017032000185814063","kode":"SUSU","nama":"SUSU","id_satuan":"1-1","nama_satuan":"Pieces",
-                    "id_gudang":"1-1","nama_gudang":"GUDANG","id_lokasi":"1-1","nama_lokasi":"Lokasi Default",
-                    "id_dept":1,"nama_dept":"Default Dept","metode_hpp":3,"ispersediaan":1,"isnonpersediaan":0,
-                    "isjasa":0,"israkitan":0,"akun_persediaan":"101-1010-01","nama_akun_persediaan":"SUSU",
-                    "akun_pendapatan":"401-1007-01","nama_akun_pendapatan":"Pendapatan SUSU",
-                    "akun_hpp":"501-2004-01","nama_akun_hpp":"HPP SUSU","akun_konsinyasi":"null",
-                    "nama_akun_konsinyasi":"null","akun_beban":"null","nama_akun_beban":"null",
-                    "akun_retur_pembelian":"101-1010-01","nama_akun_retur_pembelian":"SUSU",
-                    "akun_retur_penjualan":"401-1008-01","nama_akun_retur_penjualan":
-                    "Retur Penjualan SUSU","akun_pembelian":"101-1010-01","nama_akun_pembelian":"SUSU",
-                    "isnonpoin":0,"iskonsinyasi":0}]
-                    pane.ed*/
+                    JSONObject joindata = (JSONObject) jadata.get(i);
+                    int mhppcek = Integer.parseInt(String.valueOf(joindata.get("metodehpp")));
+                    if (mhppcek == 1) {
+                        pane.rbfifo.setSelected(true);
+                    } else if (mhppcek == 2) {
+                        pane.rblifo.setSelected(true);
+                    } else {
+                        pane.rbaverage.setSelected(true);
+                    }
+                    pane.edsatuan_persediaan.setText(String.valueOf(joindata.get("nama_satuan")));
+                    valsatuan = String.valueOf(joindata.get("id_satuan"));
+                    pane.edlokasi_persediaan.setText(String.valueOf(joindata.get("nama_lokasi")));
+                    vallokasi = String.valueOf(joindata.get("id_lokasi"));
+                    pane.eddepartment_persediaan.setText(String.valueOf(joindata.get("nama_dept")));
+                    valdepartment = String.valueOf(joindata.get("id_dept"));
+                    pane.edgudang_persediaan.setText(String.valueOf(joindata.get("nama_gudang")));
+                    valgudang = String.valueOf(joindata.get("id_gudang"));
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(DaftarpersediaaninputController.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,7 +106,7 @@ public class DaftarpersediaaninputController {
             jd.setVisible(true);
             jd.toFront();
             valsupplier = Staticvar.resid;
-            pane.edsupplier_kelompok.setText(Staticvar.reslabel);
+            pane.edsupplier_persediaan.setText(Staticvar.reslabel);
 
         });
 
@@ -132,7 +138,7 @@ public class DaftarpersediaaninputController {
             jd.setVisible(true);
             jd.toFront();
             valsatuan = Staticvar.resid;
-            pane.edsatuan_merek.setText(Staticvar.reslabel);
+            pane.edsatuan_persediaan.setText(Staticvar.reslabel);
 
         });
 
@@ -148,7 +154,7 @@ public class DaftarpersediaaninputController {
             jd.setVisible(true);
             jd.toFront();
             vallokasi = Staticvar.resid;
-            pane.edsatuan_lokasi.setText(Staticvar.reslabel);
+            pane.edlokasi_persediaan.setText(Staticvar.reslabel);
 
         });
 
@@ -164,7 +170,7 @@ public class DaftarpersediaaninputController {
             jd.setVisible(true);
             jd.toFront();
             valdepartment = Staticvar.resid;
-            pane.eddepartment_persedian.setText(Staticvar.reslabel);
+            pane.eddepartment_persediaan.setText(Staticvar.reslabel);
 
         });
 
@@ -234,55 +240,84 @@ public class DaftarpersediaaninputController {
 
     }
 
-    /*private void loaddata() {
+    private void loaddata() {
         try {
             id = Staticvar.ids;
             if (id.equals("")) {
-                pane.edkode_supplier.setText("");
-                pane.ednama_supplier.setText("");
-                pane.edklasifikasi_supplier.setText("");
-                valklasifikasi = "";
-                pane.taketeranga_supplier.setText("");
-                pane.edalamat_supplier.setText("");
-                pane.edkota_supplier.setText("");
-                pane.edprovinsi_supplier.setText("");
-                pane.ednegara_supplier.setText("");
-                pane.edtelepon_supplier.setText("");
-                pane.edhp_supplier.setText("");
-                pane.edcp_supplier.setText("");
-                pane.edpos_supplier.setText("");
-                pane.edfax_supplier.setText("");
-                pane.edemail_supplier.setText("");
-                pane.edweb_supplier.setText("");
                 pane.ckaktif.setSelected(true);
+                pane.edkode_persediaan.setText("");
+                pane.ednama_persediaan.setText("");
+                pane.edkelompok_persediaan.setText("");
+                valkelompok = "";
+                pane.edsupplier_persediaan.setText("");
+                valsupplier = "";
+                pane.edketerangan_persediaan.setText("");
+                pane.edmerek_persedian.setText("");
+                pane.edsatuan_persediaan.setText("");
+                pane.edlokasi_persediaan.setText("");
+                pane.eddepartment_persediaan.setText("");
+                pane.edgudang_persediaan.setText("");
+                pane.rbaverage.setSelected(true);
+                pane.edpajak_penjualan.setText("");
+                pane.edpajak_pembelian.setText("");
+                pane.edservice.setText("");
+                pane.edstock_minimal.setText("");
+                pane.edharga_beli_akhir.setText("");
+                pane.edharga_jual.setText("");
+                pane.edharga_master.setText("");
+                pane.edupharga_beli.setText("0");
             } else {
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("id=%s&tipe=1", id);
-                Object objdata = jpdata.parse(ch.getdatadetails("dm/datanama", param));
+                String param = String.format("id=%s", id);
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/datapersedian", param));
                 JSONArray jadata = (JSONArray) objdata;
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
-                    pane.edkode_supplier.setText(String.valueOf(joindata.get("kode")));
-                    pane.ednama_supplier.setText(String.valueOf(joindata.get("nama")));
-                    pane.edklasifikasi_supplier.setText(String.valueOf(joindata.get("nama_cards_klas")));
-                    valklasifikasi = String.valueOf(joindata.get("id_cards_klas"));
-                    pane.taketeranga_supplier.setText(String.valueOf(joindata.get("keterangan")));
-                    pane.edalamat_supplier.setText(String.valueOf(joindata.get("alamat")));
-                    pane.edkota_supplier.setText(String.valueOf(joindata.get("kota")));
-                    pane.edprovinsi_supplier.setText(String.valueOf(joindata.get("provinsi")));
-                    pane.ednegara_supplier.setText(String.valueOf(joindata.get("negara")));
-                    pane.edtelepon_supplier.setText(String.valueOf(joindata.get("telp")));
-                    pane.edhp_supplier.setText(String.valueOf(joindata.get("hp")));
-                    pane.edcp_supplier.setText(String.valueOf(joindata.get("kontak_person")));
-                    pane.edpos_supplier.setText(String.valueOf(joindata.get("kodepos")));
-                    pane.edfax_supplier.setText(String.valueOf(joindata.get("fax")));
-                    pane.edemail_supplier.setText(String.valueOf(joindata.get("email")));
-                    pane.edweb_supplier.setText(String.valueOf(joindata.get("website")));
+                    metodehpp = String.valueOf(joindata.get("metodehpp"));
+                    if (metodehpp.equals("1")) {
+                        pane.rbfifo.setSelected(true);
+                    } else if (metodehpp.equals("2")) {
+                        pane.rblifo.setSelected(true);
+                    } else {
+                        pane.rbaverage.setSelected(true);
+                    }
+                    pane.ckaktif.setSelected(true);
+                    pane.edkode_persediaan.setText(String.valueOf(joindata.get("kode")));
+                    pane.ednama_persediaan.setText(String.valueOf(joindata.get("nama")));
+                    pane.edkelompok_persediaan.setText(String.valueOf(joindata.get("nama_kelompok")));
+                    valkelompok = String.valueOf(joindata.get("id_kelompok"));
+                    pane.edsupplier_persediaan.setText(String.valueOf(joindata.get("nama_supplier")));
+                    valsupplier = String.valueOf(joindata.get("id_supplier"));
+                    pane.edketerangan_persediaan.setText(String.valueOf(joindata.get("keterangan")));
+                    pane.edmerek_persedian.setText(String.valueOf(joindata.get("nama_merek")));
+                    valmerek = String.valueOf(joindata.get("id_merek"));
+                    pane.edsatuan_persediaan.setText(String.valueOf(joindata.get("nama_satuan")));
+                    valsatuan = String.valueOf(joindata.get("id_satuan"));
+                    pane.edlokasi_persediaan.setText(String.valueOf(joindata.get("nama_lokasi")));
+                    vallokasi = String.valueOf(joindata.get("id_lokasi"));
+                    pane.eddepartment_persediaan.setText(String.valueOf(joindata.get("nama_dept")));
+                    valdepartment = String.valueOf(joindata.get("id_dept"));
+                    pane.edgudang_persediaan.setText(String.valueOf(joindata.get("nama_gudang")));
+                    valgudang = String.valueOf(joindata.get("id_gudang"));
+                    pane.edpajak_penjualan.setText(String.valueOf(joindata.get("nama_pajak_jual")));
+                    pane.edpajak_pembelian.setText(String.valueOf(joindata.get("nama_pajak_beli")));
+                    pane.edservice.setText(String.valueOf(joindata.get("nama_service")));
+                    pane.edstock_minimal.setText(String.valueOf(joindata.get("stock_minimum")));
+                    pane.edharga_beli_akhir.setText(String.valueOf(joindata.get("harga_beli")));
+                    pane.edharga_jual.setText(String.valueOf(joindata.get("harga_jual")));
+                    pane.edharga_master.setText(String.valueOf(joindata.get("harga_master")));
+                    pane.edupharga_beli.setText("0");
                     int iscek = Integer.parseInt(String.valueOf(joindata.get("isaktif")));
                     if (iscek == 1) {
                         pane.ckaktif.setSelected(true);
                     } else {
                         pane.ckaktif.setSelected(false);
+                    }
+                    int iscekhppsamadenganjual = Integer.parseInt(String.valueOf(joindata.get("ishppsamadenganhargajual")));
+                    if (iscekhppsamadenganjual == 1) {
+                        pane.ckhpp.setSelected(true);
+                    } else {
+                        pane.ckhpp.setSelected(false);
                     }
                 }
             }
@@ -290,7 +325,8 @@ public class DaftarpersediaaninputController {
             Logger.getLogger(DaftarserviceinnerinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }*/
+    }
+
     private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
