@@ -8,6 +8,8 @@ package mizanposapp.controller.innerpanel.persediaan;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
@@ -16,6 +18,9 @@ import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_input_panel;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -57,6 +62,30 @@ public class DaftarpersediaaninputController {
             jd.toFront();
             valkelompok = Staticvar.resid;
             pane.edkelompok_persediaan.setText(Staticvar.reslabel);
+            
+            try {
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", valkelompok);
+                Object objdata = jpdata.parse(ch.getdatadetails("dm/datakelompokbarang", param));
+                JSONArray jadata = (JSONArray) objdata;
+                for (int i = 0; i < jadata.size(); i++) {
+                   /* [{"id":"1-2017032000185814063","kode":"SUSU","nama":"SUSU","id_satuan":"1-1","nama_satuan":"Pieces",
+                    "id_gudang":"1-1","nama_gudang":"GUDANG","id_lokasi":"1-1","nama_lokasi":"Lokasi Default",
+                    "id_dept":1,"nama_dept":"Default Dept","metode_hpp":3,"ispersediaan":1,"isnonpersediaan":0,
+                    "isjasa":0,"israkitan":0,"akun_persediaan":"101-1010-01","nama_akun_persediaan":"SUSU",
+                    "akun_pendapatan":"401-1007-01","nama_akun_pendapatan":"Pendapatan SUSU",
+                    "akun_hpp":"501-2004-01","nama_akun_hpp":"HPP SUSU","akun_konsinyasi":"null",
+                    "nama_akun_konsinyasi":"null","akun_beban":"null","nama_akun_beban":"null",
+                    "akun_retur_pembelian":"101-1010-01","nama_akun_retur_pembelian":"SUSU",
+                    "akun_retur_penjualan":"401-1008-01","nama_akun_retur_penjualan":
+                    "Retur Penjualan SUSU","akun_pembelian":"101-1010-01","nama_akun_pembelian":"SUSU",
+                    "isnonpoin":0,"iskonsinyasi":0}]
+                    pane.ed*/
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(DaftarpersediaaninputController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         });
 
     }
