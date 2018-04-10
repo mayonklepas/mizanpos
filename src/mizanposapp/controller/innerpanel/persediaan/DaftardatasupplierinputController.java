@@ -44,7 +44,7 @@ public class DaftardatasupplierinputController {
     private void cariklasifikasisupplier() {
         pane.bcari_supplier.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("supplierklasifikasi", "popupdaftarklasfikasinama", "Daftar Klasifikasi"));
+            jd.add(new Popupcari("supplierklasifikasi", "popupdaftarklasifikasinama", "Daftar Klasifikasi"));
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);
@@ -95,7 +95,7 @@ public class DaftardatasupplierinputController {
                     pane.ednegara_supplier.setText(String.valueOf(joindata.get("negara")));
                     pane.edtelepon_supplier.setText(String.valueOf(joindata.get("telp")));
                     pane.edhp_supplier.setText(String.valueOf(joindata.get("hp")));
-                    pane.edcp_supplier.setText(String.valueOf(joindata.get("cp")));
+                    pane.edcp_supplier.setText(String.valueOf(joindata.get("kontak_person")));
                     pane.edpos_supplier.setText(String.valueOf(joindata.get("kodepos")));
                     pane.edfax_supplier.setText(String.valueOf(joindata.get("fax")));
                     pane.edemail_supplier.setText(String.valueOf(joindata.get("email")));
@@ -204,6 +204,7 @@ public class DaftardatasupplierinputController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }

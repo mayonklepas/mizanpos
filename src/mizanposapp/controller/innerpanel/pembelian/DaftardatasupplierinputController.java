@@ -34,7 +34,7 @@ public class DaftardatasupplierinputController {
     private void cariklasifikasisupplier() {
         pane.bcari_klasifikasi.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("supplierklasifikasi", "popupdaftarklasfikasinama", "Daftar Klasifikasi"));
+            jd.add(new Popupcari("supplierklasifikasi", "popupdaftarklasifikasinama", "Daftar Klasifikasi"));
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);

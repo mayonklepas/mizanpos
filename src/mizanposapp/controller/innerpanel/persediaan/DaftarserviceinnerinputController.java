@@ -125,6 +125,7 @@ public class DaftarserviceinnerinputController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }

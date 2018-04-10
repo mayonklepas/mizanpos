@@ -28,12 +28,12 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class DaftarkelompokbaranginputController {
-    
+
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarkelompokbarang_input_panel pane;
     String valsatuan, valgudang, vallokasi, valdept;
-    
+
     public DaftarkelompokbaranginputController(Daftarkelompokbarang_input_panel pane) {
         this.pane = pane;
         carisatuan();
@@ -44,7 +44,7 @@ public class DaftarkelompokbaranginputController {
         simpandata();
         tutup();
     }
-    
+
     private void carisatuan() {
         pane.bcari_satuan.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
@@ -57,9 +57,9 @@ public class DaftarkelompokbaranginputController {
             pane.edsatuan.setText(Staticvar.reslabel);
             valsatuan = Staticvar.resid;
         });
-        
+
     }
-    
+
     private void carigudang() {
         pane.bcari_gudang.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
@@ -72,9 +72,9 @@ public class DaftarkelompokbaranginputController {
             pane.edgudang.setText(Staticvar.reslabel);
             valgudang = Staticvar.resid;
         });
-        
+
     }
-    
+
     private void carilokasi() {
         pane.bcari_lokasi.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
@@ -87,9 +87,9 @@ public class DaftarkelompokbaranginputController {
             pane.edlokasi.setText(Staticvar.reslabel);
             vallokasi = Staticvar.resid;
         });
-        
+
     }
-    
+
     private void caridept() {
         pane.bcari_dept.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
@@ -102,9 +102,9 @@ public class DaftarkelompokbaranginputController {
             pane.eddept.setText(Staticvar.reslabel);
             valdept = Staticvar.resid;
         });
-        
+
     }
-    
+
     private void loaddata() {
         try {
             id = Staticvar.ids;
@@ -121,7 +121,7 @@ public class DaftarkelompokbaranginputController {
                 valdept = Globalsession.DEFAULT_DEPT_ID;
                 pane.cknon_poin.setSelected(false);
                 pane.rbaverage.setSelected(true);
-                
+
             } else {
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);
@@ -146,7 +146,7 @@ public class DaftarkelompokbaranginputController {
                     } else {
                         pane.cknon_poin.setSelected(false);
                     }
-                    
+
                     switch (metodehpp) {
                         case 1:
                             pane.rbfifo.setSelected(true);
@@ -163,9 +163,9 @@ public class DaftarkelompokbaranginputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarmerekinnerinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private void simpandata() {
         pane.bsimpan.addActionListener((ActionEvent e) -> {
             Staticvar.isupdate = true;
@@ -228,15 +228,16 @@ public class DaftarkelompokbaranginputController {
             }
         });
     }
-    
+
     private void tutup() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }
         });
     }
-    
+
 }

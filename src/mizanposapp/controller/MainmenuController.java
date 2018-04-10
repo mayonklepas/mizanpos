@@ -138,6 +138,7 @@ public class MainmenuController {
         mm.jPanel4.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.jPanel4.setBackground(new Color(3, 3, 3));
                 Bantuan bf = new Bantuan();
@@ -176,6 +177,7 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.jPanel6.setBackground(new Color(3, 3, 3));
                 Beranda_panel bp = new Beranda_panel();
@@ -212,6 +214,7 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.jPanel7.setBackground(new Color(3, 3, 3));
                 Persedian_panel pp = new Persedian_panel();
@@ -255,6 +258,7 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.jPanel8.setBackground(new Color(3, 3, 3));
                 Penjualan_panel pp = new Penjualan_panel();
@@ -298,6 +302,7 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.jPanel9.setBackground(new Color(3, 3, 3));
                 Pembelian_panel pp = new Pembelian_panel();
@@ -334,6 +339,7 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.jPanel10.setBackground(new Color(3, 3, 3));
                 Laporan_panel lp = new Laporan_panel();

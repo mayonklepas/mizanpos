@@ -40,6 +40,7 @@ public class PembelianController {
     }
 
     private void supplierview(Pembelian_panel pp) {
+        System.gc();
         Daftardatasupplier_inner_panel pane = new Daftardatasupplier_inner_panel();
         Staticvar.pmp = pp;
         pp.container.removeAll();
@@ -57,6 +58,7 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarreturpembelian_inner_panel pane = new Daftarreturpembelian_inner_panel();
                 Staticvar.pmp = pp;
                 pp.container.removeAll();
@@ -89,6 +91,7 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarfakturpembelian_inner_panel pane = new Daftarfakturpembelian_inner_panel();
                 Staticvar.pmp = pp;
                 pp.container.removeAll();
@@ -121,6 +124,7 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarhutang_inner_panel pane = new Daftarhutang_inner_panel();
                 Staticvar.pmp = pp;
                 pp.container.removeAll();
@@ -160,6 +164,7 @@ public class PembelianController {
                 mm.panel_tengah.add(pane, BorderLayout.CENTER);
                 mm.panel_tengah.revalidate();
                 mm.panel_tengah.repaint();*/
+                System.gc();
                 Cekhargabeli_inner_panel pane = new Cekhargabeli_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());

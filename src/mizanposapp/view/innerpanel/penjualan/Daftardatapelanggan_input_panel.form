@@ -57,9 +57,9 @@
                   <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="bsimpan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="bbatal" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" alignment="0" pref="479" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -82,12 +82,16 @@
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField3" max="32767" attributes="0"/>
-                          <Component id="jTextField2" max="32767" attributes="0"/>
+                          <Component id="ednama_pelanggan" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField1" max="32767" attributes="0"/>
+                              <Component id="edkode_pelanggan" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Component id="ckaktif" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="edgolongan_pelanggan" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="bcari_golongan" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -107,27 +111,28 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="edkode_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ckaktif" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ednama_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="edgolongan_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bcari_golongan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bbatal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bsimpan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -167,19 +172,25 @@
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="edkode_pelanggan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="ednama_pelanggan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
@@ -207,21 +218,27 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="bbatal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Batal"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="bsimpan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Simpan"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -237,7 +254,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Jabatan"/>
+        <Property name="text" type="java.lang.String" value="Golongan"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -248,23 +265,29 @@
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="edgolongan_pelanggan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edgolongan_pelangganActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="ckaktif">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Aktif"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
 
@@ -307,7 +330,7 @@
                           <Component id="jScrollPane1" pref="381" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jTextField4" max="32767" attributes="0"/>
+                              <Component id="edklasifikasi_pelanggan" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Component id="bcari_klasifikasi" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -322,7 +345,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edklasifikasi_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bcari_klasifikasi" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -337,7 +360,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" pref="95" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" pref="94" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -400,12 +423,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="edklasifikasi_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -414,7 +440,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="taketerangan_pelanggan">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -422,6 +448,9 @@
                     </Property>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -432,12 +461,15 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JEditorPane" name="jEditorPane1">
+                <Component class="javax.swing.JEditorPane" name="epgambar_pelanggan">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Century Gothic" size="11" style="0"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -481,12 +513,12 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField5" max="32767" attributes="0"/>
+                                  <Component id="edalamat_pelanggan" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <Component id="jTextField6" min="-2" pref="159" max="-2" attributes="0"/>
+                                              <Component id="edkota_pelanggan" min="-2" pref="159" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                               <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -496,9 +528,9 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField13" pref="124" max="32767" attributes="0"/>
-                                          <Component id="jTextField15" max="32767" attributes="0"/>
-                                          <Component id="jTextField16" max="32767" attributes="0"/>
+                                          <Component id="edpos_pelanggan" pref="124" max="32767" attributes="0"/>
+                                          <Component id="edfax_pelanggan" max="32767" attributes="0"/>
+                                          <Component id="edemail_pelanggan" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -524,9 +556,9 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField7" alignment="0" pref="159" max="32767" attributes="0"/>
-                                  <Component id="jTextField8" max="32767" attributes="0"/>
-                                  <Component id="jTextField9" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="edprovinsi_pelanggan" alignment="0" pref="159" max="32767" attributes="0"/>
+                                  <Component id="ednegara_pelanggan" max="32767" attributes="0"/>
+                                  <Component id="edtelepon_pelanggan" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -549,8 +581,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jTextField12" alignment="0" pref="159" max="32767" attributes="0"/>
-                                  <Component id="jTextField11" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="edcp_pelanggan" alignment="0" pref="159" max="32767" attributes="0"/>
+                                  <Component id="edhp_pelanggan" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextField10" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -570,7 +602,7 @@
                                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                               <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jTextField17" max="32767" attributes="0"/>
+                                              <Component id="edweb_pelanggan" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -587,34 +619,34 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edalamat_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edkota_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edpos_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edprovinsi_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ednegara_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edtelepon_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -624,23 +656,23 @@
                           <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField15" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edfax_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edhp_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField16" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edemail_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edcp_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edweb_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -666,12 +698,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="edalamat_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
@@ -689,12 +724,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField6">
+            <Component class="javax.swing.JTextField" name="edkota_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel20">
               <Properties>
@@ -712,12 +750,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField7">
+            <Component class="javax.swing.JTextField" name="edprovinsi_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
@@ -727,12 +768,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField8">
+            <Component class="javax.swing.JTextField" name="ednegara_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
@@ -750,15 +794,18 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField9">
+            <Component class="javax.swing.JTextField" name="edtelepon_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edtelepon_pelangganActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel25">
               <Properties>
@@ -782,6 +829,9 @@
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel27">
               <Properties>
@@ -799,12 +849,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField11">
+            <Component class="javax.swing.JTextField" name="edhp_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel29">
               <Properties>
@@ -822,12 +875,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField12">
+            <Component class="javax.swing.JTextField" name="edcp_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
@@ -845,12 +901,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField13">
+            <Component class="javax.swing.JTextField" name="edpos_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel33">
               <Properties>
@@ -868,12 +927,15 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField15">
+            <Component class="javax.swing.JTextField" name="edfax_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel37">
               <Properties>
@@ -891,12 +953,15 @@
                 <Property name="text" type="java.lang.String" value="Email"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField16">
+            <Component class="javax.swing.JTextField" name="edemail_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel40">
               <Properties>
@@ -922,16 +987,30 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField17">
+            <Component class="javax.swing.JTextField" name="edweb_pelanggan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="bcari_golongan">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Century Gothic" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cari"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

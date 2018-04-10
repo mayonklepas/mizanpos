@@ -27,12 +27,12 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class DaftarlokasibaranginnerinputController {
-    
+
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarlokasibarang_input_panel pane;
     String id_penangggung_jawab;
-    
+
     public DaftarlokasibaranginnerinputController(Daftarlokasibarang_input_panel pane) {
         this.pane = pane;
         loaddata();
@@ -40,7 +40,7 @@ public class DaftarlokasibaranginnerinputController {
         simpandata();
         caripenanggungjawab();
     }
-    
+
     private void caripenanggungjawab() {
         pane.bcari_penanggung_jawab.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
@@ -53,9 +53,9 @@ public class DaftarlokasibaranginnerinputController {
             id_penangggung_jawab = Staticvar.resid;
             pane.edpenanggungjawab.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void loaddata() {
         try {
             id = Staticvar.ids;
@@ -80,9 +80,9 @@ public class DaftarlokasibaranginnerinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarlokasibaranginnerinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
@@ -132,15 +132,16 @@ public class DaftarlokasibaranginnerinputController {
             }
         });
     }
-    
+
     private void tutup() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }
         });
     }
-    
+
 }

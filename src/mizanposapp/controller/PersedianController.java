@@ -6,16 +6,13 @@
 package mizanposapp.controller;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Persedian_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarkelompokbarang_inner_panel;
-import mizanposapp.view.innerpanel.persediaan.Daftarkoreksistok_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarlokasibarang_inner_panel;
-import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarsatuanbarang_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatadept_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftardatapajak_inner_panel;
@@ -68,6 +65,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Staticvar.psp = pp;
                 Daftarpenyesuaian_inner_panel pane = new Daftarpenyesuaian_inner_panel();
                 pp.container.removeAll();
@@ -96,6 +94,7 @@ public class PersedianController {
         pp.pkoreksistok.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 Staticvar.psp = pp;
                 Daftarkoreksistok_inner_panel pane = new Daftarkoreksistok_inner_panel();
                 pp.container.removeAll();
@@ -129,6 +128,7 @@ public class PersedianController {
         pp.ldaftar_kelompok_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 Daftarkelompokbarang_inner_panel pane = new Daftarkelompokbarang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -161,6 +161,7 @@ public class PersedianController {
         pp.ldaftar_satuan_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 Daftarsatuanbarang_inner_panel pane = new Daftarsatuanbarang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -193,6 +194,7 @@ public class PersedianController {
         pp.ldaftar_lokasi_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 Daftarlokasibarang_inner_panel pane = new Daftarlokasibarang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -225,6 +227,7 @@ public class PersedianController {
         pp.ldaftar_merek.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 Daftarmerekbarang_inner_panel pane = new Daftarmerekbarang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -257,6 +260,7 @@ public class PersedianController {
         pp.ldaftar_service.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 Daftarservice_inner_panel pane = new Daftarservice_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -293,6 +297,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftardatapajak_inner_panel pane = new Daftardatapajak_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -325,6 +330,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftargudang_inner_panel pane = new Daftargudang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -357,6 +363,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftardatadept_inner_panel pane = new Daftardatadept_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -389,6 +396,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarlokasibarang_inner_panel pane = new Daftarlokasibarang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -421,6 +429,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftardatasupplier_inner_panel pane = new Daftardatasupplier_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -453,6 +462,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftardatasupplierklasifikasi_inner_panel pane = new Daftardatasupplierklasifikasi_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -485,6 +495,7 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarstokminimum_inner_panel pane = new Daftarstokminimum_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());

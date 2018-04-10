@@ -35,6 +35,7 @@ import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.penjualan.Daftardatagolongan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatadept_input_panel;
@@ -242,7 +243,11 @@ public class PopupcariController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata(page.replace("daftar", "delete"), data);
+                    String deletepagefrag1 = page.substring(5);
+                    String deletepagefrag2 = deletepagefrag1.replace("daftar", "delete");
+                    String deletepagefrag3 = deletepagefrag2.split("\\?")[0];
+                    String deletefinal = "dm/" + deletepagefrag3;
+                    ch.deletedata(deletefinal, data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -254,10 +259,16 @@ public class PopupcariController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            loaddata(page);
+                            if (Staticvar.isupdate == true) {
+                                loaddata(page);
+                            }
                         } else {
-                            loaddatadetailraw(page);
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw(page);
+                            }
+                            Staticvar.isupdate = false;
                         }
                     }
                 }
@@ -326,6 +337,9 @@ public class PopupcariController {
                 case "satuan":
                     inpane = new Daftarsatuanbarang_input_panel();
                     break;
+                case "golongan":
+                    inpane = new Daftardatagolongan_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -335,8 +349,16 @@ public class PopupcariController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-            loaddata(page);
-
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata(page);
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw(page);
+                }
+            }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -376,6 +398,9 @@ public class PopupcariController {
                 case "satuan":
                     inpane = new Daftarsatuanbarang_input_panel();
                     break;
+                case "golongan":
+                    inpane = new Daftardatagolongan_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -385,7 +410,16 @@ public class PopupcariController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-            loaddata(page);
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata(page);
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw(page);
+                }
+            }
+            Staticvar.isupdate = false;
         });
     }
 

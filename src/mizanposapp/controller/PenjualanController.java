@@ -55,6 +55,7 @@ public class PenjualanController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarreturpenjualan_inner_panel pane = new Daftarreturpenjualan_inner_panel();
                 Staticvar.pp = pp;
                 pp.container.removeAll();
@@ -87,6 +88,7 @@ public class PenjualanController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarfakturpenjualan_inner_panel pane = new Daftarfakturpenjualan_inner_panel();
                 Staticvar.pp = pp;
                 pp.container.removeAll();
@@ -119,6 +121,7 @@ public class PenjualanController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftarpiutang_inner_panel pane = new Daftarpiutang_inner_panel();
                 Staticvar.pp = pp;
                 pp.container.removeAll();
@@ -152,6 +155,7 @@ public class PenjualanController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 POS_panel pane = new POS_panel();
                 JFrame jf = new JFrame();
                 jf.add(pane);
@@ -186,6 +190,7 @@ public class PenjualanController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                System.gc();
                 Daftardatakaryawan_inner_panel pane = new Daftardatakaryawan_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -224,6 +229,7 @@ public class PenjualanController {
                 mm.panel_tengah.add(pane, BorderLayout.CENTER);
                 mm.panel_tengah.revalidate();
                 mm.panel_tengah.repaint();*/
+                System.gc();
                 Settingdiskonharian_inner_panel pane = new Settingdiskonharian_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -262,6 +268,7 @@ public class PenjualanController {
                 mm.panel_tengah.add(pane, BorderLayout.CENTER);
                 mm.panel_tengah.revalidate();
                 mm.panel_tengah.repaint();*/
+                System.gc();
                 Settingbonuspenjualan_inner_panel pane = new Settingbonuspenjualan_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -300,6 +307,7 @@ public class PenjualanController {
                 mm.panel_tengah.add(pane, BorderLayout.CENTER);
                 mm.panel_tengah.revalidate();
                 mm.panel_tengah.repaint();*/
+                System.gc();
                 Settingdiskonkelompok_inner_panel pane = new Settingdiskonkelompok_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());

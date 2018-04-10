@@ -113,15 +113,14 @@ public class DaftardatakaryawaninnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = "tipe=2";
-                Object objdata = jpdata.parse(ch.getdatadetails("dm/daftarnama", param));
+                Object objdata = jpdata.parse(ch.getdatas("dm/daftarnama?tipe=2"));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -161,7 +160,7 @@ public class DaftardatakaryawaninnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -248,7 +247,7 @@ public class DaftardatakaryawaninnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            cleardata();
+            Staticvar.ids = "";
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftardatakaryawan_input_panel());
             jd.pack();
@@ -278,7 +277,7 @@ public class DaftardatakaryawaninnerController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletedatakaryawan", data);
+                    ch.deletedata("dm/deletedatanama", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -290,6 +289,7 @@ public class DaftardatakaryawaninnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata();

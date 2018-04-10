@@ -124,7 +124,7 @@ public class DaftarpersediaaninnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -163,7 +163,7 @@ public class DaftarpersediaaninnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -250,7 +250,7 @@ public class DaftarpersediaaninnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            cleardata();
+            Staticvar.ids = "";
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftarpersediaan_input_panel());
             jd.pack();
@@ -292,6 +292,7 @@ public class DaftarpersediaaninnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata("0");
