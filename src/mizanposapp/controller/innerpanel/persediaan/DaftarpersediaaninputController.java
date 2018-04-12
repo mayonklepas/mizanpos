@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.table.DefaultTableModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -37,6 +38,7 @@ public class DaftarpersediaaninputController {
 
     public DaftarpersediaaninputController(Daftarpersediaan_input_panel pane) {
         this.pane = pane;
+        loaddata();
         carikelompokpersediaan();
         carisupplier();
         carimerek();
@@ -266,10 +268,40 @@ public class DaftarpersediaaninputController {
                 pane.edharga_jual.setText("");
                 pane.edharga_master.setText("");
                 pane.edupharga_beli.setText("0");
+                pane.ckharga_jual_persen.setSelected(true);
+
+                DefaultTableModel dtmmultisatuan = new DefaultTableModel();
+                dtmmultisatuan.addColumn("Satuan");
+                dtmmultisatuan.addColumn("Kode Barcode");
+                dtmmultisatuan.addColumn("Isi Persatuan");
+                dtmmultisatuan.addColumn("Satuan Pengali");
+                Object[] rowmultisatuan = new Object[4];
+                dtmmultisatuan.addRow(rowmultisatuan);
+                pane.tablemulti_satuan.setModel(dtmmultisatuan);
+
+                DefaultTableModel dtmmultihargajual = new DefaultTableModel();
+                dtmmultihargajual.addColumn("Golongan");
+                dtmmultihargajual.addColumn("Dari");
+                dtmmultihargajual.addColumn("Hingga");
+                dtmmultihargajual.addColumn("Satuan");
+                if (pane.ckharga_jual_persen.isSelected() == true) {
+                    dtmmultihargajual.addColumn("Harga Jual %");
+                } else {
+                    dtmmultihargajual.addColumn("Harga Jual");
+                }
+                Object[] rowmultiharga = new Object[5];
+                dtmmultihargajual.addRow(rowmultiharga);
+                pane.tablemulti_harga_jual.setModel(dtmmultihargajual);
+
+                DefaultTableModel dtmmultilokasi = new DefaultTableModel();
+                pane.table_multilokasi.setModel(dtmmultilokasi);
+
             } else {
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);
-                Object objdata = jpdata.parse(ch.getdatadetails("dm/datapersedian", param));
+                Object rawobjdata = jpdata.parse(ch.getdatadetails("dm/datapersediaan", param));
+                JSONObject jsonobjdata = (JSONObject) rawobjdata;
+                Object objdata = jsonobjdata.get("data");
                 JSONArray jadata = (JSONArray) objdata;
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
@@ -302,7 +334,7 @@ public class DaftarpersediaaninputController {
                     pane.edpajak_penjualan.setText(String.valueOf(joindata.get("nama_pajak_jual")));
                     pane.edpajak_pembelian.setText(String.valueOf(joindata.get("nama_pajak_beli")));
                     pane.edservice.setText(String.valueOf(joindata.get("nama_service")));
-                    pane.edstock_minimal.setText(String.valueOf(joindata.get("stock_minimum")));
+                    pane.edstock_minimal.setText(String.valueOf(joindata.get("stok_minimum")));
                     pane.edharga_beli_akhir.setText(String.valueOf(joindata.get("harga_beli")));
                     pane.edharga_jual.setText(String.valueOf(joindata.get("harga_jual")));
                     pane.edharga_master.setText(String.valueOf(joindata.get("harga_master")));
@@ -320,6 +352,94 @@ public class DaftarpersediaaninputController {
                         pane.ckhpp.setSelected(false);
                     }
                 }
+
+                //multisatuan
+                DefaultTableModel dtmmultisatuan = new DefaultTableModel();
+                dtmmultisatuan.addColumn("ID");
+                dtmmultisatuan.addColumn("ID INV");
+                dtmmultisatuan.addColumn("ID Satuan");
+                dtmmultisatuan.addColumn("ID Satuan Pengali");
+                dtmmultisatuan.addColumn("Qty Satuan Pengali");
+                dtmmultisatuan.addColumn("Satuan");
+                dtmmultisatuan.addColumn("Kode Barcode");
+                dtmmultisatuan.addColumn("Isi Persatuan");
+                dtmmultisatuan.addColumn("Satuan Pengali");
+                Object[] rowmultisatuan = new Object[9];
+                Object objmultisatuan = jsonobjdata.get("datamultisatuan");
+                System.out.println(objmultisatuan);
+                JSONArray jamultisatuan = (JSONArray) objmultisatuan;
+                for (int i = 0; i < jamultisatuan.size(); i++) {
+                    JSONObject joinmultisatuan = (JSONObject) jamultisatuan.get(i);
+                    rowmultisatuan[0] = String.valueOf(joinmultisatuan.get("id"));
+                    rowmultisatuan[1] = String.valueOf(joinmultisatuan.get("id_inv"));
+                    rowmultisatuan[2] = String.valueOf(joinmultisatuan.get("id_satuan"));
+                    rowmultisatuan[3] = String.valueOf(joinmultisatuan.get("id_satuan_pengali"));
+                    rowmultisatuan[4] = String.valueOf(joinmultisatuan.get("qty_satuan_pengali"));
+                    rowmultisatuan[5] = String.valueOf(joinmultisatuan.get("kode_satuan"));
+                    rowmultisatuan[6] = String.valueOf(joinmultisatuan.get("barcode"));
+                    rowmultisatuan[7] = String.valueOf(joinmultisatuan.get("qty_satuan_pengali"));
+                    rowmultisatuan[8] = String.valueOf(joinmultisatuan.get("kode_satuan_pengali"));
+
+                    dtmmultisatuan.addRow(rowmultisatuan);
+                }
+                pane.tablemulti_satuan.setModel(dtmmultisatuan);
+
+                //multiharga
+                DefaultTableModel dtmmultihargajual = new DefaultTableModel();
+                dtmmultihargajual.addColumn("Golongan");
+                dtmmultihargajual.addColumn("Dari");
+                dtmmultihargajual.addColumn("Hingga");
+                dtmmultihargajual.addColumn("Satuan");
+                if (pane.ckharga_jual_persen.isSelected() == true) {
+                    dtmmultihargajual.addColumn("Harga Jual %");
+                } else {
+                    dtmmultihargajual.addColumn("Harga Jual");
+                }
+                Object[] rowmultiharga = new Object[5];
+                Object objmultiharga = jsonobjdata.get("datamultiharga");
+                System.out.println(objmultisatuan);
+                JSONArray jamultiharga = (JSONArray) objmultiharga;
+                for (int i = 0; i < jamultiharga.size(); i++) {
+                    JSONObject joinmultiharga = (JSONObject) jamultisatuan.get(i);
+                    rowmultiharga[0] = String.valueOf(joinmultiharga.get("id"));
+                    rowmultiharga[1] = String.valueOf(joinmultiharga.get("id_inv"));
+                    rowmultiharga[2] = String.valueOf(joinmultiharga.get("id_harga"));
+                    rowmultiharga[3] = String.valueOf(joinmultiharga.get("id_harga_pengali"));
+                    rowmultiharga[4] = String.valueOf(joinmultiharga.get("qty_harga_pengali"));
+                    rowmultiharga[5] = String.valueOf(joinmultiharga.get("kode_harga"));
+                    rowmultiharga[6] = String.valueOf(joinmultiharga.get("barcode"));
+                    rowmultiharga[7] = String.valueOf(joinmultiharga.get("qty_harga_pengali"));
+                    rowmultiharga[8] = String.valueOf(joinmultiharga.get("kode_harga_pengali"));
+
+                    dtmmultihargajual.addRow(rowmultiharga);
+                }
+                pane.tablemulti_harga_jual.setModel(dtmmultihargajual);
+
+                //multilokasi
+                DefaultTableModel dtmmultilokasi = new DefaultTableModel();
+                dtmmultilokasi.addColumn("Golongan");
+                dtmmultilokasi.addColumn("Dari");
+                dtmmultilokasi.addColumn("Hingga");
+                dtmmultilokasi.addColumn("Satuan");
+                Object[] rowmultilokasi = new Object[5];
+                Object objmultilokasi = jsonobjdata.get("datamultilokasi");
+                JSONArray jamultilokasi = (JSONArray) objmultilokasi;
+                for (int i = 0; i < jamultilokasi.size(); i++) {
+                    JSONObject joinmultilokasi = (JSONObject) jamultisatuan.get(i);
+                    rowmultilokasi[0] = String.valueOf(joinmultilokasi.get("id"));
+                    rowmultilokasi[1] = String.valueOf(joinmultilokasi.get("id_inv"));
+                    rowmultilokasi[2] = String.valueOf(joinmultilokasi.get("id_lokasi"));
+                    rowmultilokasi[3] = String.valueOf(joinmultilokasi.get("id_lokasi_pengali"));
+                    rowmultilokasi[4] = String.valueOf(joinmultilokasi.get("qty_lokasi_pengali"));
+                    rowmultilokasi[5] = String.valueOf(joinmultilokasi.get("kode_lokasi"));
+                    rowmultilokasi[6] = String.valueOf(joinmultilokasi.get("barcode"));
+                    rowmultilokasi[7] = String.valueOf(joinmultilokasi.get("qty_lokasi_pengali"));
+                    rowmultilokasi[8] = String.valueOf(joinmultilokasi.get("kode_lokasi_pengali"));
+
+                    dtmmultihargajual.addRow(rowmultilokasi);
+                }
+                pane.tablemulti_harga_jual.setModel(dtmmultilokasi);
+
             }
         } catch (ParseException ex) {
             Logger.getLogger(DaftarserviceinnerinputController.class.getName()).log(Level.SEVERE, null, ex);
@@ -491,5 +611,9 @@ public class DaftarpersediaaninputController {
                 jd.dispose();
             }
         });
+    }
+
+    private void multisatuanedit() {
+
     }
 }

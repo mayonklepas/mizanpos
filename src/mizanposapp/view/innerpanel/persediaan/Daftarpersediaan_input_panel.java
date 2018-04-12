@@ -132,7 +132,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel50 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_multilokasi = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -854,7 +854,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
 
         ckharga_jual_persen.setText("Harga Jual Persen");
 
-        cmbharga_berdasarkan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbharga_berdasarkan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harga Pokok", "Harga Beli Terakhir", "Harga Master" }));
 
         jLabel50.setText("Harga Berdasarkan");
 
@@ -889,7 +889,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Multi Harga Jual", jPanel3);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_multilokasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -900,7 +900,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(table_multilokasi);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1259,7 +1259,6 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     public javax.swing.JLabel lharga_pokok;
     public javax.swing.JLabel ljumlah_stock;
     public javax.swing.JLabel lpesan_pelanggan;
@@ -1268,6 +1267,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JRadioButton rbfifo;
     public javax.swing.JRadioButton rblifo;
     private javax.swing.ButtonGroup rgmetode_harga_pokok;
+    public javax.swing.JTable table_multilokasi;
     public javax.swing.JTable tablemulti_harga_jual;
     public javax.swing.JTable tablemulti_satuan;
     public javax.swing.JTextField tlokasi_gambar;
