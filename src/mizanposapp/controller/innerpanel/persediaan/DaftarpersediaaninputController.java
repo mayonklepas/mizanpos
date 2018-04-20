@@ -8,9 +8,14 @@ package mizanposapp.controller.innerpanel.persediaan;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
@@ -30,11 +35,22 @@ import org.json.simple.parser.ParseException;
  */
 public class DaftarpersediaaninputController {
 
+    ArrayList<multisatuan> multisatuanlist = new ArrayList<>();
+    ArrayList<multiharga> multihargalist = new ArrayList<>();
+    ArrayList<multilokasi> multilokasilist = new ArrayList<>();
     String id = "";
     CrudHelper ch = new CrudHelper();
     Daftarpersediaan_input_panel pane;
     String valkelompok, valsupplier, valmerek, valsatuan, valgudang, vallokasi, valdepartment,
             valpajakpenjualan, valpajakpembelian, valservice, metodehpp;
+    DefaultTableModel dtmmultisatuan = new DefaultTableModel();
+    DefaultTableModel dtmmultihargajual = new DefaultTableModel();
+    DefaultTableModel dtmmultilokasi = new DefaultTableModel();
+    int col = 0;
+    int row = 0;
+    Object[] rowmultisatuan = new Object[4];
+    Object[] rowmultiharga = new Object[6];
+    Object[] rowmultilokasi = new Object[2];
 
     public DaftarpersediaaninputController(Daftarpersediaan_input_panel pane) {
         this.pane = pane;
@@ -51,6 +67,7 @@ public class DaftarpersediaaninputController {
         cariservice();
         simpandata();
         tutup();
+        multisatuanedit();
 
     }
 
@@ -270,30 +287,27 @@ public class DaftarpersediaaninputController {
                 pane.edupharga_beli.setText("0");
                 pane.ckharga_jual_persen.setSelected(true);
 
-                DefaultTableModel dtmmultisatuan = new DefaultTableModel();
                 dtmmultisatuan.addColumn("Satuan");
                 dtmmultisatuan.addColumn("Kode Barcode");
                 dtmmultisatuan.addColumn("Isi Persatuan");
                 dtmmultisatuan.addColumn("Satuan Pengali");
-                Object[] rowmultisatuan = new Object[4];
+                multisatuanlist.add(new multisatuan("", "", "", "", "", "", "", ""));
                 dtmmultisatuan.addRow(rowmultisatuan);
                 pane.tablemulti_satuan.setModel(dtmmultisatuan);
 
-                DefaultTableModel dtmmultihargajual = new DefaultTableModel();
                 dtmmultihargajual.addColumn("Golongan");
                 dtmmultihargajual.addColumn("Dari");
                 dtmmultihargajual.addColumn("Hingga");
                 dtmmultihargajual.addColumn("Satuan");
-                if (pane.ckharga_jual_persen.isSelected() == true) {
-                    dtmmultihargajual.addColumn("Harga Jual %");
-                } else {
-                    dtmmultihargajual.addColumn("Harga Jual");
-                }
-                Object[] rowmultiharga = new Object[5];
+                dtmmultihargajual.addColumn("Harga Jual");
+                dtmmultihargajual.addColumn("Harga Jual Persen");
+
                 dtmmultihargajual.addRow(rowmultiharga);
                 pane.tablemulti_harga_jual.setModel(dtmmultihargajual);
 
-                DefaultTableModel dtmmultilokasi = new DefaultTableModel();
+                dtmmultilokasi.addColumn("Nama Lokasi");
+                dtmmultilokasi.addColumn("Nama Gudang");
+                dtmmultilokasi.addRow(rowmultilokasi);
                 pane.table_multilokasi.setModel(dtmmultilokasi);
 
             } else {
@@ -354,91 +368,96 @@ public class DaftarpersediaaninputController {
                 }
 
                 //multisatuan
-                DefaultTableModel dtmmultisatuan = new DefaultTableModel();
-                dtmmultisatuan.addColumn("ID");
-                dtmmultisatuan.addColumn("ID INV");
-                dtmmultisatuan.addColumn("ID Satuan");
-                dtmmultisatuan.addColumn("ID Satuan Pengali");
-                dtmmultisatuan.addColumn("Qty Satuan Pengali");
                 dtmmultisatuan.addColumn("Satuan");
                 dtmmultisatuan.addColumn("Kode Barcode");
                 dtmmultisatuan.addColumn("Isi Persatuan");
                 dtmmultisatuan.addColumn("Satuan Pengali");
-                Object[] rowmultisatuan = new Object[9];
                 Object objmultisatuan = jsonobjdata.get("datamultisatuan");
                 System.out.println(objmultisatuan);
                 JSONArray jamultisatuan = (JSONArray) objmultisatuan;
                 for (int i = 0; i < jamultisatuan.size(); i++) {
                     JSONObject joinmultisatuan = (JSONObject) jamultisatuan.get(i);
-                    rowmultisatuan[0] = String.valueOf(joinmultisatuan.get("id"));
-                    rowmultisatuan[1] = String.valueOf(joinmultisatuan.get("id_inv"));
-                    rowmultisatuan[2] = String.valueOf(joinmultisatuan.get("id_satuan"));
-                    rowmultisatuan[3] = String.valueOf(joinmultisatuan.get("id_satuan_pengali"));
-                    rowmultisatuan[4] = String.valueOf(joinmultisatuan.get("qty_satuan_pengali"));
-                    rowmultisatuan[5] = String.valueOf(joinmultisatuan.get("kode_satuan"));
-                    rowmultisatuan[6] = String.valueOf(joinmultisatuan.get("barcode"));
-                    rowmultisatuan[7] = String.valueOf(joinmultisatuan.get("qty_satuan_pengali"));
-                    rowmultisatuan[8] = String.valueOf(joinmultisatuan.get("kode_satuan_pengali"));
-
+                    String id = String.valueOf(joinmultisatuan.get("id"));
+                    String id_inv = String.valueOf(joinmultisatuan.get("id_inv"));
+                    String id_satuan = String.valueOf(joinmultisatuan.get("id_satuan"));
+                    String kode_satuan = String.valueOf(joinmultisatuan.get("kode_satuan"));
+                    String barcode = String.valueOf(joinmultisatuan.get("barcode"));
+                    String id_satuan_pengali = String.valueOf(joinmultisatuan.get("id_satuan_pengali"));
+                    String kode_satuan_pengali = String.valueOf(joinmultisatuan.get("kode_satuan_pengali"));
+                    String qty_satuan_pengali = String.valueOf(joinmultisatuan.get("qty_satuan_pengali"));
+                    multisatuanlist.add(new multisatuan(id, id_inv, id_satuan, kode_satuan, barcode, id_satuan_pengali, kode_satuan_pengali, qty_satuan_pengali));
+                }
+                for (int i = 0; i < multisatuanlist.size(); i++) {
+                    rowmultisatuan[0] = multisatuanlist.get(i).getKode_satuan();
+                    rowmultisatuan[1] = multisatuanlist.get(i).getBarcode();
+                    rowmultisatuan[2] = multisatuanlist.get(i).getQty_satuan_pengali();
+                    rowmultisatuan[3] = multisatuanlist.get(i).getKode_satuan_pengali();
                     dtmmultisatuan.addRow(rowmultisatuan);
                 }
                 pane.tablemulti_satuan.setModel(dtmmultisatuan);
 
                 //multiharga
-                DefaultTableModel dtmmultihargajual = new DefaultTableModel();
                 dtmmultihargajual.addColumn("Golongan");
                 dtmmultihargajual.addColumn("Dari");
                 dtmmultihargajual.addColumn("Hingga");
                 dtmmultihargajual.addColumn("Satuan");
-                if (pane.ckharga_jual_persen.isSelected() == true) {
-                    dtmmultihargajual.addColumn("Harga Jual %");
-                } else {
-                    dtmmultihargajual.addColumn("Harga Jual");
-                }
-                Object[] rowmultiharga = new Object[5];
+                dtmmultihargajual.addColumn("Harga Jual");
+                dtmmultihargajual.addColumn("Harga Jual Persen");
+                Object[] rowmultiharga = new Object[6];
                 Object objmultiharga = jsonobjdata.get("datamultiharga");
                 System.out.println(objmultisatuan);
                 JSONArray jamultiharga = (JSONArray) objmultiharga;
                 for (int i = 0; i < jamultiharga.size(); i++) {
                     JSONObject joinmultiharga = (JSONObject) jamultisatuan.get(i);
-                    rowmultiharga[0] = String.valueOf(joinmultiharga.get("id"));
-                    rowmultiharga[1] = String.valueOf(joinmultiharga.get("id_inv"));
-                    rowmultiharga[2] = String.valueOf(joinmultiharga.get("id_harga"));
-                    rowmultiharga[3] = String.valueOf(joinmultiharga.get("id_harga_pengali"));
-                    rowmultiharga[4] = String.valueOf(joinmultiharga.get("qty_harga_pengali"));
-                    rowmultiharga[5] = String.valueOf(joinmultiharga.get("kode_harga"));
-                    rowmultiharga[6] = String.valueOf(joinmultiharga.get("barcode"));
-                    rowmultiharga[7] = String.valueOf(joinmultiharga.get("qty_harga_pengali"));
-                    rowmultiharga[8] = String.valueOf(joinmultiharga.get("kode_harga_pengali"));
 
+                    String id = String.valueOf(joinmultiharga.get("id"));
+                    String id_inv = String.valueOf(joinmultiharga.get("id_inv"));
+                    String id_golongan = String.valueOf(joinmultiharga.get("id_golongan"));
+                    String kode_golongan = String.valueOf(joinmultiharga.get("kode_golongan"));
+                    String dari = String.valueOf(joinmultiharga.get("dari"));
+                    String hingga = String.valueOf(joinmultiharga.get("hingga"));
+                    String id_satuan = String.valueOf(joinmultiharga.get("id_satuan"));
+                    String kode_satuan = String.valueOf(joinmultiharga.get("kode_satuan"));
+                    String harga_jual = String.valueOf(joinmultiharga.get("harga_jual"));
+                    String harga_jual_persen = String.valueOf(joinmultiharga.get("harga_jual_persen"));
+                    multihargalist.add(new multiharga(id, id_inv, id_golongan, kode_golongan, dari, hingga, id_satuan, kode_satuan, harga_jual, harga_jual_persen));
+
+                }
+
+                for (int i = 0; i < multihargalist.size(); i++) {
+                    rowmultiharga[0] = multihargalist.get(i).getKode_golongan();
+                    rowmultiharga[1] = multihargalist.get(i).getDari();
+                    rowmultiharga[2] = multihargalist.get(i).getHingga();
+                    rowmultiharga[3] = multihargalist.get(i).getKode_satuan();
+                    rowmultiharga[4] = multihargalist.get(i).getHarga_jual();
+                    rowmultiharga[5] = multihargalist.get(i).getHarga_jual_persen();
                     dtmmultihargajual.addRow(rowmultiharga);
                 }
                 pane.tablemulti_harga_jual.setModel(dtmmultihargajual);
 
                 //multilokasi
-                DefaultTableModel dtmmultilokasi = new DefaultTableModel();
-                dtmmultilokasi.addColumn("Golongan");
-                dtmmultilokasi.addColumn("Dari");
-                dtmmultilokasi.addColumn("Hingga");
-                dtmmultilokasi.addColumn("Satuan");
-                Object[] rowmultilokasi = new Object[5];
+                dtmmultilokasi.addColumn("Nama Lokasi");
+                dtmmultilokasi.addColumn("Nama Gudang");
+                Object[] rowmultilokasi = new Object[2];
                 Object objmultilokasi = jsonobjdata.get("datamultilokasi");
                 JSONArray jamultilokasi = (JSONArray) objmultilokasi;
                 for (int i = 0; i < jamultilokasi.size(); i++) {
                     JSONObject joinmultilokasi = (JSONObject) jamultisatuan.get(i);
-                    rowmultilokasi[0] = String.valueOf(joinmultilokasi.get("id"));
-                    rowmultilokasi[1] = String.valueOf(joinmultilokasi.get("id_inv"));
-                    rowmultilokasi[2] = String.valueOf(joinmultilokasi.get("id_lokasi"));
-                    rowmultilokasi[3] = String.valueOf(joinmultilokasi.get("id_lokasi_pengali"));
-                    rowmultilokasi[4] = String.valueOf(joinmultilokasi.get("qty_lokasi_pengali"));
-                    rowmultilokasi[5] = String.valueOf(joinmultilokasi.get("kode_lokasi"));
-                    rowmultilokasi[6] = String.valueOf(joinmultilokasi.get("barcode"));
-                    rowmultilokasi[7] = String.valueOf(joinmultilokasi.get("qty_lokasi_pengali"));
-                    rowmultilokasi[8] = String.valueOf(joinmultilokasi.get("kode_lokasi_pengali"));
-
-                    dtmmultihargajual.addRow(rowmultilokasi);
+                    String id = String.valueOf(joinmultilokasi.get("id"));
+                    String id_inv = String.valueOf(joinmultilokasi.get("id_inv"));
+                    String id_lokasi = String.valueOf(joinmultilokasi.get("id_lokasi"));
+                    String nama_lokasi = String.valueOf(joinmultilokasi.get("nama_lokasi"));
+                    String id_gudang = String.valueOf(joinmultilokasi.get("id_gudang"));
+                    String nama_gudang = String.valueOf(joinmultilokasi.get("nama_gudang"));
+                    multilokasilist.add(new multilokasi(id, id_inv, id_lokasi, nama_lokasi, id_gudang, nama_gudang));
                 }
-                pane.tablemulti_harga_jual.setModel(dtmmultilokasi);
+
+                for (int i = 0; i < multilokasilist.size(); i++) {
+                    rowmultilokasi[0] = multilokasilist.get(i).getNama_gudang();
+                    rowmultilokasi[1] = multilokasilist.get(i).getNama_lokaksi();
+                }
+
+                pane.table_multilokasi.setModel(dtmmultilokasi);
 
             }
         } catch (ParseException ex) {
@@ -615,5 +634,333 @@ public class DaftarpersediaaninputController {
 
     private void multisatuanedit() {
 
+        //pane.tablemulti_satuan.setDefaultEditor(Object.class, new Editortablemultisatuan());
+        pane.tablemulti_satuan.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                col = e.getColumn();
+            }
+
+        });
+
+        KeyAdapter keya = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int row = pane.tablemulti_satuan.getSelectedRow();
+                if (e.getKeyCode() == KeyEvent.VK_F3) {
+                    multisatuanlist.add(new multisatuan("", "", "", "", "", "", "", ""));
+                    dtmmultisatuan.addRow(rowmultisatuan);
+                } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                    multisatuanlist.remove(row);
+                    dtmmultisatuan.removeRow(row);
+                    dtmmultisatuan.fireTableDataChanged();
+                } else if (e.getKeyCode() == KeyEvent.VK_F4) {
+                    for (int i = 0; i < multisatuanlist.size(); i++) {
+                        System.out.println(multisatuanlist.get(i).getId_satuan());
+                        System.out.println(multisatuanlist.get(i).getBarcode());
+                        System.out.println(multisatuanlist.get(i).getQty_satuan_pengali());
+                        System.out.println(multisatuanlist.get(i).getId_satuan_pengali());
+                        System.out.println("----------------------------------------");
+                    }
+                } else {
+                    if (col == 0) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("satuan", "popupdaftarsatuan", "Daftar Satuan"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multisatuanlist.get(row).setId_satuan(Staticvar.resid);
+                        pane.tablemulti_satuan.setValueAt(Staticvar.reslabel, row, 0);
+                        multisatuanlist.get(row).setId_satuan_pengali(valsatuan);
+                        pane.tablemulti_satuan.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                        dtmmultisatuan.fireTableCellUpdated(row, 0);
+                        dtmmultisatuan.fireTableCellUpdated(row, 3);
+                    } else if (col == 1) {
+                        multisatuanlist.get(row).setBarcode(String.valueOf(pane.tablemulti_satuan.getValueAt(row, 1)));
+                    } else if (col == 2) {
+                        multisatuanlist.get(row).setQty_satuan_pengali(String.valueOf(pane.tablemulti_satuan.getValueAt(row, 2)));
+                    } else if (col == 3) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("satuan", "popupdaftarsatuan", "Daftar Satuan"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multisatuanlist.get(row).setId_satuan_pengali(Staticvar.resid);
+                        pane.tablemulti_satuan.setValueAt(Staticvar.reslabel, row, 3);
+                        dtmmultisatuan.fireTableCellUpdated(row, 3);
+                    }
+
+                    String id_satuan_check = multisatuanlist.get(row).getId_satuan();
+                    String barcode_check = multisatuanlist.get(row).getBarcode();
+                    String qty_check = multisatuanlist.get(row).getQty_satuan_pengali();
+                    int jumlah_row = pane.tablemulti_satuan.getRowCount() - 1;
+                    String last_id_satuan_check = multisatuanlist.get(jumlah_row).getId_satuan();
+                    String last_barcode_check = multisatuanlist.get(jumlah_row).getBarcode();
+                    String last_qty_check = multisatuanlist.get(jumlah_row).getQty_satuan_pengali();
+                    if (!id_satuan_check.equals("") && !barcode_check.equals("") && !qty_check.equals("")) {
+                        if (!last_id_satuan_check.equals("") && !last_barcode_check.equals("") && !last_qty_check.equals("")) {
+                            multisatuanlist.add(new multisatuan("", "", "", "", "", "", "", ""));
+                            dtmmultisatuan.addRow(rowmultisatuan);
+                        }
+                    }
+                }
+            }
+
+        };
+        pane.tablemulti_satuan.addKeyListener(keya);
+
     }
+
+    public class multisatuan {
+
+        String id, id_inv, id_satuan, kode_satuan, barcode, id_satuan_pengali, kode_satuan_pengali, qty_satuan_pengali;
+
+        public multisatuan() {
+
+        }
+
+        public multisatuan(String id, String id_inv, String id_satuan, String kode_satuan, String barcode, String id_satuan_pengali, String kode_satuan_pengali, String qty_satuan_pengali) {
+            this.id = id;
+            this.id_inv = id_inv;
+            this.id_satuan = id_satuan;
+            this.kode_satuan = kode_satuan;
+            this.barcode = barcode;
+            this.id_satuan_pengali = id_satuan_pengali;
+            this.kode_satuan_pengali = kode_satuan_pengali;
+            this.qty_satuan_pengali = qty_satuan_pengali;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getId_inv() {
+            return id_inv;
+        }
+
+        public void setId_inv(String id_inv) {
+            this.id_inv = id_inv;
+        }
+
+        public String getId_satuan() {
+            return id_satuan;
+        }
+
+        public void setId_satuan(String id_satuan) {
+            this.id_satuan = id_satuan;
+        }
+
+        public String getKode_satuan() {
+            return kode_satuan;
+        }
+
+        public void setKode_satuan(String kode_satuan) {
+            this.kode_satuan = kode_satuan;
+        }
+
+        public String getBarcode() {
+            return barcode;
+        }
+
+        public void setBarcode(String barcode) {
+            this.barcode = barcode;
+        }
+
+        public String getId_satuan_pengali() {
+            return id_satuan_pengali;
+        }
+
+        public void setId_satuan_pengali(String id_satuan_pengali) {
+            this.id_satuan_pengali = id_satuan_pengali;
+        }
+
+        public String getKode_satuan_pengali() {
+            return kode_satuan_pengali;
+        }
+
+        public void setKode_satuan_pengali(String kode_satuan_pengali) {
+            this.kode_satuan_pengali = kode_satuan_pengali;
+        }
+
+        public String getQty_satuan_pengali() {
+            return qty_satuan_pengali;
+        }
+
+        public void setQty_satuan_pengali(String qty_satuan_pengali) {
+            this.qty_satuan_pengali = qty_satuan_pengali;
+        }
+
+    }
+
+    public class multiharga {
+
+        String id, id_inv, id_golongan, kode_golongan, dari, hingga, id_satuan, kode_satuan, harga_jual, harga_jual_persen;
+
+        public multiharga(String id, String id_inv, String id_golongan, String kode_golongan, String dari, String hingga, String id_satuan, String kode_satuan, String harga_jual, String harga_jual_persen) {
+            this.id = id;
+            this.id_inv = id_inv;
+            this.id_golongan = id_golongan;
+            this.kode_golongan = kode_golongan;
+            this.dari = dari;
+            this.hingga = hingga;
+            this.id_satuan = id_satuan;
+            this.kode_satuan = kode_satuan;
+            this.harga_jual = harga_jual;
+            this.harga_jual_persen = harga_jual_persen;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getId_inv() {
+            return id_inv;
+        }
+
+        public void setId_inv(String id_inv) {
+            this.id_inv = id_inv;
+        }
+
+        public String getId_golongan() {
+            return id_golongan;
+        }
+
+        public void setId_golongan(String id_golongan) {
+            this.id_golongan = id_golongan;
+        }
+
+        public String getKode_golongan() {
+            return kode_golongan;
+        }
+
+        public void setKode_golongan(String kode_golongan) {
+            this.kode_golongan = kode_golongan;
+        }
+
+        public String getDari() {
+            return dari;
+        }
+
+        public void setDari(String dari) {
+            this.dari = dari;
+        }
+
+        public String getHingga() {
+            return hingga;
+        }
+
+        public void setHingga(String hingga) {
+            this.hingga = hingga;
+        }
+
+        public String getId_satuan() {
+            return id_satuan;
+        }
+
+        public void setId_satuan(String id_satuan) {
+            this.id_satuan = id_satuan;
+        }
+
+        public String getKode_satuan() {
+            return kode_satuan;
+        }
+
+        public void setKode_satuan(String kode_satuan) {
+            this.kode_satuan = kode_satuan;
+        }
+
+        public String getHarga_jual() {
+            return harga_jual;
+        }
+
+        public void setHarga_jual(String harga_jual) {
+            this.harga_jual = harga_jual;
+        }
+
+        public String getHarga_jual_persen() {
+            return harga_jual_persen;
+        }
+
+        public void setHarga_jual_persen(String harga_jual_persen) {
+            this.harga_jual_persen = harga_jual_persen;
+        }
+
+    }
+
+    public class multilokasi {
+
+        String id, id_inv, id_lokasi, nama_lokaksi, id_gudang, nama_gudang;
+
+        public multilokasi(String id, String id_inv, String id_lokasi, String nama_lokaksi, String id_gudang, String nama_gudang) {
+            this.id = id;
+            this.id_inv = id_inv;
+            this.id_lokasi = id_lokasi;
+            this.nama_lokaksi = nama_lokaksi;
+            this.id_gudang = id_gudang;
+            this.nama_gudang = nama_gudang;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getId_inv() {
+            return id_inv;
+        }
+
+        public void setId_inv(String id_inv) {
+            this.id_inv = id_inv;
+        }
+
+        public String getId_lokasi() {
+            return id_lokasi;
+        }
+
+        public void setId_lokasi(String id_lokasi) {
+            this.id_lokasi = id_lokasi;
+        }
+
+        public String getNama_lokaksi() {
+            return nama_lokaksi;
+        }
+
+        public void setNama_lokaksi(String nama_lokaksi) {
+            this.nama_lokaksi = nama_lokaksi;
+        }
+
+        public String getId_gudang() {
+            return id_gudang;
+        }
+
+        public void setId_gudang(String id_gudang) {
+            this.id_gudang = id_gudang;
+        }
+
+        public String getNama_gudang() {
+            return nama_gudang;
+        }
+
+        public void setNama_gudang(String nama_gudang) {
+            this.nama_gudang = nama_gudang;
+        }
+
+    }
+
 }
