@@ -68,6 +68,8 @@ public class DaftarpersediaaninputController {
         simpandata();
         tutup();
         multisatuanedit();
+        multihargaedit();
+        multilokasiedit();
 
     }
 
@@ -301,14 +303,15 @@ public class DaftarpersediaaninputController {
                 dtmmultihargajual.addColumn("Satuan");
                 dtmmultihargajual.addColumn("Harga Jual");
                 dtmmultihargajual.addColumn("Harga Jual Persen");
-
+                multihargalist.add(new multiharga("", "", "", "", "", "", "", "", "", ""));
                 dtmmultihargajual.addRow(rowmultiharga);
                 pane.tablemulti_harga_jual.setModel(dtmmultihargajual);
 
                 dtmmultilokasi.addColumn("Nama Lokasi");
                 dtmmultilokasi.addColumn("Nama Gudang");
+                multilokasilist.add(new multilokasi("", "", "", "", "", ""));
                 dtmmultilokasi.addRow(rowmultilokasi);
-                pane.table_multilokasi.setModel(dtmmultilokasi);
+                pane.tablemulti_lokasi.setModel(dtmmultilokasi);
 
             } else {
                 JSONParser jpdata = new JSONParser();
@@ -457,7 +460,7 @@ public class DaftarpersediaaninputController {
                     rowmultilokasi[1] = multilokasilist.get(i).getNama_lokaksi();
                 }
 
-                pane.table_multilokasi.setModel(dtmmultilokasi);
+                pane.tablemulti_lokasi.setModel(dtmmultilokasi);
 
             }
         } catch (ParseException ex) {
@@ -509,7 +512,8 @@ public class DaftarpersediaaninputController {
                             + "ishargajualpersen='%s'::"
                             + "ishppsamadenganhargajual='%s'::"
                             + "id_service='%s'::"
-                            + "hargajual_berdasar='%s'",
+                            + "hargajual_berdasar='%s'"
+                            + kirimtextsatuan() + kirimtextharga() + kirimtextlokasi(),
                             pane.edkode_persediaan.getText(),
                             pane.ednama_persediaan.getText(),
                             valkelompok,
@@ -576,7 +580,8 @@ public class DaftarpersediaaninputController {
                             + "ishargajualpersen='%s'::"
                             + "ishppsamadenganhargajual='%s'::"
                             + "id_service='%s'::"
-                            + "hargajual_berdasar='%s'",
+                            + "hargajual_berdasar='%s'"
+                            + kirimtextsatuan() + kirimtextharga() + kirimtextlokasi(),
                             pane.edkode_persediaan.getText(),
                             pane.ednama_persediaan.getText(),
                             valkelompok,
@@ -633,8 +638,6 @@ public class DaftarpersediaaninputController {
     }
 
     private void multisatuanedit() {
-
-        //pane.tablemulti_satuan.setDefaultEditor(Object.class, new Editortablemultisatuan());
         pane.tablemulti_satuan.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
@@ -643,8 +646,7 @@ public class DaftarpersediaaninputController {
             }
 
         });
-
-        KeyAdapter keya = new KeyAdapter() {
+        KeyAdapter keyamultisatuan = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 int row = pane.tablemulti_satuan.getSelectedRow();
@@ -654,9 +656,13 @@ public class DaftarpersediaaninputController {
                 } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
                     multisatuanlist.remove(row);
                     dtmmultisatuan.removeRow(row);
-                    dtmmultisatuan.fireTableDataChanged();
+                    for (int i = 0; i < 4; i++) {
+                        dtmmultisatuan.fireTableCellUpdated(row, i);
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_F4) {
                     for (int i = 0; i < multisatuanlist.size(); i++) {
+                        System.out.println(kirimtextsatuan());
+                        System.out.println("----------------------------------------");
                         System.out.println(multisatuanlist.get(i).getId_satuan());
                         System.out.println(multisatuanlist.get(i).getBarcode());
                         System.out.println(multisatuanlist.get(i).getQty_satuan_pengali());
@@ -712,8 +718,220 @@ public class DaftarpersediaaninputController {
             }
 
         };
-        pane.tablemulti_satuan.addKeyListener(keya);
+        pane.tablemulti_satuan.addKeyListener(keyamultisatuan);
 
+    }
+
+    private void multihargaedit() {
+        pane.tablemulti_harga_jual.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                col = e.getColumn();
+            }
+
+        });
+        KeyAdapter keyamultiharga = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int row = pane.tablemulti_harga_jual.getSelectedRow();
+                if (e.getKeyCode() == KeyEvent.VK_F3) {
+                    multihargalist.add(new multiharga("", "", "", "", "", "", "", "", "", ""));
+                    dtmmultihargajual.addRow(rowmultiharga);
+                } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                    multihargalist.remove(row);
+                    dtmmultihargajual.removeRow(row);
+                    for (int i = 0; i < 4; i++) {
+                        dtmmultihargajual.fireTableCellUpdated(row, i);
+                    }
+                } else if (e.getKeyCode() == KeyEvent.VK_F4) {
+                    for (int i = 0; i < multihargalist.size(); i++) {
+                        System.out.println(multihargalist.get(i).getId_golongan());
+                        System.out.println(multihargalist.get(i).getDari());
+                        System.out.println(multihargalist.get(i).getHingga());
+                        System.out.println(multihargalist.get(i).getId_satuan());
+                        System.out.println(multihargalist.get(i).getHarga_jual());
+                        System.out.println(multihargalist.get(i).getHarga_jual_persen());
+                        System.out.println("----------------------------------------");
+                    }
+                } else {
+                    if (col == 0) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("nama", "popupdaftargolongan?tipe=0", "Daftar Pelanggan"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multihargalist.get(row).setId_golongan(Staticvar.resid);
+                        pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, row, 0);
+                        dtmmultihargajual.fireTableCellUpdated(row, 0);
+                    } else if (col == 1) {
+                        multihargalist.get(row).setDari(String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 1)));
+                    } else if (col == 2) {
+                        multihargalist.get(row).setHingga(String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 2)));
+                    } else if (col == 3) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("satuan", "popupdaftarsatuan", "Daftar Satuan"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multihargalist.get(row).setId_satuan(Staticvar.resid);
+                        pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, row, 3);
+                        dtmmultihargajual.fireTableCellUpdated(row, 3);
+                    } else if (col == 4) {
+                        multihargalist.get(row).setHarga_jual(String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 4)));
+                    } else if (col == 5) {
+                        multihargalist.get(row).setHarga_jual_persen(String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 5)));
+                    }
+
+                    String golongan_check = multihargalist.get(row).getId_golongan();
+                    String dari_check = multihargalist.get(row).getDari();
+                    String hingga_check = multihargalist.get(row).getHingga();
+                    String satuan_check = multihargalist.get(row).getId_satuan();
+                    String harga_jual_check = multihargalist.get(row).getHarga_jual();
+                    String harga_jual_persen_check = multihargalist.get(row).getHarga_jual_persen();
+                    int jumlah_row = pane.tablemulti_harga_jual.getRowCount() - 1;
+                    String last_golongan_check = multihargalist.get(jumlah_row).getId_golongan();
+                    String last_dari_check = multihargalist.get(jumlah_row).getDari();
+                    String last_hingga_check = multihargalist.get(jumlah_row).getHingga();
+                    String last_satuan_check = multihargalist.get(jumlah_row).getId_satuan();
+                    String last_harga_jual_check = multihargalist.get(jumlah_row).getHarga_jual();
+                    String last_harga_jual_persen_check = multihargalist.get(jumlah_row).getHarga_jual_persen();
+                    if (!golongan_check.equals("") && !dari_check.equals("") && !hingga_check.equals("") && !satuan_check.equals("") && (!harga_jual_check.equals("") || !harga_jual_persen_check.equals(""))) {
+                        if (!last_golongan_check.equals("") && !last_dari_check.equals("") && !last_hingga_check.equals("") && !last_satuan_check.equals("") && (!last_harga_jual_check.equals("") || !last_harga_jual_persen_check.equals(""))) {
+                            multihargalist.add(new multiharga("", "", "", "", "", "", "", "", "", ""));
+                            dtmmultihargajual.addRow(rowmultiharga);
+                        }
+                    }
+                }
+            }
+
+        };
+        pane.tablemulti_harga_jual.addKeyListener(keyamultiharga);
+
+    }
+
+    private void multilokasiedit() {
+        pane.tablemulti_lokasi.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                col = e.getColumn();
+            }
+
+        });
+        KeyAdapter keyamultilokasi = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int row = pane.tablemulti_lokasi.getSelectedRow();
+                if (e.getKeyCode() == KeyEvent.VK_F3) {
+                    multilokasilist.add(new multilokasi("", "", "", "", "", ""));
+                    dtmmultilokasi.addRow(rowmultilokasi);
+                } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                    multilokasilist.remove(row);
+                    dtmmultilokasi.removeRow(row);
+                    for (int i = 0; i < 4; i++) {
+                        dtmmultilokasi.fireTableCellUpdated(row, i);
+                    }
+                } else if (e.getKeyCode() == KeyEvent.VK_F4) {
+                    for (int i = 0; i < multilokasilist.size(); i++) {
+                        System.out.println(multilokasilist.get(i).getId());
+                        System.out.println(multilokasilist.get(i).getId_lokasi());
+                        System.out.println(multilokasilist.get(i).getNama_lokaksi());
+                        System.out.println(multilokasilist.get(i).getId_gudang());
+                        System.out.println("----------------------------------------");
+                    }
+                } else {
+                    if (col == 0) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("lokasi", "popupdaftarlokasipersediaan", "Daftar Lokasi"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multilokasilist.get(row).setId_lokasi(Staticvar.resid);
+                        pane.tablemulti_lokasi.setValueAt(Staticvar.reslabel, row, 0);
+                        dtmmultisatuan.fireTableCellUpdated(row, 0);
+                    } else if (col == 1) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multilokasilist.get(row).setId_gudang(Staticvar.resid);
+                        pane.tablemulti_lokasi.setValueAt(Staticvar.reslabel, row, 1);
+                        dtmmultisatuan.fireTableCellUpdated(row, 1);
+                    }
+
+                    String id_lokasi_check = multilokasilist.get(row).getId_lokasi();
+                    String id_gudang_check = multilokasilist.get(row).getId_gudang();
+                    int jumlah_row = pane.tablemulti_lokasi.getRowCount() - 1;
+                    String last_id_lokasi_check = multilokasilist.get(jumlah_row).getId_lokasi();
+                    String last_id_gudang_check = multilokasilist.get(jumlah_row).getId_gudang();
+                    if (!id_lokasi_check.equals("") && !id_gudang_check.equals("")) {
+                        if (!last_id_lokasi_check.equals("") && !last_id_gudang_check.equals("")) {
+                            multilokasilist.add(new multilokasi("", "", "", "", "", ""));
+                            dtmmultilokasi.addRow(rowmultilokasi);
+                        }
+                    }
+                }
+            }
+
+        };
+        pane.tablemulti_lokasi.addKeyListener(keyamultilokasi);
+
+    }
+
+    private String kirimtextsatuan() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("multisatuan=");
+        for (int i = 0; i < multisatuanlist.size(); i++) {
+            sb.append("id=" + "'" + multisatuanlist.get(i).getId() + "'" + "::"
+                    + "id_inv=" + "'" + multisatuanlist.get(i).getId_inv() + "'" + "::"
+                    + "id_satuan=" + "'" + multisatuanlist.get(i).getId_satuan() + "'" + "::"
+                    + "barcode=" + "'" + multisatuanlist.get(i).getBarcode() + "'" + "::"
+                    + "id_satuan_pengali=" + "'" + multisatuanlist.get(i).getId_satuan_pengali() + "'" + "::"
+                    + "qty_satuan_pengali=" + "'" + multisatuanlist.get(i).getQty_satuan_pengali() + "'");
+            sb.append("--");
+        }
+        return sb.toString().substring(0, sb.toString().length() - 2);
+    }
+
+    private String kirimtextharga() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("multiharga=");
+        for (int i = 0; i < multihargalist.size(); i++) {
+            sb.append("id=" + "'" + multihargalist.get(i).getId() + "'" + "::"
+                    + "id_inv=" + "'" + multihargalist.get(i).getId_inv() + "'" + "::"
+                    + "id_golongan=" + "'" + multihargalist.get(i).getId_golongan() + "'" + "::"
+                    + "dari=" + "'" + multihargalist.get(i).getDari() + "'" + "::"
+                    + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
+                    + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
+                    + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
+                    + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'");
+            sb.append("--");
+        }
+        return sb.toString().substring(0, sb.toString().length() - 2);
+    }
+
+    private String kirimtextlokasi() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("multilokasi=");
+        //multilokasi : id_inv, id_lokasi, id_gudang
+        for (int i = 0; i < multilokasilist.size(); i++) {
+            sb.append("id=" + "'" + multilokasilist.get(i).getId() + "'" + "::"
+                    + "id_inv=" + "'" + multilokasilist.get(i).getId_inv() + "'" + "::"
+                    + "id_lokasi=" + "'" + multilokasilist.get(i).getId_lokasi() + "'" + "::"
+                    + "id_gudang=" + "'" + multilokasilist.get(i).getId_gudang() + "'");
+            sb.append("--");
+        }
+        return sb.toString().substring(0, sb.toString().length() - 2);
     }
 
     public class multisatuan {

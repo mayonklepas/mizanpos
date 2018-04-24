@@ -132,7 +132,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel50 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        table_multilokasi = new javax.swing.JTable();
+        tablemulti_lokasi = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -833,7 +833,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -883,13 +883,13 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(cmbharga_berdasarkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel50))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Multi Harga Jual", jPanel3);
 
-        table_multilokasi.setModel(new javax.swing.table.DefaultTableModel(
+        tablemulti_lokasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -900,7 +900,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(table_multilokasi);
+        jScrollPane4.setViewportView(tablemulti_lokasi);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -915,7 +915,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -957,7 +957,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(edcari_gambar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Gambar", jPanel4);
@@ -1267,8 +1267,8 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JRadioButton rbfifo;
     public javax.swing.JRadioButton rblifo;
     private javax.swing.ButtonGroup rgmetode_harga_pokok;
-    public javax.swing.JTable table_multilokasi;
     public javax.swing.JTable tablemulti_harga_jual;
+    public javax.swing.JTable tablemulti_lokasi;
     public javax.swing.JTable tablemulti_satuan;
     public javax.swing.JTextField tlokasi_gambar;
     // End of variables declaration//GEN-END:variables
