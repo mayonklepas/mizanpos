@@ -322,7 +322,7 @@ public class DaftarfakturpembelianinnerController {
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());
-            Staticvar.pmp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pmp.container.revalidate();
             Staticvar.pmp.container.repaint();
         });

@@ -5,8 +5,6 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
-import mizanposapp.view.innerpanel.persediaan.*;
-
 /**
  *
  * @author Minami
@@ -40,6 +38,8 @@ public class Cekhargabeli_inner_panel extends javax.swing.JPanel {
         tcari = new javax.swing.JTextField();
         bcari = new javax.swing.JButton();
         bfilter = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -91,7 +91,10 @@ public class Cekhargabeli_inner_panel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabledata.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane6.setViewportView(tabledata);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tcari.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tcari.setText("Cari Data");

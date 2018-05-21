@@ -5,6 +5,7 @@
  */
 package mizanposapp;
 
+import javax.swing.UIManager;
 import mizanposapp.controller.MainmenuController;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
@@ -19,12 +20,11 @@ public class Mizanposapp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*try {
-            // TODO code application logic here
-            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Mizanposapp.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         new CrudHelper();
         new MainmenuController();
         new Globalsession();

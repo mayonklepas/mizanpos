@@ -1033,5 +1033,88 @@
                 "10"
             ]
         }
+    ],
+    "persediaan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "30"
+            ]
+        }
+    ],
+    "pengantaran": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "alamat",
+                "Alamat",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "top": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },{
+            "key": [
+                "diskon_hari",
+                "Diskon Hari",
+                "1",
+                "15"
+            ]
+        },{
+            "key": [
+                "top",
+                "Top",
+                "1",
+                "15"
+            ]
+        },{
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "20"
+            ]
+        }
     ]
 }

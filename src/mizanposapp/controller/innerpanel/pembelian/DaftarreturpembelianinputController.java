@@ -44,7 +44,7 @@ public class DaftarreturpembelianinputController {
     }
 
     private void carisupplier2() {
-        pane.bcari_supplier2.addActionListener((ActionEvent e) -> {
+        pane.bcari_nota_transaksi.addActionListener((ActionEvent e) -> {
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Supplier"));
             jd.pack();

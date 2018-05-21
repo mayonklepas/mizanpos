@@ -30,11 +30,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import mizanposapp.view.innerpanel.pembelian.Daftarshipvia_input_panel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.pembelian.Daftartop_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatagolongan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_input_panel;
@@ -340,6 +342,12 @@ public class PopupcariController {
                 case "golongan":
                     inpane = new Daftardatagolongan_input_panel();
                     break;
+                case "pengantaran":
+                    inpane = new Daftarshipvia_input_panel();
+                    break;
+                case "top":
+                    inpane = new Daftartop_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -400,6 +408,12 @@ public class PopupcariController {
                     break;
                 case "golongan":
                     inpane = new Daftardatagolongan_input_panel();
+                    break;
+                case "pengantaran":
+                    inpane = new Daftarshipvia_input_panel();
+                    break;
+                case "top":
+                    inpane = new Daftartop_input_panel();
                     break;
 
             }
