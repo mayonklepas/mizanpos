@@ -20,9 +20,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -47,6 +49,7 @@ import mizanposapp.view.innerpanel.persediaan.Daftargudang_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarkelompokbarang_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarlokasibarang_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarmerekbarang_input_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarsatuanbarang_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -82,6 +85,7 @@ public class PopupcariController {
         //selectid();
         oke();
         tutup();
+        callokebyenter();
     }
 
     private void loadheader(String tipe) {
@@ -348,6 +352,9 @@ public class PopupcariController {
                 case "top":
                     inpane = new Daftartop_input_panel();
                     break;
+                case "persediaan":
+                    inpane = new Daftarpersediaan_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -415,6 +422,9 @@ public class PopupcariController {
                 case "top":
                     inpane = new Daftartop_input_panel();
                     break;
+                case "persediaan":
+                    inpane = new Daftarpersediaan_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -451,6 +461,16 @@ public class PopupcariController {
         });
     }
 
+    private void callokebyenter() {
+        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "enter");
+        pane.tabledata.getActionMap().put("enter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.bok.doClick();
+            }
+        });
+    }
+
     private void oke() {
         pane.bok.addActionListener(new ActionListener() {
             @Override
@@ -458,7 +478,12 @@ public class PopupcariController {
                 //Staticvar.isupdate = true;
                 int i = pane.tabledata.getSelectedRow();
                 Staticvar.resid = idlist.get(i);
+                Staticvar.resvalue = String.valueOf(pane.tabledata.getValueAt(i, 0));
                 Staticvar.reslabel = String.valueOf(pane.tabledata.getValueAt(i, 1));
+                if (pane.tabledata.getColumnCount() >= 3) {
+                    Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
+                }
+
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }

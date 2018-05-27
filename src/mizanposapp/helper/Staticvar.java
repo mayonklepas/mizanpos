@@ -33,5 +33,7 @@ public class Staticvar {
     public static String ids = "";
     public static String resid = "";
     public static String reslabel = "";
+    public static String resvalue = "";
+    public static String resvalueextended = "";
     public static boolean isupdate = false;
 }
