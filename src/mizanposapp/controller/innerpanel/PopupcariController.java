@@ -38,6 +38,7 @@ import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.pembelian.Daftardatapajak_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftartop_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatagolongan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
@@ -50,6 +51,7 @@ import mizanposapp.view.innerpanel.persediaan.Daftarkelompokbarang_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarlokasibarang_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarmerekbarang_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_input_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarsatuanbarang_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarsatuanbarang_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -355,6 +357,12 @@ public class PopupcariController {
                 case "persediaan":
                     inpane = new Daftarpersediaan_input_panel();
                     break;
+                case "satuanperbarang":
+                    inpane = new Daftarsatuanbarang_inner_panel();
+                    break;
+                case "pajak":
+                    inpane = new Daftardatapajak_inner_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -424,6 +432,12 @@ public class PopupcariController {
                     break;
                 case "persediaan":
                     inpane = new Daftarpersediaan_input_panel();
+                    break;
+                case "satuanperbarang":
+                    inpane = new Daftarsatuanbarang_inner_panel();
+                    break;
+                case "pajak":
+                    inpane = new Daftardatapajak_inner_panel();
                     break;
 
             }
