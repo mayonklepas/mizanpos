@@ -21,11 +21,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -72,12 +74,15 @@ public class PopupcariController {
     Popupcari pane;
 
     public PopupcariController(Popupcari pane, String tipe, String page, String header) {
-        Staticvar.resid = "";
         Staticvar.isupdate = false;
         this.pane = pane;
         pane.lheader.setText(header);
         loadheader(tipe);
-        loaddata(page);
+        if (!Staticvar.sfilter.equals("")) {
+            loadwithval(page);
+        } else {
+            loaddata(page);
+        }
         loaddatadetail(page);
         inputdata(tipe, page);
         editdata(tipe, page);
@@ -85,9 +90,64 @@ public class PopupcariController {
         selectdata();
         oncarienter();
         //selectid();
+        onfocusbykey();
         oke();
         tutup();
         callokebyenter();
+    }
+
+    private void loadwithval(String page) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                pane.tcari.requestFocus();
+                pane.tcari.setText(Staticvar.sfilter);
+                loaddatadetailraw(page);
+            }
+        });
+    }
+
+    private void onfocusbykey() {
+        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.getInputMap().put(KeyStroke.getKeyStroke("UP"), "up");
+        pane.getActionMap().put("up", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(0, 0, false, false);
+            }
+        });
+
+        pane.tcari.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.tcari.getInputMap().put(KeyStroke.getKeyStroke("UP"), "up");
+        pane.tcari.getActionMap().put("up", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(0, 0, false, false);
+            }
+        });
+
+        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "down");
+        pane.getActionMap().put("down", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(0, 0, false, false);
+            }
+        });
+
+        pane.tcari.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.tcari.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "down");
+        pane.tcari.getActionMap().put("down", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(0, 0, false, false);
+            }
+        });
+
     }
 
     private void loadheader(String tipe) {
@@ -290,7 +350,7 @@ public class PopupcariController {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                pane.tcari.setText("");
+                //pane.tcari.setText("");
             }
 
             @Override
@@ -434,7 +494,7 @@ public class PopupcariController {
                     inpane = new Daftarpersediaan_input_panel();
                     break;
                 case "satuanperbarang":
-                    inpane = new Daftarsatuanbarang_inner_panel();
+                    inpane = new Daftarsatuanbarang_input_panel();
                     break;
                 case "pajak":
                     inpane = new Daftardatapajak_inner_panel();
@@ -497,22 +557,81 @@ public class PopupcariController {
                 if (pane.tabledata.getColumnCount() >= 3) {
                     Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
                 }
-
+                Staticvar.sfilter = "";
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }
         });
+
+        MouseAdapter madap = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    pane.bok.doClick();
+                }
+            }
+
+        };
+        pane.tabledata.addMouseListener(madap);
     }
 
     private void tutup() {
         pane.btutup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Staticvar.isupdate = false;
+                Staticvar.resid = Staticvar.preid;
+                Staticvar.reslabel = Staticvar.prelabel;
+                Staticvar.resvalue = Staticvar.prevalue;
+                if (pane.tabledata.getColumnCount() >= 3) {
+                    Staticvar.resvalueextended = Staticvar.prevalueextended;
+                }
+                Staticvar.sfilter = "";
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }
         });
+
+        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), "esc");
+        pane.getActionMap().put("esc", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.btutup.doClick();
+            }
+        });
+
+        pane.tabledata.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), "esc");
+        pane.tabledata.getActionMap().put("esc", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.btutup.doClick();
+            }
+        });
+
+        pane.tcari.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        pane.tcari.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), "esc");
+        pane.tcari.getActionMap().put("esc", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.btutup.doClick();
+            }
+        });
+
+        /*JDialog jd = (JDialog) pane.getRootPane().getParent();
+        WindowAdapter wadap = new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                pane.btutup.doClick();
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                pane.btutup.doClick();
+            }
+
+        };
+        jd.addWindowListener(wadap);*/
     }
 
 }

@@ -23,7 +23,7 @@ public class Oneforallfunc {
             } else {
                 ret = Integer.parseInt(value);
             }
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             ret = 0;
         }
 
@@ -39,7 +39,7 @@ public class Oneforallfunc {
             } else {
                 ret = Double.parseDouble(value);
             }
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             ret = 0;
         }
 

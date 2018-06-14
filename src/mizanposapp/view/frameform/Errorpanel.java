@@ -5,7 +5,11 @@
  */
 package mizanposapp.view.frameform;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
 import javax.swing.JDialog;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -18,6 +22,23 @@ public class Errorpanel extends javax.swing.JPanel {
      */
     public Errorpanel() {
         initComponents();
+        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
+        this.getActionMap().put("enter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog jd = (JDialog) getRootPane().getParent();
+                jd.dispose();
+            }
+        });
+
+        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "esc");
+        this.getActionMap().put("esc", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog jd = (JDialog) getRootPane().getParent();
+                jd.dispose();
+            }
+        });
     }
 
     /**
@@ -39,6 +60,7 @@ public class Errorpanel extends javax.swing.JPanel {
         ederror.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ederror.setLineWrap(true);
         ederror.setRows(5);
+        ederror.setEnabled(false);
         jScrollPane1.setViewportView(ederror);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N

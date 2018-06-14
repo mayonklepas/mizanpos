@@ -31,9 +31,14 @@ public class Staticvar {
     public static ArrayList<Integer> stylecolum = new ArrayList<>();
     public static String getresult = "";
     public static String ids = "";
+    public static String preid = "";
+    public static String prelabel = "";
+    public static String prevalue = "";
+    public static String prevalueextended = "";
     public static String resid = "";
     public static String reslabel = "";
     public static String resvalue = "";
     public static String resvalueextended = "";
     public static boolean isupdate = false;
+    public static String sfilter = "";
 }
