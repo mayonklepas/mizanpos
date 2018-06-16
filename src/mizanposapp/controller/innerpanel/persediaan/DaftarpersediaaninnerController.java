@@ -7,7 +7,6 @@ package mizanposapp.controller.innerpanel.persediaan;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,10 +26,10 @@ import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_inner_panel;
@@ -55,6 +54,7 @@ public class DaftarpersediaaninnerController {
     Daftarpersediaan_inner_panel pane;
 
     public DaftarpersediaaninnerController(Daftarpersediaan_inner_panel pane) {
+        new Tablestyle(pane.tabledata).applystyle();
         this.pane = pane;
         loadheader();
         loaddata("0");
@@ -76,8 +76,6 @@ public class DaftarpersediaaninnerController {
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             pane.tabledata.setModel(dtm);
             TableColumnModel tcm = pane.tabledata.getColumnModel();
-            JTableHeader thead = pane.tabledata.getTableHeader();
-            thead.setFont(new Font("Century Gothic", Font.BOLD, 13));
             pane.tabledata.setRowHeight(25);
             pane.tabledata.setDefaultEditor(Object.class, null);
             String dataheader = ch.getheaders();

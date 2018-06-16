@@ -8,7 +8,6 @@ package mizanposapp.controller.innerpanel.persediaan;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +25,6 @@ import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
@@ -72,10 +70,6 @@ public class DaftardatadeptinnerController {
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             pane.tabledata.setModel(dtm);
             TableColumnModel tcm = pane.tabledata.getColumnModel();
-            JTableHeader thead = pane.tabledata.getTableHeader();
-            thead.setFont(new Font("Century Gothic", Font.BOLD, 13));
-            pane.tabledata.setRowHeight(25);
-            pane.tabledata.setDefaultEditor(Object.class, null);
             String dataheader = ch.getheaders();
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);

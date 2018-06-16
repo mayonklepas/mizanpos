@@ -37,6 +37,7 @@ import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Oneforallfunc;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
@@ -92,6 +93,7 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void skinning() {
+        new Tablestyle(pane.tabledata).applystyle();
         jt2 = new JTextField();
         jt4 = new JTextField();
         jt6 = new JTextField();
@@ -224,14 +226,14 @@ public class DaftarfakturpembelianinputController {
                 pane.eduang_muka.setText("0");
                 pane.ltotal_pembelian.setText("0");
 
-                dtmtabeldata.addColumn("Kode Barang");
-                dtmtabeldata.addColumn("Nama Barang");
+                dtmtabeldata.addColumn("Kode");
+                dtmtabeldata.addColumn("Nama");
                 dtmtabeldata.addColumn("Jumlah");
                 dtmtabeldata.addColumn("Satuan");
-                dtmtabeldata.addColumn("Harga Beli");
-                dtmtabeldata.addColumn("Harga Jual");
-                dtmtabeldata.addColumn("Diskon Persen");
-                dtmtabeldata.addColumn("Diskon Nominal");
+                dtmtabeldata.addColumn("H. Beli");
+                dtmtabeldata.addColumn("H. Jual");
+                dtmtabeldata.addColumn("Disc %");
+                dtmtabeldata.addColumn("Disc Rp.");
                 dtmtabeldata.addColumn("Pajak");
                 dtmtabeldata.addColumn("Gudang");
                 dtmtabeldata.addColumn("Keterangan");
@@ -305,14 +307,14 @@ public class DaftarfakturpembelianinputController {
                     pane.eduang_muka.setText(String.valueOf(joindata.get("total_uang_muka")));
                     pane.ltotal_pembelian.setText(String.valueOf(joindata.get("total_pembelian")));
                 }
-                dtmtabeldata.addColumn("Kode Barang");
-                dtmtabeldata.addColumn("Nama Barang");
+                dtmtabeldata.addColumn("Kode");
+                dtmtabeldata.addColumn("Nama");
                 dtmtabeldata.addColumn("Jumlah");
                 dtmtabeldata.addColumn("Satuan");
-                dtmtabeldata.addColumn("Harga Beli");
-                dtmtabeldata.addColumn("Harga Jual");
-                dtmtabeldata.addColumn("Diskon Persen");
-                dtmtabeldata.addColumn("Diskon Nominal");
+                dtmtabeldata.addColumn("H. Beli");
+                dtmtabeldata.addColumn("H. Jual");
+                dtmtabeldata.addColumn("Disc %");
+                dtmtabeldata.addColumn("Disc Rp.");
                 dtmtabeldata.addColumn("Pajak");
                 dtmtabeldata.addColumn("Gudang");
                 dtmtabeldata.addColumn("Keterangan");
