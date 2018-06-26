@@ -20,15 +20,24 @@ import javax.swing.table.TableCellRenderer;
  */
 @SuppressWarnings("serial")
 public class Tablestyle {
-
+    
     JTable tbl;
     Color fgcolor, bgcolor;
-
+    
     public Tablestyle(JTable tbl) {
         this.tbl = tbl;
     }
-
+    
     public void applystyle() {
+        tbl.setShowGrid(false);
+        JTableHeader jthead = tbl.getTableHeader();
+        jthead.setOpaque(false);
+        jthead.setFont(new Font("century gothic", Font.BOLD, 13));
+        jthead.setPreferredSize(new Dimension(30, 30));
+        jthead.setBackground(Color.decode("#282727"));
+        jthead.setForeground(Color.WHITE);
+        jthead.setReorderingAllowed(true);
+        
         TableCellRenderer tcr = new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -36,13 +45,6 @@ public class Tablestyle {
                 table.setRowHeight(25);
                 table.setSelectionForeground(Color.BLACK);
                 DefaultTableCellRenderer DEFTBCEllRENDER = new DefaultTableCellRenderer();
-                JTableHeader jthead = table.getTableHeader();
-                jthead.setOpaque(false);
-                jthead.setFont(new Font("century gothic", Font.BOLD, 13));
-                jthead.setPreferredSize(new Dimension(30, 30));
-                jthead.setBackground(Color.decode("#282727"));
-                jthead.setForeground(Color.WHITE);
-                jthead.setReorderingAllowed(true);
                 Component c = DEFTBCEllRENDER.getTableCellRendererComponent(table,
                         value, isSelected, hasFocus, row, column);
                 if (row % 2 == 0) {
@@ -50,15 +52,15 @@ public class Tablestyle {
                 } else {
                     c.setBackground(Color.decode("#F3F3F3"));
                 }
-
+                
                 if (isSelected) {
                     c.setBackground(Color.decode("#9933FF"));
                 }
-
+                
                 return c;
             }
         };
         tbl.setDefaultRenderer(Object.class, tcr);
     }
-
+    
 }
