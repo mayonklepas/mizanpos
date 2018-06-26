@@ -1602,7 +1602,7 @@ public class DaftarfakturpembelianinputController {
         for (int i = 0; i < colcount; i++) {
             if (currentcoll == i) {
                 for (int j = currentcoll; j < colcount; j++) {
-                    while (!ceknextcolumntnol(j + 1)) {
+                    while (!cekcolomnol(j + 1)) {
                         pane.tabledata.requestFocus();
                         pane.tabledata.changeSelection(currentrow, j + 1, false, false);
                         return;
@@ -1611,8 +1611,22 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
+    
+    private void backcolom(int currentcoll, int currentrow, int colcount) {
+        for (int i = colcount; i > 0; i--) {
+            if (currentcoll == i) {
+                for (int j = currentcoll; j > 0; j--) {
+                    while (!cekcolomnol(j - 1)) {
+                        pane.tabledata.requestFocus();
+                        pane.tabledata.changeSelection(currentrow, j - 1, false, false);
+                        return;
+                    }
+                }
+            }
+        }
+    }
 
-    private boolean ceknextcolumntnol(int colom) {
+    private boolean cekcolomnol(int colom) {
         boolean result = false;
         if (lsstatus.get(colom) == 0) {
             result = true;
