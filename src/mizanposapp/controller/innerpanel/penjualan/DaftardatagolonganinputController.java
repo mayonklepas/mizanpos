@@ -62,7 +62,7 @@ public class DaftardatagolonganinputController {
                     pane.ednama_golongan.setText(String.valueOf(joindata.get("nama")));
                     pane.eddiskon_penjualan.setText(String.valueOf(joindata.get("diskon")));
                     pane.edketerangan_golongan.setText(String.valueOf(joindata.get("keterangan")));
-                    pane.edharga_jual_golongan.setText(String.valueOf(joindata.get("hargajual")));
+                    pane.edharga_jual_golongan.setText(String.valueOf(joindata.get("harga_jual")));
                     tipe = Integer.parseInt(String.valueOf(joindata.get("tipe")));
                     switch (tipe) {
                         case 0:
@@ -78,7 +78,7 @@ public class DaftardatagolonganinputController {
                             pane.cmbtipe_golongan.setSelectedIndex(0);
                             break;
                     }
-                    hargadasar = Integer.parseInt(String.valueOf(joindata.get("hargajual_berdasar")));
+                    hargadasar = Integer.parseInt(String.valueOf(joindata.get("harga_jual_berdasar")));
                     switch (hargadasar) {
                         case 1:
                             pane.cmbharga_berdasarkan.setSelectedIndex(1);
@@ -132,7 +132,7 @@ public class DaftardatagolonganinputController {
                         break;
                 }
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'::tipe='%s'::diskon='%s'::keterangan='%s'::hargajual='%s'::hargajual_berdasar='%s'",
+                    String data = String.format("data=kode='%s'::nama='%s'::tipe='%s'::diskon='%s'::keterangan='%s'::harga_jual='%s'::harga_jual_berdasar='%s'",
                             pane.edkode_golongan.getText(),
                             pane.ednama_golongan.getText(),
                             tipe,
@@ -156,7 +156,7 @@ public class DaftardatagolonganinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'::tipe='%s'::diskon='%s'::keterangan='%s'::hargajual='%s'::hargajual_berdasar='%s'",
+                    String data = String.format("data=kode='%s'::nama='%s'::tipe='%s'::diskon='%s'::keterangan='%s'::harga_jual='%s'::harga_jual_berdasar='%s'",
                             pane.edkode_golongan.getText(),
                             pane.ednama_golongan.getText(),
                             tipe,

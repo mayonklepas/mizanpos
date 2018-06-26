@@ -115,7 +115,7 @@ public class DaftardatakaryawaninputController {
                     pane.edtelepon_karyawan.setText(String.valueOf(joindata.get("telp")));
                     pane.edhp_karyawan.setText(String.valueOf(joindata.get("hp")));
                     pane.edcp_karyawan.setText(String.valueOf(joindata.get("kontak_person")));
-                    pane.edpos_karyawan.setText(String.valueOf(joindata.get("kodepos")));
+                    pane.edpos_karyawan.setText(String.valueOf(joindata.get("kode_pos")));
                     pane.edfax_karyawan.setText(String.valueOf(joindata.get("fax")));
                     pane.edemail_karyawan.setText(String.valueOf(joindata.get("email")));
                     pane.edweb_karyawan.setText(String.valueOf(joindata.get("website")));
@@ -149,7 +149,7 @@ public class DaftardatakaryawaninputController {
                 }
                 if (id.equals("")) {
                     String data = String.format("data=kode='%s'::nama='%s'::tipe=2::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'::id_golongan='%s'::jabatan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kodepos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
+                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
                             + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
                             pane.edkode_karyawan.getText(),
                             pane.ednama_karyawan.getText(),
@@ -186,7 +186,7 @@ public class DaftardatakaryawaninputController {
                     }
                 } else {
                     String data = String.format("data=kode='%s'::nama='%s'::tipe=2::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'::id_golongan='%s'::jabatan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kodepos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
+                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
                             + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
                             pane.edkode_karyawan.getText(),
                             pane.ednama_karyawan.getText(),

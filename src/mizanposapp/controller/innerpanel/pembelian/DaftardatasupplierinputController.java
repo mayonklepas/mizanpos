@@ -97,7 +97,7 @@ public class DaftardatasupplierinputController {
                     pane.edtelepon_supplier.setText(String.valueOf(joindata.get("telp")));
                     pane.edhp_supplier.setText(String.valueOf(joindata.get("hp")));
                     pane.edcp_supplier.setText(String.valueOf(joindata.get("kontak_person")));
-                    pane.edpos_supplier.setText(String.valueOf(joindata.get("kodepos")));
+                    pane.edpos_supplier.setText(String.valueOf(joindata.get("kode_pos")));
                     pane.edfax_supplier.setText(String.valueOf(joindata.get("fax")));
                     pane.edemail_supplier.setText(String.valueOf(joindata.get("email")));
                     pane.edweb_supplier.setText(String.valueOf(joindata.get("website")));
@@ -128,7 +128,7 @@ public class DaftardatasupplierinputController {
                 }
                 if (id.equals("")) {
                     String data = String.format("data=kode='%s'::nama='%s'::tipe=1::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kodepos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
+                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
                             + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
                             pane.edkode_supplier.getText(),
                             pane.ednama_supplier.getText(),
@@ -163,7 +163,7 @@ public class DaftardatasupplierinputController {
                     }
                 } else {
                     String data = String.format("data=kode='%s'::nama='%s'::tipe=1::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kodepos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
+                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
                             + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
                             pane.edkode_supplier.getText(),
                             pane.ednama_supplier.getText(),

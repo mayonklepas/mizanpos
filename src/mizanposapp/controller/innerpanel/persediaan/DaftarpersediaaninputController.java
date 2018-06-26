@@ -522,7 +522,7 @@ public class DaftarpersediaaninputController {
                             + "ishargajualpersen='%s'::"
                             + "ishppsamadenganhargajual='%s'::"
                             + "id_service='%s'::"
-                            + "hargajual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
+                            + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
                             pane.edkode_persediaan.getText(),
                             pane.ednama_persediaan.getText(),
                             valkelompok,
@@ -588,7 +588,7 @@ public class DaftarpersediaaninputController {
                             + "ishargajualpersen='%s'::"
                             + "ishppsamadenganhargajual='%s'::"
                             + "id_service='%s'::"
-                            + "hargajual_berdasar='%s'&" + kirimtextsatuan(1) + "&" + kirimtextharga(1) + "&" + kirimtextlokasi(1),
+                            + "harga_jual_berdasar='%s'&" + kirimtextsatuan(1) + "&" + kirimtextharga(1) + "&" + kirimtextlokasi(1),
                             pane.edkode_persediaan.getText(),
                             pane.ednama_persediaan.getText(),
                             valkelompok,

@@ -1060,7 +1060,7 @@
         },
         {
             "key": [
-                "pajak_persen",
+                "nilai_pajak",
                 "Nilai (%)",
                 "1",
                 "10"

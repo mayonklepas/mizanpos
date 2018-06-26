@@ -114,7 +114,7 @@ public class DaftardatapelangganinputController {
                     pane.edtelepon_pelanggan.setText(String.valueOf(joindata.get("telp")));
                     pane.edhp_pelanggan.setText(String.valueOf(joindata.get("hp")));
                     pane.edcp_pelanggan.setText(String.valueOf(joindata.get("kontak_person")));
-                    pane.edpos_pelanggan.setText(String.valueOf(joindata.get("kodepos")));
+                    pane.edpos_pelanggan.setText(String.valueOf(joindata.get("kode_pos")));
                     pane.edfax_pelanggan.setText(String.valueOf(joindata.get("fax")));
                     pane.edemail_pelanggan.setText(String.valueOf(joindata.get("email")));
                     pane.edweb_pelanggan.setText(String.valueOf(joindata.get("website")));
@@ -147,7 +147,7 @@ public class DaftardatapelangganinputController {
                 }
                 if (id.equals("")) {
                     String data = String.format("data=kode='%s'::nama='%s'::tipe=0::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'::id_golongan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kodepos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
+                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
                             + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
                             pane.edkode_pelanggan.getText(),
                             pane.ednama_pelanggan.getText(),
@@ -183,7 +183,7 @@ public class DaftardatapelangganinputController {
                     }
                 } else {
                     String data = String.format("data=kode='%s'::nama='%s'::tipe=0::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'::id_golongan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kodepos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
+                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
                             + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
                             pane.edkode_pelanggan.getText(),
                             pane.ednama_pelanggan.getText(),

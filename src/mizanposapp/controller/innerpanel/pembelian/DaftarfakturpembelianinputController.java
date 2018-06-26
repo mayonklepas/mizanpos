@@ -1142,7 +1142,8 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                nextcolom(col, row);
+                nextcolom(col, row, 11);
+                /*
                 if (pane.ckdiskon.isSelected()) {
                     if (col == 6) {
                         pane.tabledata.requestFocus();
@@ -1160,7 +1161,7 @@ public class DaftarfakturpembelianinputController {
                         pane.tabledata.changeSelection(row, col + 1, false, false);
                     }
                 }
-
+                */
             }
         });
 
@@ -1597,368 +1598,28 @@ public class DaftarfakturpembelianinputController {
         return hasil;
     }
 
-    private void nextcolom(int currentcoll, int currentrow) {
-        if (currentcoll == 0) {
-            if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0 && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 0, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0 && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0 && lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0 && lsstatus.get(5) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0 && lsstatus.get(3) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 3, false, false);
-            } else if (lsstatus.get(1) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 2, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 1, false, false);
-            }
-        } else if (currentcoll == 1) {
-            if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 1, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0 && lsstatus.get(5) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            } else if (lsstatus.get(2) == 0
-                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            } else if (lsstatus.get(2) == 0 && lsstatus.get(2) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 4, false, false);
-            } else if (lsstatus.get(2) == 0 && lsstatus.get(2) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 3, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 2, false, false);
-            }
-        } else if (currentcoll == 2) {
-            if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 2, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0 && lsstatus.get(5) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            } else if (lsstatus.get(3) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 4, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 3, false, false);
-            }
-        } else if (currentcoll == 3) {
-            if (lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 3, false, false);
-            } else if (lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0
-                    && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(4) == 0
-                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else if (lsstatus.get(4) == 0 && lsstatus.get(5) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            } else if (lsstatus.get(4) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 4, false, false);
-            }
-        } else if (currentcoll == 4) {
-            if (lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 4, false, false);
-            } else if (lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(5) == 0 && lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else if (lsstatus.get(5) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            }
-        } else if (currentcoll == 5) {
-            if (lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 5, false, false);
-            } else if (lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(6) == 0
-                    && lsstatus.get(7) == 0
-                    && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(6) == 0 && lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(6) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            }
-        } else if (currentcoll == 6) {
-            if (lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 6, false, false);
-            } else if (lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(7) == 0 && lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(7) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            }
-        } else if (currentcoll == 7) {
-            if (lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0
-                    && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 7, false, false);
-            } else if (lsstatus.get(8) == 0
-                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(8) == 0 && lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else if (lsstatus.get(8) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            }
-        } else if (currentcoll == 8) {
-            if (lsstatus.get(9) == 0 && lsstatus.get(10) == 0 && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 8, false, false);
-            } else if (lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else if (lsstatus.get(9) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            }
-        } else if (currentcoll == 9) {
-            if (lsstatus.get(10) == 0 && lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 9, false, false);
-            } else if (lsstatus.get(10) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            }
-        } else if (currentcoll == 10) {
-            if (lsstatus.get(11) == 0) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 10, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 11, false, false);
-            }
-        } else if (currentcoll == 11) {
-            if (currentrow < pane.tabledata.getRowCount() - 1) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow + 1, 0, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 0, false, false);
+    private void nextcolom(int currentcoll, int currentrow, int colcount) {
+        for (int i = 0; i < colcount; i++) {
+            if (currentcoll == i) {
+                for (int j = currentcoll; j < colcount; j++) {
+                    while (!ceknextcolumntnol(j + 1)) {
+                        pane.tabledata.requestFocus();
+                        pane.tabledata.changeSelection(currentrow, j + 1, false, false);
+                        return;
+                    }
+                }
             }
         }
+    }
+
+    private boolean ceknextcolumntnol(int colom) {
+        boolean result = false;
+        if (lsstatus.get(colom) == 0) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
     }
 
     public class Entitytabledata {
