@@ -821,8 +821,9 @@ public class DaftarfakturpembelianinputController {
                             Staticvar.sfilter = String.valueOf(pane.tabledata.getValueAt(row, 0));
                             try {
                                 JSONParser jpdata = new JSONParser();
-                                String param = String.format("id=%s", Staticvar.resid);
-                                Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaan", param));
+                                String param = String.format("kode=%s", String.valueOf(pane.tabledata.getValueAt(row, 0)));
+                                Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
+                                System.out.println(objdataraw);
                                 JSONObject jodataraw = (JSONObject) objdataraw;
                                 Object objdata = jodataraw.get("data");
                                 JSONArray jadata = (JSONArray) objdata;
@@ -1161,7 +1162,7 @@ public class DaftarfakturpembelianinputController {
                         pane.tabledata.changeSelection(row, col + 1, false, false);
                     }
                 }
-                */
+                 */
             }
         });
 
@@ -1174,34 +1175,25 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                if (col == 0) {
-                    if (row <= 0) {
+                backcolom(col, row, 11);
+                /*if (pane.ckdiskon.isSelected()) {
+                    if (col == 8) {
                         pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 0, false, false);
+                        pane.tabledata.changeSelection(row, 6, false, false);
                     } else {
                         pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row - 1, 11, false, false);
+                        pane.tabledata.changeSelection(row, col - 1, false, false);
                     }
                 } else {
-                    if (pane.ckdiskon.isSelected()) {
-                        if (col == 8) {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 6, false, false);
-                        } else {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, col - 1, false, false);
-                        }
+                    if (col == 7) {
+                        pane.tabledata.requestFocus();
+                        pane.tabledata.changeSelection(row, 5, false, false);
                     } else {
-                        if (col == 7) {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 5, false, false);
-                        } else {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, col - 1, false, false);
-                        }
+                        pane.tabledata.requestFocus();
+                        pane.tabledata.changeSelection(row, col - 1, false, false);
                     }
+                }*/
 
-                }
             }
         });
 
@@ -1611,7 +1603,7 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
-    
+
     private void backcolom(int currentcoll, int currentrow, int colcount) {
         for (int i = colcount; i > 0; i--) {
             if (currentcoll == i) {
