@@ -396,8 +396,8 @@ public class DaftarfakturpembelianinputController {
 
     }
 
-    /*private void simpandata() {
-        pane.bsimpan.addActionListener(new ActionListener() {
+    private void simpandata() {
+        /*pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
@@ -532,10 +532,11 @@ public class DaftarfakturpembelianinputController {
                     }
                 }
             }
-        });
-    }*/
- /*private String kirimtextsatuan(int tipe,String id_inv) {
-     /*datapembeliandetail : id_inv, qty, harga, id_satuan, diskon_persen, diskon_nominal, id_pajak, id_gudang,
+        });*/
+    }
+
+    private String kirimtextsatuan(int tipe, String id_inv) {
+        /*datapembeliandetail : id_inv, qty, harga, id_satuan, diskon_persen, diskon_nominal, id_pajak, id_gudang,
      id_satuan_pengali, qty_satuan_pengali, keterangan, akun
         StringBuilder sb = new StringBuilder();
         sb.append("datamultisatuan=");
@@ -555,8 +556,10 @@ public class DaftarfakturpembelianinputController {
                 sb.append("--");
             }
         }
-        return sb.toString().substring(0, sb.toString().length() - 2);
-    }*/
+        return sb.toString().substring(0, sb.toString().length() - 2);*/
+        return "test";
+    }
+
     private void hapusbaris() {
         pane.bhapus_baris.addActionListener(new ActionListener() {
             @Override
@@ -1139,10 +1142,8 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                if (col == 0) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 1, false, false);
-                } else if (col == 11) {
+                nextcolom(col, row);
+                /*if (col == 11) {
                     if (row < pane.tabledata.getRowCount() - 1) {
                         pane.tabledata.requestFocus();
                         pane.tabledata.changeSelection(row + 1, 0, false, false);
@@ -1150,7 +1151,8 @@ public class DaftarfakturpembelianinputController {
                         pane.tabledata.requestFocus();
                         pane.tabledata.changeSelection(row, 0, false, false);
                     }
-                } else {
+                }
+                else {
                     if (pane.ckdiskon.isSelected()) {
                         if (col == 6) {
                             pane.tabledata.requestFocus();
@@ -1168,7 +1170,7 @@ public class DaftarfakturpembelianinputController {
                             pane.tabledata.changeSelection(row, col + 1, false, false);
                         }
                     }
-                }
+                }*/
             }
         });
 
@@ -1603,6 +1605,149 @@ public class DaftarfakturpembelianinputController {
             hasil = false;
         }
         return hasil;
+    }
+
+    private void nextcolom(int currentcoll, int currentrow) {
+        if (currentcoll == 0) {
+            if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
+                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 0, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
+                    && lsstatus.get(9) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 10, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 9, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 8, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 7, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 6, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 5, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 4, false, false);
+            } else if (lsstatus.get(1) == 0 && lsstatus.get(2) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 3, false, false);
+            } else if (lsstatus.get(1) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 2, false, false);
+            }
+        } else if (currentcoll == 1) {
+            if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
+                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 1, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
+                    && lsstatus.get(9) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 10, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 9, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 8, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 7, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 6, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0 && lsstatus.get(4) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 5, false, false);
+            } else if (lsstatus.get(2) == 0
+                    && lsstatus.get(3) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 4, false, false);
+            } else if (lsstatus.get(2) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 3, false, false);
+            }
+        } else if (currentcoll == 2) {
+            if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
+                    && lsstatus.get(9) == 0 && lsstatus.get(10) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 0, false, false);
+            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0
+                    && lsstatus.get(9) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 10, false, false);
+            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0 && lsstatus.get(8) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 9, false, false);
+            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0
+                    && lsstatus.get(7) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 8, false, false);
+            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0 && lsstatus.get(6) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 7, false, false);
+            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0
+                    && lsstatus.get(5) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 6, false, false);
+            } else if (lsstatus.get(3) == 0 && lsstatus.get(4) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 5, false, false);
+            } else if (lsstatus.get(3) == 0) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(currentrow, 4, false, false);
+            }
+        }
     }
 
     public class Entitytabledata {
