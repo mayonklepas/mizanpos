@@ -765,7 +765,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(valcol, row, 2);
                             columnfunction(row, 2, false);
                         }
@@ -783,13 +783,13 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(valcol, row, 4);
                             columnfunction(row, 4, false);
                         }
                     } else if (col == 6) {
                         String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
-                        if (checknumerik(valcol) == true) {
+                        if (checkalphabeth(valcol) == false) {
                             columnfunction(row, 6, false);
                             pane.tabledata.requestFocus();
                             pane.tabledata.changeSelection(row, 8, false, false);
@@ -803,7 +803,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9.+]", "");
                             pane.tabledata.setValueAt(valcol, row, 6);
                             columnfunction(row, 6, false);
                         }
@@ -821,7 +821,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(valcol, row, 7);
                             columnfunction(row, 7, false);
                         }
@@ -947,7 +947,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            String cleardata = valcol.replaceAll("[^\\d.]", "");
+                            String cleardata = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(cleardata, row, 2);
                             columnfunction(row, 2, false);
                         }
@@ -966,13 +966,13 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(valcol, row, 4);
                             columnfunction(row, 4, false);
                         }
                     } else if (col == 6) {
                         String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
-                        if (checknumerik(valcol) == true) {
+                        if (checkalphabeth(valcol) == false) {
                             columnfunction(row, 6, true);
                         } else {
                             JDialog jd = new JDialog(new Mainmenu());
@@ -984,7 +984,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9.+]", "");
                             pane.tabledata.setValueAt(valcol, row, 6);
                             columnfunction(row, 6, false);
                         }
@@ -1002,7 +1002,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            valcol = valcol.replaceAll("[^\\d.]", "");
+                            valcol = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(valcol, row, 7);
                             columnfunction(row, 7, false);
                         }
@@ -1155,26 +1155,24 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                nextcolom(col, row, 11);
-                /*
-                if (pane.ckdiskon.isSelected()) {
-                    if (col == 6) {
+                if (col == 4) {
+                    if (pane.ckdiskon.isSelected()) {
                         pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 8, false, false);
+                        pane.tabledata.changeSelection(row, 6, false, false);
                     } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, col + 1, false, false);
-                    }
-                } else {
-                    if (col == 5) {
                         pane.tabledata.requestFocus();
                         pane.tabledata.changeSelection(row, 7, false, false);
-                    } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, col + 1, false, false);
                     }
+                } else if (col == 5) {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(row, 7, false, false);
+
+                } else if (col == 6) {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(row, 8, false, false);
+                } else {
+                    nextcolom(col, row, 11);
                 }
-                 */
             }
         });
 
@@ -1187,24 +1185,21 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                backcolom(col, row, 11);
-                /*if (pane.ckdiskon.isSelected()) {
-                    if (col == 8) {
+                if (col == 8) {
+                    if (pane.ckdiskon.isSelected()) {
                         pane.tabledata.requestFocus();
                         pane.tabledata.changeSelection(row, 6, false, false);
                     } else {
                         pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, col - 1, false, false);
+                        pane.tabledata.changeSelection(row, 7, false, false);
                     }
+                } else if (col == 7 || col == 6) {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(row, 4, false, false);
+
                 } else {
-                    if (col == 7) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 5, false, false);
-                    } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, col - 1, false, false);
-                    }
-                }*/
+                    backcolom(col, row, 11);
+                }
 
             }
         });
@@ -1597,6 +1592,16 @@ public class DaftarfakturpembelianinputController {
             Double.parseDouble(val);
             hasil = true;
         } catch (Exception e) {
+            hasil = false;
+        }
+        return hasil;
+    }
+
+    private boolean checkalphabeth(String val) {
+        boolean hasil = false;
+        if (val.contains("^[0-9].+-") == true) {
+            hasil = true;
+        } else {
             hasil = false;
         }
         return hasil;
