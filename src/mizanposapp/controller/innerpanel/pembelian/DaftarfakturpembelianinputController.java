@@ -26,8 +26,10 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -35,6 +37,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
@@ -98,7 +101,7 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void skinning() {
-        new Tablestyle(pane.tabledata).applystyle();
+        new Tablestyle(pane.tabledata).applystyleheader();
         DateFormat dtf = DateFormat.getDateInstance(DateFormat.LONG);
         pane.dtanggal.setDateFormat(dtf);
     }
@@ -136,14 +139,23 @@ public class DaftarfakturpembelianinputController {
             }
 
         };
+
+        TableCellEditor tce = new DefaultCellEditor(new JTextField()) {
+            @Override
+            public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+                delegate.setValue((editorComponent instanceof JTextField) ? null : value);
+                return editorComponent;
+            }
+
+        };
+        pane.tabledata.setDefaultEditor(Object.class, tce);
         String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
             "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
             "q", "r", "s", "t", "u", "p", "w", "x", "y", "z", "A", "B", "C", "D",
             "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE"};
+            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", "."};
         for (int i = 0; i < keyholdnumeric.length; i++) {
-            pane.tabledata.getInputMap().put(
-                    KeyStroke.getKeyStroke(keyholdnumeric[i]), "startEditing");
+            pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "startEditing");
         }
 
     }
@@ -393,7 +405,8 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        int[] columnrender = {2, 4, 6, 7, 11};
+        new Tablestyle(pane.tabledata).applystylerow(columnrender);
     }
 
     private void simpandata() {
@@ -823,7 +836,6 @@ public class DaftarfakturpembelianinputController {
                                 JSONParser jpdata = new JSONParser();
                                 String param = String.format("kode=%s", String.valueOf(pane.tabledata.getValueAt(row, 0)));
                                 Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
-                                System.out.println(objdataraw);
                                 JSONObject jodataraw = (JSONObject) objdataraw;
                                 Object objdata = jodataraw.get("data");
                                 JSONArray jadata = (JSONArray) objdata;

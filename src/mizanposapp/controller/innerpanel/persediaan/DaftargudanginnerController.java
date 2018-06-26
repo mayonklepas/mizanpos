@@ -55,7 +55,7 @@ public class DaftargudanginnerController {
 
     public DaftargudanginnerController(Daftargudang_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyle();
+        new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
         loaddata();
         loaddatadetail();
