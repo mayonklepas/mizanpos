@@ -1,5 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+/* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -146,13 +145,13 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         tabledata.setGridColor(new java.awt.Color(204, 204, 204));

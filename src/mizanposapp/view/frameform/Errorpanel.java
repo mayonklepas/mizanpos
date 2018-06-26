@@ -26,8 +26,7 @@ public class Errorpanel extends javax.swing.JPanel {
         this.getActionMap().put("enter", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog jd = (JDialog) getRootPane().getParent();
-                jd.dispose();
+                bhapus.doClick();
             }
         });
 
@@ -35,8 +34,7 @@ public class Errorpanel extends javax.swing.JPanel {
         this.getActionMap().put("esc", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog jd = (JDialog) getRootPane().getParent();
-                jd.dispose();
+                bhapus.doClick();
             }
         });
     }

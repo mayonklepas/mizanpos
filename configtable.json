@@ -988,5 +988,104 @@
                 "15"
             ]
         }
+    ], 
+    "inputfakturpembelian": [
+        {
+            "key": [
+                "kode",
+                "Kodes",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "hbeli",
+                "H. Beli",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "hjual",
+                "H. Jual",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "disc%",
+                "Disc %",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "discrp",
+                "Disc Rp",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "pajak",
+                "Pajak",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "gudang",
+                "Gudang",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "10"
+            ]
+        }
     ]
+       
 }

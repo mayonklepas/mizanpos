@@ -50,13 +50,12 @@ public class DaftarpersediaaninnerController {
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
-    DefaultTableModel dtm = new DefaultTableModel();
+    DefaultTableModel dtm;
     Daftarpersediaan_inner_panel pane;
 
     public DaftarpersediaaninnerController(Daftarpersediaan_inner_panel pane) {
-        new Tablestyle(pane.tabledata).applystyle();
         this.pane = pane;
-        loadheader();
+        new Tablestyle(pane.tabledata).applystyle();
         loaddata("0");
         loaddatadetail();
         inputdata();
@@ -72,10 +71,10 @@ public class DaftarpersediaaninnerController {
 
     private void loadheader() {
         try {
+            dtm = new DefaultTableModel();
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             pane.tabledata.setModel(dtm);
-            TableColumnModel tcm = pane.tabledata.getColumnModel();
             pane.tabledata.setRowHeight(25);
             pane.tabledata.setDefaultEditor(Object.class, null);
             String dataheader = ch.getheaders();
@@ -94,6 +93,7 @@ public class DaftarpersediaaninnerController {
                 }
             }
 
+            TableColumnModel tcm = pane.tabledata.getColumnModel();
             for (int i = 0; i < lssize.size(); i++) {
                 Double wd = d.getWidth() - 344;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
@@ -106,6 +106,7 @@ public class DaftarpersediaaninnerController {
     }
 
     private void loaddata(String halaman) {
+        loadheader();
         cleardata();
         disablebutton();
         dtm.getDataVector().removeAllElements();
@@ -136,7 +137,6 @@ public class DaftarpersediaaninnerController {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton();
-
             }
 
         };
