@@ -163,7 +163,7 @@ public class PopupcariController {
             "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
             "q", "r", "s", "t", "u", "p", "w", "x", "y", "z", "A", "B", "C", "D",
             "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", "."};
+            "S", "T", "U", "P", "W", "X", "Y", "Z", ",", "."};
         for (int i = 0; i < keyholdnumeric.length; i++) {
             int j = i;
             pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "fokus");
