@@ -151,19 +151,30 @@ public class PopupcariController {
 
         KeyAdapter ka = new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                if ((KeyEvent.VK_DOWN == e.getKeyCode()) || (KeyEvent.VK_UP == e.getKeyCode())) {
+            public void keyReleased(KeyEvent e) {
 
-                } else {
-                    pane.tcari.setText(String.valueOf(e.getKeyChar()));
-                    pane.tcari.requestFocus();
-                }
-
+                pane.tcari.setText(String.valueOf(e.getKeyChar()));
             }
 
         };
+        //pane.tabledata.addKeyListener(ka);
 
-        pane.tabledata.addKeyListener(ka);
+        String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
+            "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+            "q", "r", "s", "t", "u", "p", "w", "x", "y", "z", "A", "B", "C", "D",
+            "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", "."};
+        for (int i = 0; i < keyholdnumeric.length; i++) {
+            int j = i;
+            pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "fokus");
+            pane.tabledata.getActionMap().put("fokus", new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    pane.tcari.setText(e.getActionCommand());
+                    pane.tcari.requestFocus();
+                }
+            });
+        }
 
     }
 
