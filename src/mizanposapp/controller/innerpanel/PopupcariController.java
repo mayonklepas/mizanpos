@@ -152,7 +152,9 @@ public class PopupcariController {
         KeyAdapter ka = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() != KeyEvent.VK_DOWN || e.getKeyCode() != KeyEvent.VK_UP) {
+                if (KeyEvent.VK_DOWN == e.getKeyCode() || KeyEvent.VK_UP == e.getKeyCode()) {
+
+                } else {
                     pane.tcari.setText(String.valueOf(e.getKeyChar()));
                     pane.tcari.requestFocus();
                 }
