@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
@@ -43,12 +42,6 @@ public class Tablestyle {
         TableCellRenderer tcr = new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                DefaultTableCellRenderer dfcr = new DefaultTableCellRenderer();
-                dfcr.setHorizontalAlignment(JLabel.RIGHT);
-                for (int i = 0; i < columndata.length; i++) {
-                    table.getColumnModel().getColumn(columndata[i]).
-                            setCellRenderer(dfcr);
-                }
                 table.setFillsViewportHeight(true);
                 table.setRowHeight(25);
                 table.setSelectionForeground(Color.BLACK);

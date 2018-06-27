@@ -46,4 +46,24 @@ public class Oneforallfunc {
         return ret;
     }
 
+    public static double ToDouble(String str) {
+        double result = 0;
+        try {
+            result = Double.parseDouble(str.replace(",", ""));
+        } catch (Exception e) {
+            result = 0;
+        }
+        return result;
+    }
+
+    public static double ToDouble(Object obj) {
+        double result = 0;
+        try {
+            result = Double.parseDouble(String.valueOf(obj).replace(",", ""));
+        } catch (NumberFormatException e) {
+            result = 0;
+        }
+        return result;
+    }
+
 }
