@@ -755,6 +755,7 @@ public class DaftarfakturpembelianinputController {
                         String valcol = String.valueOf(pane.tabledata.getValueAt(row, 2));
                         if (checknumerik(valcol) == true) {
                             columnfunction(row, 2, false);
+                            nextcolom(2, row);
                         } else {
                             JDialog jd = new JDialog(new Mainmenu());
                             Errorpanel ep = new Errorpanel();
@@ -768,6 +769,7 @@ public class DaftarfakturpembelianinputController {
                             valcol = valcol.replaceAll("[^0-9]", "");
                             pane.tabledata.setValueAt(valcol, row, 2);
                             columnfunction(row, 2, false);
+                            
                         }
                     } else if (col == 4) {
                         String valcol = String.valueOf(pane.tabledata.getValueAt(row, 4));
@@ -1155,24 +1157,9 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                if (col == 4) {
-                    if (pane.ckdiskon.isSelected()) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 6, false, false);
-                    } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 7, false, false);
-                    }
-                } else if (col == 5) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 7, false, false);
 
-                } else if (col == 6) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 8, false, false);
-                } else {
-                    nextcolom(col, row, 11);
-                }
+                nextcolom(col, row);
+
             }
         });
 
@@ -1185,22 +1172,7 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                if (col == 8) {
-                    if (pane.ckdiskon.isSelected()) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 6, false, false);
-                    } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 7, false, false);
-                    }
-                } else if (col == 7 || col == 6) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 4, false, false);
-
-                } else {
-                    backcolom(col, row, 11);
-                }
-
+                backcolom(col, row);
             }
         });
 
@@ -1250,37 +1222,7 @@ public class DaftarfakturpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
-                if (col == 0) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 1, false, false);
-                } else if (col == 11) {
-                    if (row < pane.tabledata.getRowCount() - 1) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row + 1, 0, false, false);
-                    } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 0, false, false);
-                    }
-                } else {
-                    if (pane.ckdiskon.isSelected()) {
-                        if (col == 6) {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 8, false, false);
-                        } else {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, col + 1, false, false);
-                        }
-                    } else {
-                        if (col == 5) {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 7, false, false);
-                        } else {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, col + 1, false, false);
-                        }
-                    }
-                }
-
+                nextcolom(col, row);
             }
         });
 
@@ -1293,36 +1235,7 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                if (col == 0) {
-                    if (row <= 0) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row, 0, false, false);
-                    } else {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(row - 1, 11, false, false);
-                    }
-                } else if (col == 1) {
-
-                } else {
-                    if (pane.ckdiskon.isSelected()) {
-                        if (col == 8) {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 6, false, false);
-                        } else {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, col - 1, false, false);
-                        }
-                    } else {
-                        if (col == 7) {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 5, false, false);
-                        } else {
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, col - 1, false, false);
-                        }
-                    }
-
-                }
+                backcolom(col, row);
             }
         }
         );
@@ -1607,7 +1520,46 @@ public class DaftarfakturpembelianinputController {
         return hasil;
     }
 
-    private void nextcolom(int currentcoll, int currentrow, int colcount) {
+    private void nextcolom(int col, int row) {
+        if (col == 4) {
+            if (pane.ckdiskon.isSelected()) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 6, false, false);
+            } else {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 7, false, false);
+            }
+        } else if (col == 5) {
+            pane.tabledata.requestFocus();
+            pane.tabledata.changeSelection(row, 7, false, false);
+
+        } else if (col == 6) {
+            pane.tabledata.requestFocus();
+            pane.tabledata.changeSelection(row, 8, false, false);
+        } else {
+            xnextcolom(col, row, 11);
+        }
+    }
+
+    private void backcolom(int col, int row) {
+        if (col == 8) {
+            if (pane.ckdiskon.isSelected()) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 6, false, false);
+            } else {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 7, false, false);
+            }
+        } else if (col == 7 || col == 6) {
+            pane.tabledata.requestFocus();
+            pane.tabledata.changeSelection(row, 4, false, false);
+
+        } else {
+            xbackcolom(col, row, 11);
+        }
+    }
+
+    private void xnextcolom(int currentcoll, int currentrow, int colcount) {
         for (int i = 0; i < colcount; i++) {
             if (currentcoll == i) {
                 for (int j = currentcoll; j < colcount; j++) {
@@ -1621,7 +1573,7 @@ public class DaftarfakturpembelianinputController {
         }
     }
 
-    private void backcolom(int currentcoll, int currentrow, int colcount) {
+    private void xbackcolom(int currentcoll, int currentrow, int colcount) {
         for (int i = colcount; i > 0; i--) {
             if (currentcoll == i) {
                 for (int j = currentcoll; j > 0; j--) {
