@@ -83,6 +83,7 @@ public class PopupcariController {
             loadwithval(page);
         } else {
             loaddata(page);
+            pane.tcari.requestFocus();
         }
         loaddatadetail(page);
         inputdata(tipe, page);
