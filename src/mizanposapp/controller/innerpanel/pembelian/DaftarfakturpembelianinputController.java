@@ -1483,8 +1483,20 @@ public class DaftarfakturpembelianinputController {
         } else if (col == 6) {
             pane.tabledata.requestFocus();
             pane.tabledata.changeSelection(row, 8, false, false);
+        } else if (col == pane.tabledata.getColumnCount() - 1) {
+            if ((pane.tabledata.getRowCount() - 1) > row) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row + 1, 0, false, false);
+            } else {
+                if (String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("") || String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("null")) {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(row, 0, false, false);
+                } else {
+                    addautorow(row);
+                }
+            }
         } else {
-            xnextcolom(col, row, 11);
+            xnextcolom(col, row, pane.tabledata.getColumnCount() - 1);
         }
     }
 
