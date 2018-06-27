@@ -766,7 +766,108 @@ public class DaftarfakturpembelianinputController {
                         editor.requestFocusInWindow();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_TAB) {
-                    if (col == 2) {
+                    if(col == 0){
+                        Staticvar.preid = tabeldatalist.get(row).getId_barang();
+                            Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 0));
+                            Staticvar.sfilter = String.valueOf(pane.tabledata.getValueAt(row, 0));
+                            try {
+                                JSONParser jpdata = new JSONParser();
+                                String param = String.format("kode=%s", String.valueOf(pane.tabledata.getValueAt(row, 0)));
+                                Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
+                                JSONObject jodataraw = (JSONObject) objdataraw;
+                                Object objdata = jodataraw.get("data");
+                                JSONArray jadata = (JSONArray) objdata;
+                                if (jadata.size() == 1) {
+                                    for (int i = 0; i < jadata.size(); i++) {
+                                        JSONObject joindata = (JSONObject) jadata.get(i);
+                                        tabeldatalist.get(row).setId_barang(Staticvar.resid);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("kode")), row, 0);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("nama")), row, 1);
+                                        tabeldatalist.get(row).setJumlah("1");
+                                        pane.tabledata.setValueAt("0", row, 2);
+                                        tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, 3);
+                                        tabeldatalist.get(row).setIsi_satuan("1");
+                                        tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata.get("harga_beli")));
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata.get("harga_beli"))), row, 4);
+                                        tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata.get("harga_jual")));
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata.get("harga_jual"))), row, 5);
+                                        pane.tabledata.setValueAt("0", row, 6);
+                                        pane.tabledata.setValueAt("0", row, 7);
+                                        tabeldatalist.get(row).setDiskon_persen("0");
+                                        tabeldatalist.get(row).setDiskon_nominal("0");
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("nama_pajak_beli")), row, 8);
+                                        tabeldatalist.get(row).setId_pajak(String.valueOf(joindata.get("id_pajak_beli")));
+                                        tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata.get("persen_pajak_beli")));
+                                        tabeldatalist.get(row).setId_gudang(valgudang);
+                                        pane.tabledata.setValueAt(pane.edgudang.getText(), row, 9);
+                                        tabeldatalist.get(row).setKeterangan("");
+                                        pane.tabledata.setValueAt("", row, 10);
+                                        tabeldatalist.get(row).setTotal("0");
+                                        pane.tabledata.setValueAt("0", row, 11);
+                                    }
+                                    kalkulasitotal();
+                                } else {
+                                    JDialog jd = new JDialog(new Mainmenu());
+                                    jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
+                                    jd.pack();
+                                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                                    jd.setLocationRelativeTo(null);
+                                    jd.setVisible(true);
+                                    jd.toFront();
+                                    JSONParser jpdata2 = new JSONParser();
+                                    String param2 = String.format("id=%s", Staticvar.resid);
+                                    Object objdataraw2 = jpdata2.parse(ch.getdatadetails("dm/datapersediaan", param2));
+                                    JSONObject jodataraw2 = (JSONObject) objdataraw2;
+                                    Object objdata2 = jodataraw2.get("data");
+                                    JSONArray jadata2 = (JSONArray) objdata2;
+                                    for (int i = 0; i < jadata2.size(); i++) {
+                                        JSONObject joindata2 = (JSONObject) jadata2.get(i);
+                                        tabeldatalist.get(row).setId_barang(Staticvar.resid);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("kode")), row, 0);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama")), row, 1);
+                                        tabeldatalist.get(row).setJumlah("1");
+                                        pane.tabledata.setValueAt("0", row, 2);
+                                        tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
+                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 3);
+                                        tabeldatalist.get(row).setIsi_satuan("1");
+                                        tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata2.get("harga_beli"))), row, 4);
+                                        tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata2.get("harga_jual"))), row, 5);
+                                        pane.tabledata.setValueAt("0", row, 6);
+                                        pane.tabledata.setValueAt("0", row, 7);
+                                        tabeldatalist.get(row).setDiskon_persen("0");
+                                        tabeldatalist.get(row).setDiskon_nominal("0");
+                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, 8);
+                                        tabeldatalist.get(row).setId_pajak(String.valueOf(joindata2.get("id_pajak_beli")));
+                                        tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("persen_pajak_beli")));
+                                        tabeldatalist.get(row).setId_gudang(valgudang);
+                                        pane.tabledata.setValueAt(pane.edgudang.getText(), row, 9);
+                                        tabeldatalist.get(row).setKeterangan("");
+                                        pane.tabledata.setValueAt("", row, 10);
+                                        tabeldatalist.get(row).setTotal("0");
+                                        pane.tabledata.setValueAt("0", row, 11);
+                                    }
+                                    kalkulasitotal();
+                                }
+
+                            } catch (ParseException ex) {
+                                JDialog jd = new JDialog(new Mainmenu());
+                                Errorpanel ep = new Errorpanel();
+                                ep.ederror.setText(ex.toString());
+                                jd.add(ep);
+                                jd.pack();
+                                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                                jd.setLocationRelativeTo(null);
+                                jd.setVisible(true);
+                                jd.toFront();
+                                Staticvar.resid = "";
+                                Logger.getLogger(DaftarreturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
+
+                            }
+                    }
+                    else if (col == 2) {
                         columnfunction(row, 2, false);
                         nextcolom(2, row);
                     } else if (col == 4) {
@@ -838,7 +939,7 @@ public class DaftarfakturpembelianinputController {
                                         tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata.get("harga_beli")));
                                         pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata.get("harga_beli"))), row, 4);
                                         tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata.get("harga_jual")));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("harga_jual")), row, 5);
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata.get("harga_jual"))), row, 5);
                                         pane.tabledata.setValueAt("0", row, 6);
                                         pane.tabledata.setValueAt("0", row, 7);
                                         tabeldatalist.get(row).setDiskon_persen("0");
@@ -881,9 +982,9 @@ public class DaftarfakturpembelianinputController {
                                         pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 3);
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("harga_beli")), row, 4);
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata2.get("harga_beli"))), row, 4);
                                         tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("harga_jual")), row, 5);
+                                        pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata2.get("harga_jual"))), row, 5);
                                         pane.tabledata.setValueAt("0", row, 6);
                                         pane.tabledata.setValueAt("0", row, 7);
                                         tabeldatalist.get(row).setDiskon_persen("0");
