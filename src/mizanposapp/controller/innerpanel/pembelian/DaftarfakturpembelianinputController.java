@@ -1223,6 +1223,7 @@ public class DaftarfakturpembelianinputController {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
                 nextcolom(col, row);
+                
             }
         });
 
