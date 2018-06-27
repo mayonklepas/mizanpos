@@ -140,6 +140,20 @@ public class DaftarfakturpembelianinputController {
 
         };
 
+        MouseAdapter ma = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (pane.tabledata.isEditing()) {
+                    pane.tabledata.getCellEditor().cancelCellEditing();
+                }
+            }
+
+        };
+
+        pane.addMouseListener(ma);
+
+        pane.tabledata.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+
         TableCellEditor tce = new DefaultCellEditor(new JTextField()) {
             @Override
             public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
@@ -148,6 +162,7 @@ public class DaftarfakturpembelianinputController {
             }
 
         };
+
         pane.tabledata.setDefaultEditor(Object.class, tce);
         String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
             "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
@@ -985,10 +1000,14 @@ public class DaftarfakturpembelianinputController {
         pane.tabledata.addKeyListener(keyatable);
 
         MouseAdapter madap = new MouseAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
+                if (pane.tabledata.isEditing()) {
+                    pane.tabledata.getCellEditor().cancelCellEditing();
+                }
                 if (e.getClickCount() == 2) {
                     if (col == 3) {
                         Staticvar.preid = tabeldatalist.get(row).getId_satuan();
