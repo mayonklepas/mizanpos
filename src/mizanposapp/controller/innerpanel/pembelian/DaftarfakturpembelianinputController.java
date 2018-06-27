@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -752,43 +753,11 @@ public class DaftarfakturpembelianinputController {
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_TAB) {
                     if (col == 2) {
-                        String valcol = String.valueOf(pane.tabledata.getValueAt(row, 2));
-                        if (checknumerik(valcol) == true) {
-                            columnfunction(row, 2, false);
-                            nextcolom(2, row);
-                        } else {
-                            JDialog jd = new JDialog(new Mainmenu());
-                            Errorpanel ep = new Errorpanel();
-                            ep.ederror.setText("Isi Harus Angka dan Tidak Boleh Kosong");
-                            jd.add(ep);
-                            jd.pack();
-                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                            jd.setLocationRelativeTo(null);
-                            jd.setVisible(true);
-                            jd.toFront();
-                            valcol = valcol.replaceAll("[^0-9]", "");
-                            pane.tabledata.setValueAt(valcol, row, 2);
-                            columnfunction(row, 2, false);
-                            
-                        }
+                        columnfunction(row, 2, false);
+                        nextcolom(2, row);
                     } else if (col == 4) {
-                        String valcol = String.valueOf(pane.tabledata.getValueAt(row, 4));
-                        if (checknumerik(valcol) == true) {
-                            columnfunction(row, 4, false);
-                        } else {
-                            JDialog jd = new JDialog(new Mainmenu());
-                            Errorpanel ep = new Errorpanel();
-                            ep.ederror.setText("Isi Harus Angka dan Tidak Boleh Kosong");
-                            jd.add(ep);
-                            jd.pack();
-                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                            jd.setLocationRelativeTo(null);
-                            jd.setVisible(true);
-                            jd.toFront();
-                            valcol = valcol.replaceAll("[^0-9]", "");
-                            pane.tabledata.setValueAt(valcol, row, 4);
-                            columnfunction(row, 4, false);
-                        }
+                        columnfunction(row, 4, false);
+                        nextcolom(4, row);
                     } else if (col == 6) {
                         String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
                         if (checkalphabeth(valcol) == false) {
@@ -853,7 +822,7 @@ public class DaftarfakturpembelianinputController {
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, 3);
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata.get("harga_beli")));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("harga_beli")), row, 4);
+                                        pane.tabledata.setValueAt(nf.format(ToDouble(joindata.get("harga_beli"))), row, 4);
                                         tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata.get("harga_jual")));
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("harga_jual")), row, 5);
                                         pane.tabledata.setValueAt("0", row, 6);
@@ -1223,7 +1192,7 @@ public class DaftarfakturpembelianinputController {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
                 nextcolom(col, row);
-                
+
             }
         });
 
@@ -1273,26 +1242,18 @@ public class DaftarfakturpembelianinputController {
 
     private void columnfunction(int row, int col, boolean addrow) {
         if (col == 2) {
-            String valcol2 = String.valueOf(pane.tabledata.getValueAt(row, 2));
-            if (valcol2.equals("")) {
-                tabeldatalist.get(row).setJumlah("0");
-                pane.tabledata.setValueAt("0", row, 2);
-            } else {
-                tabeldatalist.get(row).setJumlah(valcol2);
-            }
+            String value = nf.format(ToDouble(pane.tabledata.getValueAt(row, col)));
+            pane.tabledata.setValueAt(value, row, col);
+
             kalkulasitotalperrow(row);
             kalkulasitotal();
             if (addrow == true) {
                 addautorow(row);
             }
         } else if (col == 4) {
-            String valcol4 = String.valueOf(pane.tabledata.getValueAt(row, 4));
-            if (valcol4.equals("")) {
-                tabeldatalist.get(row).setHarga_beli("0");
-                pane.tabledata.setValueAt("0", row, 4);
-            } else {
-                tabeldatalist.get(row).setHarga_beli(valcol4);
-            }
+            String value = nf.format(ToDouble(pane.tabledata.getValueAt(row, col)));
+            pane.tabledata.setValueAt(value, row, col);
+
             kalkulasitotalperrow(row);
             kalkulasitotal();
             if (addrow == true) {
@@ -1333,12 +1294,7 @@ public class DaftarfakturpembelianinputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double biayalain = 0;
-                    if (!pane.edbiayalain.getText().equals("")) {
-                        biayalain = Double.parseDouble(pane.edbiayalain.getText());
-                    } else {
-                        biayalain = 0;
-                    }
+                    double biayalain = ToDouble(pane.edbiayalain.getText());
                     double totaldenganbiayalain = total_pembelian_all + biayalain;
                     pane.ltotal_pembelian.setText(nf.format(totaldenganbiayalain));
                 } else {
@@ -1354,19 +1310,8 @@ public class DaftarfakturpembelianinputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double diskon_persen = 0;
-                    if (!pane.eddiskon1.getText().equals("")) {
-                        diskon_persen = Double.parseDouble(pane.eddiskon1.getText());
-                    } else {
-                        diskon_persen = 0;
-                    }
-
-                    double biayalain = 0;
-                    if (!pane.edbiayalain.getText().equals("")) {
-                        biayalain = Double.parseDouble(pane.edbiayalain.getText());
-                    } else {
-                        biayalain = 0;
-                    }
+                    double diskon_persen = ToDouble(pane.eddiskon1.getText());
+                    double biayalain = ToDouble(pane.edbiayalain.getText());
 
                     double totaldiskon = (total_pembelian_all + biayalain) * (diskon_persen / 100);
                     pane.eddiskon2.setText(nf.format(totaldiskon));
@@ -1385,19 +1330,8 @@ public class DaftarfakturpembelianinputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double diskon_nominal = 0;
-                    if (!pane.eddiskon2.getText().equals("")) {
-                        diskon_nominal = Double.parseDouble(pane.eddiskon2.getText());
-                    } else {
-                        diskon_nominal = 0;
-                    }
-
-                    double biayalain = 0;
-                    if (!pane.edbiayalain.getText().equals("")) {
-                        biayalain = Double.parseDouble(pane.edbiayalain.getText());
-                    } else {
-                        biayalain = 0;
-                    }
+                    double diskon_nominal = ToDouble(pane.eddiskon2.getText());
+                    double biayalain = ToDouble(pane.edbiayalain.getText());
 
                     double totaldiskonpersen = (diskon_nominal / (total_pembelian_all + biayalain)) * 100;
                     pane.eddiskon1.setText(nf.format(totaldiskonpersen));
@@ -1420,31 +1354,21 @@ public class DaftarfakturpembelianinputController {
         int jumlah_row = pane.tabledata.getRowCount();
         total_pembelian_all = 0;
         for (int i = 0; i < jumlah_row; i++) {
-            double total_beli_masing = Double.parseDouble(emptycellcheck(i, 11));
+            double total_beli_masing = ToDouble(emptycellcheck(i, 11));
             total_pembelian_all = total_pembelian_all + total_beli_masing;
         }
 
         total_pajak = 0;
         for (int i = 0; i < jumlah_row; i++) {
-            double total_pajak_masing = Double.parseDouble(emptycellcheck(i, 11)) * (Oneforallfunc.doubleparsing(tabeldatalist.get(i).getNilai_pajak()) / 100);
+            double total_pajak_masing = ToDouble(emptycellcheck(i, 11)) * (Oneforallfunc.doubleparsing(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
         pane.ltotal_pajak.setText(nf.format(total_pajak));
 
         pane.lsubtotal.setText(nf.format(total_pembelian_all));
-        double diskon_persen = 0;
-        if (!pane.eddiskon1.getText().equals("")) {
-            diskon_persen = Double.parseDouble(pane.eddiskon1.getText());
-        } else {
-            diskon_persen = 0;
-        }
+        double diskon_persen = ToDouble(pane.eddiskon1.getText());
 
-        double biayalain = 0;
-        if (!pane.edbiayalain.getText().equals("")) {
-            biayalain = Double.parseDouble(pane.edbiayalain.getText());
-        } else {
-            biayalain = 0;
-        }
+        double biayalain = ToDouble(pane.edbiayalain.getText());
 
         double totaldiskon = (total_pembelian_all + biayalain) * (diskon_persen / 100);
         pane.eddiskon2.setText(nf.format(totaldiskon));
@@ -1456,37 +1380,39 @@ public class DaftarfakturpembelianinputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, 6));
             if (isifielddiskon.contains("+")) {
-                int qty = Integer.parseInt(emptycellcheck(row, 2)) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
-                double harga = Double.parseDouble(emptycellcheck(row, 4));
+                double qty = ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
+                double harga = ToDouble(pane.tabledata.getValueAt(row, 4));
                 double total = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
-                    double diskonper = Double.parseDouble(multidiskon[i]);
+                    double diskonper = ToDouble(multidiskon[i]);
                     total = (qty * (total - (diskonper / 100 * total)));
                 }
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
-                pane.tabledata.setValueAt(total, row, 11);
+                pane.tabledata.setValueAt(nf.format(total), row, 11);
             } else {
-                int qty = Integer.parseInt(emptycellcheck(row, 2)) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
-                double harga = Double.parseDouble(emptycellcheck(row, 4));
-                double diskon = Double.parseDouble(emptycellcheck(row, 6));
+                double qty = ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
+                double harga = ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 4)));
+                double diskon = ToDouble(emptycellcheck(row, 6));
                 double total = qty * (harga - (diskon / 100 * harga));
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
-                pane.tabledata.setValueAt(total, row, 11);
+                pane.tabledata.setValueAt(nf.format(total), row, 11);
             }
         } else {
-            int qty = Integer.parseInt(emptycellcheck(row, 2)) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
-            double harga = Double.parseDouble(emptycellcheck(row, 4));
-            double diskon = Double.parseDouble(emptycellcheck(row, 7));
+
+            double qty = ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
+            double harga = ToDouble(pane.tabledata.getValueAt(row, 4));
+            double diskon = ToDouble(emptycellcheck(row, 7));
             double total = qty * (harga - diskon);
             tabeldatalist.get(row).setTotal(String.valueOf(total));
-            pane.tabledata.setValueAt(total, row, 11);
+            pane.tabledata.setValueAt(nf.format(total), row, 11);
         }
     }
 
     private String emptycellcheck(int row, int col) {
         String ret = "";
         String value = String.valueOf(pane.tabledata.getValueAt(row, col));
+
         try {
             if (value.equals("") || value.equals("null")) {
                 ret = "0";
@@ -1500,10 +1426,30 @@ public class DaftarfakturpembelianinputController {
         return ret;
     }
 
+    private double ToDouble(String str) {
+        double result = 0;
+        try {
+            result = Double.parseDouble(str.replace(",", ""));
+        } catch (Exception e) {
+            result = 0;
+        }
+        return result;
+    }
+
+    private double ToDouble(Object obj) {
+        double result = 0;
+        try {
+            result = Double.parseDouble(String.valueOf(obj).replace(",", ""));
+        } catch (NumberFormatException e) {
+            result = 0;
+        }
+        return result;
+    }
+
     private boolean checknumerik(String val) {
         boolean hasil = false;
         try {
-            Double.parseDouble(val);
+            ToDouble(val);
             hasil = true;
         } catch (Exception e) {
             hasil = false;
