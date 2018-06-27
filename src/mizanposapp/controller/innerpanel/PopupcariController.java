@@ -83,7 +83,6 @@ public class PopupcariController {
             loadwithval(page);
         } else {
             loaddata(page);
-            pane.tcari.requestFocus();
         }
         loaddatadetail(page);
         inputdata(tipe, page);
@@ -235,7 +234,8 @@ public class PopupcariController {
                 //pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton();
-
+                pane.tcari.setText("");
+                pane.tcari.requestFocus();
             }
 
         };
