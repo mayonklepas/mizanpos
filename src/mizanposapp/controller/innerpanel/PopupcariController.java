@@ -176,6 +176,14 @@ public class PopupcariController {
             });
         }
 
+        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("BACK_SPACE"), "fokusaja");
+        pane.tabledata.getActionMap().put("fokusaja", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.tcari.requestFocus();
+            }
+        });
+
     }
 
     private void loadheader(String tipe) {
