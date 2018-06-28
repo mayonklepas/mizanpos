@@ -955,6 +955,7 @@ public class DaftarfakturpembelianinputController {
                     String curval = String.valueOf(tm.getValueAt(row, col));
                     if (curval.equals("0") || curval.equals("") || curval.equals("null")) {
                         tm.setValueAt(oldvalue, row, col);
+                        kalkulasitotalperrow(row);
                         oldvalue = "";
                         if (col == 0) {
                             pane.tabledata.requestFocus();
