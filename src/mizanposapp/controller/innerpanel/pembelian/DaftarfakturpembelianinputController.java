@@ -937,7 +937,7 @@ public class DaftarfakturpembelianinputController {
                     }
                     ischangevalue = true;
                     String curval = String.valueOf(tm.getValueAt(row, col));
-                    if (curval.equals("0") || curval.equals("") || curval.equals("null")) {
+                    if (curval.equals("") || curval.equals("null")) {
                         if (oldvalue.equals("null")) {
                             tm.setValueAt("", row, col);
                         } else {
@@ -1232,42 +1232,12 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void columnfunction(int row, int col, boolean addrow) {
-        if (col == 2) {
+        if (pane.tabledata.getValueAt(row, col).equals("")) {
+            return;
+        }
+        if ((col == 2) || (col == 4) || (col == 6) || (col == 7)){
             String value = nf.format(Oneforallfunc.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
-
-            kalkulasitotalperrow(row);
-            if (addrow == true) {
-                addautorow(row);
-            }
-        } else if (col == 4) {
-            String value = nf.format(Oneforallfunc.ToDouble(pane.tabledata.getValueAt(row, col)));
-            pane.tabledata.setValueAt(value, row, col);
-
-            kalkulasitotalperrow(row);
-            if (addrow == true) {
-                addautorow(row);
-            }
-        } else if (col == 6) {
-            String valcol6 = String.valueOf(pane.tabledata.getValueAt(row, 6));
-            if (valcol6.equals("")) {
-                tabeldatalist.get(row).setDiskon_persen("0");
-                pane.tabledata.setValueAt("0", row, 6);
-            } else {
-                tabeldatalist.get(row).setDiskon_persen(valcol6);
-            }
-            kalkulasitotalperrow(row);
-            if (addrow == true) {
-                addautorow(row);
-            }
-        } else if (col == 7) {
-            String valcol7 = String.valueOf(pane.tabledata.getValueAt(row, 7));
-            if (valcol7.equals("")) {
-                tabeldatalist.get(row).setDiskon_nominal("0");
-                pane.tabledata.setValueAt("0", row, 7);
-            } else {
-                tabeldatalist.get(row).setDiskon_nominal(valcol7);
-            }
             kalkulasitotalperrow(row);
             if (addrow == true) {
                 addautorow(row);
@@ -1437,6 +1407,20 @@ public class DaftarfakturpembelianinputController {
 
     private void nextcolom(int col, int row) {
         if (col == 4) {
+            if (!cekcolomnol(5)) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 5, false, false);
+                return;
+            } else {
+                if (pane.ckdiskon.isSelected()) {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(row, 6, false, false);
+                } else {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(row, 7, false, false);
+                }
+            }
+        } else if (col == 5) {
             if (pane.ckdiskon.isSelected()) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row, 6, false, false);
@@ -1444,9 +1428,6 @@ public class DaftarfakturpembelianinputController {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row, 7, false, false);
             }
-        } else if (col == 5) {
-            pane.tabledata.requestFocus();
-            pane.tabledata.changeSelection(row, 7, false, false);
 
         } else if (col == 6) {
             pane.tabledata.requestFocus();
@@ -1477,10 +1458,15 @@ public class DaftarfakturpembelianinputController {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row, 7, false, false);
             }
-        } else if (col == 7 || col == 6) {
-            pane.tabledata.requestFocus();
-            pane.tabledata.changeSelection(row, 4, false, false);
-
+        }  else if ((col == 7) || (col == 6)) {
+            if (!cekcolomnol(5)) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 5, false, false);
+                return;
+            } else {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 4, false, false);
+            }
         } else {
             xbackcolom(col, row, 11);
         }

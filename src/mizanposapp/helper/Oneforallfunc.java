@@ -5,6 +5,9 @@
  */
 package mizanposapp.helper;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Minami
@@ -60,9 +63,10 @@ public class Oneforallfunc {
         double result = 0;
         try {
             result = Double.parseDouble(String.valueOf(obj).replace(",", ""));
-        } catch (NumberFormatException e) {
+        } catch (Exception ex) {
             result = 0;
-        }
+            Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         return result;
     }
 

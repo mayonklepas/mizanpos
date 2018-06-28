@@ -18,8 +18,6 @@ import mizanposapp.view.Persedian_panel;
  * @author Minami
  */
 public class Staticvar {
-
-    public static String tes = "";
     public static Penjualan_panel pp = null;
     public static Persedian_panel psp = null;
     public static Pembelian_panel pmp = null;
