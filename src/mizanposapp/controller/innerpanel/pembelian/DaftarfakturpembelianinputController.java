@@ -185,14 +185,9 @@ public class DaftarfakturpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 JCheckBox cb = (JCheckBox) e.getSource();
                 int row = pane.tabledata.getSelectedRow();
-                /*for (int i = 0; i < pane.tabledata.getRowCount(); i++) {
-                    pane.tabledata.setValueAt("0", i, 6);
-                    dtmtabeldata.fireTableCellUpdated(i, 6);
-                    pane.tabledata.setValueAt("0", i, 7);
-                    dtmtabeldata.fireTableCellUpdated(i, 7);
-                    kalkulasitotalperrow(row);
-                }*/
-                kalkulasitotalperrow(row);
+                for (int i = 0; i < pane.tabledata.getRowCount(); i++) {
+                    kalkulasitotalperrow(i);
+                }
                 if (cb.isSelected()) {
                     hidetable(7);
                     showtable(6);
