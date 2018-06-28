@@ -937,8 +937,12 @@ public class DaftarfakturpembelianinputController {
                     }
                     ischangevalue = true;
                     String curval = String.valueOf(tm.getValueAt(row, col));
-                    if (curval.equals("") || curval.equals("null")) {
-                        tm.setValueAt(oldvalue, row, col);
+                    if (curval.equals("0") || curval.equals("") || curval.equals("null")) {
+                        if (oldvalue.equals("null")) {
+                            tm.setValueAt("", row, col);
+                        } else {
+                            tm.setValueAt(oldvalue, row, col);
+                        }
                         kalkulasitotalperrow(row);
                         oldvalue = "";
                         if (col == 0) {
@@ -961,7 +965,6 @@ public class DaftarfakturpembelianinputController {
                 if (tb.isEditing()) {
                     tb.getCellEditor().cancelCellEditing();
                 }
-                oldvalue = String.valueOf(tb.getValueAt(row, col));
                 if (e.getClickCount() == 2) {
                     if (col == 3) {
                         Staticvar.sfilter = "";
