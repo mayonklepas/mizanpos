@@ -751,17 +751,6 @@ public class DaftarfakturpembelianinputController {
                     }
                     int col = e.getColumn();
                     int row = e.getFirstRow();
-
-                    /*String val = String.valueOf(tm.getValueAt(row, col));
-                    if ((val == oldvalue) && (!val.equals("null") || !oldvalue.equals("null"))) {
-                        return;
-                    }
-                    
-                    if (val.equals("")) {
-                        tm.setValueAt(oldvalue, row, col);
-                        oldvalue = "";
-                        return;
-                    }*/
                     if (col == 0) {
                         ischangevalue = true;
                         Staticvar.preid = tabeldatalist.get(row).getId_barang();
@@ -948,7 +937,7 @@ public class DaftarfakturpembelianinputController {
                     }
                     ischangevalue = true;
                     String curval = String.valueOf(tm.getValueAt(row, col));
-                    if (curval.equals("0") || curval.equals("") || curval.equals("null")) {
+                    if (curval.equals("") || curval.equals("null")) {
                         tm.setValueAt(oldvalue, row, col);
                         kalkulasitotalperrow(row);
                         oldvalue = "";
@@ -1061,6 +1050,7 @@ public class DaftarfakturpembelianinputController {
                     editor.requestFocusInWindow();
                 }
                 if (col == 3) {
+                    Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_satuan();
                     Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 3));
                     Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
@@ -1080,6 +1070,7 @@ public class DaftarfakturpembelianinputController {
                     dtmtabeldata.fireTableCellUpdated(row, 3);
                     kalkulasitotalperrow(row);
                 } else if (col == 8) {
+                    Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_pajak();
                     Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 8));
                     Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
@@ -1096,6 +1087,7 @@ public class DaftarfakturpembelianinputController {
                     dtmtabeldata.fireTableCellUpdated(row, 8);
                     kalkulasitotalperrow(row);
                 } else if (col == 9) {
+                    Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_gudang();
                     Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 9));
                     JDialog jd = new JDialog(new Mainmenu());
