@@ -1235,7 +1235,7 @@ public class DaftarfakturpembelianinputController {
         if (pane.tabledata.getValueAt(row, col).equals("")) {
             return;
         }
-        if ((col == 2) || (col == 4) || (col == 6) || (col == 7)){
+        if ((col == 2) || (col == 4) || (col == 6) || (col == 7)) {
             String value = nf.format(Oneforallfunc.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
@@ -1406,79 +1406,41 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void nextcolom(int col, int row) {
-        if (col == 4) {
-            if (!cekcolomnol(5)) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 5, false, false);
-                return;
-            } else {
-                if (pane.ckdiskon.isSelected()) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 6, false, false);
-                } else {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 7, false, false);
-                }
-            }
-        } else if (col == 5) {
-            if (pane.ckdiskon.isSelected()) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 6, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 7, false, false);
-            }
-
-        } else if (col == 6) {
-            pane.tabledata.requestFocus();
-            pane.tabledata.changeSelection(row, 8, false, false);
-        } else if (col == pane.tabledata.getColumnCount() - 1) {
-            if ((pane.tabledata.getRowCount() - 1) > row) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row + 1, 0, false, false);
-            } else {
-                if (String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("") || String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("null")) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, 0, false, false);
-                } else {
-                    addautorow(row);
-                }
-            }
-        } else {
-            xnextcolom(col, row, pane.tabledata.getColumnCount() - 1);
-        }
+        xnextcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
 
     private void backcolom(int col, int row) {
-        if (col == 8) {
-            if (pane.ckdiskon.isSelected()) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 6, false, false);
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 7, false, false);
-            }
-        }  else if ((col == 7) || (col == 6)) {
-            if (!cekcolomnol(5)) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 5, false, false);
-                return;
-            } else {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 4, false, false);
-            }
-        } else {
-            xbackcolom(col, row, 11);
-        }
+        xbackcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
 
     private void xnextcolom(int currentcoll, int currentrow, int colcount) {
-        for (int i = 0; i < colcount; i++) {
+        for (int i = 0; i <= colcount; i++) {
             if (currentcoll == i) {
-                for (int j = currentcoll; j < colcount; j++) {
+                for (int j = currentcoll; j <= colcount; j++) {
                     while (!cekcolomnol(j + 1)) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(currentrow, j + 1, false, false);
+                        if (((j + 1) == 6) || ((j + 1) == 7)) {
+                            if (pane.ckdiskon.isSelected()) {
+                                if ((j + 1) == 7) {
+                                    int x = j + 1;
+                                    for (int k = x; k <= colcount; k++) {
+                                        while (!cekcolomnol(k + 1)) {
+                                            pane.tabledata.requestFocus();
+                                            pane.tabledata.changeSelection(currentrow, k + 1, false, false);
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    pane.tabledata.requestFocus();
+                                    pane.tabledata.changeSelection(currentrow, 6, false, false);
+                                }
+                            } else {
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(currentrow, 7, false, false);
+                            }
+                        } else {
+                            pane.tabledata.requestFocus();
+                            pane.tabledata.changeSelection(currentrow, j + 1, false, false);
+                        }
                         return;
                     }
                 }
@@ -1487,12 +1449,44 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void xbackcolom(int currentcoll, int currentrow, int colcount) {
-        for (int i = colcount; i > 0; i--) {
+        for (int i = colcount; i >= 0; i--) {
             if (currentcoll == i) {
-                for (int j = currentcoll; j > 0; j--) {
+                for (int j = currentcoll; j >= 0; j--) {
                     while (!cekcolomnol(j - 1)) {
-                        pane.tabledata.requestFocus();
-                        pane.tabledata.changeSelection(currentrow, j - 1, false, false);
+                        if (((j - 1) == 6) || ((j - 1) == 7)) {
+                            if (pane.ckdiskon.isSelected()) {
+                                if ((j - 1) == 7) {
+                                    int x = j - 1;
+                                    for (int k = x; k >= 0; k--) {
+                                        while (!cekcolomnol(k - 1)) {
+                                            pane.tabledata.requestFocus();
+                                            pane.tabledata.changeSelection(currentrow, k - 1, false, false);
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    pane.tabledata.requestFocus();
+                                    pane.tabledata.changeSelection(currentrow, 6, false, false);
+                                }
+                            } else {
+                                if ((j - 1) == 6) {
+                                    int x = j - 1;
+                                    for (int k = x; k >= 0; k--) {
+                                        while (!cekcolomnol(k - 1)) {
+                                            pane.tabledata.requestFocus();
+                                            pane.tabledata.changeSelection(currentrow, k - 1, false, false);
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    pane.tabledata.requestFocus();
+                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                }
+                            }
+                        } else {
+                            pane.tabledata.requestFocus();
+                            pane.tabledata.changeSelection(currentrow, j - 1, false, false);
+                        }
                         return;
                     }
                 }
