@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -136,6 +137,7 @@ public class DaftarfakturpembelianinputController {
     private void customtable() {
         pane.tabledata.setRowSelectionAllowed(false);
         pane.tabledata.setCellSelectionEnabled(true);
+        pane.tabledata.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -156,7 +158,6 @@ public class DaftarfakturpembelianinputController {
 
         pane.addMouseListener(ma);
 
-        pane.tabledata.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
         TableCellEditor tce = new DefaultCellEditor(new JTextField()) {
             @Override
             public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
@@ -182,15 +183,17 @@ public class DaftarfakturpembelianinputController {
         pane.ckdiskon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JCheckBox cb = (JCheckBox) e.getSource();
                 int row = pane.tabledata.getSelectedRow();
-                for (int i = 0; i < pane.tabledata.getRowCount(); i++) {
+                /*for (int i = 0; i < pane.tabledata.getRowCount(); i++) {
                     pane.tabledata.setValueAt("0", i, 6);
                     dtmtabeldata.fireTableCellUpdated(i, 6);
                     pane.tabledata.setValueAt("0", i, 7);
                     dtmtabeldata.fireTableCellUpdated(i, 7);
                     kalkulasitotalperrow(row);
-                }
-                if (pane.ckdiskon.isSelected()) {
+                }*/
+                kalkulasitotalperrow(row);
+                if (cb.isSelected()) {
                     hidetable(7);
                     showtable(6);
 
@@ -745,6 +748,7 @@ public class DaftarfakturpembelianinputController {
         pane.tabledata.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
+
                 TableModel tm = (TableModel) e.getSource();
                 if (e.getType() == TableModelEvent.UPDATE) {
                     if (ischangevalue) {
@@ -753,27 +757,29 @@ public class DaftarfakturpembelianinputController {
                     int col = e.getColumn();
                     int row = e.getFirstRow();
 
-                    String val = String.valueOf(tm.getValueAt(row, col));
+                    /*String val = String.valueOf(tm.getValueAt(row, col));
                     if ((val == oldvalue) && (!val.equals("null") || !oldvalue.equals("null"))) {
                         return;
                     }
-
+                    
                     if (val.equals("")) {
                         tm.setValueAt(oldvalue, row, col);
                         oldvalue = "";
                         return;
-                    }
+                    }*/
                     if (col == 0) {
                         ischangevalue = true;
                         Staticvar.preid = tabeldatalist.get(row).getId_barang();
                         String defnilai = "";
-                        if (String.valueOf(tm.getValueAt(row, col)).equals("null")) {
+                        String cekval = String.valueOf(tm.getValueAt(row, col));
+                        if (cekval.equals("null") || cekval.equals("")) {
                             defnilai = "";
                         } else {
                             defnilai = String.valueOf(tm.getValueAt(row, 0));
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = defnilai;
+                        Staticvar.reslabel = defnilai;
                         try {
                             JSONParser jpdata = new JSONParser();
                             String param = String.format("kode=%s", String.valueOf(tm.getValueAt(row, col)));
@@ -945,6 +951,17 @@ public class DaftarfakturpembelianinputController {
                             ischangevalue = false;
                         }
                     }
+                    ischangevalue = true;
+                    String curval = String.valueOf(tm.getValueAt(row, col));
+                    if (curval.equals("0") || curval.equals("") || curval.equals("null")) {
+                        tm.setValueAt(oldvalue, row, col);
+                        oldvalue = "";
+                        if (col == 0) {
+                            pane.tabledata.requestFocus();
+                            pane.tabledata.changeSelection(row, 0, false, false);
+                        }
+                    }
+                    ischangevalue = false;
                 }
             }
         });
@@ -953,17 +970,17 @@ public class DaftarfakturpembelianinputController {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                if (pane.tabledata.isEditing()) {
-                    pane.tabledata.getCellEditor().cancelCellEditing();
+                JTable tb = (JTable) e.getSource();
+                int row = tb.rowAtPoint(e.getPoint());
+                int col = tb.columnAtPoint(e.getPoint());
+                if (tb.isEditing()) {
+                    tb.getCellEditor().cancelCellEditing();
                 }
-                oldvalue = String.valueOf(pane.tabledata.getValueAt(row, col));
-
+                oldvalue = String.valueOf(tb.getValueAt(row, col));
                 if (e.getClickCount() == 2) {
                     if (col == 3) {
                         Staticvar.preid = tabeldatalist.get(row).getId_satuan();
-                        Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 3));
+                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 3));
                         Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("satuanperbarang",
@@ -976,13 +993,13 @@ public class DaftarfakturpembelianinputController {
                         jd.setVisible(true);
                         jd.toFront();
                         tabeldatalist.get(row).setId_satuan(Staticvar.resid);
-                        pane.tabledata.setValueAt(Staticvar.reslabel, row, 3);
+                        tb.setValueAt(Staticvar.reslabel, row, 3);
                         tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                         dtmtabeldata.fireTableCellUpdated(row, 3);
                         kalkulasitotalperrow(row);
                     } else if (col == 8) {
                         Staticvar.preid = tabeldatalist.get(row).getId_pajak();
-                        Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 8));
+                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 8));
                         Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("pajak", "popupdaftarpajak", "Daftar Pajak"));
@@ -993,12 +1010,12 @@ public class DaftarfakturpembelianinputController {
                         jd.toFront();
                         tabeldatalist.get(row).setId_pajak(Staticvar.resid);
                         tabeldatalist.get(row).setNilai_pajak(Staticvar.resvalueextended);
-                        pane.tabledata.setValueAt(Staticvar.reslabel, row, 8);
+                        tb.setValueAt(Staticvar.reslabel, row, 8);
                         dtmtabeldata.fireTableCellUpdated(row, 8);
                         kalkulasitotalperrow(row);
                     } else if (col == 9) {
                         Staticvar.preid = tabeldatalist.get(row).getId_gudang();
-                        Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 9));
+                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 9));
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
                         jd.pack();
@@ -1007,9 +1024,17 @@ public class DaftarfakturpembelianinputController {
                         jd.setVisible(true);
                         jd.toFront();
                         tabeldatalist.get(row).setId_gudang(Staticvar.resid);
-                        pane.tabledata.setValueAt(Staticvar.reslabel, row, 9);
+                        tb.setValueAt(Staticvar.reslabel, row, 9);
                         dtmtabeldata.fireTableCellUpdated(row, 9);
                     }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                JTable tb = (JTable) e.getSource();
+                if (tb.isEditing()) {
+                    tb.getCellEditor().cancelCellEditing();
                 }
             }
 
