@@ -774,7 +774,7 @@ public class DaftarfakturpembelianinputController {
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = defnilai;
-                        Staticvar.reslabel = defnilai;
+                        Staticvar.prelabel = defnilai;
                         try {
                             JSONParser jpdata = new JSONParser();
                             String param = String.format("kode=%s", String.valueOf(tm.getValueAt(row, col)));
@@ -975,6 +975,7 @@ public class DaftarfakturpembelianinputController {
                 oldvalue = String.valueOf(tb.getValueAt(row, col));
                 if (e.getClickCount() == 2) {
                     if (col == 3) {
+                        Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_satuan();
                         Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 3));
                         Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
@@ -994,6 +995,7 @@ public class DaftarfakturpembelianinputController {
                         dtmtabeldata.fireTableCellUpdated(row, 3);
                         kalkulasitotalperrow(row);
                     } else if (col == 8) {
+                        Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_pajak();
                         Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 8));
                         Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
@@ -1010,6 +1012,7 @@ public class DaftarfakturpembelianinputController {
                         dtmtabeldata.fireTableCellUpdated(row, 8);
                         kalkulasitotalperrow(row);
                     } else if (col == 9) {
+                        Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_gudang();
                         Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 9));
                         JDialog jd = new JDialog(new Mainmenu());
