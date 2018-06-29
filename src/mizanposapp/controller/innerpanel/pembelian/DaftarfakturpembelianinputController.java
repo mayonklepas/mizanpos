@@ -890,8 +890,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
                             if (checkalphabeth(valcol) == false) {
                                 columnfunction(row, 6, false);
-                                pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, 8, false, false);
+                                nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 Errorpanel ep = new Errorpanel();
@@ -905,6 +904,7 @@ public class DaftarfakturpembelianinputController {
                                 valcol = valcol.replaceAll("[^0-9.+]", "");
                                 pane.tabledata.setValueAt(valcol, row, 6);
                                 columnfunction(row, 6, false);
+                                nextcolom(col, row);
                             }
                         } catch (Exception ex) {
                         } finally {
@@ -916,6 +916,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 7));
                             if (checknumerik(valcol) == true) {
                                 columnfunction(row, 7, false);
+                                nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 Errorpanel ep = new Errorpanel();
@@ -929,6 +930,7 @@ public class DaftarfakturpembelianinputController {
                                 valcol = valcol.replaceAll("[^0-9]", "");
                                 pane.tabledata.setValueAt(valcol, row, 7);
                                 columnfunction(row, 7, false);
+                                nextcolom(7, row);
                             }
                         } catch (Exception ex) {
                         } finally {
