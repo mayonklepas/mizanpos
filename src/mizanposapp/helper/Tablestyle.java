@@ -35,7 +35,7 @@ public class Tablestyle {
         jthead.setPreferredSize(new Dimension(30, 30));
         jthead.setBackground(Color.decode("#282727"));
         jthead.setForeground(Color.WHITE);
-        jthead.setReorderingAllowed(true);
+        jthead.setReorderingAllowed(false);
     }
 
     public void applystylerow(int[] columndata) {
