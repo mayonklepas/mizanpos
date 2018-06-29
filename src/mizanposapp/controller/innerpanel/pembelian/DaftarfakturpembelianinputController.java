@@ -1486,6 +1486,21 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void nextcolom(int col, int row) {
+        int colcount = pane.tabledata.getColumnCount() - 1;
+        if (col == colcount) {
+            if (pane.tabledata.getRowCount() - 1 > row) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row + 1, 0, false, false);
+            } else if (String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("")
+                    || String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("null")) {
+                pane.tabledata.requestFocus();
+                pane.tabledata.changeSelection(row, 0, false, false);
+            } else {
+                addautorow(row);
+            }
+            return;
+        }
+        
         xnextcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
 
@@ -1493,21 +1508,7 @@ public class DaftarfakturpembelianinputController {
         xbackcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
 
-    private void xnextcolom(int currentcoll, int currentrow, int colcount) {
-        if (currentcoll == colcount) {
-            if (pane.tabledata.getRowCount() - 1 > currentrow) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow + 1, 0, false, false);
-            } else if (String.valueOf(pane.tabledata.getValueAt(currentrow, 0)).equals("")
-                    || String.valueOf(pane.tabledata.getValueAt(currentrow, 0)).equals("null")) {
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(currentrow, 0, false, false);
-            } else {
-                addautorow(currentrow);
-            }
-
-            return;
-        }
+    private void xnextcolom(int currentcoll, int currentrow, int colcount) {        
         for (int i = 0; i <= colcount; i++) {
             if (currentcoll == i) {
                 for (int j = currentcoll; j <= colcount; j++) {
