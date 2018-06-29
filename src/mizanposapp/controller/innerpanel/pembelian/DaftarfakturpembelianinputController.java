@@ -17,6 +17,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
@@ -171,10 +172,11 @@ public class DaftarfakturpembelianinputController {
 
         pane.tabledata.setDefaultEditor(Object.class, tce);
         String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
-            "0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+            "0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9",
+            "NUMPAD0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
             "q", "r", "s", "t", "u", "p", "w", "x", "y", "z", "A", "B", "C", "D",
             "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", "."};
+            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", ".",};
         for (int i = 0; i < keyholdnumeric.length; i++) {
             pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "startEditing");
         }
@@ -813,14 +815,6 @@ public class DaftarfakturpembelianinputController {
         pane.tabledata.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
-                col = e.getColumn();
-            }
-
-        });
-
-        pane.tabledata.getModel().addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent e) {
 
                 TableModel tm = (TableModel) e.getSource();
                 if (e.getType() == TableModelEvent.UPDATE) {
@@ -948,7 +942,7 @@ public class DaftarfakturpembelianinputController {
                         try {
                             ischangevalue = true;
                             columnfunction(row, 2, false);
-                            nextcolom(2, row);
+                            //nextcolom(2, row);
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
@@ -957,7 +951,7 @@ public class DaftarfakturpembelianinputController {
                         try {
                             ischangevalue = true;
                             columnfunction(row, 4, false);
-                            nextcolom(4, row);
+                            //nextcolom(4, row);
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
@@ -968,7 +962,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
                             if (checkalphabeth(valcol) == false) {
                                 columnfunction(row, 6, false);
-                                nextcolom(col, row);
+                                //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 Errorpanel ep = new Errorpanel();
@@ -982,7 +976,7 @@ public class DaftarfakturpembelianinputController {
                                 valcol = valcol.replaceAll("[^0-9.+]", "");
                                 pane.tabledata.setValueAt(valcol, row, 6);
                                 columnfunction(row, 6, false);
-                                nextcolom(col, row);
+                                //nextcolom(col, row);
                             }
                         } catch (Exception ex) {
                         } finally {
@@ -994,7 +988,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 7));
                             if (checknumerik(valcol) == true) {
                                 columnfunction(row, 7, false);
-                                nextcolom(col, row);
+                                //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 Errorpanel ep = new Errorpanel();
@@ -1008,7 +1002,7 @@ public class DaftarfakturpembelianinputController {
                                 valcol = valcol.replaceAll("[^0-9]", "");
                                 pane.tabledata.setValueAt(valcol, row, 7);
                                 columnfunction(row, 7, false);
-                                nextcolom(7, row);
+                                //nextcolom(7, row);
                             }
                         } catch (Exception ex) {
                         } finally {
@@ -1111,6 +1105,21 @@ public class DaftarfakturpembelianinputController {
 
         };
         pane.tabledata.addMouseListener(madap);
+
+        pane.tabledata.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                System.out.println(e.getKeyChar());
+            }
+        });
 
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
         pane.tabledata.getActionMap().put("hapus", new AbstractAction() {
@@ -1500,7 +1509,7 @@ public class DaftarfakturpembelianinputController {
             }
             return;
         }
-        
+
         xnextcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
 
@@ -1508,7 +1517,7 @@ public class DaftarfakturpembelianinputController {
         xbackcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
 
-    private void xnextcolom(int currentcoll, int currentrow, int colcount) {        
+    private void xnextcolom(int currentcoll, int currentrow, int colcount) {
         for (int i = 0; i <= colcount; i++) {
             if (currentcoll == i) {
                 for (int j = currentcoll; j <= colcount; j++) {
