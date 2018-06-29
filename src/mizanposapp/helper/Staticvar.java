@@ -40,4 +40,5 @@ public class Staticvar {
     public static String resvalueextended = "";
     public static boolean isupdate = false;
     public static String sfilter = "";
+    public static int lebarPanelMenu = 344;
 }
