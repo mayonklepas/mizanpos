@@ -109,7 +109,6 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void skinning() {
-        new Tablestyle(pane.tabledata).applystyleheader();
         DateFormat dtf = DateFormat.getDateInstance(DateFormat.LONG);
         pane.dtanggal.setDateFormat(dtf);
     }
@@ -334,6 +333,8 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        new Tablestyle(pane.tabledata).applystyleheader();
+
     }
 
     private void loaddata() {

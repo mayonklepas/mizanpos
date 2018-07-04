@@ -30,7 +30,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
-import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatasupplier_inner_panel;
@@ -55,7 +54,6 @@ public class DaftardatasupplierinnerController {
 
     public DaftardatasupplierinnerController(Daftardatasupplier_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
         loaddata();
         loaddatadetail();

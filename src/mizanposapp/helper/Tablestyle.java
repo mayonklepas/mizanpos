@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -31,15 +32,14 @@ public class Tablestyle {
 
     public void applystyleheader() {
         JTableHeader jthead = tbl.getTableHeader();
+        DefaultTableCellHeaderRenderer threnred = (DefaultTableCellHeaderRenderer) jthead.getDefaultRenderer();
+        threnred.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jthead.setOpaque(false);
         jthead.setFont(new Font("century gothic", Font.BOLD, 13));
         jthead.setPreferredSize(new Dimension(30, 30));
         jthead.setBackground(Color.decode("#282727"));
         jthead.setForeground(Color.WHITE);
         jthead.setReorderingAllowed(false);
-        /*DefaultTableCellRenderer trender = new DefaultTableCellHeaderRenderer();
-        ((DefaultTableCellRenderer) jthead.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        trender.setHorizontalAlignment(JLabel.CENTER);*/
     }
 
     public void applystylerow(int[] columnright) {
@@ -48,7 +48,7 @@ public class Tablestyle {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 table.setFillsViewportHeight(true);
                 table.setRowHeight(25);
-                table.setSelectionForeground(Color.BLACK);
+                table.setSelectionForeground(Color.WHITE);
                 DefaultTableCellRenderer cellrender = new DefaultTableCellRenderer();
                 Component c = cellrender.getTableCellRendererComponent(table,
                         value, isSelected, hasFocus, row, column);
