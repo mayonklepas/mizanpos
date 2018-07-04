@@ -7,12 +7,15 @@ package mizanposapp.helper;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -36,22 +39,35 @@ public class Tablestyle {
         jthead.setBackground(Color.decode("#282727"));
         jthead.setForeground(Color.WHITE);
         jthead.setReorderingAllowed(false);
+        DefaultTableCellRenderer trender = new DefaultTableCellHeaderRenderer();
+        ((DefaultTableCellRenderer) jthead.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        trender.setHorizontalAlignment(JLabel.CENTER);
     }
 
-    public void applystylerow(int[] columndata) {
+    public void applystylerow(int[] columnright) {
         TableCellRenderer tcr = new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 table.setFillsViewportHeight(true);
                 table.setRowHeight(25);
                 table.setSelectionForeground(Color.BLACK);
-                DefaultTableCellRenderer DEFTBCEllRENDER = new DefaultTableCellRenderer();
-                Component c = DEFTBCEllRENDER.getTableCellRendererComponent(table,
+                DefaultTableCellRenderer cellrender = new DefaultTableCellRenderer();
+                Component c = cellrender.getTableCellRendererComponent(table,
                         value, isSelected, hasFocus, row, column);
+
+                for (int i = 0; i < columnright.length; i++) {
+                    if (column == columnright[i]) {
+                        c.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+                    }
+                }
+
                 if (row % 2 == 0) {
                     c.setBackground(Color.WHITE);
                 } else {
                     c.setBackground(Color.decode("#F3F3F3"));
+                    if (column == 2) {
+
+                    }
                 }
 
                 if (isSelected) {
@@ -61,6 +77,6 @@ public class Tablestyle {
             }
         };
         tbl.setDefaultRenderer(Object.class, tcr);
-    }
 
+    }
 }

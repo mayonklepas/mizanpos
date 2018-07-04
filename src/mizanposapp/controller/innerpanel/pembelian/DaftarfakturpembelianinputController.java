@@ -500,8 +500,8 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int[] columnrender = {2, 4, 6, 7, 11};
-        new Tablestyle(pane.tabledata).applystylerow(columnrender);
+        int[] columnright = {2, 4, 5, 6, 7, 11};
+        new Tablestyle(pane.tabledata).applystylerow(columnright);
     }
 
     private void simpandata() {
