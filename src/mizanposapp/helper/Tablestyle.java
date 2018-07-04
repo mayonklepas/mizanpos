@@ -10,12 +10,10 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -39,9 +37,9 @@ public class Tablestyle {
         jthead.setBackground(Color.decode("#282727"));
         jthead.setForeground(Color.WHITE);
         jthead.setReorderingAllowed(false);
-        DefaultTableCellRenderer trender = new DefaultTableCellHeaderRenderer();
+        /*DefaultTableCellRenderer trender = new DefaultTableCellHeaderRenderer();
         ((DefaultTableCellRenderer) jthead.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        trender.setHorizontalAlignment(JLabel.CENTER);
+        trender.setHorizontalAlignment(JLabel.CENTER);*/
     }
 
     public void applystylerow(int[] columnright) {
