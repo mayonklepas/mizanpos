@@ -1262,7 +1262,7 @@ public class DaftarfakturpembelianinputController {
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(row + 1, col, false, false);
                 }
-
+                addautorow(row);
             }
         });
 
