@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
@@ -32,8 +31,8 @@ public class Tablestyle {
 
     public void applystyleheader() {
         JTableHeader jthead = tbl.getTableHeader();
-        DefaultTableCellHeaderRenderer threnred = (DefaultTableCellHeaderRenderer) jthead.getDefaultRenderer();
-        threnred.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        /*DefaultTableCellHeaderRenderer threnred = (DefaultTableCellHeaderRenderer) jthead.getDefaultRenderer();
+        threnred.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);*/
         jthead.setOpaque(false);
         jthead.setFont(new Font("century gothic", Font.BOLD, 13));
         jthead.setPreferredSize(new Dimension(30, 30));
