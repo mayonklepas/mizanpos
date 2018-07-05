@@ -571,9 +571,46 @@ public class DaftarfakturpembelianinputController {
                     valcheck,
                     "0",
                     "0");
-            System.out.println(data);
             ch.insertdata("insertpembelian", data);
             if (!Staticvar.getresult.equals("berhasil")) {
+                try {
+                    int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
+                            + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    if (dialog == 0) {
+                        Runnable run = new Runnable() {
+                            @Override
+                            public void run() {
+                                int rowcount = pane.tabledata.getRowCount();
+                                tabeldatalist.clear();
+                                for (int i = 0; i < rowcount; i++) {
+                                    dtmtabeldata.removeRow(i);
+                                }
+                                dtmtabeldata.setRowCount(0);
+                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                                dtmtabeldata.addRow(rowtabledata);
+                            }
+                        };
+                        SwingUtilities.invokeLater(run);
+                        getkodetransaksi();
+                        pane.tabledata.requestFocus();
+                        pane.cmb_tipe_bayar.setSelectedIndex(0);
+                        pane.labeluangmuka.setText("0");
+                        pane.lsubtotal.setText("0");
+                        pane.ltotal_pajak.setText("0");
+                        pane.ltotal_pembelian.setText("0");
+                    } else {
+                        Daftarfakturpembelian_inner_panel inpane = new Daftarfakturpembelian_inner_panel();
+                        Staticvar.pmp.container.removeAll();
+                        Staticvar.pmp.container.setLayout(new BorderLayout());
+                        Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+                        Staticvar.pmp.container.revalidate();
+                        Staticvar.pmp.container.repaint();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
                 ep.ederror.setText(Staticvar.getresult);
@@ -583,9 +620,6 @@ public class DaftarfakturpembelianinputController {
                 jd.setLocationRelativeTo(null);
                 jd.setVisible(true);
                 jd.toFront();
-            } else {
-                JDialog jd = (JDialog) pane.getRootPane().getParent();
-                jd.dispose();
             }
         } else {
             String data = String.format("genjur="
@@ -655,28 +689,36 @@ public class DaftarfakturpembelianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
-                int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
-                if (tahunbulan > periodetahunnulan) {
-                    int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                            + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                    if (dialog == 0) {
-                        rawsimpan();
-                    }
-                } else if (tahunbulan < periodetahunnulan) {
-                    JDialog jd = new JDialog(new Mainmenu());
-                    Errorpanel ep = new Errorpanel();
-                    ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                            + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                            + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
-                    jd.add(ep);
-                    jd.pack();
-                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                    jd.setLocationRelativeTo(null);
-                    jd.setVisible(true);
-                    jd.toFront();
+                if (pane.edsupplier.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+
+                } else if (tabeldatalist.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    rawsimpan();
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                    int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
+                    if (tahunbulan > periodetahunnulan) {
+                        int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
+                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                        if (dialog == 0) {
+                            rawsimpan();
+                        }
+                    } else if (tahunbulan < periodetahunnulan) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        Errorpanel ep = new Errorpanel();
+                        ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
+                                + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                                + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                        jd.add(ep);
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                    } else {
+                        rawsimpan();
+
+                    }
                 }
             }
         });
@@ -685,7 +727,13 @@ public class DaftarfakturpembelianinputController {
     private String kirimtexpembelian() {
         StringBuilder sb = new StringBuilder();
         sb.append("pembelian_detail=");
-        for (int i = 0; i < tabeldatalist.size(); i++) {
+        int listcount = 0;
+        if (tabeldatalist.get(tabeldatalist.size() - 1).getId_barang().equals("")) {
+            listcount = tabeldatalist.size() - 1;
+        } else {
+            listcount = tabeldatalist.size();
+        }
+        for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
                     + "qty=" + "'" + tabeldatalist.get(i).getJumlah() + "'" + "::"
                     + "harga=" + "'" + tabeldatalist.get(i).getHarga_beli() + "'" + "::"
