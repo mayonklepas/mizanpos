@@ -752,24 +752,24 @@
         },
         {
             "key": [
-                "dept_id",
-                "Deptid",
+                "id_dept",
+                "IDDept",
                 "0",
                 "0"
             ]
         },
         {
             "key": [
-                "no_ref",
-                "No. ref",
+                "noref",
+                "No. Transaksi",
                 "1",
                 "15"
             ]
         },
         {
             "key": [
-                "nama_suplier",
-                "Nama Suplier",
+                "nama_supplier",
+                "Supplier",
                 "1",
                 "25"
             ]
@@ -785,15 +785,15 @@
         {
             "key": [
                 "total_pembelian",
-                "Total Pembelian",
+                "Total",
                 "1",
                 "15"
             ]
         },
         {
             "key": [
-                "order_close",
-                "Order Close",
+                "isorderclose",
+                "Order Selesai",
                 "0",
                 "0"
             ]
@@ -801,7 +801,7 @@
         {
             "key": [
                 "id_supplier",
-                "ID Customer",
+                "ID Supplier",
                 "0",
                 "0"
             ]
@@ -1087,5 +1087,4 @@
             ]
         }
     ]
-       
 }

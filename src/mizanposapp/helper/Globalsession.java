@@ -63,6 +63,7 @@ public class Globalsession {
     public static String DEFAULT_NAMA_LOKASI = "";
     public static String DEFAULT_ID_GUDANG = "";
     public static String DEFAULT_NAMA_GUDANG = "";
+    public static String DEFAULT_DISKON_DALAM = "";
 
     public Globalsession() {
         StringBuilder sb = new StringBuilder();
@@ -85,9 +86,13 @@ public class Globalsession {
             TAHUN_AWAL_DATA = String.valueOf(jodata.get("tahun_awal_data"));
             BULAN_AWAL_DATA = String.valueOf(jodata.get("bulan_awal_data"));
             PERIODE_TAHUN = String.valueOf(jodata.get("periode_tahun"));
-            PERIODE_BULAN = String.valueOf(jodata.get("periode_bulan"));
+            if (String.valueOf(jodata.get("periode_bulan")).length() == 1) {
+                PERIODE_BULAN = "0" + String.valueOf(jodata.get("periode_bulan"));
+            } else {
+                PERIODE_BULAN = String.valueOf(jodata.get("periode_bulan"));
+            }
             PERIODE_AKHIR_BULAN = String.valueOf(jodata.get("periode_akhir_bulan"));
-            DEFAULT_CURRENCY_ID = String.valueOf(jodata.get("default_currecy_id"));
+            DEFAULT_CURRENCY_ID = String.valueOf(jodata.get("default_currency_id"));
             DEFAULT_DEPT_ID = String.valueOf(jodata.get("default_dept_id"));
             DEFAULT_DEPT_NAME = String.valueOf(jodata.get("default_dept_name"));
             DEFAULT_JOB_ID = String.valueOf(jodata.get("default_job_id"));
@@ -120,7 +125,7 @@ public class Globalsession {
             DEFAULT_NAMA_LOKASI = String.valueOf(jodata.get("default_nama_lokasi"));
             DEFAULT_ID_GUDANG = String.valueOf(jodata.get("default_id_gudang"));
             DEFAULT_NAMA_GUDANG = String.valueOf(jodata.get("default_nama_gudang"));
-
+            DEFAULT_DISKON_DALAM = String.valueOf(jodata.get("default_diskon_dalam"));
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
