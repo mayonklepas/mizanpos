@@ -1076,9 +1076,18 @@ public class DaftarfakturpembelianinputController {
                                     tabeldatalist.get(row).setId_barang(Staticvar.resid);
                                     tm.setValueAt(String.valueOf(Staticvar.resid), row, 0);
                                     tm.setValueAt(String.valueOf(Staticvar.reslabel), row, 1);
+                                    tabeldatalist.get(row).setDiskon_persen("0");
+                                    tabeldatalist.get(row).setDiskon_nominal("0");
+                                    tabeldatalist.get(row).setTotal("0");
+                                    tabeldatalist.get(row).setJumlah("0");
+                                    tabeldatalist.get(row).setIsi_satuan("0");
+                                    tabeldatalist.get(row).setHarga_beli("0");
+                                    tabeldatalist.get(row).setHarga_jual("0");
+                                    tm.setValueAt("0", row, 6);
+                                    tm.setValueAt("0", row, 7);
+                                    tm.setValueAt("0", row, 10);
+                                    tm.setValueAt("0", row, 11);
                                     kalkulasitotalperrow(row);
-                                    pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(row, 2, false, false);
                                 }
 
                             } else {
@@ -1307,9 +1316,18 @@ public class DaftarfakturpembelianinputController {
                             tabeldatalist.get(row).setId_barang(Staticvar.resid);
                             pane.tabledata.setValueAt(String.valueOf(Staticvar.resid), row, 0);
                             pane.tabledata.setValueAt(String.valueOf(Staticvar.reslabel), row, 1);
+                            tabeldatalist.get(row).setDiskon_persen("0");
+                            tabeldatalist.get(row).setDiskon_nominal("0");
+                            tabeldatalist.get(row).setTotal("0");
+                            tabeldatalist.get(row).setJumlah("0");
+                            tabeldatalist.get(row).setIsi_satuan("0");
+                            tabeldatalist.get(row).setHarga_beli("0");
+                            tabeldatalist.get(row).setHarga_jual("0");
+                            pane.tabledata.setValueAt("0", row, 6);
+                            pane.tabledata.setValueAt("0", row, 7);
+                            pane.tabledata.setValueAt("0", row, 10);
+                            pane.tabledata.setValueAt("0", row, 11);
                             kalkulasitotalperrow(row);
-                            pane.tabledata.requestFocus();
-                            pane.tabledata.changeSelection(row, 2, false, false);
                         } else {
                             Staticvar.preid = tabeldatalist.get(row).getId_barang();
                             String defnilai = "";
