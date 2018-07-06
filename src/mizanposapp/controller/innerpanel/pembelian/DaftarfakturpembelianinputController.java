@@ -461,12 +461,6 @@ public class DaftarfakturpembelianinputController {
                     } else {
 
                     }
-
-                    /*datapembelian : id_supplier, istunai, tanggal_pengantaran, id_pengantaran, id_gudang, 
-                    tipe_pembelian, id_termofpayment, total_pembelian, total_biaya, diskon_persen, 
-                    diskon_nominal, total_uang_ muka, total_pajak, id_currency, nilai_kurs, akun_pembelian, 
-                            akun_biaya, akun_diskon, akun_uang_muka,
-                            akun_pajak, id_nomor_po, id_cards_bagian_pembelian, diskon_dalam, diskon_per, isjasa*/
                     pane.dtanggal.setDate(new Date());
                     pane.dtanggal_pengantaran.setDate(new Date());
                     pane.edsupplier.setText(String.valueOf(joindata.get("nama_supplier")));
@@ -1054,7 +1048,7 @@ public class DaftarfakturpembelianinputController {
                             if (jadata.size() == 1) {
                                 for (int i = 0; i < jadata.size(); i++) {
                                     JSONObject joindata = (JSONObject) jadata.get(i);
-                                    tabeldatalist.get(row).setId_barang(Staticvar.resid);
+                                    tabeldatalist.get(row).setId_barang(String.valueOf(joindata.get("id")));
                                     tm.setValueAt(String.valueOf(joindata.get("nama")), row, 1);
                                     tabeldatalist.get(row).setJumlah("1");
                                     tm.setValueAt("0", row, 2);
