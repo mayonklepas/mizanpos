@@ -1613,9 +1613,12 @@ public class DaftarfakturpembelianinputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
+                    double subtotal = Oneforallfunc.ToDouble(pane.lsubtotal.getText());
                     double biayalain = Oneforallfunc.ToDouble(pane.edbiayalain.getText());
-                    double totaldenganbiayalain = total_pembelian_all + biayalain;
-                    pane.ltotal_pembelian.setText(nf.format(totaldenganbiayalain));
+                    double diskon = Oneforallfunc.ToDouble(pane.eddiskon2.getText());
+                    double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
+                    total_pembelian_all = subtotal + biayalain - diskon + pajak;
+                    pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
@@ -1629,13 +1632,15 @@ public class DaftarfakturpembelianinputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double diskon_persen = Oneforallfunc.ToDouble(pane.eddiskon1.getText());
+                    double subtotal = Oneforallfunc.ToDouble(pane.lsubtotal.getText());
                     double biayalain = Oneforallfunc.ToDouble(pane.edbiayalain.getText());
-
-                    double totaldiskon = (total_pembelian_all + biayalain) * (diskon_persen / 100);
-                    pane.eddiskon2.setText(nf.format(totaldiskon));
-                    double totaldenganbiayalaintambahdiskon = (total_pembelian_all + biayalain) - totaldiskon;
-                    pane.ltotal_pembelian.setText(nf.format(totaldenganbiayalaintambahdiskon));
+                    double diskon_persen = Oneforallfunc.ToDouble(pane.eddiskon1.getText());
+                    double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
+                    double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
+                    total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
+                    
+                    pane.eddiskon2.setText(nf.format(diskon_nominal));
+                    pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
@@ -1649,13 +1654,15 @@ public class DaftarfakturpembelianinputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double diskon_nominal = Oneforallfunc.ToDouble(pane.eddiskon2.getText());
+                    double subtotal = Oneforallfunc.ToDouble(pane.lsubtotal.getText());
                     double biayalain = Oneforallfunc.ToDouble(pane.edbiayalain.getText());
-
-                    double totaldiskonpersen = (diskon_nominal / (total_pembelian_all + biayalain)) * 100;
-                    pane.eddiskon1.setText(nf.format(totaldiskonpersen));
-                    double totaldenganbiayalaintambahdiskon = (total_pembelian_all + biayalain) - diskon_nominal;
-                    pane.ltotal_pembelian.setText(nf.format(totaldenganbiayalaintambahdiskon));
+                    double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
+                    double diskon_nominal = Oneforallfunc.ToDouble(pane.eddiskon2.getText());
+                    double diskon_persen = (diskon_nominal / (subtotal + biayalain)) * 100;
+                    total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
+                    
+                    pane.eddiskon1.setText(nf.format(diskon_persen));
+                    pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
@@ -1671,28 +1678,30 @@ public class DaftarfakturpembelianinputController {
 
     private void kalkulasitotal() {
         int jumlah_row = pane.tabledata.getRowCount();
+        double subtotal = 0;
         total_pembelian_all = 0;
+        total_pajak = 0;
+        
         for (int i = 0; i < jumlah_row; i++) {
             double total_beli_masing = Oneforallfunc.ToDouble(emptycellcheck(i, 11));
-            total_pembelian_all = total_pembelian_all + total_beli_masing;
-        }
-
-        total_pajak = 0;
-        for (int i = 0; i < jumlah_row; i++) {
+            subtotal = subtotal + total_beli_masing;
+            
             double total_pajak_masing = Oneforallfunc.ToDouble(emptycellcheck(i, 11)) * (Oneforallfunc.doubleparsing(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
+
         pane.ltotal_pajak.setText(nf.format(total_pajak));
-
-        pane.lsubtotal.setText(nf.format(total_pembelian_all));
-        double diskon_persen = Oneforallfunc.ToDouble(pane.eddiskon1.getText());
-
+        pane.lsubtotal.setText(nf.format(subtotal));
+        
         double biayalain = Oneforallfunc.ToDouble(pane.edbiayalain.getText());
-
-        double totaldiskon = (total_pembelian_all + biayalain) * (diskon_persen / 100);
-        pane.eddiskon2.setText(nf.format(totaldiskon));
-        double totaldenganbiayalaintambahdiskon = (total_pembelian_all + biayalain) - totaldiskon;
-        pane.ltotal_pembelian.setText(nf.format(totaldenganbiayalaintambahdiskon + total_pajak));
+        double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
+        double diskon_persen = Oneforallfunc.ToDouble(pane.eddiskon1.getText());
+        double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
+        total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
+                    
+        
+        pane.eddiskon2.setText(nf.format(diskon_nominal));
+        pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
 
     private void kalkulasitotalperrow(int row) {
