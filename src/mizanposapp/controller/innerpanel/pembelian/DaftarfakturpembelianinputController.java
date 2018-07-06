@@ -69,7 +69,7 @@ public class DaftarfakturpembelianinputController {
     CrudHelper ch = new CrudHelper();
     Daftarfakturpembelian_input_panel pane;
     String valsupplier, valgudang, valdept, valsalesman, valshipvia, valtop,
-            valakun_pembelian, valakun_ongkir, valakun_diskon, valcurrency;
+            valakun_pembelian, valakun_ongkir, valakun_diskon, valakun_uang_muka;
     int valcheck;
     int tipe_bayar, tipe_beli;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -96,6 +96,7 @@ public class DaftarfakturpembelianinputController {
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
         skinning();
+        loadsession();
         getkodetransaksi();
         loaddata();
         simpandata();
@@ -106,14 +107,26 @@ public class DaftarfakturpembelianinputController {
         carisalesman();
         carishipvia();
         caritop();
+        cariakunpembelian();
+        cariakundiskon();
+        cariakunongkir();
+        cariakunuangmuka();
         addtotable();
         kalkulasi();
         hapusbaris();
         batal();
+
     }
 
     private void loadsession() {
-        valcurrency = Globalsession.DEFAULT_CURRENCY_ID;
+        pane.edakun_pembelian_tunai.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+        pane.edakun_uang_muka.setText(Globalsession.AKUNUANGMUKAPEMBELIAN + "-" + Globalsession.NAMAAKUNUANGMUKAPEMBELIAN);
+        pane.edakun_diskon_pembelian.setText(Globalsession.AKUNDISKONPEMBELIAN + "-" + Globalsession.NAMAAKUNDISKONPEMBELIAN);
+        pane.edakun_ongkir.setText(Globalsession.AKUNONGKOSKIRIMPEMBELIAN + "-" + Globalsession.NAMAAKUNONGKOSKIRIMPEMBELIAN);
+        valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
+        valakun_uang_muka = Globalsession.AKUNUANGMUKAPEMBELIAN;
+        valakun_diskon = Globalsession.AKUNDISKONPEMBELIAN;
+        valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPEMBELIAN;
     }
 
     private void skinning() {
@@ -584,12 +597,12 @@ public class DaftarfakturpembelianinputController {
                     Oneforallfunc.ToDouble(pane.eddiskon2.getText()),
                     Oneforallfunc.ToDouble(pane.eduang_muka.getText()),
                     total_pajak,
-                    valcurrency,
+                    Globalsession.DEFAULT_CURRENCY_ID,
                     "1",
                     valakun_pembelian,
-                    Globalsession.AKUNONGKOSKIRIMPEMBELIAN,
-                    Globalsession.AKUNDISKONPEMBELIAN,
-                    "101-3001-01",
+                    valakun_ongkir,
+                    valakun_diskon,
+                    valakun_uang_muka,
                     valcheck,
                     new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal_pengantaran.getDate()),
                     valshipvia,
@@ -669,10 +682,10 @@ public class DaftarfakturpembelianinputController {
                     + "akun_diskon='%s'::"
                     + "akun_uang_muka='%s'::"
                     + "diskon_dalam='%s'::"
-                    + "tanggal_pengantaran='%s'"
-                    + "id_pengantaran='%s'"
-                    + "id_bagian_pembelian='%s'"
-                    + "id_termofpayment='%s'"
+                    + "tanggal_pengantaran='%s'::"
+                    + "id_pengantaran='%s'::"
+                    + "id_bagian_pembelian='%s'::"
+                    + "id_termofpayment='%s'::"
                     + "isjasa='%s'"
                     + "&" + kirimtexpembelian(),
                     valdept,
@@ -690,10 +703,10 @@ public class DaftarfakturpembelianinputController {
                     total_pajak,
                     Globalsession.DEFAULT_CURRENCY_ID,
                     "1",
-                    Globalsession.AKUNPEMBELIANTUNAI,
-                    Globalsession.AKUNONGKOSKIRIMPEMBELIAN,
-                    Globalsession.AKUNDISKONPEMBELIAN,
-                    "101-3001-01",
+                    valakun_pembelian,
+                    valakun_ongkir,
+                    valakun_diskon,
+                    valakun_uang_muka,
                     valcheck,
                     new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal_pengantaran.getDate()),
                     valshipvia,
@@ -925,78 +938,6 @@ public class DaftarfakturpembelianinputController {
 
     }
 
-    private void cariakunpembelian() {
-        pane.bcariakun_pembelian.addActionListener((ActionEvent e) -> {
-            Staticvar.sfilter = "";
-            Staticvar.preid = valshipvia;
-            Staticvar.prelabel = pane.edshipvia.getText();
-            JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
-            jd.pack();
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setLocationRelativeTo(null);
-            jd.setVisible(true);
-            jd.toFront();
-            valakun_pembelian = Staticvar.resid;
-            pane.edshipvia.setText(Staticvar.reslabel);
-        });
-
-    }
-
-    private void cariakundiskon() {
-        pane.bcariakun_diskon_pembelian.addActionListener((ActionEvent e) -> {
-            Staticvar.sfilter = "";
-            Staticvar.preid = valshipvia;
-            Staticvar.prelabel = pane.edshipvia.getText();
-            JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
-            jd.pack();
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setLocationRelativeTo(null);
-            jd.setVisible(true);
-            jd.toFront();
-            valakun_diskon = Staticvar.resid;
-            pane.edshipvia.setText(Staticvar.reslabel);
-        });
-
-    }
-
-    private void cariakunongkir() {
-        pane.bcariakun_ongkir.addActionListener((ActionEvent e) -> {
-            Staticvar.sfilter = "";
-            Staticvar.preid = valshipvia;
-            Staticvar.prelabel = pane.edshipvia.getText();
-            JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
-            jd.pack();
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setLocationRelativeTo(null);
-            jd.setVisible(true);
-            jd.toFront();
-            valakun_diskon = Staticvar.resid;
-            pane.edshipvia.setText(Staticvar.reslabel);
-        });
-
-    }
-
-    private void caricurrency() {
-        pane.bcaridefault_currency.addActionListener((ActionEvent e) -> {
-            Staticvar.sfilter = "";
-            Staticvar.preid = valshipvia;
-            Staticvar.prelabel = pane.edshipvia.getText();
-            JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
-            jd.pack();
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setLocationRelativeTo(null);
-            jd.setVisible(true);
-            jd.toFront();
-            valcurrency = Staticvar.resid;
-            pane.edshipvia.setText(Staticvar.reslabel);
-        });
-
-    }
-
     private void caritop() {
         pane.bcaritop.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -1011,6 +952,68 @@ public class DaftarfakturpembelianinputController {
             jd.toFront();
             valtop = Staticvar.resid;
             pane.edtop.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void rawgetidakun(String prevlabel) {
+        Staticvar.sfilter = "";
+        Staticvar.preid = valshipvia;
+        Staticvar.prelabel = prevlabel;
+        JDialog jd = new JDialog(new Mainmenu());
+        jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
+        jd.pack();
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        jd.toFront();
+    }
+
+    private void cariakunpembelian() {
+        pane.bcariakun_pembelian.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakun_pembelian_tunai.getText());
+            if (!Staticvar.resid.equals("")) {
+                valakun_pembelian = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_pembelian_tunai.setText(val);
+            }
+        });
+
+    }
+
+    private void cariakundiskon() {
+        pane.bcariakun_diskon_pembelian.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakun_diskon_pembelian.getText());
+            if (!Staticvar.resid.equals("")) {
+                valakun_diskon = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_diskon_pembelian.setText(val);
+            }
+
+        });
+
+    }
+
+    private void cariakunongkir() {
+        pane.bcariakun_ongkir.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakun_ongkir.getText());
+            if (!Staticvar.resid.equals("")) {
+                valakun_ongkir = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_ongkir.setText(val);
+            }
+        });
+
+    }
+
+    private void cariakunuangmuka() {
+        pane.bcari_uang_muka.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakun_uang_muka.getText());
+            if (!Staticvar.resid.equals("")) {
+                valakun_uang_muka = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_uang_muka.setText(val);
+            }
         });
 
     }
