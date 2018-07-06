@@ -29,7 +29,6 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tcari3 = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,13 +38,11 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         edno_transaksi = new javax.swing.JTextField();
-        dtanggal = new org.freixas.jcalendar.JCalendarCombo();
         bcari_supplier = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         bcari_salesman = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        dtanggal_pengantaran = new org.freixas.jcalendar.JCalendarCombo();
         jLabel16 = new javax.swing.JLabel();
         bcarishipvia = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -76,6 +73,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         edtop = new javax.swing.JTextField();
         edshipvia = new javax.swing.JTextField();
         edsalesman = new javax.swing.JTextField();
+        dtanggal_pengantaran = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         eddept = new javax.swing.JTextField();
@@ -129,10 +127,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jLabel44 = new javax.swing.JLabel();
         edakun_uang_muka = new javax.swing.JTextField();
         bcari_uang_muka = new javax.swing.JButton();
-
-        tcari3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        tcari3.setText("Cari Data...");
-        tcari3.setPreferredSize(new java.awt.Dimension(51, 20));
+        dtanggal = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -186,8 +181,6 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        dtanggal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-
         bcari_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari_supplier.setText("Cari");
         bcari_supplier.addActionListener(new java.awt.event.ActionListener() {
@@ -211,8 +204,6 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel15.setText("Tangga Pengantaranl");
-
-        dtanggal_pengantaran.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel16.setText("Pengantaran Dengan");
@@ -396,12 +387,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcaritop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcaritop.setText("Cari");
         bcaritop.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcaritopAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcaritop.addActionListener(new java.awt.event.ActionListener() {
@@ -428,13 +419,15 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(edshipvia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(bcarishipvia))
-                            .addComponent(dtanggal_pengantaran, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15)
+                                .addComponent(jLabel16)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addComponent(edshipvia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(3, 3, 3)
+                                    .addComponent(bcarishipvia)))
+                            .addComponent(dtanggal_pengantaran, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
@@ -467,14 +460,14 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(bcari_salesman)
-                                    .addComponent(edsalesman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dtanggal_pengantaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel14)
                             .addComponent(jLabel15))
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dtanggal_pengantaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(bcari_salesman)
+                                .addComponent(edsalesman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
@@ -678,12 +671,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcariakun_pembelian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcariakun_pembelian.setText("Cari");
         bcariakun_pembelian.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcariakun_pembelianAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcariakun_pembelian.addActionListener(new java.awt.event.ActionListener() {
@@ -695,12 +688,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcariakun_ongkir.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcariakun_ongkir.setText("Cari");
         bcariakun_ongkir.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcariakun_ongkirAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcariakun_ongkir.addActionListener(new java.awt.event.ActionListener() {
@@ -721,12 +714,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcariakun_diskon_pembelian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcariakun_diskon_pembelian.setText("Cari");
         bcariakun_diskon_pembelian.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcariakun_diskon_pembelianAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcariakun_diskon_pembelian.addActionListener(new java.awt.event.ActionListener() {
@@ -756,12 +749,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcari_uang_muka.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari_uang_muka.setText("Cari");
         bcari_uang_muka.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcari_uang_mukaAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcari_uang_muka.addActionListener(new java.awt.event.ActionListener() {
@@ -805,7 +798,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                         .addComponent(edakun_pembelian_tunai, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(bcariakun_pembelian)))
-                .addContainerGap(398, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -834,7 +827,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel44)
                     .addComponent(edakun_uang_muka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari_uang_muka))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Kontrol Akun", jPanel3);
@@ -859,20 +852,20 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel13)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(eddept, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(bcari_dept))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(edsupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(bcari_supplier))
-                                    .addComponent(edno_transaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dtanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel7)))
                             .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(eddept, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(bcari_dept))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(edsupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(bcari_supplier))
+                            .addComponent(edno_transaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dtanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
@@ -914,11 +907,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(edno_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(dtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel8))
+                            .addComponent(dtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
@@ -926,7 +920,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                             .addComponent(bcari_dept)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -1032,8 +1026,8 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox ckdiskon;
     public javax.swing.JComboBox<String> cmb_tipe_bayar;
     public javax.swing.JComboBox<String> cmb_tipe_pembelian;
-    public org.freixas.jcalendar.JCalendarCombo dtanggal;
-    public org.freixas.jcalendar.JCalendarCombo dtanggal_pengantaran;
+    public com.toedter.calendar.JDateChooser dtanggal;
+    public com.toedter.calendar.JDateChooser dtanggal_pengantaran;
     public javax.swing.JTextField edakun_diskon_pembelian;
     public javax.swing.JTextField edakun_ongkir;
     public javax.swing.JTextField edakun_pembelian_tunai;
@@ -1103,6 +1097,5 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     public javax.swing.JLabel ltotal_pajak;
     public javax.swing.JLabel ltotal_pembelian;
     public javax.swing.JTable tabledata;
-    private javax.swing.JTextField tcari3;
     // End of variables declaration//GEN-END:variables
 }

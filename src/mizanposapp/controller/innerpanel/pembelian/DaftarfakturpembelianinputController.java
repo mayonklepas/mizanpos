@@ -20,7 +20,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -130,8 +129,10 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void skinning() {
-        DateFormat dtf = DateFormat.getDateInstance(DateFormat.LONG);
-        pane.dtanggal.setDateFormat(dtf);
+        pane.dtanggal.setDateFormatString("dd MMMM yyyy");
+        pane.dtanggal_pengantaran.setDateFormatString("dd MMMM yyyy");
+        pane.dtanggal.setDate(new Date());
+        pane.dtanggal_pengantaran.setDate(new Date());
     }
 
     private void getkodetransaksi() {
@@ -1638,7 +1639,7 @@ public class DaftarfakturpembelianinputController {
                     double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
                     double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
                     total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-                    
+
                     pane.eddiskon2.setText(nf.format(diskon_nominal));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
@@ -1660,7 +1661,7 @@ public class DaftarfakturpembelianinputController {
                     double diskon_nominal = Oneforallfunc.ToDouble(pane.eddiskon2.getText());
                     double diskon_persen = (diskon_nominal / (subtotal + biayalain)) * 100;
                     total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-                    
+
                     pane.eddiskon1.setText(nf.format(diskon_persen));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
@@ -1681,25 +1682,24 @@ public class DaftarfakturpembelianinputController {
         double subtotal = 0;
         total_pembelian_all = 0;
         total_pajak = 0;
-        
+
         for (int i = 0; i < jumlah_row; i++) {
             double total_beli_masing = Oneforallfunc.ToDouble(emptycellcheck(i, 11));
             subtotal = subtotal + total_beli_masing;
-            
+
             double total_pajak_masing = Oneforallfunc.ToDouble(emptycellcheck(i, 11)) * (Oneforallfunc.doubleparsing(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.lsubtotal.setText(nf.format(subtotal));
-        
+
         double biayalain = Oneforallfunc.ToDouble(pane.edbiayalain.getText());
         double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
         double diskon_persen = Oneforallfunc.ToDouble(pane.eddiskon1.getText());
         double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
         total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-                    
-        
+
         pane.eddiskon2.setText(nf.format(diskon_nominal));
         pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
