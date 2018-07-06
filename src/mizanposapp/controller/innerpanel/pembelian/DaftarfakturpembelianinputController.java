@@ -68,7 +68,8 @@ public class DaftarfakturpembelianinputController {
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarfakturpembelian_input_panel pane;
-    String valsupplier, valgudang, valdept, valsalesman, valshipvia, valtop;
+    String valsupplier, valgudang, valdept, valsalesman, valshipvia, valtop,
+            valakun_pembelian, valakun_ongkir, valakun_diskon, valcurrency;
     int valcheck;
     int tipe_bayar, tipe_beli;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -109,6 +110,10 @@ public class DaftarfakturpembelianinputController {
         kalkulasi();
         hapusbaris();
         batal();
+    }
+
+    private void loadsession() {
+        valcurrency = Globalsession.DEFAULT_CURRENCY_ID;
     }
 
     private void skinning() {
@@ -579,9 +584,9 @@ public class DaftarfakturpembelianinputController {
                     Oneforallfunc.ToDouble(pane.eddiskon2.getText()),
                     Oneforallfunc.ToDouble(pane.eduang_muka.getText()),
                     total_pajak,
-                    Globalsession.DEFAULT_CURRENCY_ID,
+                    valcurrency,
                     "1",
-                    Globalsession.AKUNPEMBELIANTUNAI,
+                    valakun_pembelian,
                     Globalsession.AKUNONGKOSKIRIMPEMBELIAN,
                     Globalsession.AKUNDISKONPEMBELIAN,
                     "101-3001-01",
@@ -915,6 +920,78 @@ public class DaftarfakturpembelianinputController {
             jd.setVisible(true);
             jd.toFront();
             valshipvia = Staticvar.resid;
+            pane.edshipvia.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void cariakunpembelian() {
+        pane.bcariakun_pembelian.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valshipvia;
+            Staticvar.prelabel = pane.edshipvia.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valakun_pembelian = Staticvar.resid;
+            pane.edshipvia.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void cariakundiskon() {
+        pane.bcariakun_diskon_pembelian.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valshipvia;
+            Staticvar.prelabel = pane.edshipvia.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valakun_diskon = Staticvar.resid;
+            pane.edshipvia.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void cariakunongkir() {
+        pane.bcariakun_ongkir.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valshipvia;
+            Staticvar.prelabel = pane.edshipvia.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valakun_diskon = Staticvar.resid;
+            pane.edshipvia.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void caricurrency() {
+        pane.bcaridefault_currency.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valshipvia;
+            Staticvar.prelabel = pane.edshipvia.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("pengantaran", "popupdaftarpengantaran", "Daftar Kurir"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valcurrency = Staticvar.resid;
             pane.edshipvia.setText(Staticvar.reslabel);
         });
 
