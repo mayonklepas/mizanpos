@@ -66,7 +66,28 @@ public class Oneforallfunc {
         } catch (Exception ex) {
             result = 0;
             Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+        return result;
+    }
+
+    public static double ToInt(String str) {
+        int result = 0;
+        try {
+            result = Integer.parseInt(str.replace(",", ""));
+        } catch (Exception e) {
+            result = 0;
+        }
+        return result;
+    }
+
+    public static double ToInt(Object obj) {
+        int result = 0;
+        try {
+            result = Integer.parseInt(String.valueOf(obj).replace(",", ""));
+        } catch (Exception ex) {
+            result = 0;
+            Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
     }
 
