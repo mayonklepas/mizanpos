@@ -832,6 +832,7 @@ public class DaftarfakturpembelianinputController {
 
     private void carisuplier() {
         pane.bcari_supplier.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
             Staticvar.preid = valsupplier;
             Staticvar.prelabel = pane.edsupplier.getText();
             JDialog jd = new JDialog(new Mainmenu());
@@ -849,6 +850,7 @@ public class DaftarfakturpembelianinputController {
 
     private void carisalesman() {
         pane.bcari_salesman.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
             Staticvar.preid = valsalesman;
             Staticvar.prelabel = pane.edsalesman.getText();
             JDialog jd = new JDialog(new Mainmenu());
@@ -866,6 +868,7 @@ public class DaftarfakturpembelianinputController {
 
     private void carigudang() {
         pane.bcari_gudang.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
             Staticvar.preid = valgudang;
             Staticvar.prelabel = pane.edgudang.getText();
             JDialog jd = new JDialog(new Mainmenu());
@@ -883,6 +886,7 @@ public class DaftarfakturpembelianinputController {
 
     private void caridepartment() {
         pane.bcari_dept.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
             Staticvar.preid = valdept;
             Staticvar.prelabel = pane.eddept.getText();
             JDialog jd = new JDialog(new Mainmenu());
@@ -900,6 +904,7 @@ public class DaftarfakturpembelianinputController {
 
     private void carishipvia() {
         pane.bcarishipvia.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
             Staticvar.preid = valshipvia;
             Staticvar.prelabel = pane.edshipvia.getText();
             JDialog jd = new JDialog(new Mainmenu());
@@ -917,6 +922,7 @@ public class DaftarfakturpembelianinputController {
 
     private void caritop() {
         pane.bcaritop.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
             Staticvar.preid = valtop;
             Staticvar.prelabel = pane.edtop.getText();
             JDialog jd = new JDialog(new Mainmenu());
@@ -1088,7 +1094,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
                             if (checkalphabeth(valcol) == false) {
                                 columnfunction(row, 6, false);
-                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(Oneforallfunc.ToInt(tm.getValueAt(row, 6))));
+                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(Oneforallfunc.ToDouble(tm.getValueAt(row, 6))));
                                 //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
@@ -1115,7 +1121,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 7));
                             if (checknumerik(valcol) == true) {
                                 columnfunction(row, 7, false);
-                                tabeldatalist.get(row).setDiskon_nominal(String.valueOf(Oneforallfunc.ToInt(tm.getValueAt(row, 7))));
+                                tabeldatalist.get(row).setDiskon_nominal(String.valueOf(Oneforallfunc.ToDouble(tm.getValueAt(row, 7))));
                                 //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
@@ -1170,7 +1176,70 @@ public class DaftarfakturpembelianinputController {
                     tb.getCellEditor().cancelCellEditing();
                 }
                 if (e.getClickCount() == 2) {
-                    if (col == 3) {
+
+                    if (col == 0) {
+                        Staticvar.preid = tabeldatalist.get(row).getId_barang();
+                        String defnilai = "";
+                        String cekval = String.valueOf(pane.tabledata.getValueAt(row, col));
+                        if (cekval.equals("null") || cekval.equals("")) {
+                            defnilai = "";
+                        } else {
+                            defnilai = String.valueOf(pane.tabledata.getValueAt(row, 0));
+                        }
+                        Staticvar.prelabel = defnilai;
+                        Staticvar.sfilter = defnilai;
+                        Staticvar.prelabel = defnilai;
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        if (!Staticvar.reslabel.equals("")) {
+                            try {
+                                JSONParser jpdata2 = new JSONParser();
+                                String param2 = String.format("id=%s", Staticvar.resid);
+                                Object objdataraw2 = jpdata2.parse(ch.getdatadetails("dm/datapersediaan", param2));
+                                JSONObject jodataraw2 = (JSONObject) objdataraw2;
+                                Object objdata2 = jodataraw2.get("data");
+                                JSONArray jadata2 = (JSONArray) objdata2;
+                                for (int i = 0; i < jadata2.size(); i++) {
+                                    JSONObject joindata2 = (JSONObject) jadata2.get(i);
+                                    tabeldatalist.get(row).setId_barang(Staticvar.resid);
+                                    pane.tabledata.setValueAt(String.valueOf(joindata2.get("kode")), row, 0);
+                                    pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama")), row, 1);
+                                    tabeldatalist.get(row).setJumlah("0");
+                                    tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
+                                    pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 3);
+                                    tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
+                                    tabeldatalist.get(row).setIsi_satuan("1");
+                                    tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
+                                    pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata2.get("harga_beli"))), row, 4);
+                                    tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
+                                    pane.tabledata.setValueAt(nf.format(Oneforallfunc.ToDouble(joindata2.get("harga_jual"))), row, 5);
+                                    pane.tabledata.setValueAt("0", row, 6);
+                                    pane.tabledata.setValueAt("0", row, 7);
+                                    tabeldatalist.get(row).setDiskon_persen("0");
+                                    tabeldatalist.get(row).setDiskon_nominal("0");
+                                    pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, 8);
+                                    tabeldatalist.get(row).setId_pajak(String.valueOf(joindata2.get("id_pajak_beli")));
+                                    tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("persen_pajak_beli")));
+                                    tabeldatalist.get(row).setId_gudang(valgudang);
+                                    pane.tabledata.setValueAt(pane.edgudang.getText(), row, 9);
+                                    tabeldatalist.get(row).setKeterangan("");
+                                    pane.tabledata.setValueAt("", row, 10);
+                                    tabeldatalist.get(row).setTotal("0");
+                                    pane.tabledata.setValueAt("0", row, 11);
+                                }
+                                kalkulasitotalperrow(row);
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, 2, false, false);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    } else if (col == 3) {
                         Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_satuan();
                         Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 3));
