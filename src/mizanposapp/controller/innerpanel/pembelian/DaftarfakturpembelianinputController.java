@@ -676,7 +676,7 @@ public class DaftarfakturpembelianinputController {
                     Oneforallfunc.ToDouble(pane.eduang_muka.getText()),
                     total_pajak,
                     Globalsession.DEFAULT_CURRENCY_ID,
-                    isjasa,
+                    "1",
                     valakun_pembelian,
                     valakun_ongkir,
                     valakun_diskon,
@@ -686,7 +686,7 @@ public class DaftarfakturpembelianinputController {
                     valshipvia,
                     valsalesman,
                     valtop,
-                    "0");
+                    isjasa);
             ch.insertdata("insertpembelian", data);
             if (!Staticvar.getresult.equals("berhasil")) {
                 try {
@@ -780,7 +780,7 @@ public class DaftarfakturpembelianinputController {
                     Oneforallfunc.ToDouble(pane.eduang_muka.getText()),
                     total_pajak,
                     Globalsession.DEFAULT_CURRENCY_ID,
-                    isjasa,
+                    "1",
                     valakun_pembelian,
                     valakun_ongkir,
                     valakun_diskon,
@@ -790,7 +790,7 @@ public class DaftarfakturpembelianinputController {
                     valshipvia,
                     valsalesman,
                     valtop,
-                    "0");
+                    isjasa);
             ch.updatedata("updatepembelian", data, id);
             if (!Staticvar.getresult.equals("berhasil")) {
                 JDialog jd = new JDialog(new Mainmenu());
@@ -883,7 +883,15 @@ public class DaftarfakturpembelianinputController {
             sb.append("--");
 
         }
-        return sb.toString().substring(0, sb.toString().length() - 2);
+        String rawhasil = sb.toString().substring(0, sb.toString().length() - 2);
+        String finalhasil = "";
+        if (isjasa == 1) {
+            finalhasil = rawhasil.replace("id_inv", "akun");
+        } else {
+            finalhasil = rawhasil;
+        }
+
+        return finalhasil;
     }
 
     private void hapusbaris() {
