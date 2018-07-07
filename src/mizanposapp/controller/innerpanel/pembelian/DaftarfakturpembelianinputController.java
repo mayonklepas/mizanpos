@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
@@ -103,7 +105,7 @@ public class DaftarfakturpembelianinputController {
         this.pane = pane;
         skinning();
         loadsession();
-        getkodetransaksi();
+        //getkodetransaksi();
         loaddata();
         simpandata();
         checkandcombocontrol();
@@ -376,7 +378,7 @@ public class DaftarfakturpembelianinputController {
 
         double pembagi = lebar / lebarAll;
         double lebarAllNew = 0;
-        for (int i = 0; i < lsresize.size() -1; i++) {
+        for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
                 int wi = Oneforallfunc.ToInt(pembagi * setsize);
@@ -386,7 +388,7 @@ public class DaftarfakturpembelianinputController {
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-               int wi = Oneforallfunc.ToInt(lebar - lebarAllNew);
+                int wi = Oneforallfunc.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -1236,9 +1238,8 @@ public class DaftarfakturpembelianinputController {
                             ischangevalue = true;
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 6));
                             if (checkalphabeth(valcol) == false) {
+                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(tm.getValueAt(row, 6)));
                                 columnfunction(row, 6, false);
-                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(Oneforallfunc.ToDouble(tm.getValueAt(row, 6))));
-                                //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 Errorpanel ep = new Errorpanel();
@@ -1249,11 +1250,12 @@ public class DaftarfakturpembelianinputController {
                                 jd.setLocationRelativeTo(null);
                                 jd.setVisible(true);
                                 jd.toFront();
-                                valcol = valcol.replaceAll("[^0-9.+]", "");
+                                valcol = "0";
                                 pane.tabledata.setValueAt(valcol, row, 6);
                                 columnfunction(row, 6, false);
-                                //nextcolom(col, row);
+                                pane.tabledata.requestFocus();
                             }
+
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
@@ -1703,8 +1705,15 @@ public class DaftarfakturpembelianinputController {
         if (pane.tabledata.getValueAt(row, col).equals("")) {
             return;
         }
-        if ((col == 2) || (col == 4) || (col == 6) || (col == 7)) {
+        if ((col == 2) || (col == 4) || (col == 7)) {
             String value = nf.format(Oneforallfunc.ToDouble(pane.tabledata.getValueAt(row, col)));
+            pane.tabledata.setValueAt(value, row, col);
+            kalkulasitotalperrow(row);
+            if (addrow == true) {
+                addautorow(row);
+            }
+        } else if (col == 6) {
+            String value = String.valueOf(pane.tabledata.getValueAt(row, col));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
             if (addrow == true) {
@@ -1816,6 +1825,7 @@ public class DaftarfakturpembelianinputController {
                 double qty = Oneforallfunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
                 double harga = Oneforallfunc.ToDouble(pane.tabledata.getValueAt(row, 4));
                 double total = harga;
+                String s = "";
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = Oneforallfunc.ToDouble(multidiskon[i]);
@@ -1872,13 +1882,10 @@ public class DaftarfakturpembelianinputController {
     }
 
     private boolean checkalphabeth(String val) {
-        boolean hasil = false;
-        if (val.contains("^[0-9].+-") == true) {
-            hasil = true;
-        } else {
-            hasil = false;
-        }
-        return hasil;
+        Pattern p = Pattern.compile("[^0-9+]");
+        Matcher m = p.matcher(val);
+        boolean b = m.find();
+        return b;
     }
 
     private void nextcolom(int col, int row) {
