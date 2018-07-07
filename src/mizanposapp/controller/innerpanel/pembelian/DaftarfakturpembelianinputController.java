@@ -1127,6 +1127,7 @@ public class DaftarfakturpembelianinputController {
                                 if (sudahterpanggil == true) {
                                     sudahterpanggil = false;
                                 } else {
+                                    Staticvar.sfilter = "";
                                     JDialog jd = new JDialog(new Mainmenu());
                                     jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
                                     jd.pack();
@@ -1372,6 +1373,7 @@ public class DaftarfakturpembelianinputController {
                 if (e.getClickCount() == 2) {
                     if (col == 0) {
                         if (isjasa == 1) {
+                            Staticvar.sfilter = "";
                             sudahterpanggil = true;
                             JDialog jd = new JDialog(new Mainmenu());
                             jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
@@ -1388,7 +1390,7 @@ public class DaftarfakturpembelianinputController {
                                 tabeldatalist.get(row).setDiskon_nominal("0");
                                 tabeldatalist.get(row).setTotal("0");
                                 tabeldatalist.get(row).setJumlah("0");
-                                tabeldatalist.get(row).setIsi_satuan("0");
+                                tabeldatalist.get(row).setIsi_satuan("1");
                                 tabeldatalist.get(row).setHarga_beli("0");
                                 tabeldatalist.get(row).setHarga_jual("0");
                                 pane.tabledata.setValueAt("0", row, 6);
