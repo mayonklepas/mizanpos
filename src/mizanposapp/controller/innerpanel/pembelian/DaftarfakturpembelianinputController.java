@@ -64,7 +64,7 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class DaftarfakturpembelianinputController {
-    
+
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarfakturpembelian_input_panel pane;
@@ -91,13 +91,13 @@ public class DaftarfakturpembelianinputController {
     ArrayList<Integer> lsoldhide = new ArrayList<>();
     ArrayList<Integer> lsresize = new ArrayList<>();
     ArrayList<Integer> lsoldsize = new ArrayList<>();
-    
+
     private boolean ischangevalue = false;
     static String oldvalue = "";
-    
+
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
     static boolean sudahterpanggil = false;
-    
+
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
         skinning();
@@ -120,9 +120,9 @@ public class DaftarfakturpembelianinputController {
         kalkulasi();
         hapusbaris();
         batal();
-        
+
     }
-    
+
     private void loadsession() {
         pane.edakun_pembelian_tunai.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
         pane.edakun_uang_muka.setText(Globalsession.AKUNUANGMUKAPEMBELIAN + "-" + Globalsession.NAMAAKUNUANGMUKAPEMBELIAN);
@@ -133,16 +133,16 @@ public class DaftarfakturpembelianinputController {
         valakun_diskon = Globalsession.AKUNDISKONPEMBELIAN;
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPEMBELIAN;
     }
-    
+
     private void skinning() {
         pane.dtanggal.setDateFormatString("dd MMMM yyyy");
         pane.dtanggal_pengantaran.setDateFormatString("dd MMMM yyyy");
         pane.dtanggal.setDate(new Date());
         pane.dtanggal_pengantaran.setDate(new Date());
         pane.dtanggal.getDateEditor().setEnabled(false);
-        
+
     }
-    
+
     private void getkodetransaksi() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -157,15 +157,15 @@ public class DaftarfakturpembelianinputController {
                         pane.edno_transaksi.setText(String.valueOf(jo.get("no_transaksi")));
                         no_urut = Oneforallfunc.intparsing(String.valueOf(jo.get("no_urut")));
                     }
-                    
+
                 } catch (ParseException ex) {
                     Logger.getLogger(DaftarreturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-        
+
     }
-    
+
     private void customtable() {
         pane.tabledata.setRowSelectionAllowed(false);
         pane.tabledata.setCellSelectionEnabled(true);
@@ -175,9 +175,9 @@ public class DaftarfakturpembelianinputController {
             public boolean isCellEditable(int row, int column) {
                 return column == 1 || column == 3 || column == 5 || column == 8 || column == 9 || column == 11 ? false : true;
             }
-            
+
         };
-        
+
         MouseAdapter ma = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -185,20 +185,20 @@ public class DaftarfakturpembelianinputController {
                     pane.tabledata.getCellEditor().cancelCellEditing();
                 }
             }
-            
+
         };
-        
+
         pane.addMouseListener(ma);
-        
+
         TableCellEditor tce = new DefaultCellEditor(new JTextField()) {
             @Override
             public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
                 delegate.setValue((editorComponent instanceof JTextField) ? null : value);
                 return editorComponent;
             }
-            
+
         };
-        
+
         pane.tabledata.setDefaultEditor(Object.class, tce);
         String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
             "0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9",
@@ -209,9 +209,9 @@ public class DaftarfakturpembelianinputController {
         for (int i = 0; i < keyholdnumeric.length; i++) {
             pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "startEditing");
         }
-        
+
     }
-    
+
     private void checkandcombocontrol() {
         pane.ckdiskon.addActionListener(new ActionListener() {
             @Override
@@ -224,7 +224,7 @@ public class DaftarfakturpembelianinputController {
                     hidetable(7);
                     showtable(6);
                     valcheck = 0;
-                    
+
                 } else {
                     hidetable(6);
                     showtable(7);
@@ -232,7 +232,7 @@ public class DaftarfakturpembelianinputController {
                 }
             }
         });
-        
+
         pane.cmb_tipe_bayar.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -254,7 +254,7 @@ public class DaftarfakturpembelianinputController {
                 }
             }
         });
-        
+
         pane.cmb_tipe_pembelian.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -270,13 +270,14 @@ public class DaftarfakturpembelianinputController {
                         hidetable(7);
                         showtable(6);
                         valcheck = 0;
-                        
+
                     } else {
                         hidetable(6);
                         showtable(7);
                         valcheck = 1;
                     }
                 } else {
+
                     isjasa = 1;
                     lshide.set(3, 0);
                     lshide.set(9, 0);
@@ -287,18 +288,34 @@ public class DaftarfakturpembelianinputController {
                         hidetable(7);
                         showtable(6);
                         valcheck = 0;
-                        
+
                     } else {
                         hidetable(6);
                         showtable(7);
                         valcheck = 1;
                     }
+
                 }
+
+                Runnable rn = new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < pane.tabledata.getRowCount(); i++) {
+                            dtmtabeldata.removeRow(0);
+                        }
+                        tabeldatalist.clear();
+                        dtmtabeldata.setRowCount(0);
+                        tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                        dtmtabeldata.addRow(rowtabledata);
+                    }
+                };
+                SwingUtilities.invokeLater(rn);
             }
-        });
-        
+        }
+        );
+
     }
-    
+
     private void loadheaderx() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -316,7 +333,7 @@ public class DaftarfakturpembelianinputController {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 int iscolomvisible = Integer.parseInt(String.valueOf(jaaray.get(2)));
-                
+
                 if (iscolomvisible == 1) {
                     lsvisiblecolom.add(iscolomvisible);
                 }
@@ -326,27 +343,27 @@ public class DaftarfakturpembelianinputController {
             // resize colum
             double lebar = d.getWidth() - Staticvar.lebarPanelMenu;;
             double lebarAll = 0;
-            
+
             for (int i = 0; i < lsvisiblecolom.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 int setsize = Integer.parseInt(String.valueOf(jaaray.get(3)));
-                
+
                 lebarAll = lebarAll + setsize;
             }
-            
+
             double pembagi = lebar / lebarAll;
             double lebarAllNew = 0;
             for (int i = 0; i < lsvisiblecolom.size(); i++) {
-                
+
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 int sizecolom = Integer.parseInt(String.valueOf(jaaray.get(3)));
-                
+
                 if (i != lsvisiblecolom.size() - 1) {
                     int wi = (int) (pembagi * sizecolom);
                     tcm.getColumn(i).setMaxWidth(wi);
-                    
+
                     lebarAllNew = lebarAllNew + sizecolom;
                 } else {
                     try {
@@ -354,7 +371,7 @@ public class DaftarfakturpembelianinputController {
                         tcm.getColumn(i).setMaxWidth(wi);
                     } catch (Exception ex) {
                         int wi = (int) (lebar - lebarAllNew);
-                        
+
                         tcm.getColumn(i).setMaxWidth(wi);
                     }
                 }
@@ -369,12 +386,12 @@ public class DaftarfakturpembelianinputController {
                     hidetable(i);
                 }
             }
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -406,24 +423,24 @@ public class DaftarfakturpembelianinputController {
                 lsoldsize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 lshide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
             }
-            
+
             setheader();
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
         new Tablestyle(pane.tabledata).applystyleheader();
-        
+
     }
-    
+
     private void setheader() {
-        
+
         for (int i = 0; i < lshide.size(); i++) {
             if (lshide.get(i) == 0) {
                 hidetable(i);
             }
         }
-        
+
         for (int i = 0; i < lsresize.size(); i++) {
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             TableColumnModel tcm = pane.tabledata.getColumnModel();
@@ -434,7 +451,7 @@ public class DaftarfakturpembelianinputController {
             tcm.getColumn(i).setMaxWidth(wi);
         }
     }
-    
+
     private void loaddata() {
         customtable();
         try {
@@ -450,7 +467,7 @@ public class DaftarfakturpembelianinputController {
                     pane.ckdiskon.setSelected(false);
                     valcheck = 1;
                 }
-                
+
                 pane.cmb_tipe_pembelian.setSelectedIndex(0);
                 pane.edtop.setVisible(false);
                 pane.bcaritop.setVisible(false);
@@ -493,9 +510,9 @@ public class DaftarfakturpembelianinputController {
                     showtable(7);
                     hidetable(6);
                 }
-                
+
             } else {
-                
+
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);
                 Object rawobjdata = jpdata.parse(ch.getdatadetails("dm/datafakturpembelian", param));
@@ -510,7 +527,7 @@ public class DaftarfakturpembelianinputController {
                     } else {
                         pane.ckdiskon.setSelected(false);
                     }
-                    
+
                     tipe_bayar = Integer.parseInt(String.valueOf(joindata.get("istunai")));
                     if (tipe_bayar == 0) {
                         pane.eduang_muka.setText("0");
@@ -523,9 +540,9 @@ public class DaftarfakturpembelianinputController {
                     }
                     tipe_beli = Integer.parseInt(String.valueOf(joindata.get("isjasa")));
                     if (tipe_beli == 0) {
-                        
+
                     } else {
-                        
+
                     }
                     pane.dtanggal.setDate(new Date());
                     pane.dtanggal_pengantaran.setDate(new Date());
@@ -579,7 +596,7 @@ public class DaftarfakturpembelianinputController {
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-                    
+
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
                     rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
@@ -594,7 +611,7 @@ public class DaftarfakturpembelianinputController {
                     rowtabledata[9] = tabeldatalist.get(i).getTotal();
                     dtmtabeldata.addRow(rowtabledata);
                 }
-                
+
                 if (valcheck == 0) {
                     hidetable(7);
                     showtable(6);
@@ -602,18 +619,18 @@ public class DaftarfakturpembelianinputController {
                     hidetable(6);
                     showtable(7);
                 }
-                
+
                 pane.tabledata.setModel(dtmtabeldata);
-                
+
             }
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
         int[] columnright = {2, 4, 5, 6, 7, 11};
         new Tablestyle(pane.tabledata).applystylerow(columnright);
     }
-    
+
     private void rawsimpan() {
         if (id.equals("")) {
             String data = String.format("genjur=id_keltrans='3'::"
@@ -707,7 +724,7 @@ public class DaftarfakturpembelianinputController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -790,7 +807,7 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
-    
+
     private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
@@ -798,7 +815,7 @@ public class DaftarfakturpembelianinputController {
                 Staticvar.isupdate = true;
                 if (pane.edsupplier.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                    
+
                 } else if (tabeldatalist.size() == 0) {
                     JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -814,7 +831,7 @@ public class DaftarfakturpembelianinputController {
                             } else {
                                 rawsimpan();
                             }
-                            
+
                         }
                     } else if (tahunbulan < periodetahunnulan) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -840,7 +857,7 @@ public class DaftarfakturpembelianinputController {
             }
         });
     }
-    
+
     private String kirimtexpembelian() {
         StringBuilder sb = new StringBuilder();
         sb.append("pembelian_detail=");
@@ -863,11 +880,11 @@ public class DaftarfakturpembelianinputController {
                     + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
                     + "keterangan=" + "'" + tabeldatalist.get(i).getKeterangan() + "'");
             sb.append("--");
-            
+
         }
         return sb.toString().substring(0, sb.toString().length() - 2);
     }
-    
+
     private void hapusbaris() {
         pane.bhapus_baris.addActionListener(new ActionListener() {
             @Override
@@ -885,7 +902,7 @@ public class DaftarfakturpembelianinputController {
             }
         });
     }
-    
+
     private void batal() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
@@ -903,11 +920,11 @@ public class DaftarfakturpembelianinputController {
                         Staticvar.pmp.container.repaint();
                     }
                 });
-                
+
             }
         });
     }
-    
+
     private void carisuplier() {
         pane.bcari_supplier.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -923,9 +940,9 @@ public class DaftarfakturpembelianinputController {
             valsupplier = Staticvar.resid;
             pane.edsupplier.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void carisalesman() {
         pane.bcari_salesman.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -941,9 +958,9 @@ public class DaftarfakturpembelianinputController {
             valsalesman = Staticvar.resid;
             pane.edsalesman.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void carigudang() {
         pane.bcari_gudang.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -959,9 +976,9 @@ public class DaftarfakturpembelianinputController {
             valgudang = Staticvar.resid;
             pane.edgudang.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void caridepartment() {
         pane.bcari_dept.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -977,9 +994,9 @@ public class DaftarfakturpembelianinputController {
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void carishipvia() {
         pane.bcarishipvia.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -995,9 +1012,9 @@ public class DaftarfakturpembelianinputController {
             valshipvia = Staticvar.resid;
             pane.edshipvia.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void caritop() {
         pane.bcaritop.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -1013,9 +1030,9 @@ public class DaftarfakturpembelianinputController {
             valtop = Staticvar.resid;
             pane.edtop.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void rawgetidakun(String prevlabel) {
         Staticvar.sfilter = "";
         Staticvar.preid = valshipvia;
@@ -1028,7 +1045,7 @@ public class DaftarfakturpembelianinputController {
         jd.setVisible(true);
         jd.toFront();
     }
-    
+
     private void cariakunpembelian() {
         pane.bcariakun_pembelian.addActionListener((ActionEvent e) -> {
             rawgetidakun(pane.edakun_pembelian_tunai.getText());
@@ -1038,9 +1055,9 @@ public class DaftarfakturpembelianinputController {
                 pane.edakun_pembelian_tunai.setText(val);
             }
         });
-        
+
     }
-    
+
     private void cariakundiskon() {
         pane.bcariakun_diskon_pembelian.addActionListener((ActionEvent e) -> {
             rawgetidakun(pane.edakun_diskon_pembelian.getText());
@@ -1049,11 +1066,11 @@ public class DaftarfakturpembelianinputController {
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edakun_diskon_pembelian.setText(val);
             }
-            
+
         });
-        
+
     }
-    
+
     private void cariakunongkir() {
         pane.bcariakun_ongkir.addActionListener((ActionEvent e) -> {
             rawgetidakun(pane.edakun_ongkir.getText());
@@ -1063,9 +1080,9 @@ public class DaftarfakturpembelianinputController {
                 pane.edakun_ongkir.setText(val);
             }
         });
-        
+
     }
-    
+
     private void cariakunuangmuka() {
         pane.bcari_uang_muka.addActionListener((ActionEvent e) -> {
             rawgetidakun(pane.edakun_uang_muka.getText());
@@ -1075,15 +1092,15 @@ public class DaftarfakturpembelianinputController {
                 pane.edakun_uang_muka.setText(val);
             }
         });
-        
+
     }
-    
+
     private void addtotable() {
-        
+
         pane.tabledata.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
-                
+
                 TableModel tm = (TableModel) e.getSource();
                 if (e.getType() == TableModelEvent.UPDATE) {
                     if (ischangevalue) {
@@ -1131,8 +1148,10 @@ public class DaftarfakturpembelianinputController {
                                     tm.setValueAt("0", row, 10);
                                     tm.setValueAt("0", row, 11);
                                     kalkulasitotalperrow(row);
+                                    pane.tabledata.requestFocus();
+                                    pane.tabledata.changeSelection(row, 2, false, false);
                                 }
-                                
+
                             } else {
                                 JSONParser jpdata = new JSONParser();
                                 String param = String.format("kode=%s", String.valueOf(tm.getValueAt(row, col)));
@@ -1221,7 +1240,7 @@ public class DaftarfakturpembelianinputController {
                                     }
                                 }
                             }
-                            
+
                         } catch (ParseException ex) {
                             JDialog jd = new JDialog(new Mainmenu());
                             Errorpanel ep = new Errorpanel();
@@ -1234,7 +1253,7 @@ public class DaftarfakturpembelianinputController {
                             jd.toFront();
                             Staticvar.resid = "";
                             Logger.getLogger(DaftarreturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
-                            
+
                         } finally {
                             ischangevalue = false;
                         }
@@ -1334,9 +1353,9 @@ public class DaftarfakturpembelianinputController {
                 }
             }
         });
-        
+
         MouseAdapter madap = new MouseAdapter() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 JTable tb = (JTable) e.getSource();
@@ -1488,7 +1507,7 @@ public class DaftarfakturpembelianinputController {
                     }
                 }
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
                 JTable tb = (JTable) e.getSource();
@@ -1496,25 +1515,25 @@ public class DaftarfakturpembelianinputController {
                     tb.getCellEditor().cancelCellEditing();
                 }
             }
-            
+
         };
         pane.tabledata.addMouseListener(madap);
-        
+
         pane.tabledata.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 System.out.println(e.getKeyChar());
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
         pane.tabledata.getActionMap().put("hapus", new AbstractAction() {
             @Override
@@ -1528,9 +1547,9 @@ public class DaftarfakturpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
-                
+
                 oldvalue = String.valueOf(pane.tabledata.getValueAt(row, col));
-                
+
                 if (pane.tabledata.editCellAt(row, col)) {
                     Component editor = pane.tabledata.getEditorComponent();
                     editor.requestFocusInWindow();
@@ -1589,7 +1608,7 @@ public class DaftarfakturpembelianinputController {
                 }
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
         pane.tabledata.getActionMap().put("right", new AbstractAction() {
             @Override
@@ -1599,12 +1618,12 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                
+
                 nextcolom(col, row);
-                
+
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
         pane.tabledata.getActionMap().put("left", new AbstractAction() {
             @Override
@@ -1617,7 +1636,7 @@ public class DaftarfakturpembelianinputController {
                 backcolom(col, row);
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
         pane.tabledata.getActionMap().put("up", new AbstractAction() {
             @Override
@@ -1627,7 +1646,7 @@ public class DaftarfakturpembelianinputController {
                 if (pane.tabledata.isEditing()) {
                     pane.tabledata.getCellEditor().stopCellEditing();
                 }
-                
+
                 if (row == 0) {
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(row, col, false, false);
@@ -1635,10 +1654,10 @@ public class DaftarfakturpembelianinputController {
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(row - 1, col, false, false);
                 }
-                
+
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
         pane.tabledata.getActionMap().put("down", new AbstractAction() {
             @Override
@@ -1658,7 +1677,7 @@ public class DaftarfakturpembelianinputController {
                 addautorow(row);
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "tab");
         pane.tabledata.getActionMap().put("tab", new AbstractAction() {
             @Override
@@ -1666,10 +1685,10 @@ public class DaftarfakturpembelianinputController {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
                 nextcolom(col, row);
-                
+
             }
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_DOWN_MASK), "shift_tab");
         pane.tabledata.getActionMap().put("shift_tab", new AbstractAction() {
             @Override
@@ -1683,9 +1702,9 @@ public class DaftarfakturpembelianinputController {
             }
         }
         );
-        
+
     }
-    
+
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")) {
@@ -1697,7 +1716,7 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
-    
+
     private void hidetable(int index) {
         TableColumn col = pane.tabledata.getColumnModel().getColumn(index);
         col.setMinWidth(0);
@@ -1705,7 +1724,7 @@ public class DaftarfakturpembelianinputController {
         col.setWidth(0);
         col.setPreferredWidth(0);
     }
-    
+
     private void showtable(int index) {
         TableColumn col = pane.tabledata.getColumnModel().getColumn(index);
         col.setMinWidth(100);
@@ -1713,7 +1732,7 @@ public class DaftarfakturpembelianinputController {
         col.setWidth(100);
         col.setPreferredWidth(100);
     }
-    
+
     private void columnfunction(int row, int col, boolean addrow) {
         if (pane.tabledata.getValueAt(row, col).equals("")) {
             return;
@@ -1727,7 +1746,7 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
-    
+
     private void kalkulasi() {
         KeyAdapter keadbiaya = new KeyAdapter() {
             @Override
@@ -1745,9 +1764,9 @@ public class DaftarfakturpembelianinputController {
                     pane.edbiayalain.setText("");
                 }
             }
-            
+
         };
-        
+
         KeyAdapter keaddiskonpersen = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -1759,7 +1778,7 @@ public class DaftarfakturpembelianinputController {
                     double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
                     double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
                     total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-                    
+
                     pane.eddiskon2.setText(nf.format(diskon_nominal));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
@@ -1767,9 +1786,9 @@ public class DaftarfakturpembelianinputController {
                     pane.edbiayalain.setText("");
                 }
             }
-            
+
         };
-        
+
         KeyAdapter keaddiskonnominal = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -1781,7 +1800,7 @@ public class DaftarfakturpembelianinputController {
                     double diskon_nominal = Oneforallfunc.ToDouble(pane.eddiskon2.getText());
                     double diskon_persen = (diskon_nominal / (subtotal + biayalain)) * 100;
                     total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-                    
+
                     pane.eddiskon1.setText(nf.format(diskon_persen));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
@@ -1789,41 +1808,41 @@ public class DaftarfakturpembelianinputController {
                     pane.edbiayalain.setText("");
                 }
             }
-            
+
         };
-        
+
         pane.eddiskon1.addKeyListener(keaddiskonpersen);
         pane.edbiayalain.addKeyListener(keadbiaya);
         pane.eddiskon2.addKeyListener(keaddiskonnominal);
     }
-    
+
     private void kalkulasitotal() {
         int jumlah_row = pane.tabledata.getRowCount();
         double subtotal = 0;
         total_pembelian_all = 0;
         total_pajak = 0;
-        
+
         for (int i = 0; i < jumlah_row; i++) {
             double total_beli_masing = Oneforallfunc.ToDouble(emptycellcheck(i, 11));
             subtotal = subtotal + total_beli_masing;
-            
+
             double total_pajak_masing = Oneforallfunc.ToDouble(emptycellcheck(i, 11)) * (Oneforallfunc.doubleparsing(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
-        
+
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.lsubtotal.setText(nf.format(subtotal));
-        
+
         double biayalain = Oneforallfunc.ToDouble(pane.edbiayalain.getText());
         double pajak = Oneforallfunc.ToDouble(pane.ltotal_pajak.getText());
         double diskon_persen = Oneforallfunc.ToDouble(pane.eddiskon1.getText());
         double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
         total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-        
+
         pane.eddiskon2.setText(nf.format(diskon_nominal));
         pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
-    
+
     private void kalkulasitotalperrow(int row) {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, 6));
@@ -1847,7 +1866,7 @@ public class DaftarfakturpembelianinputController {
                 pane.tabledata.setValueAt(nf.format(total), row, 11);
             }
         } else {
-            
+
             double qty = Oneforallfunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * Oneforallfunc.intparsing(tabeldatalist.get(row).getIsi_satuan());
             double harga = Oneforallfunc.ToDouble(pane.tabledata.getValueAt(row, 4));
             double diskon = Oneforallfunc.ToDouble(emptycellcheck(row, 7));
@@ -1857,11 +1876,11 @@ public class DaftarfakturpembelianinputController {
         }
         kalkulasitotal();
     }
-    
+
     private String emptycellcheck(int row, int col) {
         String ret = "";
         String value = String.valueOf(pane.tabledata.getValueAt(row, col));
-        
+
         try {
             if (value.equals("") || value.equals("null")) {
                 ret = "0";
@@ -1871,10 +1890,10 @@ public class DaftarfakturpembelianinputController {
         } catch (NullPointerException e) {
             ret = "0";
         }
-        
+
         return ret;
     }
-    
+
     private boolean checknumerik(String val) {
         boolean hasil = false;
         try {
@@ -1885,7 +1904,7 @@ public class DaftarfakturpembelianinputController {
         }
         return hasil;
     }
-    
+
     private boolean checkalphabeth(String val) {
         boolean hasil = false;
         if (val.contains("^[0-9].+-") == true) {
@@ -1895,7 +1914,7 @@ public class DaftarfakturpembelianinputController {
         }
         return hasil;
     }
-    
+
     private void nextcolom(int col, int row) {
         int colcount = pane.tabledata.getColumnCount() - 1;
         if (col == colcount) {
@@ -1911,14 +1930,14 @@ public class DaftarfakturpembelianinputController {
             }
             return;
         }
-        
+
         xnextcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
-    
+
     private void backcolom(int col, int row) {
         xbackcolom(col, row, pane.tabledata.getColumnCount() - 1);
     }
-    
+
     private void xnextcolom(int currentcoll, int currentrow, int colcount) {
         for (int i = 0; i <= colcount; i++) {
             if (currentcoll == i) {
@@ -1953,7 +1972,7 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
-    
+
     private void xbackcolom(int currentcoll, int currentrow, int colcount) {
         for (int i = colcount; i >= 0; i--) {
             if (currentcoll == i) {
@@ -1999,7 +2018,7 @@ public class DaftarfakturpembelianinputController {
             }
         }
     }
-    
+
     private boolean cekcolomnol(int colom) {
         boolean result = false;
         if (lshide.get(colom) == 0) {
@@ -2009,13 +2028,13 @@ public class DaftarfakturpembelianinputController {
         }
         return result;
     }
-    
+
     public class Entitytabledata {
-        
+
         String id_barang, kode_barang, nama_barang, jumlah,
                 id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
                 id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
-        
+
         public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
             this.id_barang = id_barang;
             this.kode_barang = kode_barang;
@@ -2037,158 +2056,158 @@ public class DaftarfakturpembelianinputController {
             this.keterangan = keterangan;
             this.total = total;
         }
-        
+
         public String getId_barang() {
             return id_barang;
         }
-        
+
         public void setId_barang(String id_barang) {
             this.id_barang = id_barang;
         }
-        
+
         public String getKode_barang() {
             return kode_barang;
         }
-        
+
         public void setKode_barang(String kode_barang) {
             this.kode_barang = kode_barang;
         }
-        
+
         public String getNama_barang() {
             return nama_barang;
         }
-        
+
         public void setNama_barang(String nama_barang) {
             this.nama_barang = nama_barang;
         }
-        
+
         public String getJumlah() {
             return jumlah;
         }
-        
+
         public void setJumlah(String jumlah) {
             this.jumlah = jumlah;
         }
-        
+
         public String getId_satuan() {
             return id_satuan;
         }
-        
+
         public void setId_satuan(String id_satuan) {
             this.id_satuan = id_satuan;
         }
-        
+
         public String getNama_satuan() {
             return nama_satuan;
         }
-        
+
         public void setNama_satuan(String nama_satuan) {
             this.nama_satuan = nama_satuan;
         }
-        
+
         public String getIsi_satuan() {
             return isi_satuan;
         }
-        
+
         public void setIsi_satuan(String isi_satuan) {
             this.isi_satuan = isi_satuan;
         }
-        
+
         public String getId_satuan_pengali() {
             return id_satuan_pengali;
         }
-        
+
         public void setId_satuan_pengali(String id_satuan_pengali) {
             this.id_satuan_pengali = id_satuan_pengali;
         }
-        
+
         public String getHarga_beli() {
             return harga_beli;
         }
-        
+
         public void setHarga_beli(String harga_beli) {
             this.harga_beli = harga_beli;
         }
-        
+
         public String getHarga_jual() {
             return harga_jual;
         }
-        
+
         public void setHarga_jual(String harga_jual) {
             this.harga_jual = harga_jual;
         }
-        
+
         public String getDiskon_persen() {
             return diskon_persen;
         }
-        
+
         public void setDiskon_persen(String diskon_persen) {
             this.diskon_persen = diskon_persen;
         }
-        
+
         public String getDiskon_nominal() {
             return diskon_nominal;
         }
-        
+
         public void setDiskon_nominal(String diskon_nominal) {
             this.diskon_nominal = diskon_nominal;
         }
-        
+
         public String getId_pajak() {
             return id_pajak;
         }
-        
+
         public void setId_pajak(String id_pajak) {
             this.id_pajak = id_pajak;
         }
-        
+
         public String getNama_pajak() {
             return nama_pajak;
         }
-        
+
         public void setNama_pajak(String nama_pajak) {
             this.nama_pajak = nama_pajak;
         }
-        
+
         public String getNilai_pajak() {
             return nilai_pajak;
         }
-        
+
         public void setNilai_pajak(String nilai_pajak) {
             this.nilai_pajak = nilai_pajak;
         }
-        
+
         public String getId_gudang() {
             return id_gudang;
         }
-        
+
         public void setId_gudang(String id_gudang) {
             this.id_gudang = id_gudang;
         }
-        
+
         public String getNama_gudang() {
             return nama_gudang;
         }
-        
+
         public void setNama_gudang(String nama_gudang) {
             this.nama_gudang = nama_gudang;
         }
-        
+
         public String getKeterangan() {
             return keterangan;
         }
-        
+
         public void setKeterangan(String keterangan) {
             this.keterangan = keterangan;
         }
-        
+
         public String getTotal() {
             return total;
         }
-        
+
         public void setTotal(String total) {
             this.total = total;
         }
-        
+
     }
 }
