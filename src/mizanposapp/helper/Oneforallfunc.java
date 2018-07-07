@@ -75,7 +75,7 @@ public class Oneforallfunc {
         double d = 0;
         try {
             d = Double.parseDouble(str.replace(",", ""));
-            result = (int)d;
+            result = (int) d;
 
             if ((d - result) > 0.5f) {
                 result = result + 1;
@@ -91,8 +91,8 @@ public class Oneforallfunc {
         double d = 0;
         try {
             d = Double.parseDouble(String.valueOf(obj).replace(",", ""));
-            result = (int)d;
-            
+            result = (int) d;
+
             if ((d - result) > 0.5f) {
                 result = result + 1;
             }
@@ -101,6 +101,10 @@ public class Oneforallfunc {
             Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
+    }
+
+    public static String ReplaceString(String str) {
+        return str.replace("'", "%27%27");
     }
 
 }

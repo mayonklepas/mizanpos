@@ -607,7 +607,7 @@ public class DaftarfakturpembelianinputController {
                     valdept,
                     new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()),
                     pane.edno_transaksi.getText(),
-                    pane.edketerangan.getText(),
+                    Oneforallfunc.ReplaceString(pane.edketerangan.getText()),
                     valsupplier,
                     String.valueOf(istunai),
                     valgudang,
@@ -812,11 +812,11 @@ public class DaftarfakturpembelianinputController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
-                    + "qty=" + "'" + tabeldatalist.get(i).getJumlah() + "'" + "::"
-                    + "harga=" + "'" + tabeldatalist.get(i).getHarga_beli() + "'" + "::"
+                    + "qty=" + "'" + Oneforallfunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                    + "harga=" + "'" + Oneforallfunc.ToDouble(tabeldatalist.get(i).getHarga_beli()) + "'" + "::"
                     + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
                     + "diskon_persen=" + "'" + tabeldatalist.get(i).getDiskon_persen() + "'" + "::"
-                    + "diskon_nominal=" + "'" + tabeldatalist.get(i).getDiskon_nominal() + "'" + "::"
+                    + "diskon_nominal=" + "'" + Oneforallfunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
                     + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
                     + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
                     + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
