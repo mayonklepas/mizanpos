@@ -278,7 +278,6 @@ public class DaftarfakturpembelianinputController {
                         valcheck = 1;
                     }
                 } else {
-
                     isjasa = 1;
                     lshide.set(3, 0);
                     lshide.set(9, 0);
@@ -295,7 +294,6 @@ public class DaftarfakturpembelianinputController {
                         showtable(7);
                         valcheck = 1;
                     }
-
                 }
 
                 Runnable rn = new Runnable() {
@@ -311,86 +309,11 @@ public class DaftarfakturpembelianinputController {
                     }
                 };
                 SwingUtilities.invokeLater(rn);
+
             }
         }
         );
 
-    }
-
-    private void loadheaderx() {
-        try {
-            pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            pane.tabledata.setModel(dtmtabeldata);
-            TableColumnModel tcm = pane.tabledata.getColumnModel();
-            String dataheader = ch.getheaders();
-            JSONParser jpheader = new JSONParser();
-            Object objheader = jpheader.parse(dataheader);
-            JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("inputfakturpembelian");
-
-            //perulangan mengambil header
-            for (int i = 0; i < jaheader.size(); i++) {
-                JSONObject jodata = (JSONObject) jaheader.get(i);
-                JSONArray jaaray = (JSONArray) jodata.get("key");
-                int iscolomvisible = Integer.parseInt(String.valueOf(jaaray.get(2)));
-
-                if (iscolomvisible == 1) {
-                    lsvisiblecolom.add(iscolomvisible);
-                }
-                dtmtabeldata.addColumn(jaaray.get(1));
-            }
-
-            // resize colum
-            double lebar = d.getWidth() - Staticvar.lebarPanelMenu;;
-            double lebarAll = 0;
-
-            for (int i = 0; i < lsvisiblecolom.size(); i++) {
-                JSONObject jodata = (JSONObject) jaheader.get(i);
-                JSONArray jaaray = (JSONArray) jodata.get("key");
-                int setsize = Integer.parseInt(String.valueOf(jaaray.get(3)));
-
-                lebarAll = lebarAll + setsize;
-            }
-
-            double pembagi = lebar / lebarAll;
-            double lebarAllNew = 0;
-            for (int i = 0; i < lsvisiblecolom.size(); i++) {
-
-                JSONObject jodata = (JSONObject) jaheader.get(i);
-                JSONArray jaaray = (JSONArray) jodata.get("key");
-                int sizecolom = Integer.parseInt(String.valueOf(jaaray.get(3)));
-
-                if (i != lsvisiblecolom.size() - 1) {
-                    int wi = (int) (pembagi * sizecolom);
-                    tcm.getColumn(i).setMaxWidth(wi);
-
-                    lebarAllNew = lebarAllNew + sizecolom;
-                } else {
-                    try {
-                        int wi = (int) (lebar - lebarAllNew) - 1;
-                        tcm.getColumn(i).setMaxWidth(wi);
-                    } catch (Exception ex) {
-                        int wi = (int) (lebar - lebarAllNew);
-
-                        tcm.getColumn(i).setMaxWidth(wi);
-                    }
-                }
-            }
-
-            // hidden column
-            for (int i = 0; i < jaheader.size(); i++) {
-                JSONObject jodata = (JSONObject) jaheader.get(i);
-                JSONArray jaaray = (JSONArray) jodata.get("key");
-                lshide.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
-                if (jaaray.get(2).equals("0")) {
-                    hidetable(i);
-                }
-            }
-
-        } catch (ParseException ex) {
-            Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     private void loadheader() {
@@ -426,7 +349,6 @@ public class DaftarfakturpembelianinputController {
             }
 
             setheader();
-
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -435,6 +357,11 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void setheader() {
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        TableColumnModel tcm = pane.tabledata.getColumnModel();
+
+        double lebar = d.getWidth() - Staticvar.lebarPanelMenu;;
+        double lebarAll = 0;
 
         for (int i = 0; i < lshide.size(); i++) {
             if (lshide.get(i) == 0) {
@@ -443,13 +370,26 @@ public class DaftarfakturpembelianinputController {
         }
 
         for (int i = 0; i < lsresize.size(); i++) {
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            TableColumnModel tcm = pane.tabledata.getColumnModel();
-            Double wd = d.getWidth() - 344;
             int setsize = lsresize.get(i);
-            int wi = (setsize * wd.intValue()) / 100;
-            tcm.getColumn(i).setMinWidth(wi);
-            tcm.getColumn(i).setMaxWidth(wi);
+            lebarAll = lebarAll + setsize;
+        }
+
+        double pembagi = lebar / lebarAll;
+        double lebarAllNew = 0;
+        for (int i = 0; i < lsresize.size() -1; i++) {
+            int setsize = lsresize.get(i);
+            if (i != lsresize.size() - 1) {
+                int wi = Oneforallfunc.ToInt(pembagi * setsize);
+                tcm.getColumn(i).setMinWidth(wi);
+                tcm.getColumn(i).setWidth(wi);
+                tcm.getColumn(i).setMaxWidth(wi);
+
+                lebarAllNew = lebarAllNew + wi;
+            } else {
+               int wi = Oneforallfunc.ToInt(lebar - lebarAllNew);
+                tcm.getColumn(i).setMinWidth(wi);
+                tcm.getColumn(i).setMaxWidth(wi);
+            }
         }
     }
 
@@ -1154,9 +1094,9 @@ public class DaftarfakturpembelianinputController {
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli("0");
                                         tabeldatalist.get(row).setHarga_jual("0");
+                                        tm.setValueAt("0", row, 4);
                                         tm.setValueAt("0", row, 6);
                                         tm.setValueAt("0", row, 7);
-                                        tm.setValueAt("0", row, 10);
                                         tm.setValueAt("0", row, 11);
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
@@ -1401,9 +1341,9 @@ public class DaftarfakturpembelianinputController {
                                 tabeldatalist.get(row).setIsi_satuan("1");
                                 tabeldatalist.get(row).setHarga_beli("0");
                                 tabeldatalist.get(row).setHarga_jual("0");
+                                pane.tabledata.setValueAt("0", row, 4);
                                 pane.tabledata.setValueAt("0", row, 6);
                                 pane.tabledata.setValueAt("0", row, 7);
-                                pane.tabledata.setValueAt("0", row, 10);
                                 pane.tabledata.setValueAt("0", row, 11);
                                 kalkulasitotalperrow(row);
                                 pane.tabledata.requestFocus();

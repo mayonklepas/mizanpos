@@ -70,20 +70,32 @@ public class Oneforallfunc {
         return result;
     }
 
-    public static double ToInt(String str) {
+    public static int ToInt(String str) {
         int result = 0;
+        double d = 0;
         try {
-            result = Integer.parseInt(str.replace(",", ""));
+            d = Double.parseDouble(str.replace(",", ""));
+            result = (int)d;
+
+            if ((d - result) > 0.5f) {
+                result = result + 1;
+            }
         } catch (Exception e) {
             result = 0;
         }
         return result;
     }
 
-    public static double ToInt(Object obj) {
+    public static int ToInt(Object obj) {
         int result = 0;
+        double d = 0;
         try {
-            result = Integer.parseInt(String.valueOf(obj).replace(",", ""));
+            d = Double.parseDouble(String.valueOf(obj).replace(",", ""));
+            result = (int)d;
+            
+            if ((d - result) > 0.5f) {
+                result = result + 1;
+            }
         } catch (Exception ex) {
             result = 0;
             Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
