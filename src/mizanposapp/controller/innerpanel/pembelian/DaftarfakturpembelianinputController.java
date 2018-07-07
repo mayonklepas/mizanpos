@@ -91,6 +91,7 @@ public class DaftarfakturpembelianinputController {
     ArrayList<Integer> lsoldhide = new ArrayList<>();
     ArrayList<Integer> lsresize = new ArrayList<>();
     ArrayList<Integer> lsoldsize = new ArrayList<>();
+    String test;
 
     private boolean ischangevalue = false;
     static String oldvalue = "";
