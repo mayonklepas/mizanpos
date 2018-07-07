@@ -87,7 +87,9 @@ public class DaftarfakturpembelianinputController {
     JTextField jt4;
     JTextField jt6;
     JTextField jt7;
-    ArrayList<Integer> lsstatus = new ArrayList<>();
+    ArrayList<Integer> lshide = new ArrayList<>();
+    ArrayList<Integer> lsresize = new ArrayList<>();
+    ArrayList<Integer> lsoldsize = new ArrayList<>();
 
     private boolean ischangevalue = false;
     static String oldvalue = "";
@@ -258,12 +260,38 @@ public class DaftarfakturpembelianinputController {
                 JComboBox jc = (JComboBox) e.getSource();
                 if (jc.getSelectedIndex() == 0) {
                     isjasa = 0;
-                    showtable(3);
-                    showtable(10);
+                    lshide.set(3, 1);
+                    lshide.set(9, 1);
+                    lsresize.set(3, lsoldsize.get(3));
+                    lsresize.set(9, lsoldsize.get(9));
+                    setheader();
+                    if (pane.ckdiskon.isSelected()) {
+                        hidetable(7);
+                        showtable(6);
+                        valcheck = 0;
+
+                    } else {
+                        hidetable(6);
+                        showtable(7);
+                        valcheck = 1;
+                    }
                 } else {
                     isjasa = 1;
-                    hidetable(3);
-                    hidetable(10);
+                    lshide.set(3, 0);
+                    lshide.set(9, 0);
+                    lsresize.set(3, 0);
+                    lsresize.set(9, 0);
+                    setheader();
+                    if (pane.ckdiskon.isSelected()) {
+                        hidetable(7);
+                        showtable(6);
+                        valcheck = 0;
+
+                    } else {
+                        hidetable(6);
+                        showtable(7);
+                        valcheck = 1;
+                    }
                 }
             }
         });
@@ -335,7 +363,7 @@ public class DaftarfakturpembelianinputController {
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
-                lsstatus.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lshide.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 if (jaaray.get(2).equals("0")) {
                     hidetable(i);
                 }
@@ -349,9 +377,7 @@ public class DaftarfakturpembelianinputController {
     private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             pane.tabledata.setModel(dtmtabeldata);
-            TableColumnModel tcm = pane.tabledata.getColumnModel();
             String dataheader = ch.getheaders();
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
@@ -368,28 +394,43 @@ public class DaftarfakturpembelianinputController {
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
-                Double wd = d.getWidth() - 344;
-                int setsize = Integer.parseInt(String.valueOf(jaaray.get(3)));
-                int wi = (setsize * wd.intValue()) / 100;
-                tcm.getColumn(i).setMinWidth(wi);
-                tcm.getColumn(i).setMaxWidth(wi);
             }
 
             // hidden column
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
-                lsstatus.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
-                if (jaaray.get(2).equals("0")) {
-                    hidetable(i);
-                }
+                lsresize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lsoldsize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lshide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
             }
+
+            setheader();
 
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
         new Tablestyle(pane.tabledata).applystyleheader();
 
+    }
+
+    private void setheader() {
+
+        for (int i = 0; i < lshide.size(); i++) {
+            if (lshide.get(i) == 0) {
+                hidetable(i);
+            }
+        }
+
+        for (int i = 0; i < lsresize.size(); i++) {
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            TableColumnModel tcm = pane.tabledata.getColumnModel();
+            Double wd = d.getWidth() - 344;
+            int setsize = lsresize.get(i);
+            int wi = (setsize * wd.intValue()) / 100;
+            tcm.getColumn(i).setMinWidth(wi);
+            tcm.getColumn(i).setMaxWidth(wi);
+        }
     }
 
     private void loaddata() {
@@ -1959,7 +2000,7 @@ public class DaftarfakturpembelianinputController {
 
     private boolean cekcolomnol(int colom) {
         boolean result = false;
-        if (lsstatus.get(colom) == 0) {
+        if (lshide.get(colom) == 0) {
             result = true;
         } else {
             result = false;
