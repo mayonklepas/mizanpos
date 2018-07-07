@@ -135,7 +135,7 @@ public class CrudHelper {
             huc.setDoOutput(true);
             huc.connect();
             OutputStream os = huc.getOutputStream();
-            os.write(param.getBytes());
+            os.write(param.replace("+", "").getBytes());
             BufferedReader br = new BufferedReader(new InputStreamReader(huc.getInputStream()));
             String line = "";
             StringBuilder sb = new StringBuilder();

@@ -105,7 +105,7 @@ public class DaftarfakturpembelianinputController {
         this.pane = pane;
         skinning();
         loadsession();
-        //getkodetransaksi();
+        getkodetransaksi();
         loaddata();
         simpandata();
         checkandcombocontrol();
