@@ -12,41 +12,9 @@ import java.util.logging.Logger;
  *
  * @author Minami
  */
-public class Oneforallfunc {
+public class ConvertFunc {
 
-    public Oneforallfunc() {
-    }
-
-    public static int intparsing(String val) {
-        int ret = 0;
-        String value = String.valueOf(val);
-        try {
-            if (value.equals("") || value.equals("null")) {
-                ret = 0;
-            } else {
-                ret = Integer.parseInt(value);
-            }
-        } catch (Exception e) {
-            ret = 0;
-        }
-
-        return ret;
-    }
-
-    public static double doubleparsing(String val) {
-        double ret = 0;
-        String value = String.valueOf(val);
-        try {
-            if (value.equals("") || value.equals("null")) {
-                ret = 0;
-            } else {
-                ret = Double.parseDouble(value);
-            }
-        } catch (Exception e) {
-            ret = 0;
-        }
-
-        return ret;
+    public ConvertFunc() {
     }
 
     public static double ToDouble(String str) {
@@ -65,7 +33,7 @@ public class Oneforallfunc {
             result = Double.parseDouble(String.valueOf(obj).replace(",", ""));
         } catch (Exception ex) {
             result = 0;
-            Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertFunc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -98,13 +66,17 @@ public class Oneforallfunc {
             }
         } catch (Exception ex) {
             result = 0;
-            Logger.getLogger(Oneforallfunc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertFunc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
 
-    public static String ReplaceString(String str) {
-        return str.replace("'", "%27%27");
+    public static String EncodeString(String str) {
+        String a= str.replace("%", "%25");
+        String b = a.replace("&", "%26");
+        String c = b.replace("'", "%27%27");
+        String d = c.replace("+", "%2B");
+        return c;
     }
 
 }
