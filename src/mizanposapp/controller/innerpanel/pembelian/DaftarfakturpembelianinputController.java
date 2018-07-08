@@ -473,11 +473,11 @@ public class DaftarfakturpembelianinputController {
                     pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
                     pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
                     valdept = String.valueOf(joingenjur.get("id_dept"));
-                    /*try {
-                        pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf("tanggal")));
+                    try {
+                        pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
                     } catch (java.text.ParseException ex) {
                         Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
+                    }
 
                 }
 
@@ -512,11 +512,12 @@ public class DaftarfakturpembelianinputController {
                         valtop = "";
                         pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
                     }
-                    /*try {
-                        pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf("tanggal_pengantaran")));
+                    try {
+                        pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpembelian.get("tanggal_pengantaran")))));
                     } catch (java.text.ParseException ex) {
                         Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
+                    }
+
                     valshipvia = String.valueOf(joinpembelian.get("id_pengantaran"));
                     pane.edshipvia.setText(String.valueOf(joinpembelian.get("nama_pengantaran")));
 
