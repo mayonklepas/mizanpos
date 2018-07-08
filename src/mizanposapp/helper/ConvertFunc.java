@@ -72,11 +72,11 @@ public class ConvertFunc {
     }
 
     public static String EncodeString(String str) {
-        String a= str.replace("%", "%25");
+        String a = str.replace("%", "%25");
         String b = a.replace("&", "%26");
         String c = b.replace("'", "%27%27");
         String d = c.replace("+", "%2B");
-        return c;
+        return d;
     }
 
 }
