@@ -122,6 +122,7 @@ public class DaftarfakturpembelianinputController {
         addtotable();
         kalkulasi();
         hapusbaris();
+        tambahbaris();
         batal();
 
     }
@@ -806,6 +807,22 @@ public class DaftarfakturpembelianinputController {
                 };
                 SwingUtilities.invokeLater(rn);
             }
+        });
+    }
+
+    private void tambahbaris() {
+        pane.btambah_baris.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int lastrow = pane.tabledata.getRowCount() - 1;
+                if (lastrow < 0) {
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    dtmtabeldata.addRow(rowtabledata);
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(1, 0, false, false);
+                }
+            }
+
         });
     }
 
@@ -1629,7 +1646,11 @@ public class DaftarfakturpembelianinputController {
 
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
-        if (!pane.tabledata.getValueAt(row, 0).equals("")) {
+        if (!pane.tabledata.getValueAt(row, 0).equals("")
+                || !pane.tabledata.getValueAt(row, 2).equals("")
+                || !pane.tabledata.getValueAt(row, 3).equals("")
+                || !pane.tabledata.getValueAt(row, 6).equals("")
+                || !pane.tabledata.getValueAt(row, 7).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);

@@ -1044,6 +1044,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bhapus_baris" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btambah_baris" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="bbatal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -1057,7 +1059,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="bhapus_baris" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bhapus_baris" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btambah_baris" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="bsimpan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bbatal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1097,6 +1102,17 @@
               <Font name="Century Gothic" size="11" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hapus Baris"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="btambah_baris">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Century Gothic" size="11" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Tambah Baris"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1297,7 +1313,7 @@
                           <Component id="edakun_uang_muka" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bcari_uang_muka" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="69" max="32767" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
