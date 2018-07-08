@@ -248,6 +248,7 @@ public class DaftarfakturpembelianinputController {
                     tipe_bayar = 0;
                     valtop = "";
                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                    valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
                 } else {
                     pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
@@ -256,6 +257,7 @@ public class DaftarfakturpembelianinputController {
                     tipe_bayar = 1;
                     valtop = "";
                     pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                    valakun_pembelian = Globalsession.AKUNHUTANGUSAHA;
                 }
             }
         });
