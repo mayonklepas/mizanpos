@@ -701,6 +701,7 @@ public class DaftarfakturpembelianinputController {
                     + "id_termofpayment='" + valtop + "'::"
                     + "tipe_pembelian='" + tipe_beli + "'"
                     + "&" + kirimtexpembelian();
+
             ch.insertdata("insertpembelian", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {

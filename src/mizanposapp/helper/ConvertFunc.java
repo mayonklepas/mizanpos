@@ -75,8 +75,9 @@ public class ConvertFunc {
         String a = str.replace("%", "%25");
         String b = a.replace("&", "%26");
         String c = b.replace("'", "%27%27");
-        String d = c.replace("+", "%2B");
-        return d;
+        String d = c.replace("\"", "%27%27");
+        String e = d.replace("+", "%2B");
+        return e;
     }
 
 }
