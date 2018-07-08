@@ -631,6 +631,7 @@ public class DaftarfakturpembelianinputController {
                         pane.tabledata.requestFocus();
                         pane.cmb_tipe_bayar.setSelectedIndex(0);
                         pane.eduang_muka.setText("0");
+                        pane.edbiayalain.setText("0");
                         pane.lsubtotal.setText("0");
                         pane.ltotal_pajak.setText("0");
                         pane.ltotal_pembelian.setText("0");
@@ -1031,7 +1032,6 @@ public class DaftarfakturpembelianinputController {
                                 if (sudahterpanggil == true) {
                                     sudahterpanggil = false;
                                 } else {
-                                    Staticvar.sfilter = "";
                                     JDialog jd = new JDialog(new Mainmenu());
                                     jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
                                     jd.pack();
@@ -1318,7 +1318,7 @@ public class DaftarfakturpembelianinputController {
                                 defnilai = String.valueOf(pane.tabledata.getValueAt(row, 0));
                             }
                             Staticvar.prelabel = defnilai;
-                            Staticvar.sfilter = defnilai;
+                            Staticvar.sfilter = "";
                             Staticvar.prelabel = defnilai;
                             JDialog jd = new JDialog(new Mainmenu());
                             jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
