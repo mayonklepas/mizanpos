@@ -113,7 +113,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        edakun_pembelian_tunai = new javax.swing.JTextField();
+        edakun_pembelian = new javax.swing.JTextField();
         bcariakun_pembelian = new javax.swing.JButton();
         bcariakun_ongkir = new javax.swing.JButton();
         edakun_ongkir = new javax.swing.JTextField();
@@ -387,12 +387,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcaritop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcaritop.setText("Cari");
         bcaritop.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcaritopAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcaritop.addActionListener(new java.awt.event.ActionListener() {
@@ -660,23 +660,23 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel33.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel33.setText("Akun Pembelian Tunai");
+        jLabel33.setText("Akun Pembelian");
 
         jLabel37.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel37.setText(":");
 
-        edakun_pembelian_tunai.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        edakun_pembelian_tunai.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        edakun_pembelian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edakun_pembelian.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         bcariakun_pembelian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcariakun_pembelian.setText("Cari");
         bcariakun_pembelian.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcariakun_pembelianAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcariakun_pembelian.addActionListener(new java.awt.event.ActionListener() {
@@ -688,12 +688,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcariakun_ongkir.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcariakun_ongkir.setText("Cari");
         bcariakun_ongkir.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcariakun_ongkirAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcariakun_ongkir.addActionListener(new java.awt.event.ActionListener() {
@@ -714,12 +714,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcariakun_diskon_pembelian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcariakun_diskon_pembelian.setText("Cari");
         bcariakun_diskon_pembelian.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcariakun_diskon_pembelianAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcariakun_diskon_pembelian.addActionListener(new java.awt.event.ActionListener() {
@@ -749,12 +749,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         bcari_uang_muka.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari_uang_muka.setText("Cari");
         bcari_uang_muka.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 bcari_uang_mukaAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         bcari_uang_muka.addActionListener(new java.awt.event.ActionListener() {
@@ -795,7 +795,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                         .addGap(2, 2, 2)
                         .addComponent(bcariakun_ongkir))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(edakun_pembelian_tunai, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edakun_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(bcariakun_pembelian)))
                 .addContainerGap(402, Short.MAX_VALUE))
@@ -807,7 +807,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jLabel37)
-                    .addComponent(edakun_pembelian_tunai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edakun_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcariakun_pembelian))
                 .addGap(2, 2, 2)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1030,7 +1030,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     public com.toedter.calendar.JDateChooser dtanggal_pengantaran;
     public javax.swing.JTextField edakun_diskon_pembelian;
     public javax.swing.JTextField edakun_ongkir;
-    public javax.swing.JTextField edakun_pembelian_tunai;
+    public javax.swing.JTextField edakun_pembelian;
     public javax.swing.JTextField edakun_uang_muka;
     public javax.swing.JTextField edbiayalain;
     public javax.swing.JTextField eddept;

@@ -127,7 +127,7 @@ public class DaftarfakturpembelianinputController {
     }
 
     private void loadsession() {
-        pane.edakun_pembelian_tunai.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+        pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
         pane.edakun_uang_muka.setText(Globalsession.AKUNUANGMUKAPEMBELIAN + "-" + Globalsession.NAMAAKUNUANGMUKAPEMBELIAN);
         pane.edakun_diskon_pembelian.setText(Globalsession.AKUNDISKONPEMBELIAN + "-" + Globalsession.NAMAAKUNDISKONPEMBELIAN);
         pane.edakun_ongkir.setText(Globalsession.AKUNONGKOSKIRIMPEMBELIAN + "-" + Globalsession.NAMAAKUNONGKOSKIRIMPEMBELIAN);
@@ -247,6 +247,7 @@ public class DaftarfakturpembelianinputController {
                     pane.ltop.setVisible(false);
                     istunai = 1;
                     valtop = "";
+                    pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                 } else {
                     pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
@@ -254,6 +255,7 @@ public class DaftarfakturpembelianinputController {
                     pane.ltop.setVisible(true);
                     istunai = 0;
                     valtop = "";
+                    pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
                 }
             }
         });
@@ -767,7 +769,7 @@ public class DaftarfakturpembelianinputController {
                     + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
                     + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_beli()) + "'" + "::"
                     + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                    + "diskon_persen=" + "'" + tabeldatalist.get(i).getDiskon_persen() + "'" + "::"
+                    + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
                     + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
                     + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
                     + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
@@ -951,11 +953,11 @@ public class DaftarfakturpembelianinputController {
 
     private void cariakunpembelian() {
         pane.bcariakun_pembelian.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_pembelian_tunai.getText());
+            rawgetidakun(pane.edakun_pembelian.getText());
             if (!Staticvar.resid.equals("")) {
                 valakun_pembelian = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
-                pane.edakun_pembelian_tunai.setText(val);
+                pane.edakun_pembelian.setText(val);
             }
         });
 

@@ -43,6 +43,7 @@ public class Globalsession {
     public static String AKUNLRDITAHAN = "";
     public static String AKUNPENYEIMBANGNERACA = "";
     public static String AKUNHUTANGUSAHA = "";
+    public static String NAMAAKUNHUTANGUSAHA = "";
     public static String AKUNHUTANGGIRO = "";
     public static String AKUNPIUTANGUSAHA = "";
     public static String AKUNPIUTANGGIRO = "";
@@ -109,6 +110,7 @@ public class Globalsession {
             AKUNLRDITAHAN = String.valueOf(jodata.get("akun_lr_ditahan"));
             AKUNPENYEIMBANGNERACA = String.valueOf(jodata.get("akun_penyeimbang_neraca"));
             AKUNHUTANGUSAHA = String.valueOf(jodata.get("akun_hutang_usaha"));
+            NAMAAKUNHUTANGUSAHA = String.valueOf(jodata.get("nama_akun_hutang_usaha"));
             AKUNHUTANGGIRO = String.valueOf(jodata.get("akun_hutang_biro"));
             AKUNPIUTANGUSAHA = String.valueOf(jodata.get("akun_piutang_usaha"));
             AKUNPIUTANGGIRO = String.valueOf(jodata.get("akun_piutang_giro"));
