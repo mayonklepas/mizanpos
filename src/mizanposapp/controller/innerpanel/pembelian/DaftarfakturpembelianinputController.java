@@ -619,9 +619,18 @@ public class DaftarfakturpembelianinputController {
                 JSONArray jatabledata = (JSONArray) objtabeldata;
                 for (int i = 0; i < jatabledata.size(); i++) {
                     JSONObject jointabeldata = (JSONObject) jatabledata.get(i);
-                    String id_barang = String.valueOf(jointabeldata.get("id_inv"));
-                    String kode_barang = String.valueOf(jointabeldata.get("kode_inv"));
-                    String nama_barang = String.valueOf(jointabeldata.get("nama_inv"));
+                    String id_barang = "";
+                    String kode_barang = "";
+                    String nama_barang = "";
+                    if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
+                        id_barang = String.valueOf(jointabeldata.get("id_inv"));
+                        kode_barang = String.valueOf(jointabeldata.get("kode_inv"));
+                        nama_barang = String.valueOf(jointabeldata.get("nama_inv"));
+                    } else {
+                        id_barang = String.valueOf(jointabeldata.get("akun"));
+                        kode_barang = String.valueOf(jointabeldata.get("akun"));
+                        nama_barang = String.valueOf(jointabeldata.get("nama_akun"));
+                    }
                     String jumlah = String.valueOf(jointabeldata.get("qty"));
                     String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                     String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
