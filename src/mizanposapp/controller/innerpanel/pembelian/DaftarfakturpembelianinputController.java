@@ -1864,7 +1864,7 @@ public class DaftarfakturpembelianinputController {
                     double diskon_persen = (diskon_nominal / (subtotal + biayalain)) * 100;
                     total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
 
-                    pane.eddiskon1.setText(nf.format(diskon_persen));
+                    pane.eddiskon1.setText(String.valueOf(diskon_persen));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
