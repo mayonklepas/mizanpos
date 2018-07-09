@@ -269,8 +269,10 @@ public class DaftarfakturpembelianinputController {
                 if (jc.getSelectedIndex() == 0) {
                     tipe_beli = 0;
                     lshide.set(3, lsoldhide.get(3));
+                    lshide.set(5, lsoldhide.get(5));
                     lshide.set(9, lsoldhide.get(9));
                     lsresize.set(3, lsoldsize.get(3));
+                    lsresize.set(5, lsoldsize.get(5));
                     lsresize.set(9, lsoldsize.get(9));
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -286,8 +288,10 @@ public class DaftarfakturpembelianinputController {
                 } else {
                     tipe_beli = 1;
                     lshide.set(3, 0);
+                    lshide.set(5, 0);
                     lshide.set(9, 0);
                     lsresize.set(3, 0);
+                    lsresize.set(5, 0);
                     lsresize.set(9, 0);
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
