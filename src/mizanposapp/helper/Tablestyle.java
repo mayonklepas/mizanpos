@@ -34,7 +34,7 @@ public class Tablestyle {
         /*DefaultTableCellHeaderRenderer threnred = (DefaultTableCellHeaderRenderer) jthead.getDefaultRenderer();
         threnred.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);*/
         jthead.setOpaque(false);
-        jthead.setFont(new Font("century gothic", Font.BOLD, 13));
+        jthead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         jthead.setPreferredSize(new Dimension(30, 30));
         jthead.setBackground(Color.decode("#282727"));
         jthead.setForeground(Color.WHITE);
@@ -45,6 +45,7 @@ public class Tablestyle {
         TableCellRenderer tcr = new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                table.setFont(new Font("Segoe UI", Font.PLAIN, 11));
                 table.setFillsViewportHeight(true);
                 table.setRowHeight(25);
                 table.setSelectionForeground(Color.WHITE);

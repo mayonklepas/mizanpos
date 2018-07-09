@@ -916,9 +916,11 @@ public class DaftarfakturpembelianinputController {
                         tabeldatalist.remove(row);
                         dtmtabeldata.removeRow(row);
                         pane.tabledata.repaint();
+                        kalkulasitotal();
                     }
                 };
                 SwingUtilities.invokeLater(rn);
+
             }
         });
     }
