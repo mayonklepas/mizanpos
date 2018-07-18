@@ -183,7 +183,7 @@ public class DaftarreturpembelianinputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 1 || column == 3 || column == 5 || column == 8 || column == 9 || column == 10 || column == 12 ? false : true;
+                return column == 1 || column == 2 || column == 4 || column == 8 || column == 9 || column == 10 || column == 12 ? false : true;
             }
 
         };
@@ -1353,14 +1353,17 @@ public class DaftarreturpembelianinputController {
                                         tabeldatalist.get(row).setDiskon_persen("0");
                                         tabeldatalist.get(row).setDiskon_nominal("0");
                                         tabeldatalist.get(row).setTotal("0");
+                                        tabeldatalist.get(row).setOrder("0");
                                         tabeldatalist.get(row).setJumlah("0");
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli("0");
                                         tabeldatalist.get(row).setHarga_jual("0");
-                                        tm.setValueAt("0", row, 4);
-                                        tm.setValueAt("0", row, 6);
+                                        tm.setValueAt("0", row, 2);
+                                        tm.setValueAt("0", row, 3);
+                                        tm.setValueAt("0", row, 5);
                                         tm.setValueAt("0", row, 7);
-                                        tm.setValueAt("0", row, 11);
+                                        tm.setValueAt("0", row, 8);
+                                        tm.setValueAt("0", row, 12);
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
                                         pane.tabledata.changeSelection(row, 2, false, false);
@@ -1381,8 +1384,9 @@ public class DaftarreturpembelianinputController {
                                         JSONObject joindata = (JSONObject) jadata.get(i);
                                         tabeldatalist.get(row).setId_barang(String.valueOf(joindata.get("id")));
                                         tm.setValueAt(String.valueOf(joindata.get("nama")), row, 1);
-                                        tabeldatalist.get(row).setJumlah("1");
-                                        tm.setValueAt(joindata.get("qty"), row, 2);
+                                        tabeldatalist.get(row).setOrder("0");
+                                        tabeldatalist.get(row).setJumlah("0");
+                                        tm.setValueAt("0", row, 2);
                                         tm.setValueAt("0", row, 3);
                                         tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
                                         tm.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, 4);
@@ -1429,8 +1433,9 @@ public class DaftarreturpembelianinputController {
                                             tabeldatalist.get(row).setId_barang(Staticvar.resid);
                                             tm.setValueAt(String.valueOf(joindata2.get("kode")), row, 0);
                                             tm.setValueAt(String.valueOf(joindata2.get("nama")), row, 1);
+                                            tabeldatalist.get(row).setOrder("0");
                                             tabeldatalist.get(row).setJumlah("0");
-                                            tm.setValueAt(joindata2.get("qty"), row, 2);
+                                            tm.setValueAt("0", row, 2);
                                             tm.setValueAt("0", row, 3);
                                             tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
                                             tm.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 4);
@@ -1603,17 +1608,20 @@ public class DaftarreturpembelianinputController {
                                 tabeldatalist.get(row).setDiskon_persen("0");
                                 tabeldatalist.get(row).setDiskon_nominal("0");
                                 tabeldatalist.get(row).setTotal("0");
+                                tabeldatalist.get(row).setOrder("0");
                                 tabeldatalist.get(row).setJumlah("0");
                                 tabeldatalist.get(row).setIsi_satuan("1");
                                 tabeldatalist.get(row).setHarga_beli("0");
                                 tabeldatalist.get(row).setHarga_jual("0");
-                                pane.tabledata.setValueAt("0", row, 4);
-                                pane.tabledata.setValueAt("0", row, 6);
+                                pane.tabledata.setValueAt("0", row, 2);
+                                pane.tabledata.setValueAt("0", row, 3);
+                                pane.tabledata.setValueAt("0", row, 5);
                                 pane.tabledata.setValueAt("0", row, 7);
-                                pane.tabledata.setValueAt("0", row, 11);
+                                pane.tabledata.setValueAt("0", row, 8);
+                                pane.tabledata.setValueAt("0", row, 12);
                                 kalkulasitotalperrow(row);
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, 2, false, false);
+                                pane.tabledata.changeSelection(row, 3, false, false);
                             } else {
                                 pane.tabledata.requestFocus();
                             }
@@ -1651,8 +1659,9 @@ public class DaftarreturpembelianinputController {
                                             tabeldatalist.get(row).setId_barang(Staticvar.resid);
                                             pane.tabledata.setValueAt(String.valueOf(joindata2.get("kode")), row, 0);
                                             pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama")), row, 1);
+                                            tabeldatalist.get(row).setOrder("0");
                                             tabeldatalist.get(row).setJumlah("0");
-                                            pane.tabledata.setValueAt(joindata2.get("qty"), row, 2);
+                                            pane.tabledata.setValueAt("0", row, 2);
                                             pane.tabledata.setValueAt("0", row, 3);
                                             tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
                                             pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 4);
@@ -2099,8 +2108,9 @@ public class DaftarreturpembelianinputController {
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = (qty * (total - (diskonper / 100 * total)));
+                    total = ((total - (diskonper / 100 * total)));
                 }
+                total = qty * total;
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
                 pane.tabledata.setValueAt(nf.format(total), row, 12);
             } else {
@@ -2134,8 +2144,9 @@ public class DaftarreturpembelianinputController {
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = (qty * (total - (diskonper / 100 * total)));
+                    total = ((total - (diskonper / 100 * total)));
                 }
+                total = qty * total;
             } else {
                 double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
                 double harga = ConvertFunc.ToDouble(rawharga);

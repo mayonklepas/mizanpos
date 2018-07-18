@@ -2039,8 +2039,9 @@ public class DaftarfakturpembelianinputController {
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = (qty * (total - (diskonper / 100 * total)));
+                    total = ((total - (diskonper / 100 * total)));
                 }
+                total = qty * total;
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
                 pane.tabledata.setValueAt(nf.format(total), row, 12);
             } else {
@@ -2074,8 +2075,9 @@ public class DaftarfakturpembelianinputController {
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = (qty * (total - (diskonper / 100 * total)));
+                    total = ((total - (diskonper / 100 * total)));
                 }
+                total = qty * total;
             } else {
                 double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
                 double harga = ConvertFunc.ToDouble(rawharga);
