@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -126,25 +127,23 @@ public class DaftardatasupplierinputController {
                     ckval = "0";
                 }
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'::tipe=1::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
-                            + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
-                            pane.edkode_supplier.getText(),
-                            pane.ednama_supplier.getText(),
-                            ckval,
-                            valklasifikasi,
-                            pane.taketeranga_supplier.getText(),
-                            pane.edalamat_supplier.getText(),
-                            pane.edkota_supplier.getText(),
-                            pane.edpos_supplier.getText(),
-                            pane.edprovinsi_supplier.getText(),
-                            pane.ednegara_supplier.getText(),
-                            pane.edtelepon_supplier.getText(),
-                            pane.edfax_supplier.getText(),
-                            pane.edemail_supplier.getText(),
-                            pane.edweb_supplier.getText(),
-                            pane.edcp_supplier.getText(),
-                            pane.edhp_supplier.getText());
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_supplier.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_supplier.getText()) + "'::"
+                            + "tipe=1::"
+                            + "isaktif='" + ckval + "'::"
+                            + "id_cards_klas='" + ConvertFunc.EncodeString(valklasifikasi) + "'::"
+                            + "keterangan='" + ConvertFunc.EncodeString(pane.taketeranga_supplier.getText()) + "'&"
+                            + "lokasi=alamat='" + ConvertFunc.EncodeString(pane.edalamat_supplier.getText()) + "'::"
+                            + "kota='" + ConvertFunc.EncodeString(pane.edkota_supplier.getText()) + "'::"
+                            + "kode_pos='" + ConvertFunc.EncodeString(pane.edpos_supplier.getText()) + "'::"
+                            + "provinsi='" + ConvertFunc.EncodeString(pane.edprovinsi_supplier.getText()) + "'::"
+                            + "negara='" + ConvertFunc.EncodeString(pane.ednegara_supplier.getText()) + "'::"
+                            + "telp='" + ConvertFunc.EncodeString(pane.edtelepon_supplier.getText()) + "'::"
+                            + "fax='" + ConvertFunc.EncodeString(pane.edfax_supplier.getText()) + "'::"
+                            + "email='" + ConvertFunc.EncodeString(pane.edemail_supplier.getText()) + "'::"
+                            + "website='" + ConvertFunc.EncodeString(pane.edweb_supplier.getText()) + "'::"
+                            + "kontak_person='" + ConvertFunc.EncodeString(pane.edcp_supplier.getText()) + "'::"
+                            + "hp='" + ConvertFunc.EncodeString(pane.edhp_supplier.getText()) + "'";
                     ch.insertdata("dm/insertnama", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -161,25 +160,23 @@ public class DaftardatasupplierinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'::tipe=1::isaktif='%s'::id_cards_klas='%s'::keterangan='%s'&"
-                            + "lokasi=alamat='%s'::kota='%s'::kode_pos='%s'::provinsi='%s'::negara='%s'::telp='%s'::fax='%s'::"
-                            + "email='%s'::website='%s'::kontak_person='%s'::hp='%s'",
-                            pane.edkode_supplier.getText(),
-                            pane.ednama_supplier.getText(),
-                            ckval,
-                            valklasifikasi,
-                            pane.taketeranga_supplier.getText(),
-                            pane.edalamat_supplier.getText(),
-                            pane.edkota_supplier.getText(),
-                            pane.edpos_supplier.getText(),
-                            pane.edprovinsi_supplier.getText(),
-                            pane.ednegara_supplier.getText(),
-                            pane.edtelepon_supplier.getText(),
-                            pane.edfax_supplier.getText(),
-                            pane.edemail_supplier.getText(),
-                            pane.edweb_supplier.getText(),
-                            pane.edcp_supplier.getText(),
-                            pane.edhp_supplier.getText());
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_supplier.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_supplier.getText()) + "'::"
+                            + "tipe=1::"
+                            + "isaktif='" + ckval + "'::"
+                            + "id_cards_klas='" + ConvertFunc.EncodeString(valklasifikasi) + "'::"
+                            + "keterangan='" + ConvertFunc.EncodeString(pane.taketeranga_supplier.getText()) + "'&"
+                            + "lokasi=alamat='" + ConvertFunc.EncodeString(pane.edalamat_supplier.getText()) + "'::"
+                            + "kota='" + ConvertFunc.EncodeString(pane.edkota_supplier.getText()) + "'::"
+                            + "kode_pos='" + ConvertFunc.EncodeString(pane.edpos_supplier.getText()) + "'::"
+                            + "provinsi='" + ConvertFunc.EncodeString(pane.edprovinsi_supplier.getText()) + "'::"
+                            + "negara='" + ConvertFunc.EncodeString(pane.ednegara_supplier.getText()) + "'::"
+                            + "telp='" + ConvertFunc.EncodeString(pane.edtelepon_supplier.getText()) + "'::"
+                            + "fax='" + ConvertFunc.EncodeString(pane.edfax_supplier.getText()) + "'::"
+                            + "email='" + ConvertFunc.EncodeString(pane.edemail_supplier.getText()) + "'::"
+                            + "website='" + ConvertFunc.EncodeString(pane.edweb_supplier.getText()) + "'::"
+                            + "kontak_person='" + ConvertFunc.EncodeString(pane.edcp_supplier.getText()) + "'::"
+                            + "hp='" + ConvertFunc.EncodeString(pane.edhp_supplier.getText()) + "'";
                     ch.updatedata("dm/updatenama", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

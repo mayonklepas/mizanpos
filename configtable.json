@@ -826,15 +826,15 @@
         },
         {
             "key": [
-                "dept_id",
-                "Deptid",
+                "id_dept",
+                "Dept",
                 "0",
                 "0"
             ]
         },
         {
             "key": [
-                "no_ref",
+                "noref",
                 "No. ref",
                 "1",
                 "15"
@@ -843,7 +843,7 @@
         {
             "key": [
                 "nama_supplier",
-                "Nama Suplier",
+                "Suplier",
                 "1",
                 "25"
             ]
@@ -859,7 +859,7 @@
         {
             "key": [
                 "total_pembelian",
-                "Total Pembelian",
+                "Total",
                 "1",
                 "15"
             ]
@@ -875,7 +875,7 @@
         {
             "key": [
                 "id_supplier",
-                "ID Customer",
+                "ID Supplier",
                 "0",
                 "0"
             ]
@@ -916,24 +916,24 @@
         },
         {
             "key": [
-                "total_hutang",
-                "Total Hutang",
+                "total",
+                "Total",
                 "1",
                 "20"
             ]
         },
         {
             "key": [
-                "total_cicilan",
-                "Total Cicilan",
+                "cicilan",
+                "Cicilan",
                 "1",
                 "20"
             ]
         },
         {
             "key": [
-                "SISA_HUTANG",
-                "Sisa Hutang",
+                "sisa",
+                "Sisa",
                 "1",
                 "20"
             ]
@@ -1004,6 +1004,111 @@
                 "Nama",
                 "1",
                 "20"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hbeli",
+                "H. Beli",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hjual",
+                "H. Jual",
+                "1",
+                "5"
+            ]
+        },
+        {
+            "key": [
+                "disc%",
+                "Disc %",
+                "1",
+                "6"
+            ]
+        },
+        {
+            "key": [
+                "discrp",
+                "Disc Rp",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "pajak",
+                "Pajak",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "gudang",
+                "Gudang",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "12"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "10"
+            ]
+        }
+    ],
+    "inputreturpembelian": [
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },{
+            "key": [
+                "order",
+                "Order",
+                "1",
+                "7"
             ]
         },
         {

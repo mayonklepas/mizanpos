@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -69,10 +70,9 @@ public class DaftarmerekinnerinputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
-                            pane.edkode_merek.getText(),
-                            pane.ednama_merek.getText(),
-                            pane.edketerangan.getText());
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_merek.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_merek.getText()) + "'::"
+                            + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'";
                     ch.insertdata("dm/insertmerek", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -89,10 +89,9 @@ public class DaftarmerekinnerinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'::keterangan='%s'",
-                            pane.edkode_merek.getText(),
-                            pane.ednama_merek.getText(),
-                            pane.edketerangan.getText());
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_merek.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_merek.getText()) + "'::"
+                            + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'";
                     ch.updatedata("dm/updatemerek", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

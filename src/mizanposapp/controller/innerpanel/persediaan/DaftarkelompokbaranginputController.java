@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -184,11 +185,14 @@ public class DaftarkelompokbaranginputController {
                 metodehpp = "3";
             }
             if (id.equals("")) {
-                String data = String.format("data=kode='%s'::nama='%s'::id_satuan='%s'::id_gudang='%s'::id_lokasi='%s'::id_dept='%s'::isnonpoin='%s'::metode_hpp='%s'",
-                        pane.edkode_kelompok.getText(),
-                        pane.ednama_kelompok.getText(),
-                        valsatuan, valgudang, vallokasi, valdept,
-                        nonpoin, metodehpp);
+                String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_kelompok.getText()) + "'::"
+                        + "nama='" + ConvertFunc.EncodeString(pane.ednama_kelompok.getText()) + "'::"
+                        + "id_satuan='" + ConvertFunc.EncodeString(valsatuan) + "'::"
+                        + "id_gudang='" + ConvertFunc.EncodeString(valgudang) + "'::"
+                        + "id_lokasi='" + ConvertFunc.EncodeString(vallokasi) + "'::"
+                        + "id_dept='" + ConvertFunc.EncodeString(valdept) + "'::"
+                        + "isnonpoin='" + nonpoin + "'::"
+                        + "metode_hpp='" + metodehpp + "'";
                 ch.insertdata("dm/insertkelompokbarang", data);
                 if (!Staticvar.getresult.equals("berhasil")) {
                     JDialog jd = new JDialog(new Mainmenu());
@@ -205,11 +209,14 @@ public class DaftarkelompokbaranginputController {
                     jd.dispose();
                 }
             } else {
-                String data = String.format("data=kode='%s'::nama='%s'::id_satuan='%s'::id_gudang='%s'::id_lokasi='%s'::id_dept='%s'::isnonpoin='%s'::metode_hpp='%s'",
-                        pane.edkode_kelompok.getText(),
-                        pane.ednama_kelompok.getText(),
-                        valsatuan, valgudang, vallokasi, valdept,
-                        nonpoin, metodehpp);
+                String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_kelompok.getText()) + "'::"
+                        + "nama='" + ConvertFunc.EncodeString(pane.ednama_kelompok.getText()) + "'::"
+                        + "id_satuan='" + ConvertFunc.EncodeString(valsatuan) + "'::"
+                        + "id_gudang='" + ConvertFunc.EncodeString(valgudang) + "'::"
+                        + "id_lokasi='" + ConvertFunc.EncodeString(vallokasi) + "'::"
+                        + "id_dept='" + ConvertFunc.EncodeString(valdept) + "'::"
+                        + "isnonpoin='" + nonpoin + "'::"
+                        + "metode_hpp='" + metodehpp + "'";
                 ch.updatedata("dm/updatekelompokbarang", data, id);
                 if (!Staticvar.getresult.equals("berhasil")) {
                     JDialog jd = new JDialog(new Mainmenu());

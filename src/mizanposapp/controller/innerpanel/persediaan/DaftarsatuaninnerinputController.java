@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -67,9 +68,8 @@ public class DaftarsatuaninnerinputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'",
-                            pane.edkode_satuan.getText(),
-                            pane.ednama_satuan.getText());
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_satuan.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_satuan.getText()) + "'";
                     ch.insertdata("dm/insertsatuan", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -86,9 +86,8 @@ public class DaftarsatuaninnerinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'",
-                            pane.edkode_satuan.getText(),
-                            pane.ednama_satuan.getText());
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_satuan.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_satuan.getText()) + "'";
                     ch.updatedata("dm/updatesatuan", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -89,10 +90,9 @@ public class DaftarlokasibaranginnerinputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = String.format("data=kode='%s'::nama='%s'::id_penanggung_jawab='%s'",
-                            pane.edkode_lokasi.getText(),
-                            pane.ednama_lokasi.getText(),
-                            id_penangggung_jawab);
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_lokasi.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_lokasi.getText()) + "'::"
+                            + "id_penanggung_jawab='" + ConvertFunc.EncodeString(id_penangggung_jawab) + "'";
                     ch.insertdata("dm/insertlokasi", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -109,10 +109,9 @@ public class DaftarlokasibaranginnerinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = String.format("data=kode='%s'::nama='%s'::id_penanggung_jawab='%s'",
-                            pane.edkode_lokasi.getText(),
-                            pane.ednama_lokasi.getText(),
-                            id_penangggung_jawab);
+                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_lokasi.getText()) + "'::"
+                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_lokasi.getText()) + "'::"
+                            + "id_penanggung_jawab='" + ConvertFunc.EncodeString(id_penangggung_jawab) + "'";
                     ch.updatedata("dm/updatelokasi", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

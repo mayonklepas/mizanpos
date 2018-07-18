@@ -122,7 +122,7 @@ public class DaftarreturpembelianinnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -232,7 +232,7 @@ public class DaftarreturpembelianinnerController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletereturpembelian", data);
+                    ch.deletedata("deletereturpembelian", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -320,10 +320,12 @@ public class DaftarreturpembelianinnerController {
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
+            int row = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlist.get(row);
             Daftarreturpembelian_input_panel inpane = new Daftarreturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());
-            Staticvar.pmp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pmp.container.revalidate();
             Staticvar.pmp.container.repaint();
         });

@@ -162,7 +162,7 @@ public class DaftarfakturpembelianinputController {
                     }
 
                 } catch (ParseException ex) {
-                    Logger.getLogger(DaftarreturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -640,8 +640,8 @@ public class DaftarfakturpembelianinputController {
                     String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                     String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
                     String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                    String harga_beli = String.valueOf(jointabeldata.get("harga_beli"));
-                    String harga_jual = String.valueOf(jointabeldata.get("harga_jual"));
+                    String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
+                    String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
                     String diskon_persen = String.valueOf(jointabeldata.get("diskon_persen"));
                     String diskon_nominal = String.valueOf(jointabeldata.get("diskon_nominal"));
                     String id_pajak = String.valueOf(jointabeldata.get("id_pajak"));
@@ -1294,7 +1294,7 @@ public class DaftarfakturpembelianinputController {
                             jd.setVisible(true);
                             jd.toFront();
                             Staticvar.resid = "";
-                            Logger.getLogger(DaftarreturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
 
                         } finally {
                             ischangevalue = false;
