@@ -177,6 +177,8 @@ public class DaftarfakturpembelianinputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
+                //String colname = pane.tabledata.getColumnName(column).toLowerCase();
+                //return !(colname.equals("nama") || colname.equals("satuan") || colname.equals("h. jual"));
                 return column == 1 || column == 2 || column == 4 || column == 8 || column == 9 || column == 10 || column == 12 ? false : true;
             }
 
