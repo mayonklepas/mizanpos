@@ -144,6 +144,12 @@ public class DaftarreturpembelianinputController {
         pane.dtanggal.setDate(new Date());
         pane.dtanggal_pengantaran.setDate(new Date());
         pane.dtanggal.getDateEditor().setEnabled(false);
+        pane.labelluangmuka.setVisible(false);
+        pane.ltop.setVisible(false);
+        pane.edtop.setVisible(false);
+        pane.bcaritop.setVisible(false);
+        pane.ltitik2uangmuka.setVisible(false);
+        pane.eduang_muka.setVisible(false);
 
     }
 
@@ -177,7 +183,7 @@ public class DaftarreturpembelianinputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 1 || column == 2 || column == 4 || column == 6 || column == 9 || column == 10 || column == 12 ? false : true;
+                return column == 1 || column == 3 || column == 5 || column == 8 || column == 9 || column == 10 || column == 12 ? false : true;
             }
 
         };
@@ -259,10 +265,10 @@ public class DaftarreturpembelianinputController {
                     pane.ednopo.setVisible(false);
                     pane.bcari_po.setVisible(false);
                     pane.eduang_muka.setText("0");
-                    pane.eduang_muka.setEnabled(false);
+                    /*pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
-                    pane.ltop.setVisible(false);
+                    pane.ltop.setVisible(false);*/
                     tipe_bayar = 0;
                     valtop = "";
                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
@@ -285,10 +291,10 @@ public class DaftarreturpembelianinputController {
                     pane.ltitikduareturatas.setVisible(true);
                     pane.ednopo.setVisible(true);
                     pane.bcari_po.setVisible(true);
-                    pane.eduang_muka.setEnabled(true);
+                    /*pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
                     pane.bcaritop.setVisible(true);
-                    pane.ltop.setVisible(true);
+                    pane.ltop.setVisible(true);*/
                     tipe_bayar = 1;
                     valtop = "";
                     pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
@@ -461,12 +467,12 @@ public class DaftarreturpembelianinputController {
                 pane.ltitikduareturatas.setVisible(false);
                 pane.ednopo.setVisible(false);
                 pane.bcari_po.setVisible(false);
-                pane.edtop.setVisible(false);
+                /*pane.edtop.setVisible(false);
                 pane.bcaritop.setVisible(false);
-                pane.ltop.setVisible(false);
+                pane.ltop.setVisible(false);*/
                 tipe_beli = 0;
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
-                pane.eduang_muka.setEnabled(false);
+                /*pane.eduang_muka.setEnabled(false);*/
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edsupplier.setText("");
@@ -544,7 +550,6 @@ public class DaftarreturpembelianinputController {
 
                 Object jopembelian = jsonobjdata.get("pembelian");
                 JSONArray japembelian = (JSONArray) jopembelian;
-                System.out.println("//////" + jopembelian);
 
                 for (int i = 0; i < japembelian.size(); i++) {
                     JSONObject joinpembelian = (JSONObject) japembelian.get(i);
@@ -560,17 +565,17 @@ public class DaftarreturpembelianinputController {
 
                     if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                         pane.eduang_muka.setText("0");
-                        pane.eduang_muka.setEnabled(false);
+                        /*pane.eduang_muka.setEnabled(false);
                         pane.edtop.setVisible(false);
                         pane.bcaritop.setVisible(false);
-                        pane.ltop.setVisible(false);
+                        pane.ltop.setVisible(false);*/
                         valtop = "";
                         pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                     } else {
-                        pane.eduang_muka.setEnabled(true);
+                        /*pane.eduang_muka.setEnabled(true);
                         pane.edtop.setVisible(true);
                         pane.bcaritop.setVisible(true);
-                        pane.ltop.setVisible(true);
+                        pane.ltop.setVisible(true);*/
                         valtop = "";
                         pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
                     }

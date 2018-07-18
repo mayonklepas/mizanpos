@@ -15,6 +15,7 @@ import mizanposapp.view.innerpanel.pembelian.Cekhargabeli_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftardatasupplier_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutang_inner_panel;
+import mizanposapp.view.innerpanel.pembelian.Daftarorderpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_inner_panel;
 
 /**
@@ -32,6 +33,7 @@ public class PembelianController {
     }
 
     public PembelianController(Pembelian_panel pp) {
+        orderview(pp);
         returview(pp);
         fakturpembelianview(pp);
         hutangview(pp);
@@ -48,6 +50,39 @@ public class PembelianController {
         pp.container.add(pane, BorderLayout.CENTER);
         pp.container.revalidate();
         pp.container.repaint();
+    }
+
+    private void orderview(Pembelian_panel pp) {
+        pp.bpenerimaanbarang.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                System.gc();
+                Daftarorderpembelian_inner_panel pane = new Daftarorderpembelian_inner_panel();
+                Staticvar.pmp = pp;
+                pp.container.removeAll();
+                pp.container.setLayout(new BorderLayout());
+                pp.container.add(pane, BorderLayout.CENTER);
+                pp.container.revalidate();
+                pp.container.repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 
     private void returview(Pembelian_panel pp) {

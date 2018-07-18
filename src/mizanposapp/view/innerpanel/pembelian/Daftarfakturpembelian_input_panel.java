@@ -85,6 +85,10 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         edketerangan = new javax.swing.JTextField();
         bcari_gudang = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        ednopo = new javax.swing.JTextField();
+        bcarinopo = new javax.swing.JButton();
         cmb_tipe_bayar = new javax.swing.JComboBox<>();
         bcari_dept = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -539,23 +543,53 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
             }
         });
 
+        jLabel23.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel23.setText("No. PO");
+
+        jLabel45.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel45.setText(":");
+
+        ednopo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ednopo.setPreferredSize(new java.awt.Dimension(51, 20));
+        ednopo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ednopoActionPerformed(evt);
+            }
+        });
+
+        bcarinopo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcarinopo.setText("Cari");
+        bcarinopo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcarinopoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jLabel21))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel19)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(ednopo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(2, 2, 2)
+                        .addComponent(bcarinopo))
                     .addComponent(edketerangan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(edgudang, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
@@ -566,6 +600,12 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel45)
+                    .addComponent(ednopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(bcarinopo))
+                .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(edgudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -808,7 +848,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                         .addComponent(edakun_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(bcariakun_pembelian)))
-                .addContainerGap(603, Short.MAX_VALUE))
+                .addContainerGap(452, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1025,6 +1065,14 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_uang_mukaActionPerformed
 
+    private void ednopoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ednopoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ednopoActionPerformed
+
+    private void bcarinopoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcarinopoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcarinopoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
     public javax.swing.JButton bcari_dept;
@@ -1035,6 +1083,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     public javax.swing.JButton bcariakun_diskon_pembelian;
     public javax.swing.JButton bcariakun_ongkir;
     public javax.swing.JButton bcariakun_pembelian;
+    public javax.swing.JButton bcarinopo;
     public javax.swing.JButton bcarishipvia;
     public javax.swing.JButton bcaritop;
     public javax.swing.JButton bhapus_baris;
@@ -1056,6 +1105,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     public javax.swing.JTextField edgudang;
     public javax.swing.JTextField edketerangan;
     public javax.swing.JTextField edno_transaksi;
+    public javax.swing.JTextField ednopo;
     public javax.swing.JTextField edsalesman;
     public javax.swing.JTextField edshipvia;
     public javax.swing.JTextField edsupplier;
@@ -1073,6 +1123,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -1096,6 +1147,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

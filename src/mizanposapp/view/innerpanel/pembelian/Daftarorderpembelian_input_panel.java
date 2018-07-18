@@ -4,20 +4,20 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
-import mizanposapp.controller.innerpanel.pembelian.DaftarreturpembelianinputController;
+import mizanposapp.controller.innerpanel.pembelian.DaftarorderpembelianinputController;
 
 /**
  *
  * @author Minami
  */
-public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
+public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
 
     /**
      * Creates new form Persedian_inner_panel
      */
-    public Daftarreturpembelian_input_panel() {
+    public Daftarorderpembelian_input_panel() {
         initComponents();
-        new DaftarreturpembelianinputController(this);
+        new DaftarorderpembelianinputController(this);
     }
 
     /**
@@ -64,7 +64,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         lsubtotal = new javax.swing.JLabel();
         ltotal_pajak = new javax.swing.JLabel();
         labelluangmuka = new javax.swing.JLabel();
-        ltitik2uangmuka = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         eduang_muka = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         eduser_input = new javax.swing.JTextField();
@@ -85,13 +85,8 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         jLabel21 = new javax.swing.JLabel();
         edketerangan = new javax.swing.JTextField();
         bcari_gudang = new javax.swing.JButton();
-        lreturatas = new javax.swing.JLabel();
-        ltitikduareturatas = new javax.swing.JLabel();
-        ednopo = new javax.swing.JTextField();
-        bcari_po = new javax.swing.JButton();
         cmb_tipe_bayar = new javax.swing.JComboBox<>();
         bcari_dept = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         bsimpan = new javax.swing.JButton();
         bbatal = new javax.swing.JButton();
@@ -134,6 +129,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         bcari_uang_muka = new javax.swing.JButton();
         dtanggal = new com.toedter.calendar.JDateChooser();
         jLabel22 = new javax.swing.JLabel();
+        ckselesai = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -142,7 +138,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Retur Pembelian");
+        jLabel1.setText("Order Pembelian");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -284,8 +280,8 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         labelluangmuka.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         labelluangmuka.setText("Uang Muka");
 
-        ltitik2uangmuka.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        ltitik2uangmuka.setText(":");
+        jLabel34.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel34.setText(":");
 
         eduang_muka.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         eduang_muka.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -321,7 +317,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(labelluangmuka)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ltitik2uangmuka))
+                        .addComponent(jLabel34))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -365,7 +361,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eduang_muka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ltitik2uangmuka))
+                    .addComponent(jLabel34))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
@@ -543,53 +539,23 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        lreturatas.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        lreturatas.setText("Retur Atas");
-
-        ltitikduareturatas.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        ltitikduareturatas.setText(":");
-
-        ednopo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        ednopo.setPreferredSize(new java.awt.Dimension(51, 20));
-        ednopo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ednopoActionPerformed(evt);
-            }
-        });
-
-        bcari_po.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        bcari_po.setText("Cari");
-        bcari_po.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcari_poActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lreturatas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ltitikduareturatas))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jLabel21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel19)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(ednopo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(2, 2, 2)
-                        .addComponent(bcari_po))
                     .addComponent(edketerangan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(edgudang, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
@@ -600,12 +566,6 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ltitikduareturatas)
-                    .addComponent(ednopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lreturatas)
-                    .addComponent(bcari_po))
-                .addGap(1, 1, 1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(edgudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -629,9 +589,6 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                 bcari_deptActionPerformed(evt);
             }
         });
-
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel9.setText("History");
 
         jPanel4.setBackground(new java.awt.Color(221, 221, 221));
 
@@ -848,7 +805,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                         .addComponent(edakun_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(bcariakun_pembelian)))
-                .addContainerGap(603, Short.MAX_VALUE))
+                .addContainerGap(617, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -877,13 +834,15 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel44)
                     .addComponent(edakun_uang_muka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari_uang_muka))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Kontrol Akun", jPanel3);
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel22.setText("Tipe :");
+
+        ckselesai.setText("Selesai");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -923,14 +882,15 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ckdiskon, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel22)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cmb_tipe_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
-                                .addComponent(cmb_tipe_bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ckdiskon, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addComponent(cmb_tipe_bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ckselesai))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -946,9 +906,8 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmb_tipe_bayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmb_tipe_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
+                            .addComponent(jLabel22)
+                            .addComponent(ckselesai))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ckdiskon))
                     .addGroup(layout.createSequentialGroup()
@@ -976,7 +935,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
                             .addComponent(bcari_dept)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -1065,19 +1024,10 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_uang_mukaActionPerformed
 
-    private void ednopoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ednopoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ednopoActionPerformed
-
-    private void bcari_poActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_poActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bcari_poActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
     public javax.swing.JButton bcari_dept;
     public javax.swing.JButton bcari_gudang;
-    public javax.swing.JButton bcari_po;
     public javax.swing.JButton bcari_salesman;
     public javax.swing.JButton bcari_supplier;
     public javax.swing.JButton bcari_uang_muka;
@@ -1090,6 +1040,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
     public javax.swing.JButton bsimpan;
     public javax.swing.JButton btambah_baris;
     public javax.swing.JCheckBox ckdiskon;
+    public javax.swing.JCheckBox ckselesai;
     public javax.swing.JComboBox<String> cmb_tipe_bayar;
     public javax.swing.JComboBox<String> cmb_tipe_pembelian;
     public com.toedter.calendar.JDateChooser dtanggal;
@@ -1105,7 +1056,6 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
     public javax.swing.JTextField edgudang;
     public javax.swing.JTextField edketerangan;
     public javax.swing.JTextField edno_transaksi;
-    public javax.swing.JTextField ednopo;
     public javax.swing.JTextField edsalesman;
     public javax.swing.JTextField edshipvia;
     public javax.swing.JTextField edsupplier;
@@ -1134,6 +1084,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -1149,7 +1100,6 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    public javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
@@ -1159,10 +1109,7 @@ public class Daftarreturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel labelluangmuka;
-    public javax.swing.JLabel lreturatas;
     public javax.swing.JLabel lsubtotal;
-    public javax.swing.JLabel ltitik2uangmuka;
-    public javax.swing.JLabel ltitikduareturatas;
     public javax.swing.JLabel ltop;
     public javax.swing.JLabel ltotal_pajak;
     public javax.swing.JLabel ltotal_pembelian;

@@ -799,6 +799,48 @@
             ]
         }
     ],
+    "orderpembelian": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Ref",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "total_pembelian",
+                "Total",
+                "1",
+                "15"
+            ]
+        }
+    ],
     "returpembelian": [
         {
             "key": [

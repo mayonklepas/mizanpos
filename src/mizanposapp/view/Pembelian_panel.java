@@ -43,6 +43,9 @@ public class Pembelian_panel extends javax.swing.JPanel {
         breturpembelian = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        bpenerimaanbarang = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         lcekhargabarang = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
@@ -100,7 +103,7 @@ public class Pembelian_panel extends javax.swing.JPanel {
         jLabel6.setText("Faktur Pembelian");
         bfakturpembelian.add(jLabel6);
 
-        jPanel9.add(bfakturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        jPanel9.add(bfakturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         breturpembelian.setPreferredSize(new java.awt.Dimension(100, 100));
 
@@ -111,7 +114,18 @@ public class Pembelian_panel extends javax.swing.JPanel {
         jLabel7.setText("Retur Pembelian");
         breturpembelian.add(jLabel7);
 
-        jPanel9.add(breturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel9.add(breturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+
+        bpenerimaanbarang.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
+        bpenerimaanbarang.add(jLabel5);
+
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel9.setText("Order Pembelian");
+        bpenerimaanbarang.add(jLabel9);
+
+        jPanel9.add(bpenerimaanbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jPanel8.setBackground(new java.awt.Color(41, 39, 40));
 
@@ -184,6 +198,7 @@ public class Pembelian_panel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel bfakturpembelian;
+    public javax.swing.JPanel bpenerimaanbarang;
     public javax.swing.JPanel breturpembelian;
     public javax.swing.JPanel butangusaha;
     public javax.swing.JPanel container;
@@ -191,9 +206,11 @@ public class Pembelian_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
