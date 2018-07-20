@@ -1098,7 +1098,7 @@ public class DaftarorderpembelianinputController {
 
     private void rawgetidakun(String prevlabel) {
         Staticvar.sfilter = "";
-        Staticvar.preid = valshipvia;
+        Staticvar.preid = "";
         Staticvar.prelabel = prevlabel;
         JDialog jd = new JDialog(new Mainmenu());
         jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));

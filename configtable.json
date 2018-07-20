@@ -1013,6 +1013,106 @@
             ]
         }
     ],
+    "hutangrincianheader": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Ref",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "cicilan",
+                "Terbayar",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "sisa",
+                "Sisa",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "hutangrinciandetail": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Ref",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "40"
+            ]
+        },
+        {
+            "key": [
+                "cicilan",
+                "Jumlah Bayar",
+                "1",
+                "20"
+            ]
+        }
+    ],
     "stokminimum": [
         {
             "key": [
@@ -1367,6 +1467,56 @@
             "key": [
                 "total",
                 "Total",
+                "1",
+                "10"
+            ]
+        }
+    ],
+    "inputpembayaranhutang": [
+        {
+            "key": [
+                "noref",
+                "No. Ref",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Jumlah",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "sisa",
+                "Sisa",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "diskon",
+                "Diskon",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "jumlah_bayar",
+                "Jumlah Bayar",
                 "1",
                 "10"
             ]

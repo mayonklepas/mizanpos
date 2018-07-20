@@ -6,6 +6,7 @@
 package mizanposapp.helper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import mizanposapp.view.Beranda_panel;
 import mizanposapp.view.Laporan_panel;
 import mizanposapp.view.Mainmenu;
@@ -30,6 +31,7 @@ public class Staticvar {
     //public static String url = "http://198.50.174.114:556/";
     public static ArrayList<Integer> stylecolum = new ArrayList<>();
     public static String getresult = "";
+    public static HashMap map_var = new HashMap();
     public static String ids = "";
     public static String preid = "";
     public static String prelabel = "";
