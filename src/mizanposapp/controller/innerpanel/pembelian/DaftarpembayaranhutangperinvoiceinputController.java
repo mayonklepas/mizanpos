@@ -26,6 +26,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -67,7 +68,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
     CrudHelper ch = new CrudHelper();
     Daftarpembayaranhutangperinvoice_input_panel pane;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
-    Object[] rowtabledata = new Object[5];
+    Object[] rowtabledata = new Object[6];
     ArrayList<Entitytabledata> tabeldatalist = new ArrayList<>();
     ArrayList<Integer> lshide = new ArrayList<>();
     ArrayList<Integer> lsoldhide = new ArrayList<>();
@@ -309,11 +310,10 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                 pane.edketerangan.setText("");
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
-                pane.tabledata.setModel(dtmtabeldata);
             } else {
-                /*JSONParser jpdata = new JSONParser();
+                JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);
-                Object rawobjdata = jpdata.parse(ch.getdatadetails("data", param));
+                Object rawobjdata = jpdata.parse(ch.getdatadetails("datapembayaranhutang", param));
                 JSONObject jsonobjdata = (JSONObject) rawobjdata;
 
                 Object jogenjur = jsonobjdata.get("genjur");
@@ -321,7 +321,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
 
                 for (int i = 0; i < jagenjur.size(); i++) {
                     JSONObject joingenjur = (JSONObject) jagenjur.get(i);
-                    pane.edno_transaksi.setText(String.valueOf(joingenjur.get("noref")));
+                    pane.ednoref.setText(String.valueOf(joingenjur.get("noref")));
                     pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
                     pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
                     valdept = String.valueOf(joingenjur.get("id_dept"));
@@ -333,206 +333,76 @@ public class DaftarpembayaranhutangperinvoiceinputController {
 
                 }
 
-                Object jopembelian = jsonobjdata.get("pembelian");
+                Object jopembelian = jsonobjdata.get("kaskeluar");
                 JSONArray japembelian = (JSONArray) jopembelian;
 
                 for (int i = 0; i < japembelian.size(); i++) {
                     JSONObject joinpembelian = (JSONObject) japembelian.get(i);
-                    valsupplier = String.valueOf(joinpembelian.get("id_supplier"));
-                    pane.edsupplier.setText(String.valueOf(joinpembelian.get("nama_supplier")));
+                    valsupplier = String.valueOf(joinpembelian.get("id_cards"));
+                    pane.edsupplier.setText(String.valueOf(joinpembelian.get("nama_cards")));
 
-                    status_selesai = ConvertFunc.ToInt(joinpembelian.get("isorderselesai"));
-                    if (status_selesai == 0) {
-                        pane.ckselesai.setSelected(false);
+                    pane.edtotal_nilai.setText(String.valueOf(joinpembelian.get("jumlah")));
+
+                    valgiro = ConvertFunc.ToInt(joinpembelian.get("isgiro"));
+                    if (valgiro == 0) {
+                        pane.ckgiro.setSelected(false);
                     } else {
-                        pane.ckselesai.setSelected(true);
+                        pane.ckgiro.setSelected(true);
                     }
 
-                    tipe_bayar = ConvertFunc.ToInt(joinpembelian.get("tipe_pembayaran"));
-                    if (tipe_bayar == 0) {
-                        pane.cmb_tipe_bayar.setSelectedIndex(0);
+                    if (pane.ckgiro.isSelected()) {
+                        pane.ednocek.setVisible(true);
                     } else {
-                        pane.cmb_tipe_bayar.setSelectedIndex(1);
+                        pane.ednocek.setVisible(false);
                     }
 
-                    if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                        pane.eduang_muka.setText("0");
-                        pane.eduang_muka.setEnabled(false);
-                        pane.edtop.setVisible(false);
-                        pane.bcaritop.setVisible(false);
-                        pane.ltop.setVisible(false);
-                        valtop = "";
-                        pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
-                    } else {
-                        pane.eduang_muka.setEnabled(true);
-                        pane.edtop.setVisible(true);
-                        pane.bcaritop.setVisible(true);
-                        pane.ltop.setVisible(true);
-                        valtop = "";
-                        pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                    }
+                    pane.ednocek.setText(String.valueOf(joinpembelian.get("no_giro")));
+
                     try {
-                        pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpembelian.get("tanggal_pengantaran")))));
+                        pane.dtempo.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpembelian.get("tanggal_giro_jatuh_tempo")))));
                     } catch (java.text.ParseException ex) {
                         Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    valshipvia = String.valueOf(joinpembelian.get("id_pengantaran"));
-                    pane.edshipvia.setText(String.valueOf(joinpembelian.get("nama_pengantaran")));
+                    pane.edakun_pengeluaran.setText(String.valueOf(joinpembelian.get("akun_keluar_dari")) + "-"
+                            + String.valueOf(joinpembelian.get("nama_akun_keluar_dari")));
 
-                    valgudang = String.valueOf(joinpembelian.get("id_gudang"));
-                    pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
-
-                    valtop = String.valueOf(joinpembelian.get("id_termofpayment"));
-                    pane.edtop.setText(String.valueOf(joinpembelian.get("top")));
-
-                    pane.ltotal_pembelian.setText(String.valueOf(joinpembelian.get("total_pembelian")));
-
-                    pane.edbiayalain.setText(String.valueOf(joinpembelian.get("total_biaya")));
-                    pane.eddiskon1.setText(String.valueOf(joinpembelian.get("diskon_persen")));
-                    pane.eddiskon2.setText(String.valueOf(joinpembelian.get("diskon_nominal")));
-
-                    pane.eduang_muka.setText(String.valueOf(joinpembelian.get("total_uang_muka")));
-
-                    pane.ltotal_pajak.setText(String.valueOf(joinpembelian.get("total_pajak")));
-
-                    pane.edakun_pembelian.setText(String.valueOf(joinpembelian.get("akun_pembelian")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_pembelian")));
-
-                    valakun_pembelian = String.valueOf(joinpembelian.get("akun_pembelian"));
-
-                    pane.edakun_ongkir.setText(String.valueOf(joinpembelian.get("akun_biaya")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_biaya")));
-
-                    valakun_ongkir = String.valueOf(joinpembelian.get("akun_biaya"));
-
-                    pane.edakun_diskon_pembelian.setText(String.valueOf(joinpembelian.get("akun_diskon")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_diskon")));
-
-                    valakun_diskon = String.valueOf(joinpembelian.get("akun_diskon"));
-
-                    pane.edakun_uang_muka.setText(String.valueOf(joinpembelian.get("akun_uang_muka")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_uang_muka")));
-
-                    valakun_uang_muka = String.valueOf(joinpembelian.get("akun_uang_muka"));
-
-                    valcheck = Integer.parseInt(String.valueOf(joinpembelian.get("diskon_dalam")));
-                    if (valcheck == 0) {
-                        pane.ckdiskon.setSelected(true);
-                    } else {
-                        pane.ckdiskon.setSelected(false);
-                    }
-
-                    if (pane.ckdiskon.isSelected()) {
-                        hidetable(7);
-                        showtable(6);
-                    } else {
-                        hidetable(6);
-                        showtable(7);
-                    }
-
-                    valsalesman = String.valueOf(joinpembelian.get("id_bagian_pembelian"));
-                    pane.edsalesman.setText(String.valueOf(joinpembelian.get("nama_bagian_pembelian")));
-
-                    tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
-                    pane.cmb_tipe_pembelian.setSelectedIndex(tipe_beli);
-
-                    if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
-                        lshide.set(3, lsoldhide.get(3));
-                        lshide.set(9, lsoldhide.get(9));
-                        lsresize.set(3, lsoldsize.get(3));
-                        lsresize.set(9, lsoldsize.get(9));
-                        setheader();
-                        if (pane.ckdiskon.isSelected()) {
-                            hidetable(7);
-                            showtable(6);
-                            valcheck = 0;
-
-                        } else {
-                            hidetable(6);
-                            showtable(7);
-                            valcheck = 1;
-                        }
-                    } else {
-                        lshide.set(3, 0);
-                        lshide.set(9, 0);
-                        lsresize.set(3, 0);
-                        lsresize.set(9, 0);
-                        setheader();
-                        if (pane.ckdiskon.isSelected()) {
-                            hidetable(7);
-                            showtable(6);
-                            valcheck = 0;
-
-                        } else {
-                            hidetable(6);
-                            showtable(7);
-                            valcheck = 1;
-                        }
-                    }
+                    valakun_pengengeluaran = String.valueOf(joinpembelian.get("akun_keluar_dari"));
                 }
 
-                Object objtabeldata = jsonobjdata.get("pembelian_detail");
-                JSONArray jatabledata = (JSONArray) objtabeldata;
+                Object jotabledata = jsonobjdata.get("kaskeluar_detail");
+                JSONArray jatabledata = (JSONArray) jotabledata;
                 for (int i = 0; i < jatabledata.size(); i++) {
-                    JSONObject jointabeldata = (JSONObject) jatabledata.get(i);
-                    String id_barang = "";
-                    String kode_barang = "";
-                    String nama_barang = "";
-                    if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
-                        id_barang = String.valueOf(jointabeldata.get("id_inv"));
-                        kode_barang = String.valueOf(jointabeldata.get("kode_inv"));
-                        nama_barang = String.valueOf(jointabeldata.get("nama_inv"));
-                    } else {
-                        id_barang = String.valueOf(jointabeldata.get("akun"));
-                        kode_barang = String.valueOf(jointabeldata.get("akun"));
-                        nama_barang = String.valueOf(jointabeldata.get("nama_akun"));
-                    }
-                    String jumlah = String.valueOf(jointabeldata.get("qty"));
-                    String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                    String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                    String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                    String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                    String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                    String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
-                    String diskon_persen = String.valueOf(jointabeldata.get("diskon_persen"));
-                    String diskon_nominal = String.valueOf(jointabeldata.get("diskon_nominal"));
-                    String id_pajak = String.valueOf(jointabeldata.get("id_pajak"));
-                    String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak"));
-                    String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak"));
-                    String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                    String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
-                    String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
-                    tabeldatalist.add(new DaftarorderpembelianinputController.Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                            nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-
+                    JSONObject jointabledata = (JSONObject) jatabledata.get(i);
+                    String id = String.valueOf(jointabledata.get("id"));
+                    String akun = String.valueOf(jointabledata.get("akun"));
+                    String noref = String.valueOf(jointabledata.get("noref"));
+                    String tanggal = String.valueOf(jointabledata.get("tanggal"));
+                    String totalhutang = String.valueOf(jointabledata.get("total"));
+                    String sisahutang = String.valueOf(jointabledata.get("sisa"));
+                    String diskon = String.valueOf(jointabledata.get("diskon"));
+                    String jumlah_bayar = String.valueOf(jointabledata.get("jumlah"));
+                    tabeldatalist.add(new Entitytabledata(id, akun, noref, tanggal, totalhutang, sisahutang, diskon, jumlah_bayar));
                 }
+
                 for (int i = 0; i < tabeldatalist.size(); i++) {
-                    rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
-                    rowtabledata[1] = tabeldatalist.get(i).getNama_barang();
-                    rowtabledata[2] = tabeldatalist.get(i).getJumlah();
-                    rowtabledata[3] = tabeldatalist.get(i).getNama_satuan();
-                    rowtabledata[4] = tabeldatalist.get(i).getHarga_beli();
-                    rowtabledata[5] = tabeldatalist.get(i).getHarga_jual();
-                    rowtabledata[6] = tabeldatalist.get(i).getDiskon_persen();
-                    rowtabledata[7] = tabeldatalist.get(i).getDiskon_nominal();
-                    rowtabledata[8] = tabeldatalist.get(i).getNama_pajak();
-                    rowtabledata[9] = tabeldatalist.get(i).getNama_gudang();
-                    rowtabledata[10] = tabeldatalist.get(i).getKeterangan();
-                    rowtabledata[11] = tabeldatalist.get(i).getTotal();
+                    rowtabledata[0] = tabeldatalist.get(i).getNoref();
+                    rowtabledata[1] = tabeldatalist.get(i).getTanggal();
+                    rowtabledata[2] = tabeldatalist.get(i).getTotalhutang();
+                    rowtabledata[3] = tabeldatalist.get(i).getSisahutang();
+                    rowtabledata[4] = tabeldatalist.get(i).getDiskon();
+                    rowtabledata[5] = tabeldatalist.get(i).getJumlah_bayar();
                     dtmtabeldata.addRow(rowtabledata);
                 }
-                kalkulasitotal();
+                pane.tabledata.setModel(dtmtabeldata);
+                kalkulasi();
                 for (int i = 0; i < rowtabledata.length; i++) {
                     rowtabledata[i] = "";
-                }*/
+                }
 
             }
-
-        } catch (Exception ex) {
-            Logger.getLogger(DaftarpembayaranhutangperinvoiceinputController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         int[] columnright = {2, 3, 4, 5};
         new Tablestyle(pane.tabledata).applystylerow(columnright);
@@ -836,9 +706,14 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     + "no_giro='" + pane.ednocek.getText() + "'::"
                     + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
                     + "&" + kirimtexpembelian();
-            ch.updatedata("insertpembayaranhutang", data, id);
+            ch.updatedata("updatepembayaranhutang", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
-                Daftarhutang_inner_panel inpane = new Daftarhutang_inner_panel();
+                JPanel inpane = new JPanel();
+                if (Staticvar.frame.equals("hutang")) {
+                    inpane = new Daftarhutang_inner_panel();
+                } else if (Staticvar.frame.equals("rincian_hutang")) {
+                    inpane = new Daftarhutangrincian_inner_panel();
+                }
                 Staticvar.pmp.container.removeAll();
                 Staticvar.pmp.container.setLayout(new BorderLayout());
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
@@ -1075,9 +950,14 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "3", String.valueOf(no_urut));
+                        String data = String.format("id_keltrans=%s&no_urut=%s", "42", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
-                        Daftarhutangrincian_inner_panel inpane = new Daftarhutangrincian_inner_panel();
+                        JPanel inpane = new JPanel();
+                        if (Staticvar.frame.equals("hutang")) {
+                            inpane = new Daftarhutang_inner_panel();
+                        } else if (Staticvar.frame.equals("rincian_hutang")) {
+                            inpane = new Daftarhutangrincian_inner_panel();
+                        }
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);

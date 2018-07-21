@@ -266,6 +266,7 @@ public class DaftarhutanginnerController {
     private void pembayaran() {
         pane.bbayar.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
+            Staticvar.frame = "hutang";
             Staticvar.map_var.put("id_supplier", idlist.get(row));
             Staticvar.map_var.put("nama_supplier", pane.tabledata.getValueAt(row, 1));
             Daftarpembayaranhutangperinvoice_input_panel inpane = new Daftarpembayaranhutangperinvoice_input_panel();

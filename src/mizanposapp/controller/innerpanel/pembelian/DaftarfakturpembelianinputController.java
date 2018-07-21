@@ -532,6 +532,9 @@ public class DaftarfakturpembelianinputController {
                     valshipvia = String.valueOf(joinpembelian.get("id_pengantaran"));
                     pane.edshipvia.setText(String.valueOf(joinpembelian.get("nama_pengantaran")));
 
+                    valorder = String.valueOf(joinpembelian.get("id_nopo"));
+                    pane.ednopo.setText(String.valueOf(joinpembelian.get("nopo")));
+
                     valgudang = String.valueOf(joinpembelian.get("id_gudang"));
                     pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
 
@@ -1045,9 +1048,25 @@ public class DaftarfakturpembelianinputController {
                             String param = String.format("id=%s", valorder);
                             Object rawobjdata = jpdata.parse(ch.getdatadetails("dataorderpembelian", param));
                             JSONObject jsonobjdata = (JSONObject) rawobjdata;
+
+                            Object objgenjur = jsonobjdata.get("genjur");
+                            JSONArray jagenjur = (JSONArray) objgenjur;
+                            for (int i = 0; i < jagenjur.size(); i++) {
+                                JSONObject joingenjur = (JSONObject) jagenjur.get(i);
+                                valdept = String.valueOf(joingenjur.get("id_dept"));
+                                pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
+                            }
+
+                            Object objpembelian = jsonobjdata.get("pembelian");
+                            JSONArray japembelian = (JSONArray) objpembelian;
+                            for (int i = 0; i < japembelian.size(); i++) {
+                                JSONObject joinpembelian = (JSONObject) japembelian.get(i);
+                                valgudang = String.valueOf(joinpembelian.get("id_gudang"));
+                                pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
+                            }
+
                             Object objtabeldata = jsonobjdata.get("pembelian_detail");
                             JSONArray jatabledata = (JSONArray) objtabeldata;
-                            System.out.println(jatabledata.size());
                             for (int i = 0; i < jatabledata.size(); i++) {
                                 JSONObject jointabeldata = (JSONObject) jatabledata.get(i);
                                 String id_barang = "";

@@ -244,6 +244,7 @@ public class DaftarhutangrincianinnerController {
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarcicilanhutangpersupplier", param));
+                System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtmrincian.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -360,6 +361,7 @@ public class DaftarhutangrincianinnerController {
 
     private void inputpembayaranbayar() {
         pane.btambah.addActionListener((ActionEvent e) -> {
+            Staticvar.frame = "rincian_hutang";
             Daftarpembayaranhutangperinvoice_input_panel inpane = new Daftarpembayaranhutangperinvoice_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());
@@ -385,6 +387,7 @@ public class DaftarhutangrincianinnerController {
 
     private void editpembayarandetail() {
         pane.bedit2.addActionListener((ActionEvent e) -> {
+            Staticvar.frame = "rincian_hutang";
             int row = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlistrincian.get(row);
             String id_keltrans = idlistrinciankeltrans.get(row);
@@ -429,19 +432,11 @@ public class DaftarhutangrincianinnerController {
                             if (Staticvar.isupdate == true) {
                                 loaddatadetailrincian(idlist.get(row));
                                 loaddata();
-                                pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, 0, false, false);
-                                pane.tabledatarincian.requestFocus();
-                                pane.tabledatarincian.changeSelection(0, 0, false, false);
                             }
                         } else {
                             if (Staticvar.isupdate == true) {
                                 loaddatadetailrincian(idlist.get(row));
                                 loaddata();
-                                pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, 0, false, false);
-                                pane.tabledatarincian.requestFocus();
-                                pane.tabledatarincian.changeSelection(0, 0, false, false);
 
                             }
                         }
