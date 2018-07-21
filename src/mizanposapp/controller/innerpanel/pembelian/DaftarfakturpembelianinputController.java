@@ -34,6 +34,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -56,6 +57,7 @@ import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_input_panel;
+import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -958,12 +960,18 @@ public class DaftarfakturpembelianinputController {
                     public void run() {
                         String data = String.format("id_keltrans=%s&no_urut=%s", "3", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
-                        Daftarfakturpembelian_inner_panel inpane = new Daftarfakturpembelian_inner_panel();
+                        JPanel inpane = new JPanel();
+                        if (Staticvar.frame.endsWith("rincian_hutang")) {
+                            inpane = new Daftarhutangrincian_inner_panel();
+                        } else if (Staticvar.frame.endsWith("daftar_faktur") || Staticvar.frame.endsWith("")) {
+                            inpane = new Daftarfakturpembelian_inner_panel();
+                        }
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.frame = "";
                     }
                 });
 
@@ -1180,9 +1188,9 @@ public class DaftarfakturpembelianinputController {
 
     }
 
-    private void rawgetidakun(String prevlabel) {
+    private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
-        Staticvar.preid = valshipvia;
+        Staticvar.preid = previd;
         Staticvar.prelabel = prevlabel;
         JDialog jd = new JDialog(new Mainmenu());
         jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
@@ -1195,8 +1203,8 @@ public class DaftarfakturpembelianinputController {
 
     private void cariakunpembelian() {
         pane.bcariakun_pembelian.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_pembelian.getText());
-            if (!Staticvar.resid.equals("")) {
+            rawgetidakun(pane.edakun_pembelian.getText(), valakun_pembelian);
+            if (!Staticvar.resid.equals(valakun_pembelian)) {
                 valakun_pembelian = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edakun_pembelian.setText(val);
@@ -1207,8 +1215,8 @@ public class DaftarfakturpembelianinputController {
 
     private void cariakundiskon() {
         pane.bcariakun_diskon_pembelian.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_diskon_pembelian.getText());
-            if (!Staticvar.resid.equals("")) {
+            rawgetidakun(pane.edakun_diskon_pembelian.getText(), valakun_diskon);
+            if (!Staticvar.resid.equals(valakun_diskon)) {
                 valakun_diskon = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edakun_diskon_pembelian.setText(val);
@@ -1220,8 +1228,8 @@ public class DaftarfakturpembelianinputController {
 
     private void cariakunongkir() {
         pane.bcariakun_ongkir.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_ongkir.getText());
-            if (!Staticvar.resid.equals("")) {
+            rawgetidakun(pane.edakun_ongkir.getText(), valakun_ongkir);
+            if (!Staticvar.resid.equals(valakun_ongkir)) {
                 valakun_ongkir = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edakun_ongkir.setText(val);
@@ -1232,8 +1240,8 @@ public class DaftarfakturpembelianinputController {
 
     private void cariakunuangmuka() {
         pane.bcari_uang_muka.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_uang_muka.getText());
-            if (!Staticvar.resid.equals("")) {
+            rawgetidakun(pane.edakun_uang_muka.getText(), valakun_uang_muka);
+            if (!Staticvar.resid.equals(valakun_uang_muka)) {
                 valakun_uang_muka = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edakun_uang_muka.setText(val);

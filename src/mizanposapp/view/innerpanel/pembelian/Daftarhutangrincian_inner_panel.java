@@ -45,9 +45,12 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         tabledatarincian = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lheader = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        bedit2 = new javax.swing.JButton();
+        bhapus2 = new javax.swing.JButton();
 
         tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
@@ -78,8 +81,10 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
         bcari.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari.setText("Cari");
 
-        bhapus.setText("Hapus Piutang");
+        bhapus.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        bhapus.setText("Write Off");
 
+        bupdate.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         bupdate.setText("Update");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -101,7 +106,7 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
                 .addComponent(tcari, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bcari)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +120,7 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
                     .addComponent(bcari)
                     .addComponent(bhapus)
                     .addComponent(bupdate))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel14.setBackground(new java.awt.Color(41, 39, 40));
@@ -133,14 +138,14 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(559, Short.MAX_VALUE))
+                .addContainerGap(563, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         tabledatarincian.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -161,9 +166,9 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jPanel12.setPreferredSize(new java.awt.Dimension(284, 46));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Daftar Hutang Usaha");
+        lheader.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lheader.setForeground(new java.awt.Color(255, 255, 255));
+        lheader.setText("Daftar Hutang Usaha");
 
         jPanel2.setBackground(new java.awt.Color(41, 39, 40));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -182,7 +187,7 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lheader)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -190,9 +195,36 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lheader)
                 .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+        );
+
+        bedit2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bedit2.setText("Edit");
+
+        bhapus2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bhapus2.setText("Hapus");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bedit2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bhapus2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bedit2)
+                    .addComponent(bhapus2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -201,9 +233,10 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
             .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,11 +245,13 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -224,19 +259,22 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bcari;
     public javax.swing.JButton bedit;
+    public javax.swing.JButton bedit2;
     public javax.swing.JButton bfilter;
     public javax.swing.JButton bhapus;
+    public javax.swing.JButton bhapus2;
     public javax.swing.JButton btambah;
     public javax.swing.JButton bupdate;
     public javax.swing.JLabel indi;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    public javax.swing.JLabel lheader;
     public javax.swing.JTable tabledata;
     public javax.swing.JTable tabledatarincian;
     public javax.swing.JTextField tcari;

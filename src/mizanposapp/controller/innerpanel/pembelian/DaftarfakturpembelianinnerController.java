@@ -323,6 +323,7 @@ public class DaftarfakturpembelianinnerController {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlist.get(row);
+            Staticvar.frame = "daftar_faktur";
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());

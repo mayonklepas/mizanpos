@@ -280,7 +280,8 @@ public class DaftarhutanginnerController {
     private void detailpembayaran() {
         pane.bdetailbayar.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
-            Staticvar.ids = idlist.get(row);
+            Staticvar.map_var.put("id_supplier", idlist.get(row));
+            Staticvar.map_var.put("nama_supplier", pane.tabledata.getValueAt(row, 1));
             Daftarhutangrincian_inner_panel inpane = new Daftarhutangrincian_inner_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());

@@ -6,6 +6,7 @@
 package mizanposapp.controller.innerpanel.pembelian;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -18,6 +19,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -27,6 +30,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.view.Mainmenu;
+import mizanposapp.view.frameform.Errorpanel;
+import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_input_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarpembayaranhutangperinvoice_input_panel;
 import org.json.simple.JSONArray;
@@ -55,6 +61,7 @@ public class DaftarhutangrincianinnerController {
     public DaftarhutangrincianinnerController(Daftarhutangrincian_inner_panel pane) {
         this.pane = pane;
         id = Staticvar.ids;
+        pane.lheader.setText("Daftar Hutang Usaha - " + String.valueOf(Staticvar.map_var.get("nama_supplier")));
         loadheader();
         loadheaderrincian();
         loaddata();
@@ -65,6 +72,7 @@ public class DaftarhutangrincianinnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+        deleterincian();
 
     }
 
@@ -154,7 +162,7 @@ public class DaftarhutangrincianinnerController {
                 JSONParser jpdata = new JSONParser();
                 //String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
                 //Object objdata = jpdata.parse(ch.getdatas("daftarhutangpersupplier"));
-                String param = String.format("id=%s", id);
+                String param = String.format("id=%s", String.valueOf(Staticvar.map_var.get("id_supplier")));
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarhutangpersupplier", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -358,13 +366,68 @@ public class DaftarhutangrincianinnerController {
 
     private void editpembayaran() {
         pane.bedit.addActionListener((ActionEvent e) -> {
-            Daftarhutangrincian_inner_panel inpane = new Daftarhutangrincian_inner_panel();
+            int row = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlist.get(row);
+            Staticvar.frame = "rincian_hutang";
+            Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());
             Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pmp.container.revalidate();
             Staticvar.pmp.container.repaint();
         });
+    }
+
+    private void deleterincian() {
+        pane.bhapus2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = pane.tabledata.getSelectedRow();
+                int rowdetail = pane.tabledatarincian.getSelectedRow();
+                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
+                    String data = String.format("id=%s", idlistrincian.get(rowdetail));
+                    ch.deletedata("deletepembayaranhutang", data);
+                    if (!Staticvar.getresult.equals("berhasil")) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        Errorpanel ep = new Errorpanel();
+                        ep.ederror.setText(Staticvar.getresult);
+                        jd.add(ep);
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                    } else {
+                        Staticvar.isupdate = true;
+                        if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailrincian(idlist.get(row));
+                                loaddata();
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, 0, false, false);
+                                pane.tabledatarincian.requestFocus();
+                                pane.tabledatarincian.changeSelection(0, 0, false, false);
+                            }
+                        } else {
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailrincian(idlist.get(row));
+                                loaddata();
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, 0, false, false);
+                                pane.tabledatarincian.requestFocus();
+                                pane.tabledatarincian.changeSelection(0, 0, false, false);
+
+                            }
+                        }
+                        Staticvar.isupdate = false;
+                    }
+                }
+
+            }
+        });
+
     }
 
 }
