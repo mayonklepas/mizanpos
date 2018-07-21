@@ -585,6 +585,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     }
                     ischangevalue = false;
                 }
+                kalkulasi();
+
             }
         });
         MouseAdapter madap = new MouseAdapter() {
@@ -625,19 +627,19 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                     JSONArray jadata = (JSONArray) objdataraw;
                                     for (int i = 0; i < jadata.size(); i++) {
                                         JSONObject joindata = (JSONObject) jadata.get(i);
-                                        tabeldatalist.get(i).setAkun(String.valueOf(joindata.get("akun")));
-                                        tabeldatalist.get(i).setId(String.valueOf(joindata.get("id")));
-                                        tabeldatalist.get(i).setNoref(String.valueOf(joindata.get("noref")));
+                                        tabeldatalist.get(row).setAkun(String.valueOf(joindata.get("akun")));
+                                        tabeldatalist.get(row).setId(String.valueOf(joindata.get("id")));
+                                        tabeldatalist.get(row).setNoref(String.valueOf(joindata.get("noref")));
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
-                                        tabeldatalist.get(i).setTanggal(String.valueOf(joindata.get("tanggal")));
+                                        tabeldatalist.get(row).setTanggal(String.valueOf(joindata.get("tanggal")));
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
-                                        tabeldatalist.get(i).setTotalhutang(String.valueOf(joindata.get("total")));
+                                        tabeldatalist.get(row).setTotalhutang(String.valueOf(joindata.get("total")));
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("total")), row, 2);
-                                        tabeldatalist.get(i).setSisahutang(String.valueOf(joindata.get("sisa")));
+                                        tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
-                                        tabeldatalist.get(i).setDiskon("0");
+                                        tabeldatalist.get(row).setDiskon("0");
                                         pane.tabledata.setValueAt("0", row, 4);
-                                        tabeldatalist.get(i).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
+                                        tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
                                         pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
                                     }
                                     kalkulasi();
@@ -711,19 +713,19 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                 JSONArray jadata = (JSONArray) objdataraw;
                                 for (int i = 0; i < jadata.size(); i++) {
                                     JSONObject joindata = (JSONObject) jadata.get(i);
-                                    tabeldatalist.get(i).setAkun(String.valueOf(joindata.get("akun")));
-                                    tabeldatalist.get(i).setId(String.valueOf(joindata.get("id")));
-                                    tabeldatalist.get(i).setNoref(String.valueOf(joindata.get("noref")));
+                                    tabeldatalist.get(row).setAkun(String.valueOf(joindata.get("akun")));
+                                    tabeldatalist.get(row).setId(String.valueOf(joindata.get("id")));
+                                    tabeldatalist.get(row).setNoref(String.valueOf(joindata.get("noref")));
                                     pane.tabledata.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
-                                    tabeldatalist.get(i).setTanggal(String.valueOf(joindata.get("tanggal")));
+                                    tabeldatalist.get(row).setTanggal(String.valueOf(joindata.get("tanggal")));
                                     pane.tabledata.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
-                                    tabeldatalist.get(i).setTotalhutang(String.valueOf(joindata.get("total")));
+                                    tabeldatalist.get(row).setTotalhutang(String.valueOf(joindata.get("total")));
                                     pane.tabledata.setValueAt(String.valueOf(joindata.get("total")), row, 2);
-                                    tabeldatalist.get(i).setSisahutang(String.valueOf(joindata.get("sisa")));
+                                    tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
                                     pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
-                                    tabeldatalist.get(i).setDiskon("0");
+                                    tabeldatalist.get(row).setDiskon("0");
                                     pane.tabledata.setValueAt("0", row, 4);
-                                    tabeldatalist.get(i).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
+                                    tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
                                     pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
                                 }
                                 kalkulasi();
@@ -1115,6 +1117,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(1, 0, false, false);
+                } else {
+                    addautorow(lastrow);
                 }
             }
 

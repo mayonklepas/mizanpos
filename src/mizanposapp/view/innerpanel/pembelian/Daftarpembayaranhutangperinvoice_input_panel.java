@@ -165,7 +165,7 @@ public class Daftarpembayaranhutangperinvoice_input_panel extends javax.swing.JP
         ckcetak_faktur.setText("Cetak Faktur");
 
         btambah_baris.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        btambah_baris.setText("Hapus Baris");
+        btambah_baris.setText("Tambah Baris");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
