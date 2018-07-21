@@ -164,8 +164,6 @@ public class DaftarhutangrincianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                //String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                //Object objdata = jpdata.parse(ch.getdatas("daftarhutangpersupplier"));
                 String param = String.format("id=%s", String.valueOf(Staticvar.map_var.get("id_supplier")));
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarhutangpersupplier", param));
                 JSONArray jadata = (JSONArray) objdata;
@@ -195,7 +193,7 @@ public class DaftarhutangrincianinnerController {
     }
 
     private void loaddatadetailraw() {
-        cleardata();
+        cleardata2();
         disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
@@ -303,7 +301,6 @@ public class DaftarhutangrincianinnerController {
                     String ids = idlist.get(row);
                     loaddatadetailrincian(ids);
                     enablebutton();
-
                 }
             }
         });
@@ -311,6 +308,11 @@ public class DaftarhutangrincianinnerController {
 
     private void cleardata() {
         idlist.clear();
+        Staticvar.ids = "";
+    }
+
+    private void cleardata2() {
+        idlistrincian.clear();
         Staticvar.ids = "";
     }
 
@@ -388,7 +390,7 @@ public class DaftarhutangrincianinnerController {
     private void editpembayarandetail() {
         pane.bedit2.addActionListener((ActionEvent e) -> {
             Staticvar.frame = "rincian_hutang";
-            int row = pane.tabledata.getSelectedRow();
+            int row = pane.tabledatarincian.getSelectedRow();
             Staticvar.ids = idlistrincian.get(row);
             String id_keltrans = idlistrinciankeltrans.get(row);
             JPanel inpane = new JPanel();

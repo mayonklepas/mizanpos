@@ -352,8 +352,18 @@ public class DaftarpembayaranhutangperinvoiceinputController {
 
                     if (pane.ckgiro.isSelected()) {
                         pane.ednocek.setVisible(true);
+                        pane.lnocek.setVisible(true);
+                        pane.ltitik2nocek.setVisible(true);
+                        pane.ltempo.setVisible(true);
+                        pane.ltitik2tempo.setVisible(true);
+                        pane.dtempo.setVisible(true);
                     } else {
                         pane.ednocek.setVisible(false);
+                        pane.lnocek.setVisible(false);
+                        pane.ltitik2nocek.setVisible(false);
+                        pane.ltempo.setVisible(false);
+                        pane.ltitik2tempo.setVisible(false);
+                        pane.dtempo.setVisible(false);
                     }
 
                     pane.ednocek.setText(String.valueOf(joinpembelian.get("no_giro")));
