@@ -433,6 +433,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         try {
                             ischangevalue = true;
                             tabeldatalist.get(row).setDiskon(String.valueOf(tm.getValueAt(row, 4)));
+                            tabeldatalist.clear();
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         } finally {
@@ -465,8 +466,6 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     }
                     ischangevalue = false;
                 }
-                kalkulasi();
-
             }
         });
         MouseAdapter madap = new MouseAdapter() {
@@ -666,11 +665,12 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                             @Override
                             public void run() {
                                 int rowcount = pane.tabledata.getRowCount();
-                                tabeldatalist.clear();
                                 for (int i = 0; i < rowcount; i++) {
+                                    System.out.println(i);
                                     dtmtabeldata.removeRow(0);
                                 }
                                 dtmtabeldata.setRowCount(0);
+                                tabeldatalist.clear();
                                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", ""));
                                 dtmtabeldata.addRow(rowtabledata);
                             }
@@ -679,7 +679,12 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         getkodetransaksi();
                         pane.tabledata.requestFocus();
                     } else {
-                        Daftarhutang_inner_panel inpane = new Daftarhutang_inner_panel();
+                        JPanel inpane = new JPanel();
+                        if (Staticvar.frame.equals("hutang")) {
+                            inpane = new Daftarhutang_inner_panel();
+                        } else if (Staticvar.frame.equals("rincian_hutang")) {
+                            inpane = new Daftarhutangrincian_inner_panel();
+                        }
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
@@ -992,8 +997,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     }
                 };
                 SwingUtilities.invokeLater(rn);
-
             }
+
         });
     }
 

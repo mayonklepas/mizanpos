@@ -799,10 +799,10 @@ public class DaftarreturpembelianinputController {
                             @Override
                             public void run() {
                                 int rowcount = pane.tabledata.getRowCount();
-                                tabeldatalist.clear();
                                 for (int i = 0; i < rowcount; i++) {
                                     dtmtabeldata.removeRow(0);
                                 }
+                                tabeldatalist.clear();
                                 dtmtabeldata.setRowCount(0);
                                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                                 dtmtabeldata.addRow(rowtabledata);
