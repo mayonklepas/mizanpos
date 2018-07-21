@@ -1082,6 +1082,14 @@
         },
         {
             "key": [
+                "id_keltrans",
+                "ID Keltrans",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
                 "tanggal",
                 "Tanggal",
                 "1",

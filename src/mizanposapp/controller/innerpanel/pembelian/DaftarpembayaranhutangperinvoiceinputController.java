@@ -628,17 +628,17 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                         tabeldatalist.get(i).setAkun(String.valueOf(joindata.get("akun")));
                                         tabeldatalist.get(i).setId(String.valueOf(joindata.get("id")));
                                         tabeldatalist.get(i).setNoref(String.valueOf(joindata.get("noref")));
-                                        tb.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
                                         tabeldatalist.get(i).setTanggal(String.valueOf(joindata.get("tanggal")));
-                                        tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
                                         tabeldatalist.get(i).setTotalhutang(String.valueOf(joindata.get("total")));
-                                        tb.setValueAt(String.valueOf(joindata.get("total")), row, 2);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("total")), row, 2);
                                         tabeldatalist.get(i).setSisahutang(String.valueOf(joindata.get("sisa")));
-                                        tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
                                         tabeldatalist.get(i).setDiskon("0");
-                                        tb.setValueAt("0", row, 4);
+                                        pane.tabledata.setValueAt("0", row, 4);
                                         tabeldatalist.get(i).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
-                                        tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
                                     }
                                     kalkulasi();
                                     addautorow(row);
@@ -876,14 +876,16 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         if (dialog == 0) {
                             int jumlahrow = pane.tabledata.getRowCount();
                             for (int i = 0; i < jumlahrow; i++) {
-                                String noref = tabeldatalist.get(i).getNoref();
-                                double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
-                                double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
-                                double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
-                                double sisasetelahdiskon = sisa - (sisa * (diskon / 100));
-                                if (jumlahbayar > sisasetelahdiskon) {
-                                    JOptionPane.showMessageDialog(null, "Total Bayar " + noref + " Tidak boleh lebih besar dari", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                                    status = false;
+                                if (!tabeldatalist.get(i).getNoref().equals("")) {
+                                    String noref = tabeldatalist.get(i).getNoref();
+                                    double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
+                                    double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
+                                    double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
+                                    double sisasetelahdiskon = sisa - (sisa * (diskon / 100));
+                                    if (jumlahbayar > sisasetelahdiskon) {
+                                        JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                        status = false;
+                                    }
                                 }
                             }
                             if (status == true) {
@@ -905,14 +907,16 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     } else {
                         int jumlahrow = pane.tabledata.getRowCount();
                         for (int i = 0; i < jumlahrow; i++) {
-                            String noref = tabeldatalist.get(i).getNoref();
-                            double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
-                            double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
-                            double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
-                            double sisasetelahdiskon = sisa - (sisa * (diskon / 100));
-                            if (jumlahbayar > sisasetelahdiskon) {
-                                JOptionPane.showMessageDialog(null, "Total Bayar " + noref + " Tidak boleh lebih besar dari", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                                status = false;
+                            if (!tabeldatalist.get(i).getNoref().equals("")) {
+                                String noref = tabeldatalist.get(i).getNoref();
+                                double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
+                                double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
+                                double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
+                                double sisasetelahdiskon = sisa - (sisa * (diskon / 100));
+                                if (jumlahbayar > sisasetelahdiskon) {
+                                    JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                    status = false;
+                                }
                             }
                         }
                         if (status == true) {

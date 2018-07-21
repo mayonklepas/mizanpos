@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -35,6 +36,7 @@ import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_input_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarpembayaranhutangperinvoice_input_panel;
+import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -51,6 +53,7 @@ public class DaftarhutangrincianinnerController {
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     ArrayList<String> idlistrincian = new ArrayList<>();
+    ArrayList<String> idlistrinciankeltrans = new ArrayList<>();
     ArrayList<String> lsdatarincian = new ArrayList();
     ArrayList<Integer> lssizerincian = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
@@ -68,6 +71,7 @@ public class DaftarhutangrincianinnerController {
         loaddatadetail();
         inputpembayaranbayar();
         editpembayaran();
+        editpembayarandetail();
         updateloaddata();
         selectdata();
         oncarienter();
@@ -246,6 +250,7 @@ public class DaftarhutangrincianinnerController {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdatarincian.size()];
                     idlistrincian.add(String.valueOf(joindata.get("id")));
+                    idlistrinciankeltrans.add(String.valueOf(joindata.get("id_keltrans")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdatarincian.get(j));
                     }
@@ -370,6 +375,25 @@ public class DaftarhutangrincianinnerController {
             Staticvar.ids = idlist.get(row);
             Staticvar.frame = "rincian_hutang";
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
+            Staticvar.pmp.container.removeAll();
+            Staticvar.pmp.container.setLayout(new BorderLayout());
+            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.pmp.container.revalidate();
+            Staticvar.pmp.container.repaint();
+        });
+    }
+
+    private void editpembayarandetail() {
+        pane.bedit2.addActionListener((ActionEvent e) -> {
+            int row = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlistrincian.get(row);
+            String id_keltrans = idlistrinciankeltrans.get(row);
+            JPanel inpane = new JPanel();
+            if (id_keltrans.equals("42")) {
+                inpane = new Daftarpembayaranhutangperinvoice_input_panel();
+            } else if (id_keltrans.equals("31")) {
+                inpane = new Daftarreturpembelian_input_panel();
+            }
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());
             Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
