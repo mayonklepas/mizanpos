@@ -392,7 +392,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     double sebenarnyasisa = ConvertFunc.ToDouble(jointabledata.get("sisa"))
                             + ConvertFunc.ToDouble(jointabledata.get("diskon_nominal"))
                             + ConvertFunc.ToDouble(jointabledata.get("jumlah"));
-                    String sisahutang = nf.format(sebenarnyasisa);
+                    String sisahutang = String.valueOf(sebenarnyasisa);
                     String diskon = String.valueOf(jointabledata.get("diskon_nominal"));
                     String jumlah_bayar = String.valueOf(jointabledata.get("jumlah"));
                     tabeldatalist.add(new Entitytabledata(id, akun, noref, tanggal, totalhutang, sisahutang, diskon, jumlah_bayar));
@@ -437,8 +437,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                             ischangevalue = true;
                             tabeldatalist.get(row).setDiskon(String.valueOf(tm.getValueAt(row, 4)));
                             double diskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
-                            double jumlah_bayar = ConvertFunc.ToDouble(tabeldatalist.get(row).getJumlah_bayar());
-                            double total_bayar = jumlah_bayar - diskon;
+                            double sisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
+                            double total_bayar = sisa - diskon;
                             tabeldatalist.get(row).setJumlah_bayar(String.valueOf(total_bayar));
                             tm.setValueAt(total_bayar, row, 5);
                             kalkulasi();
