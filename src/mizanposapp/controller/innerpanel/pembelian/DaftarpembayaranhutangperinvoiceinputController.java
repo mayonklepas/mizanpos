@@ -1057,6 +1057,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.frame = "";
                     }
                 });
             }

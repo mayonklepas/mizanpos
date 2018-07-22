@@ -54,7 +54,7 @@ public class DaftarhutanginnerController {
         this.pane = pane;
         new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
-        new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
+        new Tablestyle(pane.tabledata).applystylerow(new int[]{2, 3, 4});
         loaddata();
         loaddatadetail();
         pembayaran();

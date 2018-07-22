@@ -34,6 +34,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -54,6 +55,7 @@ import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_input_panel;
 import org.json.simple.JSONArray;
@@ -818,7 +820,12 @@ public class DaftarreturpembelianinputController {
                         pane.ltotal_pajak.setText("0");
                         pane.ltotal_pembelian.setText("0");
                     } else {
-                        Daftarreturpembelian_inner_panel inpane = new Daftarreturpembelian_inner_panel();
+                        JPanel inpane = new JPanel();
+                        if (Staticvar.frame.equals("rincian_hutang")) {
+                            inpane = new Daftarhutangrincian_inner_panel();
+                        } else if (Staticvar.frame.equals("retur")) {
+                            inpane = new Daftarreturpembelian_inner_panel();
+                        }
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
@@ -873,7 +880,12 @@ public class DaftarreturpembelianinputController {
                     + "&" + kirimtexpembelian();
             ch.updatedata("updatereturpembelian", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
-                Daftarreturpembelian_inner_panel inpane = new Daftarreturpembelian_inner_panel();
+                JPanel inpane = new JPanel();
+                if (Staticvar.frame.equals("rincian_hutang")) {
+                    inpane = new Daftarhutangrincian_inner_panel();
+                } else if (Staticvar.frame.equals("retur")) {
+                    inpane = new Daftarreturpembelian_inner_panel();
+                }
                 Staticvar.pmp.container.removeAll();
                 Staticvar.pmp.container.setLayout(new BorderLayout());
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
@@ -1024,12 +1036,18 @@ public class DaftarreturpembelianinputController {
                     public void run() {
                         String data = String.format("id_keltrans=%s&no_urut=%s", "3", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
-                        Daftarreturpembelian_inner_panel inpane = new Daftarreturpembelian_inner_panel();
+                        JPanel inpane = new JPanel();
+                        if (Staticvar.frame.equals("rincian_hutang")) {
+                            inpane = new Daftarhutangrincian_inner_panel();
+                        } else if (Staticvar.frame.equals("retur")) {
+                            inpane = new Daftarreturpembelian_inner_panel();
+                        }
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.frame = "";
                     }
                 });
 

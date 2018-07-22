@@ -48,7 +48,7 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class DaftarhutangrincianinnerController {
-
+    
     CrudHelper ch = new CrudHelper();
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
@@ -61,7 +61,7 @@ public class DaftarhutangrincianinnerController {
     DefaultTableModel dtmrincian = new DefaultTableModel();
     Daftarhutangrincian_inner_panel pane;
     String id = "";
-
+    
     public DaftarhutangrincianinnerController(Daftarhutangrincian_inner_panel pane) {
         this.pane = pane;
         id = Staticvar.ids;
@@ -69,23 +69,31 @@ public class DaftarhutangrincianinnerController {
         new Tablestyle(pane.tabledata).applystyleheader();
         new Tablestyle(pane.tabledatarincian).applystyleheader();
         loadheader();
-        new Tablestyle(pane.tabledata).applystylerow(new int[]{2, 3, 4});
-        new Tablestyle(pane.tabledata).applystylerow(new int[]{2, 3, 4});
         loadheaderrincian();
-        loaddata(0);
+        new Tablestyle(pane.tabledata).applystylerow(new int[]{2, 3, 4});
+        new Tablestyle(pane.tabledatarincian).applystylerow(new int[]{2, 3, 4});
+        if (Staticvar.isupdate == false) {
+            loaddata(0);
+            selectdata(0);
+        } else {
+            loaddata(Staticvar.rowfokus);
+            selectdata(Staticvar.rowfokusext);
+            Staticvar.isupdate = false;
+            Staticvar.rowfokus = 0;
+            Staticvar.rowfokusext = 0;
+        }
         loaddatadetail();
         inputpembayaran();
         editpembayaran();
         editpembayarandetail();
         updateloaddata();
-        selectdata();
         selectdata2();
         oncarienter();
         onbuttoncari();
         deleterincian();
-
+        
     }
-
+    
     private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -111,7 +119,7 @@ public class DaftarhutangrincianinnerController {
                     lssize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 }
             }
-
+            
             for (int i = 0; i < lssize.size(); i++) {
                 Double wd = d.getWidth() - 344;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
@@ -122,7 +130,7 @@ public class DaftarhutangrincianinnerController {
             Logger.getLogger(DaftarhutangrincianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void loadheaderrincian() {
         try {
             pane.tabledatarincian.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -148,7 +156,7 @@ public class DaftarhutangrincianinnerController {
                     lssizerincian.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 }
             }
-
+            
             for (int i = 0; i < lssizerincian.size(); i++) {
                 Double wd = d.getWidth() - 344;
                 int wi = (lssizerincian.get(i) * wd.intValue()) / 100;
@@ -159,7 +167,7 @@ public class DaftarhutangrincianinnerController {
             Logger.getLogger(DaftarhutangrincianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void loaddata(int row) {
         cleardata();
         disablebutton();
@@ -185,7 +193,7 @@ public class DaftarhutangrincianinnerController {
                 }
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 pane.indi.setVisible(false);
@@ -194,12 +202,12 @@ public class DaftarhutangrincianinnerController {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row, 0, false, false);
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
+    
     private void loaddatadetailraw() {
         cleardata2();
         disablebutton();
@@ -223,24 +231,24 @@ public class DaftarhutangrincianinnerController {
                     }
                     dtm.addRow(objindata);
                 }
-
+                
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton();
-
+                
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
-    private void loaddatadetailrincian(String id) {
+    
+    private void loaddatadetailrincian(String id, int rowselect) {
         cleardata2();
         dtmrincian.getDataVector().removeAllElements();
         dtmrincian.fireTableDataChanged();
@@ -263,58 +271,60 @@ public class DaftarhutangrincianinnerController {
                     }
                     dtmrincian.addRow(objindata);
                 }
-
+                
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledatarincian.setModel(dtmrincian);
                 disablebutton2();
+                pane.tabledatarincian.requestFocus();
+                pane.tabledatarincian.changeSelection(rowselect, 0, false, false);
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
+    
     private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-
+            
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     loaddatadetailraw();
                 }
             }
-
+            
             @Override
             public void keyReleased(KeyEvent e) {
-
+                
             }
         });
     }
-
-    private void selectdata() {
+    
+    private void selectdata(int rowselect) {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
-
+                    
                 } else {
                     int row = pane.tabledata.getSelectedRow();
                     String ids = idlist.get(row);
-                    loaddatadetailrincian(ids);
+                    loaddatadetailrincian(ids, rowselect);
                     enablebutton();
                 }
             }
         });
     }
-
+    
     private void selectdata2() {
         pane.tabledatarincian.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -326,42 +336,43 @@ public class DaftarhutangrincianinnerController {
             }
         });
     }
-
+    
     private void cleardata() {
         idlist.clear();
         Staticvar.ids = "";
     }
-
+    
     private void cleardata2() {
         idlistrincian.clear();
+        idlistrinciankeltrans.clear();
         Staticvar.ids = "";
     }
-
+    
     private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loaddata(0);
-                loaddatadetailrincian("");
+                loaddatadetailrincian(idlist.get(0), 0);
                 pane.tcari.setText("Cari Data");
             }
         });
     }
-
+    
     private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 pane.tcari.setText("");
             }
-
+            
             @Override
             public void focusLost(FocusEvent e) {
                 //pane.tcari.setText("Cari Data");
             }
         });
     }
-
+    
     private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
@@ -372,27 +383,27 @@ public class DaftarhutangrincianinnerController {
             }
         });
     }
-
+    
     private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
-
+    
     private void enablebutton() {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }
-
+    
     private void disablebutton2() {
         pane.bedit2.setEnabled(false);
         pane.bhapus2.setEnabled(false);
     }
-
+    
     private void enablebutton2() {
         pane.bedit2.setEnabled(true);
         pane.bhapus2.setEnabled(true);
     }
-
+    
     private void inputpembayaran() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             Staticvar.ids = "";
@@ -405,7 +416,7 @@ public class DaftarhutangrincianinnerController {
             Staticvar.pmp.container.repaint();
         });
     }
-
+    
     private void editpembayaran() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             Staticvar.frame = "rincian_hutang";
@@ -419,13 +430,18 @@ public class DaftarhutangrincianinnerController {
             Staticvar.pmp.container.repaint();
         });
     }
-
+    
     private void editpembayarandetail() {
         pane.bedit2.addActionListener((ActionEvent e) -> {
             Staticvar.frame = "rincian_hutang";
-            int row = pane.tabledatarincian.getSelectedRow();
-            Staticvar.ids = idlistrincian.get(row);
-            String id_keltrans = idlistrinciankeltrans.get(row);
+            Staticvar.isupdate = true;
+            int row = pane.tabledata.getSelectedRow();
+            int rowrincian = pane.tabledatarincian.getSelectedRow();
+            Staticvar.ids = idlistrincian.get(rowrincian);
+            Staticvar.rowfokus = row;
+            Staticvar.rowfokusext = rowrincian;
+            Staticvar.rowfokusext = rowrincian;
+            String id_keltrans = idlistrinciankeltrans.get(rowrincian);
             JPanel inpane = new JPanel();
             if (id_keltrans.equals("42")) {
                 inpane = new Daftarpembayaranhutangperinvoice_input_panel();
@@ -439,7 +455,7 @@ public class DaftarhutangrincianinnerController {
             Staticvar.pmp.container.repaint();
         });
     }
-
+    
     private void deleterincian() {
         pane.bhapus2.addActionListener(new ActionListener() {
             @Override
@@ -475,10 +491,10 @@ public class DaftarhutangrincianinnerController {
                         Staticvar.isupdate = false;
                     }
                 }
-
+                
             }
         });
-
+        
     }
-
+    
 }

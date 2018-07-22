@@ -314,6 +314,7 @@ public class DaftarreturpembelianinnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
+            Staticvar.frame = "retur";
             Daftarreturpembelian_input_panel inpane = new Daftarreturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());
@@ -325,6 +326,7 @@ public class DaftarreturpembelianinnerController {
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
+            Staticvar.frame = "retur";
             int row = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlist.get(row);
             Daftarreturpembelian_input_panel inpane = new Daftarreturpembelian_input_panel();

@@ -33,7 +33,9 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -94,15 +96,15 @@ public class DaftarorderpembelianinputController {
     ArrayList<Integer> lsresize = new ArrayList<>();
     ArrayList<Integer> lsoldsize = new ArrayList<>();
     String test;
-
     private boolean ischangevalue = false;
     static String oldvalue = "";
-
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
     static boolean sudahterpanggil = false;
+    JPopupMenu pop;
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
+        setpopup();
         skinning();
         loadsession();
         loaddata();
@@ -124,6 +126,18 @@ public class DaftarorderpembelianinputController {
         tambahbaris();
         batal();
 
+    }
+
+    private void setpopup() {
+        pop = new JPopupMenu();
+        JMenuItem sethargajual = new JMenuItem("Set Harga Jual");
+        pop.add(sethargajual);
+        sethargajual.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "testing");
+            }
+        });
     }
 
     private void loadsession() {
@@ -1595,7 +1609,21 @@ public class DaftarorderpembelianinputController {
                 }
             }
 
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                JTable tb = (JTable) e.getSource();
+                int row = tb.rowAtPoint(e.getPoint());
+                int col = tb.columnAtPoint(e.getPoint());
+                if (col == 5) {
+                    if (e.isPopupTrigger()) {
+                        pop.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+
+            }
+
         };
+
         pane.tabledata.addMouseListener(madap);
 
         pane.tabledata.addKeyListener(new KeyListener() {

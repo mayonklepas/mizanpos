@@ -57,7 +57,7 @@ public class DaftardatasupplierinnerController {
         this.pane = pane;
         new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
-        new Tablestyle(pane.tabledata).applystylerow(new int[]{0});
+        new Tablestyle(pane.tabledata).applystylerow();
         loaddata();
         loaddatadetail();
         inputdata();

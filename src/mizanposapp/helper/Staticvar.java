@@ -44,5 +44,7 @@ public class Staticvar {
     public static boolean isupdate = false;
     public static String sfilter = "";
     public static int lebarPanelMenu = 344;
+    public static int rowfokus = 0;
+    public static int rowfokusext = 0;
     public static String frame = "";
 }
