@@ -461,12 +461,10 @@ public class DaftarhutangrincianinnerController {
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata(row);
-                                //loaddatadetailrincian(idlist.get(row));
                             }
                         } else {
                             if (Staticvar.isupdate == true) {
                                 loaddata(row);
-                                //loaddatadetailrincian(idlist.get(row));
                             }
                         }
                         Staticvar.isupdate = false;

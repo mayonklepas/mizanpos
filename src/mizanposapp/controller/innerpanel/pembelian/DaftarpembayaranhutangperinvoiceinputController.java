@@ -390,7 +390,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     String tanggal = String.valueOf(jointabledata.get("tanggal"));
                     String totalhutang = String.valueOf(jointabledata.get("total"));
                     String sisahutang = String.valueOf(jointabledata.get("sisa"));
-                    String diskon = String.valueOf(jointabledata.get("diskon"));
+                    String diskon = String.valueOf(jointabledata.get("diskon_nominal"));
                     String jumlah_bayar = String.valueOf(jointabledata.get("jumlah"));
                     tabeldatalist.add(new Entitytabledata(id, akun, noref, tanggal, totalhutang, sisahutang, diskon, jumlah_bayar));
                 }
@@ -849,8 +849,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                     double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
                                     double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
                                     double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
-                                    double sisasetelahdiskon = sisa - (sisa * (diskon / 100));
-                                    if (jumlahbayar > sisasetelahdiskon) {
+                                    double totabayartambahdiskon = jumlahbayar + diskon;
+                                    if (totabayartambahdiskon > sisa) {
                                         JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                         status = false;
                                     }
@@ -880,8 +880,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                 double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
                                 double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
                                 double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
-                                double sisasetelahdiskon = sisa - (sisa * (diskon / 100));
-                                if (jumlahbayar > sisasetelahdiskon) {
+                                double totabayartambahdiskon = jumlahbayar + diskon;
+                                if (totabayartambahdiskon > sisa) {
                                     JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                     status = false;
                                 }
