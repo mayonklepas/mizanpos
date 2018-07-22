@@ -5,6 +5,9 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.table.TableCellRenderer;
 import mizanposapp.controller.innerpanel.pembelian.DaftardatasupplierinnerController;
 
 /**
@@ -35,7 +38,16 @@ public class Daftardatasupplier_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new javax.swing.JTable(){
+            public Component prepareRenderer(
+                TableCellRenderer renderer, int row, int column)
+            {
+                Component c = super.prepareRenderer(renderer, row, column);
+                if (!isRowSelected(row))
+                c.setBackground(row % 2 == 0 ? getBackground() : Color.LIGHT_GRAY);
+                return c;
+            }
+        };
         jPanel1 = new javax.swing.JPanel();
         btambah = new javax.swing.JButton();
         bedit = new javax.swing.JButton();
@@ -81,7 +93,7 @@ public class Daftardatasupplier_inner_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(14, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
         );
 
         tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

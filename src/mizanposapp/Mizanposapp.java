@@ -28,8 +28,8 @@ public class Mizanposapp {
         }
         Locale.setDefault(new Locale("en", "en_US"));
         new CrudHelper();
-        new MainmenuController();
         new Globalsession();
+        new MainmenuController();
 
     }
 
