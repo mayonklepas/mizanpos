@@ -31,6 +31,7 @@ import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_inner_panel;
@@ -55,7 +56,10 @@ public class DaftarreturpembelianinnerController {
 
     public DaftarreturpembelianinnerController(Daftarreturpembelian_inner_panel pane) {
         this.pane = pane;
+        new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
+        new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
+        new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
         loaddata();
         loaddatadetail();
         inputdata();
@@ -182,7 +186,6 @@ public class DaftarreturpembelianinnerController {
 
         };
         worker.execute();
-
     }
 
     private void loaddatadetail() {

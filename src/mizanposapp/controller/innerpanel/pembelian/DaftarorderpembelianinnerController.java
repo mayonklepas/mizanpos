@@ -31,6 +31,7 @@ import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.pembelian.Daftarorderpembelian_input_panel;
@@ -55,7 +56,9 @@ public class DaftarorderpembelianinnerController {
 
     public DaftarorderpembelianinnerController(Daftarorderpembelian_inner_panel pane) {
         this.pane = pane;
+        new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
+        new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
         loaddata();
         loaddatadetail();
         inputdata();
@@ -103,6 +106,7 @@ public class DaftarorderpembelianinnerController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarorderpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     private void loaddata() {

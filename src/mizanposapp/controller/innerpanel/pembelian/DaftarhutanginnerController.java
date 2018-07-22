@@ -27,6 +27,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutang_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarpembayaranhutangperinvoice_input_panel;
@@ -51,7 +52,9 @@ public class DaftarhutanginnerController {
 
     public DaftarhutanginnerController(Daftarhutang_inner_panel pane) {
         this.pane = pane;
+        new Tablestyle(pane.tabledata).applystyleheader();
         loadheader();
+        new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
         loaddata();
         loaddatadetail();
         pembayaran();
