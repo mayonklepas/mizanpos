@@ -5,6 +5,8 @@
  */
 package mizanposapp.helper;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import mizanposapp.view.Beranda_panel;
@@ -47,4 +49,12 @@ public class Staticvar {
     public static int rowfokus = 0;
     public static int rowfokusext = 0;
     public static String frame = "";
+    public static Color globaltablecolor = Color.decode("#F2F2F2");
+    public static Color globaltablecolorselect = Color.decode("#3399FF");
+    public static Color globaltablecolorheader = Color.decode("#F2F2F2");
+    public static Color globaltablecolortextheader = Color.decode("#F2F2F2");
+    public static String fonttype = "Segoe UI";
+    public static int fontstyle = Font.PLAIN;
+    public static int fontsize = 12;
+
 }

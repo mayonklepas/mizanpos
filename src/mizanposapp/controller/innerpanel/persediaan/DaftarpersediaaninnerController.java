@@ -57,6 +57,7 @@ public class DaftarpersediaaninnerController {
         this.pane = pane;
         new Tablestyle(pane.tabledata).applystyleheader();
         loaddata("0");
+        new Tablestyle(pane.tabledata).applystylerow();
         loaddatadetail();
         inputdata();
         editdata();

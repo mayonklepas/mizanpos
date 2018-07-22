@@ -5,10 +5,11 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
-import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.table.TableCellRenderer;
 import mizanposapp.controller.innerpanel.pembelian.DaftardatasupplierinnerController;
+import mizanposapp.helper.Staticvar;
 
 /**
  *
@@ -40,11 +41,14 @@ public class Daftardatasupplier_inner_panel extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         tabledata = new javax.swing.JTable(){
             public Component prepareRenderer(
-                TableCellRenderer renderer, int row, int column)
-            {
+                TableCellRenderer renderer, int row, int column){
                 Component c = super.prepareRenderer(renderer, row, column);
-                if (!isRowSelected(row))
-                c.setBackground(row % 2 == 0 ? getBackground() : Color.LIGHT_GRAY);
+                c.setFont(new Font(Staticvar.fonttype, Staticvar.fontstyle, Staticvar.fontsize));
+                if (!isRowSelected(row)){
+                    c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+                }else{
+                    c.setBackground(Staticvar.globaltablecolorselect);
+                }
                 return c;
             }
         };
@@ -96,7 +100,7 @@ public class Daftardatasupplier_inner_panel extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
         );
 
-        tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        tabledata.setFont(tabledata.getFont().deriveFont(tabledata.getFont().getSize()-1f));
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
