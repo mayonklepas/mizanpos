@@ -389,7 +389,10 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     String noref = String.valueOf(jointabledata.get("noref"));
                     String tanggal = String.valueOf(jointabledata.get("tanggal"));
                     String totalhutang = String.valueOf(jointabledata.get("total"));
-                    String sisahutang = String.valueOf(jointabledata.get("sisa"));
+                    double sebenarnyasisa = ConvertFunc.ToDouble(jointabledata.get("sisa"))
+                            + ConvertFunc.ToDouble(jointabledata.get("diskon_nominal"))
+                            + ConvertFunc.ToDouble(jointabledata.get("jumlah"));
+                    String sisahutang = nf.format(sebenarnyasisa);
                     String diskon = String.valueOf(jointabledata.get("diskon_nominal"));
                     String jumlah_bayar = String.valueOf(jointabledata.get("jumlah"));
                     tabeldatalist.add(new Entitytabledata(id, akun, noref, tanggal, totalhutang, sisahutang, diskon, jumlah_bayar));
