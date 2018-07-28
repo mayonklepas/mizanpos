@@ -4,7 +4,11 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.table.TableCellRenderer;
 import mizanposapp.controller.innerpanel.pembelian.DaftarorderpembelianinputController;
+import mizanposapp.helper.Staticvar;
 
 /**
  *
@@ -97,19 +101,19 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         ckdiskon = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable()/*{
-            public void changeSelection(
-                int row, int column, boolean toggle, boolean extend)
-            {
-                super.changeSelection(row, column, toggle, extend);
-
-                if (editCellAt(row, column))
-                {
-                    Component editor = getEditorComponent();
-                    editor.requestFocusInWindow();
+        tabledata = new javax.swing.JTable(){
+            public Component prepareRenderer(
+                TableCellRenderer renderer, int row, int column){
+                Component c = super.prepareRenderer(renderer, row, column);
+                c.setFont(new Font(Staticvar.fonttype, Staticvar.fontstyle, Staticvar.fontsize));
+                if (!isRowSelected(row)){
+                    c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+                }else{
+                    c.setBackground(Staticvar.globaltablecolorselect);
                 }
+                return c;
             }
-        }*/;
+        };
         jPanel3 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
@@ -647,7 +651,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
         jTabbedPane1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        tabledata.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},

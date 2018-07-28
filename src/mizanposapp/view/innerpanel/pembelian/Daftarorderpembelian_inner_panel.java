@@ -5,7 +5,11 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.table.TableCellRenderer;
 import mizanposapp.controller.innerpanel.pembelian.DaftarorderpembelianinnerController;
+import mizanposapp.helper.Staticvar;
 
 /**
  *
@@ -35,7 +39,19 @@ public class Daftarorderpembelian_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new javax.swing.JTable(){
+            public Component prepareRenderer(
+                TableCellRenderer renderer, int row, int column){
+                Component c = super.prepareRenderer(renderer, row, column);
+                c.setFont(new Font(Staticvar.fonttype, Staticvar.fontstyle, Staticvar.fontsize));
+                if (!isRowSelected(row)){
+                    c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+                }else{
+                    c.setBackground(Staticvar.globaltablecolorselect);
+                }
+                return c;
+            }
+        };
         jPanel1 = new javax.swing.JPanel();
         btambah = new javax.swing.JButton();
         bedit = new javax.swing.JButton();

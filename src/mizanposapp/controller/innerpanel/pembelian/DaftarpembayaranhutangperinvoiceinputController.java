@@ -986,31 +986,6 @@ public class DaftarpembayaranhutangperinvoiceinputController {
 
     }
 
-    private void cariakunpembelian() {
-        pane.bcariakun_pengeluaran.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_pengeluaran.getText(), valakun_pengengeluaran);
-            if (!Staticvar.resid.equals("")) {
-                valakun_pengengeluaran = Staticvar.resid;
-                String val = Staticvar.resid + "-" + Staticvar.reslabel;
-                pane.edakun_pengeluaran.setText(val);
-            }
-        });
-
-    }
-
-    private void cariakundiskon() {
-        pane.bcariakun_diskon.addActionListener((ActionEvent e) -> {
-            rawgetidakundiskon(pane.edakun_diskon.getText(), valakun_diskon);
-            if (!Staticvar.resid.equals("")) {
-                valakun_diskon = Staticvar.resid;
-                String val = Staticvar.resid + "-" + Staticvar.reslabel;
-                pane.edakun_diskon.setText(val);
-            }
-
-        });
-
-    }
-
     private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
         Staticvar.preid = previd;
@@ -1022,6 +997,31 @@ public class DaftarpembayaranhutangperinvoiceinputController {
         jd.setLocationRelativeTo(null);
         jd.setVisible(true);
         jd.toFront();
+    }
+
+    private void cariakunpembelian() {
+        pane.bcariakun_pengeluaran.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakun_pengeluaran.getText(), valakun_pengengeluaran);
+            if (!Staticvar.resid.equals(valakun_pengengeluaran)) {
+                valakun_pengengeluaran = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_pengeluaran.setText(val);
+            }
+        });
+
+    }
+
+    private void cariakundiskon() {
+        pane.bcariakun_diskon.addActionListener((ActionEvent e) -> {
+            rawgetidakundiskon(pane.edakun_diskon.getText(), valakun_diskon);
+            if (!Staticvar.resid.equals(valakun_diskon)) {
+                valakun_diskon = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_diskon.setText(val);
+            }
+
+        });
+
     }
 
     private void rawgetidakundiskon(String prevlabel, String previd) {
