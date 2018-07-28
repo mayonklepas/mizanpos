@@ -58,6 +58,7 @@ import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.pembelian.Daftarorderpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarorderpembelian_input_panel;
+import mizanposapp.view.innerpanel.pembelian.Sethargajual;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -135,7 +136,13 @@ public class DaftarorderpembelianinputController {
         sethargajual.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "testing");
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Sethargajual());
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
             }
         });
     }
@@ -207,7 +214,6 @@ public class DaftarorderpembelianinputController {
         };
 
         pane.addMouseListener(ma);
-
         TableCellEditor tce = new DefaultCellEditor(new JTextField()) {
             @Override
             public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
@@ -387,10 +393,10 @@ public class DaftarorderpembelianinputController {
             }
 
             setheader();
+            new Tablestyle(pane.tabledata).applystyleheader();
         } catch (ParseException ex) {
             Logger.getLogger(DaftarorderpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheader();
 
     }
 
