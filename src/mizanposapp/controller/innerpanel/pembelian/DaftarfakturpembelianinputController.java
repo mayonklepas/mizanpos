@@ -208,14 +208,9 @@ public class DaftarfakturpembelianinputController {
         };
 
         pane.tabledata.setDefaultEditor(Object.class, tce);
-        String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
-            "0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9",
-            "NUMPAD0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-            "q", "r", "s", "t", "u", "p", "w", "x", "y", "z", "A", "B", "C", "D",
-            "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", ".",};
-        for (int i = 0; i < keyholdnumeric.length; i++) {
-            pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "startEditing");
+
+        for (int i = 0; i < Staticvar.keyholdnumeric.length; i++) {
+            pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(Staticvar.keyholdnumeric[i]), "startEditing");
         }
 
     }
@@ -367,7 +362,6 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
 
     }
 
@@ -691,8 +685,8 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int[] columnright = {2, 3, 5, 6, 7, 8, 12};
-        new Tablestyle(pane.tabledata).applystylerow(columnright);
+        /*int[] columnright = {2, 3, 5, 6, 7, 8, 12};
+        new Tablestyle(pane.tabledata).applystylerow(columnright);*/
     }
 
     private void rawsimpan() {

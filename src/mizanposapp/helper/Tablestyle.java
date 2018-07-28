@@ -24,20 +24,46 @@ public class Tablestyle extends JTable {
 
     JTable tbl;
     Color fgcolor, bgcolor;
+    int tipe;
 
-    @Override
-    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-        Component c = super.prepareRenderer(renderer, row, column);
-        if (!isRowSelected(row)) {
-            c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
-        } else {
-            c.setBackground(Staticvar.globaltablecolorselect);
-        }
-        return c;
+    public Tablestyle(int tipe) {
+        this.tipe = tipe;
+        this.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        this.setRowHeight(25);
+        JTableHeader jthead = this.getTableHeader();
+        jthead.setOpaque(false);
+        jthead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        jthead.setPreferredSize(new Dimension(30, 30));
+        jthead.setBackground(Color.decode("#282727"));
+        jthead.setForeground(Color.WHITE);
+        jthead.setReorderingAllowed(false);
     }
 
     public Tablestyle(JTable tbl) {
         this.tbl = tbl;
+    }
+
+    @Override
+    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+        Component c = super.prepareRenderer(renderer, row, column);
+        if (tipe == 0) {
+            if (!isRowSelected(row)) {
+                c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+            } else {
+                c.setBackground(Staticvar.globaltablecolorselect);
+            }
+        } else {
+            c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+
+            if (!isColumnSelected(column)) {
+                c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+            } else {
+                if (isRowSelected(row)) {
+                    c.setBackground(Staticvar.globaltablecolorselect);
+                }
+            }
+        }
+        return c;
     }
 
     public void applystyleheaderandcolum() {
@@ -72,5 +98,4 @@ public class Tablestyle extends JTable {
         tbl.setDefaultRenderer(Object.class, tcr);
 
     }
-
 }

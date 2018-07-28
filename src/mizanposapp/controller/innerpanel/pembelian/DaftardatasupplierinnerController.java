@@ -55,7 +55,6 @@ public class DaftardatasupplierinnerController {
 
     public DaftardatasupplierinnerController(Daftardatasupplier_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         loadheader();
         loaddata();
         loaddatadetail();
@@ -74,9 +73,6 @@ public class DaftardatasupplierinnerController {
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             pane.tabledata.setModel(dtm);
             TableColumnModel tcm = pane.tabledata.getColumnModel();
-            JTableHeader thead = pane.tabledata.getTableHeader();
-            thead.setFont(new Font("Century Gothic", Font.BOLD, 13));
-            pane.tabledata.setRowHeight(25);
             pane.tabledata.setDefaultEditor(Object.class, null);
             String dataheader = ch.getheaders();
             JSONParser jpheader = new JSONParser();
