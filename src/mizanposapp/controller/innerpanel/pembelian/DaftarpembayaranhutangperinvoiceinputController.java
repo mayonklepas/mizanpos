@@ -244,7 +244,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarorderpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
 
     }
 

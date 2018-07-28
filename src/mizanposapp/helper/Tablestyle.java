@@ -20,16 +20,29 @@ import javax.swing.table.TableCellRenderer;
  * @author Minami
  */
 @SuppressWarnings("serial")
-public class Tablestyle {
+public class Tablestyle extends JTable {
 
     JTable tbl;
     Color fgcolor, bgcolor;
+
+    @Override
+    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+        Component c = super.prepareRenderer(renderer, row, column);
+        if (!isRowSelected(row)) {
+            c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
+        } else {
+            c.setBackground(Staticvar.globaltablecolorselect);
+        }
+        return c;
+    }
 
     public Tablestyle(JTable tbl) {
         this.tbl = tbl;
     }
 
-    public void applystyleheader() {
+    public void applystyleheaderandcolum() {
+        tbl.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        tbl.setRowHeight(25);
         JTableHeader jthead = tbl.getTableHeader();
         jthead.setOpaque(false);
         jthead.setFont(new Font("Segoe UI", Font.PLAIN, 12));

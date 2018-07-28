@@ -1172,6 +1172,9 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tabledata">
               <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="true" type="code"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="0"/>
                 </Property>
@@ -1189,7 +1192,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;    public Component prepareRenderer(&#xa;        TableCellRenderer renderer, int row, int column){&#xa;        Component c = super.prepareRenderer(renderer, row, column);&#xa;        c.setFont(new Font(Staticvar.fonttype, Staticvar.fontstyle, Staticvar.fontsize));&#xa;        if (!isRowSelected(row)){&#xa;            c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);&#xa;        }else{&#xa;            c.setBackground(Staticvar.globaltablecolorselect);&#xa;        }&#xa;        return c;&#xa;    }&#xa;}"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable(){&#xa;    public Component prepareRenderer(&#xa;        TableCellRenderer renderer, int row, int column){&#xa;        Component c = super.prepareRenderer(renderer, row, column);&#xa;        if (!isRowSelected(row)){&#xa;            c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);&#xa;        }else{&#xa;            c.setBackground(Staticvar.globaltablecolorselect);&#xa;        }&#xa;        return c;&#xa;    }&#xa;}"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>

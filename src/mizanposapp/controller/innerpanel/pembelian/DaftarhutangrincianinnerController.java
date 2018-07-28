@@ -66,8 +66,8 @@ public class DaftarhutangrincianinnerController {
         this.pane = pane;
         id = Staticvar.ids;
         pane.lheader.setText("Daftar Hutang Usaha - " + String.valueOf(Staticvar.map_var.get("nama_supplier")));
-        new Tablestyle(pane.tabledata).applystyleheader();
-        new Tablestyle(pane.tabledatarincian).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
+        new Tablestyle(pane.tabledatarincian).applystyleheaderandcolum();
         loadheader();
         loadheaderrincian();
         new Tablestyle(pane.tabledata).applystylerow(new int[]{2, 3, 4});

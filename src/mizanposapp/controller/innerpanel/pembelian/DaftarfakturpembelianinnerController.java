@@ -56,7 +56,7 @@ public class DaftarfakturpembelianinnerController {
 
     public DaftarfakturpembelianinnerController(Daftarfakturpembelian_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         loadheader();
         new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
         loaddata();

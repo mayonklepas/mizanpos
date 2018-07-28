@@ -416,7 +416,7 @@ public class DaftarreturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarreturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
 
     }
 

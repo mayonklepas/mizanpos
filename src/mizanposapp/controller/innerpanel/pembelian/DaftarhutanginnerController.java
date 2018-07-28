@@ -52,7 +52,7 @@ public class DaftarhutanginnerController {
 
     public DaftarhutanginnerController(Daftarhutang_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         loadheader();
         new Tablestyle(pane.tabledata).applystylerow(new int[]{2, 3, 4});
         loaddata();

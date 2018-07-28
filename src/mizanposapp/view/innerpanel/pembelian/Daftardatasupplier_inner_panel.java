@@ -43,12 +43,11 @@ public class Daftardatasupplier_inner_panel extends javax.swing.JPanel {
             public Component prepareRenderer(
                 TableCellRenderer renderer, int row, int column){
                 Component c = super.prepareRenderer(renderer, row, column);
-                c.setFont(new Font(Staticvar.fonttype, Staticvar.fontstyle, Staticvar.fontsize));
                 if (!isRowSelected(row)){
                     c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
-                }else{
+                }/*else{
                     c.setBackground(Staticvar.globaltablecolorselect);
-                }
+                }*/
                 return c;
             }
         };

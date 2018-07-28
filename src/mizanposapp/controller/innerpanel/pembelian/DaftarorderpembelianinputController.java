@@ -105,7 +105,7 @@ public class DaftarorderpembelianinputController {
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         setpopup();
         skinning();
         loadsession();
@@ -482,7 +482,7 @@ public class DaftarorderpembelianinputController {
 
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
-                pane.tabledata.setModel(dtmtabeldata);
+                //pane.tabledata.setModel(dtmtabeldata);
                 if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
                         || Globalsession.DEFAULT_DISKON_DALAM.equals("")
                         || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")

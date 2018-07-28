@@ -367,7 +367,7 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheader();
+        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
 
     }
 
