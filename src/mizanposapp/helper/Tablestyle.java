@@ -43,7 +43,7 @@ public class Tablestyle {
         TableCellRenderer tcr = new TableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                //table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                 DefaultTableCellRenderer cellrender = new DefaultTableCellRenderer();
                 Component c = cellrender.getTableCellRendererComponent(table,
                         value, isSelected, hasFocus, row, column);

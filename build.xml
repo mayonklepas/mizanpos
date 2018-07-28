@@ -70,4 +70,8 @@
     nbproject/build-impl.xml file. 
 
     -->
+    
+    <target name="-post-jar">
+    <copy file="${dist.jar}" todir="\\192.168.1.59\share\mpos\"/>
+    </target>
 </project>

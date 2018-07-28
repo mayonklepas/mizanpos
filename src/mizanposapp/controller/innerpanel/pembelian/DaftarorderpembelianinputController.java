@@ -105,6 +105,7 @@ public class DaftarorderpembelianinputController {
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
+        new Tablestyle(pane.tabledata).applystyleheader();
         setpopup();
         skinning();
         loadsession();
@@ -393,7 +394,6 @@ public class DaftarorderpembelianinputController {
             }
 
             setheader();
-            new Tablestyle(pane.tabledata).applystyleheader();
         } catch (ParseException ex) {
             Logger.getLogger(DaftarorderpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -440,6 +440,8 @@ public class DaftarorderpembelianinputController {
     private void loaddata() {
         customtable();
         loadheader();
+        int[] columnright = {2, 4, 5, 6, 7, 11};
+        new Tablestyle(pane.tabledata).applystylerow(columnright);
         try {
             id = Staticvar.ids;
             if (id.equals("")) {
@@ -724,8 +726,6 @@ public class DaftarorderpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int[] columnright = {2, 4, 5, 6, 7, 11};
-        new Tablestyle(pane.tabledata).applystylerow(columnright);
     }
 
     private void rawsimpan() {
@@ -1612,6 +1612,13 @@ public class DaftarorderpembelianinputController {
                 JTable tb = (JTable) e.getSource();
                 if (tb.isEditing()) {
                     tb.getCellEditor().cancelCellEditing();
+                }
+                int row = tb.rowAtPoint(e.getPoint());
+                int col = tb.columnAtPoint(e.getPoint());
+                if (col == 5) {
+                    if (e.isPopupTrigger()) {
+                        pop.show(e.getComponent(), e.getX(), e.getY());
+                    }
                 }
             }
 
