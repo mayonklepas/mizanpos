@@ -8,6 +8,7 @@ package mizanposapp.view.innerpanel.persediaan;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import mizanposapp.controller.innerpanel.persediaan.DaftarmerekinnerController;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *

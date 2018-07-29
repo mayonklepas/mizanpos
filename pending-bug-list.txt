@@ -1,0 +1,5 @@
+Bug list
+- Header digit rata kanan
+- popup close dengan tombol x
+- up down pada rincian hutang
+

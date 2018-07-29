@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
+import mizanposapp.helper.Tablestyle;
+
 /**
  *
  * @author Minami
@@ -53,7 +55,7 @@ public class Sethargajual extends javax.swing.JPanel {
         cmbharga_berdasar = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new Tablestyle(0);
         lkode_barang = new javax.swing.JLabel();
         lnama_barang = new javax.swing.JLabel();
 

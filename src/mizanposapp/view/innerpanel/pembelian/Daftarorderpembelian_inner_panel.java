@@ -40,7 +40,7 @@ public class Daftarorderpembelian_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new Tablestyle(0);
+        tabledata = new Tablestyle(0,new int[]{4});
         jPanel1 = new javax.swing.JPanel();
         btambah = new javax.swing.JButton();
         bedit = new javax.swing.JButton();

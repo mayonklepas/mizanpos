@@ -107,7 +107,7 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         ckdiskon = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new Tablestyle(1);
+        tabledata = new Tablestyle(1,new int[]{2,3,5,6,7,8,12});
         jPanel3 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();

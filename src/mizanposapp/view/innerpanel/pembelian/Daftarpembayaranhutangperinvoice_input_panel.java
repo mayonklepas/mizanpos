@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.swing.table.TableCellRenderer;
 import mizanposapp.controller.innerpanel.pembelian.DaftarpembayaranhutangperinvoiceinputController;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *
@@ -76,19 +77,7 @@ public class Daftarpembayaranhutangperinvoice_input_panel extends javax.swing.JP
         dtanggal = new com.toedter.calendar.JDateChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable(){
-            public Component prepareRenderer(
-                TableCellRenderer renderer, int row, int column){
-                Component c = super.prepareRenderer(renderer, row, column);
-                c.setFont(new Font(Staticvar.fonttype, Staticvar.fontstyle, Staticvar.fontsize));
-                if (!isRowSelected(row)){
-                    c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
-                }else{
-                    c.setBackground(Staticvar.globaltablecolorselect);
-                }
-                return c;
-            }
-        };
+        tabledata = new Tablestyle(1, new int[]{2,3,4,5});
         jPanel3 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         edakun_pengeluaran = new javax.swing.JTextField();

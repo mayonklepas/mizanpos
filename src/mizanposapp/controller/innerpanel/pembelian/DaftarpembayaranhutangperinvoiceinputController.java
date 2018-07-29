@@ -244,7 +244,6 @@ public class DaftarpembayaranhutangperinvoiceinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarorderpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
 
     }
 
@@ -417,8 +416,6 @@ public class DaftarpembayaranhutangperinvoiceinputController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int[] columnright = {2, 3, 4, 5};
-        new Tablestyle(pane.tabledata).applystylerow(columnright);
     }
 
     private void addtotable() {

@@ -56,9 +56,7 @@ public class DaftarorderpembelianinnerController {
 
     public DaftarorderpembelianinnerController(Daftarorderpembelian_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         loadheader();
-        new Tablestyle(pane.tabledata).applystylerow(new int[]{4});
         loaddata();
         loaddatadetail();
         inputdata();

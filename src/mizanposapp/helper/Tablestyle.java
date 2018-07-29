@@ -10,7 +10,9 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -25,6 +27,22 @@ public class Tablestyle extends JTable {
     JTable tbl;
     Color fgcolor, bgcolor;
     int tipe;
+    int[] rightcolumindex;
+
+    public Tablestyle(int tipe, int[] rightcolumindex) {
+        this.tipe = tipe;
+        this.rightcolumindex = rightcolumindex;
+        this.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        this.setRowHeight(25);
+        JTableHeader jthead = this.getTableHeader();
+        jthead.setOpaque(false);
+        jthead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        jthead.setPreferredSize(new Dimension(30, 30));
+        jthead.setBackground(Color.decode("#282727"));
+        jthead.setForeground(Color.WHITE);
+        jthead.setReorderingAllowed(false);
+
+    }
 
     public Tablestyle(int tipe) {
         this.tipe = tipe;
@@ -39,13 +57,17 @@ public class Tablestyle extends JTable {
         jthead.setReorderingAllowed(false);
     }
 
-    public Tablestyle(JTable tbl) {
-        this.tbl = tbl;
-    }
-
     @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
+        if (rightcolumindex != null) {
+            for (int i = 0; i < rightcolumindex.length; i++) {
+                DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+                rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+                this.getColumnModel().getColumn(rightcolumindex[i]).setCellRenderer(rightRenderer);
+            }
+        }
+
         if (tipe == 0) {
             if (!isRowSelected(row)) {
                 c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
@@ -63,39 +85,8 @@ public class Tablestyle extends JTable {
                 }
             }
         }
+
         return c;
     }
 
-    public void applystyleheaderandcolum() {
-        tbl.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        tbl.setRowHeight(25);
-        JTableHeader jthead = tbl.getTableHeader();
-        jthead.setOpaque(false);
-        jthead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        jthead.setPreferredSize(new Dimension(30, 30));
-        jthead.setBackground(Color.decode("#282727"));
-        jthead.setForeground(Color.WHITE);
-        jthead.setReorderingAllowed(false);
-    }
-
-    public void applystylerow(int[] columnright) {
-        TableCellRenderer tcr = new TableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                //table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-                DefaultTableCellRenderer cellrender = new DefaultTableCellRenderer();
-                Component c = cellrender.getTableCellRendererComponent(table,
-                        value, isSelected, hasFocus, row, column);
-
-                for (int i = 0; i < columnright.length; i++) {
-                    if (column == columnright[i]) {
-                        c.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-                    }
-                }
-                return c;
-            }
-        };
-        tbl.setDefaultRenderer(Object.class, tcr);
-
-    }
 }

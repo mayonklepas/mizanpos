@@ -53,7 +53,6 @@ public class DaftarserviceinnerController {
 
     public DaftarserviceinnerController(Daftarservice_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         loadheader();
         loaddata();
         loaddatadetail();

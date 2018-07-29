@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import mizanposapp.controller.innerpanel.pembelian.DaftarorderpembelianinputController;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *
@@ -102,18 +103,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         ckdiskon = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable(){
-            public Component prepareRenderer(
-                TableCellRenderer renderer, int row, int column){
-                Component c = super.prepareRenderer(renderer, row, column);
-                if (!isRowSelected(row)){
-                    c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
-                }else{
-                    c.setBackground(Staticvar.globaltablecolorselect);
-                }
-                return c;
-            }
-        };
+        tabledata = new Tablestyle(1,new int[]{2,4,5,6,7,11});
         jPanel3 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();

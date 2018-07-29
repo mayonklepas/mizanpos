@@ -10,6 +10,8 @@ import javax.swing.UIManager;
 import mizanposapp.controller.MainmenuController;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
+import net.infonode.gui.laf.InfoNodeLookAndFeel;
+import net.infonode.gui.laf.InfoNodeLookAndFeelThemes;
 
 /**
  *
@@ -22,7 +24,8 @@ public class Mizanposapp {
      */
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            InfoNodeLookAndFeel laf = new InfoNodeLookAndFeel(InfoNodeLookAndFeelThemes.getSoftGrayTheme());
+            UIManager.setLookAndFeel(laf);
         } catch (Exception e) {
             e.printStackTrace();
         }

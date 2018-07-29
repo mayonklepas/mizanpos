@@ -105,7 +105,6 @@ public class DaftarorderpembelianinputController {
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         setpopup();
         skinning();
         loadsession();
@@ -441,7 +440,6 @@ public class DaftarorderpembelianinputController {
         customtable();
         loadheader();
         int[] columnright = {2, 4, 5, 6, 7, 11};
-        new Tablestyle(pane.tabledata).applystylerow(columnright);
         try {
             id = Staticvar.ids;
             if (id.equals("")) {

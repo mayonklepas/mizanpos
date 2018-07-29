@@ -6,6 +6,7 @@
 package mizanposapp.view.innerpanel.persediaan;
 
 import mizanposapp.controller.innerpanel.persediaan.DaftardatadeptinnerController;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *

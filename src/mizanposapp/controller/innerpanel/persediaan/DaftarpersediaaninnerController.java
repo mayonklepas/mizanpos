@@ -55,9 +55,7 @@ public class DaftarpersediaaninnerController {
 
     public DaftarpersediaaninnerController(Daftarpersediaan_inner_panel pane) {
         this.pane = pane;
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
         loaddata("0");
-        new Tablestyle(pane.tabledata).applystylerow(new int[]{4, 5});
         loaddatadetail();
         inputdata();
         editdata();

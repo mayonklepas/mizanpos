@@ -416,7 +416,6 @@ public class DaftarreturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarreturpembelianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new Tablestyle(pane.tabledata).applystyleheaderandcolum();
 
     }
 
@@ -754,8 +753,6 @@ public class DaftarreturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarreturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int[] columnright = {2, 3, 5, 6, 7, 8, 12};
-        new Tablestyle(pane.tabledata).applystylerow(columnright);
     }
 
     private void rawsimpan() {
