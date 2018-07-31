@@ -351,9 +351,10 @@ public class SethargajualController {
                             ischangevalue = false;
                         }
                     } else if (col == 3) {
+                        /*
                         try {
                             ischangevalue = true;
-                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, 7));
+                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, 4));
                             JDialog jd = new JDialog(new Mainmenu());
                             Errorpanel ep = new Errorpanel();
                             ep.ederror.setText("Isi Harus Angka dan Tidak Boleh Kosong");
@@ -370,6 +371,7 @@ public class SethargajualController {
                         } finally {
                             ischangevalue = false;
                         }
+                         */
                     } else if (col == 4) {
                         try {
                             ischangevalue = true;
@@ -686,7 +688,8 @@ public class SethargajualController {
 
     private void nextcolom(int col, int row) {
         int colcount = pane.tabledata.getColumnCount() - 1;
-        if (col == colcount) {
+
+        if (col == 4 || col == 5) {
             if (pane.tabledata.getRowCount() - 1 > row) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row + 1, 0, false, false);
@@ -696,6 +699,7 @@ public class SethargajualController {
                 pane.tabledata.changeSelection(row, 0, false, false);
             } else {
                 addautorow(row);
+                return;
             }
             return;
         }
@@ -712,9 +716,9 @@ public class SethargajualController {
             if (currentcoll == i) {
                 for (int j = currentcoll; j <= colcount; j++) {
                     while (!cekcolomnol(j + 1)) {
-                        if (((j + 1) == 7) || ((j + 1) == 8)) {
+                        if (((j + 1) == 4) || ((j + 1) == 5)) {
                             if (pane.ckharga_jual_persen.isSelected()) {
-                                if ((j + 1) == 8) {
+                                if ((j + 1) == 5) {
                                     int x = j + 1;
                                     for (int k = x; k <= colcount; k++) {
                                         while (!cekcolomnol(k + 1)) {
@@ -725,11 +729,11 @@ public class SethargajualController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                    pane.tabledata.changeSelection(currentrow, 4, false, false);
                                 }
                             } else {
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(currentrow, 8, false, false);
+                                pane.tabledata.changeSelection(currentrow, 4, false, false);
                             }
                         } else {
                             pane.tabledata.requestFocus();
@@ -747,9 +751,9 @@ public class SethargajualController {
             if (currentcoll == i) {
                 for (int j = currentcoll; j >= 0; j--) {
                     while (!cekcolomnol(j - 1)) {
-                        if (((j - 1) == 7) || ((j - 1) == 8)) {
+                        if (((j - 1) == 4) || ((j - 1) == 5)) {
                             if (pane.ckharga_jual_persen.isSelected()) {
-                                if ((j - 1) == 8) {
+                                if ((j - 1) == 5) {
                                     int x = j - 1;
                                     for (int k = x; k >= 0; k--) {
                                         while (!cekcolomnol(k - 1)) {
@@ -760,10 +764,10 @@ public class SethargajualController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                    pane.tabledata.changeSelection(currentrow, 4, false, false);
                                 }
                             } else {
-                                if ((j - 1) == 7) {
+                                if ((j - 1) == 4) {
                                     int x = j - 1;
                                     for (int k = x; k >= 0; k--) {
                                         while (!cekcolomnol(k - 1)) {
@@ -774,7 +778,7 @@ public class SethargajualController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 8, false, false);
+                                    pane.tabledata.changeSelection(currentrow, 5, false, false);
                                 }
                             }
                         } else {
@@ -801,10 +805,7 @@ public class SethargajualController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, 3).equals("")
-                || !pane.tabledata.getValueAt(row, 5).equals("")
-                || !pane.tabledata.getValueAt(row, 7).equals("")
-                || !pane.tabledata.getValueAt(row, 8).equals("")) {
+                || !pane.tabledata.getValueAt(row, 3).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);

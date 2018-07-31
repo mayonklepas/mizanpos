@@ -78,6 +78,7 @@ public class Pembelian_panel extends javax.swing.JPanel {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+        jPanel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jPanel9.setPreferredSize(new java.awt.Dimension(300, 110));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,44 +89,50 @@ public class Pembelian_panel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/hutang_usaha.png"))); // NOI18N
         butangusaha.add(jLabel4);
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel8.setText("Hutang Usaha");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel8.setText("<html><center>Hutang<br>Usaha</center></html>");
         butangusaha.add(jLabel8);
 
-        jPanel9.add(butangusaha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        jPanel9.add(butangusaha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 80, -1));
 
         bfakturpembelian.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/pembelian.png"))); // NOI18N
         bfakturpembelian.add(jLabel2);
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel6.setText("Faktur Pembelian");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("<html><center>Faktur<br>Pembelian</center></html>");
         bfakturpembelian.add(jLabel6);
 
-        jPanel9.add(bfakturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        jPanel9.add(bfakturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
 
         breturpembelian.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
         breturpembelian.add(jLabel3);
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel7.setText("Retur Pembelian");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel7.setText("<html><center>Retur<br>Pembelian</center></html>");
         breturpembelian.add(jLabel7);
 
-        jPanel9.add(breturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        jPanel9.add(breturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 80, -1));
 
         bpenerimaanbarang.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
         bpenerimaanbarang.add(jLabel5);
 
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel9.setText("Order Pembelian");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("<html><center>Order<br>Pembelian</center></html>"); // NOI18N
+        jLabel9.setAlignmentY(0.0F);
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel9.setIconTextGap(1);
+        jLabel9.setPreferredSize(new java.awt.Dimension(60, 30));
         bpenerimaanbarang.add(jLabel9);
 
-        jPanel9.add(bpenerimaanbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel9.add(bpenerimaanbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
 
         jPanel8.setBackground(new java.awt.Color(41, 39, 40));
 
