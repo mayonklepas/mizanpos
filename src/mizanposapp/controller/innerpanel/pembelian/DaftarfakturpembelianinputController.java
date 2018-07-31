@@ -105,6 +105,7 @@ public class DaftarfakturpembelianinputController {
 
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
     static boolean sudahterpanggil = false;
+    int currentrow;
 
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
@@ -147,6 +148,13 @@ public class DaftarfakturpembelianinputController {
                 jd.setLocationRelativeTo(null);
                 jd.setVisible(true);
                 jd.toFront();
+                pane.tabledata.setValueAt(Staticvar.map_var.get("harga_beli"), currentrow, 5);
+                pane.tabledata.setValueAt(Staticvar.map_var.get("harga_jual"), currentrow, 6);
+                tabeldatalist.get(currentrow).setHarga_beli(String.valueOf(Staticvar.map_var.get("harga_beli")));
+                tabeldatalist.get(currentrow).setHarga_jual(String.valueOf(Staticvar.map_var.get("harga_jual")));
+                dtmtabeldata.fireTableDataChanged();
+                Staticvar.map_var.clear();
+
             }
         });
     }
@@ -939,16 +947,20 @@ public class DaftarfakturpembelianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                Runnable rn = new Runnable() {
-                    @Override
-                    public void run() {
-                        tabeldatalist.remove(row);
-                        dtmtabeldata.removeRow(row);
-                        pane.tabledata.repaint();
-                        kalkulasitotal();
-                    }
-                };
-                SwingUtilities.invokeLater(rn);
+                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
+                    Runnable rn = new Runnable() {
+                        @Override
+                        public void run() {
+                            tabeldatalist.remove(row);
+                            dtmtabeldata.removeRow(row);
+                            pane.tabledata.repaint();
+                            kalkulasitotal();
+                        }
+                    };
+                    SwingUtilities.invokeLater(rn);
+                }
 
             }
         });
@@ -1544,7 +1556,6 @@ public class DaftarfakturpembelianinputController {
                         } else {
                             tm.setValueAt(oldvalue, row, col);
                         }
-                        kalkulasitotalperrow(row);
                         oldvalue = "";
                         if (col == 0) {
                             pane.tabledata.requestFocus();
@@ -1739,7 +1750,9 @@ public class DaftarfakturpembelianinputController {
                 if (col == 6) {
                     if (e.isPopupTrigger()) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
-                        Staticvar.idsextend_1 = tabeldatalist.get(row).getHarga_beli();
+                        Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
+                        Staticvar.map_var.put("harga_beli", tabeldatalist.get(row).getHarga_beli());
+                        currentrow = row;
                         pop.show(e.getComponent(), e.getX(), e.getY());
                     }
                 }
@@ -1757,7 +1770,9 @@ public class DaftarfakturpembelianinputController {
                 if (col == 6) {
                     if (e.isPopupTrigger()) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
-                        Staticvar.idsextend_1 = tabeldatalist.get(row).getHarga_beli();
+                        Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
+                        Staticvar.map_var.put("harga_beli", tabeldatalist.get(row).getHarga_beli());
+                        currentrow = row;
                         pop.show(e.getComponent(), e.getX(), e.getY());
                     }
                 }

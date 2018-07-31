@@ -10,6 +10,7 @@ import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -28,10 +29,12 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.TableModelEvent;
@@ -43,6 +46,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
@@ -81,12 +85,17 @@ public class SethargajualController {
     public SethargajualController(Sethargajual pane) {
         this.pane = pane;
         String id_barang = Staticvar.ids;
-        String harga_barang = Staticvar.idsextend_1;
+        String harga_jual = String.valueOf(Staticvar.map_var.get("harga_jual"));
+        String harga_beli = String.valueOf(Staticvar.map_var.get("harga_beli"));
         Staticvar.ids = "";
-        Staticvar.idsextend_1 = "";
+        Staticvar.map_var.clear();
         checkandcombocontrol();
-        loaddata(id_barang, harga_barang);
+        loaddata(id_barang, harga_beli);
         addtotable(id_barang);
+        hapusbaris();
+        simpandata(id_barang);
+        batal(harga_beli, harga_jual);
+
     }
 
     private void customtable() {
@@ -139,10 +148,14 @@ public class SethargajualController {
                     val_harga_jual_tipe = 1;
                     showtable(5);
                     hidetable(4);
+                    pane.cmbharga_berdasar.setVisible(true);
+                    pane.lharga_berdasar.setVisible(true);
                 } else {
                     val_harga_jual_tipe = 0;
-                    showtable(5);
-                    hidetable(4);
+                    showtable(4);
+                    hidetable(5);
+                    pane.cmbharga_berdasar.setVisible(false);
+                    pane.lharga_berdasar.setVisible(false);
                 }
             }
         });
@@ -153,7 +166,6 @@ public class SethargajualController {
                 JComboBox cb = (JComboBox) e.getSource();
                 if (cb.getSelectedIndex() == 0) {
                     val_harga_berdasar_tipe = 0;
-
                 } else if (cb.getSelectedIndex() == 1) {
                     val_harga_berdasar_tipe = 1;
                 } else {
@@ -295,7 +307,7 @@ public class SethargajualController {
                     String kode_satuan = String.valueOf(jointabeldata.get("kode_satuan"));
                     String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
                     String harga_jual_persen = String.valueOf(jointabeldata.get("harga_jual_persen"));
-                    String id_satuan_pengali = String.valueOf(jointabeldata.get("id_sataun_pengali"));
+                    String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                     String qty_satuan_pengali = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
                     tabeldatalist.add(new Entitytabledata(id_golongan, kode_golongan, dari, hingga, id_satuan,
                             kode_satuan, harga_jual, harga_jual_persen, id_satuan_pengali, qty_satuan_pengali));
@@ -350,28 +362,6 @@ public class SethargajualController {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 3) {
-                        /*
-                        try {
-                            ischangevalue = true;
-                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, 4));
-                            JDialog jd = new JDialog(new Mainmenu());
-                            Errorpanel ep = new Errorpanel();
-                            ep.ederror.setText("Isi Harus Angka dan Tidak Boleh Kosong");
-                            jd.add(ep);
-                            jd.pack();
-                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                            jd.setLocationRelativeTo(null);
-                            jd.setVisible(true);
-                            jd.toFront();
-                            pane.tabledata.setValueAt(valcol, row, 3);
-                            pane.tabledata.requestFocus();
-
-                        } catch (Exception ex) {
-                        } finally {
-                            ischangevalue = false;
-                        }
-                         */
                     } else if (col == 4) {
                         try {
                             ischangevalue = true;
@@ -433,6 +423,7 @@ public class SethargajualController {
                             pane.tabledata.setValueAt("1", row, 1);
                             tabeldatalist.get(row).setHingga("99");
                             pane.tabledata.setValueAt("99", row, 2);
+                            tabeldatalist.get(row).setId_satuan(val_id_satuan);
                             tabeldatalist.get(row).setKode_satuan(val_kode_satuan);
                             pane.tabledata.setValueAt(val_kode_satuan, row, 3);
                             tabeldatalist.get(row).setHarga_jual("0");
@@ -496,24 +487,11 @@ public class SethargajualController {
         };
         pane.tabledata.addMouseListener(madap);
 
-        pane.tabledata.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
         pane.tabledata.getActionMap().put("hapus", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                pane.bhapus.doClick();
             }
         });
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
@@ -549,6 +527,7 @@ public class SethargajualController {
                     pane.tabledata.setValueAt("99", row, 2);
                     tabeldatalist.get(row).setKode_satuan(val_kode_satuan);
                     pane.tabledata.setValueAt(val_kode_satuan, row, 3);
+                    tabeldatalist.get(row).setId_satuan(val_id_satuan);
                     tabeldatalist.get(row).setHarga_jual("0");
                     pane.tabledata.setValueAt("0", row, 4);
                     tabeldatalist.get(row).setId_satuan_pengali(val_id_satuan);
@@ -813,6 +792,117 @@ public class SethargajualController {
                 pane.tabledata.changeSelection(row + 1, 0, false, false);
             }
         }
+    }
+
+    private void hapusbaris() {
+        pane.bhapus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = pane.tabledata.getSelectedRow();
+                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
+                    Runnable rn = new Runnable() {
+                        @Override
+                        public void run() {
+                            int rowcount = pane.tabledata.getRowCount();
+                            if (rowcount == 1) {
+                                tabeldatalist.remove(row);
+                                dtmtabeldata.removeRow(row);
+                                pane.tabledata.repaint();
+                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", ""));
+                                dtmtabeldata.addRow(rowtabledata);
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(1, 0, false, false);
+                            } else {
+                                tabeldatalist.remove(row);
+                                dtmtabeldata.removeRow(row);
+                                pane.tabledata.repaint();
+                            }
+
+                        }
+                    };
+                    SwingUtilities.invokeLater(rn);
+                }
+
+            }
+        });
+    }
+
+    private void rawsimpan(String id_barang) {
+        String data = "datapersediaan="
+                + "harga_beli='" + ConvertFunc.ToDouble(pane.edharga_beli.getText()) + "'::"
+                + "harga_jual='" + ConvertFunc.ToDouble(pane.edharga_jual.getText()) + "'::"
+                + "harga_master='" + ConvertFunc.ToDouble(pane.edharga_master.getText()) + "'::"
+                + "harga_jual_persen='" + ConvertFunc.ToDouble(pane.edmark_up_harga_beli.getText()) + "'::"
+                + "ishargajualpersen='" + val_harga_jual_tipe + "'::"
+                + "harga_jual_berdasar='" + val_harga_berdasar_tipe + "'"
+                + "&" + kirimtexharga();
+        ch.updatedata("updatesettinghargajualpersediaan", data, id_barang);
+        if (Staticvar.getresult.equals("berhasil")) {
+            Staticvar.map_var.clear();
+            Staticvar.map_var.put("harga_beli", pane.edharga_beli.getText());
+            Staticvar.map_var.put("harga_jual", pane.edharga_jual.getText());
+            JDialog jd = (JDialog) pane.getRootPane().getParent();
+            jd.dispose();
+        } else {
+            JDialog jd = new JDialog(new Mainmenu());
+            Errorpanel ep = new Errorpanel();
+            ep.ederror.setText(Staticvar.getresult);
+            jd.add(ep);
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+        }
+
+    }
+
+    private String kirimtexharga() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("datamultiharga=");
+        int listcount = 0;
+        if (tabeldatalist.get(tabeldatalist.size() - 1).getId_golongan().equals("")) {
+            listcount = tabeldatalist.size() - 1;
+        } else {
+            listcount = tabeldatalist.size();
+        }
+        for (int i = 0; i < listcount; i++) {
+            sb.append("id_golongan=" + "'" + tabeldatalist.get(i).getId_golongan() + "'" + "::"
+                    + "dari=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDari()) + "'" + "::"
+                    + "hingga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHingga()) + "'" + "::"
+                    + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
+                    + "harga_jual=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
+                    + "harga_jual_persen=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual_persen()) + "'" + "::"
+                    + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
+                    + "qty_satuan_pengali=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getQty_satuan_pengali()) + "'");
+            sb.append("--");
+        }
+        String rawhasil = sb.toString().substring(0, sb.toString().length() - 2);
+        return rawhasil;
+    }
+
+    private void simpandata(String id_barang) {
+        pane.bsimpan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rawsimpan(id_barang);
+            }
+        });
+    }
+
+    private void batal(String harga_beli, String harga_jual) {
+        pane.bbatal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Staticvar.map_var.put("harga_beli", harga_beli);
+                Staticvar.map_var.put("harga_jual", harga_jual);
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            }
+        });
+
     }
 
     public class Entitytabledata {
