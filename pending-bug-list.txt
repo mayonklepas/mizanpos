@@ -6,4 +6,4 @@ Bug list
 - lebar table
 - number format untuk angka di setiap table
 - pop up error replace backslashes, menjadi enter
-- keterangan pop up read only tidak abu tapi terang
+

@@ -33,8 +33,10 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -58,6 +60,7 @@ import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_input_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
+import mizanposapp.view.innerpanel.pembelian.Sethargajual;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -95,7 +98,7 @@ public class DaftarfakturpembelianinputController {
     ArrayList<Integer> lsoldhide = new ArrayList<>();
     ArrayList<Integer> lsresize = new ArrayList<>();
     ArrayList<Integer> lsoldsize = new ArrayList<>();
-    String test;
+    JPopupMenu pop;
 
     private boolean ischangevalue = false;
     static String oldvalue = "";
@@ -105,6 +108,7 @@ public class DaftarfakturpembelianinputController {
 
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
+        setpopup();
         skinning();
         loadsession();
         loaddata();
@@ -127,6 +131,24 @@ public class DaftarfakturpembelianinputController {
         tambahbaris();
         batal();
 
+    }
+
+    private void setpopup() {
+        pop = new JPopupMenu();
+        JMenuItem sethargajual = new JMenuItem("Set Harga Jual");
+        pop.add(sethargajual);
+        sethargajual.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Sethargajual());
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+            }
+        });
     }
 
     private void loadsession() {
@@ -1712,25 +1734,37 @@ public class DaftarfakturpembelianinputController {
                 if (tb.isEditing()) {
                     tb.getCellEditor().cancelCellEditing();
                 }
+                int row = tb.rowAtPoint(e.getPoint());
+                int col = tb.columnAtPoint(e.getPoint());
+                if (col == 6) {
+                    if (e.isPopupTrigger()) {
+                        Staticvar.ids = tabeldatalist.get(row).getId_barang();
+                        Staticvar.idsextend_1 = tabeldatalist.get(row).getHarga_beli();
+                        pop.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                JTable tb = (JTable) e.getSource();
+                if (tb.isEditing()) {
+                    tb.getCellEditor().cancelCellEditing();
+                }
+                int row = tb.rowAtPoint(e.getPoint());
+                int col = tb.columnAtPoint(e.getPoint());
+                if (col == 6) {
+                    if (e.isPopupTrigger()) {
+                        Staticvar.ids = tabeldatalist.get(row).getId_barang();
+                        Staticvar.idsextend_1 = tabeldatalist.get(row).getHarga_beli();
+                        pop.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
             }
 
         };
         pane.tabledata.addMouseListener(madap);
-
-        pane.tabledata.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                System.out.println(e.getKeyChar());
-            }
-        });
 
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
         pane.tabledata.getActionMap().put("hapus", new AbstractAction() {

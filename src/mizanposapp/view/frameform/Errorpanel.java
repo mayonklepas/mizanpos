@@ -54,10 +54,14 @@ public class Errorpanel extends javax.swing.JPanel {
         bhapus = new javax.swing.JButton();
 
         ederror.setEditable(false);
+        ederror.setBackground(new java.awt.Color(255, 255, 255));
         ederror.setColumns(20);
-        ederror.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ederror.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        ederror.setForeground(new java.awt.Color(0, 0, 0));
         ederror.setLineWrap(true);
         ederror.setRows(5);
+        ederror.setWrapStyleWord(true);
+        ederror.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         ederror.setEnabled(false);
         jScrollPane1.setViewportView(ederror);
 

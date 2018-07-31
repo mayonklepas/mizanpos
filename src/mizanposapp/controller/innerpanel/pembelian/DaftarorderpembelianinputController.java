@@ -101,11 +101,9 @@ public class DaftarorderpembelianinputController {
     static String oldvalue = "";
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
     static boolean sudahterpanggil = false;
-    JPopupMenu pop;
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
-        setpopup();
         skinning();
         loadsession();
         loaddata();
@@ -127,24 +125,6 @@ public class DaftarorderpembelianinputController {
         tambahbaris();
         batal();
 
-    }
-
-    private void setpopup() {
-        pop = new JPopupMenu();
-        JMenuItem sethargajual = new JMenuItem("Set Harga Jual");
-        pop.add(sethargajual);
-        sethargajual.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Sethargajual());
-                jd.pack();
-                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setLocationRelativeTo(null);
-                jd.setVisible(true);
-                jd.toFront();
-            }
-        });
     }
 
     private void loadsession() {
@@ -1607,29 +1587,10 @@ public class DaftarorderpembelianinputController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                JTable tb = (JTable) e.getSource();
-                if (tb.isEditing()) {
-                    tb.getCellEditor().cancelCellEditing();
-                }
-                int row = tb.rowAtPoint(e.getPoint());
-                int col = tb.columnAtPoint(e.getPoint());
-                if (col == 5) {
-                    if (e.isPopupTrigger()) {
-                        pop.show(e.getComponent(), e.getX(), e.getY());
-                    }
-                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                JTable tb = (JTable) e.getSource();
-                int row = tb.rowAtPoint(e.getPoint());
-                int col = tb.columnAtPoint(e.getPoint());
-                if (col == 5) {
-                    if (e.isPopupTrigger()) {
-                        pop.show(e.getComponent(), e.getX(), e.getY());
-                    }
-                }
 
             }
 

@@ -1151,5 +1151,55 @@
                 "20"
             ]
         }
+    ],
+    "sethargajual": [
+        {
+            "key": [
+                "kode_golongan",
+                "Gol",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "dari",
+                "Dari",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "hingga",
+                "Hingga",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "kode_satuan",
+                "Satuan",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "harga_jual",
+                "Harga Jual",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "harga_jual_persen",
+                "Harga Jual (%)",
+                "0",
+                "0"
+            ]
+        }
     ]
 }

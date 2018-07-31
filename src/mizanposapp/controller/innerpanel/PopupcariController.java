@@ -192,9 +192,6 @@ public class PopupcariController {
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             pane.tabledata.setModel(dtm);
             TableColumnModel tcm = pane.tabledata.getColumnModel();
-            JTableHeader thead = pane.tabledata.getTableHeader();
-            thead.setFont(new Font("Century Gothic", Font.BOLD, 13));
-            pane.tabledata.setRowHeight(25);
             pane.tabledata.setDefaultEditor(Object.class, null);
             String dataheader = ch.getheaderpopups();
             JSONParser jpheader = new JSONParser();

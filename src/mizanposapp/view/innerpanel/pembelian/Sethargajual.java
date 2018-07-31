@@ -5,6 +5,7 @@
  */
 package mizanposapp.view.innerpanel.pembelian;
 
+import mizanposapp.controller.innerpanel.pembelian.SethargajualController;
 import mizanposapp.helper.Tablestyle;
 
 /**
@@ -18,6 +19,7 @@ public class Sethargajual extends javax.swing.JPanel {
      */
     public Sethargajual() {
         initComponents();
+        new SethargajualController(this);
     }
 
     /**
@@ -55,9 +57,11 @@ public class Sethargajual extends javax.swing.JPanel {
         cmbharga_berdasar = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabledata = new Tablestyle(0);
+        tabledata = new Tablestyle(1, new int[]{1,2,4,5});
         lkode_barang = new javax.swing.JLabel();
         lnama_barang = new javax.swing.JLabel();
+        bhapus = new javax.swing.JButton();
+        btambah = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
@@ -115,6 +119,11 @@ public class Sethargajual extends javax.swing.JPanel {
         edharga_beli.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         edharga_jual.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        edharga_jual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edharga_jualActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel10.setText("Harga Master");
@@ -201,19 +210,19 @@ public class Sethargajual extends javax.swing.JPanel {
         jLabel14.setText("Harga Berdasarkan :");
 
         cmbharga_berdasar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        cmbharga_berdasar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbharga_berdasar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3" }));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Multi Harga Jual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jScrollPane1.setViewportView(tabledata);
@@ -241,6 +250,12 @@ public class Sethargajual extends javax.swing.JPanel {
         lnama_barang.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         lnama_barang.setText("nama barang");
 
+        bhapus.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        bhapus.setText("Hapus");
+
+        btambah.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btambah.setText("Tambah");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,7 +264,10 @@ public class Sethargajual extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bhapus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btambah)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bsimpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bbatal))
@@ -308,9 +326,13 @@ public class Sethargajual extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bbatal)
-                    .addComponent(bsimpan))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btambah)
+                        .addComponent(bhapus))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bbatal)
+                        .addComponent(bsimpan)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -319,9 +341,15 @@ public class Sethargajual extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ckharga_jual_persenActionPerformed
 
+    private void edharga_jualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edharga_jualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edharga_jualActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
+    public javax.swing.JButton bhapus;
     public javax.swing.JButton bsimpan;
+    public javax.swing.JButton btambah;
     public javax.swing.JCheckBox ckharga_jual_persen;
     public javax.swing.JComboBox<String> cmbharga_berdasar;
     public javax.swing.JTextField edharga_beli;
