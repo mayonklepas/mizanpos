@@ -218,7 +218,7 @@ public class SethargajualController {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         TableColumnModel tcm = pane.tabledata.getColumnModel();
 
-        double lebar = d.getWidth() - 920;
+        double lebar = d.getWidth() - 950;
         double lebarAll = 0;
 
         for (int i = 0; i < lshide.size(); i++) {
@@ -273,15 +273,19 @@ public class SethargajualController {
                 val_id_satuan = String.valueOf(joindatapembelian.get("id_satuan"));
                 val_kode_satuan = String.valueOf(joindatapembelian.get("kode_satuan"));
                 val_harga_jual_tipe = Integer.parseInt(String.valueOf(joindatapembelian.get("ishargajualpersen")));
-                if (val_harga_berdasar_tipe == 1) {
+                if (val_harga_jual_tipe == 1) {
                     pane.ckharga_jual_persen.setSelected(true);
+                    pane.cmbharga_berdasar.setVisible(true);
+                    pane.lharga_berdasar.setVisible(true);
                 } else {
                     pane.ckharga_jual_persen.setSelected(false);
+                    pane.cmbharga_berdasar.setVisible(false);
+                    pane.lharga_berdasar.setVisible(false);
                 }
                 val_harga_berdasar_tipe = Integer.parseInt(String.valueOf(joindatapembelian.get("harga_jual_berdasar")));
-                if (val_harga_jual_tipe == 0) {
+                if (val_harga_berdasar_tipe == 0) {
                     pane.cmbharga_berdasar.setSelectedIndex(0);
-                } else if (val_harga_jual_tipe == 1) {
+                } else if (val_harga_berdasar_tipe == 1) {
                     pane.cmbharga_berdasar.setSelectedIndex(1);
                 } else {
                     pane.cmbharga_berdasar.setSelectedIndex(2);
@@ -838,6 +842,7 @@ public class SethargajualController {
                 + "ishargajualpersen='" + val_harga_jual_tipe + "'::"
                 + "harga_jual_berdasar='" + val_harga_berdasar_tipe + "'"
                 + "&" + kirimtexharga();
+        System.out.println(data);
         ch.updatedata("updatesettinghargajualpersediaan", data, id_barang);
         if (Staticvar.getresult.equals("berhasil")) {
             Staticvar.map_var.clear();
