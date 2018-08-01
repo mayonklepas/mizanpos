@@ -72,7 +72,6 @@ public class DaftarwriteoffhutanginputController {
         this.pane = pane;
         String id = Staticvar.ids;
         Staticvar.ids = "";
-        loadsession();
         skinning();
         getkodetransaksi();
         loaddata(id);
@@ -80,11 +79,6 @@ public class DaftarwriteoffhutanginputController {
         cariakunpengeluaran();
         caridepartment();
         batal();
-    }
-
-    private void loadsession() {
-        pane.edakun_pengeluaran.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
-        valakun_pengeluaran = Globalsession.AKUNPEMBELIANTUNAI;
     }
 
     private void skinning() {
@@ -200,10 +194,15 @@ public class DaftarwriteoffhutanginputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                boolean status = true;
-                if (pane.edsupplier.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                double jumlahbayar = ConvertFunc.ToDouble(pane.edjumlah_hapus.getText());
+                double sisa = ConvertFunc.ToDouble(pane.edsisa_hutang.getText());
+                if (pane.edakun_pengeluaran.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Akun tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
 
+                } else if (pane.edketerangan.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Keterangan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else if (jumlahbayar <= 0 || jumlahbayar > sisa || pane.edjumlah_hapus.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Jumlah bayar tidak boleh 0 atau lebih besar dari sisa", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
@@ -260,7 +259,7 @@ public class DaftarwriteoffhutanginputController {
         Staticvar.preid = previd;
         Staticvar.prelabel = prevlabel;
         JDialog jd = new JDialog(new Mainmenu());
-        jd.add(new Popupcari("akun", "popupdaftarkasbank", "Daftar Akun"));
+        jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
         jd.pack();
         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         jd.setLocationRelativeTo(null);
@@ -287,7 +286,7 @@ public class DaftarwriteoffhutanginputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "42", String.valueOf(no_urut));
+                        String data = String.format("id_keltrans=%s&no_urut=%s", "45", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
                         JDialog jd = (JDialog) pane.getRootPane().getParent();
                         jd.dispose();

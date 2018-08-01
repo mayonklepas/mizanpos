@@ -477,17 +477,7 @@ public class DaftarhutangrincianinnerController {
         pane.bhapus2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JDialog jd = new JDialog(new Mainmenu());
-                jd.setTitle("Informasi");
-                Errorpanel ep = new Errorpanel();
-                ep.ederror.setText(Staticvar.getresult);
-                jd.add(ep);
-                jd.pack();
-                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setLocationRelativeTo(null);
-                jd.setVisible(true);
-                jd.toFront();
-                /*int row = pane.tabledata.getSelectedRow();
+                int row = pane.tabledata.getSelectedRow();
                 int rowdetail = pane.tabledatarincian.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -517,7 +507,7 @@ public class DaftarhutangrincianinnerController {
                         }
                         Staticvar.isupdate = false;
                     }
-                }*/
+                }
 
             }
         });
