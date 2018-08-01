@@ -83,7 +83,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bedit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bhapus" min="-2" max="-2" attributes="0"/>
+                  <Component id="bwriteoff" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bupdate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                       <Component id="bfilter" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tcari" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bcari" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bhapus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bwriteoff" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bupdate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
@@ -170,7 +170,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="bhapus">
+        <Component class="javax.swing.JButton" name="bwriteoff">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="12" style="0"/>

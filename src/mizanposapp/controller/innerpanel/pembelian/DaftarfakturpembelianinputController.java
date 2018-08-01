@@ -7,6 +7,7 @@ package mizanposapp.controller.innerpanel.pembelian;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -29,6 +30,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -138,6 +140,14 @@ public class DaftarfakturpembelianinputController {
         pop = new JPopupMenu();
         JMenuItem sethargajual = new JMenuItem("Set Harga Jual");
         pop.add(sethargajual);
+        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_CONTEXT_MENU, 0), "klikkanan");
+        pane.tabledata.getActionMap().put("klikkanan", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         sethargajual.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1548,7 +1558,7 @@ public class DaftarfakturpembelianinputController {
                     } else if (col == 11) {
                         tabeldatalist.get(row).setKeterangan(String.valueOf(tm.getValueAt(row, 11)));
                     }
-                    ischangevalue = true;
+                    /*ischangevalue = true;
                     String curval = String.valueOf(tm.getValueAt(row, col));
                     if (curval.equals("") || curval.equals("null")) {
                         if (oldvalue.equals("null")) {
@@ -1561,7 +1571,7 @@ public class DaftarfakturpembelianinputController {
                             pane.tabledata.requestFocus();
                             pane.tabledata.changeSelection(row, 0, false, false);
                         }
-                    }
+                    }*/
                     ischangevalue = false;
                 }
             }
@@ -1747,7 +1757,7 @@ public class DaftarfakturpembelianinputController {
                 }
                 int row = tb.rowAtPoint(e.getPoint());
                 int col = tb.columnAtPoint(e.getPoint());
-                if (col == 6) {
+                if (pane.tabledata.isCellSelected(row, 6)) {
                     if (e.isPopupTrigger()) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
                         Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
@@ -1767,7 +1777,7 @@ public class DaftarfakturpembelianinputController {
                 }
                 int row = tb.rowAtPoint(e.getPoint());
                 int col = tb.columnAtPoint(e.getPoint());
-                if (col == 6) {
+                if (pane.tabledata.isCellSelected(row, 6)) {
                     if (e.isPopupTrigger()) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
                         Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
@@ -1780,6 +1790,29 @@ public class DaftarfakturpembelianinputController {
 
         };
         pane.tabledata.addMouseListener(madap);
+
+        KeyAdapter keyadap = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_CONTEXT_MENU) {
+                    if (pane.tabledata.isEditing()) {
+                        pane.tabledata.getCellEditor().cancelCellEditing();
+                    }
+                    int row = pane.tabledata.getSelectedRow();
+                    int col = pane.tabledata.getSelectedColumn();
+                    if (pane.tabledata.isCellSelected(row, 6)) {
+                        Staticvar.ids = tabeldatalist.get(row).getId_barang();
+                        Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
+                        Staticvar.map_var.put("harga_beli", tabeldatalist.get(row).getHarga_beli());
+                        currentrow = row;
+                        pop.show(e.getComponent(), e.getComponent().getX(), e.getComponent().getY());
+
+                    }
+                }
+            }
+
+        };
+        pane.tabledata.addKeyListener(keyadap);
 
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
         pane.tabledata.getActionMap().put("hapus", new AbstractAction() {

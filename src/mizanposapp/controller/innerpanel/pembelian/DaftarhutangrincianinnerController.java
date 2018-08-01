@@ -38,6 +38,7 @@ import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_input_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutangrincian_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarpembayaranhutangperinvoice_input_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarreturpembelian_input_panel;
+import mizanposapp.view.innerpanel.pembelian.Daftarwriteoffhutang_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -60,13 +61,15 @@ public class DaftarhutangrincianinnerController {
     DefaultTableModel dtm = new DefaultTableModel();
     DefaultTableModel dtmrincian = new DefaultTableModel();
     Daftarhutangrincian_inner_panel pane;
-    String id = "";
+    String id = "", nama_suplier = "", id_supplier = "";
     SwingWorker worker;
 
     public DaftarhutangrincianinnerController(Daftarhutangrincian_inner_panel pane) {
         this.pane = pane;
         id = Staticvar.ids;
-        pane.lheader.setText("Daftar Hutang Usaha - " + String.valueOf(Staticvar.map_var.get("nama_supplier")));
+        nama_suplier = String.valueOf(Staticvar.map_var.get("nama_supplier"));
+        id_supplier = String.valueOf(Staticvar.map_var.get("id_supplier"));
+        pane.lheader.setText("Daftar Hutang Usaha - " + nama_suplier);
         loadheader();
         loadheaderrincian();
         if (Staticvar.isupdate == false) {
@@ -87,6 +90,7 @@ public class DaftarhutangrincianinnerController {
         oncarienter();
         onbuttoncari();
         deleterincian();
+        writeoff();
 
     }
 
@@ -171,7 +175,7 @@ public class DaftarhutangrincianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("id=%s", String.valueOf(Staticvar.map_var.get("id_supplier")));
+                String param = String.format("id=%s", id_supplier);
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarhutangpersupplier", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -400,12 +404,12 @@ public class DaftarhutangrincianinnerController {
 
     private void disablebutton() {
         pane.bedit.setEnabled(false);
-        pane.bhapus.setEnabled(false);
+        pane.bwriteoff.setEnabled(false);
     }
 
     private void enablebutton() {
         pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
+        pane.bwriteoff.setEnabled(true);
     }
 
     private void disablebutton2() {
@@ -476,13 +480,7 @@ public class DaftarhutangrincianinnerController {
                 JDialog jd = new JDialog(new Mainmenu());
                 jd.setTitle("Informasi");
                 Errorpanel ep = new Errorpanel();
-                ep.ederror.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                        + "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                        + "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris "
-                        + "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
-                        + "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla"
-                        + " pariatur. Excepteur sint occaecat cupidatat non proident, "
-                        + "sunt in culpa qui officia deserunt mollit anim id est laborum");
+                ep.ederror.setText(Staticvar.getresult);
                 jd.add(ep);
                 jd.pack();
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -524,6 +522,24 @@ public class DaftarhutangrincianinnerController {
             }
         });
 
+    }
+
+    private void writeoff() {
+        pane.bwriteoff.addActionListener((ActionEvent e) -> {
+            int row = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlist.get(row);
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Daftarwriteoffhutang_input_panel());
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            if (Staticvar.isupdate == true) {
+                loaddata(row);
+                Staticvar.isupdate = false;
+            }
+        });
     }
 
 }

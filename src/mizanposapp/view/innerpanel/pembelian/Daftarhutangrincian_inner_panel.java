@@ -43,7 +43,7 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
         bfilter = new javax.swing.JButton();
         tcari = new javax.swing.JTextField();
         bcari = new javax.swing.JButton();
-        bhapus = new javax.swing.JButton();
+        bwriteoff = new javax.swing.JButton();
         bupdate = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -86,8 +86,8 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
         bcari.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari.setText("Cari");
 
-        bhapus.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        bhapus.setText("Write Off");
+        bwriteoff.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        bwriteoff.setText("Write Off");
 
         bupdate.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         bupdate.setText("Update");
@@ -102,7 +102,7 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bedit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bhapus)
+                .addComponent(bwriteoff)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bupdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -123,7 +123,7 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
                     .addComponent(bfilter)
                     .addComponent(tcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari)
-                    .addComponent(bhapus)
+                    .addComponent(bwriteoff)
                     .addComponent(bupdate))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -266,10 +266,10 @@ public class Daftarhutangrincian_inner_panel extends javax.swing.JPanel {
     public javax.swing.JButton bedit;
     public javax.swing.JButton bedit2;
     public javax.swing.JButton bfilter;
-    public javax.swing.JButton bhapus;
     public javax.swing.JButton bhapus2;
     public javax.swing.JButton btambah;
     public javax.swing.JButton bupdate;
+    public javax.swing.JButton bwriteoff;
     public javax.swing.JLabel indi;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

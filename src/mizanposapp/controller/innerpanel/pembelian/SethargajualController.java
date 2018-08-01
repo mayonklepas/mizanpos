@@ -426,7 +426,7 @@ public class SethargajualController {
                             tabeldatalist.get(row).setDari("1");
                             pane.tabledata.setValueAt("1", row, 1);
                             tabeldatalist.get(row).setHingga("99");
-                            pane.tabledata.setValueAt("99", row, 2);
+                            pane.tabledata.setValueAt("999", row, 2);
                             tabeldatalist.get(row).setId_satuan(val_id_satuan);
                             tabeldatalist.get(row).setKode_satuan(val_kode_satuan);
                             pane.tabledata.setValueAt(val_kode_satuan, row, 3);
@@ -528,7 +528,7 @@ public class SethargajualController {
                     tabeldatalist.get(row).setDari("1");
                     pane.tabledata.setValueAt("1", row, 1);
                     tabeldatalist.get(row).setHingga("99");
-                    pane.tabledata.setValueAt("99", row, 2);
+                    pane.tabledata.setValueAt("999", row, 2);
                     tabeldatalist.get(row).setKode_satuan(val_kode_satuan);
                     pane.tabledata.setValueAt(val_kode_satuan, row, 3);
                     tabeldatalist.get(row).setId_satuan(val_id_satuan);
