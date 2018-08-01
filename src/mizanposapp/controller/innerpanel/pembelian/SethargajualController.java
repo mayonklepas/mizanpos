@@ -277,10 +277,14 @@ public class SethargajualController {
                     pane.ckharga_jual_persen.setSelected(true);
                     pane.cmbharga_berdasar.setVisible(true);
                     pane.lharga_berdasar.setVisible(true);
+                    showtable(5);
+                    hidetable(4);
                 } else {
                     pane.ckharga_jual_persen.setSelected(false);
                     pane.cmbharga_berdasar.setVisible(false);
                     pane.lharga_berdasar.setVisible(false);
+                    showtable(4);
+                    hidetable(5);
                 }
                 val_harga_berdasar_tipe = Integer.parseInt(String.valueOf(joindatapembelian.get("harga_jual_berdasar")));
                 if (val_harga_berdasar_tipe == 0) {

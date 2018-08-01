@@ -221,7 +221,7 @@ public class DaftarfakturpembelianinputController {
             public boolean isCellEditable(int row, int column) {
                 //String colname = pane.tabledata.getColumnName(column).toLowerCase();
                 //return !(colname.equals("nama") || colname.equals("satuan") || colname.equals("h. jual"));
-                return column == 1 || column == 2 || column == 4 || column == 8 || column == 9 || column == 10 || column == 12 ? false : true;
+                return column == 1 || column == 2 || column == 4 || column == 6 || column == 9 || column == 10 || column == 12 ? false : true;
             }
 
         };
@@ -694,9 +694,10 @@ public class DaftarfakturpembelianinputController {
                     String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
                     String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                     String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
+
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
-                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                            nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen,
+                            diskon_nominal, id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total));
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
@@ -725,8 +726,6 @@ public class DaftarfakturpembelianinputController {
         } catch (ParseException ex) {
             Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*int[] columnright = {2, 3, 5, 6, 7, 8, 12};
-        new Tablestyle(pane.tabledata).applystylerow(columnright);*/
     }
 
     private void rawsimpan() {
@@ -1506,7 +1505,7 @@ public class DaftarfakturpembelianinputController {
                             ischangevalue = true;
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 7));
                             if (checkalphabeth(valcol) == false) {
-                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(tm.getValueAt(row, 6)));
+                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(tm.getValueAt(row, 7)));
                                 columnfunction(row, 7, false);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
@@ -1519,7 +1518,7 @@ public class DaftarfakturpembelianinputController {
                                 jd.setVisible(true);
                                 jd.toFront();
                                 valcol = "0";
-                                pane.tabledata.setValueAt(valcol, row, 6);
+                                pane.tabledata.setValueAt(valcol, row, 7);
                                 columnfunction(row, 7, false);
                                 pane.tabledata.requestFocus();
                             }
@@ -1534,7 +1533,7 @@ public class DaftarfakturpembelianinputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, 8));
                             if (checknumerik(valcol) == true) {
                                 columnfunction(row, 8, false);
-                                tabeldatalist.get(row).setDiskon_nominal(String.valueOf(ConvertFunc.ToDouble(tm.getValueAt(row, 7))));
+                                tabeldatalist.get(row).setDiskon_nominal(String.valueOf(ConvertFunc.ToDouble(tm.getValueAt(row, 8))));
                                 //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
