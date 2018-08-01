@@ -62,6 +62,7 @@ public class Sethargajual extends javax.swing.JPanel {
         lnama_barang = new javax.swing.JLabel();
         bhapus = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
@@ -101,6 +102,7 @@ public class Sethargajual extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel4.setText(":");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Harga Jual Satuan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -168,7 +170,7 @@ public class Sethargajual extends javax.swing.JPanel {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edharga_jual)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel10))
@@ -206,6 +208,7 @@ public class Sethargajual extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        ckharga_jual_persen.setBackground(new java.awt.Color(255, 255, 255));
         ckharga_jual_persen.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ckharga_jual_persen.setText("Harga Jual Dalam Persen (%)");
         ckharga_jual_persen.addActionListener(new java.awt.event.ActionListener() {
@@ -220,6 +223,7 @@ public class Sethargajual extends javax.swing.JPanel {
         cmbharga_berdasar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         cmbharga_berdasar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harga Pokok", "Harga Beli Terakhir", "Harga Master" }));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Multi Harga Jual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
@@ -239,10 +243,7 @@ public class Sethargajual extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

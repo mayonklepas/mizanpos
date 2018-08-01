@@ -81,6 +81,8 @@ public class Daftarwriteoffhutang_input_panel extends javax.swing.JPanel {
         jLabel25 = new javax.swing.JLabel();
         edtotal = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("Tanggal");
 
@@ -209,6 +211,7 @@ public class Daftarwriteoffhutang_input_panel extends javax.swing.JPanel {
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Informasi Transaksi Hutang Dihapus"));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
