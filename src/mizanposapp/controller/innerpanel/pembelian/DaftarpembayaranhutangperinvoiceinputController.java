@@ -487,11 +487,11 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     if (col == 0) {
                         Staticvar.preid = tabeldatalist.get(row).getId();
                         String defnilai = "";
-                        String cekval = String.valueOf(pane.tabledata.getValueAt(row, col));
+                        String cekval = String.valueOf(tb.getValueAt(row, col));
                         if (cekval.equals("null") || cekval.equals("")) {
                             defnilai = "";
                         } else {
-                            defnilai = String.valueOf(pane.tabledata.getValueAt(row, 0));
+                            defnilai = String.valueOf(tb.getValueAt(row, 0));
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = "";
@@ -505,7 +505,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         jd.toFront();
                         if (!Staticvar.reslabel.equals("")) {
                             try {
-                                if (pane.tabledata.getRowCount() <= 1) {
+                                if (tb.getRowCount() <= 1) {
                                     if (!Staticvar.preid.equals(Staticvar.resid)) {
                                         JSONParser jpdata = new JSONParser();
                                         String param = String.format("id=%s", Staticvar.resid);
@@ -516,27 +516,35 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                             tabeldatalist.get(row).setAkun(String.valueOf(joindata.get("akun")));
                                             tabeldatalist.get(row).setId(String.valueOf(joindata.get("id")));
                                             tabeldatalist.get(row).setNoref(String.valueOf(joindata.get("noref")));
-                                            pane.tabledata.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
+                                            tb.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
                                             tabeldatalist.get(row).setTanggal(String.valueOf(joindata.get("tanggal")));
-                                            pane.tabledata.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
+                                            tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
                                             tabeldatalist.get(row).setTotalhutang(String.valueOf(joindata.get("total")));
-                                            pane.tabledata.setValueAt(String.valueOf(joindata.get("total")), row, 2);
+                                            tb.setValueAt(String.valueOf(joindata.get("total")), row, 2);
                                             tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
-                                            pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
+                                            tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
                                             tabeldatalist.get(row).setDiskon("0");
-                                            pane.tabledata.setValueAt("0", row, 4);
+                                            tb.setValueAt("0", row, 4);
                                             tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
-                                            pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
+                                            tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
                                         }
                                         kalkulasi();
                                         addautorow(row);
                                     } else {
-                                        pane.tabledata.requestFocus();
+                                        tb.requestFocus();
                                     }
                                 } else {
-                                    if (tabeldatalist.get(row - 1).getId().equals(Staticvar.resid)) {
-                                        JOptionPane.showMessageDialog(null, Staticvar.reslabel + " Sudah Ada");
-                                    } else {
+                                    boolean status = true;
+                                    for (int i = 0; i < tb.getRowCount() - 1; i++) {
+                                        String kodesekarang = Staticvar.resid;
+                                        String kodesebelumnya = tabeldatalist.get(i).getId();
+                                        if (kodesekarang.equals(kodesebelumnya)) {
+                                            JOptionPane.showMessageDialog(null, tb.getValueAt(i, 0) + " Sudah Ada");
+                                            status = false;
+                                        }
+                                    }
+
+                                    if (status == true) {
                                         if (!Staticvar.preid.equals(Staticvar.resid)) {
                                             JSONParser jpdata = new JSONParser();
                                             String param = String.format("id=%s", Staticvar.resid);
@@ -547,25 +555,25 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                                 tabeldatalist.get(row).setAkun(String.valueOf(joindata.get("akun")));
                                                 tabeldatalist.get(row).setId(String.valueOf(joindata.get("id")));
                                                 tabeldatalist.get(row).setNoref(String.valueOf(joindata.get("noref")));
-                                                pane.tabledata.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
+                                                tb.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
                                                 tabeldatalist.get(row).setTanggal(String.valueOf(joindata.get("tanggal")));
-                                                pane.tabledata.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
+                                                tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
                                                 tabeldatalist.get(row).setTotalhutang(String.valueOf(joindata.get("total")));
-                                                pane.tabledata.setValueAt(String.valueOf(joindata.get("total")), row, 2);
+                                                tb.setValueAt(String.valueOf(joindata.get("total")), row, 2);
                                                 tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
-                                                pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
+                                                tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
                                                 tabeldatalist.get(row).setDiskon("0");
-                                                pane.tabledata.setValueAt("0", row, 4);
+                                                tb.setValueAt("0", row, 4);
                                                 tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
-                                                pane.tabledata.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
+                                                tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
                                             }
                                             kalkulasi();
                                             addautorow(row);
                                         } else {
-                                            pane.tabledata.requestFocus();
+                                            tb.requestFocus();
                                         }
-
                                     }
+
                                 }
                             } catch (ParseException ex) {
                                 Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
@@ -655,9 +663,17 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                     pane.tabledata.requestFocus();
                                 }
                             } else {
-                                if (tabeldatalist.get(row - 1).getId().equals(Staticvar.resid)) {
-                                    JOptionPane.showMessageDialog(null, Staticvar.reslabel + " Sudah Ada");
-                                } else {
+                                boolean status = true;
+                                for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
+                                    String kodesekarang = Staticvar.resid;
+                                    String kodesebelumnya = tabeldatalist.get(i).getId();
+                                    if (kodesekarang.equals(kodesebelumnya)) {
+                                        JOptionPane.showMessageDialog(null, pane.tabledata.getValueAt(i, 0) + " Sudah Ada");
+                                        status = false;
+                                    }
+                                }
+
+                                if (status == true) {
                                     if (!Staticvar.preid.equals(Staticvar.resid)) {
                                         JSONParser jpdata = new JSONParser();
                                         String param = String.format("id=%s", Staticvar.resid);
@@ -685,8 +701,8 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                     } else {
                                         pane.tabledata.requestFocus();
                                     }
-
                                 }
+
                             }
                         } catch (ParseException ex) {
                             Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);

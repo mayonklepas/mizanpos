@@ -72,12 +72,15 @@ public class ConvertFunc {
     }
 
     public static String EncodeString(String str) {
-        String a = str.replace("%", "%25");
-        String b = a.replace("&", "%26");
-        String c = b.replace("'", "%27%27");
-        String d = c.replace("\"", "%27%27");
-        String e = d.replace("+", "%2B");
-        return e;
+        String hasil = "";
+        if (!str.isEmpty() || !str.equals("null") || str != null) {
+            String a = str.replace("%", "%25");
+            String b = a.replace("&", "%26");
+            String c = b.replace("'", "%27%27");
+            String d = c.replace("\"", "%27%27");
+            hasil = d.replace("+", "%2B");
+        }
+        return hasil;
     }
 
     public static String ret(String data) {
