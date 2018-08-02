@@ -448,8 +448,21 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     } else if (col == 5) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, 5)));
-                            kalkulasi();
+                            String noref = tabeldatalist.get(row).getNoref();
+                            double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(row).getJumlah_bayar());
+                            double sisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
+                            double diskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
+                            double totabayartambahdiskon = jumlahbayar + diskon;
+                            if (totabayartambahdiskon > sisa) {
+                                JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, 5, false, false);
+                                tm.setValueAt("0", row, 5);
+                            } else {
+                                tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, 5)));
+                                kalkulasi();
+                            }
+
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         } finally {
@@ -712,15 +725,28 @@ public class DaftarpembayaranhutangperinvoiceinputController {
             }
         });
 
+        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
+        pane.tabledata.getActionMap().put("right", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.tabledata.requestFocus();
+                int row = pane.tabledata.getSelectedRow();
+                int col = pane.tabledata.getSelectedColumn();
+                pane.tabledata.changeSelection(row, col + 1, false, false);
+                if (col == 5) {
+                    addautorow(row);
+                }
+            }
+        });
+
     }
 
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, 3).equals("")
-                || !pane.tabledata.getValueAt(row, 4).equals("")
-                || !pane.tabledata.getValueAt(row, 5).equals("")) {
+                || !pane.tabledata.getValueAt(row, 1).equals("")
+                || !pane.tabledata.getValueAt(row, 2).equals("")
+                || !pane.tabledata.getValueAt(row, 3).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);

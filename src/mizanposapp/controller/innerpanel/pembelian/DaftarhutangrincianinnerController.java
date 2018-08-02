@@ -298,6 +298,7 @@ public class DaftarhutangrincianinnerController {
             
             };
             worker.execute();*/
+            disablebutton2();
         } catch (ParseException ex) {
             Logger.getLogger(DaftarhutangrincianinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
