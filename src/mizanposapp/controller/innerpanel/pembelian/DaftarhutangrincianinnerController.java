@@ -477,7 +477,7 @@ public class DaftarhutangrincianinnerController {
             } else if (id_keltrans.equals("47")) {
                 Staticvar.ids = idlist.get(row);
                 JPanel inpane = new JPanel();
-                inpane = new Daftarreturpembelian_input_panel();
+                inpane = new Daftarfakturpembelian_input_panel();
                 Staticvar.pmp.container.removeAll();
                 Staticvar.pmp.container.setLayout(new BorderLayout());
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
