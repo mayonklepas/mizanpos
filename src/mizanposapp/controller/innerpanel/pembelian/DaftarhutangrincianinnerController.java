@@ -451,7 +451,6 @@ public class DaftarhutangrincianinnerController {
 
     private void editpembayarandetail() {
         pane.bedit2.addActionListener((ActionEvent e) -> {
-            System.out.println(idlistrincian);
             Staticvar.frame = "rincian_hutang";
             Staticvar.isupdate = true;
             int row = pane.tabledata.getSelectedRow();
@@ -459,17 +458,46 @@ public class DaftarhutangrincianinnerController {
             Staticvar.ids = idlistrincian.get(rowrincian);
             Staticvar.rowfokus = row;
             String id_keltrans = idlistrinciankeltrans.get(rowrincian);
-            JPanel inpane = new JPanel();
             if (id_keltrans.equals("42")) {
+                JPanel inpane = new JPanel();
                 inpane = new Daftarpembayaranhutangperinvoice_input_panel();
+                Staticvar.pmp.container.removeAll();
+                Staticvar.pmp.container.setLayout(new BorderLayout());
+                Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+                Staticvar.pmp.container.revalidate();
+                Staticvar.pmp.container.repaint();
             } else if (id_keltrans.equals("31")) {
+                JPanel inpane = new JPanel();
                 inpane = new Daftarreturpembelian_input_panel();
+                Staticvar.pmp.container.removeAll();
+                Staticvar.pmp.container.setLayout(new BorderLayout());
+                Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+                Staticvar.pmp.container.revalidate();
+                Staticvar.pmp.container.repaint();
+            } else if (id_keltrans.equals("48")) {
+                Staticvar.ids = idlist.get(row);
+                JPanel inpane = new JPanel();
+                inpane = new Daftarreturpembelian_input_panel();
+                Staticvar.pmp.container.removeAll();
+                Staticvar.pmp.container.setLayout(new BorderLayout());
+                Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
+                Staticvar.pmp.container.revalidate();
+                Staticvar.pmp.container.repaint();
+            } else if (id_keltrans.equals("45")) {
+                Staticvar.frame = "edit";
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Daftarwriteoffhutang_input_panel());
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+                if (Staticvar.isupdate == true) {
+                    loaddata(row);
+                    Staticvar.isupdate = false;
+                }
             }
-            Staticvar.pmp.container.removeAll();
-            Staticvar.pmp.container.setLayout(new BorderLayout());
-            Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.pmp.container.revalidate();
-            Staticvar.pmp.container.repaint();
+
         });
     }
 
@@ -516,8 +544,10 @@ public class DaftarhutangrincianinnerController {
 
     private void writeoff() {
         pane.bwriteoff.addActionListener((ActionEvent e) -> {
+            Staticvar.isupdate = true;
             int row = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlist.get(row);
+            Staticvar.frame = "add";
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftarwriteoffhutang_input_panel());
             jd.pack();

@@ -828,6 +828,7 @@ public class DaftarreturpembelianinputController {
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.frame = "";
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -888,6 +889,7 @@ public class DaftarreturpembelianinputController {
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
+                Staticvar.frame = "";
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();

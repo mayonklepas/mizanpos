@@ -310,6 +310,7 @@ public class DaftarfakturpembelianinnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
+            Staticvar.frame = "daftar_faktur";
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
             Staticvar.pmp.container.setLayout(new BorderLayout());

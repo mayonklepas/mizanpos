@@ -71,14 +71,15 @@ public class DaftarwriteoffhutanginputController {
     public DaftarwriteoffhutanginputController(Daftarwriteoffhutang_input_panel pane) {
         this.pane = pane;
         String id = Staticvar.ids;
+        String tipe = Staticvar.frame;
         Staticvar.ids = "";
+        Staticvar.frame = "";
         skinning();
-        getkodetransaksi();
-        loaddata(id);
-        simpandata();
+        loaddata(tipe, id);
+        simpandata(tipe, id);
         cariakunpengeluaran();
         caridepartment();
-        batal();
+        batal(tipe);
     }
 
     private void skinning() {
@@ -110,86 +111,167 @@ public class DaftarwriteoffhutanginputController {
 
     }
 
-    private void loaddata(String id) {
+    private void loaddata(String tipe, String id) {
         try {
-            JSONParser jpdata = new JSONParser();
-            String param = String.format("id=%s", id);
-            Object rawobjdata = jpdata.parse(ch.getdatadetails("datapembayaranhutang", param));
-            JSONObject jsonobjdata = (JSONObject) rawobjdata;
+            if (tipe.equals("add")) {
+                getkodetransaksi();
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", id);
+                Object rawobjdata = jpdata.parse(ch.getdatadetails("datapembayaranhutang", param));
+                JSONObject jsonobjdata = (JSONObject) rawobjdata;
 
-            Object jogenjur = jsonobjdata.get("genjur");
-            JSONArray jagenjur = (JSONArray) jogenjur;
+                Object jogenjur = jsonobjdata.get("genjur");
+                JSONArray jagenjur = (JSONArray) jogenjur;
 
-            pane.edsupplier.setText(String.valueOf(Staticvar.map_var.get("nama_supplier")));
-            valsupplier = String.valueOf(Staticvar.map_var.get("id_supplier"));
-            for (int i = 0; i < jagenjur.size(); i++) {
-                JSONObject joingenjur = (JSONObject) jagenjur.get(i);
-                pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
-                pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
-                valdept = String.valueOf(joingenjur.get("id_dept"));
-                try {
-                    pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
-                } catch (java.text.ParseException ex) {
-                    Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                pane.edsupplier.setText(String.valueOf(Staticvar.map_var.get("nama_supplier")));
+                valsupplier = String.valueOf(Staticvar.map_var.get("id_supplier"));
+                for (int i = 0; i < jagenjur.size(); i++) {
+                    JSONObject joingenjur = (JSONObject) jagenjur.get(i);
+                    pane.ednoref.setText(String.valueOf(joingenjur.get("id_no_genjur")));
+                    pane.edketerangan_transaksi.setText(String.valueOf(joingenjur.get("keterangan")));
+                    pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
+                    valdept = String.valueOf(joingenjur.get("id_dept"));
+                    pane.dtanggal.setDate(new Date());
+
                 }
 
+                JSONParser jpdatadetail = new JSONParser();
+                String paramdetail = String.format("id=%s", id);
+                Object rawobjdatadetail = jpdatadetail.parse(ch.getdatadetails("datahutangpersupplier", paramdetail));
+                JSONArray jadetail = (JSONArray) rawobjdatadetail;
+                for (int i = 0; i < jadetail.size(); i++) {
+                    JSONObject jointabledata = (JSONObject) jadetail.get(i);
+                    valid_transaksi = String.valueOf(jointabledata.get("id"));
+                    valakun_transaksi = String.valueOf(jointabledata.get("akun"));
+                    pane.ednotransaksi.setText(String.valueOf(jointabledata.get("noref")));
+                    pane.edtanggaltransaksi.setText(String.valueOf(jointabledata.get("tanggal")));
+                    pane.edtotal.setText(String.valueOf(jointabledata.get("total")));
+                    double sebenarnyasisa = ConvertFunc.ToDouble(jointabledata.get("sisa"));
+                    pane.edsisa_hutang.setText(String.valueOf(sebenarnyasisa));
+                    pane.edjumlah_hapus.setText(String.valueOf(jointabledata.get("sisa")));
+                }
+            } else {
+                JSONParser jpdata = new JSONParser();
+                String param = String.format("id=%s", id);
+                Object rawobjdata = jpdata.parse(ch.getdatadetails("datapembayaranhutang", param));
+                JSONObject jsonobjdata = (JSONObject) rawobjdata;
+
+                Object jogenjur = jsonobjdata.get("genjur");
+                JSONArray jagenjur = (JSONArray) jogenjur;
+                for (int i = 0; i < jagenjur.size(); i++) {
+                    JSONObject joingenjur = (JSONObject) jagenjur.get(i);
+                    pane.ednoref.setText(String.valueOf(joingenjur.get("noref")));
+                    pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
+                    pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
+                    valdept = String.valueOf(joingenjur.get("id_dept"));
+                    try {
+                        pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
+                    } catch (java.text.ParseException ex) {
+                        Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+                Object jokaskeluar = jsonobjdata.get("kaskeluar");
+                JSONArray jakaskeluar = (JSONArray) jokaskeluar;
+                for (int i = 0; i < jakaskeluar.size(); i++) {
+                    JSONObject joinkaskeluar = (JSONObject) jakaskeluar.get(i);
+                    pane.edsupplier.setText(String.valueOf(joinkaskeluar.get("nama_cards")));
+                    valsupplier = String.valueOf(joinkaskeluar.get("id_cards"));
+                    valakun_pengeluaran = String.valueOf(joinkaskeluar.get("akun_keluar_dari"));
+                    pane.edakun_pengeluaran.setText(valakun_pengeluaran + "-" + String.valueOf(joinkaskeluar.get("nama_akun_keluar_dari")));
+                }
+
+                Object jokaskeluardetail = jsonobjdata.get("kaskeluar_detail");
+                JSONArray jakaskeluardetail = (JSONArray) jokaskeluardetail;
+                for (int i = 0; i < jakaskeluardetail.size(); i++) {
+                    JSONObject joinkaskeluar_detail = (JSONObject) jakaskeluardetail.get(i);
+                    valid_transaksi = String.valueOf(joinkaskeluar_detail.get("id"));
+                    valakun_transaksi = String.valueOf(joinkaskeluar_detail.get("akun"));
+                    pane.edketerangan_transaksi.setText(String.valueOf(joinkaskeluar_detail.get("keterangan_transaksi")));
+                    pane.ednotransaksi.setText(String.valueOf(joinkaskeluar_detail.get("noref")));
+                    pane.edtanggaltransaksi.setText(String.valueOf(joinkaskeluar_detail.get("tanggal")));
+                    pane.edtotal.setText(String.valueOf(joinkaskeluar_detail.get("total")));
+                    double sebenarnyasisa = ConvertFunc.ToDouble(joinkaskeluar_detail.get("sisa")) + ConvertFunc.ToDouble(joinkaskeluar_detail.get("jumlah"));
+                    pane.edsisa_hutang.setText(String.valueOf(sebenarnyasisa));
+                    pane.edjumlah_hapus.setText(String.valueOf(joinkaskeluar_detail.get("jumlah")));
+                }
             }
 
-            JSONParser jpdatadetail = new JSONParser();
-            String paramdetail = String.format("id=%s", id);
-            Object rawobjdatadetail = jpdatadetail.parse(ch.getdatadetails("datahutangpersupplier", paramdetail));
-            JSONArray jadetail = (JSONArray) rawobjdatadetail;
-            for (int i = 0; i < jadetail.size(); i++) {
-                JSONObject jointabledata = (JSONObject) jadetail.get(i);
-                valid_transaksi = String.valueOf(jointabledata.get("id"));
-                valakun_transaksi = String.valueOf(jointabledata.get("akun"));
-                pane.ednotransaksi.setText(String.valueOf(jointabledata.get("noref")));
-                pane.edtanggaltransaksi.setText(String.valueOf(jointabledata.get("tanggal")));
-                pane.edtotal.setText(String.valueOf(jointabledata.get("total")));
-                double sebenarnyasisa = ConvertFunc.ToDouble(jointabledata.get("sisa"));
-                pane.edsisa_hutang.setText(String.valueOf(sebenarnyasisa));
-                pane.edjumlah_hapus.setText(String.valueOf(jointabledata.get("sisa")));
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void rawsimpan() {
-        String data = "genjur="
-                + "id_keltrans='45'::"
-                + "id_dept='" + valdept + "'::"
-                + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                + "&kaskeluar="
-                + "id_cards='" + valsupplier + "'::"
-                + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
-                + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
-                + "&kaskeluar_detail="
-                + "id_no_genjur='" + valid_transaksi + "'::"
-                + "akun='" + valakun_transaksi + "'::"
-                + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
+    private void rawsimpan(String tipe, String id) {
+        if (tipe.equals("add")) {
+            String data = "genjur="
+                    + "id_keltrans='45'::"
+                    + "id_dept='" + valdept + "'::"
+                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "&kaskeluar="
+                    + "id_cards='" + valsupplier + "'::"
+                    + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
+                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
+                    + "&kaskeluar_detail="
+                    + "id_no_genjur='" + valid_transaksi + "'::"
+                    + "akun='" + valakun_transaksi + "'::"
+                    + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
 
-        ch.insertdata("insertpembayaranhutang", data);
-        if (Staticvar.getresult.equals("berhasil")) {
-            Staticvar.isupdate = true;
-            JDialog jd = (JDialog) pane.getRootPane().getParent();
-            jd.dispose();
+            ch.insertdata("insertpembayaranhutang", data);
+            if (Staticvar.getresult.equals("berhasil")) {
+                Staticvar.isupdate = true;
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            } else {
+                JDialog jd = new JDialog(new Mainmenu());
+                Errorpanel ep = new Errorpanel();
+                ep.ederror.setText(Staticvar.getresult);
+                jd.add(ep);
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+            }
         } else {
-            JDialog jd = new JDialog(new Mainmenu());
-            Errorpanel ep = new Errorpanel();
-            ep.ederror.setText(Staticvar.getresult);
-            jd.add(ep);
-            jd.pack();
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setLocationRelativeTo(null);
-            jd.setVisible(true);
-            jd.toFront();
+            String data = "genjur="
+                    + "id_keltrans='45'::"
+                    + "id_dept='" + valdept + "'::"
+                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "&kaskeluar="
+                    + "id_cards='" + valsupplier + "'::"
+                    + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
+                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
+                    + "&kaskeluar_detail="
+                    + "id_no_genjur='" + valid_transaksi + "'::"
+                    + "akun='" + valakun_transaksi + "'::"
+                    + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
+
+            ch.updatedata("updatepembayaranhutang", data, id);
+            if (Staticvar.getresult.equals("berhasil")) {
+                Staticvar.isupdate = true;
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            } else {
+                JDialog jd = new JDialog(new Mainmenu());
+                Errorpanel ep = new Errorpanel();
+                ep.ederror.setText(Staticvar.getresult);
+                jd.add(ep);
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+            }
         }
     }
 
-    private void simpandata() {
+    private void simpandata(String tipe, String id) {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -211,7 +293,7 @@ public class DaftarwriteoffhutanginputController {
                                 + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
 
-                            rawsimpan();
+                            rawsimpan(tipe, id);
 
                         }
                     } else if (tahunbulan < periodetahunnulan) {
@@ -228,7 +310,7 @@ public class DaftarwriteoffhutanginputController {
                         jd.toFront();
                     } else {
 
-                        rawsimpan();
+                        rawsimpan(tipe, id);
 
                     }
                 }
@@ -279,15 +361,18 @@ public class DaftarwriteoffhutanginputController {
 
     }
 
-    private void batal() {
+    private void batal(String tipe) {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "45", String.valueOf(no_urut));
-                        ch.insertdata("insertnomorgagal", data);
+                        Staticvar.isupdate = false;
+                        if (tipe.equals("add")) {
+                            String data = String.format("id_keltrans=%s&no_urut=%s", "45", String.valueOf(no_urut));
+                            ch.insertdata("insertnomorgagal", data);
+                        }
                         JDialog jd = (JDialog) pane.getRootPane().getParent();
                         jd.dispose();
                     }

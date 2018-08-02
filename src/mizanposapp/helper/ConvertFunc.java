@@ -80,4 +80,9 @@ public class ConvertFunc {
         return e;
     }
 
+    public static String ret(String data) {
+        String hasil = data.replaceAll("||", "\n");
+        return hasil;
+    }
+
 }

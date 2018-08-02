@@ -8,6 +8,5 @@ Bug list
 - pop up error replace backslashes, menjadi enter
 - jumlah retur tidak boleh lebih besar dari jumlah pembelian
 - jumlah retur tidak boleh lebih besar dari sisa retur atas
-- seharusnya edit faktur dari pembayaran hutang kembali ke pembayaran hutang
-- edit write off 
+
 

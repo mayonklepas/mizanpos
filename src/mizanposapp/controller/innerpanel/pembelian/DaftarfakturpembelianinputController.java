@@ -790,12 +790,18 @@ public class DaftarfakturpembelianinputController {
                         pane.ltotal_pajak.setText("0");
                         pane.ltotal_pembelian.setText("0");
                     } else {
-                        Daftarfakturpembelian_inner_panel inpane = new Daftarfakturpembelian_inner_panel();
+                        JPanel inpane = new JPanel();
+                        if (Staticvar.frame.equals("rincian_hutang")) {
+                            inpane = new Daftarhutangrincian_inner_panel();
+                        } else if (Staticvar.frame.equals("daftar_faktur")) {
+                            inpane = new Daftarfakturpembelian_inner_panel();
+                        }
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.frame = "";
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -845,12 +851,18 @@ public class DaftarfakturpembelianinputController {
                     + "&" + kirimtexpembelian();
             ch.updatedata("updatepembelian", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
-                Daftarfakturpembelian_inner_panel inpane = new Daftarfakturpembelian_inner_panel();
+                JPanel inpane = new JPanel();
+                if (Staticvar.frame.equals("rincian_hutang")) {
+                    inpane = new Daftarhutangrincian_inner_panel();
+                } else if (Staticvar.frame.equals("daftar_faktur")) {
+                    inpane = new Daftarfakturpembelian_inner_panel();
+                }
                 Staticvar.pmp.container.removeAll();
                 Staticvar.pmp.container.setLayout(new BorderLayout());
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
+                Staticvar.frame = "";
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();

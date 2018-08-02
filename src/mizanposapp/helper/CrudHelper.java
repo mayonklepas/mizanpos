@@ -145,7 +145,7 @@ public class CrudHelper {
             os.flush();
             os.close();
             br.close();
-            Staticvar.getresult = sb.toString();
+            Staticvar.getresult = sb.toString().replace("||", "\n");
         } catch (MalformedURLException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -173,7 +173,7 @@ public class CrudHelper {
             os.flush();
             os.close();
             br.close();
-            Staticvar.getresult = sb.toString();
+            Staticvar.getresult = sb.toString().replace("||", "\n");
         } catch (MalformedURLException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -200,8 +200,7 @@ public class CrudHelper {
             os.flush();
             os.close();
             br.close();
-            System.out.println(sb.toString());
-            Staticvar.getresult = sb.toString();
+            Staticvar.getresult = sb.toString().replace("||", "\n");
         } catch (MalformedURLException ex) {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
