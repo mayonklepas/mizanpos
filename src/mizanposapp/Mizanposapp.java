@@ -26,8 +26,8 @@ public class Mizanposapp {
         try {
             InfoNodeLookAndFeel laf = new InfoNodeLookAndFeel(InfoNodeLookAndFeelThemes.getSoftGrayTheme());
             UIManager.setLookAndFeel(laf);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         Locale.setDefault(new Locale("en", "en_US"));
         new CrudHelper();
