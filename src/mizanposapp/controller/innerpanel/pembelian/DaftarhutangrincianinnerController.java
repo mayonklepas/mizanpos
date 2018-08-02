@@ -474,7 +474,7 @@ public class DaftarhutangrincianinnerController {
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
-            } else if (id_keltrans.equals("48")) {
+            } else if (id_keltrans.equals("47")) {
                 Staticvar.ids = idlist.get(row);
                 JPanel inpane = new JPanel();
                 inpane = new Daftarreturpembelian_input_panel();
