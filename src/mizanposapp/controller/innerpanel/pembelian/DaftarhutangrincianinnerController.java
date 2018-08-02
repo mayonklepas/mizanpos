@@ -439,6 +439,8 @@ public class DaftarhutangrincianinnerController {
         pane.bedit.addActionListener((ActionEvent e) -> {
             Staticvar.frame = "rincian_hutang";
             int row = pane.tabledata.getSelectedRow();
+            Staticvar.rowfokus = row;
+            Staticvar.isupdate = true;
             Staticvar.ids = idlist.get(row);
             Daftarfakturpembelian_input_panel inpane = new Daftarfakturpembelian_input_panel();
             Staticvar.pmp.container.removeAll();
