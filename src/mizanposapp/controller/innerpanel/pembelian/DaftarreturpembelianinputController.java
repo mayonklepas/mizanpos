@@ -74,6 +74,7 @@ public class DaftarreturpembelianinputController {
     Daftarreturpembelian_input_panel pane;
     String valsupplier, valgudang, valdept, valsalesman, valshipvia, valtop,
             valakun_pembelian, valakun_ongkir, valakun_diskon, valakun_uang_muka, valreturatas;
+    double total_hutang = 0;
     int valcheck;
     int tipe_bayar, tipe_beli;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -924,6 +925,8 @@ public class DaftarreturpembelianinputController {
                             double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
                             if (inuangmuka >= total_pembelian_all) {
                                 JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            } else if (total_pembelian_all > total_hutang) {
+                                JOptionPane.showMessageDialog(null, "Total retur tidak boleh lebih besar dari sisa", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 rawsimpan();
                             }
@@ -945,6 +948,8 @@ public class DaftarreturpembelianinputController {
                         double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
                         if (inuangmuka >= total_pembelian_all) {
                             JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        } else if (total_pembelian_all > total_hutang) {
+                            JOptionPane.showMessageDialog(null, "Total retur tidak boleh lebih besar dari sisa hutang", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             rawsimpan();
                         }
@@ -1107,6 +1112,7 @@ public class DaftarreturpembelianinputController {
                 jd.toFront();
                 valreturatas = Staticvar.resid;
                 pane.ednopo.setText(Staticvar.reslabel);
+                total_hutang = ConvertFunc.ToDouble(Staticvar.resvalueextended);
                 if (Staticvar.preid != valreturatas) {
                     if (!valreturatas.equals("") || !valreturatas.equals("null")) {
                         try {
@@ -1519,8 +1525,18 @@ public class DaftarreturpembelianinputController {
                     } else if (col == 3) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, 3)));
-                            columnfunction(row, 3, false);
+                            double curjumlah = ConvertFunc.ToDouble(tm.getValueAt(row, 3));
+                            double curorder = ConvertFunc.ToDouble(tm.getValueAt(row, 2));
+                            if (curjumlah > curorder) {
+                                JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah pembelian", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                tabeldatalist.get(row).setJumlah("0");
+                                tm.setValueAt("0", row, 3);
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, 3, false, false);
+                            } else {
+                                tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, 3)));
+                                columnfunction(row, 3, false);
+                            }
                             //nextcolom(2, row);
                         } catch (Exception ex) {
                         } finally {
