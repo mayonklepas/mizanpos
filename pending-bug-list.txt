@@ -5,7 +5,4 @@ Bug list
 - pencarian di hudang rincian detail
 - lebar table
 - number format untuk angka di setiap table
-- jumlah retur tidak boleh lebih besar dari jumlah pembelian
-- jumlah retur tidak boleh lebih besar dari sisa retur atas
-
 
