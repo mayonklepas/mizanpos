@@ -527,154 +527,6 @@
             ]
         }
     ],
-    "fakturpenjualan": [
-        {
-            "key": [
-                "id",
-                "ID",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
-                "tanggal",
-                "Tanggal",
-                "1",
-                "15"
-            ]
-        },
-        {
-            "key": [
-                "deptid",
-                "Deptid",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
-                "noref",
-                "No. ref",
-                "1",
-                "15"
-            ]
-        },
-        {
-            "key": [
-                "nama_customer",
-                "Nama Customer",
-                "1",
-                "25"
-            ]
-        },
-        {
-            "key": [
-                "keterangan",
-                "Keterangan",
-                "1",
-                "30"
-            ]
-        },
-        {
-            "key": [
-                "total_penjualan",
-                "Total Penjualan",
-                "1",
-                "15"
-            ]
-        },
-        {
-            "key": [
-                "order_close",
-                "Order Close",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
-                "IDCUSTOMER",
-                "ID Customer",
-                "0",
-                "0"
-            ]
-        }
-    ],
-    "returpenjualan": [
-        {
-            "key": [
-                "id",
-                "ID",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
-                "tanggal",
-                "Tanggal",
-                "1",
-                "15"
-            ]
-        },
-        {
-            "key": [
-                "dept_id",
-                "Deptid",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
-                "no_ref",
-                "No. ref",
-                "1",
-                "15"
-            ]
-        },
-        {
-            "key": [
-                "nama_customer",
-                "Nama Customer",
-                "1",
-                "25"
-            ]
-        },
-        {
-            "key": [
-                "keterangan",
-                "Keterangan",
-                "1",
-                "30"
-            ]
-        },
-        {
-            "key": [
-                "total_penjualan",
-                "Total Penjualan",
-                "1",
-                "15"
-            ]
-        },
-        {
-            "key": [
-                "order_close",
-                "Order Close",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
-                "id_customer",
-                "ID Customer",
-                "0",
-                "0"
-            ]
-        }
-    ],
     "piutang": [
         {
             "key": [
@@ -753,7 +605,7 @@
         {
             "key": [
                 "id_dept",
-                "IDDept",
+                "ID Dept",
                 "0",
                 "0"
             ]
@@ -802,6 +654,80 @@
             "key": [
                 "id_supplier",
                 "ID Supplier",
+                "0",
+                "0"
+            ]
+        }
+    ],
+    "orderpenjualan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "id_dept",
+                "ID Dept",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Transaksi",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_pelanggan",
+                "Pelanggan",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total_penjualan",
+                "Total",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "isorderclose",
+                "Order Selesai",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "id_pelanggan",
+                "ID Pelanggan",
                 "0",
                 "0"
             ]
@@ -876,6 +802,80 @@
             "key": [
                 "id_supplier",
                 "ID Supplier",
+                "0",
+                "0"
+            ]
+        }
+    ],
+    "fakturpenjualan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "id_dept",
+                "ID Dept",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Transaksi",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_pelanggan",
+                "Pelanggan",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "total_penjualan",
+                "Total",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "isorderclose",
+                "Order Selesai",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "id_pelanggan",
+                "ID Pelanggan",
                 "0",
                 "0"
             ]
@@ -1269,6 +1269,104 @@
             ]
         }
     ],
+    "inputorderpenjualan": [
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hbeli",
+                "H. Beli",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hjual",
+                "H. Jual",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "disc%",
+                "Disc %",
+                "1",
+                "6"
+            ]
+        },
+        {
+            "key": [
+                "discrp",
+                "Disc Rp",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "pajak",
+                "Pajak",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "gudang",
+                "Gudang",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "12"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "10"
+            ]
+        }
+    ],
     "inputfakturpembelian": [
         {
             "key": [
@@ -1324,6 +1422,112 @@
                 "H. Jual",
                 "1",
                 "8"
+            ]
+        },
+        {
+            "key": [
+                "disc%",
+                "Disc %",
+                "1",
+                "6"
+            ]
+        },
+        {
+            "key": [
+                "discrp",
+                "Disc Rp",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "pajak",
+                "Pajak",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "gudang",
+                "Gudang",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "12"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "10"
+            ]
+        }
+    ],
+    "inputfakturpenjualan": [
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "order",
+                "Order",
+                "1",
+                "5"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hbeli",
+                "H. Beli",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "hjual",
+                "H. Jual",
+                "0",
+                "0"
             ]
         },
         {

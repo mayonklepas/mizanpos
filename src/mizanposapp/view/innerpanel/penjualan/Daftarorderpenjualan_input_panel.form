@@ -51,9 +51,9 @@
                               <Component id="bcari_dept" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="edsupplier" min="-2" pref="149" max="-2" attributes="0"/>
+                              <Component id="edpelanggan" min="-2" pref="149" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="bcari_supplier" min="-2" max="-2" attributes="0"/>
+                              <Component id="bcari_pelanggan" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="edno_transaksi" alignment="0" max="32767" attributes="0"/>
                           <Component id="dtanggal" max="32767" attributes="0"/>
@@ -66,7 +66,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="cmb_tipe_pembelian" min="-2" pref="87" max="-2" attributes="0"/>
+                              <Component id="cmb_tipe_penjualan" min="-2" pref="87" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Component id="cmb_tipe_bayar" min="-2" pref="73" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -91,7 +91,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="cmb_tipe_bayar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmb_tipe_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmb_tipe_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ckselesai" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -102,8 +102,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bcari_supplier" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="edsupplier" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edpelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -184,7 +184,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Order Pembelian"/>
+            <Property name="text" type="java.lang.String" value="Order Penjualan"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -202,7 +202,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Supplier"/>
+        <Property name="text" type="java.lang.String" value="Customer"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -253,7 +253,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="bcari_supplier">
+    <Component class="javax.swing.JButton" name="bcari_pelanggan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
@@ -261,7 +261,7 @@
         <Property name="text" type="java.lang.String" value="Cari"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_supplierActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_pelangganActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -368,7 +368,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="11" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Bagian Pembelian"/>
+            <Property name="text" type="java.lang.String" value="Bagian Penjualan"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bcari_salesman">
@@ -390,7 +390,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="11" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tangga Pengantaranl"/>
+            <Property name="text" type="java.lang.String" value="Tanggal Pengantaran"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
@@ -473,7 +473,7 @@
                               <Component id="eddiskon2" min="-2" pref="168" max="-2" attributes="0"/>
                           </Group>
                           <Component id="edbiayalain" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ltotal_pembelian" max="32767" attributes="0"/>
+                          <Component id="ltotal_penjualan" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -522,7 +522,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ltotal_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ltotal_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
@@ -654,7 +654,7 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="ltotal_pembelian">
+            <Component class="javax.swing.JLabel" name="ltotal_penjualan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="1"/>
@@ -1063,15 +1063,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="edsupplier">
+    <Component class="javax.swing.JTextField" name="edpelanggan">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edsupplierActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edpelangganActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmb_tipe_pembelian">
+    <Component class="javax.swing.JComboBox" name="cmb_tipe_penjualan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
@@ -1122,9 +1122,6 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tabledata">
               <Properties>
-                <Property name="autoCreateRowSorter" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="true" type="code"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="0"/>
                 </Property>
@@ -1188,9 +1185,9 @@
                               <Component id="bcari_uang_muka" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="edakun_diskon_pembelian" min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="edakun_diskon_penjualan" min="-2" pref="201" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="bcariakun_diskon_pembelian" min="-2" max="-2" attributes="0"/>
+                              <Component id="bcariakun_diskon_penjualan" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="edakun_ongkir" min="-2" pref="201" max="-2" attributes="0"/>
@@ -1198,9 +1195,9 @@
                               <Component id="bcariakun_ongkir" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="edakun_pembelian" min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="edakun_penjualan" min="-2" pref="201" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="bcariakun_pembelian" min="-2" max="-2" attributes="0"/>
+                              <Component id="bcariakun_penjualan" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="617" max="32767" attributes="0"/>
@@ -1214,8 +1211,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="edakun_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bcariakun_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcariakun_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1228,8 +1225,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="edakun_diskon_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bcariakun_diskon_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_diskon_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcariakun_diskon_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1260,7 +1257,7 @@
                 <Property name="text" type="java.lang.String" value=":"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="edakun_pembelian">
+            <Component class="javax.swing.JTextField" name="edakun_penjualan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
@@ -1271,7 +1268,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="bcariakun_pembelian">
+            <Component class="javax.swing.JButton" name="bcariakun_penjualan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
@@ -1279,8 +1276,8 @@
                 <Property name="text" type="java.lang.String" value="Cari"/>
               </Properties>
               <Events>
-                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcariakun_pembelianAncestorAdded"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcariakun_pembelianActionPerformed"/>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcariakun_penjualanAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcariakun_penjualanActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1328,7 +1325,7 @@
                 <Property name="text" type="java.lang.String" value="Akun Ongkos Kirim"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="bcariakun_diskon_pembelian">
+            <Component class="javax.swing.JButton" name="bcariakun_diskon_penjualan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
@@ -1336,14 +1333,14 @@
                 <Property name="text" type="java.lang.String" value="Cari"/>
               </Properties>
               <Events>
-                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcariakun_diskon_pembelianAncestorAdded"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcariakun_diskon_pembelianActionPerformed"/>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcariakun_diskon_penjualanAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcariakun_diskon_penjualanActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="edakun_diskon_pembelian">
+            <Component class="javax.swing.JTextField" name="edakun_diskon_penjualan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>

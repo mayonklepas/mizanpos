@@ -5,6 +5,7 @@
  */
 package mizanposapp.controller.innerpanel.penjualan;
 
+import mizanposapp.controller.innerpanel.penjualan.*;
 import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -31,10 +32,11 @@ import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.penjualan.Daftarreturpenjualan_inner_panel;
-import mizanposapp.view.innerpanel.penjualan.Daftarreturpenjualan_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarorderpenjualan_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarorderpenjualan_inner_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -44,16 +46,16 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarreturpenjualaninnerController {
+public class DaftarorderpenjualaninnerController {
 
     CrudHelper ch = new CrudHelper();
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
-    Daftarreturpenjualan_inner_panel pane;
+    Daftarorderpenjualan_inner_panel pane;
 
-    public DaftarreturpenjualaninnerController(Daftarreturpenjualan_inner_panel pane) {
+    public DaftarorderpenjualaninnerController(Daftarorderpenjualan_inner_panel pane) {
         this.pane = pane;
         loadheader();
         loaddata();
@@ -82,7 +84,7 @@ public class DaftarreturpenjualaninnerController {
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("returpenjualan");
+            JSONArray jaheader = (JSONArray) joheader.get("orderpenjualan");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -101,8 +103,9 @@ public class DaftarreturpenjualaninnerController {
                 tcm.getColumn(i).setMaxWidth(wi);
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarreturpenjualaninnerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftarorderpenjualaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     private void loaddata() {
@@ -116,13 +119,13 @@ public class DaftarreturpenjualaninnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("daftarreturpenjualan", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("daftarorderpenjualan", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -156,7 +159,7 @@ public class DaftarreturpenjualaninnerController {
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s&cari=%s", Globalsession.PERIODE_TAHUN,
                         Globalsession.PERIODE_BULAN, pane.tcari.getText());
-                Object objdata = jpdata.parse(ch.getdatadetails("carireturpenjualan", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("cariorderpenjualan", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -168,7 +171,6 @@ public class DaftarreturpenjualaninnerController {
                     }
                     dtm.addRow(objindata);
                 }
-
                 return null;
             }
 
@@ -229,10 +231,11 @@ public class DaftarreturpenjualaninnerController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 System.out.println(idlist.get(row));
-                if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletereturpenjualan", data);
+                    ch.deletedata("deleteorderpenjualan", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -244,6 +247,7 @@ public class DaftarreturpenjualaninnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata();
@@ -309,7 +313,7 @@ public class DaftarreturpenjualaninnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            Daftarreturpenjualan_input_panel inpane = new Daftarreturpenjualan_input_panel();
+            Daftarorderpenjualan_input_panel inpane = new Daftarorderpenjualan_input_panel();
             Staticvar.pp.container.removeAll();
             Staticvar.pp.container.setLayout(new BorderLayout());
             Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
@@ -320,10 +324,12 @@ public class DaftarreturpenjualaninnerController {
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
-            Daftarreturpenjualan_input_panel inpane = new Daftarreturpenjualan_input_panel();
+            int row = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlist.get(row);
+            Daftarorderpenjualan_input_panel inpane = new Daftarorderpenjualan_input_panel();
             Staticvar.pp.container.removeAll();
             Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pp.container.revalidate();
             Staticvar.pp.container.repaint();
         });

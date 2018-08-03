@@ -63,6 +63,9 @@ public class Penjualan_panel extends javax.swing.JPanel {
         breturpenjualan = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        borderpenjualan = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         bpos = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -149,7 +152,7 @@ public class Penjualan_panel extends javax.swing.JPanel {
         jLabel6.setText("Faktur Penjualan");
         bfakturpenjualan.add(jLabel6);
 
-        jPanel9.add(bfakturpenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        jPanel9.add(bfakturpenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         breturpenjualan.setPreferredSize(new java.awt.Dimension(100, 100));
 
@@ -160,7 +163,23 @@ public class Penjualan_panel extends javax.swing.JPanel {
         jLabel7.setText("Retur Penjualan");
         breturpenjualan.add(jLabel7);
 
-        jPanel9.add(breturpenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel9.add(breturpenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+
+        borderpenjualan.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
+        borderpenjualan.add(jLabel10);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("<html><center>Order<br>Penjualan</center></html>"); // NOI18N
+        jLabel11.setAlignmentY(0.0F);
+        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel11.setIconTextGap(1);
+        jLabel11.setPreferredSize(new java.awt.Dimension(60, 30));
+        borderpenjualan.add(jLabel11);
+
+        jPanel9.add(borderpenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
 
         bpos.setPreferredSize(new java.awt.Dimension(100, 100));
 
@@ -175,23 +194,23 @@ public class Penjualan_panel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lsettingdiskonkelompok)
-                        .addComponent(ldaftarkaryawan)
-                        .addComponent(lsettingharidiskon)
-                        .addComponent(lsettingbonuspenjualan))
-                    .addGap(0, 183, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bpos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lsettingdiskonkelompok)
+                            .addComponent(ldaftarkaryawan)
+                            .addComponent(lsettingharidiskon)
+                            .addComponent(lsettingbonuspenjualan))
+                        .addGap(0, 179, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(bpos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,11 +262,14 @@ public class Penjualan_panel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel bfakturpenjualan;
+    public javax.swing.JPanel borderpenjualan;
     public javax.swing.JPanel bpiutang;
     public javax.swing.JPanel bpos;
     public javax.swing.JPanel breturpenjualan;
     public javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

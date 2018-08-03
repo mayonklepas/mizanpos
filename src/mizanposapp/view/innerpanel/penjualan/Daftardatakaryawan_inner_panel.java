@@ -6,7 +6,6 @@
 package mizanposapp.view.innerpanel.penjualan;
 
 import mizanposapp.controller.innerpanel.penjualan.DaftardatakaryawaninnerController;
-import mizanposapp.controller.innerpanel.penjualan.DaftarpiutanginnerController;
 
 /**
  *

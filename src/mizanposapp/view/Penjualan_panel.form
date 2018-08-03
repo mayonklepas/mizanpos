@@ -46,27 +46,28 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jPanel9" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lsettingdiskonkelompok" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ldaftarkaryawan" min="-2" max="-2" attributes="0"/>
-                          <Component id="lsettingharidiskon" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lsettingbonuspenjualan" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="183" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel9" alignment="0" min="-2" pref="335" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bpos" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lsettingdiskonkelompok" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ldaftarkaryawan" min="-2" max="-2" attributes="0"/>
+                              <Component id="lsettingharidiskon" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lsettingbonuspenjualan" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="179" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="bpos" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -273,7 +274,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="220" y="10" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="120" y="10" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -307,7 +308,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="230" y="10" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -326,6 +327,47 @@
                       <Font name="Century Gothic" size="11" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Retur Penjualan"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="borderpenjualan">
+              <Properties>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[100, 100]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="10" width="80" height="-1"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel10">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/mizanposapp/icon/sales_return.png"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel11">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="11" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Order&lt;br&gt;Penjualan&lt;/center&gt;&lt;/html&gt;" noResource="true"/>
+                    <Property name="alignmentY" type="float" value="0.0"/>
+                    <Property name="horizontalTextPosition" type="int" value="2"/>
+                    <Property name="iconTextGap" type="int" value="1"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[60, 30]"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>

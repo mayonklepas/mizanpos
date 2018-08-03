@@ -5,6 +5,7 @@
  */
 package mizanposapp.controller.innerpanel.penjualan;
 
+import mizanposapp.controller.innerpanel.penjualan.*;
 import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -31,6 +32,7 @@ import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.penjualan.Daftarfakturpenjualan_input_panel;
@@ -122,7 +124,7 @@ public class DaftarfakturpenjualaninnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
@@ -181,7 +183,6 @@ public class DaftarfakturpenjualaninnerController {
 
         };
         worker.execute();
-
     }
 
     private void loaddatadetail() {
@@ -228,10 +229,11 @@ public class DaftarfakturpenjualaninnerController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 System.out.println(idlist.get(row));
-                if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("dm/deletefakturpenjualan", data);
+                    ch.deletedata("deletepenjualan", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -243,6 +245,7 @@ public class DaftarfakturpenjualaninnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
+                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
                                 loaddata();
@@ -308,6 +311,7 @@ public class DaftarfakturpenjualaninnerController {
 
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
+            Staticvar.frame = "daftar_faktur";
             Daftarfakturpenjualan_input_panel inpane = new Daftarfakturpenjualan_input_panel();
             Staticvar.pp.container.removeAll();
             Staticvar.pp.container.setLayout(new BorderLayout());
@@ -319,10 +323,13 @@ public class DaftarfakturpenjualaninnerController {
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
+            int row = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlist.get(row);
+            Staticvar.frame = "daftar_faktur";
             Daftarfakturpenjualan_input_panel inpane = new Daftarfakturpenjualan_input_panel();
             Staticvar.pp.container.removeAll();
             Staticvar.pp.container.setLayout(new BorderLayout());
-            Staticvar.pp.container.add(pane, BorderLayout.CENTER);
+            Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
             Staticvar.pp.container.revalidate();
             Staticvar.pp.container.repaint();
         });

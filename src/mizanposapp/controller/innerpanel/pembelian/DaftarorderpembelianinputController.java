@@ -194,6 +194,7 @@ public class DaftarorderpembelianinputController {
         };
 
         pane.addMouseListener(ma);
+
         TableCellEditor tce = new DefaultCellEditor(new JTextField()) {
             @Override
             public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
@@ -204,14 +205,9 @@ public class DaftarorderpembelianinputController {
         };
 
         pane.tabledata.setDefaultEditor(Object.class, tce);
-        String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
-            "0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9",
-            "NUMPAD0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-            "q", "r", "s", "t", "u", "p", "w", "x", "y", "z", "A", "B", "C", "D",
-            "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "P", "W", "X", "Y", "Z", "BACK_SPACE", ",", ".",};
-        for (int i = 0; i < keyholdnumeric.length; i++) {
-            pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(keyholdnumeric[i]), "startEditing");
+
+        for (int i = 0; i < Staticvar.keyholdnumeric.length; i++) {
+            pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(Staticvar.keyholdnumeric[i]), "startEditing");
         }
 
     }
@@ -254,8 +250,6 @@ public class DaftarorderpembelianinputController {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                    pane.eduang_muka.setText("0");
-                    pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
                     pane.ltop.setVisible(false);
@@ -264,7 +258,6 @@ public class DaftarorderpembelianinputController {
                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                     valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
                 } else {
-                    pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
                     pane.bcaritop.setVisible(true);
                     pane.ltop.setVisible(true);
@@ -419,7 +412,6 @@ public class DaftarorderpembelianinputController {
     private void loaddata() {
         customtable();
         loadheader();
-        int[] columnright = {2, 4, 5, 6, 7, 11};
         try {
             id = Staticvar.ids;
             if (id.equals("")) {
@@ -432,7 +424,6 @@ public class DaftarorderpembelianinputController {
                 pane.ltop.setVisible(false);
                 tipe_beli = 0;
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
-                pane.eduang_muka.setEnabled(false);
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edsupplier.setText("");
@@ -455,7 +446,6 @@ public class DaftarorderpembelianinputController {
                 pane.eddiskon1.setText("0");
                 pane.eddiskon2.setText("0");
                 pane.ltotal_pajak.setText("0");
-                pane.eduang_muka.setText("0");
                 pane.ltotal_pembelian.setText("0");
 
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
@@ -526,15 +516,12 @@ public class DaftarorderpembelianinputController {
                     }
 
                     if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                        pane.eduang_muka.setText("0");
-                        pane.eduang_muka.setEnabled(false);
                         pane.edtop.setVisible(false);
                         pane.bcaritop.setVisible(false);
                         pane.ltop.setVisible(false);
                         valtop = "";
                         pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                     } else {
-                        pane.eduang_muka.setEnabled(true);
                         pane.edtop.setVisible(true);
                         pane.bcaritop.setVisible(true);
                         pane.ltop.setVisible(true);
@@ -561,8 +548,6 @@ public class DaftarorderpembelianinputController {
                     pane.edbiayalain.setText(String.valueOf(joinpembelian.get("total_biaya")));
                     pane.eddiskon1.setText(String.valueOf(joinpembelian.get("diskon_persen")));
                     pane.eddiskon2.setText(String.valueOf(joinpembelian.get("diskon_nominal")));
-
-                    pane.eduang_muka.setText(String.valueOf(joinpembelian.get("total_uang_muka")));
 
                     pane.ltotal_pajak.setText(String.valueOf(joinpembelian.get("total_pajak")));
 
@@ -722,7 +707,7 @@ public class DaftarorderpembelianinputController {
                     + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
                     + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
                     + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
-                    + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
+                    + "total_uang_muka='0'::"
                     + "total_pajak='" + total_pajak + "'::"
                     + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
                     + "nilai_kurs='1'::"
@@ -762,7 +747,6 @@ public class DaftarorderpembelianinputController {
                         getkodetransaksi();
                         pane.tabledata.requestFocus();
                         pane.cmb_tipe_bayar.setSelectedIndex(0);
-                        pane.eduang_muka.setText("0");
                         pane.edbiayalain.setText("0");
                         pane.lsubtotal.setText("0");
                         pane.ltotal_pajak.setText("0");
@@ -805,7 +789,7 @@ public class DaftarorderpembelianinputController {
                     + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
                     + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
                     + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
-                    + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
+                    + "total_uang_muka='0'::"
                     + "total_pajak='" + total_pajak + "'::"
                     + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
                     + "nilai_kurs='1'::"
@@ -860,12 +844,7 @@ public class DaftarorderpembelianinputController {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                                 + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
-                            double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
-                            if (inuangmuka >= total_pembelian_all) {
-                                JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                            } else {
-                                rawsimpan();
-                            }
+                            rawsimpan();
 
                         }
                     } else if (tahunbulan < periodetahunnulan) {
@@ -881,12 +860,7 @@ public class DaftarorderpembelianinputController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
-                        double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
-                        if (inuangmuka >= total_pembelian_all) {
-                            JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            rawsimpan();
-                        }
+                        rawsimpan();
                     }
                 }
             }
@@ -971,7 +945,7 @@ public class DaftarorderpembelianinputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "3", String.valueOf(no_urut));
+                        String data = String.format("id_keltrans=%s&no_urut=%s", "32", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
                         Daftarorderpembelian_inner_panel inpane = new Daftarorderpembelian_inner_panel();
                         Staticvar.pmp.container.removeAll();
@@ -1587,11 +1561,18 @@ public class DaftarorderpembelianinputController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                JTable tb = (JTable) e.getSource();
+                if (tb.isEditing()) {
+                    tb.getCellEditor().cancelCellEditing();
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                JTable tb = (JTable) e.getSource();
+                if (tb.isEditing()) {
+                    tb.getCellEditor().cancelCellEditing();
+                }
             }
 
         };

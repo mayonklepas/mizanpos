@@ -5,7 +5,14 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
+import mizanposapp.view.innerpanel.pembelian.*;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.table.TableCellRenderer;
+import mizanposapp.controller.innerpanel.pembelian.DaftarfakturpembelianinnerController;
 import mizanposapp.controller.innerpanel.penjualan.DaftarfakturpenjualaninnerController;
+import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *
@@ -35,7 +42,7 @@ public class Daftarfakturpenjualan_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new Tablestyle(0,new int[]{4});
         jPanel1 = new javax.swing.JPanel();
         btambah = new javax.swing.JButton();
         bedit = new javax.swing.JButton();
@@ -45,6 +52,8 @@ public class Daftarfakturpenjualan_inner_panel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         bupdate = new javax.swing.JButton();
         bfilter = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -96,7 +105,10 @@ public class Daftarfakturpenjualan_inner_panel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabledata.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane6.setViewportView(tabledata);
+
+        jPanel1.setBackground(new java.awt.Color(238, 238, 238));
 
         btambah.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btambah.setText("Tambah Data");
@@ -142,7 +154,7 @@ public class Daftarfakturpenjualan_inner_panel extends javax.swing.JPanel {
                 .addComponent(tcari, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bcari)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,8 +178,8 @@ public class Daftarfakturpenjualan_inner_panel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
