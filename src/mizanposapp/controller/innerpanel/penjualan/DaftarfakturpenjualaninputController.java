@@ -102,6 +102,7 @@ public class DaftarfakturpenjualaninputController {
     ArrayList<Integer> lsresize = new ArrayList<>();
     ArrayList<Integer> lsoldsize = new ArrayList<>();
     JPopupMenu pop;
+    //
 
     private boolean ischangevalue = false;
     static String oldvalue = "";
