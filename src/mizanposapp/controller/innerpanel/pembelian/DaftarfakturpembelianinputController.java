@@ -1722,6 +1722,8 @@ public class DaftarfakturpembelianinputController {
                         tb.setValueAt(Staticvar.reslabel, row, 4);
                         tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                         dtmtabeldata.fireTableCellUpdated(row, 4);
+                        double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
+                        pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, 5);
                         kalkulasitotalperrow(row);
                     } else if (col == 9) {
                         Staticvar.sfilter = "";
@@ -1863,6 +1865,8 @@ public class DaftarfakturpembelianinputController {
                     pane.tabledata.setValueAt(Staticvar.reslabel, row, 4);
                     tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                     dtmtabeldata.fireTableCellUpdated(row, 4);
+                    double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
+                    pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, 5);
                     kalkulasitotalperrow(row);
                 } else if (col == 9) {
                     Staticvar.sfilter = "";
@@ -2148,7 +2152,7 @@ public class DaftarfakturpembelianinputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, 7));
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3))) * ConvertFunc.ToInt(tabeldatalist.get(row).getIsi_satuan());
+                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3)));
                 double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 5));
                 double total = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
@@ -2160,7 +2164,7 @@ public class DaftarfakturpembelianinputController {
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
                 pane.tabledata.setValueAt(nf.format(total), row, 12);
             } else {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3))) * ConvertFunc.ToInt(tabeldatalist.get(row).getIsi_satuan());
+                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3)));
                 double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 5)));
                 double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 7));
                 double total = qty * (harga - (diskon / 100 * harga));
@@ -2169,7 +2173,7 @@ public class DaftarfakturpembelianinputController {
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3))) * ConvertFunc.ToInt(tabeldatalist.get(row).getIsi_satuan());
+            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3)));
             double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 5));
             double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 8));
             double total = qty * (harga - diskon);
@@ -2184,7 +2188,7 @@ public class DaftarfakturpembelianinputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = rawdiskonpersen;
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
+                double qty = ConvertFunc.ToDouble(rawqty);
                 double harga = ConvertFunc.ToDouble(rawharga);
                 total = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
@@ -2194,14 +2198,14 @@ public class DaftarfakturpembelianinputController {
                 }
                 total = qty * total;
             } else {
-                double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
+                double qty = ConvertFunc.ToDouble(rawqty);
                 double harga = ConvertFunc.ToDouble(rawharga);
                 double diskon = ConvertFunc.ToDouble(rawdiskonpersen);
                 total = qty * (harga - (diskon / 100 * harga));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
+            double qty = ConvertFunc.ToDouble(rawqty);
             double harga = ConvertFunc.ToDouble(rawharga);
             double diskon = ConvertFunc.ToDouble(rawdiskonnominal);
             total = qty * (harga - diskon);

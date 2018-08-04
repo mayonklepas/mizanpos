@@ -1987,7 +1987,7 @@ public class DaftarorderpenjualaninputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = rawdiskonpersen;
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
+                double qty = ConvertFunc.ToDouble(rawqty);
                 double harga = ConvertFunc.ToDouble(rawharga);
                 total = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
@@ -1997,14 +1997,14 @@ public class DaftarorderpenjualaninputController {
                 }
                 total = qty * total;
             } else {
-                double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
+                double qty = ConvertFunc.ToDouble(rawqty);
                 double harga = ConvertFunc.ToDouble(rawharga);
                 double diskon = ConvertFunc.ToDouble(rawdiskonpersen);
                 total = qty * (harga - (diskon / 100 * harga));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(rawqty) * ConvertFunc.ToInt(isisatuan);
+            double qty = ConvertFunc.ToDouble(rawqty);
             double harga = ConvertFunc.ToDouble(rawharga);
             double diskon = ConvertFunc.ToDouble(rawdiskonnominal);
             total = qty * (harga - diskon);
