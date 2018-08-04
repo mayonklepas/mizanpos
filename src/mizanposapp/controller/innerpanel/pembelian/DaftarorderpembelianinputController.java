@@ -1203,7 +1203,7 @@ public class DaftarorderpembelianinputController {
                                         JSONObject joindata = (JSONObject) jadata.get(i);
                                         tabeldatalist.get(row).setId_barang(String.valueOf(joindata.get("id")));
                                         tm.setValueAt(String.valueOf(joindata.get("nama")), row, 1);
-                                        tabeldatalist.get(row).setJumlah("1");
+                                        tabeldatalist.get(row).setJumlah("0");
                                         tm.setValueAt("0", row, 2);
                                         tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
                                         tm.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, 3);
