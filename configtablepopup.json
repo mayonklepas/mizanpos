@@ -239,7 +239,15 @@
                 "nama",
                 "Nama",
                 "1",
-                "20"
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "id_golongan",
+                "gol",
+                "1",
+                "0"
             ]
         },
         {
@@ -247,7 +255,15 @@
                 "nama_tipe",
                 "Nama Tipe",
                 "1",
-                "20"
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama_golongan",
+                "Nama golongan",
+                "1",
+                "5"
             ]
         }
     ],
