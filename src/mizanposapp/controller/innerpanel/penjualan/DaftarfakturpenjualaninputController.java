@@ -695,7 +695,7 @@ public class DaftarfakturpenjualaninputController {
                     String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
                     String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
                     String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
+                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
 
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen,
@@ -1505,6 +1505,7 @@ public class DaftarfakturpenjualaninputController {
                                         tabeldatalist.get(row).getId_satuan(),
                                         tabeldatalist.get(row).getJumlah());
                                 tm.setValueAt(nf.format(callhargajual), row, 6);
+                                tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
                                 columnfunction(row, 3, false);
                             }
                             //nextcolom(2, row);
@@ -1515,7 +1516,7 @@ public class DaftarfakturpenjualaninputController {
                     } else if (col == 6) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setHarga_beli(String.valueOf(tm.getValueAt(row, 6)));
+                            tabeldatalist.get(row).setHarga_jual(String.valueOf(tm.getValueAt(row, 6)));
                             columnfunction(row, 6, false);
                             //nextcolom(4, row);
                         } catch (Exception ex) {
@@ -1740,6 +1741,7 @@ public class DaftarfakturpenjualaninputController {
                                     tabeldatalist.get(row).getId_satuan(),
                                     tabeldatalist.get(row).getJumlah());
                             tb.setValueAt(nf.format(callhargajual), row, 6);
+                            tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
                             kalkulasitotalperrow(row);
                         }
                     } else if (col == 9) {
@@ -1889,6 +1891,7 @@ public class DaftarfakturpenjualaninputController {
                                 tabeldatalist.get(row).getId_satuan(),
                                 tabeldatalist.get(row).getJumlah());
                         pane.tabledata.setValueAt(nf.format(callhargajual), row, 6);
+                        tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
                         kalkulasitotalperrow(row);
                     }
 

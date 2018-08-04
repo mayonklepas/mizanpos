@@ -662,7 +662,7 @@ public class DaftarorderpenjualaninputController {
                     String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
                     String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
                     String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
+                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
@@ -1325,7 +1325,7 @@ public class DaftarorderpenjualaninputController {
                     } else if (col == 5) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setHarga_beli(String.valueOf(tm.getValueAt(row, 5)));
+                            tabeldatalist.get(row).setHarga_jual(String.valueOf(tm.getValueAt(row, 5)));
                             columnfunction(row, 5, false);
                             //nextcolom(4, row);
                         } catch (Exception ex) {
