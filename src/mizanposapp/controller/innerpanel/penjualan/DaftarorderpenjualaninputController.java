@@ -73,10 +73,10 @@ public class DaftarorderpenjualaninputController {
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarorderpenjualan_input_panel pane;
-    String valpelanggan, valgudang, valdept, valsalesman, valshipvia, valtop,
-            valakun_penjualan, valakun_ongkir, valakun_diskon, valakun_uang_muka;
-    int valcheck;
-    int tipe_bayar, tipe_beli, status_selesai;
+    String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
+            valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "";
+    int valcheck = 0;
+    int tipe_bayar = 0, tipe_beli = 0, status_selesai = 0;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
     Object[] rowtabledata = new Object[12];
     ArrayList<Entitytabledata> tabeldatalist = new ArrayList<>();
@@ -96,7 +96,6 @@ public class DaftarorderpenjualaninputController {
     ArrayList<Integer> lsoldhide = new ArrayList<>();
     ArrayList<Integer> lsresize = new ArrayList<>();
     ArrayList<Integer> lsoldsize = new ArrayList<>();
-    String test;
     private boolean ischangevalue = false;
     static String oldvalue = "";
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
@@ -178,7 +177,7 @@ public class DaftarorderpenjualaninputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 1 || column == 3 || column == 5 || column == 8 || column == 9 || column == 11 ? false : true;
+                return column == 1 || column == 3 || column == 4 || column == 8 || column == 9 || column == 11 ? false : true;
             }
 
         };
@@ -503,6 +502,7 @@ public class DaftarorderpenjualaninputController {
                 for (int i = 0; i < japenjualan.size(); i++) {
                     JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
                     valpelanggan = String.valueOf(joinpenjualan.get("id_pelanggan"));
+                    valgolongan = String.valueOf(joinpenjualan.get("id_golongan"));
                     pane.edpelanggan.setText(String.valueOf(joinpenjualan.get("nama_pelanggan")));
 
                     status_selesai = ConvertFunc.ToInt(joinpenjualan.get("isorderselesai"));
@@ -886,7 +886,7 @@ public class DaftarorderpenjualaninputController {
         for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
                     + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                    + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_beli()) + "'" + "::"
+                    + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
                     + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
                     + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
                     + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
@@ -980,6 +980,7 @@ public class DaftarorderpenjualaninputController {
             jd.setVisible(true);
             jd.toFront();
             valpelanggan = Staticvar.resid;
+            valgolongan = Staticvar.resvalueextended;
             pane.edpelanggan.setText(Staticvar.reslabel);
         });
 
@@ -1299,25 +1300,33 @@ public class DaftarorderpenjualaninputController {
                             jd.toFront();
                             Staticvar.resid = "";
                             Logger.getLogger(DaftarorderpenjualaninputController.class.getName()).log(Level.SEVERE, null, ex);
-
                         } finally {
                             ischangevalue = false;
                         }
                     } else if (col == 2) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, 2)));
-                            columnfunction(row, 2, false);
+                            if (!tabeldatalist.get(row).getJumlah().equals(tm.getValueAt(row, 2))) {
+                                tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, 2)));
+                                double callhargajual = gethargajual(
+                                        tabeldatalist.get(row).getId_barang(),
+                                        tabeldatalist.get(row).getId_satuan(),
+                                        tabeldatalist.get(row).getJumlah());
+                                tm.setValueAt(nf.format(callhargajual), row, 5);
+                                tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
+                                columnfunction(row, 2, false);
+                            }
+
                             //nextcolom(2, row);
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 4) {
+                    } else if (col == 5) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setHarga_beli(String.valueOf(tm.getValueAt(row, 4)));
-                            columnfunction(row, 4, false);
+                            tabeldatalist.get(row).setHarga_beli(String.valueOf(tm.getValueAt(row, 5)));
+                            columnfunction(row, 5, false);
                             //nextcolom(4, row);
                         } catch (Exception ex) {
                         } finally {
@@ -1526,11 +1535,19 @@ public class DaftarorderpenjualaninputController {
                         jd.setLocationRelativeTo(null);
                         jd.setVisible(true);
                         jd.toFront();
-                        tabeldatalist.get(row).setId_satuan(Staticvar.resid);
-                        tb.setValueAt(Staticvar.reslabel, row, 3);
-                        tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
-                        dtmtabeldata.fireTableCellUpdated(row, 3);
-                        kalkulasitotalperrow(row);
+                        if (!tabeldatalist.get(row).getId_satuan().equals(Staticvar.resid)) {
+                            tabeldatalist.get(row).setId_satuan(Staticvar.resid);
+                            tb.setValueAt(Staticvar.reslabel, row, 3);
+                            tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
+                            dtmtabeldata.fireTableCellUpdated(row, 3);
+                            double callhargajual = gethargajual(
+                                    tabeldatalist.get(row).getId_barang(),
+                                    tabeldatalist.get(row).getId_satuan(),
+                                    tabeldatalist.get(row).getJumlah());
+                            tb.setValueAt(nf.format(callhargajual), row, 5);
+                            tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
+                            kalkulasitotalperrow(row);
+                        }
                     } else if (col == 8) {
                         Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_pajak();
@@ -1636,11 +1653,19 @@ public class DaftarorderpenjualaninputController {
                     jd.setLocationRelativeTo(null);
                     jd.setVisible(true);
                     jd.toFront();
-                    tabeldatalist.get(row).setId_satuan(Staticvar.resid);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, 3);
-                    tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
-                    dtmtabeldata.fireTableCellUpdated(row, 3);
-                    kalkulasitotalperrow(row);
+                    if (!tabeldatalist.get(row).getId_satuan().equals(Staticvar.resid)) {
+                        tabeldatalist.get(row).setId_satuan(Staticvar.resid);
+                        pane.tabledata.setValueAt(Staticvar.reslabel, row, 3);
+                        tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
+                        dtmtabeldata.fireTableCellUpdated(row, 3);
+                        double callhargajual = gethargajual(
+                                tabeldatalist.get(row).getId_barang(),
+                                tabeldatalist.get(row).getId_satuan(),
+                                tabeldatalist.get(row).getJumlah());
+                        pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
+                        tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
+                        kalkulasitotalperrow(row);
+                    }
                 } else if (col == 8) {
                     Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_pajak();
@@ -1808,7 +1833,7 @@ public class DaftarorderpenjualaninputController {
         if (pane.tabledata.getValueAt(row, col).equals("")) {
             return;
         }
-        if ((col == 2) || (col == 4) || (col == 7)) {
+        if ((col == 2) || (col == 5) || (col == 7)) {
             String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
@@ -1925,8 +1950,8 @@ public class DaftarorderpenjualaninputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, 6));
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * ConvertFunc.ToInt(tabeldatalist.get(row).getIsi_satuan());
-                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 4));
+                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2)));
+                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 5));
                 double total = harga;
                 String s = "";
                 String[] multidiskon = isifielddiskon.split("\\+");
@@ -1938,8 +1963,8 @@ public class DaftarorderpenjualaninputController {
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
                 pane.tabledata.setValueAt(nf.format(total), row, 11);
             } else {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * ConvertFunc.ToInt(tabeldatalist.get(row).getIsi_satuan());
-                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 4)));
+                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2)));
+                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 5)));
                 double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 6));
                 double total = qty * (harga - (diskon / 100 * harga));
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
@@ -1947,8 +1972,8 @@ public class DaftarorderpenjualaninputController {
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2))) * ConvertFunc.ToInt(tabeldatalist.get(row).getIsi_satuan());
-            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 4));
+            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2)));
+            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 5));
             double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 7));
             double total = qty * (harga - diskon);
             tabeldatalist.get(row).setTotal(String.valueOf(total));
@@ -2134,6 +2159,12 @@ public class DaftarorderpenjualaninputController {
             result = false;
         }
         return result;
+    }
+
+    private double gethargajual(String id_inv, String id_satuan, String qty) {
+        String param = String.format("id_golongan=%s&id_inv=%s&id_satuan=%s&qty=%s", valgolongan, id_inv, id_satuan, qty);
+        String hargajual = ch.getdatadetails("gethargajual", param);
+        return Double.parseDouble(hargajual);
     }
 
     public class Entitytabledata {
