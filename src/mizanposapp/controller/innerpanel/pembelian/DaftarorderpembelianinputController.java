@@ -1219,7 +1219,7 @@ public class DaftarorderpembelianinputController {
                                         tabeldatalist.get(row).setDiskon_nominal("0");
                                         tm.setValueAt(String.valueOf(joindata.get("nama_pajak_beli")), row, 8);
                                         tabeldatalist.get(row).setId_pajak(String.valueOf(joindata.get("id_pajak_beli")));
-                                        tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata.get("persen_pajak_beli")));
+                                        tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata.get("nilai_pajak_beli")));
                                         tabeldatalist.get(row).setId_gudang(valgudang);
                                         tm.setValueAt(pane.edgudang.getText(), row, 9);
                                         tabeldatalist.get(row).setKeterangan("");
@@ -1265,7 +1265,7 @@ public class DaftarorderpembelianinputController {
                                             tabeldatalist.get(row).setDiskon_nominal("0");
                                             tm.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, 8);
                                             tabeldatalist.get(row).setId_pajak(String.valueOf(joindata2.get("id_pajak_beli")));
-                                            tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("persen_pajak_beli")));
+                                            tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("nilai_pajak_beli")));
                                             tabeldatalist.get(row).setId_gudang(valgudang);
                                             tm.setValueAt(pane.edgudang.getText(), row, 9);
                                             tabeldatalist.get(row).setKeterangan("");
@@ -1485,7 +1485,7 @@ public class DaftarorderpembelianinputController {
                                             tabeldatalist.get(row).setDiskon_nominal("0");
                                             pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, 8);
                                             tabeldatalist.get(row).setId_pajak(String.valueOf(joindata2.get("id_pajak_beli")));
-                                            tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("persen_pajak_beli")));
+                                            tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("nilai_pajak_beli")));
                                             tabeldatalist.get(row).setId_gudang(valgudang);
                                             pane.tabledata.setValueAt(pane.edgudang.getText(), row, 9);
                                             tabeldatalist.get(row).setKeterangan("");
