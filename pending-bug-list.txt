@@ -5,4 +5,4 @@ Bug list
 - pencarian di hudang rincian detail
 - lebar table
 - number format untuk angka di setiap table
-
+- tarik data dari order ke faktur / retur pembelian dan penjualan, set tipe pembelian dan diskon check

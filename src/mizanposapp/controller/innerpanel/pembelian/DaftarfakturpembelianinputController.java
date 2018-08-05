@@ -113,7 +113,6 @@ public class DaftarfakturpembelianinputController {
         this.pane = pane;
         setpopup();
         skinning();
-        loadsession();
         loaddata();
         simpandata();
         checkandcombocontrol();
@@ -446,13 +445,44 @@ public class DaftarfakturpembelianinputController {
         try {
             id = Staticvar.ids;
             if (id.equals("")) {
+                loadsession();
                 getkodetransaksi();
                 pane.cmb_tipe_pembelian.setSelectedIndex(0);
-                pane.edtop.setVisible(false);
-                pane.bcaritop.setVisible(false);
-                pane.ltop.setVisible(false);
-                tipe_beli = 0;
+                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
+                    lshide.set(4, lsoldhide.get(4));
+                    lshide.set(10, lsoldhide.get(10));
+                    lsresize.set(4, lsoldsize.get(4));
+                    lsresize.set(10, lsoldsize.get(10));
+                    setheader();
+                    tipe_beli = 0;
+                } else {
+                    lshide.set(4, 0);
+                    lshide.set(10, 0);
+                    lsresize.set(4, 0);
+                    lsresize.set(10, 0);
+                    setheader();
+                    tipe_beli = 1;
+                }
+
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
+
+                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                    pane.eduang_muka.setText("0");
+                    pane.eduang_muka.setEnabled(false);
+                    pane.edtop.setVisible(false);
+                    pane.bcaritop.setVisible(false);
+                    pane.ltop.setVisible(false);
+                    valtop = "";
+                    pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                } else {
+                    pane.eduang_muka.setEnabled(true);
+                    pane.edtop.setVisible(true);
+                    pane.bcaritop.setVisible(true);
+                    pane.ltop.setVisible(true);
+                    valtop = "";
+                    pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                }
+
                 pane.eduang_muka.setEnabled(false);
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
@@ -1091,10 +1121,12 @@ public class DaftarfakturpembelianinputController {
                                 dtmtabeldata.removeRow(0);
                             }
                             dtmtabeldata.setRowCount(0);
+
                             JSONParser jpdata = new JSONParser();
                             String param = String.format("id=%s", valorder);
                             Object rawobjdata = jpdata.parse(ch.getdatadetails("dataorderpembelian", param));
                             JSONObject jsonobjdata = (JSONObject) rawobjdata;
+                            System.out.println(jsonobjdata);
 
                             Object objgenjur = jsonobjdata.get("genjur");
                             JSONArray jagenjur = (JSONArray) objgenjur;
@@ -1110,6 +1142,54 @@ public class DaftarfakturpembelianinputController {
                                 JSONObject joinpembelian = (JSONObject) japembelian.get(i);
                                 valgudang = String.valueOf(joinpembelian.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
+                                tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
+                                valcheck = ConvertFunc.ToInt(joinpembelian.get("diskon_persen"));
+                                if (tipe_beli == 0) {
+                                    pane.cmb_tipe_pembelian.setSelectedIndex(0);
+                                } else {
+                                    pane.cmb_tipe_pembelian.setSelectedIndex(1);
+                                }
+
+                                if (valcheck == 0) {
+                                    pane.ckdiskon.setSelected(true);
+                                } else {
+                                    pane.ckdiskon.setSelected(false);
+                                }
+
+                                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
+                                    lshide.set(4, lsoldhide.get(4));
+                                    lshide.set(10, lsoldhide.get(10));
+                                    lsresize.set(4, lsoldsize.get(4));
+                                    lsresize.set(10, lsoldsize.get(10));
+                                    setheader();
+                                    if (pane.ckdiskon.isSelected()) {
+                                        hidetable(8);
+                                        showtable(7);
+                                        valcheck = 0;
+
+                                    } else {
+                                        hidetable(7);
+                                        showtable(8);
+                                        valcheck = 1;
+                                    }
+                                } else {
+                                    lshide.set(4, 0);
+                                    lshide.set(10, 0);
+                                    lsresize.set(4, 0);
+                                    lsresize.set(10, 0);
+                                    setheader();
+                                    if (pane.ckdiskon.isSelected()) {
+                                        hidetable(8);
+                                        showtable(7);
+                                        valcheck = 0;
+
+                                    } else {
+                                        hidetable(7);
+                                        showtable(8);
+                                        valcheck = 1;
+                                    }
+                                }
+
                             }
 
                             Object objtabeldata = jsonobjdata.get("pembelian_detail");
@@ -1150,7 +1230,6 @@ public class DaftarfakturpembelianinputController {
                                         nilai_pajak, id_gudang, nama_gudang, keterangan, total));
 
                             }
-                            System.out.println(tabeldatalist.size());
                             for (int i = 0; i < tabeldatalist.size(); i++) {
                                 rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
                                 rowtabledata[1] = tabeldatalist.get(i).getNama_barang();
