@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mizanposapp.controller.innerpanel.pembelian;
 
 import java.awt.BorderLayout;
@@ -106,8 +101,23 @@ public class DaftarfakturpembelianinputController {
     static String oldvalue = "";
 
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
+    ArrayList<String> listheadername = new ArrayList<>();
     static boolean sudahterpanggil = false;
+    static boolean sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
     int currentrow;
+    String kode = "kode";
+    String nama = "nama";
+    String order= "order";
+    String jumlah = "jumlah";
+    String satuan = "satuan";
+    String harga_beli = "harga_beli";
+    String harga_jual = "harga_jual";
+    String diskon_persen = "disc_persen";
+    String diskon_nominal = "disc_rp";
+    String pajak = "pajak";
+    String gudang = "gudang";
+    String keterangan = "keterangan";
+    String total = "total";
 
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
@@ -157,8 +167,8 @@ public class DaftarfakturpembelianinputController {
                 jd.setLocationRelativeTo(null);
                 jd.setVisible(true);
                 jd.toFront();
-                pane.tabledata.setValueAt(Staticvar.map_var.get("harga_beli"), currentrow, 5);
-                pane.tabledata.setValueAt(Staticvar.map_var.get("harga_jual"), currentrow, 6);
+                pane.tabledata.setValueAt(Staticvar.map_var.get("harga_beli"), currentrow, gx(harga_beli));
+                pane.tabledata.setValueAt(Staticvar.map_var.get("harga_jual"), currentrow, gx(harga_jual));
                 tabeldatalist.get(currentrow).setHarga_beli(String.valueOf(Staticvar.map_var.get("harga_beli")));
                 tabeldatalist.get(currentrow).setHarga_jual(String.valueOf(Staticvar.map_var.get("harga_jual")));
                 dtmtabeldata.fireTableDataChanged();
@@ -218,7 +228,7 @@ public class DaftarfakturpembelianinputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 1 || column == 2 || column == 4 || column == 6 || column == 9 || column == 10 || column == 12 ? false : true;
+                return column == gx(nama) || column == gx(order) || column == gx(satuan) || column == gx(harga_jual) || column == gx(pajak) || column == gx(gudang) || column == gx(keterangan) ? false : true;
             }
 
         };
@@ -261,22 +271,23 @@ public class DaftarfakturpembelianinputController {
                     kalkulasitotalperrow(i);
                 }
                 if (cb.isSelected()) {
-                    hidetable(8);
-                    showtable(7);
+                    hidetable(gx(diskon_nominal));
+                    showtable(gx(diskon_persen));
                     valcheck = 0;
 
                 } else {
-                    hidetable(7);
-                    showtable(8);
+                    hidetable(gx(diskon_persen));
+                    showtable(gx(diskon_nominal));
                     valcheck = 1;
                 }
             }
         });
 
-        pane.cmb_tipe_bayar.addItemListener(new ItemListener() {
+        pane.cmb_tipe_bayar.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox jc = (JComboBox) e.getSource();
+                if (jc.getSelectedIndex() == 0) {
                     pane.eduang_muka.setText("0");
                     pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
@@ -299,48 +310,63 @@ public class DaftarfakturpembelianinputController {
             }
         });
 
-        pane.cmb_tipe_pembelian.addItemListener(new ItemListener() {
+        pane.cmb_tipe_pembelian.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
-                if (jc.getSelectedIndex() == 0) {
+                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
                     tipe_beli = 0;
-                    lshide.set(4, lsoldhide.get(4));
-                    lshide.set(6, lsoldhide.get(6));
-                    lshide.set(10, lsoldhide.get(10));
-                    lsresize.set(4, lsoldsize.get(4));
-                    lsresize.set(6, lsoldsize.get(6));
-                    lsresize.set(10, lsoldsize.get(10));
+                    pane.lgudang.setVisible(true);
+                    pane.ltitik2gudang.setVisible(true);
+                    pane.edgudang.setVisible(true);
+                    pane.bcari_gudang.setVisible(true);
+                    lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
+                    lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
+                    lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                    lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
+                    lsresize.set(gx(harga_jual), lsoldsize.get(gx(harga_jual)));
+                    lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
-                        hidetable(8);
-                        showtable(7);
+                        hidetable(gx(diskon_nominal));
+                        showtable(gx(diskon_persen));
                         valcheck = 0;
 
                     } else {
-                        hidetable(7);
-                        showtable(8);
+                        hidetable(gx(diskon_persen));
+                        showtable(gx(diskon_nominal));
                         valcheck = 1;
                     }
                 } else {
                     tipe_beli = 1;
-                    lshide.set(4, 0);
-                    lshide.set(6, 0);
-                    lshide.set(10, 0);
-                    lsresize.set(4, 0);
-                    lsresize.set(6, 0);
-                    lsresize.set(10, 0);
+                    pane.lgudang.setVisible(false);
+                    pane.ltitik2gudang.setVisible(false);
+                    pane.edgudang.setVisible(false);
+                    pane.bcari_gudang.setVisible(false);
+                    lshide.set(gx(satuan), 0);
+                    lshide.set(gx(harga_jual), 0);
+                    lshide.set(gx(gudang), 0);
+                    lsresize.set(gx(satuan), 0);
+                    lsresize.set(gx(harga_jual), 0);
+                    lsresize.set(gx(gudang), 0);
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
-                        hidetable(8);
-                        showtable(7);
+                        hidetable(gx(diskon_nominal));
+                        showtable(gx(diskon_persen));
                         valcheck = 0;
 
                     } else {
-                        hidetable(7);
-                        showtable(8);
+                        hidetable(gx(diskon_persen));
+                        showtable(gx(diskon_nominal));
                         valcheck = 1;
                     }
+                }
+
+                if (sudah_jangan_set_lagi_kau_membuat_semua_kacau == true) {
+                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
+                    return;
                 }
 
                 Runnable rn = new Runnable() {
@@ -377,6 +403,7 @@ public class DaftarfakturpembelianinputController {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 dtmtabeldata.addColumn(jaaray.get(1));
+                listheadername.add(String.valueOf(jaaray.get(0)));
             }
 
             // resize colum
@@ -447,43 +474,20 @@ public class DaftarfakturpembelianinputController {
             if (id.equals("")) {
                 loadsession();
                 getkodetransaksi();
+
                 pane.cmb_tipe_pembelian.setSelectedIndex(0);
-                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
-                    lshide.set(4, lsoldhide.get(4));
-                    lshide.set(10, lsoldhide.get(10));
-                    lsresize.set(4, lsoldsize.get(4));
-                    lsresize.set(10, lsoldsize.get(10));
-                    setheader();
-                    tipe_beli = 0;
-                } else {
-                    lshide.set(4, 0);
-                    lshide.set(10, 0);
-                    lsresize.set(4, 0);
-                    lsresize.set(10, 0);
-                    setheader();
-                    tipe_beli = 1;
-                }
+                tipe_beli = 0;
 
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
-
-                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                    pane.eduang_muka.setText("0");
-                    pane.eduang_muka.setEnabled(false);
-                    pane.edtop.setVisible(false);
-                    pane.bcaritop.setVisible(false);
-                    pane.ltop.setVisible(false);
-                    valtop = "";
-                    pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
-                } else {
-                    pane.eduang_muka.setEnabled(true);
-                    pane.edtop.setVisible(true);
-                    pane.bcaritop.setVisible(true);
-                    pane.ltop.setVisible(true);
-                    valtop = "";
-                    pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                }
-
+                pane.eduang_muka.setText("0");
                 pane.eduang_muka.setEnabled(false);
+                pane.edtop.setVisible(false);
+                pane.bcaritop.setVisible(false);
+                pane.ltop.setVisible(false);
+                valtop = "";
+                pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                pane.eduang_muka.setEnabled(false);
+
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edsupplier.setText("");
@@ -523,11 +527,11 @@ public class DaftarfakturpembelianinputController {
                     valcheck = 1;
                 }
                 if (pane.ckdiskon.isSelected()) {
-                    hidetable(8);
-                    showtable(7);
+                    hidetable(gx(diskon_nominal));
+                    showtable(gx(diskon_persen));
                 } else {
-                    showtable(8);
-                    hidetable(7);
+                    showtable(gx(diskon_nominal));
+                    hidetable(gx(diskon_persen));
                 }
 
             } else {
@@ -567,28 +571,6 @@ public class DaftarfakturpembelianinputController {
                         pane.cmb_tipe_bayar.setSelectedIndex(0);
                     } else {
                         pane.cmb_tipe_bayar.setSelectedIndex(1);
-                    }
-
-                    if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                        pane.eduang_muka.setText("0");
-                        pane.eduang_muka.setEnabled(false);
-                        pane.edtop.setVisible(false);
-                        pane.bcaritop.setVisible(false);
-                        pane.ltop.setVisible(false);
-                        valtop = "";
-                        pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
-                    } else {
-                        pane.eduang_muka.setEnabled(true);
-                        pane.edtop.setVisible(true);
-                        pane.bcaritop.setVisible(true);
-                        pane.ltop.setVisible(true);
-                        valtop = "";
-                        pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                    }
-                    try {
-                        pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpembelian.get("tanggal_pengantaran")))));
-                    } catch (java.text.ParseException ex) {
-                        Logger.getLogger(DaftarfakturpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     valshipvia = String.valueOf(joinpembelian.get("id_pengantaran"));
@@ -641,11 +623,11 @@ public class DaftarfakturpembelianinputController {
                     }
 
                     if (pane.ckdiskon.isSelected()) {
-                        hidetable(8);
-                        showtable(7);
+                        hidetable(gx(diskon_nominal));
+                        showtable(gx(diskon_persen));
                     } else {
-                        hidetable(7);
-                        showtable(8);
+                        hidetable(gx(diskon_persen));
+                        showtable(gx(diskon_nominal));
                     }
 
                     valsalesman = String.valueOf(joinpembelian.get("id_bagian_pembelian"));
@@ -653,40 +635,6 @@ public class DaftarfakturpembelianinputController {
 
                     tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
                     pane.cmb_tipe_pembelian.setSelectedIndex(tipe_beli);
-
-                    if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
-                        lshide.set(4, lsoldhide.get(4));
-                        lshide.set(10, lsoldhide.get(10));
-                        lsresize.set(4, lsoldsize.get(4));
-                        lsresize.set(10, lsoldsize.get(10));
-                        setheader();
-                        if (pane.ckdiskon.isSelected()) {
-                            hidetable(8);
-                            showtable(7);
-                            valcheck = 0;
-
-                        } else {
-                            hidetable(7);
-                            showtable(8);
-                            valcheck = 1;
-                        }
-                    } else {
-                        lshide.set(4, 0);
-                        lshide.set(10, 0);
-                        lsresize.set(4, 0);
-                        lsresize.set(10, 0);
-                        setheader();
-                        if (pane.ckdiskon.isSelected()) {
-                            hidetable(8);
-                            showtable(7);
-                            valcheck = 0;
-
-                        } else {
-                            hidetable(7);
-                            showtable(8);
-                            valcheck = 1;
-                        }
-                    }
                 }
 
                 Object objtabeldata = jsonobjdata.get("pembelian_detail");
@@ -968,7 +916,7 @@ public class DaftarfakturpembelianinputController {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
                     + "qty_order=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getOrder()) + "'" + "::"
                     + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                    + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_beli()) + "'" + "::"
+                    + "harga=" + "'" + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(harga_beli))) + "'" + "::"
                     + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
                     + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
                     + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
@@ -1097,6 +1045,7 @@ public class DaftarfakturpembelianinputController {
 
     private void cariorder() {
         pane.bcarinopo.addActionListener((ActionEvent e) -> {
+            sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
             if (pane.edsupplier.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -1121,7 +1070,6 @@ public class DaftarfakturpembelianinputController {
                                 dtmtabeldata.removeRow(0);
                             }
                             dtmtabeldata.setRowCount(0);
-
                             JSONParser jpdata = new JSONParser();
                             String param = String.format("id=%s", valorder);
                             Object rawobjdata = jpdata.parse(ch.getdatadetails("dataorderpembelian", param));
@@ -1154,40 +1102,6 @@ public class DaftarfakturpembelianinputController {
                                     pane.ckdiskon.setSelected(true);
                                 } else {
                                     pane.ckdiskon.setSelected(false);
-                                }
-
-                                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
-                                    lshide.set(4, lsoldhide.get(4));
-                                    lshide.set(10, lsoldhide.get(10));
-                                    lsresize.set(4, lsoldsize.get(4));
-                                    lsresize.set(10, lsoldsize.get(10));
-                                    setheader();
-                                    if (pane.ckdiskon.isSelected()) {
-                                        hidetable(8);
-                                        showtable(7);
-                                        valcheck = 0;
-
-                                    } else {
-                                        hidetable(7);
-                                        showtable(8);
-                                        valcheck = 1;
-                                    }
-                                } else {
-                                    lshide.set(4, 0);
-                                    lshide.set(10, 0);
-                                    lsresize.set(4, 0);
-                                    lsresize.set(10, 0);
-                                    setheader();
-                                    if (pane.ckdiskon.isSelected()) {
-                                        hidetable(8);
-                                        showtable(7);
-                                        valcheck = 0;
-
-                                    } else {
-                                        hidetable(7);
-                                        showtable(8);
-                                        valcheck = 1;
-                                    }
                                 }
 
                             }
@@ -1408,7 +1322,7 @@ public class DaftarfakturpembelianinputController {
                     }
                     int col = e.getColumn();
                     int row = e.getFirstRow();
-                    if (col == 0) {
+                    if (col == gx(kode)) {
                         ischangevalue = true;
                         Staticvar.preid = tabeldatalist.get(row).getId_barang();
                         String defnilai = "";
@@ -1416,7 +1330,7 @@ public class DaftarfakturpembelianinputController {
                         if (cekval.equals("null") || cekval.equals("")) {
                             defnilai = "";
                         } else {
-                            defnilai = String.valueOf(tm.getValueAt(row, 0));
+                            defnilai = String.valueOf(tm.getValueAt(row, gx(kode)));
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = defnilai;
@@ -1436,7 +1350,7 @@ public class DaftarfakturpembelianinputController {
                                     tabeldatalist.get(row).setId_barang(Staticvar.resid);
                                     tm.setValueAt(String.valueOf(Staticvar.resid), row, 0);
                                     if (!Staticvar.preid.equals(Staticvar.resid)) {
-                                        tm.setValueAt(String.valueOf(Staticvar.reslabel), row, 1);
+                                        tm.setValueAt(String.valueOf(Staticvar.reslabel), row,gx(nama));
                                         tabeldatalist.get(row).setDiskon_persen("0");
                                         tabeldatalist.get(row).setDiskon_nominal("0");
                                         tabeldatalist.get(row).setTotal("0");
@@ -1445,15 +1359,15 @@ public class DaftarfakturpembelianinputController {
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli("0");
                                         tabeldatalist.get(row).setHarga_jual("0");
-                                        tm.setValueAt("0", row, 2);
-                                        tm.setValueAt("0", row, 3);
-                                        tm.setValueAt("0", row, 5);
-                                        tm.setValueAt("0", row, 7);
-                                        tm.setValueAt("0", row, 8);
-                                        tm.setValueAt("0", row, 12);
+                                        tm.setValueAt("0", row, gx(order));
+                                        tm.setValueAt("0", row, gx(jumlah));
+                                        tm.setValueAt("0", row, gx(satuan));
+                                        tm.setValueAt("0", row, gx(diskon_persen));
+                                        tm.setValueAt("0", row, gx(diskon_nominal));
+                                        tm.setValueAt("0", row, gx(total));
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
-                                        pane.tabledata.changeSelection(row, 3, false, false);
+                                        pane.tabledata.changeSelection(row, gx(jumlah), false, false);
                                     } else {
                                         pane.tabledata.requestFocus();
                                     }
@@ -1470,32 +1384,32 @@ public class DaftarfakturpembelianinputController {
                                     for (int i = 0; i < jadata.size(); i++) {
                                         JSONObject joindata = (JSONObject) jadata.get(i);
                                         tabeldatalist.get(row).setId_barang(String.valueOf(joindata.get("id")));
-                                        tm.setValueAt(String.valueOf(joindata.get("nama")), row, 1);
+                                        tm.setValueAt(String.valueOf(joindata.get("nama")), row, gx(nama));
                                         tabeldatalist.get(row).setOrder("0");
                                         tabeldatalist.get(row).setJumlah("0");
-                                        tm.setValueAt("0", row, 2);
-                                        tm.setValueAt("0", row, 3);
+                                        tm.setValueAt("0", row, gx(order));
+                                        tm.setValueAt("0", row, gx(jumlah));
                                         tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
-                                        tm.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, 4);
+                                        tm.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, gx(satuan));
                                         tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata.get("harga_beli")));
-                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_beli"))), row, 5);
+                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_beli"))), row, gx(harga_beli));
                                         tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata.get("harga_jual")));
-                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_jual"))), row, 6);
-                                        tm.setValueAt("0", row, 7);
-                                        tm.setValueAt("0", row, 8);
+                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_jual"))), row, gx(harga_jual));
+                                        tm.setValueAt("0", row, gx(diskon_persen));
+                                        tm.setValueAt("0", row, gx(diskon_nominal));
                                         tabeldatalist.get(row).setDiskon_persen("0");
                                         tabeldatalist.get(row).setDiskon_nominal("0");
-                                        tm.setValueAt(String.valueOf(joindata.get("nama_pajak_beli")), row, 9);
+                                        tm.setValueAt(String.valueOf(joindata.get("nama_pajak_beli")), row, gx(pajak));
                                         tabeldatalist.get(row).setId_pajak(String.valueOf(joindata.get("id_pajak_beli")));
                                         tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata.get("nilai_pajak_beli")));
                                         tabeldatalist.get(row).setId_gudang(valgudang);
-                                        tm.setValueAt(pane.edgudang.getText(), row, 10);
+                                        tm.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                         tabeldatalist.get(row).setKeterangan("");
-                                        tm.setValueAt("", row, 11);
+                                        tm.setValueAt("", row, gx(keterangan));
                                         tabeldatalist.get(row).setTotal("0");
-                                        tm.setValueAt("0", row, 12);
+                                        tm.setValueAt("0", row, gx(total));
                                     }
                                     kalkulasitotalperrow(row);
                                     pane.tabledata.requestFocus();
@@ -1518,33 +1432,33 @@ public class DaftarfakturpembelianinputController {
                                         for (int i = 0; i < jadata2.size(); i++) {
                                             JSONObject joindata2 = (JSONObject) jadata2.get(i);
                                             tabeldatalist.get(row).setId_barang(Staticvar.resid);
-                                            tm.setValueAt(String.valueOf(joindata2.get("kode")), row, 0);
-                                            tm.setValueAt(String.valueOf(joindata2.get("nama")), row, 1);
+                                            tm.setValueAt(String.valueOf(joindata2.get("kode")), row, gx(kode));
+                                            tm.setValueAt(String.valueOf(joindata2.get("nama")), row, gx(nama));
                                             tabeldatalist.get(row).setOrder("0");
                                             tabeldatalist.get(row).setJumlah("0");
-                                            tm.setValueAt("0", row, 2);
-                                            tm.setValueAt("0", row, 3);
+                                            tm.setValueAt("0", row, gx(order));
+                                            tm.setValueAt("0", row, gx(jumlah));
                                             tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
-                                            tm.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 4);
+                                            tm.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, gx(satuan));
                                             tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
                                             tabeldatalist.get(row).setIsi_satuan("1");
                                             tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
-                                            tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, 5);
+                                            tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
                                             tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
-                                            tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_jual"))), row, 6);
-                                            tm.setValueAt("0", row, 7);
-                                            tm.setValueAt("0", row, 8);
+                                            tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_jual"))), row, gx(harga_jual));
+                                            tm.setValueAt("0", row, gx(diskon_persen));
+                                            tm.setValueAt("0", row, gx(diskon_nominal));
                                             tabeldatalist.get(row).setDiskon_persen("0");
                                             tabeldatalist.get(row).setDiskon_nominal("0");
-                                            tm.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, 9);
+                                            tm.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, gx(pajak));
                                             tabeldatalist.get(row).setId_pajak(String.valueOf(joindata2.get("id_pajak_beli")));
                                             tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("nilai_pajak_beli")));
                                             tabeldatalist.get(row).setId_gudang(valgudang);
-                                            tm.setValueAt(pane.edgudang.getText(), row, 10);
+                                            tm.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                             tabeldatalist.get(row).setKeterangan("");
-                                            tm.setValueAt("", row, 11);
+                                            tm.setValueAt("", row, gx(keterangan));
                                             tabeldatalist.get(row).setTotal("0");
-                                            tm.setValueAt("0", row, 12);
+                                            tm.setValueAt("0", row, gx(total));
                                         }
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
@@ -1569,33 +1483,31 @@ public class DaftarfakturpembelianinputController {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 3) {
+                    } else if (col == gx(jumlah)) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, 3)));
-                            columnfunction(row, 3, false);
-                            //nextcolom(2, row);
+                            tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
+                            columnfunction(row, gx(jumlah), false);
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 5) {
+                    } else if (col == gx(harga_beli)) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setHarga_beli(String.valueOf(tm.getValueAt(row, 5)));
-                            columnfunction(row, 5, false);
-                            //nextcolom(4, row);
+                            tabeldatalist.get(row).setHarga_beli(String.valueOf(tm.getValueAt(row, gx(harga_beli))));
+                            columnfunction(row, gx(harga_beli), false);
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 7) {
+                    } else if (col == gx(diskon_persen)) {
                         try {
                             ischangevalue = true;
-                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, 7));
+                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
                             if (checkalphabeth(valcol) == false) {
-                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(tm.getValueAt(row, 7)));
-                                columnfunction(row, 7, false);
+                                tabeldatalist.get(row).setDiskon_persen(String.valueOf(tm.getValueAt(row, gx(diskon_persen))));
+                                columnfunction(row, gx(diskon_persen), false);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 Errorpanel ep = new Errorpanel();
@@ -1607,8 +1519,8 @@ public class DaftarfakturpembelianinputController {
                                 jd.setVisible(true);
                                 jd.toFront();
                                 valcol = "0";
-                                pane.tabledata.setValueAt(valcol, row, 7);
-                                columnfunction(row, 7, false);
+                                pane.tabledata.setValueAt(valcol, row, gx(diskon_persen));
+                                columnfunction(row, gx(diskon_persen), false);
                                 pane.tabledata.requestFocus();
                             }
 
@@ -1616,12 +1528,12 @@ public class DaftarfakturpembelianinputController {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 8) {
+                    } else if (col == gx(diskon_nominal)) {
                         try {
                             ischangevalue = true;
-                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, 8));
+                            String valcol = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_nominal)));
                             if (checknumerik(valcol) == true) {
-                                columnfunction(row, 8, false);
+                                columnfunction(row, gx(diskon_nominal), false);
                                 tabeldatalist.get(row).setDiskon_nominal(String.valueOf(ConvertFunc.ToDouble(tm.getValueAt(row, 8))));
                                 //nextcolom(col, row);
                             } else {
@@ -1635,16 +1547,16 @@ public class DaftarfakturpembelianinputController {
                                 jd.setVisible(true);
                                 jd.toFront();
                                 valcol = valcol.replaceAll("[^0-9]", "");
-                                pane.tabledata.setValueAt(valcol, row, 8);
-                                columnfunction(row, 8, false);
+                                pane.tabledata.setValueAt(valcol, row, gx(diskon_nominal));
+                                columnfunction(row, gx(diskon_nominal), false);
                                 //nextcolom(7, row);
                             }
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 11) {
-                        tabeldatalist.get(row).setKeterangan(String.valueOf(tm.getValueAt(row, 11)));
+                    } else if (col == gx(keterangan)) {
+                        tabeldatalist.get(row).setKeterangan(String.valueOf(tm.getValueAt(row, gx(keterangan))));
                     }
                     /*ischangevalue = true;
                     String curval = String.valueOf(tm.getValueAt(row, col));
@@ -1676,7 +1588,7 @@ public class DaftarfakturpembelianinputController {
                     tb.getCellEditor().cancelCellEditing();
                 }
                 if (e.getClickCount() == 2) {
-                    if (col == 0) {
+                    if (col == gx(kode)) {
                         if (tipe_beli == 1) {
                             Staticvar.sfilter = "";
                             sudahterpanggil = true;
@@ -1689,8 +1601,8 @@ public class DaftarfakturpembelianinputController {
                             jd.toFront();
                             if (!Staticvar.preid.equals(Staticvar.resid)) {
                                 tabeldatalist.get(row).setId_barang(Staticvar.resid);
-                                pane.tabledata.setValueAt(String.valueOf(Staticvar.resid), row, 0);
-                                pane.tabledata.setValueAt(String.valueOf(Staticvar.reslabel), row, 1);
+                                pane.tabledata.setValueAt(String.valueOf(Staticvar.resid), row, gx(kode));
+                                pane.tabledata.setValueAt(String.valueOf(Staticvar.reslabel), row, gx(nama));
                                 tabeldatalist.get(row).setDiskon_persen("0");
                                 tabeldatalist.get(row).setDiskon_nominal("0");
                                 tabeldatalist.get(row).setTotal("0");
@@ -1699,15 +1611,15 @@ public class DaftarfakturpembelianinputController {
                                 tabeldatalist.get(row).setIsi_satuan("1");
                                 tabeldatalist.get(row).setHarga_beli("0");
                                 tabeldatalist.get(row).setHarga_jual("0");
-                                pane.tabledata.setValueAt("0", row, 2);
-                                pane.tabledata.setValueAt("0", row, 3);
-                                pane.tabledata.setValueAt("0", row, 5);
-                                pane.tabledata.setValueAt("0", row, 7);
-                                pane.tabledata.setValueAt("0", row, 8);
-                                pane.tabledata.setValueAt("0", row, 12);
+                                pane.tabledata.setValueAt("0", row, gx(order));
+                                pane.tabledata.setValueAt("0", row, gx(jumlah));
+                                pane.tabledata.setValueAt("0", row, gx(satuan));
+                                pane.tabledata.setValueAt("0", row, gx(diskon_persen));
+                                pane.tabledata.setValueAt("0", row, gx(diskon_nominal));
+                                pane.tabledata.setValueAt("0", row, gx(total));
                                 kalkulasitotalperrow(row);
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, 3, false, false);
+                                pane.tabledata.changeSelection(row, gx(jumlah), false, false);
                             } else {
                                 pane.tabledata.requestFocus();
                             }
@@ -1719,7 +1631,7 @@ public class DaftarfakturpembelianinputController {
                             if (cekval.equals("null") || cekval.equals("")) {
                                 defnilai = "";
                             } else {
-                                defnilai = String.valueOf(pane.tabledata.getValueAt(row, 0));
+                                defnilai = String.valueOf(pane.tabledata.getValueAt(row, gx(kode)));
                             }
                             Staticvar.prelabel = defnilai;
                             Staticvar.sfilter = "";
@@ -1743,37 +1655,37 @@ public class DaftarfakturpembelianinputController {
                                         for (int i = 0; i < jadata2.size(); i++) {
                                             JSONObject joindata2 = (JSONObject) jadata2.get(i);
                                             tabeldatalist.get(row).setId_barang(Staticvar.resid);
-                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("kode")), row, 0);
-                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama")), row, 1);
+                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("kode")), row, gx(kode));
+                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama")), row, gx(nama));
                                             tabeldatalist.get(row).setOrder("0");
                                             tabeldatalist.get(row).setJumlah("0");
-                                            pane.tabledata.setValueAt("0", row, 2);
-                                            pane.tabledata.setValueAt("0", row, 3);
+                                            pane.tabledata.setValueAt("0", row, gx(order));
+                                            pane.tabledata.setValueAt("0", row, gx(jumlah));
                                             tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
-                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, 4);
+                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, gx(satuan));
                                             tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
                                             tabeldatalist.get(row).setIsi_satuan("1");
                                             tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
-                                            pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, 5);
+                                            pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
                                             tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
-                                            pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_jual"))), row, 6);
-                                            pane.tabledata.setValueAt("0", row, 7);
-                                            pane.tabledata.setValueAt("0", row, 8);
+                                            pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_jual"))), row, gx(harga_jual));
+                                            pane.tabledata.setValueAt("0", row, gx(diskon_persen));
+                                            pane.tabledata.setValueAt("0", row, gx(diskon_nominal));
                                             tabeldatalist.get(row).setDiskon_persen("0");
                                             tabeldatalist.get(row).setDiskon_nominal("0");
-                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, 9);
+                                            pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_pajak_beli")), row, gx(pajak));
                                             tabeldatalist.get(row).setId_pajak(String.valueOf(joindata2.get("id_pajak_beli")));
                                             tabeldatalist.get(row).setNilai_pajak(String.valueOf(joindata2.get("nilai_pajak_beli")));
                                             tabeldatalist.get(row).setId_gudang(valgudang);
-                                            pane.tabledata.setValueAt(pane.edgudang.getText(), row, 10);
+                                            pane.tabledata.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                             tabeldatalist.get(row).setKeterangan("");
-                                            pane.tabledata.setValueAt("", row, 11);
+                                            pane.tabledata.setValueAt("", row, gx(keterangan));
                                             tabeldatalist.get(row).setTotal("0");
-                                            pane.tabledata.setValueAt("0", row, 12);
+                                            pane.tabledata.setValueAt("0", row, gx(total));
                                         }
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
-                                        pane.tabledata.changeSelection(row, 3, false, false);
+                                        pane.tabledata.changeSelection(row, gx(jumlah), false, false);
                                     } else {
                                         pane.tabledata.requestFocus();
                                     }
@@ -1782,10 +1694,10 @@ public class DaftarfakturpembelianinputController {
                                 }
                             }
                         }
-                    } else if (col == 4) {
+                    } else if (col == gx(satuan)) {
                         Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_satuan();
-                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 4));
+                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, gx(satuan)));
                         Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("satuanperbarang",
@@ -1798,16 +1710,16 @@ public class DaftarfakturpembelianinputController {
                         jd.setVisible(true);
                         jd.toFront();
                         tabeldatalist.get(row).setId_satuan(Staticvar.resid);
-                        tb.setValueAt(Staticvar.reslabel, row, 4);
+                        tb.setValueAt(Staticvar.reslabel, row, gx(satuan));
                         tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
-                        dtmtabeldata.fireTableCellUpdated(row, 4);
+                        dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
                         double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
-                        pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, 5);
+                        pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(harga_beli));
                         kalkulasitotalperrow(row);
-                    } else if (col == 9) {
+                    } else if (col == gx(pajak)) {
                         Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_pajak();
-                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 9));
+                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, gx(pajak)));
                         Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("pajak", "popupdaftarpajak", "Daftar Pajak"));
@@ -1818,13 +1730,13 @@ public class DaftarfakturpembelianinputController {
                         jd.toFront();
                         tabeldatalist.get(row).setId_pajak(Staticvar.resid);
                         tabeldatalist.get(row).setNilai_pajak(Staticvar.resvalueextended);
-                        tb.setValueAt(Staticvar.reslabel, row, 9);
-                        dtmtabeldata.fireTableCellUpdated(row, 9);
+                        tb.setValueAt(Staticvar.reslabel, row, gx(pajak));
+                        dtmtabeldata.fireTableCellUpdated(row, gx(pajak));
                         kalkulasitotalperrow(row);
-                    } else if (col == 10) {
+                    } else if (col == gx(gudang)) {
                         Staticvar.sfilter = "";
                         Staticvar.preid = tabeldatalist.get(row).getId_gudang();
-                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, 10));
+                        Staticvar.prelabel = String.valueOf(tb.getValueAt(row, gx(gudang)));
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
                         jd.pack();
@@ -1833,8 +1745,8 @@ public class DaftarfakturpembelianinputController {
                         jd.setVisible(true);
                         jd.toFront();
                         tabeldatalist.get(row).setId_gudang(Staticvar.resid);
-                        tb.setValueAt(Staticvar.reslabel, row, 10);
-                        dtmtabeldata.fireTableCellUpdated(row, 10);
+                        tb.setValueAt(Staticvar.reslabel, row, gx(gudang));
+                        dtmtabeldata.fireTableCellUpdated(row, gx(gudang));
                     }
                 }
             }
@@ -1847,7 +1759,7 @@ public class DaftarfakturpembelianinputController {
                 }
                 int row = tb.rowAtPoint(e.getPoint());
                 int col = tb.columnAtPoint(e.getPoint());
-                if (pane.tabledata.isCellSelected(row, 6)) {
+                if (pane.tabledata.isCellSelected(row, gx(harga_jual))) {
                     if (e.isPopupTrigger()) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
                         Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
@@ -1867,7 +1779,7 @@ public class DaftarfakturpembelianinputController {
                 }
                 int row = tb.rowAtPoint(e.getPoint());
                 int col = tb.columnAtPoint(e.getPoint());
-                if (pane.tabledata.isCellSelected(row, 6)) {
+                if (pane.tabledata.isCellSelected(row, gx(harga_jual))) {
                     if (e.isPopupTrigger()) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
                         Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
@@ -1890,7 +1802,7 @@ public class DaftarfakturpembelianinputController {
                     }
                     int row = pane.tabledata.getSelectedRow();
                     int col = pane.tabledata.getSelectedColumn();
-                    if (pane.tabledata.isCellSelected(row, 6)) {
+                    if (pane.tabledata.isCellSelected(row, gx(harga_jual))) {
                         Staticvar.ids = tabeldatalist.get(row).getId_barang();
                         Staticvar.map_var.put("harga_jual", tabeldatalist.get(row).getHarga_jual());
                         Staticvar.map_var.put("harga_beli", tabeldatalist.get(row).getHarga_beli());
@@ -1925,10 +1837,10 @@ public class DaftarfakturpembelianinputController {
                     Component editor = pane.tabledata.getEditorComponent();
                     editor.requestFocusInWindow();
                 }
-                if (col == 4) {
+                if (col == gx(satuan)) {
                     Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_satuan();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 4));
+                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(satuan)));
                     Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcari("satuanperbarang",
@@ -1941,16 +1853,16 @@ public class DaftarfakturpembelianinputController {
                     jd.setVisible(true);
                     jd.toFront();
                     tabeldatalist.get(row).setId_satuan(Staticvar.resid);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, 4);
+                    pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(satuan));
                     tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
-                    dtmtabeldata.fireTableCellUpdated(row, 4);
+                    dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
                     double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
-                    pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, 5);
+                    pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(satuan));
                     kalkulasitotalperrow(row);
-                } else if (col == 9) {
+                } else if (col == gx(pajak)) {
                     Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_pajak();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 9));
+                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(pajak)));
                     Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcari("pajak", "popupdaftarpajak", "Daftar Pajak"));
@@ -1961,13 +1873,13 @@ public class DaftarfakturpembelianinputController {
                     jd.toFront();
                     tabeldatalist.get(row).setId_pajak(Staticvar.resid);
                     tabeldatalist.get(row).setNilai_pajak(Staticvar.resvalueextended);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, 9);
+                    pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(pajak));
                     dtmtabeldata.fireTableCellUpdated(row, 9);
                     kalkulasitotalperrow(row);
-                } else if (col == 10) {
+                } else if (col == gx(gudang)) {
                     Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_gudang();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, 10));
+                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(gudang) ));
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
                     jd.pack();
@@ -1976,8 +1888,8 @@ public class DaftarfakturpembelianinputController {
                     jd.setVisible(true);
                     jd.toFront();
                     tabeldatalist.get(row).setId_gudang(Staticvar.resid);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, 10);
-                    dtmtabeldata.fireTableCellUpdated(row, 10);
+                    pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(gudang));
+                    dtmtabeldata.fireTableCellUpdated(row, gx(gudang));
                 }
             }
         });
@@ -2081,15 +1993,15 @@ public class DaftarfakturpembelianinputController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, 3).equals("")
-                || !pane.tabledata.getValueAt(row, 5).equals("")
-                || !pane.tabledata.getValueAt(row, 7).equals("")
-                || !pane.tabledata.getValueAt(row, 8).equals("")) {
+                || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")
+                || !pane.tabledata.getValueAt(row, gx(harga_beli)).equals("")
+                || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
+                || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row + 1, 0, false, false);
+                pane.tabledata.changeSelection(row + 1, gx(kode), false, false);
             }
         }
     }
@@ -2114,14 +2026,14 @@ public class DaftarfakturpembelianinputController {
         if (pane.tabledata.getValueAt(row, col).equals("")) {
             return;
         }
-        if ((col == 3) || (col == 5) || (col == 8)) {
+        if ((col == gx(jumlah)) || (col == gx(harga_beli)) || (col == gx(diskon_nominal))) {
             String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
             if (addrow == true) {
                 addautorow(row);
             }
-        } else if (col == 7) {
+        } else if (col == gx(diskon_persen)) {
             String value = String.valueOf(pane.tabledata.getValueAt(row, col));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
@@ -2207,10 +2119,10 @@ public class DaftarfakturpembelianinputController {
         total_pajak = 0;
 
         for (int i = 0; i < jumlah_row; i++) {
-            double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, 12));
+            double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total)));
             subtotal = subtotal + total_beli_masing;
 
-            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, 12)) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
+            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total))) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
@@ -2229,67 +2141,67 @@ public class DaftarfakturpembelianinputController {
 
     private void kalkulasitotalperrow(int row) {
         if (pane.ckdiskon.isSelected() == true) {
-            String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, 7));
+            String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row,gx(diskon_persen)));
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3)));
-                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 5));
-                double total = harga;
+                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_beli)));
+                double intotal = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = ((total - (diskonper / 100 * total)));
+                    intotal = ((intotal - (diskonper / 100 * intotal)));
                 }
-                total = qty * total;
-                tabeldatalist.get(row).setTotal(String.valueOf(total));
-                pane.tabledata.setValueAt(nf.format(total), row, 12);
+                intotal = qty * intotal;
+                tabeldatalist.get(row).setTotal(String.valueOf(intotal));
+                pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             } else {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3)));
-                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 5)));
-                double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 7));
-                double total = qty * (harga - (diskon / 100 * harga));
-                tabeldatalist.get(row).setTotal(String.valueOf(total));
-                pane.tabledata.setValueAt(nf.format(total), row, 12);
+                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(harga_beli))));
+                double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_persen)));
+                double intotal = qty * (harga - (diskon / 100 * harga));
+                tabeldatalist.get(row).setTotal(String.valueOf(intotal));
+                pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 3)));
-            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 5));
-            double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 8));
-            double total = qty * (harga - diskon);
-            tabeldatalist.get(row).setTotal(String.valueOf(total));
-            pane.tabledata.setValueAt(nf.format(total), row, 12);
+            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_beli)));
+            double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
+            double intotal = qty * (harga - diskon);
+            tabeldatalist.get(row).setTotal(String.valueOf(intotal));
+            pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
         }
         kalkulasitotal();
     }
 
     private double kalkulasitotalperindex(String rawdiskonpersen, String rawdiskonnominal, String rawqty, String rawharga, String isisatuan) {
-        double total = 0;
+        double intotal = 0;
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = rawdiskonpersen;
             if (isifielddiskon.contains("+")) {
                 double qty = ConvertFunc.ToDouble(rawqty);
                 double harga = ConvertFunc.ToDouble(rawharga);
-                total = harga;
+                intotal = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = ((total - (diskonper / 100 * total)));
+                    intotal = ((intotal - (diskonper / 100 * intotal)));
                 }
-                total = qty * total;
+                intotal = qty * intotal;
             } else {
                 double qty = ConvertFunc.ToDouble(rawqty);
                 double harga = ConvertFunc.ToDouble(rawharga);
                 double diskon = ConvertFunc.ToDouble(rawdiskonpersen);
-                total = qty * (harga - (diskon / 100 * harga));
+                intotal = qty * (harga - (diskon / 100 * harga));
             }
         } else {
 
             double qty = ConvertFunc.ToDouble(rawqty);
             double harga = ConvertFunc.ToDouble(rawharga);
             double diskon = ConvertFunc.ToDouble(rawdiskonnominal);
-            total = qty * (harga - diskon);
+            intotal = qty * (harga - diskon);
         }
-        return total;
+        return intotal;
     }
 
     private String emptycellcheck(int row, int col) {
@@ -2332,11 +2244,11 @@ public class DaftarfakturpembelianinputController {
         if (col == colcount) {
             if (pane.tabledata.getRowCount() - 1 > row) {
                 pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row + 1, 0, false, false);
-            } else if (String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("")
-                    || String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("null")) {
+                pane.tabledata.changeSelection(row + 1, gx(kode), false, false);
+            } else if (String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("")
+                    || String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("null")) {
                 pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 0, false, false);
+                pane.tabledata.changeSelection(row, gx(kode), false, false);
             } else {
                 addautorow(row);
             }
@@ -2355,9 +2267,9 @@ public class DaftarfakturpembelianinputController {
             if (currentcoll == i) {
                 for (int j = currentcoll; j <= colcount; j++) {
                     while (!cekcolomnol(j + 1)) {
-                        if (((j + 1) == 7) || ((j + 1) == 8)) {
+                        if (((j + 1) == gx(diskon_persen)) || ((j + 1) == gx(diskon_nominal))) {
                             if (pane.ckdiskon.isSelected()) {
-                                if ((j + 1) == 8) {
+                                if ((j + 1) == gx(diskon_nominal)) {
                                     int x = j + 1;
                                     for (int k = x; k <= colcount; k++) {
                                         while (!cekcolomnol(k + 1)) {
@@ -2368,11 +2280,11 @@ public class DaftarfakturpembelianinputController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                    pane.tabledata.changeSelection(currentrow, gx(diskon_persen), false, false);
                                 }
                             } else {
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(currentrow, 8, false, false);
+                                pane.tabledata.changeSelection(currentrow, gx(diskon_nominal), false, false);
                             }
                         } else {
                             pane.tabledata.requestFocus();
@@ -2390,9 +2302,9 @@ public class DaftarfakturpembelianinputController {
             if (currentcoll == i) {
                 for (int j = currentcoll; j >= 0; j--) {
                     while (!cekcolomnol(j - 1)) {
-                        if (((j - 1) == 7) || ((j - 1) == 8)) {
+                        if (((j - 1) == gx(diskon_persen)) || ((j - 1) == gx(diskon_nominal))) {
                             if (pane.ckdiskon.isSelected()) {
-                                if ((j - 1) == 8) {
+                                if ((j - 1) == gx(diskon_nominal)) {
                                     int x = j - 1;
                                     for (int k = x; k >= 0; k--) {
                                         while (!cekcolomnol(k - 1)) {
@@ -2403,22 +2315,20 @@ public class DaftarfakturpembelianinputController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                    pane.tabledata.changeSelection(currentrow, gx(diskon_persen), false, false);
+                                }
+                            } else if ((j - 1) == gx(diskon_persen)) {
+                                int x = j - 1;
+                                for (int k = x; k >= 0; k--) {
+                                    while (!cekcolomnol(k - 1)) {
+                                        pane.tabledata.requestFocus();
+                                        pane.tabledata.changeSelection(currentrow, k - 1, false, false);
+                                        return;
+                                    }
                                 }
                             } else {
-                                if ((j - 1) == 7) {
-                                    int x = j - 1;
-                                    for (int k = x; k >= 0; k--) {
-                                        while (!cekcolomnol(k - 1)) {
-                                            pane.tabledata.requestFocus();
-                                            pane.tabledata.changeSelection(currentrow, k - 1, false, false);
-                                            return;
-                                        }
-                                    }
-                                } else {
-                                    pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 8, false, false);
-                                }
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(currentrow, gx(diskon_nominal), false, false);
                             }
                         } else {
                             pane.tabledata.requestFocus();
@@ -2439,6 +2349,10 @@ public class DaftarfakturpembelianinputController {
             result = false;
         }
         return result;
+    }
+    
+    private int gx(String columname) {
+        return listheadername.indexOf(columname);
     }
 
     public class Entitytabledata {

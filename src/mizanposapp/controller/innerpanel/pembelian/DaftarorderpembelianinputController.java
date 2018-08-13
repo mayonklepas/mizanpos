@@ -41,6 +41,8 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -113,7 +115,7 @@ public class DaftarorderpembelianinputController {
     String pajak = "pajak";
     String gudang = "gudang";
     String keterangan = "keterangan";
-    String ctotal = "total";
+    String total = "total";
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
@@ -196,7 +198,7 @@ public class DaftarorderpembelianinputController {
                         || column == gx(harga_jual)
                         || column == gx(pajak)
                         || column == gx(gudang)
-                        || column == gx(ctotal)
+                        || column == gx(total)
                         ? false : true;
             }
 
@@ -265,10 +267,11 @@ public class DaftarorderpembelianinputController {
             }
         });
 
-        pane.cmb_tipe_bayar.addItemListener(new ItemListener() {
+        pane.cmb_tipe_bayar.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cmb = (JComboBox) e.getSource();
+                if (cmb.getSelectedIndex() == 0) {
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
                     pane.ltop.setVisible(false);
@@ -288,11 +291,11 @@ public class DaftarorderpembelianinputController {
             }
         });
 
-        pane.cmb_tipe_pembelian.addItemListener(new ItemListener() {
+        pane.cmb_tipe_pembelian.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                JComboBox jc = (JComboBox) e.getSource();
-                if (jc.getSelectedIndex() == 0) {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cmb = (JComboBox) e.getSource();
+                if (cmb.getSelectedIndex() == 0) {
                     pane.lgudang.setVisible(true);
                     pane.ltitik2gudang.setVisible(true);
                     pane.edgudang.setVisible(true);
@@ -300,11 +303,12 @@ public class DaftarorderpembelianinputController {
                     valgudang = "";
                     tipe_beli = 0;
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
-                    lshide.set(gx(harga_jual), lsoldhide.get(gx("harga)_jual")));
+                    lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
                     lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
                     lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
-                    lsresize.set(gx(harga_jual), lsoldsize.get(gx("hargajual")));
+                    lsresize.set(gx(harga_jual), lsoldsize.get(gx(harga_jual)));
                     lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
@@ -330,11 +334,11 @@ public class DaftarorderpembelianinputController {
                     lsresize.set(gx(harga_jual), 0);
                     lsresize.set(gx(gudang), 0);
                     setheader();
+                    setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
                         showtable(gx(diskon_persen));
                         valcheck = 0;
-
                     } else {
                         hidetable(gx(diskon_persen));
                         showtable(gx(diskon_nominal));
@@ -342,6 +346,7 @@ public class DaftarorderpembelianinputController {
                     }
                 }
 
+                
                 Runnable rn = new Runnable() {
                     @Override
                     public void run() {
@@ -355,10 +360,10 @@ public class DaftarorderpembelianinputController {
                     }
                 };
                 SwingUtilities.invokeLater(rn);
+                setheader();
 
             }
-        }
-        );
+        });
 
     }
 
@@ -474,7 +479,6 @@ public class DaftarorderpembelianinputController {
 
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
-                //pane.tabledata.setModel(dtmtabeldata);
                 if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
                         || Globalsession.DEFAULT_DISKON_DALAM.equals("")
                         || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
@@ -1206,7 +1210,7 @@ public class DaftarorderpembelianinputController {
                                         tm.setValueAt("0", row, gx(harga_beli));
                                         tm.setValueAt("0", row, gx(diskon_persen));
                                         tm.setValueAt("0", row, gx(diskon_nominal));
-                                        tm.setValueAt("0", row, gx(ctotal));
+                                        tm.setValueAt("0", row, gx(total));
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
                                         pane.tabledata.changeSelection(row, 2, false, false);
@@ -1249,7 +1253,7 @@ public class DaftarorderpembelianinputController {
                                         tabeldatalist.get(row).setKeterangan("");
                                         tm.setValueAt("", row, gx(keterangan));
                                         tabeldatalist.get(row).setTotal("0");
-                                        tm.setValueAt("0", row, gx(ctotal));
+                                        tm.setValueAt("0", row, gx(total));
                                     }
                                     kalkulasitotalperrow(row);
                                     pane.tabledata.requestFocus();
@@ -1296,7 +1300,7 @@ public class DaftarorderpembelianinputController {
                                             tabeldatalist.get(row).setKeterangan("");
                                             tm.setValueAt("", row, gx(keterangan));
                                             tabeldatalist.get(row).setTotal("0");
-                                            tm.setValueAt("0", row, gx(ctotal));
+                                            tm.setValueAt("0", row, gx(total));
                                         }
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
@@ -1452,7 +1456,7 @@ public class DaftarorderpembelianinputController {
                                 pane.tabledata.setValueAt("0", row, gx(harga_beli));
                                 pane.tabledata.setValueAt("0", row, gx(diskon_persen));
                                 pane.tabledata.setValueAt("0", row, gx(diskon_nominal));
-                                pane.tabledata.setValueAt("0", row, gx(ctotal));
+                                pane.tabledata.setValueAt("0", row, gx(total));
                                 kalkulasitotalperrow(row);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah), false, false);
@@ -1515,7 +1519,7 @@ public class DaftarorderpembelianinputController {
                                             tabeldatalist.get(row).setKeterangan("");
                                             tb.setValueAt("", row, gx(keterangan));
                                             tabeldatalist.get(row).setTotal("0");
-                                            tb.setValueAt("0", row, gx(ctotal));
+                                            tb.setValueAt("0", row, gx(total));
                                         }
                                         kalkulasitotalperrow(row);
                                         pane.tabledata.requestFocus();
@@ -1920,10 +1924,10 @@ public class DaftarorderpembelianinputController {
         total_pajak = 0;
 
         for (int i = 0; i < jumlah_row; i++) {
-            double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(ctotal)));
+            double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total)));
             subtotal = subtotal + total_beli_masing;
 
-            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(ctotal))) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
+            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total))) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
@@ -1944,33 +1948,33 @@ public class DaftarorderpembelianinputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_beli)));
-                double total = harga;
+                double qty = ConvertFunc.ToDouble(emptycellcheck(row, gx(jumlah)));
+                double harga = ConvertFunc.ToDouble(emptycellcheck(row, gx(harga_beli)));
+                double intotal = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
                     double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
-                    total = ((total - (diskonper / 100 * total)));
+                    intotal = ((intotal - (diskonper / 100 * intotal)));
                 }
-                total = qty * total;
-                tabeldatalist.get(row).setTotal(String.valueOf(total));
-                pane.tabledata.setValueAt(nf.format(total), row, gx(ctotal));
+                intotal = qty * intotal;
+                tabeldatalist.get(row).setTotal(String.valueOf(intotal));
+                pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             } else {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(harga_beli))));
+                double qty = ConvertFunc.ToDouble(emptycellcheck(row, gx(jumlah)));
+                double harga = ConvertFunc.ToDouble(emptycellcheck(row, gx(harga_beli)));
                 double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_persen)));
-                double total = qty * (harga - (diskon / 100 * harga));
-                tabeldatalist.get(row).setTotal(String.valueOf(total));
-                pane.tabledata.setValueAt(nf.format(total), row, gx(ctotal));
+                double intotal = qty * (harga - (diskon / 100 * harga));
+                tabeldatalist.get(row).setTotal(String.valueOf(intotal));
+                pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, 2)));
-            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, 4));
-            double diskon = ConvertFunc.ToDouble(emptycellcheck(row, 7));
-            double total = qty * (harga - diskon);
-            tabeldatalist.get(row).setTotal(String.valueOf(total));
-            pane.tabledata.setValueAt(nf.format(total), row, 11);
+            double qty = ConvertFunc.ToDouble(emptycellcheck(row, gx(jumlah)));
+            double harga = ConvertFunc.ToDouble(emptycellcheck(row, gx(harga_beli)));
+            double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
+            double intotal = qty * (harga - diskon);
+            tabeldatalist.get(row).setTotal(String.valueOf(intotal));
+            pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
         }
         kalkulasitotal();
     }

@@ -83,8 +83,8 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         eddept = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        lgudang = new javax.swing.JLabel();
+        ltitik2gudang = new javax.swing.JLabel();
         edgudang = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -500,11 +500,11 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel18.setText("Gudang");
+        lgudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lgudang.setText("Gudang");
 
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel19.setText(":");
+        ltitik2gudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ltitik2gudang.setText(":");
 
         edgudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edgudang.setPreferredSize(new java.awt.Dimension(51, 20));
@@ -574,9 +574,9 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jLabel21))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
+                        .addComponent(lgudang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel19)))
+                        .addComponent(ltitik2gudang)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -600,9 +600,9 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
                     .addComponent(bcarinopo))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
+                    .addComponent(ltitik2gudang)
                     .addComponent(edgudang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
+                    .addComponent(lgudang)
                     .addComponent(bcari_gudang))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1111,8 +1111,6 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1155,7 +1153,9 @@ public class Daftarfakturpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel labelluangmuka;
+    public javax.swing.JLabel lgudang;
     public javax.swing.JLabel lsubtotal;
+    public javax.swing.JLabel ltitik2gudang;
     public javax.swing.JLabel ltop;
     public javax.swing.JLabel ltotal_pajak;
     public javax.swing.JLabel ltotal_pembelian;
