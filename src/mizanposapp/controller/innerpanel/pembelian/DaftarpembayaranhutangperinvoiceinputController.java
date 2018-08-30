@@ -77,6 +77,13 @@ public class DaftarpembayaranhutangperinvoiceinputController {
     private boolean ischangevalue = false;
     static String oldvalue = "";
     NumberFormat nf = NumberFormat.getInstance();
+    ArrayList<String> listheadername = new ArrayList<>();
+    String noref = "noref";
+    String tanggal = "tanggal";
+    String total = "total";
+    String sisa = "sisa";
+    String diskon = "diskon";
+    String jumlah_bayar = "jumlah_bayar";
 
     public DaftarpembayaranhutangperinvoiceinputController(Daftarpembayaranhutangperinvoice_input_panel pane) {
         this.pane = pane;
@@ -222,6 +229,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 dtmtabeldata.addColumn(jaaray.get(1));
+                listheadername.add(String.valueOf(jaaray.get(0)));
             }
 
             // resize colum
@@ -429,7 +437,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     }
                     int col = e.getColumn();
                     int row = e.getFirstRow();
-                    if (col == 4) {
+                    if (col == gx(diskon)) {
                         try {
                             ischangevalue = true;
                             tabeldatalist.get(row).setDiskon(String.valueOf(tm.getValueAt(row, 4)));
@@ -437,7 +445,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                             double sisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
                             double total_bayar = sisa - diskon;
                             tabeldatalist.get(row).setJumlah_bayar(String.valueOf(total_bayar));
-                            tm.setValueAt(total_bayar, row, 5);
+                            tm.setValueAt(total_bayar, row, gx(jumlah_bayar));
                             kalkulasi();
 
                         } catch (Exception ex) {
@@ -445,7 +453,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         } finally {
                             ischangevalue = false;
                         }
-                    } else if (col == 5) {
+                    } else if (col == gx(jumlah_bayar)) {
                         try {
                             ischangevalue = true;
                             String noref = tabeldatalist.get(row).getNoref();
@@ -456,10 +464,10 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                             if (totabayartambahdiskon > sisa) {
                                 JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, 5, false, false);
-                                tm.setValueAt("0", row, 5);
+                                pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
+                                tm.setValueAt("0", row, gx(jumlah_bayar));
                             } else {
-                                tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, 5)));
+                                tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, gx(jumlah_bayar))));
                                 kalkulasi();
                             }
 
@@ -497,14 +505,14 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     tb.getCellEditor().cancelCellEditing();
                 }
                 if (e.getClickCount() == 2) {
-                    if (col == 0) {
+                    if (col == gx(noref)) {
                         Staticvar.preid = tabeldatalist.get(row).getId();
                         String defnilai = "";
                         String cekval = String.valueOf(tb.getValueAt(row, col));
                         if (cekval.equals("null") || cekval.equals("")) {
                             defnilai = "";
                         } else {
-                            defnilai = String.valueOf(tb.getValueAt(row, 0));
+                            defnilai = String.valueOf(tb.getValueAt(row, gx(noref)));
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = "";
@@ -529,17 +537,17 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                             tabeldatalist.get(row).setAkun(String.valueOf(joindata.get("akun")));
                                             tabeldatalist.get(row).setId(String.valueOf(joindata.get("id")));
                                             tabeldatalist.get(row).setNoref(String.valueOf(joindata.get("noref")));
-                                            tb.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
+                                            tb.setValueAt(String.valueOf(joindata.get("noref")), row, gx(noref));
                                             tabeldatalist.get(row).setTanggal(String.valueOf(joindata.get("tanggal")));
-                                            tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
+                                            tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, gx(tanggal));
                                             tabeldatalist.get(row).setTotalhutang(String.valueOf(joindata.get("total")));
-                                            tb.setValueAt(String.valueOf(joindata.get("total")), row, 2);
+                                            tb.setValueAt(String.valueOf(joindata.get("total")), row, gx(total));
                                             tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
-                                            tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
+                                            tb.setValueAt(String.valueOf(joindata.get("sisa")), row, gx(sisa));
                                             tabeldatalist.get(row).setDiskon("0");
-                                            tb.setValueAt("0", row, 4);
+                                            tb.setValueAt("0", row, gx(sisa));
                                             tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
-                                            tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
+                                            tb.setValueAt(String.valueOf(joindata.get("sisa")), row, gx(jumlah_bayar));
                                         }
                                         kalkulasi();
                                         addautorow(row);
@@ -568,17 +576,17 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                                 tabeldatalist.get(row).setAkun(String.valueOf(joindata.get("akun")));
                                                 tabeldatalist.get(row).setId(String.valueOf(joindata.get("id")));
                                                 tabeldatalist.get(row).setNoref(String.valueOf(joindata.get("noref")));
-                                                tb.setValueAt(String.valueOf(joindata.get("noref")), row, 0);
+                                                tb.setValueAt(String.valueOf(joindata.get("noref")), row, gx(noref));
                                                 tabeldatalist.get(row).setTanggal(String.valueOf(joindata.get("tanggal")));
-                                                tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, 1);
+                                                tb.setValueAt(String.valueOf(joindata.get("tanggal")), row, gx(tanggal));
                                                 tabeldatalist.get(row).setTotalhutang(String.valueOf(joindata.get("total")));
-                                                tb.setValueAt(String.valueOf(joindata.get("total")), row, 2);
+                                                tb.setValueAt(String.valueOf(joindata.get("total")), row, gx(total));
                                                 tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
-                                                tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 3);
+                                                tb.setValueAt(String.valueOf(joindata.get("sisa")), row, gx(sisa));
                                                 tabeldatalist.get(row).setDiskon("0");
-                                                tb.setValueAt("0", row, 4);
+                                                tb.setValueAt("0", row, gx(sisa));
                                                 tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
-                                                tb.setValueAt(String.valueOf(joindata.get("sisa")), row, 5);
+                                                tb.setValueAt(String.valueOf(joindata.get("sisa")), row, gx(jumlah_bayar));
                                             }
                                             kalkulasi();
                                             addautorow(row);
@@ -626,7 +634,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     Component editor = pane.tabledata.getEditorComponent();
                     editor.requestFocusInWindow();
                 }
-                if (col == 0) {
+                if (col == gx(noref)) {
                     Staticvar.preid = tabeldatalist.get(row).getId();
                     String defnilai = "";
                     String cekval = String.valueOf(pane.tabledata.getValueAt(row, col));
@@ -744,9 +752,9 @@ public class DaftarpembayaranhutangperinvoiceinputController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, 1).equals("")
-                || !pane.tabledata.getValueAt(row, 2).equals("")
-                || !pane.tabledata.getValueAt(row, 3).equals("")) {
+                || !pane.tabledata.getValueAt(row, gx(tanggal)).equals("")
+                || !pane.tabledata.getValueAt(row, gx(sisa)).equals("")
+                || !pane.tabledata.getValueAt(row, gx(diskon)).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
@@ -1148,6 +1156,10 @@ public class DaftarpembayaranhutangperinvoiceinputController {
         }
         pane.edtotal_nilai.setText(nf.format(hasil));
         pane.lterbilang.setText(numtoword.TerbilangIndonesia(hasil));
+    }
+
+    private int gx(String columname) {
+        return listheadername.indexOf(columname);
     }
 
     public class Entitytabledata {

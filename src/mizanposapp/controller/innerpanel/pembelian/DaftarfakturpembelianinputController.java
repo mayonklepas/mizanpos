@@ -107,7 +107,7 @@ public class DaftarfakturpembelianinputController {
     int currentrow;
     String kode = "kode";
     String nama = "nama";
-    String order= "order";
+    String order = "order";
     String jumlah = "jumlah";
     String satuan = "satuan";
     String harga_beli = "harga_beli";
@@ -1350,7 +1350,7 @@ public class DaftarfakturpembelianinputController {
                                     tabeldatalist.get(row).setId_barang(Staticvar.resid);
                                     tm.setValueAt(String.valueOf(Staticvar.resid), row, 0);
                                     if (!Staticvar.preid.equals(Staticvar.resid)) {
-                                        tm.setValueAt(String.valueOf(Staticvar.reslabel), row,gx(nama));
+                                        tm.setValueAt(String.valueOf(Staticvar.reslabel), row, gx(nama));
                                         tabeldatalist.get(row).setDiskon_persen("0");
                                         tabeldatalist.get(row).setDiskon_nominal("0");
                                         tabeldatalist.get(row).setTotal("0");
@@ -1879,7 +1879,7 @@ public class DaftarfakturpembelianinputController {
                 } else if (col == gx(gudang)) {
                     Staticvar.sfilter = "";
                     Staticvar.preid = tabeldatalist.get(row).getId_gudang();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(gudang) ));
+                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(gudang)));
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
                     jd.pack();
@@ -2141,7 +2141,7 @@ public class DaftarfakturpembelianinputController {
 
     private void kalkulasitotalperrow(int row) {
         if (pane.ckdiskon.isSelected() == true) {
-            String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row,gx(diskon_persen)));
+            String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
             if (isifielddiskon.contains("+")) {
                 double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
                 double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_beli)));
@@ -2350,7 +2350,7 @@ public class DaftarfakturpembelianinputController {
         }
         return result;
     }
-    
+
     private int gx(String columname) {
         return listheadername.indexOf(columname);
     }
