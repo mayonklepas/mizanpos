@@ -314,7 +314,7 @@ public class DaftarfakturpembelianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
-                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
+                if (jc.getSelectedIndex() == 0) {
                     tipe_beli = 0;
                     pane.lgudang.setVisible(true);
                     pane.ltitik2gudang.setVisible(true);
@@ -569,8 +569,25 @@ public class DaftarfakturpembelianinputController {
                     tipe_bayar = ConvertFunc.ToInt(joinpembelian.get("tipe_pembayaran"));
                     if (tipe_bayar == 0) {
                         pane.cmb_tipe_bayar.setSelectedIndex(0);
+                        pane.eduang_muka.setText("0");
+                        pane.eduang_muka.setEnabled(false);
+                        pane.edtop.setVisible(false);
+                        pane.bcaritop.setVisible(false);
+                        pane.ltop.setVisible(false);
+                        tipe_bayar = 0;
+                        valtop = "";
+                        pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                        valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
                     } else {
                         pane.cmb_tipe_bayar.setSelectedIndex(1);
+                        pane.eduang_muka.setEnabled(true);
+                        pane.edtop.setVisible(true);
+                        pane.bcaritop.setVisible(true);
+                        pane.ltop.setVisible(true);
+                        tipe_bayar = 1;
+                        valtop = "";
+                        pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                        valakun_pembelian = Globalsession.AKUNHUTANGUSAHA;
                     }
 
                     valshipvia = String.valueOf(joinpembelian.get("id_pengantaran"));
@@ -1091,17 +1108,17 @@ public class DaftarfakturpembelianinputController {
                                 valgudang = String.valueOf(joinpembelian.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
                                 tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
-                                valcheck = ConvertFunc.ToInt(joinpembelian.get("diskon_persen"));
-                                if (tipe_beli == 0) {
-                                    pane.cmb_tipe_pembelian.setSelectedIndex(0);
-                                } else {
-                                    pane.cmb_tipe_pembelian.setSelectedIndex(1);
-                                }
-
+                                int valcheck = ConvertFunc.ToInt(joinpembelian.get("diskon_dalam"));
                                 if (valcheck == 0) {
                                     pane.ckdiskon.setSelected(true);
                                 } else {
                                     pane.ckdiskon.setSelected(false);
+                                }
+
+                                if (tipe_beli == 0) {
+                                    pane.cmb_tipe_pembelian.setSelectedIndex(0);
+                                } else {
+                                    pane.cmb_tipe_pembelian.setSelectedIndex(1);
                                 }
 
                             }

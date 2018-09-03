@@ -495,11 +495,11 @@ public class DaftarorderpembelianinputController {
                     valcheck = 1;
                 }
                 if (pane.ckdiskon.isSelected()) {
-                    hidetable(7);
-                    showtable(6);
+                    hidetable(gx(diskon_nominal));
+                    showtable(gx(diskon_persen));
                 } else {
-                    showtable(7);
-                    hidetable(6);
+                    showtable(gx(diskon_nominal));
+                    hidetable(gx(diskon_persen));
                 }
 
             } else {
