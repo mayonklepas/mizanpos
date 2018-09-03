@@ -2139,7 +2139,8 @@ public class DaftarfakturpembelianinputController {
             double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total)));
             subtotal = subtotal + total_beli_masing;
 
-            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total))) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
+            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total)))
+                    * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
@@ -2152,7 +2153,7 @@ public class DaftarfakturpembelianinputController {
         double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
         total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
 
-        pane.eddiskon2.setText(nf.format(diskon_nominal));
+        //pane.eddiskon2.setText(nf.format(diskon_nominal));
         pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
 
