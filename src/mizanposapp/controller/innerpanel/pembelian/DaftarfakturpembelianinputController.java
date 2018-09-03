@@ -2153,7 +2153,7 @@ public class DaftarfakturpembelianinputController {
         double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
         total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
 
-        //pane.eddiskon2.setText(nf.format(diskon_nominal));
+        pane.eddiskon2.setText(nf.format(diskon_nominal));
         pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
 
