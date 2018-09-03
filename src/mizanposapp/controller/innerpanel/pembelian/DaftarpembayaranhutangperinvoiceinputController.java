@@ -1138,7 +1138,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", ""));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(1, 0, false, false);
+                    pane.tabledata.changeSelection(1, gx(noref), false, false);
                 } else {
                     addautorow(lastrow);
                 }

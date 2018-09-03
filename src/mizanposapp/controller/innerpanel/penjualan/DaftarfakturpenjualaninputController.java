@@ -2303,11 +2303,11 @@ public class DaftarfakturpenjualaninputController {
         if (col == colcount) {
             if (pane.tabledata.getRowCount() - 1 > row) {
                 pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row + 1, 0, false, false);
-            } else if (String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("")
-                    || String.valueOf(pane.tabledata.getValueAt(row, 0)).equals("null")) {
+                pane.tabledata.changeSelection(row + 1, gx(kode), false, false);
+            } else if (String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("")
+                    || String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("null")) {
                 pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(row, 0, false, false);
+                pane.tabledata.changeSelection(row, gx(kode), false, false);
             } else {
                 addautorow(row);
             }
@@ -2326,9 +2326,9 @@ public class DaftarfakturpenjualaninputController {
             if (currentcoll == i) {
                 for (int j = currentcoll; j <= colcount; j++) {
                     while (!cekcolomnol(j + 1)) {
-                        if (((j + 1) == 7) || ((j + 1) == 8)) {
+                        if (((j + 1) == gx(diskon_persen)) || ((j + 1) == gx(diskon_nominal))) {
                             if (pane.ckdiskon.isSelected()) {
-                                if ((j + 1) == 8) {
+                                if ((j + 1) == gx(diskon_nominal)) {
                                     int x = j + 1;
                                     for (int k = x; k <= colcount; k++) {
                                         while (!cekcolomnol(k + 1)) {
@@ -2339,11 +2339,11 @@ public class DaftarfakturpenjualaninputController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                    pane.tabledata.changeSelection(currentrow, gx(diskon_persen), false, false);
                                 }
                             } else {
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(currentrow, 8, false, false);
+                                pane.tabledata.changeSelection(currentrow, gx(diskon_nominal), false, false);
                             }
                         } else {
                             pane.tabledata.requestFocus();
@@ -2361,9 +2361,9 @@ public class DaftarfakturpenjualaninputController {
             if (currentcoll == i) {
                 for (int j = currentcoll; j >= 0; j--) {
                     while (!cekcolomnol(j - 1)) {
-                        if (((j - 1) == 7) || ((j - 1) == 8)) {
+                        if (((j - 1) == gx(diskon_persen)) || ((j - 1) == gx(diskon_nominal))) {
                             if (pane.ckdiskon.isSelected()) {
-                                if ((j - 1) == 8) {
+                                if ((j - 1) == gx(diskon_nominal)) {
                                     int x = j - 1;
                                     for (int k = x; k >= 0; k--) {
                                         while (!cekcolomnol(k - 1)) {
@@ -2374,10 +2374,10 @@ public class DaftarfakturpenjualaninputController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 7, false, false);
+                                    pane.tabledata.changeSelection(currentrow, gx(diskon_persen), false, false);
                                 }
                             } else {
-                                if ((j - 1) == 7) {
+                                if ((j - 1) == gx(diskon_persen)) {
                                     int x = j - 1;
                                     for (int k = x; k >= 0; k--) {
                                         while (!cekcolomnol(k - 1)) {
@@ -2388,7 +2388,7 @@ public class DaftarfakturpenjualaninputController {
                                     }
                                 } else {
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(currentrow, 8, false, false);
+                                    pane.tabledata.changeSelection(currentrow, gx(diskon_nominal), false, false);
                                 }
                             }
                         } else {

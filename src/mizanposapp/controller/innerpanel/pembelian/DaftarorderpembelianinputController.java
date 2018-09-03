@@ -103,6 +103,7 @@ public class DaftarorderpembelianinputController {
     static String oldvalue = "";
     ArrayList<Integer> lsvisiblecolom = new ArrayList<>();
     static boolean sudahterpanggil = false;
+    static boolean sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
     ArrayList<String> listheadername = new ArrayList<>();
     String kode = "kode";
     String nama = "nama";
@@ -346,7 +347,11 @@ public class DaftarorderpembelianinputController {
                     }
                 }
 
-                
+                if (sudah_jangan_set_lagi_kau_membuat_semua_kacau == true) {
+                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
+                    return;
+                }
+
                 Runnable rn = new Runnable() {
                     @Override
                     public void run() {

@@ -1304,7 +1304,7 @@
         },
         {
             "key": [
-                "hbeli",
+                "harga_beli",
                 "H. Beli",
                 "0",
                 "0"
@@ -1312,7 +1312,7 @@
         },
         {
             "key": [
-                "hjual",
+                "harga_jual",
                 "H. Jual",
                 "1",
                 "10"
@@ -1320,7 +1320,7 @@
         },
         {
             "key": [
-                "disc%",
+                "disc_persen",
                 "Disc %",
                 "1",
                 "6"
@@ -1328,7 +1328,7 @@
         },
         {
             "key": [
-                "discrp",
+                "disc_rp",
                 "Disc Rp",
                 "1",
                 "8"
