@@ -1110,6 +1110,8 @@ public class DaftarfakturpembelianinputController {
                                 valgudang = String.valueOf(joinpembelian.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
                                 tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
+                                pane.eddiskon1.setText(String.valueOf(joinpembelian.get("diskon_persen")));
+                                pane.eddiskon2.setText(String.valueOf(joinpembelian.get("diskon_nominal")));
                                 int valcheck = ConvertFunc.ToInt(joinpembelian.get("diskon_dalam"));
                                 if (valcheck == 0) {
                                     pane.ckdiskon.setSelected(true);
