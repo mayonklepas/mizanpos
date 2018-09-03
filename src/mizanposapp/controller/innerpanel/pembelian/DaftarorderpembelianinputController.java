@@ -965,6 +965,8 @@ public class DaftarorderpembelianinputController {
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(1, 0, false, false);
+                } else {
+                    addautorow(lastrow);
                 }
             }
 
@@ -1941,11 +1943,11 @@ public class DaftarorderpembelianinputController {
 
         double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
         double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-        double diskon_persen = ConvertFunc.ToDouble(pane.eddiskon1.getText());
-        double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
-        total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
+        double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+        //double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
+        total_pembelian_all = subtotal + biayalain - indiskon_nominal + pajak;
 
-        pane.eddiskon2.setText(nf.format(diskon_nominal));
+        //pane.eddiskon2.setText(nf.format(indiskon_nominal));
         pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
 

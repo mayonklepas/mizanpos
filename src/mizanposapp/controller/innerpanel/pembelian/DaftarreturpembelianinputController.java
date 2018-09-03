@@ -1003,6 +1003,8 @@ public class DaftarreturpembelianinputController {
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(1, 0, false, false);
+                } else {
+                    addautorow(lastrow);
                 }
             }
 
@@ -2124,11 +2126,11 @@ public class DaftarreturpembelianinputController {
 
         double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
         double inpajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-        double indiskon_persen = ConvertFunc.ToDouble(pane.eddiskon1.getText());
-        double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
+        double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+        //double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
         total_pembelian_all = subtotal + biayalain - indiskon_nominal + inpajak;
 
-        pane.eddiskon2.setText(nf.format(indiskon_nominal));
+        //pane.eddiskon2.setText(nf.format(indiskon_nominal));
         pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
     }
 
