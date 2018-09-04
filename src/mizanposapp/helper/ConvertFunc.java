@@ -5,6 +5,7 @@
  */
 package mizanposapp.helper;
 
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -88,4 +89,9 @@ public class ConvertFunc {
         return hasil;
     }
 
+    public static String rounding(double value) {
+        double scale = Math.pow(10, 2);
+        double hasil = Math.round(value * scale) / scale;
+        return String.valueOf(hasil);
+    }
 }

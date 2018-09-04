@@ -914,6 +914,8 @@ public class DaftarorderpenjualaninputController {
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(1, 0, false, false);
+                } else {
+                    addautorow(lastrow);
                 }
             }
 
@@ -1853,10 +1855,10 @@ public class DaftarorderpenjualaninputController {
                 if (!Character.isLetter(cr)) {
                     double subtotal = ConvertFunc.ToDouble(pane.lsubtotal.getText());
                     double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
-                    double diskon_persen = ConvertFunc.ToDouble(pane.eddiskon1.getText());
-                    double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
+                    double indiskon_persen = ConvertFunc.ToDouble(pane.eddiskon1.getText());
+                    double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
                     double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-                    total_penjualan_all = subtotal + biayalain - diskon_nominal + pajak;
+                    total_penjualan_all = subtotal + biayalain - indiskon_nominal + pajak;
 
                     pane.eddiskon2.setText(nf.format(diskon_nominal));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
@@ -1876,11 +1878,10 @@ public class DaftarorderpenjualaninputController {
                     double subtotal = ConvertFunc.ToDouble(pane.lsubtotal.getText());
                     double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
                     double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-                    double diskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
-                    double diskon_persen = (diskon_nominal / (subtotal + biayalain)) * 100;
-                    total_penjualan_all = subtotal + biayalain - diskon_nominal + pajak;
-
-                    pane.eddiskon1.setText(String.valueOf(diskon_persen));
+                    double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+                    double indiskon_persen = (indiskon_nominal / (subtotal + biayalain)) * 100;
+                    total_penjualan_all = subtotal + biayalain - indiskon_nominal + pajak;
+                    pane.eddiskon1.setText(ConvertFunc.rounding(indiskon_persen));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
@@ -1914,11 +1915,11 @@ public class DaftarorderpenjualaninputController {
 
         double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
         double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-        double diskon_persen = ConvertFunc.ToDouble(pane.eddiskon1.getText());
-        double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
-        total_penjualan_all = subtotal + biayalain - diskon_nominal + pajak;
+        double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+        //double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
+        total_penjualan_all = subtotal + biayalain - indiskon_nominal + pajak;
 
-        pane.eddiskon2.setText(nf.format(diskon_nominal));
+        pane.eddiskon2.setText(nf.format(indiskon_nominal));
         pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
     }
 

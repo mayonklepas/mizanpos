@@ -2114,11 +2114,10 @@ public class DaftarfakturpembelianinputController {
                     double subtotal = ConvertFunc.ToDouble(pane.lsubtotal.getText());
                     double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
                     double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-                    double diskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
-                    double diskon_persen = (diskon_nominal / (subtotal + biayalain)) * 100;
-                    total_pembelian_all = subtotal + biayalain - diskon_nominal + pajak;
-
-                    pane.eddiskon1.setText(String.valueOf(diskon_persen));
+                    double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+                    double indiskon_persen = (indiskon_nominal / (subtotal + biayalain)) * 100;
+                    total_pembelian_all = subtotal + biayalain - indiskon_nominal + pajak;
+                    pane.eddiskon1.setText(ConvertFunc.rounding(indiskon_persen));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
