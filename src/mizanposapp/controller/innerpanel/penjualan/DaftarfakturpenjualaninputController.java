@@ -1140,6 +1140,8 @@ public class DaftarfakturpenjualaninputController {
                                 JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
                                 valgudang = String.valueOf(joinpenjualan.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
+                                pane.eddiskon1.setText(String.valueOf(joinpenjualan.get("diskon_persen")));
+                                pane.eddiskon2.setText(String.valueOf(joinpenjualan.get("diskon_nominal")));
                             }
 
                             Object objtabeldata = jsonobjdata.get("penjualan_detail");
@@ -2195,7 +2197,7 @@ public class DaftarfakturpenjualaninputController {
         //double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
         total_penjualan_all = subtotal + biayalain - indiskon_nominal + pajak;
 
-        pane.eddiskon2.setText(nf.format(diskon_nominal));
+        pane.eddiskon2.setText(nf.format(indiskon_nominal));
         pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
     }
 
