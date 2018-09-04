@@ -454,6 +454,9 @@ public class DaftarreturpembelianinputController {
         }
 
         for (int i = 0; i < lsresize.size(); i++) {
+            if (cekcolomnol(i)) {
+                continue;
+            }
             int setsize = lsresize.get(i);
             lebarAll = lebarAll + setsize;
         }
