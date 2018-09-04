@@ -260,9 +260,9 @@ public class DaftarreturpembelianinputController {
             }
         });
 
-        pane.cmb_tipe_bayar.addItemListener(new ItemListener() {
+        pane.cmb_tipe_bayar.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                     lshide.set(gx(order), 0);
                     lsresize.set(gx(order), 0);
@@ -320,9 +320,9 @@ public class DaftarreturpembelianinputController {
             }
         });
 
-        pane.cmb_tipe_pembelian.addItemListener(new ItemListener() {
+        pane.cmb_tipe_pembelian.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
                 if (jc.getSelectedIndex() == 0) {
                     tipe_beli = 0;
@@ -489,8 +489,26 @@ public class DaftarreturpembelianinputController {
                 getkodetransaksi();
                 pane.cmb_tipe_pembelian.setSelectedIndex(0);
                 tipe_beli = 0;
-
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
+                pane.lreturatas.setVisible(false);
+                pane.ltitikduareturatas.setVisible(false);
+                pane.ednopo.setVisible(false);
+                pane.bcari_po.setVisible(false);
+                pane.eduang_muka.setText("0");
+                /*pane.eduang_muka.setEnabled(false);
+                    pane.edtop.setVisible(false);
+                    pane.bcaritop.setVisible(false);
+                    pane.ltop.setVisible(false);*/
+                tipe_bayar = 0;
+                valtop = "";
+                pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
+
+                pane.lreturatas.setVisible(false);
+                pane.ltitikduareturatas.setVisible(false);
+                pane.ednopo.setVisible(false);
+                pane.bcari_po.setVisible(false);
+                pane.eduang_muka.setText("0");
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edsupplier.setText("");

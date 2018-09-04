@@ -492,8 +492,16 @@ public class DaftarreturpenjualaninputController {
                 getkodetransaksi();
                 pane.cmb_tipe_penjualan.setSelectedIndex(0);
                 tipe_beli = 0;
-
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
+                pane.lreturatas.setVisible(false);
+                pane.ltitikduareturatas.setVisible(false);
+                pane.ednopo.setVisible(false);
+                pane.bcari_po.setVisible(false);
+                pane.eduang_muka.setText("0");
+                tipe_bayar = 0;
+                valtop = "";
+                pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
+                valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edcustomer.setText("");
@@ -796,11 +804,11 @@ public class DaftarreturpenjualaninputController {
                         } else if (Staticvar.frame.equals("retur")) {
                             inpane = new Daftarreturpenjualan_inner_panel();
                         }
-                        Staticvar.pmp.container.removeAll();
-                        Staticvar.pmp.container.setLayout(new BorderLayout());
-                        Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
-                        Staticvar.pmp.container.revalidate();
-                        Staticvar.pmp.container.repaint();
+                        Staticvar.pp.container.removeAll();
+                        Staticvar.pp.container.setLayout(new BorderLayout());
+                        Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
+                        Staticvar.pp.container.revalidate();
+                        Staticvar.pp.container.repaint();
                         Staticvar.frame = "";
                     }
                 } catch (Exception e) {
@@ -857,11 +865,11 @@ public class DaftarreturpenjualaninputController {
                 } else if (Staticvar.frame.equals("retur")) {
                     inpane = new Daftarreturpenjualan_inner_panel();
                 }
-                Staticvar.pmp.container.removeAll();
-                Staticvar.pmp.container.setLayout(new BorderLayout());
-                Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
-                Staticvar.pmp.container.revalidate();
-                Staticvar.pmp.container.repaint();
+                Staticvar.pp.container.removeAll();
+                Staticvar.pp.container.setLayout(new BorderLayout());
+                Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
+                Staticvar.pp.container.revalidate();
+                Staticvar.pp.container.repaint();
                 Staticvar.frame = "";
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
@@ -1039,11 +1047,11 @@ public class DaftarreturpenjualaninputController {
                         } else if (Staticvar.frame.equals("retur")) {
                             inpane = new Daftarreturpenjualan_inner_panel();
                         }
-                        Staticvar.pmp.container.removeAll();
-                        Staticvar.pmp.container.setLayout(new BorderLayout());
-                        Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
-                        Staticvar.pmp.container.revalidate();
-                        Staticvar.pmp.container.repaint();
+                        Staticvar.pp.container.removeAll();
+                        Staticvar.pp.container.setLayout(new BorderLayout());
+                        Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
+                        Staticvar.pp.container.revalidate();
+                        Staticvar.pp.container.repaint();
                         Staticvar.frame = "";
                     }
                 });

@@ -933,6 +933,40 @@
             ]
         }
     ],
+    "returpenjualan": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Ref",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "sisa",
+                "Sisa",
+                "1",
+                "20"
+            ]
+        }
+    ],
     "hutang": [
         {
             "key": [
