@@ -1149,6 +1149,7 @@ public class DaftarfakturpenjualaninputController {
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
                                 pane.eddiskon1.setText(String.valueOf(joinpenjualan.get("diskon_persen")));
                                 pane.eddiskon2.setText(String.valueOf(joinpenjualan.get("diskon_nominal")));
+                                pane.edbiayalain.setText(String.valueOf(joinpenjualan.get("total_biaya")));
                             }
 
                             Object objtabeldata = jsonobjdata.get("penjualan_detail");
