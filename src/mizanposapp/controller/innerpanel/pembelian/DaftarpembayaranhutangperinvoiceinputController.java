@@ -1116,14 +1116,23 @@ public class DaftarpembayaranhutangperinvoiceinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                Runnable rn = new Runnable() {
-                    @Override
-                    public void run() {
-                        tabeldatalist.remove(row);
-                        dtmtabeldata.removeRow(row);
-                    }
-                };
-                SwingUtilities.invokeLater(rn);
+                int dialog = JOptionPane.showConfirmDialog(null,
+                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(noref)) + " - "
+                        + pane.tabledata.getValueAt(row, gx(total)),
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
+                    Runnable rn = new Runnable() {
+                        @Override
+                        public void run() {
+                            tabeldatalist.remove(row);
+                            dtmtabeldata.removeRow(row);
+                            if (row >= 0) {
+                                pane.tabledata.changeSelection(0, 0, false, false);
+                            }
+                        }
+                    };
+                    SwingUtilities.invokeLater(rn);
+                }
             }
 
         });

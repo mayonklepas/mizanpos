@@ -993,7 +993,9 @@ public class DaftarfakturpenjualaninputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                int dialog = JOptionPane.showConfirmDialog(null,
+                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                        + pane.tabledata.getValueAt(row, gx(nama)),
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
@@ -1001,8 +1003,10 @@ public class DaftarfakturpenjualaninputController {
                         public void run() {
                             tabeldatalist.remove(row);
                             dtmtabeldata.removeRow(row);
-                            pane.tabledata.repaint();
                             kalkulasitotal();
+                            if (row >= 0) {
+                                pane.tabledata.changeSelection(0, 0, false, false);
+                            }
                         }
                     };
                     SwingUtilities.invokeLater(rn);

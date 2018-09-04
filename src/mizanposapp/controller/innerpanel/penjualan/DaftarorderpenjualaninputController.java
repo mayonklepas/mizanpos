@@ -191,7 +191,7 @@ public class DaftarorderpenjualaninputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == gx(kode) || column == gx(satuan) || column == gx(harga_beli) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
+                return column == gx(nama) || column == gx(satuan) || column == gx(harga_beli) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
             }
 
         };
@@ -410,6 +410,11 @@ public class DaftarorderpenjualaninputController {
         }
 
         for (int i = 0; i < lsresize.size(); i++) {
+
+            if (cekcolomnol(i)) {
+                continue;
+            }
+
             int setsize = lsresize.get(i);
             lebarAll = lebarAll + setsize;
         }
@@ -889,17 +894,24 @@ public class DaftarorderpenjualaninputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                Runnable rn = new Runnable() {
-                    @Override
-                    public void run() {
-                        tabeldatalist.remove(row);
-                        dtmtabeldata.removeRow(row);
-                        pane.tabledata.repaint();
-                        kalkulasitotal();
-                    }
-                };
-                SwingUtilities.invokeLater(rn);
-
+                int dialog = JOptionPane.showConfirmDialog(null,
+                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                        + pane.tabledata.getValueAt(row, gx(nama)),
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
+                    Runnable rn = new Runnable() {
+                        @Override
+                        public void run() {
+                            tabeldatalist.remove(row);
+                            dtmtabeldata.removeRow(row);
+                            kalkulasitotal();
+                            if (row >= 0) {
+                                pane.tabledata.changeSelection(0, 0, false, false);
+                            }
+                        }
+                    };
+                    SwingUtilities.invokeLater(rn);
+                }
             }
         });
     }

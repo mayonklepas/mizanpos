@@ -116,6 +116,7 @@ public class PopupcariController {
             public void actionPerformed(ActionEvent e) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(0, 0, false, false);
+                enablebutton();
             }
         });
 
@@ -126,6 +127,7 @@ public class PopupcariController {
             public void actionPerformed(ActionEvent e) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(0, 0, false, false);
+                enablebutton();
             }
         });
 
@@ -136,6 +138,7 @@ public class PopupcariController {
             public void actionPerformed(ActionEvent e) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(0, 0, false, false);
+                enablebutton();
             }
         });
 
@@ -146,6 +149,7 @@ public class PopupcariController {
             public void actionPerformed(ActionEvent e) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(0, 0, false, false);
+                enablebutton();
             }
         });
 
