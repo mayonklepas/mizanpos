@@ -16,6 +16,7 @@ import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarfakturpenjualan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarorderpenjualan_inner_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarreturpenjualan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.POS_panel;
 import mizanposapp.view.innerpanel.penjualan.Settingbonuspenjualan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Settingdiskonharian_inner_panel;
@@ -73,7 +74,7 @@ public class PenjualanController {
             public void mousePressed(MouseEvent e) {
                 System.gc();
                 Staticvar.pp = pp;
-                Daftarorderpenjualan_inner_panel pane = new Daftarorderpenjualan_inner_panel();
+                Daftarreturpenjualan_inner_panel pane = new Daftarreturpenjualan_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
                 pp.container.add(pane, BorderLayout.CENTER);
@@ -118,7 +119,7 @@ public class PenjualanController {
             }
 
         };
-        pp.breturpenjualan.addMouseListener(amadap);
+        pp.bpiutang.addMouseListener(amadap);
     }
 
     private void posview() {
@@ -136,7 +137,7 @@ public class PenjualanController {
             }
 
         };
-        pp.breturpenjualan.addMouseListener(amadap);
+        pp.bpos.addMouseListener(amadap);
     }
 
     private void karyawanview() {
@@ -154,7 +155,7 @@ public class PenjualanController {
             }
 
         };
-        pp.breturpenjualan.addMouseListener(amadap);
+        //pp.breturpenjualan.addMouseListener(amadap);
     }
 
     private void settingharidiskonview() {
@@ -172,7 +173,7 @@ public class PenjualanController {
             }
 
         };
-        pp.breturpenjualan.addMouseListener(amadap);
+        //pp.breturpenjualan.addMouseListener(amadap);
     }
 
     private void settingbonuspenjualanview() {
@@ -190,7 +191,7 @@ public class PenjualanController {
             }
 
         };
-        pp.breturpenjualan.addMouseListener(amadap);
+        //pp.breturpenjualan.addMouseListener(amadap);
     }
 
     private void settingdiskonperkelompokview() {
@@ -208,7 +209,7 @@ public class PenjualanController {
             }
 
         };
-        pp.breturpenjualan.addMouseListener(amadap);
+        //pp.breturpenjualan.addMouseListener(amadap);
     }
 
 }
