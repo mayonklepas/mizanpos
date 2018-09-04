@@ -75,7 +75,7 @@ public class DaftarreturpenjualaninputController {
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarreturpenjualan_input_panel pane;
-    String valsupplier = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
+    String valcustomer = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
             valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valreturatas = "";
     double total_hutang = 0;
     int valcheck = 0;
@@ -497,7 +497,7 @@ public class DaftarreturpenjualaninputController {
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edcustomer.setText("");
-                valsupplier = "";
+                valcustomer = "";
                 pane.edno_transaksi.setText("");
                 pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
                 valdept = Globalsession.DEFAULT_DEPT_ID;
@@ -574,8 +574,8 @@ public class DaftarreturpenjualaninputController {
 
                 for (int i = 0; i < japenjualan.size(); i++) {
                     JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
-                    valsupplier = String.valueOf(joinpenjualan.get("id_supplier"));
-                    pane.edcustomer.setText(String.valueOf(joinpenjualan.get("nama_supplier")));
+                    valcustomer = String.valueOf(joinpenjualan.get("id_customer"));
+                    pane.edcustomer.setText(String.valueOf(joinpenjualan.get("nama_customer")));
 
                     tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
                     if (tipe_bayar == 0) {
@@ -737,7 +737,7 @@ public class DaftarreturpenjualaninputController {
                     + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&penjualan="
-                    + "id_supplier='" + valsupplier + "'::"
+                    + "id_customer='" + valcustomer + "'::"
                     + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
                     + "id_nopo='" + ConvertFunc.EncodeString(valreturatas) + "'::"
                     + "id_gudang='" + valgudang + "'::"
@@ -826,7 +826,7 @@ public class DaftarreturpenjualaninputController {
                     + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&penjualan="
-                    + "id_supplier='" + valsupplier + "'::"
+                    + "id_customer='" + valcustomer + "'::"
                     + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
                     + "id_nopo='" + ConvertFunc.EncodeString(valreturatas) + "'::"
                     + "id_gudang='" + valgudang + "'::"
@@ -1055,7 +1055,7 @@ public class DaftarreturpenjualaninputController {
     private void caricustomer() {
         pane.bcari_customer.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
-            Staticvar.preid = valsupplier;
+            Staticvar.preid = valcustomer;
             Staticvar.prelabel = pane.edcustomer.getText();
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Supplier"));
@@ -1064,7 +1064,7 @@ public class DaftarreturpenjualaninputController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-            valsupplier = Staticvar.resid;
+            valcustomer = Staticvar.resid;
             pane.edcustomer.setText(Staticvar.reslabel);
         });
 
@@ -1097,7 +1097,7 @@ public class DaftarreturpenjualaninputController {
                 Staticvar.preid = valreturatas;
                 Staticvar.prelabel = pane.ednopo.getText();
                 JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Popupcari("returpenjualan", "popupdaftarhutangpersupplier?ishutang=1&id=" + valsupplier, "Daftar Hutang Usaha " + pane.edcustomer.getText()));
+                jd.add(new Popupcari("returpenjualan", "popupdaftarpiutangpercustomer?id=" + valcustomer, "Daftar Piutang " + pane.edcustomer.getText()));
                 jd.pack();
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 jd.setLocationRelativeTo(null);
