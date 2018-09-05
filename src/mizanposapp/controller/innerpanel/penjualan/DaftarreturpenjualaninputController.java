@@ -75,7 +75,7 @@ public class DaftarreturpenjualaninputController {
     String id;
     CrudHelper ch = new CrudHelper();
     Daftarreturpenjualan_input_panel pane;
-    String valcustomer = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
+    String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
             valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valreturatas = "";
     double total_hutang = 0;
     int valcheck = 0;
@@ -128,7 +128,7 @@ public class DaftarreturpenjualaninputController {
         loaddata();
         simpandata();
         checkandcombocontrol();
-        caricustomer();
+        caripelanggan();
         carigudang();
         carireturatas();
         caridepartment();
@@ -282,7 +282,7 @@ public class DaftarreturpenjualaninputController {
                     }
                     pane.lreturatas.setVisible(false);
                     pane.ltitikduareturatas.setVisible(false);
-                    pane.ednopo.setVisible(false);
+                    pane.ednoso.setVisible(false);
                     pane.bcari_po.setVisible(false);
                     pane.eduang_muka.setText("0");
                     /*pane.eduang_muka.setEnabled(false);
@@ -309,7 +309,7 @@ public class DaftarreturpenjualaninputController {
                     }
                     pane.lreturatas.setVisible(true);
                     pane.ltitikduareturatas.setVisible(true);
-                    pane.ednopo.setVisible(true);
+                    pane.ednoso.setVisible(true);
                     pane.bcari_po.setVisible(true);
                     /*pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
@@ -495,7 +495,7 @@ public class DaftarreturpenjualaninputController {
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
                 pane.lreturatas.setVisible(false);
                 pane.ltitikduareturatas.setVisible(false);
-                pane.ednopo.setVisible(false);
+                pane.ednoso.setVisible(false);
                 pane.bcari_po.setVisible(false);
                 pane.eduang_muka.setText("0");
                 tipe_bayar = 0;
@@ -504,8 +504,8 @@ public class DaftarreturpenjualaninputController {
                 valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
-                pane.edcustomer.setText("");
-                valcustomer = "";
+                pane.edpelanggan.setText("");
+                valpelanggan = "";
                 pane.edno_transaksi.setText("");
                 pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
                 valdept = Globalsession.DEFAULT_DEPT_ID;
@@ -582,8 +582,8 @@ public class DaftarreturpenjualaninputController {
 
                 for (int i = 0; i < japenjualan.size(); i++) {
                     JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
-                    valcustomer = String.valueOf(joinpenjualan.get("id_customer"));
-                    pane.edcustomer.setText(String.valueOf(joinpenjualan.get("nama_customer")));
+                    valpelanggan = String.valueOf(joinpenjualan.get("id_pelanggan"));
+                    pane.edpelanggan.setText(String.valueOf(joinpenjualan.get("nama_pelanggan")));
 
                     tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
                     if (tipe_bayar == 0) {
@@ -606,8 +606,8 @@ public class DaftarreturpenjualaninputController {
                         Logger.getLogger(DaftarreturpenjualaninputController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    valreturatas = String.valueOf(joinpenjualan.get("id_nopo"));
-                    pane.ednopo.setText(String.valueOf(joinpenjualan.get("nopo")));
+                    valreturatas = String.valueOf(joinpenjualan.get("id_noso"));
+                    pane.ednoso.setText(String.valueOf(joinpenjualan.get("noso")));
 
                     valshipvia = String.valueOf(joinpenjualan.get("id_pengantaran"));
                     pane.edshipvia.setText(String.valueOf(joinpenjualan.get("nama_pengantaran")));
@@ -702,9 +702,10 @@ public class DaftarreturpenjualaninputController {
                     String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
                     String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
                     String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
+                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
-                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
+                            id_pajak, nama_pajak,
                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
 
                 }
@@ -745,9 +746,9 @@ public class DaftarreturpenjualaninputController {
                     + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&penjualan="
-                    + "id_customer='" + valcustomer + "'::"
+                    + "id_pelanggan='" + valpelanggan + "'::"
                     + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                    + "id_nopo='" + ConvertFunc.EncodeString(valreturatas) + "'::"
+                    + "id_noso='" + ConvertFunc.EncodeString(valreturatas) + "'::"
                     + "id_gudang='" + valgudang + "'::"
                     + "total_penjualan='" + total_penjualan_all + "'::"
                     + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
@@ -834,9 +835,9 @@ public class DaftarreturpenjualaninputController {
                     + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&penjualan="
-                    + "id_customer='" + valcustomer + "'::"
+                    + "id_pelanggan='" + valpelanggan + "'::"
                     + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                    + "id_nopo='" + ConvertFunc.EncodeString(valreturatas) + "'::"
+                    + "id_noso='" + ConvertFunc.EncodeString(valreturatas) + "'::"
                     + "id_gudang='" + valgudang + "'::"
                     + "total_penjualan='" + total_penjualan_all + "'::"
                     + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
@@ -890,7 +891,7 @@ public class DaftarreturpenjualaninputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                if (pane.edcustomer.getText().equals("")) {
+                if (pane.edpelanggan.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
 
                 } else if (tabeldatalist.size() == 0) {
@@ -964,7 +965,7 @@ public class DaftarreturpenjualaninputController {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
                     + "qty_order=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getOrder()) + "'" + "::"
                     + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                    + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_beli()) + "'" + "::"
+                    + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
                     + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
                     + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
                     + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
@@ -1060,11 +1061,11 @@ public class DaftarreturpenjualaninputController {
         });
     }
 
-    private void caricustomer() {
-        pane.bcari_customer.addActionListener((ActionEvent e) -> {
+    private void caripelanggan() {
+        pane.bcari_pelanggan.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
-            Staticvar.preid = valcustomer;
-            Staticvar.prelabel = pane.edcustomer.getText();
+            Staticvar.preid = valpelanggan;
+            Staticvar.prelabel = pane.edpelanggan.getText();
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Supplier"));
             jd.pack();
@@ -1072,8 +1073,8 @@ public class DaftarreturpenjualaninputController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-            valcustomer = Staticvar.resid;
-            pane.edcustomer.setText(Staticvar.reslabel);
+            valpelanggan = Staticvar.resid;
+            pane.edpelanggan.setText(Staticvar.reslabel);
         });
 
     }
@@ -1098,21 +1099,21 @@ public class DaftarreturpenjualaninputController {
 
     private void carireturatas() {
         pane.bcari_po.addActionListener((ActionEvent e) -> {
-            if (pane.edcustomer.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Customer tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            if (pane.edpelanggan.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Pelanggan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Staticvar.sfilter = "";
                 Staticvar.preid = valreturatas;
-                Staticvar.prelabel = pane.ednopo.getText();
+                Staticvar.prelabel = pane.ednoso.getText();
                 JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Popupcari("returpenjualan", "popupdaftarpiutangpercustomer?id=" + valcustomer, "Daftar Piutang " + pane.edcustomer.getText()));
+                jd.add(new Popupcari("returpenjualan", "popupdaftarpiutangperpelanggan?id=" + valpelanggan, "Daftar Piutang " + pane.edpelanggan.getText()));
                 jd.pack();
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 jd.setLocationRelativeTo(null);
                 jd.setVisible(true);
                 jd.toFront();
                 valreturatas = Staticvar.resid;
-                pane.ednopo.setText(Staticvar.reslabel);
+                pane.ednoso.setText(Staticvar.reslabel);
                 total_hutang = ConvertFunc.ToDouble(Staticvar.resvalueextended);
                 if (Staticvar.preid != valreturatas) {
                     if (!valreturatas.equals("") || !valreturatas.equals("null")) {

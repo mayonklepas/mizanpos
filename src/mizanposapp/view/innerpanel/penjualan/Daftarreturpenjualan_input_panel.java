@@ -39,7 +39,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         edno_transaksi = new javax.swing.JTextField();
-        bcari_customer = new javax.swing.JButton();
+        bcari_pelanggan = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         bcari_salesman = new javax.swing.JButton();
@@ -88,7 +88,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         bcari_gudang = new javax.swing.JButton();
         lreturatas = new javax.swing.JLabel();
         ltitikduareturatas = new javax.swing.JLabel();
-        ednopo = new javax.swing.JTextField();
+        ednoso = new javax.swing.JTextField();
         bcari_po = new javax.swing.JButton();
         cmb_tipe_bayar = new javax.swing.JComboBox<>();
         bcari_dept = new javax.swing.JButton();
@@ -98,7 +98,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         bbatal = new javax.swing.JButton();
         bhapus_baris = new javax.swing.JButton();
         btambah_baris = new javax.swing.JButton();
-        edcustomer = new javax.swing.JTextField();
+        edpelanggan = new javax.swing.JTextField();
         cmb_tipe_penjualan = new javax.swing.JComboBox<>();
         ckdiskon = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -176,11 +176,11 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
             }
         });
 
-        bcari_customer.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        bcari_customer.setText("Cari");
-        bcari_customer.addActionListener(new java.awt.event.ActionListener() {
+        bcari_pelanggan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_pelanggan.setText("Cari");
+        bcari_pelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcari_customerActionPerformed(evt);
+                bcari_pelangganActionPerformed(evt);
             }
         });
 
@@ -538,11 +538,11 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         ltitikduareturatas.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ltitikduareturatas.setText(":");
 
-        ednopo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        ednopo.setPreferredSize(new java.awt.Dimension(51, 20));
-        ednopo.addActionListener(new java.awt.event.ActionListener() {
+        ednoso.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ednoso.setPreferredSize(new java.awt.Dimension(51, 20));
+        ednoso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ednopoActionPerformed(evt);
+                ednosoActionPerformed(evt);
             }
         });
 
@@ -576,7 +576,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(ednopo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ednoso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)
                         .addComponent(bcari_po))
                     .addComponent(edketerangan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -591,7 +591,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ltitikduareturatas)
-                    .addComponent(ednopo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ednoso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lreturatas)
                     .addComponent(bcari_po))
                 .addGap(1, 1, 1)
@@ -665,9 +665,9 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        edcustomer.addActionListener(new java.awt.event.ActionListener() {
+        edpelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edcustomerActionPerformed(evt);
+                edpelangganActionPerformed(evt);
             }
         });
 
@@ -903,9 +903,9 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
                                 .addGap(2, 2, 2)
                                 .addComponent(bcari_dept))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(edcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(edpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
-                                .addComponent(bcari_customer))
+                                .addComponent(bcari_pelanggan))
                             .addComponent(edno_transaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(dtanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -944,8 +944,8 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
-                            .addComponent(bcari_customer)
-                            .addComponent(edcustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bcari_pelanggan)
+                            .addComponent(edpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -974,9 +974,9 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bcari_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_customerActionPerformed
+    private void bcari_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_pelangganActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bcari_customerActionPerformed
+    }//GEN-LAST:event_bcari_pelangganActionPerformed
 
     private void edno_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edno_transaksiActionPerformed
         // TODO add your handling code here:
@@ -1014,9 +1014,9 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcaritopActionPerformed
 
-    private void edcustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edcustomerActionPerformed
+    private void edpelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edpelangganActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edcustomerActionPerformed
+    }//GEN-LAST:event_edpelangganActionPerformed
 
     private void bcaritopAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcaritopAncestorAdded
         // TODO add your handling code here:
@@ -1054,9 +1054,9 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_uang_mukaActionPerformed
 
-    private void ednopoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ednopoActionPerformed
+    private void ednosoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ednosoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ednopoActionPerformed
+    }//GEN-LAST:event_ednosoActionPerformed
 
     private void bcari_poActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_poActionPerformed
         // TODO add your handling code here:
@@ -1064,9 +1064,9 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
-    public javax.swing.JButton bcari_customer;
     public javax.swing.JButton bcari_dept;
     public javax.swing.JButton bcari_gudang;
+    public javax.swing.JButton bcari_pelanggan;
     public javax.swing.JButton bcari_po;
     public javax.swing.JButton bcari_salesman;
     public javax.swing.JButton bcari_uang_muka;
@@ -1088,14 +1088,14 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
     public javax.swing.JTextField edakun_penjualan;
     public javax.swing.JTextField edakun_uang_muka;
     public javax.swing.JTextField edbiayalain;
-    public javax.swing.JTextField edcustomer;
     public javax.swing.JTextField eddept;
     public javax.swing.JTextField eddiskon1;
     public javax.swing.JTextField eddiskon2;
     public javax.swing.JTextField edgudang;
     public javax.swing.JTextField edketerangan;
     public javax.swing.JTextField edno_transaksi;
-    public javax.swing.JTextField ednopo;
+    public javax.swing.JTextField ednoso;
+    public javax.swing.JTextField edpelanggan;
     public javax.swing.JTextField edsalesman;
     public javax.swing.JTextField edshipvia;
     public javax.swing.JTextField edtop;

@@ -51,9 +51,9 @@
                               <Component id="bcari_dept" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="edcustomer" min="-2" pref="149" max="-2" attributes="0"/>
+                              <Component id="edpelanggan" min="-2" pref="149" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="bcari_customer" min="-2" max="-2" attributes="0"/>
+                              <Component id="bcari_pelanggan" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="edno_transaksi" alignment="0" max="32767" attributes="0"/>
                           <Component id="dtanggal" max="32767" attributes="0"/>
@@ -102,8 +102,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bcari_customer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="edcustomer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_pelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edpelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -253,7 +253,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="bcari_customer">
+    <Component class="javax.swing.JButton" name="bcari_pelanggan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="11" style="0"/>
@@ -261,7 +261,7 @@
         <Property name="text" type="java.lang.String" value="Cari"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_customerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_pelangganActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -890,7 +890,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="ednopo" max="32767" attributes="0"/>
+                          <Component id="ednoso" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                           <Component id="bcari_po" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -910,7 +910,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ltitikduareturatas" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ednopo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ednoso" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lreturatas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bcari_po" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -1033,7 +1033,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="ednopo">
+        <Component class="javax.swing.JTextField" name="ednoso">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="11" style="0"/>
@@ -1043,7 +1043,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ednopoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ednosoActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1196,9 +1196,9 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="edcustomer">
+    <Component class="javax.swing.JTextField" name="edpelanggan">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edcustomerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edpelangganActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
