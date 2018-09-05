@@ -1252,10 +1252,11 @@ public class DaftarreturpenjualaninputController {
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
                                 valcheck = ConvertFunc.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
-                                    pane.ckdiskon.setSelected(false);
-                                } else {
                                     pane.ckdiskon.setSelected(true);
+                                } else {
+                                    pane.ckdiskon.setSelected(false);
                                 }
+
                                 if (pane.ckdiskon.isSelected()) {
                                     hidetable(gx(diskon_nominal));
                                     showtable(gx(diskon_persen));
