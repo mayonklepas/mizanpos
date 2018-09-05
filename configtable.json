@@ -990,8 +990,8 @@
         },
         {
             "key": [
-                "nama_supplier",
-                "Suplier",
+                "nama_pelanggan",
+                "Pelanggan",
                 "1",
                 "25"
             ]
@@ -1006,7 +1006,7 @@
         },
         {
             "key": [
-                "total_pembelian",
+                "total_penjualan",
                 "Total",
                 "1",
                 "15"
@@ -1022,8 +1022,8 @@
         },
         {
             "key": [
-                "id_supplier",
-                "ID Supplier",
+                "id_pelanggan",
+                "ID Pelanggan",
                 "0",
                 "0"
             ]
