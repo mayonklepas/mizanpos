@@ -270,6 +270,7 @@ public class DaftarreturpenjualaninputController {
                     lshide.set(gx(order), 0);
                     lsresize.set(gx(order), 0);
                     setheader();
+                    setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
                         showtable(gx(diskon_persen));
@@ -297,6 +298,7 @@ public class DaftarreturpenjualaninputController {
                     lshide.set(gx(order), lsoldhide.get(gx(order)));
                     lsresize.set(gx(order), lsoldsize.get(gx(order)));
                     setheader();
+                    setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
                         showtable(gx(diskon_persen));
@@ -323,9 +325,9 @@ public class DaftarreturpenjualaninputController {
             }
         });
 
-        pane.cmb_tipe_penjualan.addItemListener(new ItemListener() {
+        pane.cmb_tipe_penjualan.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
                 if (jc.getSelectedIndex() == 0) {
                     tipe_beli = 0;
@@ -335,6 +337,7 @@ public class DaftarreturpenjualaninputController {
                     lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                     lsresize.set(gx(harga_jual), lsoldsize.get(gx(harga_jual)));
                     lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
@@ -360,6 +363,7 @@ public class DaftarreturpenjualaninputController {
                     lsresize.set(gx(satuan), 0);
                     lsresize.set(gx(harga_jual), 0);
                     lsresize.set(gx(gudang), 0);
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));

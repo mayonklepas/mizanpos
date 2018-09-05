@@ -267,6 +267,7 @@ public class DaftarreturpembelianinputController {
                     lshide.set(gx(order), 0);
                     lsresize.set(gx(order), 0);
                     setheader();
+                    setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
                         showtable(gx(diskon_persen));
@@ -293,6 +294,7 @@ public class DaftarreturpembelianinputController {
                 } else {
                     lshide.set(gx(order), lsoldhide.get(gx(order)));
                     lsresize.set(gx(order), lsoldsize.get(gx(order)));
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
@@ -1370,7 +1372,7 @@ public class DaftarreturpembelianinputController {
                     }
                     int col = e.getColumn();
                     int row = e.getFirstRow();
-                    if (col == 0) {
+                    if (col == gx(kode)) {
                         ischangevalue = true;
                         Staticvar.preid = tabeldatalist.get(row).getId_barang();
                         String defnilai = "";
