@@ -1153,9 +1153,9 @@ public class DaftarfakturpenjualaninputController {
                                 pane.edbiayalain.setText(String.valueOf(joinpenjualan.get("total_biaya")));
                                 valcheck = ConvertFunc.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
-                                    pane.ckdiskon.setSelected(false);
-                                } else {
                                     pane.ckdiskon.setSelected(true);
+                                } else {
+                                    pane.ckdiskon.setSelected(false);
                                 }
                                 if (pane.ckdiskon.isSelected()) {
                                     hidetable(gx(diskon_nominal));
