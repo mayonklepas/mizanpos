@@ -839,6 +839,7 @@ public class DaftarreturpembelianinputController {
                     rowtabledata[i] = "";
                 }
                 total_hutang = total_hutang + total_pembelian_all;
+                pane.cmb_tipe_pembelian.setEnabled(false);
                 pane.cmb_tipe_bayar.setEnabled(false);
 
             }

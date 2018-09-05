@@ -720,6 +720,9 @@ public class DaftarorderpembelianinputController {
                     rowtabledata[i] = "";
                 }
 
+                pane.cmb_tipe_pembelian.setEnabled(false);
+                pane.cmb_tipe_bayar.setEnabled(false);
+
             }
 
         } catch (ParseException ex) {
