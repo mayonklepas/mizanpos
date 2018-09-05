@@ -608,6 +608,7 @@ public class DaftarreturpenjualaninputController {
 
                     valreturatas = String.valueOf(joinpenjualan.get("id_noso"));
                     pane.ednoso.setText(String.valueOf(joinpenjualan.get("noso")));
+                    total_hutang = ConvertFunc.ToDouble(joinpenjualan.get("sisa_noso"));
 
                     valshipvia = String.valueOf(joinpenjualan.get("id_pengantaran"));
                     pane.edshipvia.setText(String.valueOf(joinpenjualan.get("nama_pengantaran")));

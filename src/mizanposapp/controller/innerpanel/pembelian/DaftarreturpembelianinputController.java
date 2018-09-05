@@ -615,6 +615,7 @@ public class DaftarreturpembelianinputController {
 
                     valreturatas = String.valueOf(joinpembelian.get("id_nopo"));
                     pane.ednopo.setText(String.valueOf(joinpembelian.get("nopo")));
+                    total_hutang = ConvertFunc.ToDouble(joinpembelian.get("sisa_nopo"));
 
                     valshipvia = String.valueOf(joinpembelian.get("id_pengantaran"));
                     pane.edshipvia.setText(String.valueOf(joinpembelian.get("nama_pengantaran")));
