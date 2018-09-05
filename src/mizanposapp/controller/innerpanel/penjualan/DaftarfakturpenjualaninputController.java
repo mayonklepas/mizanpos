@@ -748,7 +748,7 @@ public class DaftarfakturpenjualaninputController {
                 for (int i = 0; i < rowtabledata.length; i++) {
                     rowtabledata[i] = "";
                 }
-                pane.cmb_tipe_bayar.setEnabled(false);
+                pane.cmb_tipe_penjualan.setEnabled(false);
 
             }
 
