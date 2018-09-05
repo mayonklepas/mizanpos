@@ -1281,7 +1281,7 @@
         {
             "key": [
                 "harga_beli",
-                "H. Beli",
+                "Harga",
                 "1",
                 "8"
             ]
@@ -1290,7 +1290,7 @@
             "key": [
                 "harga_jual",
                 "H. Jual",
-                "1",
+                "0",
                 "5"
             ]
         },
@@ -1387,7 +1387,7 @@
         {
             "key": [
                 "harga_jual",
-                "H. Jual",
+                "Harga",
                 "1",
                 "10"
             ]
@@ -1485,7 +1485,7 @@
         {
             "key": [
                 "harga_beli",
-                "H. Beli",
+                "Harga",
                 "1",
                 "8"
             ]
@@ -1493,7 +1493,7 @@
         {
             "key": [
                 "harga_jual",
-                "H. Jual",
+                "Harga Jual",
                 "1",
                 "8"
             ]
@@ -1599,7 +1599,7 @@
         {
             "key": [
                 "harga_jual",
-                "H. Jual",
+                "Harga",
                 "1",
                 "8"
             ]
