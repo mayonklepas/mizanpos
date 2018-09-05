@@ -1673,7 +1673,7 @@
         {
             "key": [
                 "order",
-                "Order",
+                "Beli",
                 "1",
                 "7"
             ]
@@ -1681,7 +1681,7 @@
         {
             "key": [
                 "jumlah",
-                "Jumlah",
+                "Retur",
                 "1",
                 "7"
             ]
@@ -1697,7 +1697,7 @@
         {
             "key": [
                 "harga_beli",
-                "H. Beli",
+                "Harga",
                 "1",
                 "8"
             ]
@@ -1706,7 +1706,7 @@
             "key": [
                 "harga_jual",
                 "H. Jual",
-                "1",
+                "0",
                 "5"
             ]
         },
@@ -1779,7 +1779,7 @@
         {
             "key": [
                 "order",
-                "Order",
+                "Jual",
                 "1",
                 "7"
             ]
@@ -1787,7 +1787,7 @@
         {
             "key": [
                 "jumlah",
-                "Jumlah",
+                "Retur",
                 "1",
                 "7"
             ]
@@ -1811,7 +1811,7 @@
         {
             "key": [
                 "harga_jual",
-                "H. Jual",
+                "Harga",
                 "1",
                 "5"
             ]
