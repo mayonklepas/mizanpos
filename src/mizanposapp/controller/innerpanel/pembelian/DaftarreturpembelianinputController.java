@@ -838,6 +838,8 @@ public class DaftarreturpembelianinputController {
                 for (int i = 0; i < rowtabledata.length; i++) {
                     rowtabledata[i] = "";
                 }
+                total_hutang = total_hutang + total_pembelian_all;
+                pane.cmb_tipe_bayar.setEnabled(false);
 
             }
 
@@ -1252,6 +1254,23 @@ public class DaftarreturpembelianinputController {
                                 JSONObject joinpembelian = (JSONObject) japembelian.get(i);
                                 valgudang = String.valueOf(joinpembelian.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpembelian.get("nama_gudang")));
+                                valcheck = ConvertFunc.ToInt(joinpembelian.get("diskon_dalam"));
+                                if (valcheck == 0) {
+                                    pane.ckdiskon.setSelected(false);
+                                } else {
+                                    pane.ckdiskon.setSelected(true);
+                                }
+                                if (pane.ckdiskon.isSelected()) {
+                                    hidetable(gx(diskon_nominal));
+                                    showtable(gx(diskon_persen));
+                                    valcheck = 0;
+
+                                } else {
+                                    hidetable(gx(diskon_persen));
+                                    showtable(gx(diskon_nominal));
+                                    valcheck = 1;
+                                }
+
                             }
 
                             Object objtabeldata = jsonobjdata.get("pembelian_detail");

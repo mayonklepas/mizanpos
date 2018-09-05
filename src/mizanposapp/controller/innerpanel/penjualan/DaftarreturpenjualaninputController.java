@@ -263,9 +263,9 @@ public class DaftarreturpenjualaninputController {
             }
         });
 
-        pane.cmb_tipe_bayar.addItemListener(new ItemListener() {
+        pane.cmb_tipe_bayar.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                     lshide.set(gx(order), 0);
                     lsresize.set(gx(order), 0);
@@ -597,12 +597,60 @@ public class DaftarreturpenjualaninputController {
                     }
 
                     if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                        lshide.set(gx(order), 0);
+                        lsresize.set(gx(order), 0);
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                        pane.lreturatas.setVisible(false);
+                        pane.ltitikduareturatas.setVisible(false);
+                        pane.ednoso.setVisible(false);
+                        pane.bcari_po.setVisible(false);
                         pane.eduang_muka.setText("0");
+                        /*pane.eduang_muka.setEnabled(false);
+                    pane.edtop.setVisible(false);
+                    pane.bcaritop.setVisible(false);
+                    pane.ltop.setVisible(false);*/
+                        tipe_bayar = 0;
                         valtop = "";
                         pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
+                        valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
                     } else {
+                        lshide.set(gx(order), lsoldhide.get(gx(order)));
+                        lsresize.set(gx(order), lsoldsize.get(gx(order)));
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                        pane.lreturatas.setVisible(true);
+                        pane.ltitikduareturatas.setVisible(true);
+                        pane.ednoso.setVisible(true);
+                        pane.bcari_po.setVisible(true);
+                        /*pane.eduang_muka.setEnabled(true);
+                    pane.edtop.setVisible(true);
+                    pane.bcaritop.setVisible(true);
+                    pane.ltop.setVisible(true);*/
+                        tipe_bayar = 1;
                         valtop = "";
                         pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                        valakun_penjualan = Globalsession.AKUNHUTANGUSAHA;
                     }
                     try {
                         pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpenjualan.get("tanggal_pengantaran")))));
@@ -672,6 +720,58 @@ public class DaftarreturpenjualaninputController {
 
                     tipe_beli = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
                     pane.cmb_tipe_penjualan.setSelectedIndex(tipe_beli);
+                    if (pane.cmb_tipe_penjualan.getSelectedIndex() == 0) {
+                        tipe_beli = 0;
+                        lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
+                        lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
+                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                        lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
+                        lsresize.set(gx(harga_jual), lsoldsize.get(gx(harga_jual)));
+                        lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                        if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                            hidetable(gx(order));
+                        } else {
+                            showtable(gx(order));
+                        }
+
+                    } else {
+                        tipe_beli = 1;
+                        lshide.set(gx(satuan), 0);
+                        lshide.set(gx(harga_jual), 0);
+                        lshide.set(gx(gudang), 0);
+                        lsresize.set(gx(satuan), 0);
+                        lsresize.set(gx(harga_jual), 0);
+                        lsresize.set(gx(gudang), 0);
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                        if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                            hidetable(gx(order));
+                        } else {
+                            showtable(gx(order));
+                        }
+                    }
 
                 }
 
@@ -734,6 +834,8 @@ public class DaftarreturpenjualaninputController {
                 for (int i = 0; i < rowtabledata.length; i++) {
                     rowtabledata[i] = "";
                 }
+                total_hutang = total_hutang + total_penjualan_all;
+                pane.cmb_tipe_bayar.setEnabled(false);
 
             }
 
@@ -1148,6 +1250,22 @@ public class DaftarreturpenjualaninputController {
                                 JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
                                 valgudang = String.valueOf(joinpenjualan.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
+                                valcheck = ConvertFunc.ToInt(joinpenjualan.get("diskon_dalam"));
+                                if (valcheck == 0) {
+                                    pane.ckdiskon.setSelected(false);
+                                } else {
+                                    pane.ckdiskon.setSelected(true);
+                                }
+                                if (pane.ckdiskon.isSelected()) {
+                                    hidetable(gx(diskon_nominal));
+                                    showtable(gx(diskon_persen));
+                                    valcheck = 0;
+
+                                } else {
+                                    hidetable(gx(diskon_persen));
+                                    showtable(gx(diskon_nominal));
+                                    valcheck = 1;
+                                }
                             }
 
                             Object objtabeldata = jsonobjdata.get("penjualan_detail");

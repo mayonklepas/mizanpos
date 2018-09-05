@@ -1150,6 +1150,22 @@ public class DaftarfakturpenjualaninputController {
                                 pane.eddiskon1.setText(String.valueOf(joinpenjualan.get("diskon_persen")));
                                 pane.eddiskon2.setText(String.valueOf(joinpenjualan.get("diskon_nominal")));
                                 pane.edbiayalain.setText(String.valueOf(joinpenjualan.get("total_biaya")));
+                                valcheck = ConvertFunc.ToInt(joinpenjualan.get("diskon_dalam"));
+                                if (valcheck == 0) {
+                                    pane.ckdiskon.setSelected(false);
+                                } else {
+                                    pane.ckdiskon.setSelected(true);
+                                }
+                                if (pane.ckdiskon.isSelected()) {
+                                    hidetable(gx(diskon_nominal));
+                                    showtable(gx(diskon_persen));
+                                    valcheck = 0;
+
+                                } else {
+                                    hidetable(gx(diskon_persen));
+                                    showtable(gx(diskon_nominal));
+                                    valcheck = 1;
+                                }
                             }
 
                             Object objtabeldata = jsonobjdata.get("penjualan_detail");
