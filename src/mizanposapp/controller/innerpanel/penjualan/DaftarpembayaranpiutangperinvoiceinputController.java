@@ -199,7 +199,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             public void run() {
                 try {
                     JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "42");
+                    String param = String.format("id_keltrans=%s", "43");
                     Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
                     JSONArray ja = (JSONArray) ob;
                     for (int i = 0; i < ja.size(); i++) {
@@ -341,7 +341,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
 
                 }
 
-                Object jopenjualan = jsonobjdata.get("kaskeluar");
+                Object jopenjualan = jsonobjdata.get("kasmasuk");
                 JSONArray japenjualan = (JSONArray) jopenjualan;
 
                 for (int i = 0; i < japenjualan.size(); i++) {
@@ -382,13 +382,13 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                         Logger.getLogger(DaftarorderpenjualaninputController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    pane.edakun_penerimaan.setText(String.valueOf(joinpenjualan.get("akun_keluar_dari")) + "-"
-                            + String.valueOf(joinpenjualan.get("nama_akun_keluar_dari")));
+                    pane.edakun_penerimaan.setText(String.valueOf(joinpenjualan.get("akun_masuk_dari")) + "-"
+                            + String.valueOf(joinpenjualan.get("nama_akun_masuk_dari")));
 
-                    valakun_pengengeluaran = String.valueOf(joinpenjualan.get("akun_keluar_dari"));
+                    valakun_pengengeluaran = String.valueOf(joinpenjualan.get("akun_masuk_dari"));
                 }
 
-                Object jotabledata = jsonobjdata.get("kaskeluar_detail");
+                Object jotabledata = jsonobjdata.get("kasmasuk_detail");
                 JSONArray jatabledata = (JSONArray) jotabledata;
                 for (int i = 0; i < jatabledata.size(); i++) {
                     JSONObject jointabledata = (JSONObject) jatabledata.get(i);
@@ -773,9 +773,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kaskeluar="
+                    + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
-                    + "akun_keluar_dari='" + valakun_pengengeluaran + "'::"
+                    + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
                     + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal_nilai.getText()) + "'::"
                     + "isgiro='" + valgiro + "'::"
                     + "no_giro='" + pane.ednocek.getText() + "'::"
@@ -840,9 +840,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kaskeluar="
+                    + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
-                    + "akun_keluar_dari='" + valakun_pengengeluaran + "'::"
+                    + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
                     + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal_nilai.getText()) + "'::"
                     + "isgiro='" + valgiro + "'::"
                     + "no_giro='" + pane.ednocek.getText() + "'::"
@@ -949,7 +949,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
 
     private String kirimtextdata() {
         StringBuilder sb = new StringBuilder();
-        sb.append("kaskeluar_detail=");
+        sb.append("kasmasuk_detail=");
         int listcount = 0;
         if (tabeldatalist.get(tabeldatalist.size() - 1).getId().equals("")) {
             listcount = tabeldatalist.size() - 1;
@@ -1092,7 +1092,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "42", String.valueOf(no_urut));
+                        String data = String.format("id_keltrans=%s&no_urut=%s", "43", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.equals("piutang")) {
