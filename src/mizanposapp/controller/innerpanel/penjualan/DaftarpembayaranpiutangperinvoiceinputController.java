@@ -104,10 +104,10 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
     }
 
     private void loadsession() {
-        pane.edakun_penerimaan.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
-        pane.edakun_diskon.setText(Globalsession.AKUNDISKONPEMBELIAN + "-" + Globalsession.NAMAAKUNDISKONPEMBELIAN);
-        valakun_pengengeluaran = Globalsession.AKUNPEMBELIANTUNAI;
-        valakun_diskon = Globalsession.AKUNDISKONPEMBELIAN;
+        pane.edakun_penerimaan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
+        pane.edakun_diskon.setText(Globalsession.AKUNDISKONPENJUALAN + "-" + Globalsession.NAMAAKUNDISKONPENJUALAN);
+        valakun_pengengeluaran = Globalsession.AKUNPENJUALANTUNAI;
+        valakun_diskon = Globalsession.AKUNDISKONPENJUALAN;
     }
 
     private void skinning() {
