@@ -291,6 +291,11 @@ public class DaftarorderpenjualaninputController {
             public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
                 if (jc.getSelectedIndex() == 0) {
+                    pane.lgudang.setVisible(true);
+                    pane.ltitik2gudang.setVisible(true);
+                    pane.edgudang.setVisible(true);
+                    pane.bcari_gudang.setVisible(true);
+                    valgudang = "";
                     tipe_beli = 0;
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(harga_beli), lsoldhide.get(gx(harga_beli)));
@@ -310,12 +315,17 @@ public class DaftarorderpenjualaninputController {
                         valcheck = 1;
                     }
                 } else {
+                    pane.lgudang.setVisible(false);
+                    pane.ltitik2gudang.setVisible(false);
+                    pane.edgudang.setVisible(false);
+                    pane.bcari_gudang.setVisible(false);
+                    valgudang = "";
                     tipe_beli = 1;
                     lshide.set(gx(satuan), 0);
-                    lshide.set(gx(harga_jual), 0);
+                    lshide.set(gx(harga_beli), 0);
                     lshide.set(gx(gudang), 0);
                     lsresize.set(gx(satuan), 0);
-                    lsresize.set(gx(harga_jual), 0);
+                    lsresize.set(gx(harga_beli), 0);
                     lsresize.set(gx(gudang), 0);
                     setheader();
                     setheader();
