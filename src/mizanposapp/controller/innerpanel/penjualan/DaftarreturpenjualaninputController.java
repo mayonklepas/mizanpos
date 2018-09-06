@@ -80,7 +80,7 @@ public class DaftarreturpenjualaninputController {
             valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valreturatas = "";
     double total_piutang = 0;
     int valcheck = 0;
-    int tipe_bayar = 0, tipe_beli = 0;
+    int tipe_bayar = 0, tipe_jual = 0;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
     Object[] rowtabledata = new Object[13];
     ArrayList<Entitytabledata> tabeldatalist = new ArrayList<>();
@@ -331,7 +331,11 @@ public class DaftarreturpenjualaninputController {
             public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
                 if (jc.getSelectedIndex() == 0) {
-                    tipe_beli = 0;
+                    tipe_jual = 0;
+                    pane.lgudang.setVisible(true);
+                    pane.ltitik2gudang.setVisible(true);
+                    pane.edgudang.setVisible(true);
+                    pane.bcari_gudang.setVisible(true);
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
                     lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
@@ -357,7 +361,11 @@ public class DaftarreturpenjualaninputController {
                     }
 
                 } else {
-                    tipe_beli = 1;
+                    tipe_jual = 1;
+                    pane.lgudang.setVisible(false);
+                    pane.ltitik2gudang.setVisible(false);
+                    pane.edgudang.setVisible(false);
+                    pane.bcari_gudang.setVisible(false);
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(harga_jual), 0);
                     lshide.set(gx(gudang), 0);
@@ -496,7 +504,7 @@ public class DaftarreturpenjualaninputController {
             if (id.equals("")) {
                 getkodetransaksi();
                 pane.cmb_tipe_penjualan.setSelectedIndex(0);
-                tipe_beli = 0;
+                tipe_jual = 0;
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
                 pane.lreturatas.setVisible(false);
                 pane.ltitikduareturatas.setVisible(false);
@@ -719,10 +727,13 @@ public class DaftarreturpenjualaninputController {
                     valsalesman = String.valueOf(joinpenjualan.get("id_bagian_penjualan"));
                     pane.edsalesman.setText(String.valueOf(joinpenjualan.get("nama_bagian_penjualan")));
 
-                    tipe_beli = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
-                    pane.cmb_tipe_penjualan.setSelectedIndex(tipe_beli);
+                    tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+                    pane.cmb_tipe_penjualan.setSelectedIndex(tipe_jual);
                     if (pane.cmb_tipe_penjualan.getSelectedIndex() == 0) {
-                        tipe_beli = 0;
+                        pane.lgudang.setVisible(true);
+                        pane.ltitik2gudang.setVisible(true);
+                        pane.edgudang.setVisible(true);
+                        pane.bcari_gudang.setVisible(true);
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                         lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
                         lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
@@ -748,7 +759,10 @@ public class DaftarreturpenjualaninputController {
                         }
 
                     } else {
-                        tipe_beli = 1;
+                        pane.lgudang.setVisible(false);
+                        pane.ltitik2gudang.setVisible(false);
+                        pane.edgudang.setVisible(false);
+                        pane.bcari_gudang.setVisible(false);
                         lshide.set(gx(satuan), 0);
                         lshide.set(gx(harga_jual), 0);
                         lshide.set(gx(gudang), 0);
@@ -876,7 +890,7 @@ public class DaftarreturpenjualaninputController {
                     + "id_pengantaran='" + valshipvia + "'::"
                     + "id_bagian_penjualan='" + valsalesman + "'::"
                     + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_penjualan='" + tipe_beli + "'"
+                    + "tipe_penjualan='" + tipe_jual + "'"
                     + "&" + kirimtexpenjualan();
 
             ch.insertdata("insertreturpenjualan", data);
@@ -965,7 +979,7 @@ public class DaftarreturpenjualaninputController {
                     + "id_pengantaran='" + valshipvia + "'::"
                     + "id_bagian_penjualan='" + valsalesman + "'::"
                     + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_penjualan='" + tipe_beli + "'"
+                    + "tipe_penjualan='" + tipe_jual + "'"
                     + "&" + kirimtexpenjualan();
             ch.updatedata("updatereturpenjualan", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
@@ -1088,7 +1102,7 @@ public class DaftarreturpenjualaninputController {
         }
         String rawhasil = sb.toString().substring(0, sb.toString().length() - 2);
         String finalhasil = "";
-        if (tipe_beli == 1) {
+        if (tipe_jual == 1) {
             finalhasil = rawhasil.replace("id_inv", "akun");
         } else {
             finalhasil = rawhasil;
@@ -1208,6 +1222,7 @@ public class DaftarreturpenjualaninputController {
 
     private void carireturatas() {
         pane.bcari_po.addActionListener((ActionEvent e) -> {
+            sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
             if (pane.edpelanggan.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Pelanggan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -1268,6 +1283,66 @@ public class DaftarreturpenjualaninputController {
                                     hidetable(gx(diskon_persen));
                                     showtable(gx(diskon_nominal));
                                     valcheck = 1;
+                                }
+
+                                tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
+                                if (tipe_bayar == 0) {
+                                    pane.cmb_tipe_bayar.setSelectedIndex(0);
+                                } else {
+                                    pane.cmb_tipe_bayar.setSelectedIndex(1);
+                                }
+                                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                                    lshide.set(gx(order), 0);
+                                    lsresize.set(gx(order), 0);
+                                    setheader();
+                                    setheader();
+                                    if (pane.ckdiskon.isSelected()) {
+                                        hidetable(gx(diskon_nominal));
+                                        showtable(gx(diskon_persen));
+                                        valcheck = 0;
+
+                                    } else {
+                                        hidetable(gx(diskon_persen));
+                                        showtable(gx(diskon_nominal));
+                                        valcheck = 1;
+                                    }
+                                    pane.lreturatas.setVisible(false);
+                                    pane.ltitikduareturatas.setVisible(false);
+                                    pane.ednoso.setVisible(false);
+                                    pane.bcari_po.setVisible(false);
+                                    pane.eduang_muka.setText("0");
+                                    valtop = "";
+                                    pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
+                                    valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
+                                } else {
+                                    lshide.set(gx(order), lsoldhide.get(gx(order)));
+                                    lsresize.set(gx(order), lsoldsize.get(gx(order)));
+                                    setheader();
+                                    setheader();
+                                    if (pane.ckdiskon.isSelected()) {
+                                        hidetable(gx(diskon_nominal));
+                                        showtable(gx(diskon_persen));
+                                        valcheck = 0;
+
+                                    } else {
+                                        hidetable(gx(diskon_persen));
+                                        showtable(gx(diskon_nominal));
+                                        valcheck = 1;
+                                    }
+                                    pane.lreturatas.setVisible(true);
+                                    pane.ltitikduareturatas.setVisible(true);
+                                    pane.ednoso.setVisible(true);
+                                    pane.bcari_po.setVisible(true);
+                                    valtop = "";
+                                    pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                                    valakun_penjualan = Globalsession.AKUNHUTANGUSAHA;
+                                }
+
+                                tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+                                if (tipe_jual == 0) {
+                                    pane.cmb_tipe_penjualan.setSelectedIndex(0);
+                                } else {
+                                    pane.cmb_tipe_penjualan.setSelectedIndex(1);
                                 }
                             }
 
@@ -1503,7 +1578,7 @@ public class DaftarreturpenjualaninputController {
                         Staticvar.sfilter = defnilai;
                         Staticvar.prelabel = defnilai;
                         try {
-                            if (tipe_beli == 1) {
+                            if (tipe_jual == 1) {
                                 if (sudahterpanggil == true) {
                                     sudahterpanggil = false;
                                 } else {
@@ -1772,7 +1847,7 @@ public class DaftarreturpenjualaninputController {
                 }
                 if (e.getClickCount() == 2) {
                     if (col == gx(kode)) {
-                        if (tipe_beli == 1) {
+                        if (tipe_jual == 1) {
                             Staticvar.sfilter = "";
                             sudahterpanggil = true;
                             JDialog jd = new JDialog(new Mainmenu());

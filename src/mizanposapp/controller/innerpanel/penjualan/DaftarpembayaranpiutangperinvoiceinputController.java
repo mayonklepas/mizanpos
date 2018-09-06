@@ -1004,7 +1004,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             Staticvar.preid = valpelanggan;
             Staticvar.prelabel = pane.edpelanggan.getText();
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Popupcari("nama", "popupdaftarnama?tipe=1", "Daftar Supplier"));
+            jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Pelanggan"));
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);
