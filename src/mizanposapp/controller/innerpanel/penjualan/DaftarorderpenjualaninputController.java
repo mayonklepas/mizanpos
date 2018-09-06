@@ -561,7 +561,7 @@ public class DaftarorderpenjualaninputController {
                         pane.bcaritop.setVisible(false);
                         pane.ltop.setVisible(false);
                         valtop = "";
-                        pane.edakun_penjualan.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                        pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
                     } else {
                         pane.edtop.setVisible(true);
                         pane.bcaritop.setVisible(true);

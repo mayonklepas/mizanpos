@@ -128,7 +128,7 @@ public class Globalsession {
             AKUNDISKONPEMBELIAN = String.valueOf(jodata.get("akun_diskon_pembelian"));
             NAMAAKUNDISKONPEMBELIAN = String.valueOf(jodata.get("nama_akun_diskon_pembelian"));
             AKUNDISKONPENJUALAN = String.valueOf(jodata.get("akun_diskon_penjualan"));
-            NAMAAKUNDISKONPENJUALAN = String.valueOf(jodata.get("namaakun_diskon_penjualan"));
+            NAMAAKUNDISKONPENJUALAN = String.valueOf(jodata.get("nama_akun_diskon_penjualan"));
             AKUNUANGMUKAPEMBELIAN = String.valueOf(jodata.get("akun_uang_muka_pembelian"));
             NAMAAKUNUANGMUKAPEMBELIAN = String.valueOf(jodata.get("nama_akun_uang_muka_pembelian"));
             AKUNUANGMUKAPENJUALAN = String.valueOf(jodata.get("akun_uang_muka_penjualan"));
