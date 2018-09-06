@@ -562,24 +562,24 @@
         },
         {
             "key": [
-                "total_hutang",
-                "Total Hutang",
+                "total",
+                "Total",
                 "1",
                 "20"
             ]
         },
         {
             "key": [
-                "total_cicilan",
-                "Total Cicilan",
+                "cicilan",
+                "Cicilan",
                 "1",
                 "20"
             ]
         },
         {
             "key": [
-                "sisa_hutang",
-                "Sisa Hutang",
+                "sisa",
+                "Sisa",
                 "1",
                 "20"
             ]
