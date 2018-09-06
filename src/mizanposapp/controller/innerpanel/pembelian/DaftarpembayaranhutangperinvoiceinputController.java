@@ -545,7 +545,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                             tabeldatalist.get(row).setSisahutang(String.valueOf(joindata.get("sisa")));
                                             tb.setValueAt(String.valueOf(joindata.get("sisa")), row, gx(sisa));
                                             tabeldatalist.get(row).setDiskon("0");
-                                            tb.setValueAt("0", row, gx(sisa));
+                                            tb.setValueAt("0", row, gx(diskon));
                                             tabeldatalist.get(row).setJumlah_bayar(String.valueOf(joindata.get("sisa")));
                                             tb.setValueAt(String.valueOf(joindata.get("sisa")), row, gx(jumlah_bayar));
                                         }

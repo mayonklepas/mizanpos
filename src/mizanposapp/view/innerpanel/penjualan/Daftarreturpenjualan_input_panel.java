@@ -187,7 +187,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(238, 238, 238));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel14.setText("Bagian Pembelian");
+        jLabel14.setText("Bagian Penjualan");
 
         bcari_salesman.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari_salesman.setText("Cari");
