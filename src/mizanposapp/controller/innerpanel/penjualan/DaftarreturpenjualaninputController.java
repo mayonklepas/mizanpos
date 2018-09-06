@@ -320,8 +320,8 @@ public class DaftarreturpenjualaninputController {
                     pane.ltop.setVisible(true);*/
                     tipe_bayar = 1;
                     valtop = "";
-                    pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                    valakun_penjualan = Globalsession.AKUNHUTANGUSAHA;
+                    pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
+                    valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                 }
             }
         });
@@ -658,8 +658,8 @@ public class DaftarreturpenjualaninputController {
                     pane.ltop.setVisible(true);*/
                         tipe_bayar = 1;
                         valtop = "";
-                        pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                        valakun_penjualan = Globalsession.AKUNHUTANGUSAHA;
+                        pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
+                        valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                     }
                     try {
                         pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpenjualan.get("tanggal_pengantaran")))));
@@ -1334,8 +1334,8 @@ public class DaftarreturpenjualaninputController {
                                     pane.ednoso.setVisible(true);
                                     pane.bcari_po.setVisible(true);
                                     valtop = "";
-                                    pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                                    valakun_penjualan = Globalsession.AKUNHUTANGUSAHA;
+                                    pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
+                                    valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                                 }
 
                                 tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));

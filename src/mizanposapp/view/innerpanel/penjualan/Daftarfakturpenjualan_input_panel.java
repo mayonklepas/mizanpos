@@ -780,7 +780,7 @@ public class Daftarfakturpenjualan_input_panel extends javax.swing.JPanel {
         jLabel41.setText(":");
 
         jLabel42.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel42.setText("Akun Diskon Pembelian");
+        jLabel42.setText("Akun Diskon Penjualan");
 
         jLabel43.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel43.setText("Akun Uang Muka");
@@ -843,7 +843,7 @@ public class Daftarfakturpenjualan_input_panel extends javax.swing.JPanel {
                         .addComponent(edakun_penjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
                         .addComponent(bcariakun_penjualan)))
-                .addContainerGap(452, Short.MAX_VALUE))
+                .addContainerGap(458, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

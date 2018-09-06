@@ -280,8 +280,8 @@ public class DaftarorderpenjualaninputController {
                     pane.ltop.setVisible(true);
                     tipe_bayar = 1;
                     valtop = "";
-                    pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
-                    valakun_penjualan = Globalsession.AKUNHUTANGUSAHA;
+                    pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
+                    valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                 }
             }
         });
@@ -567,7 +567,7 @@ public class DaftarorderpenjualaninputController {
                         pane.bcaritop.setVisible(true);
                         pane.ltop.setVisible(true);
                         valtop = "";
-                        pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                        pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
                     }
 
                     tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
