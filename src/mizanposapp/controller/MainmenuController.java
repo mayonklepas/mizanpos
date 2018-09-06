@@ -36,7 +36,7 @@ public class MainmenuController {
         panel1mouseevent();
         panel2mouseevent();
         panel3mouseevent();
-        panel4mouseevent();
+        panel12mouseevent();
         panel6mouseevent();
         panel7mouseevent();
         panel8mouseevent();
@@ -134,17 +134,19 @@ public class MainmenuController {
         });
     }
 
-    private void panel4mouseevent() {
-        mm.jPanel4.addMouseListener(new MouseListener() {
+    private void panel12mouseevent() {
+        mm.jPanel12.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.gc();
                 isclick = true;
-                mm.jPanel4.setBackground(new Color(3, 3, 3));
-                Bantuan bf = new Bantuan();
-                bf.setLocationRelativeTo(null);
-                bf.setTitle("Bantuan");
-                bf.setVisible(true);
+                mm.jPanel6.setBackground(new Color(3, 3, 3));
+                Beranda_panel bp = new Beranda_panel();
+                mm.panel_tengah.removeAll();
+                mm.panel_tengah.setLayout(new BorderLayout());
+                mm.panel_tengah.add(bp, BorderLayout.CENTER);
+                mm.panel_tengah.revalidate();
+                mm.panel_tengah.repaint();
 
             }
 
@@ -159,12 +161,12 @@ public class MainmenuController {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                mm.jPanel4.setBackground(new Color(3, 3, 3));
+                mm.jPanel12.setBackground(new Color(3, 3, 3));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                mm.jPanel4.setBackground(new Color(41, 39, 40));
+                mm.jPanel12.setBackground(new Color(41, 39, 40));
             }
         });
     }
