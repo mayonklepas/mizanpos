@@ -95,7 +95,7 @@ public class DaftarwriteoffpiutanginputController {
             public void run() {
                 try {
                     JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "45");
+                    String param = String.format("id_keltrans=%s", "46");
                     Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
                     JSONArray ja = (JSONArray) ob;
                     for (int i = 0; i < ja.size(); i++) {
@@ -371,7 +371,7 @@ public class DaftarwriteoffpiutanginputController {
                     public void run() {
                         Staticvar.isupdate = false;
                         if (tipe.equals("add")) {
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "45", String.valueOf(no_urut));
+                            String data = String.format("id_keltrans=%s&no_urut=%s", "46", String.valueOf(no_urut));
                             ch.insertdata("insertnomorgagal", data);
                         }
                         JDialog jd = (JDialog) pane.getRootPane().getParent();
