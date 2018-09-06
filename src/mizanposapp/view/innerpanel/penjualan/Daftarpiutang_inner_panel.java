@@ -5,12 +5,7 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
-import mizanposapp.view.innerpanel.pembelian.*;
-import java.awt.Component;
-import java.awt.Font;
-import javax.swing.table.TableCellRenderer;
-import mizanposapp.controller.innerpanel.pembelian.DaftarhutanginnerController;
-import mizanposapp.helper.Staticvar;
+import mizanposapp.controller.innerpanel.penjualan.DaftarpiutanginnerController;
 import mizanposapp.helper.Tablestyle;
 
 /**
@@ -24,7 +19,7 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
      */
     public Daftarpiutang_inner_panel() {
         initComponents();
-        // new DaftarhutanginnerController(this);
+        new DaftarpiutanginnerController(this);
     }
 
     /**
@@ -57,7 +52,7 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Daftar Hutang");
+        jLabel1.setText("Daftar Piutang");
 
         jPanel2.setBackground(new java.awt.Color(41, 39, 40));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

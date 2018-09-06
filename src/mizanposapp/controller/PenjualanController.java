@@ -16,6 +16,7 @@ import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarfakturpenjualan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarorderpenjualan_inner_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarpiutang_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarreturpenjualan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.POS_panel;
 import mizanposapp.view.innerpanel.penjualan.Settingbonuspenjualan_inner_panel;
@@ -110,7 +111,7 @@ public class PenjualanController {
             public void mousePressed(MouseEvent e) {
                 System.gc();
                 Staticvar.pp = pp;
-                Daftarorderpenjualan_inner_panel pane = new Daftarorderpenjualan_inner_panel();
+                Daftarpiutang_inner_panel pane = new Daftarpiutang_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
                 pp.container.add(pane, BorderLayout.CENTER);

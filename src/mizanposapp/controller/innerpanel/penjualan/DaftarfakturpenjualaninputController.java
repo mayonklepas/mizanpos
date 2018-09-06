@@ -62,6 +62,7 @@ import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.penjualan.Daftarfakturpenjualan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftarfakturpenjualan_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarpiutangrincian_inner_panel;
 //import mizanposapp.view.innerpanel.penjualan.Daftarhutangrincian_inner_panel;
 //import mizanposapp.view.innerpanel.penjualan.Sethargajual;
 import org.json.simple.JSONArray;
@@ -820,8 +821,8 @@ public class DaftarfakturpenjualaninputController {
                         pane.ltotal_penjualan.setText("0");
                     } else {
                         JPanel inpane = new JPanel();
-                        if (Staticvar.frame.equals("rincian_hutang")) {
-                            //inpane = new Daftarhutangrincian_inner_panel();
+                        if (Staticvar.frame.equals("rincian_piutang")) {
+                            inpane = new Daftarpiutangrincian_inner_panel();
                         } else if (Staticvar.frame.equals("daftar_faktur")) {
                             inpane = new Daftarfakturpenjualan_inner_panel();
                         }
@@ -881,8 +882,8 @@ public class DaftarfakturpenjualaninputController {
             ch.updatedata("updatepenjualan", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 JPanel inpane = new JPanel();
-                if (Staticvar.frame.equals("rincian_hutang")) {
-                    //inpane = new Daftarhutangrincian_inner_panel();
+                if (Staticvar.frame.equals("rincian_piutang")) {
+                    inpane = new Daftarpiutangrincian_inner_panel();
                 } else if (Staticvar.frame.equals("daftar_faktur")) {
                     inpane = new Daftarfakturpenjualan_inner_panel();
                 }
@@ -1048,8 +1049,8 @@ public class DaftarfakturpenjualaninputController {
                         String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
                         JPanel inpane = new JPanel();
-                        if (Staticvar.frame.endsWith("rincian_hutang")) {
-                            //inpane = new Daftarhutangrincian_inner_panel();
+                        if (Staticvar.frame.endsWith("rincian_piutang")) {
+                            inpane = new Daftarpiutangrincian_inner_panel();
                         } else if (Staticvar.frame.endsWith("daftar_faktur") || Staticvar.frame.endsWith("")) {
                             inpane = new Daftarfakturpenjualan_inner_panel();
                         }
