@@ -663,40 +663,56 @@ public class DaftarfakturpenjualaninputController {
 
                     tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
                     pane.cmb_tipe_penjualan.setSelectedIndex(tipe_jual);
-
                     if (pane.cmb_tipe_penjualan.getSelectedIndex() == 0) {
-                        lshide.set(4, lsoldhide.get(4));
-                        lshide.set(10, lsoldhide.get(10));
-                        lsresize.set(4, lsoldsize.get(4));
-                        lsresize.set(10, lsoldsize.get(10));
+                        tipe_jual = 0;
+                        pane.lgudang.setVisible(true);
+                        pane.ltitik2gudang.setVisible(true);
+                        pane.edgudang.setVisible(true);
+                        pane.bcari_gudang.setVisible(true);
+                        lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
+                        lshide.set(gx(harga_beli), lsoldhide.get(gx(harga_beli)));
+                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                        lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
+                        lsresize.set(gx(harga_beli), lsoldsize.get(gx(harga_beli)));
+                        lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                        setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
-                            hidetable(8);
-                            showtable(7);
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
                             valcheck = 0;
 
                         } else {
-                            hidetable(7);
-                            showtable(8);
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
                             valcheck = 1;
                         }
                     } else {
-                        lshide.set(4, 0);
-                        lshide.set(10, 0);
-                        lsresize.set(4, 0);
-                        lsresize.set(10, 0);
+                        tipe_jual = 1;
+                        pane.lgudang.setVisible(false);
+                        pane.ltitik2gudang.setVisible(false);
+                        pane.edgudang.setVisible(false);
+                        pane.bcari_gudang.setVisible(false);
+                        lshide.set(gx(satuan), 0);
+                        lshide.set(gx(harga_beli), 0);
+                        lshide.set(gx(gudang), 0);
+                        lsresize.set(gx(satuan), 0);
+                        lsresize.set(gx(harga_beli), 0);
+                        lsresize.set(gx(gudang), 0);
+                        setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
-                            hidetable(8);
-                            showtable(7);
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
                             valcheck = 0;
 
                         } else {
-                            hidetable(7);
-                            showtable(8);
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
                             valcheck = 1;
                         }
                     }
+
                 }
 
                 Object objtabeldata = jsonobjdata.get("penjualan_detail");
@@ -1162,14 +1178,14 @@ public class DaftarfakturpenjualaninputController {
                                 pane.eddiskon1.setText(String.valueOf(joinpenjualan.get("diskon_persen")));
                                 pane.eddiskon2.setText(String.valueOf(joinpenjualan.get("diskon_nominal")));
                                 pane.edbiayalain.setText(String.valueOf(joinpenjualan.get("total_biaya")));
-                                tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+
                                 valcheck = ConvertFunc.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
                                     pane.ckdiskon.setSelected(true);
                                 } else {
                                     pane.ckdiskon.setSelected(false);
                                 }
-
+                                tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
                                 if (tipe_jual == 0) {
                                     pane.cmb_tipe_penjualan.setSelectedIndex(0);
                                 } else {

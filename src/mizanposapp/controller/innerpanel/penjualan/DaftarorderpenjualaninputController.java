@@ -76,7 +76,7 @@ public class DaftarorderpenjualaninputController {
     String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
             valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "";
     int valcheck = 0;
-    int tipe_bayar = 0, tipe_beli = 0, status_selesai = 0;
+    int tipe_bayar = 0, tipe_jual = 0, status_selesai = 0;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
     Object[] rowtabledata = new Object[12];
     ArrayList<Entitytabledata> tabeldatalist = new ArrayList<>();
@@ -263,9 +263,9 @@ public class DaftarorderpenjualaninputController {
             }
         });
 
-        pane.cmb_tipe_bayar.addItemListener(new ItemListener() {
+        pane.cmb_tipe_bayar.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
@@ -296,13 +296,14 @@ public class DaftarorderpenjualaninputController {
                     pane.edgudang.setVisible(true);
                     pane.bcari_gudang.setVisible(true);
                     valgudang = "";
-                    tipe_beli = 0;
+                    tipe_jual = 0;
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(harga_beli), lsoldhide.get(gx(harga_beli)));
                     lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
                     lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                     lsresize.set(gx(harga_beli), lsoldsize.get(gx(harga_beli)));
                     lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                    setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
                         hidetable(gx(diskon_nominal));
@@ -320,7 +321,7 @@ public class DaftarorderpenjualaninputController {
                     pane.edgudang.setVisible(false);
                     pane.bcari_gudang.setVisible(false);
                     valgudang = "";
-                    tipe_beli = 1;
+                    tipe_jual = 1;
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(harga_beli), 0);
                     lshide.set(gx(gudang), 0);
@@ -461,7 +462,7 @@ public class DaftarorderpenjualaninputController {
                 pane.edtop.setVisible(false);
                 pane.bcaritop.setVisible(false);
                 pane.ltop.setVisible(false);
-                tipe_beli = 0;
+                tipe_jual = 0;
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
@@ -555,6 +556,79 @@ public class DaftarorderpenjualaninputController {
                         pane.cmb_tipe_bayar.setSelectedIndex(1);
                     }
 
+                    if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                        pane.edtop.setVisible(false);
+                        pane.bcaritop.setVisible(false);
+                        pane.ltop.setVisible(false);
+                        valtop = "";
+                        pane.edakun_penjualan.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
+                    } else {
+                        pane.edtop.setVisible(true);
+                        pane.bcaritop.setVisible(true);
+                        pane.ltop.setVisible(true);
+                        valtop = "";
+                        pane.edakun_penjualan.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
+                    }
+
+                    tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+                    if (tipe_jual == 0) {
+                        pane.cmb_tipe_penjualan.setSelectedIndex(0);
+                    } else {
+                        pane.cmb_tipe_penjualan.setSelectedIndex(1);
+                    }
+
+                    if (pane.cmb_tipe_penjualan.getSelectedIndex() == 0) {
+                        pane.lgudang.setVisible(true);
+                        pane.ltitik2gudang.setVisible(true);
+                        pane.edgudang.setVisible(true);
+                        pane.bcari_gudang.setVisible(true);
+                        valgudang = "";
+                        tipe_jual = 0;
+                        lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
+                        lshide.set(gx(harga_beli), lsoldhide.get(gx(harga_beli)));
+                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                        lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
+                        lsresize.set(gx(harga_beli), lsoldsize.get(gx(harga_beli)));
+                        lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                    } else {
+                        pane.lgudang.setVisible(false);
+                        pane.ltitik2gudang.setVisible(false);
+                        pane.edgudang.setVisible(false);
+                        pane.bcari_gudang.setVisible(false);
+                        valgudang = "";
+                        tipe_jual = 1;
+                        lshide.set(gx(satuan), 0);
+                        lshide.set(gx(harga_beli), 0);
+                        lshide.set(gx(gudang), 0);
+                        lsresize.set(gx(satuan), 0);
+                        lsresize.set(gx(harga_beli), 0);
+                        lsresize.set(gx(gudang), 0);
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                    }
+
                     try {
                         pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpenjualan.get("tanggal_pengantaran")))));
                     } catch (java.text.ParseException ex) {
@@ -616,8 +690,8 @@ public class DaftarorderpenjualaninputController {
                     valsalesman = String.valueOf(joinpenjualan.get("id_bagian_penjualan"));
                     pane.edsalesman.setText(String.valueOf(joinpenjualan.get("nama_bagian_penjualan")));
 
-                    tipe_beli = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
-                    pane.cmb_tipe_penjualan.setSelectedIndex(tipe_beli);
+                    tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+                    pane.cmb_tipe_penjualan.setSelectedIndex(tipe_jual);
 
                 }
 
@@ -716,7 +790,7 @@ public class DaftarorderpenjualaninputController {
                     + "id_pengantaran='" + valshipvia + "'::"
                     + "id_bagian_penjualan='" + valsalesman + "'::"
                     + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_penjualan='" + tipe_beli + "'::"
+                    + "tipe_penjualan='" + tipe_jual + "'::"
                     + "isorderselesai='" + status_selesai + "'"
                     + "&" + kirimtexpenjualan();
 
@@ -798,7 +872,7 @@ public class DaftarorderpenjualaninputController {
                     + "id_pengantaran='" + valshipvia + "'::"
                     + "id_bagian_penjualan='" + valsalesman + "'::"
                     + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_penjualan='" + tipe_beli + "'::"
+                    + "tipe_penjualan='" + tipe_jual + "'::"
                     + "isorderselesai='" + status_selesai + "'"
                     + "&" + kirimtexpenjualan();
             ch.updatedata("updateorderpenjualan", data, id);
@@ -892,7 +966,7 @@ public class DaftarorderpenjualaninputController {
         }
         String rawhasil = sb.toString().substring(0, sb.toString().length() - 2);
         String finalhasil = "";
-        if (tipe_beli == 1) {
+        if (tipe_jual == 1) {
             finalhasil = rawhasil.replace("id_inv", "akun");
         } else {
             finalhasil = rawhasil;
@@ -1166,7 +1240,7 @@ public class DaftarorderpenjualaninputController {
                         Staticvar.sfilter = defnilai;
                         Staticvar.prelabel = defnilai;
                         try {
-                            if (tipe_beli == 1) {
+                            if (tipe_jual == 1) {
                                 if (sudahterpanggil == true) {
                                     sudahterpanggil = false;
                                 } else {
@@ -1422,7 +1496,7 @@ public class DaftarorderpenjualaninputController {
                 }
                 if (e.getClickCount() == 2) {
                     if (col == gx(kode)) {
-                        if (tipe_beli == 1) {
+                        if (tipe_jual == 1) {
                             Staticvar.sfilter = "";
                             sudahterpanggil = true;
                             JDialog jd = new JDialog(new Mainmenu());
