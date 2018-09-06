@@ -768,7 +768,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                    + "id_keltrans='42'::"
+                    + "id_keltrans='43'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
@@ -835,7 +835,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='42'::"
+                    + "id_keltrans='43'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"

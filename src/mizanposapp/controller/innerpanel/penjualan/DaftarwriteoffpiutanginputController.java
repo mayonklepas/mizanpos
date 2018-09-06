@@ -207,7 +207,7 @@ public class DaftarwriteoffpiutanginputController {
     private void rawsimpan(String tipe, String id) {
         if (tipe.equals("add")) {
             String data = "genjur="
-                    + "id_keltrans='45'::"
+                    + "id_keltrans='46'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
@@ -239,7 +239,7 @@ public class DaftarwriteoffpiutanginputController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='45'::"
+                    + "id_keltrans='46'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
