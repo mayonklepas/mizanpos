@@ -173,29 +173,29 @@ public class DaftarwriteoffpiutanginputController {
 
                 }
 
-                Object jokaskeluar = jsonobjdata.get("kaskeluar");
-                JSONArray jakaskeluar = (JSONArray) jokaskeluar;
-                for (int i = 0; i < jakaskeluar.size(); i++) {
-                    JSONObject joinkaskeluar = (JSONObject) jakaskeluar.get(i);
-                    pane.edpelanggan.setText(String.valueOf(joinkaskeluar.get("nama_cards")));
-                    valpelanggan = String.valueOf(joinkaskeluar.get("id_cards"));
-                    valakun_penerimaan = String.valueOf(joinkaskeluar.get("akun_keluar_dari"));
-                    pane.edakun_penerimaan.setText(valakun_penerimaan + "-" + String.valueOf(joinkaskeluar.get("nama_akun_keluar_dari")));
+                Object jokasmasuk = jsonobjdata.get("kasmasuk");
+                JSONArray jakasmasuk = (JSONArray) jokasmasuk;
+                for (int i = 0; i < jakasmasuk.size(); i++) {
+                    JSONObject joinkasmasuk = (JSONObject) jakasmasuk.get(i);
+                    pane.edpelanggan.setText(String.valueOf(joinkasmasuk.get("nama_cards")));
+                    valpelanggan = String.valueOf(joinkasmasuk.get("id_cards"));
+                    valakun_penerimaan = String.valueOf(joinkasmasuk.get("akun_masuk_dari"));
+                    pane.edakun_penerimaan.setText(valakun_penerimaan + "-" + String.valueOf(joinkasmasuk.get("nama_akun_masuk_dari")));
                 }
 
-                Object jokaskeluardetail = jsonobjdata.get("kaskeluar_detail");
-                JSONArray jakaskeluardetail = (JSONArray) jokaskeluardetail;
-                for (int i = 0; i < jakaskeluardetail.size(); i++) {
-                    JSONObject joinkaskeluar_detail = (JSONObject) jakaskeluardetail.get(i);
-                    valid_transaksi = String.valueOf(joinkaskeluar_detail.get("id"));
-                    valakun_transaksi = String.valueOf(joinkaskeluar_detail.get("akun"));
-                    pane.edketerangan_transaksi.setText(String.valueOf(joinkaskeluar_detail.get("keterangan_transaksi")));
-                    pane.ednotransaksi.setText(String.valueOf(joinkaskeluar_detail.get("noref")));
-                    pane.edtanggaltransaksi.setText(String.valueOf(joinkaskeluar_detail.get("tanggal")));
-                    pane.edtotal.setText(String.valueOf(joinkaskeluar_detail.get("total")));
-                    double sebenarnyasisa = ConvertFunc.ToDouble(joinkaskeluar_detail.get("sisa")) + ConvertFunc.ToDouble(joinkaskeluar_detail.get("jumlah"));
+                Object jokasmasukdetail = jsonobjdata.get("kasmasuk_detail");
+                JSONArray jakasmasukdetail = (JSONArray) jokasmasukdetail;
+                for (int i = 0; i < jakasmasukdetail.size(); i++) {
+                    JSONObject joinkasmasuk_detail = (JSONObject) jakasmasukdetail.get(i);
+                    valid_transaksi = String.valueOf(joinkasmasuk_detail.get("id"));
+                    valakun_transaksi = String.valueOf(joinkasmasuk_detail.get("akun"));
+                    pane.edketerangan_transaksi.setText(String.valueOf(joinkasmasuk_detail.get("keterangan_transaksi")));
+                    pane.ednotransaksi.setText(String.valueOf(joinkasmasuk_detail.get("noref")));
+                    pane.edtanggaltransaksi.setText(String.valueOf(joinkasmasuk_detail.get("tanggal")));
+                    pane.edtotal.setText(String.valueOf(joinkasmasuk_detail.get("total")));
+                    double sebenarnyasisa = ConvertFunc.ToDouble(joinkasmasuk_detail.get("sisa")) + ConvertFunc.ToDouble(joinkasmasuk_detail.get("jumlah"));
                     pane.edsisa_piutang.setText(String.valueOf(sebenarnyasisa));
-                    pane.edjumlah_hapus.setText(String.valueOf(joinkaskeluar_detail.get("jumlah")));
+                    pane.edjumlah_hapus.setText(String.valueOf(joinkasmasuk_detail.get("jumlah")));
                 }
             }
 
@@ -212,11 +212,11 @@ public class DaftarwriteoffpiutanginputController {
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kaskeluar="
+                    + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
-                    + "akun_keluar_dari='" + valakun_penerimaan + "'::"
+                    + "akun_masuk_dari='" + valakun_penerimaan + "'::"
                     + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
-                    + "&kaskeluar_detail="
+                    + "&kasmasuk_detail="
                     + "id_no_genjur='" + valid_transaksi + "'::"
                     + "akun='" + valakun_transaksi + "'::"
                     + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
@@ -244,11 +244,11 @@ public class DaftarwriteoffpiutanginputController {
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kaskeluar="
+                    + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
-                    + "akun_keluar_dari='" + valakun_penerimaan + "'::"
+                    + "akun_masuk_dari='" + valakun_penerimaan + "'::"
                     + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
-                    + "&kaskeluar_detail="
+                    + "&kasmasuk_detail="
                     + "id_no_genjur='" + valid_transaksi + "'::"
                     + "akun='" + valakun_transaksi + "'::"
                     + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
