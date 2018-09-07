@@ -474,9 +474,9 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                             double indiskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
                             double totabayartambahdiskon = injumlah_bayar + indiskon;
 
-                            if (totabayartambahdiskon > insisa || totabayartambahdiskon < 0) {
+                            if (totabayartambahdiskon > insisa || injumlah_bayar <= 0) {
                                 JOptionPane.showMessageDialog(null,
-                                        "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Sisa Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                        "Jumlah Bayar " + noref + " Tidak boleh Nol atau lebih besar dari Sisa Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
                                 tm.setValueAt(ConvertFunc.ToDouble(pane.edtotal_nilai.getText()), row, gx(jumlah_bayar));
@@ -914,8 +914,11 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                     double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
                                     double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
                                     double totabayartambahdiskon = jumlahbayar + diskon;
-                                    if (totabayartambahdiskon > sisa) {
-                                        JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                    if (jumlahbayar <= 0) {
+                                        JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh Nol", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                        status = false;
+                                    } else if (totabayartambahdiskon > sisa) {
+                                        JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                         status = false;
                                     }
                                 }
@@ -945,8 +948,11 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                 double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisahutang());
                                 double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
                                 double totabayartambahdiskon = jumlahbayar + diskon;
-                                if (totabayartambahdiskon > sisa) {
-                                    JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                if (jumlahbayar <= 0) {
+                                    JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh Nol", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                    status = false;
+                                } else if (totabayartambahdiskon > sisa) {
+                                    JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                     status = false;
                                 }
                             }
