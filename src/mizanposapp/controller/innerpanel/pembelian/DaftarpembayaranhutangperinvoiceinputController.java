@@ -449,6 +449,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                         "Jumlah Diskon " + noref + " Tidak boleh lebih besar dari Sisa Hutang", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(diskon), false, false);
+                                tabeldatalist.get(row).setDiskon(String.valueOf("0"));
                                 tm.setValueAt("0", row, gx(diskon));
                             } else {
                                 double total_bayar = insisa - indiskon;
@@ -479,6 +480,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                         "Jumlah Bayar " + noref + " Tidak boleh Nol atau lebih besar dari Sisa Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
+                                tabeldatalist.get(row).setJumlah_bayar(pane.edtotal_nilai.getText());
                                 tm.setValueAt(ConvertFunc.ToDouble(pane.edtotal_nilai.getText()), row, gx(jumlah_bayar));
                             } else {
                                 tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, gx(jumlah_bayar))));
