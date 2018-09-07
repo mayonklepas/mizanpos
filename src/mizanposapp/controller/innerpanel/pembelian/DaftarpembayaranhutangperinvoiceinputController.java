@@ -440,13 +440,22 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     if (col == gx(diskon)) {
                         try {
                             ischangevalue = true;
-                            tabeldatalist.get(row).setDiskon(String.valueOf(tm.getValueAt(row, 4)));
-                            double diskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
-                            double sisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
-                            double total_bayar = sisa - diskon;
-                            tabeldatalist.get(row).setJumlah_bayar(String.valueOf(total_bayar));
-                            tm.setValueAt(total_bayar, row, gx(jumlah_bayar));
-                            kalkulasi();
+                            String noref = tabeldatalist.get(row).getNoref();
+                            tabeldatalist.get(row).setDiskon(String.valueOf(tm.getValueAt(row, gx(diskon))));
+                            double indiskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
+                            double insisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
+                            if (indiskon > insisa) {
+                                JOptionPane.showMessageDialog(null,
+                                        "Jumlah Diskon " + noref + " Tidak boleh lebih besar dari Sisa Hutang", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, gx(diskon), false, false);
+                                tm.setValueAt("0", row, gx(diskon));
+                            } else {
+                                double total_bayar = insisa - indiskon;
+                                tabeldatalist.get(row).setJumlah_bayar(String.valueOf(total_bayar));
+                                tm.setValueAt(total_bayar, row, gx(jumlah_bayar));
+                                kalkulasi();
+                            }
 
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -457,12 +466,17 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         try {
                             ischangevalue = true;
                             String noref = tabeldatalist.get(row).getNoref();
-                            double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(row).getJumlah_bayar());
-                            double sisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
-                            double diskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
-                            double totabayartambahdiskon = jumlahbayar + diskon;
-                            if (totabayartambahdiskon > sisa) {
-                                JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            tabeldatalist.get(row).setJumlah_bayar(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah_bayar))));
+                            tabeldatalist.get(row).setSisahutang(String.valueOf(pane.tabledata.getValueAt(row, gx(sisa))));
+                            tabeldatalist.get(row).setDiskon(String.valueOf(pane.tabledata.getValueAt(row, gx(diskon))));
+                            double injumlah_bayar = ConvertFunc.ToDouble(tabeldatalist.get(row).getJumlah_bayar());
+                            double insisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisahutang());
+                            double indiskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
+                            double totabayartambahdiskon = injumlah_bayar + indiskon;
+
+                            if (totabayartambahdiskon > insisa || totabayartambahdiskon < 0) {
+                                JOptionPane.showMessageDialog(null,
+                                        "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Sisa Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
                                 tm.setValueAt("0", row, gx(jumlah_bayar));
