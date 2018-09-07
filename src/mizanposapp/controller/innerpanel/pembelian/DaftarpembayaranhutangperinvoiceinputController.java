@@ -479,7 +479,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                                         "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Sisa Hutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
-                                tm.setValueAt("0", row, gx(jumlah_bayar));
+                                tm.setValueAt(ConvertFunc.ToDouble(pane.edtotal_nilai.getText()), row, gx(jumlah_bayar));
                             } else {
                                 tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, gx(jumlah_bayar))));
                                 kalkulasi();
