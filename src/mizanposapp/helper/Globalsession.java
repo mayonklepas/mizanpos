@@ -46,13 +46,16 @@ public class Globalsession {
     public static String NAMAAKUNHUTANGUSAHA = "";
     public static String NAMAAKUNPIUTANGUSAHA = "";
     public static String AKUNHUTANGGIRO = "";
+    public static String NAMAAKUNHUTANGGIRO = "";
     public static String AKUNPIUTANGUSAHA = "";
     public static String AKUNPIUTANGGIRO = "";
+    public static String NAMAAKUNPIUTANGGIRO = "";
     public static String AKUNPEMBELIANTUNAI = "";
     public static String NAMAAKUNPEMBELIANTUNAI = "";
     public static String AKUNPENJUALANTUNAI = "";
     public static String NAMAAKUNPENJUALANTUNAI = "";
     public static String AKUNKAS = "";
+    public static String NAMAAKUNKAS = "";
     public static String AKUNDISKONPEMBELIAN = "";
     public static String NAMAAKUNDISKONPEMBELIAN = "";
     public static String AKUNDISKONPENJUALAN = "";
@@ -118,13 +121,16 @@ public class Globalsession {
             NAMAAKUNHUTANGUSAHA = String.valueOf(jodata.get("nama_akun_hutang_usaha"));
             NAMAAKUNPIUTANGUSAHA = String.valueOf(jodata.get("nama_akun_piutang_usaha"));
             AKUNHUTANGGIRO = String.valueOf(jodata.get("akun_hutang_biro"));
+            NAMAAKUNHUTANGGIRO = String.valueOf(jodata.get("nama_akun_hutang_biro"));
             AKUNPIUTANGUSAHA = String.valueOf(jodata.get("akun_piutang_usaha"));
             AKUNPIUTANGGIRO = String.valueOf(jodata.get("akun_piutang_giro"));
+            NAMAAKUNPIUTANGGIRO = String.valueOf(jodata.get("nama_akun_piutang_giro"));
             AKUNPEMBELIANTUNAI = String.valueOf(jodata.get("akun_pembelian_tunai"));
             NAMAAKUNPEMBELIANTUNAI = String.valueOf(jodata.get("nama_akun_pembelian_tunai"));
             AKUNPENJUALANTUNAI = String.valueOf(jodata.get("akun_penjualan_tunai"));
             NAMAAKUNPENJUALANTUNAI = String.valueOf(jodata.get("nama_akun_penjualan_tunai"));
             AKUNKAS = String.valueOf(jodata.get("akun_kas"));
+            NAMAAKUNKAS = String.valueOf(jodata.get("nama_akun_kas"));
             AKUNDISKONPEMBELIAN = String.valueOf(jodata.get("akun_diskon_pembelian"));
             NAMAAKUNDISKONPEMBELIAN = String.valueOf(jodata.get("nama_akun_diskon_pembelian"));
             AKUNDISKONPENJUALAN = String.valueOf(jodata.get("akun_diskon_penjualan"));
@@ -146,6 +152,7 @@ public class Globalsession {
             DEFAULT_ID_GUDANG = String.valueOf(jodata.get("default_id_gudang"));
             DEFAULT_NAMA_GUDANG = String.valueOf(jodata.get("default_nama_gudang"));
             DEFAULT_DISKON_DALAM = String.valueOf(jodata.get("default_diskon_dalam"));
+
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

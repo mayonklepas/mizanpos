@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import mizanposapp.view.Beranda_panel;
+import mizanposapp.view.Keuangan_panel;
 import mizanposapp.view.Laporan_panel;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Pembelian_panel;
@@ -25,6 +26,7 @@ public class Staticvar {
     public static Penjualan_panel pp = null;
     public static Persedian_panel psp = null;
     public static Pembelian_panel pmp = null;
+    public static Keuangan_panel kp = null;
     public static Mainmenu mm = null;
     public static Laporan_panel lp = null;
     public static Beranda_panel bp = null;

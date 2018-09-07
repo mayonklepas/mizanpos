@@ -2072,5 +2072,89 @@
                 "10"
             ]
         }
+    ],
+    "kasmasuk": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "tanggal",
+                "Tanggal",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No Transaksi",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "nama_cards",
+                "Terima Dari",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Nilai",
+                "1",
+                "15"
+            ]
+        }
+    ],
+    "inputkasmasuk": [
+        {
+            "key": [
+                "akun",
+                "Akun",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_akun",
+                "Nama Akun",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "15"
+            ]
+        }
     ]
 }

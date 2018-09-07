@@ -5,22 +5,20 @@
  */
 package mizanposapp.view;
 
-import mizanposapp.controller.PembelianController;
-import mizanposapp.controller.PenjualanController;
+import mizanposapp.controller.KeuanganController;
 
 /**
  *
  * @author Minami
  */
-public class Pembelian_panel extends javax.swing.JPanel {
+public class Keuangan_panel extends javax.swing.JPanel {
 
     /**
      * Creates new form Persedian_panel
      */
-    public Pembelian_panel() {
+    public Keuangan_panel() {
         initComponents();
-        new PembelianController(this);
-
+        new KeuanganController(this);
     }
 
     /**
@@ -36,20 +34,18 @@ public class Pembelian_panel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        butangusaha = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        bfakturpembelian = new javax.swing.JPanel();
+        bkaskeluar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        breturpembelian = new javax.swing.JPanel();
+        btransferkas = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        bpenerimaanbarang = new javax.swing.JPanel();
+        bkasmasuk = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        lcekhargabarang = new javax.swing.JLabel();
+        lgiromasuk = new javax.swing.JLabel();
+        lgirokeluar = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(22, 22, 22));
@@ -61,7 +57,7 @@ public class Pembelian_panel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Alur Pembelian Barang");
+        jLabel1.setText("Alur Keuangan");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -84,57 +80,44 @@ public class Pembelian_panel extends javax.swing.JPanel {
         jPanel9.setPreferredSize(new java.awt.Dimension(300, 110));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        butangusaha.setMinimumSize(new java.awt.Dimension(100, 100));
-        butangusaha.setPreferredSize(new java.awt.Dimension(100, 100));
-        butangusaha.setRequestFocusEnabled(false);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/hutang_usaha.png"))); // NOI18N
-        butangusaha.add(jLabel4);
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel8.setText("<html><center>Hutang<br>Usaha</center></html>");
-        butangusaha.add(jLabel8);
-
-        jPanel9.add(butangusaha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 80, -1));
-
-        bfakturpembelian.setPreferredSize(new java.awt.Dimension(100, 100));
+        bkaskeluar.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/pembelian.png"))); // NOI18N
-        bfakturpembelian.add(jLabel2);
+        bkaskeluar.add(jLabel2);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("<html><center>Faktur<br>Pembelian</center></html>");
-        bfakturpembelian.add(jLabel6);
+        jLabel6.setText("<html><center>Kas<br>Keluar</center></html>");
+        bkaskeluar.add(jLabel6);
 
-        jPanel9.add(bfakturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
+        jPanel9.add(bkaskeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
 
-        breturpembelian.setPreferredSize(new java.awt.Dimension(100, 100));
+        btransferkas.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
-        breturpembelian.add(jLabel3);
+        btransferkas.add(jLabel3);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel7.setText("<html><center>Retur<br>Pembelian</center></html>");
-        breturpembelian.add(jLabel7);
+        jLabel7.setText("<html><center>Transfer<br>Kas</center></html>");
+        btransferkas.add(jLabel7);
 
-        jPanel9.add(breturpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 80, -1));
+        jPanel9.add(btransferkas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 80, -1));
 
-        bpenerimaanbarang.setPreferredSize(new java.awt.Dimension(100, 100));
+        bkasmasuk.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
-        bpenerimaanbarang.add(jLabel5);
+        bkasmasuk.add(jLabel5);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("<html><center>Order<br>Pembelian</center></html>"); // NOI18N
+        jLabel9.setText("<html><center>Kas<br>Masuk</center></html>"); // NOI18N
         jLabel9.setAlignmentY(0.0F);
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLabel9.setIconTextGap(1);
         jLabel9.setPreferredSize(new java.awt.Dimension(60, 30));
-        bpenerimaanbarang.add(jLabel9);
+        bkasmasuk.add(jLabel9);
 
-        jPanel9.add(bpenerimaanbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
+        jPanel9.add(bkasmasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
 
         jPanel8.setBackground(new java.awt.Color(41, 39, 40));
 
@@ -149,9 +132,13 @@ public class Pembelian_panel extends javax.swing.JPanel {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        lcekhargabarang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        lcekhargabarang.setForeground(new java.awt.Color(58, 58, 255));
-        lcekhargabarang.setText("Cek Harga Barang");
+        lgiromasuk.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lgiromasuk.setForeground(new java.awt.Color(58, 58, 255));
+        lgiromasuk.setText("Giro Masuk");
+
+        lgirokeluar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lgirokeluar.setForeground(new java.awt.Color(58, 58, 255));
+        lgirokeluar.setText("Giro Keluar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -159,23 +146,30 @@ public class Pembelian_panel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 336, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lcekhargabarang)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lgiromasuk)
+                            .addComponent(lgirokeluar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lcekhargabarang)
-                .addGap(79, 79, 79))
+                .addComponent(lgiromasuk)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lgirokeluar)
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
@@ -206,24 +200,22 @@ public class Pembelian_panel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel bfakturpembelian;
-    public javax.swing.JPanel bpenerimaanbarang;
-    public javax.swing.JPanel breturpembelian;
-    public javax.swing.JPanel butangusaha;
+    public javax.swing.JPanel bkaskeluar;
+    public javax.swing.JPanel bkasmasuk;
+    public javax.swing.JPanel btransferkas;
     public javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    public javax.swing.JLabel lcekhargabarang;
+    public javax.swing.JLabel lgirokeluar;
+    public javax.swing.JLabel lgiromasuk;
     // End of variables declaration//GEN-END:variables
 }
