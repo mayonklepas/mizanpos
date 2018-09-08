@@ -103,8 +103,8 @@ public class DaftarkaskeluarinputController {
     private void loadsession() {
         pane.edakun_kas.setText(Globalsession.AKUNKAS + "-" + Globalsession.NAMAAKUNKAS);
         valakun_kas = Globalsession.AKUNKAS;
-        pane.edakun_giro.setText(Globalsession.AKUNPIUTANGGIRO + "-" + Globalsession.NAMAAKUNPIUTANGGIRO);
-        valakungiro = Globalsession.AKUNPIUTANGGIRO;
+        pane.edakun_giro.setText(Globalsession.AKUNHUTANGGIRO + "-" + Globalsession.NAMAAKUNHUTANGGIRO);
+        valakungiro = Globalsession.AKUNHUTANGGIRO;
     }
 
     private void skinning() {
