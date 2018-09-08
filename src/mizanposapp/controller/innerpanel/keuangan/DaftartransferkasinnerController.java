@@ -275,6 +275,7 @@ public class DaftartransferkasinnerController {
     private void tambahdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             Staticvar.isupdate = true;
+            Staticvar.ids = "";
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Formtransferkas());
             jd.pack();
