@@ -262,13 +262,13 @@ public class DaftarkasmasukinnerController {
     }
 
     private void disablebutton() {
-        //pane.bbayar.setEnabled(false);
-        //pane.bdetailbayar.setEnabled(false);
+        pane.bedit.setEnabled(false);
+        pane.bhapus.setEnabled(false);
     }
 
     private void enablebutton() {
-        //pane.bbayar.setEnabled(true);
-        //pane.bdetailbayar.setEnabled(true);
+        pane.bedit.setEnabled(true);
+        pane.bhapus.setEnabled(true);
     }
 
     private void tambahdata() {
