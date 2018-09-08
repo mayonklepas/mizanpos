@@ -7,6 +7,7 @@ package mizanposapp.controller.innerpanel.keuangan;
 
 import mizanposapp.controller.innerpanel.keuangan.*;
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -19,6 +20,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
@@ -30,6 +33,8 @@ import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.helper.Tablestyle;
+import mizanposapp.view.Mainmenu;
+import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_input_panel;
 import org.json.simple.JSONArray;
@@ -58,6 +63,7 @@ public class DaftarkasmasukinnerController {
         loaddatadetail();
         tambahdata();
         editdata();
+        deletedata();
         updateloaddata();
         selectdata();
         oncarienter();
@@ -291,6 +297,46 @@ public class DaftarkasmasukinnerController {
             Staticvar.kp.container.revalidate();
             Staticvar.kp.container.repaint();
         });
+    }
+
+    private void deletedata() {
+        pane.bhapus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = pane.tabledata.getSelectedRow();
+                System.out.println(idlist.get(row));
+                if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
+                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                    String data = String.format("id=%s", idlist.get(row));
+                    ch.deletedata("deletekasmasuk", data);
+                    if (!Staticvar.getresult.equals("berhasil")) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        Errorpanel ep = new Errorpanel();
+                        ep.ederror.setText(Staticvar.getresult);
+                        jd.add(ep);
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                    } else {
+                        Staticvar.isupdate = true;
+                        if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                            if (Staticvar.isupdate == true) {
+                                loaddata();
+                            }
+                        } else {
+                            if (Staticvar.isupdate == true) {
+                                loaddatadetailraw();
+                            }
+                            Staticvar.isupdate = false;
+                        }
+                    }
+                }
+
+            }
+        });
+
     }
 
 }

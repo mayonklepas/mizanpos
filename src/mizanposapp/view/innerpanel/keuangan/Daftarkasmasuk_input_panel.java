@@ -400,7 +400,7 @@ public class Daftarkasmasuk_input_panel extends javax.swing.JPanel {
         jScrollPane6.setViewportView(tabledata);
 
         jLabel33.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel33.setText("Akun Pemasukan");
+        jLabel33.setText("Akun Penerima");
 
         jLabel37.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel37.setText(":");
