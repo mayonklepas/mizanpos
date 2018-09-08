@@ -13,6 +13,7 @@ import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Keuangan_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkaskeluar_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_inner_panel;
+import mizanposapp.view.innerpanel.keuangan.Daftartransferkas_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Cekhargabeli_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftardatasupplier_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftarfakturpembelian_inner_panel;
@@ -39,8 +40,8 @@ public class KeuanganController {
         kasmasukview(pp);
         kaskeluarview(pp);
         transferkasview(pp);
-        giromasukview(pp);
-        girokeluarview(pp);
+        //giromasukview(pp);
+        //girokeluarview(pp);
     }
 
     private void kasmasukviewauto(Keuangan_panel pp) {
@@ -129,7 +130,7 @@ public class KeuanganController {
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
-                Daftarreturpembelian_inner_panel pane = new Daftarreturpembelian_inner_panel();
+                Daftartransferkas_inner_panel pane = new Daftartransferkas_inner_panel();
                 Staticvar.kp = pp;
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
