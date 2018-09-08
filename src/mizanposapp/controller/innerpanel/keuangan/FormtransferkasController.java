@@ -203,13 +203,12 @@ public class FormtransferkasController {
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                     + "noref='" + ConvertFunc.EncodeString(pane.ednotransaksi.getText()) + "'::"
                     + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&transferkas="
+                    + "&transfer_kas="
                     + "akun_dari='" + valakundari + "'::"
                     + "akun_tujuan='" + valakuntujuan + "'::"
                     + "jumlah='" + ConvertFunc.ToDouble(pane.edjumlah.getText()) + "'::"
                     + "bank_charge_nominal='" + ConvertFunc.ToDouble(pane.edcharge.getText()) + "'::"
                     + "akun_bank_charge='" + valakun_charge + "'";
-
             ch.updatedata("updatetransferkas", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 Staticvar.isupdate = true;
@@ -237,8 +236,8 @@ public class FormtransferkasController {
                 double jumlahbayar = ConvertFunc.ToDouble(pane.edjumlah.getText());
                 if (pane.edakun_penerimaan.getText().equals("") || pane.edtujuan.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Akun penerima dan tujuan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                } else if (pane.edketerangan.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Keterangan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else if (pane.eddept.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Dept  tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else if (jumlahbayar <= 0) {
                     JOptionPane.showMessageDialog(null, "Jumlah bayar tidak boleh 0", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
