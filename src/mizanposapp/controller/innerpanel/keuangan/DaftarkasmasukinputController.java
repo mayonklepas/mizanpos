@@ -948,7 +948,7 @@ public class DaftarkasmasukinputController {
                 int row = pane.tabledata.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null,
                         "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(akun)) + " - "
-                        + pane.tabledata.getValueAt(row, gx(akun)),
+                        + pane.tabledata.getValueAt(row, gx(nama_akun)),
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
