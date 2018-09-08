@@ -132,7 +132,7 @@ public class Formtransferkas extends javax.swing.JPanel {
         });
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel18.setText("Akun Charge");
+        jLabel18.setText("Akun Biaya");
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel19.setText(":");
@@ -310,7 +310,7 @@ public class Formtransferkas extends javax.swing.JPanel {
         });
 
         Charge.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        Charge.setText("Charge");
+        Charge.setText("Biaya");
 
         jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel27.setText(":");
