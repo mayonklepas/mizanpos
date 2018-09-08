@@ -2298,5 +2298,57 @@
                 "10"
             ]
         }
+    ],
+    
+    "kasdanbank": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "kode_akun",
+                "Kode Akun",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nama_akun",
+                "Nama Akun",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "nomor_rekening_bank",
+                "Rekening Bank",
+                "1",
+                "30"
+            ]
+        },
+        {
+            "key": [
+                "atas_nama_rekening",
+                "Atas Nama",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "saldo",
+                "Saldo",
+                "1",
+                "15"
+            ]
+        }
     ]
+    
 }

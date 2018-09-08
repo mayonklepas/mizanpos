@@ -84,7 +84,7 @@ public class DaftarkasinnerController {
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("kas");
+            JSONArray jaheader = (JSONArray) joheader.get("kasdanbank");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -118,7 +118,7 @@ public class DaftarkasinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("daftarkas", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("daftarakunkasbank", param));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -158,7 +158,7 @@ public class DaftarkasinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("cari=%s", pane.tcari.getText());
-                Object objdata = jpdata.parse(ch.getdatadetails("carikas", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("cariakunkasbank", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
