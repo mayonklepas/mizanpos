@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Keuangan_panel;
+import mizanposapp.view.innerpanel.keuangan.Daftarkaskeluar_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Cekhargabeli_inner_panel;
 import mizanposapp.view.innerpanel.pembelian.Daftardatasupplier_inner_panel;
@@ -95,7 +96,7 @@ public class KeuanganController {
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
-                Daftarorderpembelian_inner_panel pane = new Daftarorderpembelian_inner_panel();
+                Daftarkaskeluar_inner_panel pane = new Daftarkaskeluar_inner_panel();
                 Staticvar.kp = pp;
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
