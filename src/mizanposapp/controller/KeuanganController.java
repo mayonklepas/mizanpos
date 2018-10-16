@@ -11,6 +11,8 @@ import java.awt.event.MouseListener;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Keuangan_panel;
+import mizanposapp.view.innerpanel.keuangan.Daftargirokeluar_inner_panel;
+import mizanposapp.view.innerpanel.keuangan.Daftargiromasuk_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkas_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkaskeluar_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_inner_panel;
@@ -42,7 +44,8 @@ public class KeuanganController {
         kasmasukview(pp);
         kaskeluarview(pp);
         transferkasview(pp);
-        //giromasukview(pp);
+        giromasukview(pp);
+        girokeluarview(pp);
         //girokeluarview(pp);
     }
     
@@ -165,7 +168,7 @@ public class KeuanganController {
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
-                Daftarfakturpembelian_inner_panel pane = new Daftarfakturpembelian_inner_panel();
+                Daftargiromasuk_inner_panel pane = new Daftargiromasuk_inner_panel();
                 Staticvar.kp = pp;
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
@@ -197,15 +200,9 @@ public class KeuanganController {
             
             @Override
             public void mousePressed(MouseEvent e) {
-                /*Mainmenu mm = (Mainmenu) pp.getRootPane().getParent();
-                Settingdiskonkelompok_inner_panel pane = new Settingdiskonkelompok_inner_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(pane, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();*/
                 System.gc();
-                Cekhargabeli_inner_panel pane = new Cekhargabeli_inner_panel();
+                Daftargirokeluar_inner_panel pane = new Daftargirokeluar_inner_panel();
+                Staticvar.kp = pp;
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
                 pp.container.add(pane, BorderLayout.CENTER);

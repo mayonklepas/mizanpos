@@ -2299,7 +2299,6 @@
             ]
         }
     ],
-    
     "kasdanbank": [
         {
             "key": [
@@ -2345,6 +2344,124 @@
             "key": [
                 "saldo",
                 "Saldo",
+                "1",
+                "15"
+            ]
+        }
+    ],
+    "giromasuk": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "nama_cards",
+                "Terima Dari",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "no_giro",
+                "No Giro",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "tanggal_giro_jatuh_tempo",
+                "Jatuh Tempo",
+                "1",
+                "15"
+            ]
+        },
+        
+        {
+            "key": [
+                "nama_akun",
+                "Akun penerima",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "status",
+                "Status",
+                "1",
+                "15"
+            ]
+        }
+    ],
+     "girokeluar": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "nama_cards",
+                "Penerima",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "no_giro",
+                "No Giro",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "tanggal_giro_jatuh_tempo",
+                "Jatuh Tempo",
+                "1",
+                "15"
+            ]
+        },
+        
+        {
+            "key": [
+                "nama_akun",
+                "Terima Dari",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "status",
+                "Status",
                 "1",
                 "15"
             ]

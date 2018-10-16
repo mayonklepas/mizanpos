@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,14 +32,15 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
-import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_inner_panel;
+import mizanposapp.view.innerpanel.keuangan.Daftargiromasuk_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_input_panel;
+import mizanposapp.view.innerpanel.keuangan.Formtransferkas;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -46,28 +50,30 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarkasmasukinnerController {
+public class DaftargiromasukinnerController {
 
     CrudHelper ch = new CrudHelper();
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
-    Daftarkasmasuk_inner_panel pane;
+    Daftargiromasuk_inner_panel pane;
     String id = "";
+    String id_giro_untuk_cair = "";
+    int status = 0;
 
-    public DaftarkasmasukinnerController(Daftarkasmasuk_inner_panel pane) {
+    public DaftargiromasukinnerController(Daftargiromasuk_inner_panel pane) {
         this.pane = pane;
         loadheader();
         loaddata();
         loaddatadetail();
-        tambahdata();
-        editdata();
-        deletedata();
         updateloaddata();
         selectdata();
         oncarienter();
         onbuttoncari();
+        showpopup();
+        prosesgiro();
+        rinciangiro();
 
     }
 
@@ -78,14 +84,13 @@ public class DaftarkasmasukinnerController {
             pane.tabledata.setModel(dtm);
             TableColumnModel tcm = pane.tabledata.getColumnModel();
             JTableHeader thead = pane.tabledata.getTableHeader();
-            thead.setFont(new Font("Century Gothic", Font.BOLD, 13));
             pane.tabledata.setRowHeight(25);
             pane.tabledata.setDefaultEditor(Object.class, null);
             String dataheader = ch.getheaders();
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("kasmasuk");
+            JSONArray jaheader = (JSONArray) joheader.get("giromasuk");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -104,13 +109,12 @@ public class DaftarkasmasukinnerController {
                 tcm.getColumn(i).setMaxWidth(wi);
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarkasmasukinnerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftargiromasukinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void loaddata() {
         cleardata();
-        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -119,7 +123,7 @@ public class DaftarkasmasukinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("daftarkasmasuk", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("daftargiromasuk", param));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -139,7 +143,6 @@ public class DaftarkasmasukinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton();
 
             }
 
@@ -150,7 +153,6 @@ public class DaftarkasmasukinnerController {
 
     private void loaddatadetailraw() {
         cleardata();
-        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -159,7 +161,7 @@ public class DaftarkasmasukinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("cari=%s&tahun=%s&bulan=%s", pane.tcari.getText(), Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("carikasmasuk", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("carigiromasuk", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -179,7 +181,6 @@ public class DaftarkasmasukinnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton();
 
             }
 
@@ -213,11 +214,26 @@ public class DaftarkasmasukinnerController {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton();
                     //System.out.println(id);
                 }
 
             }
+        });
+
+        pane.tabledata.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int irow = pane.tabledata.getSelectedRow();
+                id_giro_untuk_cair = idlist.get(irow);
+                status = ConvertFunc.ToInt(pane.tabledata.getValueAt(irow, 5));
+                if (status == 0) {
+                    pane.mproses.setText("Cairkan Giro");
+                } else {
+                    pane.mproses.setText("Batalkan Pencairan Giro");
+                }
+
+            }
+
         });
     }
 
@@ -261,55 +277,43 @@ public class DaftarkasmasukinnerController {
         });
     }
 
-    private void disablebutton() {
-        pane.bedit.setEnabled(false);
-        pane.bhapus.setEnabled(false);
-    }
+    private void showpopup() {
+        pane.tabledata.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    pane.popupgiro.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
 
-    private void enablebutton() {
-        pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
-    }
-
-    private void tambahdata() {
-        pane.btambah.addActionListener((ActionEvent e) -> {
-            //int row = pane.tabledata.getSelectedRow();
-            Staticvar.frame = "kasmasuk";
-            //Staticvar.map_var.put("id_supplier", idlist.get(row));
-            //Staticvar.map_var.put("nama_supplier", pane.tabledata.getValueAt(row, 1));
-            Daftarkasmasuk_input_panel inpane = new Daftarkasmasuk_input_panel();
-            Staticvar.kp.container.removeAll();
-            Staticvar.kp.container.setLayout(new BorderLayout());
-            Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.kp.container.revalidate();
-            Staticvar.kp.container.repaint();
         });
     }
 
-    private void editdata() {
-        pane.bedit.addActionListener((ActionEvent e) -> {
-            int row = pane.tabledata.getSelectedRow();
-            Staticvar.frame = "kasmasuk";
-            Staticvar.ids = idlist.get(row);
-            Daftarkasmasuk_input_panel inpane = new Daftarkasmasuk_input_panel();
-            Staticvar.kp.container.removeAll();
-            Staticvar.kp.container.setLayout(new BorderLayout());
-            Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.kp.container.revalidate();
-            Staticvar.kp.container.repaint();
-        });
-    }
-
-    private void deletedata() {
-        pane.bhapus.addActionListener(new ActionListener() {
+    private void rinciangiro() {
+        pane.mrincian.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                System.out.println(idlist.get(row));
-                if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
-                    String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("deletekasmasuk", data);
+                Staticvar.frame = "giromasuk";
+                Staticvar.ids = idlist.get(row);
+                Daftarkasmasuk_input_panel inpane = new Daftarkasmasuk_input_panel();
+                Staticvar.kp.container.removeAll();
+                Staticvar.kp.container.setLayout(new BorderLayout());
+                Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
+                Staticvar.kp.container.revalidate();
+                Staticvar.kp.container.repaint();
+            }
+        });
+
+    }
+
+    private void prosesgiro() {
+        pane.mproses.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String dataparam = "id=" + id_giro_untuk_cair;
+                if (status == 0) {
+                    ch.insertdata("cairkangiromasuk", dataparam);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -321,23 +325,38 @@ public class DaftarkasmasukinnerController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
-                        Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
-                            if (Staticvar.isupdate == true) {
-                                loaddata();
-                            }
+                            loaddata();
                         } else {
-                            if (Staticvar.isupdate == true) {
-                                loaddatadetailraw();
-                            }
-                            Staticvar.isupdate = false;
+                            loaddatadetailraw();
+                        }
+                    }
+                } else {
+                    ch.deletedata("batalkanpencairangiromasuk", dataparam);
+                    if (!Staticvar.getresult.equals("berhasil")) {
+                        JDialog jd = new JDialog(new Mainmenu());
+                        Errorpanel ep = new Errorpanel();
+                        ep.ederror.setText(Staticvar.getresult);
+                        jd.add(ep);
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                    } else {
+                        if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                            loaddata();
+
+                        } else {
+                            loaddatadetailraw();
                         }
                     }
                 }
-
             }
         });
-
     }
 
+    private void journal() {
+
+    }
 }

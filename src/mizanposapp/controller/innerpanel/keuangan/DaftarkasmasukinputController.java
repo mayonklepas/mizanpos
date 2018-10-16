@@ -48,6 +48,7 @@ import mizanposapp.helper.numtoword;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
+import mizanposapp.view.innerpanel.keuangan.Daftargiromasuk_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkasmasuk_input_panel;
 import org.json.simple.JSONArray;
@@ -678,7 +679,11 @@ public class DaftarkasmasukinputController {
                         pane.tabledata.requestFocus();
                     } else {
                         JPanel inpane = new JPanel();
-                        inpane = new Daftarkasmasuk_inner_panel();
+                        if (Staticvar.frame == "kasmasuk") {
+                            inpane = new Daftarkasmasuk_inner_panel();
+                        } else if (Staticvar.frame == "giromasuk") {
+                            inpane = new Daftargiromasuk_inner_panel();
+                        }
                         Staticvar.kp.container.removeAll();
                         Staticvar.kp.container.setLayout(new BorderLayout());
                         Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
@@ -719,7 +724,11 @@ public class DaftarkasmasukinputController {
             ch.updatedata("updatekasmasuk", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 JPanel inpane = new JPanel();
-                inpane = new Daftarkasmasuk_inner_panel();
+                if (Staticvar.frame == "kasmasuk") {
+                    inpane = new Daftarkasmasuk_inner_panel();
+                } else if (Staticvar.frame == "giromasuk") {
+                    inpane = new Daftargiromasuk_inner_panel();
+                }
                 Staticvar.kp.container.removeAll();
                 Staticvar.kp.container.setLayout(new BorderLayout());
                 Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
@@ -928,7 +937,11 @@ public class DaftarkasmasukinputController {
                         String data = String.format("id_keltrans=%s&no_urut=%s", "4", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
                         JPanel inpane = new JPanel();
-                        inpane = new Daftarkasmasuk_inner_panel();
+                        if (Staticvar.frame == "kasmasuk") {
+                            inpane = new Daftarkasmasuk_inner_panel();
+                        } else if (Staticvar.frame == "giromasuk") {
+                            inpane = new Daftargiromasuk_inner_panel();
+                        }
                         Staticvar.kp.container.removeAll();
                         Staticvar.kp.container.setLayout(new BorderLayout());
                         Staticvar.kp.container.add(inpane, BorderLayout.CENTER);

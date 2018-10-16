@@ -157,7 +157,7 @@ public class DaftarkasinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("cari=%s", pane.tcari.getText());
+                String param = String.format("cari=%s&tahun=%s&bulan=%s", pane.tcari.getText(), Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
                 Object objdata = jpdata.parse(ch.getdatadetails("cariakunkasbank", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
