@@ -5,6 +5,7 @@
  */
 package mizanposapp.view;
 
+import mizanposapp.controller.AkuntansiController;
 import mizanposapp.controller.KeuanganController;
 
 /**
@@ -18,6 +19,7 @@ public class Akunting_panel extends javax.swing.JPanel {
      */
     public Akunting_panel() {
         initComponents();
+        new AkuntansiController(this);
     }
 
     /**
@@ -33,15 +35,15 @@ public class Akunting_panel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        bkaskeluar = new javax.swing.JPanel();
+        bbukubesar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        bkasmasuk = new javax.swing.JPanel();
+        bjurnalumum = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        lgiromasuk = new javax.swing.JLabel();
-        lgirokeluar = new javax.swing.JLabel();
+        ldaftarakunpenting = new javax.swing.JLabel();
+        lrubahkodeakun = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(22, 22, 22));
@@ -76,22 +78,22 @@ public class Akunting_panel extends javax.swing.JPanel {
         jPanel9.setPreferredSize(new java.awt.Dimension(300, 110));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bkaskeluar.setPreferredSize(new java.awt.Dimension(100, 100));
+        bbukubesar.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/pembelian.png"))); // NOI18N
-        bkaskeluar.add(jLabel2);
+        bbukubesar.add(jLabel2);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("<html><center>Buku Besar</center></html>");
-        bkaskeluar.add(jLabel6);
+        bbukubesar.add(jLabel6);
 
-        jPanel9.add(bkaskeluar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
+        jPanel9.add(bbukubesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, -1));
 
-        bkasmasuk.setPreferredSize(new java.awt.Dimension(100, 100));
+        bjurnalumum.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/sales_return.png"))); // NOI18N
-        bkasmasuk.add(jLabel5);
+        bjurnalumum.add(jLabel5);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,9 +102,9 @@ public class Akunting_panel extends javax.swing.JPanel {
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLabel9.setIconTextGap(1);
         jLabel9.setPreferredSize(new java.awt.Dimension(60, 30));
-        bkasmasuk.add(jLabel9);
+        bjurnalumum.add(jLabel9);
 
-        jPanel9.add(bkasmasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
+        jPanel9.add(bjurnalumum, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
 
         jPanel8.setBackground(new java.awt.Color(41, 39, 40));
 
@@ -117,13 +119,13 @@ public class Akunting_panel extends javax.swing.JPanel {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        lgiromasuk.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        lgiromasuk.setForeground(new java.awt.Color(58, 58, 255));
-        lgiromasuk.setText("Daftar Akun Penting");
+        ldaftarakunpenting.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ldaftarakunpenting.setForeground(new java.awt.Color(58, 58, 255));
+        ldaftarakunpenting.setText("Daftar Akun Penting");
 
-        lgirokeluar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        lgirokeluar.setForeground(new java.awt.Color(58, 58, 255));
-        lgirokeluar.setText("Rubah Kode Akun");
+        lrubahkodeakun.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lrubahkodeakun.setForeground(new java.awt.Color(58, 58, 255));
+        lrubahkodeakun.setText("Rubah Kode Akun");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,8 +139,8 @@ public class Akunting_panel extends javax.swing.JPanel {
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lgiromasuk)
-                            .addComponent(lgirokeluar))
+                            .addComponent(ldaftarakunpenting)
+                            .addComponent(lrubahkodeakun))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -151,9 +153,9 @@ public class Akunting_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(lgiromasuk)
+                .addComponent(ldaftarakunpenting)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lgirokeluar)
+                .addComponent(lrubahkodeakun)
                 .addGap(58, 58, 58))
         );
 
@@ -185,8 +187,8 @@ public class Akunting_panel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel bkaskeluar;
-    public javax.swing.JPanel bkasmasuk;
+    public javax.swing.JPanel bbukubesar;
+    public javax.swing.JPanel bjurnalumum;
     public javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -197,7 +199,7 @@ public class Akunting_panel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    public javax.swing.JLabel lgirokeluar;
-    public javax.swing.JLabel lgiromasuk;
+    public javax.swing.JLabel ldaftarakunpenting;
+    public javax.swing.JLabel lrubahkodeakun;
     // End of variables declaration//GEN-END:variables
 }

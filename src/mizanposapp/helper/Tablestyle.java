@@ -28,6 +28,23 @@ public class Tablestyle extends JTable {
     Color fgcolor, bgcolor;
     int tipe;
     int[] rightcolumindex;
+    int[] centercolumindex;
+
+    public Tablestyle(int tipe, int[] rightcolumindex, int[] centercolumindex) {
+        this.tipe = tipe;
+        this.rightcolumindex = rightcolumindex;
+        this.centercolumindex = centercolumindex;
+        this.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        this.setRowHeight(25);
+        JTableHeader jthead = this.getTableHeader();
+        jthead.setOpaque(false);
+        jthead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        jthead.setPreferredSize(new Dimension(30, 30));
+        jthead.setBackground(Color.decode("#282727"));
+        jthead.setForeground(Color.WHITE);
+        jthead.setReorderingAllowed(false);
+
+    }
 
     public Tablestyle(int tipe, int[] rightcolumindex) {
         this.tipe = tipe;
@@ -68,13 +85,21 @@ public class Tablestyle extends JTable {
             }
         }
 
+        if (centercolumindex != null) {
+            for (int i = 0; i < centercolumindex.length; i++) {
+                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+                centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+                this.getColumnModel().getColumn(centercolumindex[i]).setCellRenderer(centerRenderer);
+            }
+        }
+
         if (tipe == 0) {
             if (!isRowSelected(row)) {
                 c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
             } else {
                 c.setBackground(Staticvar.globaltablecolorselect);
             }
-        } else {
+        } else if (tipe == 1) {
             c.setBackground(row % 2 == 0 ? getBackground() : Staticvar.globaltablecolor);
 
             if (!isColumnSelected(column)) {

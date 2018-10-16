@@ -10,6 +10,7 @@ import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import mizanposapp.view.Akunting_panel;
 import mizanposapp.view.Beranda_panel;
 import mizanposapp.view.Keuangan_panel;
 import mizanposapp.view.Laporan_panel;
@@ -345,7 +346,7 @@ public class MainmenuController {
                 System.gc();
                 isclick = true;
                 mm.jPanel10.setBackground(new Color(3, 3, 3));
-                Laporan_panel lp = new Laporan_panel();
+                Akunting_panel lp = new Akunting_panel();
                 mm.panel_tengah.removeAll();
                 mm.panel_tengah.setLayout(new BorderLayout());
                 mm.panel_tengah.add(lp, BorderLayout.CENTER);

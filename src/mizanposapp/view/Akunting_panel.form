@@ -54,8 +54,8 @@
                       <Component id="jPanel9" pref="316" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lgiromasuk" min="-2" max="-2" attributes="0"/>
-                              <Component id="lgirokeluar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ldaftarakunpenting" min="-2" max="-2" attributes="0"/>
+                              <Component id="lrubahkodeakun" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -73,9 +73,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Component id="lgiromasuk" min="-2" max="-2" attributes="0"/>
+                  <Component id="ldaftarakunpenting" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lgirokeluar" min="-2" max="-2" attributes="0"/>
+                  <Component id="lrubahkodeakun" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -144,7 +144,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="bkaskeluar">
+            <Container class="javax.swing.JPanel" name="bbukubesar">
               <Properties>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 100]"/>
@@ -179,7 +179,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="bkasmasuk">
+            <Container class="javax.swing.JPanel" name="bjurnalumum">
               <Properties>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[100, 100]"/>
@@ -242,7 +242,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="javax.swing.JLabel" name="lgiromasuk">
+        <Component class="javax.swing.JLabel" name="ldaftarakunpenting">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="11" style="0"/>
@@ -256,7 +256,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="lgirokeluar">
+        <Component class="javax.swing.JLabel" name="lrubahkodeakun">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="11" style="0"/>
