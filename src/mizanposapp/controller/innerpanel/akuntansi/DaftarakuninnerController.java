@@ -136,20 +136,6 @@ public class DaftarakuninnerController {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
                     dtm.addRow(objindata);
-                    int status = ConvertFunc.ToInt(pane.tabledata.getValueAt(i, 5));
-                    if (status == 1) {
-                        TableCellRenderer tcr = new DefaultTableCellRenderer() {
-                            @Override
-                            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                                c.setFont(new Font("Arial", Font.BOLD, 15));
-                                return c;
-                            }
-                        };
-                        pane.tabledata.getColumnModel().getColumn(0).setCellRenderer(tcr);
-                    } else {
-
-                    }
 
                 }
                 return null;
@@ -185,7 +171,7 @@ public class DaftarakuninnerController {
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     Object[] objindata = new Object[lsdata.size()];
-                    idlist.add(String.valueOf(joindata.get("ID")));
+                    idlist.add(String.valueOf(joindata.get("id")));
                     for (int j = 0; j < objindata.length; j++) {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
