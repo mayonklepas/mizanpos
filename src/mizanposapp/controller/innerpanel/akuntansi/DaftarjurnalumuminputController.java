@@ -502,7 +502,8 @@ public class DaftarjurnalumuminputController {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
                 if (col == gx(kredit)) {
-                    if (pane.tabledata.getValueAt(row, gx(akun)).equals("")
+                    if (pane.tabledata.getValueAt(row, gx(akun)).equals("null")
+                            || pane.tabledata.getValueAt(row, gx(akun)).equals("")
                             || pane.tabledata.getValueAt(row, gx(kredit)).equals("")) {
                     } else {
                         addautorow(row);
@@ -541,9 +542,22 @@ public class DaftarjurnalumuminputController {
                 int row = pane.tabledata.getSelectedRow();
                 int col = pane.tabledata.getSelectedColumn();
                 if (col == gx(kredit)) {
-                    if (pane.tabledata.getValueAt(row, gx(akun)).equals("")
+                    if (pane.tabledata.getValueAt(row, gx(akun)).equals("null")
+                            || pane.tabledata.getValueAt(row, gx(akun)).equals("")
                             || pane.tabledata.getValueAt(row, gx(kredit)).equals("")) {
                     } else {
+                        /*double hasilkredit = 0;
+                        double hasildebit = 0;
+                        for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
+                            double debitin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double kreditin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(kredit)));
+                            hasilkredit = hasilkredit + kreditin;
+                            hasildebit = hasildebit + debitin;
+                        }
+                        double hasil = hasilkredit - hasildebit;
+                        if (ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)) == 0) {
+                            pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(debit));
+                        }*/
                         addautorow(row);
                     }
                 } else if (col == gx(debit)) {
