@@ -606,10 +606,11 @@ public class DaftarjurnalumuminputController {
                                 pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
                             }
                         }
-                        pane.tabledata.changeSelection(row, col + 1, false, false);
-                    } else {
-                        pane.tabledata.changeSelection(row, col + 1, false, false);
                     }
+                    pane.tabledata.changeSelection(row, col + 1, false, false);
+                } else {
+                    pane.tabledata.changeSelection(row, col + 1, false, false);
+
                 }
             }
         }
