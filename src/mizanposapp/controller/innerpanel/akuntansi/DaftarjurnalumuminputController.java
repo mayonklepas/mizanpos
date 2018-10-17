@@ -425,7 +425,6 @@ public class DaftarjurnalumuminputController {
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = "";
-                        Staticvar.prelabel = defnilai;
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
                         jd.pack();
@@ -437,8 +436,14 @@ public class DaftarjurnalumuminputController {
                         tb.setValueAt(Staticvar.resid, row, gx(akun));
                         tabeldatalist.get(row).setNama_akun(Staticvar.reslabel);
                         tb.setValueAt(Staticvar.reslabel, row, gx(nama_akun));
-                        tb.setValueAt("0", row, gx(debit));
-                        tb.setValueAt("0", row, gx(kredit));
+                        if (Staticvar.resid.equals("") || Staticvar.resid.equals(Staticvar.preid)) {
+
+                        } else {
+                            tb.setValueAt("0", row, gx(debit));
+                            tb.setValueAt("0", row, gx(kredit));
+                            pane.tabledata.requestFocus();
+                            pane.tabledata.changeSelection(row, 2, false, false);
+                        }
 
                     }
                 }
@@ -500,8 +505,13 @@ public class DaftarjurnalumuminputController {
                     pane.tabledata.setValueAt(Staticvar.resid, row, gx(akun));
                     tabeldatalist.get(row).setNama_akun(Staticvar.reslabel);
                     pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(nama_akun));
-                    pane.tabledata.setValueAt("0", row, gx(debit));
-                    pane.tabledata.setValueAt("0", row, gx(kredit));
+                    if (Staticvar.resid.equals("") || Staticvar.resid.equals(Staticvar.preid)) {
+                    } else {
+                        pane.tabledata.setValueAt("0", row, gx(debit));
+                        pane.tabledata.setValueAt("0", row, gx(kredit));
+                        pane.tabledata.requestFocus();
+                        pane.tabledata.changeSelection(row, 2, false, false);
+                    }
                 }
             }
         }
@@ -521,6 +531,47 @@ public class DaftarjurnalumuminputController {
                     } else {
                         addautorow(row);
                     }
+                } else if (col == gx(debit)) {
+                    if (String.valueOf(pane.tabledata.getValueAt(row, col)).equals("")
+                            || String.valueOf(pane.tabledata.getValueAt(row, col)).equals("0")) {
+                        double hasil = 0;
+                        for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
+                            hasil = hasil + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                        }
+                        pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                    }
+                    pane.tabledata.changeSelection(row, col + 1, false, false);
+                } else {
+                    pane.tabledata.changeSelection(row, col + 1, false, false);
+                }
+            }
+        }
+        );
+
+        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "tab");
+        pane.tabledata.getActionMap().put("tab", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
+                pane.tabledata.requestFocus();
+                int row = pane.tabledata.getSelectedRow();
+                int col = pane.tabledata.getSelectedColumn();
+                if (col == gx(kredit)) {
+                    if (pane.tabledata.getValueAt(row, gx(akun)).equals("")
+                            || pane.tabledata.getValueAt(row, gx(kredit)).equals("")) {
+                    } else {
+                        addautorow(row);
+                    }
+                } else if (col == gx(debit)) {
+                    if (String.valueOf(pane.tabledata.getValueAt(row, col)).equals("")
+                            || String.valueOf(pane.tabledata.getValueAt(row, col)).equals("0")) {
+                        double hasil = 0;
+                        for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
+                            hasil = hasil + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                        }
+                        pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                    }
+                    pane.tabledata.changeSelection(row, col + 1, false, false);
                 } else {
                     pane.tabledata.changeSelection(row, col + 1, false, false);
                 }
@@ -546,6 +597,17 @@ public class DaftarjurnalumuminputController {
                     pane.tabledata.changeSelection(row + 1, col, false, false);
                 }
                 addautorow(row);
+                if (col == gx(debit)) {
+                    if (String.valueOf(pane.tabledata.getValueAt(row, col)).equals("")
+                            || String.valueOf(pane.tabledata.getValueAt(row, col)).equals("0")) {
+                        double hasil = 0;
+                        for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
+                            hasil = hasil + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                        }
+                        pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                    }
+                    pane.tabledata.changeSelection(row + 1, col, false, false);
+                }
             }
         }
         );
