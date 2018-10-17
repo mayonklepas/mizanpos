@@ -589,25 +589,27 @@ public class DaftarjurnalumuminputController {
                         addautorow(row);
                     }
                 } else if (col == gx(debit)) {
-                    if (String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("null")
-                            || String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("")) {
+                    if (row == pane.tabledata.getRowCount() - 1) {
+                        if (String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("null")
+                                || String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("")) {
+                        } else {
+                            double hasilkredit = 0;
+                            double hasildebit = 0;
+                            for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
+                                double debitin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                                double kreditin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(kredit)));
+                                hasilkredit = hasilkredit + kreditin;
+                                hasildebit = hasildebit + debitin;
+                            }
+                            double hasil = hasildebit - hasilkredit;
+                            if (ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)) == 0) {
+                                pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                            }
+                        }
+                        pane.tabledata.changeSelection(row, col + 1, false, false);
                     } else {
-                        double hasilkredit = 0;
-                        double hasildebit = 0;
-                        for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
-                            double debitin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
-                            double kreditin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(kredit)));
-                            hasilkredit = hasilkredit + kreditin;
-                            hasildebit = hasildebit + debitin;
-                        }
-                        double hasil = hasildebit - hasilkredit;
-                        if (ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)) == 0) {
-                            pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
-                        }
+                        pane.tabledata.changeSelection(row, col + 1, false, false);
                     }
-                    pane.tabledata.changeSelection(row, col + 1, false, false);
-                } else {
-                    pane.tabledata.changeSelection(row, col + 1, false, false);
                 }
             }
         }
