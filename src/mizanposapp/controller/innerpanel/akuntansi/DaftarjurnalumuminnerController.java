@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mizanposapp.controller.innerpanel.akunting;
+package mizanposapp.controller.innerpanel.akuntansi;
 
-import mizanposapp.controller.innerpanel.akunting.*;
-import mizanposapp.controller.innerpanel.akunting.*;
+import mizanposapp.controller.innerpanel.akuntansi.*;
+import mizanposapp.controller.innerpanel.akuntansi.*;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -23,27 +22,22 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.akunting.Daftarakun_inner_panel;
+import mizanposapp.view.innerpanel.akuntansi.Daftarjurnalumum_inner_panel;
+import mizanposapp.view.innerpanel.akuntansi.Daftarjurnalumum_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -53,17 +47,17 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarakuninnerController {
+public class DaftarjurnalumuminnerController {
 
     CrudHelper ch = new CrudHelper();
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
-    Daftarakun_inner_panel pane;
+    Daftarjurnalumum_inner_panel pane;
     String id = "";
 
-    public DaftarakuninnerController(Daftarakun_inner_panel pane) {
+    public DaftarjurnalumuminnerController(Daftarjurnalumum_inner_panel pane) {
         this.pane = pane;
         loadheader();
         loaddata();
@@ -92,7 +86,7 @@ public class DaftarakuninnerController {
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("akuntansi");
+            JSONArray jaheader = (JSONArray) joheader.get("jurnalumum");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -111,7 +105,7 @@ public class DaftarakuninnerController {
                 tcm.getColumn(i).setMaxWidth(wi);
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarakuninnerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftarjurnalumuminnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -126,7 +120,7 @@ public class DaftarakuninnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("daftarakuntansi", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("daftarjurnalumum", param));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -138,21 +132,6 @@ public class DaftarakuninnerController {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
                     dtm.addRow(objindata);
-                    int status = ConvertFunc.ToInt(pane.tabledata.getValueAt(i, 5));
-                    if (status == 1) {
-                        TableCellRenderer tcr = new DefaultTableCellRenderer() {
-                            @Override
-                            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                                c.setFont(new Font("Arial", Font.BOLD, 15));
-                                return c;
-                            }
-                        };
-                        pane.tabledata.getColumnModel().getColumn(0).setCellRenderer(tcr);
-                    } else {
-
-                    }
-
                 }
                 return null;
             }
@@ -181,7 +160,7 @@ public class DaftarakuninnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("cari=%s&tahun=%s&bulan=%s", pane.tcari.getText(), Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("cariakuntansi", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("carijurnalumum", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -192,7 +171,6 @@ public class DaftarakuninnerController {
                         objindata[j] = joindata.get(lsdata.get(j));
                     }
                     dtm.addRow(objindata);
-
                 }
 
                 return null;
@@ -296,30 +274,27 @@ public class DaftarakuninnerController {
 
     private void tambahdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            //int row = pane.tabledata.getSelectedRow();
-            Staticvar.frame = "akun";
-            //Staticvar.map_var.put("id_supplier", idlist.get(row));
-            //Staticvar.map_var.put("nama_supplier", pane.tabledata.getValueAt(row, 1));
-            /*Daftarakun_input_panel inpane = new Daftarakun_input_panel();
-            Staticvar.kp.container.removeAll();
-            Staticvar.kp.container.setLayout(new BorderLayout());
-            Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.kp.container.revalidate();
-            Staticvar.kp.container.repaint();*/
+            Staticvar.frame = "jurnalumum";
+            Daftarjurnalumum_input_panel inpane = new Daftarjurnalumum_input_panel();
+            Staticvar.ap.container.removeAll();
+            Staticvar.ap.container.setLayout(new BorderLayout());
+            Staticvar.ap.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.ap.container.revalidate();
+            Staticvar.ap.container.repaint();
         });
     }
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
-            Staticvar.frame = "akun";
+            Staticvar.frame = "jurnalumum";
             Staticvar.ids = idlist.get(row);
-            /*Daftarakun_input_panel inpane = new Daftarakun_input_panel();
-            Staticvar.kp.container.removeAll();
-            Staticvar.kp.container.setLayout(new BorderLayout());
-            Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.kp.container.revalidate();
-            Staticvar.kp.container.repaint();*/
+            Daftarjurnalumum_input_panel inpane = new Daftarjurnalumum_input_panel();
+            Staticvar.ap.container.removeAll();
+            Staticvar.ap.container.setLayout(new BorderLayout());
+            Staticvar.ap.container.add(inpane, BorderLayout.CENTER);
+            Staticvar.ap.container.revalidate();
+            Staticvar.ap.container.repaint();
         });
     }
 
@@ -332,7 +307,7 @@ public class DaftarakuninnerController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("deleteakun", data);
+                    ch.deletedata("deletejurnalumum", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();

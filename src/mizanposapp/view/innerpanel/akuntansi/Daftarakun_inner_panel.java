@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mizanposapp.view.innerpanel.akunting;
+package mizanposapp.view.innerpanel.akuntansi;
 
 import mizanposapp.view.innerpanel.keuangan.*;
 import mizanposapp.view.innerpanel.pembelian.*;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.table.TableCellRenderer;
-import mizanposapp.controller.innerpanel.akunting.DaftarakuninnerController;
+import mizanposapp.controller.innerpanel.akuntansi.DaftarakuninnerController;
 import mizanposapp.controller.innerpanel.keuangan.DaftarkasmasukinnerController;
 import mizanposapp.controller.innerpanel.pembelian.DaftarhutanginnerController;
 import mizanposapp.helper.Staticvar;
