@@ -336,30 +336,6 @@ public class DaftarjurnalumuminputController {
                     int row = e.getFirstRow();
                     if (col == gx(akun)) {
                         try {
-                            /* Staticvar.preid = tabeldatalist.get(row).getAkun();
-                            String defnilai = "";
-                            String cekval = String.valueOf(tm.getValueAt(row, col));
-                            if (cekval.equals("null") || cekval.equals("")) {
-                                defnilai = "";
-                            } else {
-                                defnilai = String.valueOf(tm.getValueAt(row, gx(akun)));
-                            }
-                            Staticvar.prelabel = defnilai;
-                            Staticvar.sfilter = "";
-                            Staticvar.prelabel = defnilai;
-                            JDialog jd = new JDialog(new Mainmenu());
-                            jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
-                            jd.pack();
-                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                            jd.setLocationRelativeTo(null);
-                            jd.setVisible(true);
-                            jd.toFront();
-                            tabeldatalist.get(row).setAkun(Staticvar.resid);
-                            tm.setValueAt(Staticvar.resid, row, gx(akun));
-                            tabeldatalist.get(row).setNama_akun(Staticvar.reslabel);
-                            tm.setValueAt(Staticvar.reslabel, row, gx(nama_akun));
-                            tm.setValueAt("0", row, gx(debit));
-                            tm.setValueAt("0", row, gx(kredit));*/
 
                         } catch (Exception ex) {
                             ex.printStackTrace();
@@ -439,8 +415,8 @@ public class DaftarjurnalumuminputController {
                         if (Staticvar.resid.equals("") || Staticvar.resid.equals(Staticvar.preid)) {
 
                         } else {
-                            tb.setValueAt("0", row, gx(debit));
-                            tb.setValueAt("0", row, gx(kredit));
+                            tb.setValueAt(ConvertFunc.ToDouble("0"), row, gx(debit));
+                            tb.setValueAt(ConvertFunc.ToDouble("0"), row, gx(kredit));
                             pane.tabledata.requestFocus();
                             pane.tabledata.changeSelection(row, 2, false, false);
                         }
@@ -507,8 +483,8 @@ public class DaftarjurnalumuminputController {
                     pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(nama_akun));
                     if (Staticvar.resid.equals("") || Staticvar.resid.equals(Staticvar.preid)) {
                     } else {
-                        pane.tabledata.setValueAt("0", row, gx(debit));
-                        pane.tabledata.setValueAt("0", row, gx(kredit));
+                        pane.tabledata.setValueAt(ConvertFunc.ToDouble("0"), row, gx(debit));
+                        pane.tabledata.setValueAt(ConvertFunc.ToDouble("0"), row, gx(kredit));
                         pane.tabledata.requestFocus();
                         pane.tabledata.changeSelection(row, 2, false, false);
                     }
@@ -532,13 +508,21 @@ public class DaftarjurnalumuminputController {
                         addautorow(row);
                     }
                 } else if (col == gx(debit)) {
-                    if (String.valueOf(pane.tabledata.getValueAt(row, col)).equals("")
-                            || String.valueOf(pane.tabledata.getValueAt(row, col)).equals("0")) {
-                        double hasil = 0;
+                    if (String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("null")
+                            || String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("")) {
+                    } else {
+                        double hasilkredit = 0;
+                        double hasildebit = 0;
                         for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
-                            hasil = hasil + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double debitin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double kreditin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(kredit)));
+                            hasildebit = hasildebit + debitin;
+                            hasilkredit = hasilkredit + kreditin;
                         }
-                        pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                        double hasil = hasildebit - hasilkredit;
+                        if (ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)) == 0) {
+                            pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                        }
                     }
                     pane.tabledata.changeSelection(row, col + 1, false, false);
                 } else {
@@ -563,13 +547,21 @@ public class DaftarjurnalumuminputController {
                         addautorow(row);
                     }
                 } else if (col == gx(debit)) {
-                    if (String.valueOf(pane.tabledata.getValueAt(row, col)).equals("")
-                            || String.valueOf(pane.tabledata.getValueAt(row, col)).equals("0")) {
-                        double hasil = 0;
+                    if (String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("null")
+                            || String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("")) {
+                    } else {
+                        double hasilkredit = 0;
+                        double hasildebit = 0;
                         for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
-                            hasil = hasil + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double debitin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double kreditin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(kredit)));
+                            hasilkredit = hasilkredit + kreditin;
+                            hasildebit = hasildebit + debitin;
                         }
-                        pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                        double hasil = hasildebit - hasilkredit;
+                        if (ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)) == 0) {
+                            pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                        }
                     }
                     pane.tabledata.changeSelection(row, col + 1, false, false);
                 } else {
@@ -598,13 +590,21 @@ public class DaftarjurnalumuminputController {
                 }
                 addautorow(row);
                 if (col == gx(debit)) {
-                    if (String.valueOf(pane.tabledata.getValueAt(row, col)).equals("")
-                            || String.valueOf(pane.tabledata.getValueAt(row, col)).equals("0")) {
-                        double hasil = 0;
+                    if (String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("null")
+                            || String.valueOf(pane.tabledata.getValueAt(row, gx(akun))).equals("")) {
+                    } else {
+                        double hasilkredit = 0;
+                        double hasildebit = 0;
                         for (int i = 0; i < pane.tabledata.getRowCount() - 1; i++) {
-                            hasil = hasil + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double debitin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(debit)));
+                            double kreditin = ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(kredit)));
+                            hasilkredit = hasilkredit + kreditin;
+                            hasildebit = hasildebit + debitin;
                         }
-                        pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                        double hasil = hasildebit - hasilkredit;
+                        if (ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)) == 0) {
+                            pane.tabledata.setValueAt(String.valueOf(hasil), row, gx(kredit));
+                        }
                     }
                     pane.tabledata.changeSelection(row + 1, col, false, false);
                 }
