@@ -259,8 +259,10 @@ public class SettingakunpentinginnerController {
                 Staticvar.isupdate = true;
                 if (pane.eddept.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Dept tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                } else if (checkakunkosong() == true) {
                     rawsimpan();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tidak boleh ada field kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -567,6 +569,30 @@ public class SettingakunpentinginnerController {
         pane.edlabarugi_ditahan.setText("");
         //pane.llabarugi_ditahan.setText("");
         vallabarugi_ditahan = "";
+    }
+
+    private boolean checkakunkosong() {
+        boolean status = true;
+        if (valhutang_usaha.equals("")
+                || valhutang_giro.equals("")
+                || valpiutang_giro.equals("")
+                || valpiutang_usaha.equals("")
+                || valpembelian_tunai.equals("")
+                || valpenjualan_tunai.equals("")
+                || valakun_kas.equals("")
+                || valdiskon_pembelian.equals("")
+                || valdiskon_penjualan.equals("")
+                || valuang_muka_pembelian.equals("")
+                || valuang_muka_penjualan.equals("")
+                || valbiaya_lain_pembelian.equals("")
+                || valbiaya_lain_penjualan.equals("")
+                || vallabarugi_tahun_berjalan.equals("")
+                || vallabarugi_ditahan.equals("")) {
+            status = false;
+        } else {
+            status = true;
+        }
+        return status;
     }
 
 }
