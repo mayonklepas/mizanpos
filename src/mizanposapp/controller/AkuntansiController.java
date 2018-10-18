@@ -18,28 +18,30 @@ import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.akuntansi.Daftarakun_inner_panel;
 import mizanposapp.view.innerpanel.akuntansi.Daftarbukubesar_inner_panel;
 import mizanposapp.view.innerpanel.akuntansi.Daftarjurnalumum_inner_panel;
+import mizanposapp.view.innerpanel.akuntansi.Settingakunpenting_inner_panel;
 
 /**
  *
  * @author Minami
  */
 public class AkuntansiController {
-
+    
     Akunting_panel pp;
-
+    
     public AkuntansiController() {
     }
-
+    
     public AkuntansiController(Mainmenu mm) {
-
+        
     }
-
+    
     public AkuntansiController(Akunting_panel pp) {
         akunview(pp);
         jurnalumumview(pp);
         bukubesarview(pp);
+        daftarakunpentingview(pp);
     }
-
+    
     private void akunview(Akunting_panel pp) {
         System.gc();
         Daftarakun_inner_panel pane = new Daftarakun_inner_panel();
@@ -50,13 +52,13 @@ public class AkuntansiController {
         pp.container.revalidate();
         pp.container.repaint();
     }
-
+    
     private void jurnalumumview(Akunting_panel pp) {
         pp.bjurnalumum.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -68,31 +70,32 @@ public class AkuntansiController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void bukubesarview(Akunting_panel pp) {
         pp.bbukubesar.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
+                Staticvar.sfilter = "";
                 JDialog jd = new JDialog(new Mainmenu());
                 jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
                 jd.pack();
@@ -114,49 +117,55 @@ public class AkuntansiController {
                     pp.container.repaint();
                 }
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e
             ) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e
             ) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e
             ) {
             }
         });
     }
-
+    
     private void daftarakunpentingview(Akunting_panel pp) {
         pp.ldaftarakunpenting.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Settingakunpenting_inner_panel());
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
 }

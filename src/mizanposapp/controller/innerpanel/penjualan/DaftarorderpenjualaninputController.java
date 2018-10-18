@@ -1389,7 +1389,7 @@ public class DaftarorderpenjualaninputController {
                                         tabeldatalist.get(row).getJumlah());
                                 tm.setValueAt(nf.format(callhargajual), row, gx(harga_jual));
                                 tabeldatalist.get(row).setHarga_jual(String.valueOf(callhargajual));
-                                columnfunction(row, 2, false);
+                                columnfunction(row, gx(jumlah), false);
                             }
 
                             //nextcolom(2, row);

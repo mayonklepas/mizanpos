@@ -5,10 +5,6 @@
  */
 package mizanposapp.controller.innerpanel.akuntansi;
 
-import mizanposapp.controller.innerpanel.akuntansi.*;
-import mizanposapp.controller.innerpanel.akuntansi.*;
-import java.awt.BorderLayout;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
