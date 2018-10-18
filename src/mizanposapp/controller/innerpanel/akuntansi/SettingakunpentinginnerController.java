@@ -113,13 +113,14 @@ public class SettingakunpentinginnerController {
         pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
 
         valcurr = Globalsession.DEFAULT_CURRENCY_ID;
-        pane.edmata_uang.setText(Globalsession.DEFAULT_CURRENCY_ID);
+        pane.edmata_uang.setText(Globalsession.CURRENCYCODE);
 
         loaddata(valdept, valcurr);
 
     }
 
     private void loaddata(String iddept, String id_curr) {
+        cleartext();
         try {
             JSONParser jpdata = new JSONParser();
             String param = String.format("id_dept=%s&id_currency=%s", iddept, id_curr);
@@ -132,77 +133,77 @@ public class SettingakunpentinginnerController {
                     case "hutang usaha":
                         pane.edhutang_usaha.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valhutang_usaha = String.valueOf(jo.get("akun"));
-                        pane.lhutang_usaha.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lhutang_usaha.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "hutang giro":
                         pane.edhutang_giro.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valhutang_giro = String.valueOf(jo.get("akun"));
-                        pane.lhutang_giro.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lhutang_giro.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "piutang usaha":
                         pane.edpiutang_usaha.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valpiutang_usaha = String.valueOf(jo.get("akun"));
-                        pane.lpiutang_usaha.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lpiutang_usaha.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "piutang giro":
                         pane.edpiutang_giro.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valpiutang_giro = String.valueOf(jo.get("akun"));
-                        pane.lpiutang_giro.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lpiutang_giro.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "pembelian tunai":
                         pane.ed_pembelian_tunai.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valpembelian_tunai = String.valueOf(jo.get("akun"));
-                        pane.lpembelian_tunai.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lpembelian_tunai.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "penjualan tunai":
                         pane.edpenjualan_tunai.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valpenjualan_tunai = String.valueOf(jo.get("akun"));
-                        pane.lpenjualan_tunai.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lpenjualan_tunai.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "akun kas":
                         pane.edakun_kas.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valakun_kas = String.valueOf(jo.get("akun"));
-                        pane.lakun_kas.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lakun_kas.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "diskon pembelian":
                         pane.eddiskon_pembelian.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valdiskon_pembelian = String.valueOf(jo.get("akun"));
-                        pane.ldiskon_pembelian.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.ldiskon_pembelian.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "diskon penjualan":
                         pane.eddiskon_penjualan.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valdiskon_penjualan = String.valueOf(jo.get("akun"));
-                        pane.ldiskon_penjualan.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.ldiskon_penjualan.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "uang muka pembelian":
                         pane.eduang_muka_pembelian.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valuang_muka_pembelian = String.valueOf(jo.get("akun"));
-                        pane.luang_muka_pembelian.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.luang_muka_pembelian.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "uang muka penjualan":
                         pane.eduang_muka_penjualan.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valuang_muka_penjualan = String.valueOf(jo.get("akun"));
-                        pane.luang_muka_penjualan.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.luang_muka_penjualan.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "ongkos kirim pembelian":
                         pane.edbiaya_lain_pembelian.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valbiaya_lain_pembelian = String.valueOf(jo.get("akun"));
-                        pane.lbiaya_lain_pembelian.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lbiaya_lain_pembelian.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "ongkos kirim penjualan":
                         pane.edbiaya_lain_penjualan.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         valbiaya_lain_penjualan = String.valueOf(jo.get("akun"));
-                        pane.lbiaya_lain_penjualan.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.lbiaya_lain_penjualan.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "laba rugi tahun berjalan":
                         pane.edlabarugi_tahun_berjalan.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         vallabarugi_tahun_berjalan = String.valueOf(jo.get("akun"));
-                        pane.llabarugi_tahun_berjalan.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.llabarugi_tahun_berjalan.setText(String.valueOf(jo.get("keterangan")));
                         break;
                     case "laba rugi ditahan":
                         pane.edlabarugi_ditahan.setText(String.valueOf(jo.get("akun")) + "-" + String.valueOf(jo.get("nama_akun")));
                         vallabarugi_ditahan = String.valueOf(jo.get("akun"));
-                        pane.llabarugi_ditahan.setText(String.valueOf(jo.get("keterangan")));
+                        //pane.llabarugi_ditahan.setText(String.valueOf(jo.get("keterangan")));
                         break;
 
                 }
@@ -278,7 +279,8 @@ public class SettingakunpentinginnerController {
             jd.setVisible(true);
             jd.toFront();
             valdept = Staticvar.resid;
-            pane.eddept.setText(Staticvar.reslabel);
+            pane.eddept.setText(Staticvar.resvalue);
+            loaddata(valdept, valcurr);
         });
 
     }
@@ -503,6 +505,68 @@ public class SettingakunpentinginnerController {
                 });
             }
         });
+    }
+
+    private void cleartext() {
+        pane.edhutang_usaha.setText("");
+        //pane.lhutang_usaha.setText("");
+        valhutang_usaha = "";
+
+        pane.edhutang_giro.setText("");
+        //pane.lhutang_giro.setText("");
+        valhutang_giro = "";
+
+        pane.edpiutang_usaha.setText("");
+        //pane.lpiutang_usaha.setText("");
+        valpiutang_usaha = "";
+
+        pane.edpiutang_giro.setText("");
+        //pane.lpiutang_giro.setText("");
+        valpiutang_giro = "";
+
+        pane.ed_pembelian_tunai.setText("");
+        //pane.lpembelian_tunai.setText("");
+        valpembelian_tunai = "";
+
+        pane.edpenjualan_tunai.setText("");
+        //pane.lpenjualan_tunai.setText("");
+        valpenjualan_tunai = "";
+
+        pane.edakun_kas.setText("");
+        //pane.lakun_kas.setText("");
+        valakun_kas = "";
+
+        pane.eddiskon_pembelian.setText("");
+        //pane.ldiskon_pembelian.setText("");
+        valdiskon_pembelian = "";
+
+        pane.eddiskon_penjualan.setText("");
+        //pane.ldiskon_penjualan.setText("");
+        valdiskon_penjualan = "";
+
+        pane.eduang_muka_pembelian.setText("");
+        //pane.luang_muka_pembelian.setText("");
+        valuang_muka_pembelian = "";
+
+        pane.eduang_muka_penjualan.setText("");
+        //pane.luang_muka_penjualan.setText("");
+        valuang_muka_penjualan = "";
+
+        pane.edbiaya_lain_pembelian.setText("");
+        //pane.lbiaya_lain_pembelian.setText("");
+        valbiaya_lain_pembelian = "";
+
+        pane.edbiaya_lain_penjualan.setText("");
+        //pane.lbiaya_lain_penjualan.setText("");
+        valbiaya_lain_penjualan = "";
+
+        pane.edlabarugi_tahun_berjalan.setText("");
+        //pane.llabarugi_tahun_berjalan.setText("");
+        vallabarugi_tahun_berjalan = "";
+
+        pane.edlabarugi_ditahan.setText("");
+        //pane.llabarugi_ditahan.setText("");
+        vallabarugi_ditahan = "";
     }
 
 }

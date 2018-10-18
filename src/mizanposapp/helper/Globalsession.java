@@ -110,8 +110,8 @@ public class Globalsession {
             DEFAULT_DEPT_NAME = String.valueOf(jodata.get("default_dept_name"));
             DEFAULT_JOB_ID = String.valueOf(jodata.get("default_job_id"));
             DEFAULT_JOB_KODE = String.valueOf(jodata.get("default_job_kode"));
-            CURRENCYCODE = String.valueOf(jodata.get("currency_code"));
-            CURRENCYNAME = String.valueOf(jodata.get("currency_name"));
+            CURRENCYCODE = String.valueOf(jodata.get("currency_kode"));
+            CURRENCYNAME = String.valueOf(jodata.get("currency_nama"));
             CURRENCYSYMBOL = String.valueOf(jodata.get("currency_symbol"));
             AKUNLRPERIODE = String.valueOf(jodata.get("akun_lr_periode"));
             AKUNLRTAHUNBERJALAN = String.valueOf(jodata.get("akun_lr_tahun_berjalan"));

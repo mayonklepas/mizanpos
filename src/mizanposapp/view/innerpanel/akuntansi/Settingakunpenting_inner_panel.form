@@ -28,7 +28,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTabbedPane1" pref="441" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
                   <Component id="jLabel9" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -36,7 +36,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="bsimpan" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanel2" pref="441" max="32767" attributes="0"/>
+                  <Component id="jPanel2" pref="472" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
@@ -92,7 +92,7 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="383" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bsimpan" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -290,7 +290,7 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="eduang_muka_pembelian" pref="203" max="32767" attributes="0"/>
+                              <Component id="eduang_muka_pembelian" pref="234" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="bcari_uang_muka_pembelian" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
@@ -1089,7 +1089,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="edlabarugi_tahun_berjalan" pref="171" max="32767" attributes="0"/>
+                              <Component id="edlabarugi_tahun_berjalan" pref="202" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="bcari_labarugi_tahun_berjalan" min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
@@ -1120,7 +1120,7 @@
                           <Component id="edlabarugi_ditahan" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bcari_labarugi_ditahan" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="275" max="32767" attributes="0"/>
+                      <EmptySpace pref="296" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
