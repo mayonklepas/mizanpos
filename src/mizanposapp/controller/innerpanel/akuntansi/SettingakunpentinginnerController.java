@@ -46,7 +46,6 @@ import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
-import mizanposapp.helper.numtoword;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
@@ -54,7 +53,6 @@ import mizanposapp.view.innerpanel.akuntansi.Settingakunpenting_inner_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -92,8 +90,22 @@ public class SettingakunpentinginnerController {
         loadsession();
         simpandata();
         caridepartment();
-        carihutangusaha();
         batal();
+        carihutangusaha();
+        carihutanggiro();
+        caripiutangusaha();
+        caripiutanggiro();
+        caripembeliantunai();
+        caripejualantunai();
+        cariakunkas();
+        caridiskonpembelian();
+        caridiskonpenjualan();
+        cariuangmukapembelian();
+        cariuangmukapenjualan();
+        caribiayalainpembelian();
+        caribiayalainpenjualan();
+        carilabarugitahunberjalan();
+        carilabarugiditahan();
     }
 
     private void loadsession() {
@@ -225,6 +237,7 @@ public class SettingakunpentinginnerController {
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
+            new Globalsession();
         } else {
             JDialog jd = new JDialog(new Mainmenu());
             Errorpanel ep = new Errorpanel();
@@ -283,6 +296,19 @@ public class SettingakunpentinginnerController {
         jd.toFront();
     }
 
+    private void rawgetkasbank(String prevlabel, String previd) {
+        Staticvar.sfilter = "";
+        Staticvar.preid = previd;
+        Staticvar.prelabel = prevlabel;
+        JDialog jd = new JDialog(new Mainmenu());
+        jd.add(new Popupcari("akun", "popupdaftarkasbank", "Daftar Akun"));
+        jd.pack();
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        jd.toFront();
+    }
+
     private void carihutangusaha() {
         pane.bcari_hutang_usaha.addActionListener((ActionEvent e) -> {
             rawgetidakun(pane.edhutang_usaha.getText(), valhutang_usaha);
@@ -290,6 +316,174 @@ public class SettingakunpentinginnerController {
                 valhutang_usaha = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edhutang_usaha.setText(val);
+            }
+        });
+
+    }
+
+    private void carihutanggiro() {
+        pane.bcari_hutang_giro.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edhutang_giro.getText(), valhutang_giro);
+            if (!Staticvar.resid.equals(valhutang_giro)) {
+                valhutang_giro = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edhutang_giro.setText(val);
+            }
+        });
+
+    }
+
+    private void caripiutangusaha() {
+        pane.bcari_piutang_usaha.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edpiutang_usaha.getText(), valpiutang_usaha);
+            if (!Staticvar.resid.equals(valpiutang_usaha)) {
+                valpiutang_usaha = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edpiutang_usaha.setText(val);
+            }
+        });
+
+    }
+
+    private void caripiutanggiro() {
+        pane.bcari_piutang_giro.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edpiutang_giro.getText(), valpiutang_giro);
+            if (!Staticvar.resid.equals(valpiutang_giro)) {
+                valpiutang_giro = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edpiutang_giro.setText(val);
+            }
+        });
+
+    }
+
+    private void caripembeliantunai() {
+        pane.bcari_pembelian_tunai.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.ed_pembelian_tunai.getText(), valpembelian_tunai);
+            if (!Staticvar.resid.equals(valpembelian_tunai)) {
+                valpembelian_tunai = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.ed_pembelian_tunai.setText(val);
+            }
+        });
+
+    }
+
+    private void caripejualantunai() {
+        pane.bcari_penjualan_tunai.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edpenjualan_tunai.getText(), valpenjualan_tunai);
+            if (!Staticvar.resid.equals(valpenjualan_tunai)) {
+                valpenjualan_tunai = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edpenjualan_tunai.setText(val);
+            }
+        });
+
+    }
+
+    private void cariakunkas() {
+        pane.bcari_akun_kas.addActionListener((ActionEvent e) -> {
+            rawgetkasbank(pane.edakun_kas.getText(), valakun_kas);
+            if (!Staticvar.resid.equals(valakun_kas)) {
+                valakun_kas = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakun_kas.setText(val);
+            }
+        });
+
+    }
+
+    private void caridiskonpembelian() {
+        pane.bcari_diskon_pembelian.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.eddiskon_pembelian.getText(), valdiskon_pembelian);
+            if (!Staticvar.resid.equals(valdiskon_pembelian)) {
+                valdiskon_pembelian = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.eddiskon_pembelian.setText(val);
+            }
+        });
+
+    }
+
+    private void caridiskonpenjualan() {
+        pane.bcari_diskon_penjualan.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.eddiskon_penjualan.getText(), valdiskon_penjualan);
+            if (!Staticvar.resid.equals(valdiskon_penjualan)) {
+                valdiskon_penjualan = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.eddiskon_penjualan.setText(val);
+            }
+        });
+
+    }
+
+    private void cariuangmukapembelian() {
+        pane.bcari_uang_muka_pembelian.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.eduang_muka_pembelian.getText(), valuang_muka_pembelian);
+            if (!Staticvar.resid.equals(valuang_muka_pembelian)) {
+                valuang_muka_pembelian = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.eduang_muka_pembelian.setText(val);
+            }
+        });
+
+    }
+
+    private void cariuangmukapenjualan() {
+        pane.bcari_uang_muka_penjualan.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.eduang_muka_penjualan.getText(), valuang_muka_penjualan);
+            if (!Staticvar.resid.equals(valuang_muka_penjualan)) {
+                valuang_muka_penjualan = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.eduang_muka_penjualan.setText(val);
+            }
+        });
+
+    }
+
+    private void caribiayalainpembelian() {
+        pane.bcari_biaya_lain_pembelian.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edbiaya_lain_pembelian.getText(), valbiaya_lain_pembelian);
+            if (!Staticvar.resid.equals(valbiaya_lain_pembelian)) {
+                valbiaya_lain_pembelian = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edbiaya_lain_pembelian.setText(val);
+            }
+        });
+
+    }
+
+    private void caribiayalainpenjualan() {
+        pane.bcari_biaya_lain_penjualan.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edbiaya_lain_penjualan.getText(), valbiaya_lain_penjualan);
+            if (!Staticvar.resid.equals(valbiaya_lain_penjualan)) {
+                valbiaya_lain_penjualan = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edbiaya_lain_penjualan.setText(val);
+            }
+        });
+
+    }
+
+    private void carilabarugitahunberjalan() {
+        pane.bcari_labarugi_tahun_berjalan.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edlabarugi_tahun_berjalan.getText(), vallabarugi_tahun_berjalan);
+            if (!Staticvar.resid.equals(vallabarugi_tahun_berjalan)) {
+                vallabarugi_tahun_berjalan = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edlabarugi_tahun_berjalan.setText(val);
+            }
+        });
+
+    }
+
+    private void carilabarugiditahan() {
+        pane.bcari_labarugi_ditahan.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edlabarugi_ditahan.getText(), vallabarugi_ditahan);
+            if (!Staticvar.resid.equals(vallabarugi_ditahan)) {
+                vallabarugi_ditahan = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edlabarugi_ditahan.setText(val);
             }
         });
 
