@@ -783,7 +783,9 @@ public class DaftarjurnalumuminputController {
                 if (pane.edno_transaksi.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, " Field Kode tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
 
-                } else if (tabeldatalist.size() == 0) {
+                } else if (tabeldatalist.isEmpty() || pane.tabledata.getRowCount() == 1
+                        && (String.valueOf(pane.tabledata.getValueAt(0, 0)).equals("null")
+                        || String.valueOf(pane.tabledata.getValueAt(0, 0)).equals(""))) {
                     JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else if (ConvertFunc.ToDouble(pane.lselisih.getText()) != 0) {
                     JOptionPane.showMessageDialog(null, "Tidak Boleh ada selisih", "Informasi", JOptionPane.INFORMATION_MESSAGE);
