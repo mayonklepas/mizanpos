@@ -42,6 +42,7 @@ import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.akuntansi.Daftarakun_inner_panel;
+import mizanposapp.view.innerpanel.akuntansi.Daftarakun_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -280,16 +281,13 @@ public class DaftarakuninnerController {
 
     private void tambahdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            //int row = pane.tabledata.getSelectedRow();
-            Staticvar.frame = "akun";
-            //Staticvar.map_var.put("id_supplier", idlist.get(row));
-            //Staticvar.map_var.put("nama_supplier", pane.tabledata.getValueAt(row, 1));
-            /*Daftarakun_input_panel inpane = new Daftarakun_input_panel();
-            Staticvar.kp.container.removeAll();
-            Staticvar.kp.container.setLayout(new BorderLayout());
-            Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.kp.container.revalidate();
-            Staticvar.kp.container.repaint();*/
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Daftarakun_input_panel());
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
         });
     }
 

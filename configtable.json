@@ -2471,7 +2471,7 @@
         {
             "key": [
                 "id",
-                "ID",
+                "Akun",
                 "1",
                 "10"
             ]
@@ -2486,8 +2486,8 @@
         },
         {
             "key": [
-                "kelompok",
-                "Kelompok",
+                "nama_subakun",
+                "Sub Akun Dari",
                 "1",
                 "15"
             ]
