@@ -343,8 +343,7 @@ public class DaftarakuninputController {
         listsub.clear();
         try {
             JSONParser jpdata = new JSONParser();
-            String param = String.format("id_kelompok=%s&isparent=%s&acc_level=%s",
-                    id_kelompok, isparent, acc_level);
+            String param = "id_kelompok=" + id_kelompok + "&isparent=" + isparent + "&acc_level=" + acc_level + "";
             Object rawobjdata = jpdata.parse(ch.getdatadetails("dm/getsubakun", param));
             JSONArray ja = (JSONArray) rawobjdata;
             for (int i = 0; i < ja.size(); i++) {
@@ -401,8 +400,11 @@ public class DaftarakuninputController {
         String reskode = "";
         try {
             JSONParser jpdata = new JSONParser();
-            String param = String.format("id_kelompok=%s&isparent=%s&id_subakun=%s&acc_level=%s&id_dept=%s",
-                    id_kelompok, isparent, id_subakun, acc_level, id_dept);
+            String param = "id_kelompok=" + id_kelompok + ""
+                    + "&isparent=" + isparent + ""
+                    + "&id_subakun=" + id_subakun + ""
+                    + "&acc_level=" + acc_level + ""
+                    + "&id_dept=" + id_dept + "";
             reskode = ch.getdatadetails("dm/getkodeakun", param);
 
         } catch (Exception e) {
