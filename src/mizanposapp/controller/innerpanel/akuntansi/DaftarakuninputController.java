@@ -308,24 +308,62 @@ public class DaftarakuninputController {
     }
 
     private void rawsimpan() {
-        String data = "";
-        ch.insertdata("updateakunpenting", data);
-        if (Staticvar.getresult.equals("berhasil")) {
-            Staticvar.isupdate = true;
-            JDialog jd = (JDialog) pane.getRootPane().getParent();
-            jd.dispose();
-            new Globalsession();
+        if (id.equals("")) {
+            String param = "acc=id='" + pane.edkode_akun.getText() + "'::"
+                    + "nama='" + pane.ednama_akun.getText() + "'::"
+                    + "id_acc_class='" + in_id_kelompok + "'::"
+                    + "isparent='" + in_isparent + "'::"
+                    + "akun_parent='" + listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun() + "'::"
+                    + "isaktif='1'::"
+                    + "acc_level='" + in_acc_level + "'::"
+                    + "id_currency='1-1'::"
+                    + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
+                    + "iskasbank='1'";
+            ch.insertdata("dm/insertakun", param);
+            if (Staticvar.getresult.equals("berhasil")) {
+                Staticvar.isupdate = true;
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            } else {
+                JDialog jd = new JDialog(new Mainmenu());
+                Errorpanel ep = new Errorpanel();
+                ep.ederror.setText(Staticvar.getresult);
+                jd.add(ep);
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+            }
         } else {
-            JDialog jd = new JDialog(new Mainmenu());
-            Errorpanel ep = new Errorpanel();
-            ep.ederror.setText(Staticvar.getresult);
-            jd.add(ep);
-            jd.pack();
-            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            jd.setLocationRelativeTo(null);
-            jd.setVisible(true);
-            jd.toFront();
+            String param = "acc=id='" + pane.edkode_akun.getText() + "'::"
+                    + "nama='" + pane.ednama_akun.getText() + "'::"
+                    + "id_acc_class='" + in_id_kelompok + "'::"
+                    + "isparent='" + in_isparent + "'::"
+                    + "akun_parent='" + listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun() + "'::"
+                    + "isaktif='1'::"
+                    + "acc_level='" + in_acc_level + "'::"
+                    + "id_currency='1'::"
+                    + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
+                    + "iskasbank='1'";
+            ch.insertdata("updateakun", param);
+            if (Staticvar.getresult.equals("berhasil")) {
+                Staticvar.isupdate = true;
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            } else {
+                JDialog jd = new JDialog(new Mainmenu());
+                Errorpanel ep = new Errorpanel();
+                ep.ederror.setText(Staticvar.getresult);
+                jd.add(ep);
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+            }
         }
+
     }
 
     private void simpandata() {
