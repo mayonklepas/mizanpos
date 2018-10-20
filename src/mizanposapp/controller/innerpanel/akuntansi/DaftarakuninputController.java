@@ -94,13 +94,29 @@ public class DaftarakuninputController {
                     in_isparent = "1";
                 }
                 in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
-                loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                 if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
                     pane.cktipe_akun.setVisible(true);
                     pane.bdata_bank.setVisible(true);
                 } else {
                     pane.cktipe_akun.setVisible(false);
                     pane.bdata_bank.setVisible(false);
+                }
+
+                if (ConvertFunc.ToInt(in_isparent) == 0) {
+                    loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                    pane.cmbsub_akun_dari.setVisible(true);
+                    pane.lsubakun.setVisible(true);
+                    pane.ltitikduasubakun.setVisible(true);
+
+                } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
+                    loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                    pane.cmbsub_akun_dari.setVisible(true);
+                    pane.lsubakun.setVisible(true);
+                    pane.ltitikduasubakun.setVisible(true);
+                } else {
+                    pane.cmbsub_akun_dari.setVisible(false);
+                    pane.lsubakun.setVisible(false);
+                    pane.ltitikduasubakun.setVisible(false);
                 }
 
                 if (!listsub.isEmpty()) {
@@ -138,6 +154,23 @@ public class DaftarakuninputController {
                     pane.bdata_bank.setVisible(false);
                 }
 
+                if (ConvertFunc.ToInt(in_isparent) == 0) {
+                    loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                    pane.cmbsub_akun_dari.setVisible(true);
+                    pane.lsubakun.setVisible(true);
+                    pane.ltitikduasubakun.setVisible(true);
+
+                } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
+                    loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                    pane.cmbsub_akun_dari.setVisible(true);
+                    pane.lsubakun.setVisible(true);
+                    pane.ltitikduasubakun.setVisible(true);
+                } else {
+                    pane.cmbsub_akun_dari.setVisible(false);
+                    pane.lsubakun.setVisible(false);
+                    pane.ltitikduasubakun.setVisible(false);
+                }
+
                 if (!listsub.isEmpty()) {
                     String subakun = listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun();
                     String valdept = listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept();
@@ -170,6 +203,23 @@ public class DaftarakuninputController {
                 } else {
                     pane.cktipe_akun.setVisible(false);
                     pane.bdata_bank.setVisible(false);
+                }
+
+                if (ConvertFunc.ToInt(in_isparent) == 0) {
+                    loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                    pane.cmbsub_akun_dari.setVisible(true);
+                    pane.lsubakun.setVisible(true);
+                    pane.ltitikduasubakun.setVisible(true);
+
+                } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
+                    loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                    pane.cmbsub_akun_dari.setVisible(true);
+                    pane.lsubakun.setVisible(true);
+                    pane.ltitikduasubakun.setVisible(true);
+                } else {
+                    pane.cmbsub_akun_dari.setVisible(false);
+                    pane.lsubakun.setVisible(false);
+                    pane.ltitikduasubakun.setVisible(false);
                 }
 
                 if (!listsub.isEmpty()) {
