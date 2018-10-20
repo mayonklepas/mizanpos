@@ -293,15 +293,14 @@ public class DaftarakuninnerController {
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
-            int row = pane.tabledata.getSelectedRow();
-            Staticvar.frame = "akun";
-            Staticvar.ids = idlist.get(row);
-            /*Daftarakun_input_panel inpane = new Daftarakun_input_panel();
-            Staticvar.kp.container.removeAll();
-            Staticvar.kp.container.setLayout(new BorderLayout());
-            Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
-            Staticvar.kp.container.revalidate();
-            Staticvar.kp.container.repaint();*/
+            Staticvar.ids = idlist.get(pane.tabledata.getSelectedRow());
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Daftarakun_input_panel());
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
         });
     }
 
