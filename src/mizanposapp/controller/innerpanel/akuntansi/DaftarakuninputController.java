@@ -157,13 +157,13 @@ public class DaftarakuninputController {
 
                 if (ConvertFunc.ToInt(in_isparent) == 0) {
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
-                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
+                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
                 } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
-                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
+                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
@@ -208,14 +208,14 @@ public class DaftarakuninputController {
 
                 if (ConvertFunc.ToInt(in_isparent) == 0) {
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
-                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
+                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
 
                 } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
-                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
+                    sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
