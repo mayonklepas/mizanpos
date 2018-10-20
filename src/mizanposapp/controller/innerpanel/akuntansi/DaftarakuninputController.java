@@ -93,8 +93,8 @@ public class DaftarakuninputController {
                 } else {
                     in_isparent = "1";
                 }
-                loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                 in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
+                loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                 if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
                     pane.cktipe_akun.setVisible(true);
                     pane.bdata_bank.setVisible(true);
@@ -128,8 +128,8 @@ public class DaftarakuninputController {
                 } else {
                     in_isparent = "1";
                 }
-                loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                 in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
+                loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                 if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
                     pane.cktipe_akun.setVisible(true);
                     pane.bdata_bank.setVisible(true);
@@ -155,7 +155,33 @@ public class DaftarakuninputController {
         pane.cmbakun_level.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int ind = pane.cmbkelompok_akun.getSelectedIndex();
+                in_id_kelompok = listkelompok.get(ind).getId_kelompok();
+                if (pane.cmbjenis_akun.getSelectedItem().equals("Akun Transaksi")) {
+                    in_isparent = "0";
+                } else {
+                    in_isparent = "1";
+                }
+                in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
+                loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
+                if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
+                    pane.cktipe_akun.setVisible(true);
+                    pane.bdata_bank.setVisible(true);
+                } else {
+                    pane.cktipe_akun.setVisible(false);
+                    pane.bdata_bank.setVisible(false);
+                }
 
+                if (!listsub.isEmpty()) {
+                    String subakun = listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun();
+                    String valdept = listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept();
+                    String kode_trans = getkode(in_id_kelompok, in_isparent, subakun, in_acc_level, valdept);
+                    pane.edkode_akun.setText(kode_trans);
+                } else {
+                    String valdept = listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept();
+                    String kode_trans = getkode(in_id_kelompok, in_isparent, "", in_acc_level, valdept);
+                    pane.edkode_akun.setText(kode_trans);
+                }
             }
         });
 
