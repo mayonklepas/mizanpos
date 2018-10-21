@@ -53,6 +53,7 @@ import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.akuntansi.Daftarakun_input_panel;
+import mizanposapp.view.innerpanel.akuntansi.Daftarkasbank_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -85,6 +86,7 @@ public class DaftarakuninputController {
         showhide();
         simpandata();
         tutup();
+        editbank();
     }
 
     private void showhide() {
@@ -455,6 +457,22 @@ public class DaftarakuninputController {
                 } else {
                     rawsimpan();
                 }
+            }
+        });
+    }
+
+    private void editbank() {
+        pane.bdata_bank.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Staticvar.ids = pane.edkode_akun.getText();
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Daftarkasbank_input_panel());
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
             }
         });
     }

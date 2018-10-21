@@ -147,6 +147,13 @@ public class DaftarakuninnerController {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton();
+                /*pane.tabledata.requestFocus();
+                if (idlist.size() < Staticvar.rowfokus) {
+                    pane.tabledata.changeSelection(Staticvar.rowfokus - 1, 0, false, false);
+                } else {
+                    pane.tabledata.changeSelection(Staticvar.rowfokus, 0, false, false);
+                }
+                Staticvar.rowfokus = 0;*/
 
             }
 
@@ -188,6 +195,13 @@ public class DaftarakuninnerController {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton();
+                pane.tabledata.requestFocus();
+                if (idlist.size() < Staticvar.rowfokus) {
+                    pane.tabledata.changeSelection(Staticvar.rowfokus - 1, 0, false, false);
+                } else {
+                    pane.tabledata.changeSelection(Staticvar.rowfokus, 0, false, false);
+                }
+                Staticvar.rowfokus = 0;
 
             }
 
@@ -303,6 +317,7 @@ public class DaftarakuninnerController {
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
+            Staticvar.rowfokus = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlist.get(pane.tabledata.getSelectedRow());
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Daftarakun_input_panel());
@@ -321,6 +336,7 @@ public class DaftarakuninnerController {
                 }
             }
             Staticvar.isupdate = false;
+
         });
     }
 
@@ -357,6 +373,7 @@ public class DaftarakuninnerController {
                             Staticvar.isupdate = false;
                         }
                     }
+
                 }
 
             }
