@@ -80,9 +80,11 @@ public class DaftarakuninputController {
     public DaftarakuninputController(Daftarakun_input_panel pane) {
         this.pane = pane;
         id = Staticvar.ids;
+        Staticvar.ids = "";
         loaddata();
         showhide();
         simpandata();
+        tutup();
     }
 
     private void showhide() {
@@ -274,11 +276,11 @@ public class DaftarakuninputController {
             loaddept();
             loadkelompok();
             loadmatauang();
-            String id_kelompok = listkelompok.get(0).getId_kelompok();
-            String parent = String.valueOf(1);
-            String acc_level = pane.cmbakun_level.getItemAt(0);
+            in_id_kelompok = listkelompok.get(0).getId_kelompok();
+            in_isparent = String.valueOf(1);
+            in_acc_level = pane.cmbakun_level.getItemAt(0);
             String iddept = listdept.get(0).getId_dept();
-            pane.edkode_akun.setText(getkode(id_kelompok, parent, "", acc_level, iddept));
+            pane.edkode_akun.setText(getkode(in_id_kelompok, in_isparent, "", in_acc_level, iddept));
             pane.cmbjenis_akun.setSelectedIndex(1);
             pane.cmbakun_level.setSelectedIndex(0);
             pane.cmbsub_akun_dari.setVisible(false);
@@ -381,12 +383,16 @@ public class DaftarakuninputController {
         } else {
             statusbank = 0;
         }
+        String subid = "";
+        if (!listsub.isEmpty()) {
+            subid = listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun();
+        }
         if (id.equals("")) {
             String param = "acc=id='" + pane.edkode_akun.getText() + "'::"
                     + "nama='" + pane.ednama_akun.getText() + "'::"
                     + "id_acc_class='" + in_id_kelompok + "'::"
                     + "isparent='" + in_isparent + "'::"
-                    + "akun_parent='" + listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun() + "'::"
+                    + "akun_parent='" + subid + "'::"
                     + "isaktif='" + statusaktif + "'::"
                     + "acc_level='" + in_acc_level + "'::"
                     + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
@@ -413,7 +419,7 @@ public class DaftarakuninputController {
                     + "nama='" + pane.ednama_akun.getText() + "'::"
                     + "id_acc_class='" + in_id_kelompok + "'::"
                     + "isparent='" + in_isparent + "'::"
-                    + "akun_parent='" + listsub.get(pane.cmbsub_akun_dari.getSelectedIndex()).getId_subakun() + "'::"
+                    + "akun_parent='" + subid + "'::"
                     + "isaktif='" + statusaktif + "'::"
                     + "acc_level='" + in_acc_level + "'::"
                     + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
@@ -655,6 +661,17 @@ public class DaftarakuninputController {
             e.printStackTrace();
         }
         return reskode;
+    }
+
+    private void tutup() {
+        pane.bbatal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            }
+        });
+
     }
 
     public class kelompokakun {
