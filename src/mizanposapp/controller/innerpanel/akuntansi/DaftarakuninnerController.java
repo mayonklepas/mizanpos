@@ -288,6 +288,16 @@ public class DaftarakuninnerController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
+            }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -301,6 +311,16 @@ public class DaftarakuninnerController {
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
+            }
+            Staticvar.isupdate = false;
         });
     }
 
@@ -313,7 +333,7 @@ public class DaftarakuninnerController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("deleteakun", data);
+                    ch.deletedata("dm/deleteakun", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();

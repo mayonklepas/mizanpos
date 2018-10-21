@@ -295,6 +295,9 @@ public class DaftarakuninputController {
                 JSONArray ja = (JSONArray) rawobjdata;
                 for (int i = 0; i < ja.size(); i++) {
                     JSONObject jo = (JSONObject) ja.get(i);
+                    in_id_kelompok = String.valueOf(jo.get("id_kelompok"));
+                    in_acc_level = String.valueOf(jo.get("acc_level"));
+                    in_isparent = String.valueOf(jo.get("isparent"));
                     pane.edkode_akun.setText(String.valueOf(jo.get("id")));
                     pane.ednama_akun.setText(String.valueOf(jo.get("nama_akun")));
                     loadkelompokwithval(String.valueOf(jo.get("id_kelompok")), String.valueOf(jo.get("nama_kelompok")));
@@ -416,7 +419,7 @@ public class DaftarakuninputController {
                     + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
                     + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
                     + "iskasbank='" + statusbank + "'";
-            ch.insertdata("updateakun", param);
+            ch.updatedata("dm/updateakun", param, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 Staticvar.isupdate = true;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
