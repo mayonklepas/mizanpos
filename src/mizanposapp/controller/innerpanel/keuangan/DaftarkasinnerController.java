@@ -34,6 +34,7 @@ import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
+import mizanposapp.view.innerpanel.akuntansi.Daftarakun_input_panel;
 import mizanposapp.view.innerpanel.keuangan.Daftarkas_inner_panel;
 import mizanposapp.view.innerpanel.keuangan.Formtransferkas;
 import org.json.simple.JSONArray;
@@ -272,38 +273,47 @@ public class DaftarkasinnerController {
 
     private void tambahdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
-            Staticvar.isupdate = true;
-            Staticvar.ids = "";
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Formtransferkas());
+            jd.add(new Daftarakun_input_panel());
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-            if (Staticvar.isupdate == true) {
-                loaddata();
-                Staticvar.isupdate = false;
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
             }
+            Staticvar.isupdate = false;
         });
     }
 
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
-            Staticvar.isupdate = true;
-            int row = pane.tabledata.getSelectedRow();
-            Staticvar.ids = idlist.get(row);
+            Staticvar.rowfokus = pane.tabledata.getSelectedRow();
+            Staticvar.ids = idlist.get(pane.tabledata.getSelectedRow());
             JDialog jd = new JDialog(new Mainmenu());
-            jd.add(new Formtransferkas());
+            jd.add(new Daftarakun_input_panel());
             jd.pack();
             jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             jd.setLocationRelativeTo(null);
             jd.setVisible(true);
             jd.toFront();
-            if (Staticvar.isupdate == true) {
-                loaddata();
-                Staticvar.isupdate = false;
+            if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
+                if (Staticvar.isupdate == true) {
+                    loaddata();
+                }
+            } else {
+                if (Staticvar.isupdate == true) {
+                    loaddatadetailraw();
+                }
             }
+            Staticvar.isupdate = false;
         });
     }
 
