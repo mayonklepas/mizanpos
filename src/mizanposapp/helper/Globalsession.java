@@ -78,6 +78,13 @@ public class Globalsession {
     public static String DEFAULT_NAMA_GUDANG = "";
     public static String DEFAULT_DISKON_DALAM = "";
 
+    public static String DEFAULT_ID_PAJAK = "";
+    public static String DEFAULT_KODE_PAJAK = "";
+    public static String DEFAULT_ID_SERVICE = "";
+    public static String DEFAULT_KODE_SERVICE = "";
+    public static String DEFAULT_ID_KELOMPOK = "";
+    public static String DEFAULT_NAMA_KELOMPOK = "";
+
     public Globalsession() {
         StringBuilder sb = new StringBuilder();
         try {
@@ -95,6 +102,12 @@ public class Globalsession {
             Object objdata = jpdata.parse(sb.toString());
             JSONArray jadata = (JSONArray) objdata;
             JSONObject jodata = (JSONObject) jadata.get(0);
+            DEFAULT_ID_PAJAK = String.valueOf(jodata.get("default_id_pajak"));
+            DEFAULT_KODE_PAJAK = String.valueOf(jodata.get("default_kode_pajak"));
+            DEFAULT_ID_SERVICE = String.valueOf(jodata.get("default_id_service"));
+            DEFAULT_KODE_SERVICE = String.valueOf(jodata.get("default_kode_service"));
+            DEFAULT_ID_KELOMPOK = String.valueOf(jodata.get("default_id_kelompok"));
+            DEFAULT_NAMA_KELOMPOK = String.valueOf(jodata.get("default_nama_kelompok"));
             NAMA_PERUSAHAAN = String.valueOf(jodata.get("nama_perusahaan"));
             TAHUN_AWAL_DATA = String.valueOf(jodata.get("tahun_awal_data"));
             BULAN_AWAL_DATA = String.valueOf(jodata.get("bulan_awal_data"));

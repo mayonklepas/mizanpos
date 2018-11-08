@@ -36,7 +36,7 @@ public class Daftarpenyesuaian_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new Tablestyle(0);
         jPanel1 = new javax.swing.JPanel();
         btambah = new javax.swing.JButton();
         bedit = new javax.swing.JButton();
@@ -82,7 +82,7 @@ public class Daftarpenyesuaian_inner_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(14, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
         );
 
         tabledata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

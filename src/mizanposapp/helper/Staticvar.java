@@ -63,6 +63,7 @@ public class Staticvar {
     public static String fonttype = "Segoe UI";
     public static int fontstyle = Font.PLAIN;
     public static int fontsize = 12;
+    public static int defmenupanel = 370;
     public static String keyholdnumeric[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
         "0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9",
         "NUMPAD0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",

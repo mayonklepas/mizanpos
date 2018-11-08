@@ -66,7 +66,7 @@ public class Persedian_panel extends javax.swing.JPanel {
         ldaftar_stock_minimum = new javax.swing.JLabel();
         ldaftar_klasifikasi = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        menupanel = new javax.swing.JPanel();
         pkoreksistok = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -138,7 +138,7 @@ public class Persedian_panel extends javax.swing.JPanel {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        menupanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pkoreksistok.setPreferredSize(new java.awt.Dimension(100, 100));
 
@@ -149,7 +149,7 @@ public class Persedian_panel extends javax.swing.JPanel {
         jLabel10.setText("Stock Opname");
         pkoreksistok.add(jLabel10);
 
-        jPanel3.add(pkoreksistok, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        menupanel.add(pkoreksistok, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         bpenyesuaian.setMinimumSize(new java.awt.Dimension(100, 100));
         bpenyesuaian.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -163,7 +163,7 @@ public class Persedian_panel extends javax.swing.JPanel {
         jLabel8.setText("Penyesuain");
         bpenyesuaian.add(jLabel8);
 
-        jPanel3.add(bpenyesuaian, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        menupanel.add(bpenyesuaian, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(41, 39, 40));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -196,7 +196,7 @@ public class Persedian_panel extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menupanel, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 1, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -227,7 +227,7 @@ public class Persedian_panel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(menupanel, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -292,7 +292,6 @@ public class Persedian_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     public javax.swing.JLabel ldaftar_data_dept;
     public javax.swing.JLabel ldaftar_data_pajak;
@@ -305,6 +304,7 @@ public class Persedian_panel extends javax.swing.JPanel {
     public javax.swing.JLabel ldaftar_service;
     public javax.swing.JLabel ldaftar_stock_minimum;
     public javax.swing.JLabel ldaftar_supplier;
+    private javax.swing.JPanel menupanel;
     public javax.swing.JPanel pkoreksistok;
     // End of variables declaration//GEN-END:variables
 }

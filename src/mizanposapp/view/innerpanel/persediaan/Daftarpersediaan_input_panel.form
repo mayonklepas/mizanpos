@@ -33,8 +33,8 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel12" alignment="0" pref="555" max="32767" attributes="0"/>
-                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                  <Component id="jPanel12" alignment="0" pref="582" max="32767" attributes="0"/>
+                  <Component id="tabpersediaan" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="388" max="-2" attributes="0"/>
+              <Component id="tabpersediaan" min="-2" pref="388" max="-2" attributes="0"/>
               <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bbatal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -342,7 +342,10 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="tabpersediaan">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -1501,6 +1504,416 @@
             </Component>
           </SubComponents>
         </Container>
+        <Container class="javax.swing.JPanel" name="jPanel11">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Kontrol Akun">
+                <Property name="tabTitle" type="java.lang.String" value="Kontrol Akun"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lhutang_giro" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lhutang_usaha" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lpiutang_usaha" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lpiutang_giro" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lpembelian_tunai" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lpenjualan_tunai" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel45" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel53" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel51" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel50" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel52" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="edakun_persediaan" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="bcari_akun_persediaan" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="edakun_pendapatan" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="bcari_akun_pendapatan" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="edakun_harga_pokok" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="bcari_akun_harga_pokok" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="edakun_pembelian" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="bcari_akun_pembelian" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="edakun_retur_pembelian" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="bcari_akun_retur_pembelian" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="edakun_retur_penjualan" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="bcari_akun_retur_penjualan" min="-2" pref="55" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lhutang_usaha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_persediaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_akun_persediaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lhutang_giro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_pendapatan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_akun_pendapatan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lpiutang_usaha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel51" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_harga_pokok" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_akun_harga_pokok" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lpiutang_giro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_akun_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lpembelian_tunai" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_retur_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_akun_retur_pembelian" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lpenjualan_tunai" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="edakun_retur_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bcari_akun_retur_penjualan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="206" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lpenjualan_tunai">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Retur Penjualan"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel45">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=":"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="edakun_retur_penjualan">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="bcari_akun_retur_penjualan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari"/>
+              </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcari_akun_retur_penjualanAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_akun_retur_penjualanActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lhutang_usaha">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Persediaan"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel49">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=":"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="edakun_persediaan">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="bcari_akun_persediaan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari"/>
+              </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcari_akun_persediaanAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_akun_persediaanActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lhutang_giro">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pendapatan"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel50">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=":"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="edakun_pendapatan">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="bcari_akun_pendapatan">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari"/>
+              </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcari_akun_pendapatanAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_akun_pendapatanActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lpiutang_usaha">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Harga Pokok"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel51">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=":"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="edakun_harga_pokok">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edakun_harga_pokokActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="bcari_akun_harga_pokok">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari"/>
+              </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcari_akun_harga_pokokAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_akun_harga_pokokActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lpiutang_giro">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pembelian"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel52">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=":"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="edakun_pembelian">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="bcari_akun_pembelian">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari"/>
+              </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcari_akun_pembelianAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_akun_pembelianActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lpembelian_tunai">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Retur Pembelian"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel53">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=":"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="edakun_retur_pembelian">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edakun_retur_pembelianActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="bcari_akun_retur_pembelian">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="11" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari"/>
+              </Properties>
+              <Events>
+                <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="bcari_akun_retur_pembelianAncestorAdded"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_akun_retur_pembelianActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+          </SubComponents>
+        </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1515,7 +1928,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="541" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="557" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1524,7 +1937,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="400" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="396" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1550,6 +1963,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Tablestyle(1)"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
@@ -1572,11 +1986,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="541" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="557" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="ckharga_jual_persen" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
+                              <Component id="lhargaberdasar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cmbharga_berdasarkan" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1592,10 +2006,10 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ckharga_jual_persen" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmbharga_berdasarkan" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lhargaberdasar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="368" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="370" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1621,6 +2035,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Tablestyle(1)"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
@@ -1649,7 +2064,7 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel50">
+            <Component class="javax.swing.JLabel" name="lhargaberdasar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Harga Berdasarkan"/>
               </Properties>
@@ -1673,7 +2088,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="541" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="557" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1682,7 +2097,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="400" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="396" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1708,6 +2123,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Tablestyle(1)"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
@@ -1739,7 +2155,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="edcari_gambar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="179" max="32767" attributes="0"/>
+                      <EmptySpace pref="219" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1755,7 +2171,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="183" max="-2" attributes="0"/>
-                      <EmptySpace pref="185" max="32767" attributes="0"/>
+                      <EmptySpace pref="195" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -434,7 +434,7 @@ public class DaftarfakturpembelianinputController {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         TableColumnModel tcm = pane.tabledata.getColumnModel();
 
-        double lebar = d.getWidth() - Staticvar.lebarPanelMenu;;
+        double lebar = d.getWidth() - Staticvar.lebarPanelMenu;
         double lebarAll = 0;
 
         for (int i = 0; i < lshide.size(); i++) {

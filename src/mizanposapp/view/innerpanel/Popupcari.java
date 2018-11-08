@@ -6,6 +6,7 @@
 package mizanposapp.view.innerpanel;
 
 import mizanposapp.controller.innerpanel.PopupcariController;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Popupcari extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new Tablestyle(0);
         bbaru = new javax.swing.JButton();
         btutup = new javax.swing.JButton();
         bedit = new javax.swing.JButton();

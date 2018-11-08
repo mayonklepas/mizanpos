@@ -36,7 +36,7 @@ public class Daftardatadept_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new Tablestyle(0);
         jPanel1 = new javax.swing.JPanel();
         btambah = new javax.swing.JButton();
         bedit = new javax.swing.JButton();

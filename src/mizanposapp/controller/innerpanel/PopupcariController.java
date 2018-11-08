@@ -18,6 +18,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,6 +79,19 @@ public class PopupcariController {
     public PopupcariController(Popupcari pane, String tipe, String page, String header) {
         Staticvar.isupdate = false;
         this.pane = pane;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JDialog jdin = (JDialog) pane.getRootPane().getParent();
+                jdin.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        pane.btutup.doClick();
+                    }
+
+                });
+            }
+        });
         pane.lheader.setText(header);
         loadheader(tipe);
         if (!Staticvar.sfilter.equals("")) {
@@ -614,6 +629,7 @@ public class PopupcariController {
     }
 
     private void tutup() {
+
         pane.btutup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -55,6 +55,7 @@ public class DaftarpersediaaninnerController {
 
     public DaftarpersediaaninnerController(Daftarpersediaan_inner_panel pane) {
         this.pane = pane;
+        loadheader();
         loaddata("0");
         loaddatadetail();
         inputdata();
@@ -94,7 +95,7 @@ public class DaftarpersediaaninnerController {
 
             TableColumnModel tcm = pane.tabledata.getColumnModel();
             for (int i = 0; i < lssize.size(); i++) {
-                Double wd = d.getWidth() - 344;
+                Double wd = d.getWidth() - Staticvar.defmenupanel;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
@@ -105,7 +106,6 @@ public class DaftarpersediaaninnerController {
     }
 
     private void loaddata(String halaman) {
-        loadheader();
         cleardata();
         disablebutton();
         dtm.getDataVector().removeAllElements();

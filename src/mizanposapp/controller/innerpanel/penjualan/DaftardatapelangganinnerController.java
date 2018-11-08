@@ -93,7 +93,7 @@ public class DaftardatapelangganinnerController {
             }
 
             for (int i = 0; i < lssize.size(); i++) {
-                Double wd = d.getWidth() - 344;
+                Double wd = d.getWidth() - Staticvar.defmenupanel;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);

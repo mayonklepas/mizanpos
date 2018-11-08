@@ -1218,7 +1218,6 @@ public class DaftarorderpenjualaninputController {
         pane.tabledata.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
-
                 TableModel tm = (TableModel) e.getSource();
                 if (e.getType() == TableModelEvent.UPDATE) {
                     if (ischangevalue) {

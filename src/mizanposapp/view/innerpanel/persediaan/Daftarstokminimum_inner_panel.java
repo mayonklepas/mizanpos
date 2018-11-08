@@ -37,7 +37,7 @@ public class Daftarstokminimum_inner_panel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         indi = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
+        tabledata = new Tablestyle(0);
         jPanel1 = new javax.swing.JPanel();
         tcari = new javax.swing.JTextField();
         bcari = new javax.swing.JButton();

@@ -6,6 +6,7 @@
 package mizanposapp.view.innerpanel.persediaan;
 
 import mizanposapp.controller.innerpanel.persediaan.DaftarpersediaaninputController;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *
@@ -50,7 +51,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         ckaktif = new javax.swing.JCheckBox();
         bcari_kelompok = new javax.swing.JButton();
         bcari_supplier = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabpersediaan = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -121,18 +122,43 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel35 = new javax.swing.JLabel();
         edgudang_persediaan = new javax.swing.JTextField();
         bcari_gudang = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        lpenjualan_tunai = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        edakun_retur_penjualan = new javax.swing.JTextField();
+        bcari_akun_retur_penjualan = new javax.swing.JButton();
+        lhutang_usaha = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        edakun_persediaan = new javax.swing.JTextField();
+        bcari_akun_persediaan = new javax.swing.JButton();
+        lhutang_giro = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        edakun_pendapatan = new javax.swing.JTextField();
+        bcari_akun_pendapatan = new javax.swing.JButton();
+        lpiutang_usaha = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        edakun_harga_pokok = new javax.swing.JTextField();
+        bcari_akun_harga_pokok = new javax.swing.JButton();
+        lpiutang_giro = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        edakun_pembelian = new javax.swing.JTextField();
+        bcari_akun_pembelian = new javax.swing.JButton();
+        lpembelian_tunai = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        edakun_retur_pembelian = new javax.swing.JTextField();
+        bcari_akun_retur_pembelian = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablemulti_satuan = new javax.swing.JTable();
+        tablemulti_satuan = new Tablestyle(1);
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablemulti_harga_jual = new javax.swing.JTable();
+        tablemulti_harga_jual = new Tablestyle(1);
         ckharga_jual_persen = new javax.swing.JCheckBox();
         cmbharga_berdasarkan = new javax.swing.JComboBox<>();
-        jLabel50 = new javax.swing.JLabel();
+        lhargaberdasar = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tablemulti_lokasi = new javax.swing.JTable();
+        tablemulti_lokasi = new Tablestyle(1);
         jPanel4 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -805,7 +831,274 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addGap(68, 68, 68))
         );
 
-        jTabbedPane1.addTab("Informasi", jPanel1);
+        tabpersediaan.addTab("Informasi", jPanel1);
+
+        lpenjualan_tunai.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lpenjualan_tunai.setText("Retur Penjualan");
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel45.setText(":");
+
+        edakun_retur_penjualan.setEditable(false);
+        edakun_retur_penjualan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        bcari_akun_retur_penjualan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_akun_retur_penjualan.setText("Cari");
+        bcari_akun_retur_penjualan.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bcari_akun_retur_penjualanAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bcari_akun_retur_penjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_akun_retur_penjualanActionPerformed(evt);
+            }
+        });
+
+        lhutang_usaha.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lhutang_usaha.setText("Persediaan");
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel49.setText(":");
+
+        edakun_persediaan.setEditable(false);
+        edakun_persediaan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        bcari_akun_persediaan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_akun_persediaan.setText("Cari");
+        bcari_akun_persediaan.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bcari_akun_persediaanAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bcari_akun_persediaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_akun_persediaanActionPerformed(evt);
+            }
+        });
+
+        lhutang_giro.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lhutang_giro.setText("Pendapatan");
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel50.setText(":");
+
+        edakun_pendapatan.setEditable(false);
+        edakun_pendapatan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        bcari_akun_pendapatan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_akun_pendapatan.setText("Cari");
+        bcari_akun_pendapatan.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bcari_akun_pendapatanAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bcari_akun_pendapatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_akun_pendapatanActionPerformed(evt);
+            }
+        });
+
+        lpiutang_usaha.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lpiutang_usaha.setText("Harga Pokok");
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel51.setText(":");
+
+        edakun_harga_pokok.setEditable(false);
+        edakun_harga_pokok.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        edakun_harga_pokok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edakun_harga_pokokActionPerformed(evt);
+            }
+        });
+
+        bcari_akun_harga_pokok.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_akun_harga_pokok.setText("Cari");
+        bcari_akun_harga_pokok.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bcari_akun_harga_pokokAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bcari_akun_harga_pokok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_akun_harga_pokokActionPerformed(evt);
+            }
+        });
+
+        lpiutang_giro.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lpiutang_giro.setText("Pembelian");
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel52.setText(":");
+
+        edakun_pembelian.setEditable(false);
+        edakun_pembelian.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        bcari_akun_pembelian.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_akun_pembelian.setText("Cari");
+        bcari_akun_pembelian.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bcari_akun_pembelianAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bcari_akun_pembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_akun_pembelianActionPerformed(evt);
+            }
+        });
+
+        lpembelian_tunai.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lpembelian_tunai.setText("Retur Pembelian");
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel53.setText(":");
+
+        edakun_retur_pembelian.setEditable(false);
+        edakun_retur_pembelian.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        edakun_retur_pembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edakun_retur_pembelianActionPerformed(evt);
+            }
+        });
+
+        bcari_akun_retur_pembelian.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_akun_retur_pembelian.setText("Cari");
+        bcari_akun_retur_pembelian.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                bcari_akun_retur_pembelianAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        bcari_akun_retur_pembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_akun_retur_pembelianActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lhutang_giro)
+                    .addComponent(lhutang_usaha)
+                    .addComponent(lpiutang_usaha)
+                    .addComponent(lpiutang_giro)
+                    .addComponent(lpembelian_tunai)
+                    .addComponent(lpenjualan_tunai))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel53, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel49)
+                                .addGap(2, 2, 2)))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel51, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel50, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel52, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(edakun_persediaan)
+                        .addGap(1, 1, 1)
+                        .addComponent(bcari_akun_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addComponent(edakun_pendapatan)
+                        .addGap(1, 1, 1)
+                        .addComponent(bcari_akun_pendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addComponent(edakun_harga_pokok)
+                        .addGap(1, 1, 1)
+                        .addComponent(bcari_akun_harga_pokok, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(edakun_pembelian)
+                        .addGap(1, 1, 1)
+                        .addComponent(bcari_akun_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(edakun_retur_pembelian)
+                        .addGap(1, 1, 1)
+                        .addComponent(bcari_akun_retur_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(edakun_retur_penjualan)
+                        .addGap(1, 1, 1)
+                        .addComponent(bcari_akun_retur_penjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(120, 120, 120))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lhutang_usaha)
+                    .addComponent(jLabel49)
+                    .addComponent(edakun_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcari_akun_persediaan))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lhutang_giro)
+                    .addComponent(jLabel50)
+                    .addComponent(edakun_pendapatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcari_akun_pendapatan))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lpiutang_usaha)
+                    .addComponent(jLabel51)
+                    .addComponent(edakun_harga_pokok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcari_akun_harga_pokok))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lpiutang_giro)
+                    .addComponent(jLabel52)
+                    .addComponent(edakun_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcari_akun_pembelian))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lpembelian_tunai)
+                    .addComponent(jLabel53)
+                    .addComponent(edakun_retur_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcari_akun_retur_pembelian))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lpenjualan_tunai)
+                    .addComponent(jLabel45)
+                    .addComponent(edakun_retur_penjualan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcari_akun_retur_penjualan))
+                .addContainerGap(206, Short.MAX_VALUE))
+        );
+
+        tabpersediaan.addTab("Kontrol Akun", jPanel11);
 
         tablemulti_satuan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -826,18 +1119,18 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Multi Satuan", jPanel2);
+        tabpersediaan.addTab("Multi Satuan", jPanel2);
 
         tablemulti_harga_jual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -856,7 +1149,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
 
         cmbharga_berdasarkan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Harga Pokok", "Harga Beli Terakhir", "Harga Master" }));
 
-        jLabel50.setText("Harga Berdasarkan");
+        lhargaberdasar.setText("Harga Berdasarkan");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -865,11 +1158,11 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(ckharga_jual_persen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel50)
+                        .addComponent(lhargaberdasar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbharga_berdasarkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -881,13 +1174,13 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckharga_jual_persen)
                     .addComponent(cmbharga_berdasarkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel50))
+                    .addComponent(lhargaberdasar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Multi Harga Jual", jPanel3);
+        tabpersediaan.addTab("Multi Harga Jual", jPanel3);
 
         tablemulti_lokasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -908,18 +1201,18 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Multi Lokasi", jPanel10);
+        tabpersediaan.addTab("Multi Lokasi", jPanel10);
 
         jLabel47.setText("Lokasi Gambar");
 
@@ -944,7 +1237,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(tlokasi_gambar, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(edcari_gambar)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -957,10 +1250,10 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(edcari_gambar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Gambar", jPanel4);
+        tabpersediaan.addTab("Gambar", jPanel4);
 
         bbatal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bbatal.setText("Batal");
@@ -1004,8 +1297,8 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                    .addComponent(tabpersediaan)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -1092,7 +1385,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                         .addGap(2, 2, 2)
                         .addComponent(edketerangan_persediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabpersediaan, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbatal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1157,9 +1450,71 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_gudangActionPerformed
 
+    private void bcari_akun_retur_penjualanAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcari_akun_retur_penjualanAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_retur_penjualanAncestorAdded
+
+    private void bcari_akun_retur_penjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_retur_penjualanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_retur_penjualanActionPerformed
+
+    private void bcari_akun_persediaanAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcari_akun_persediaanAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_persediaanAncestorAdded
+
+    private void bcari_akun_persediaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_persediaanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_persediaanActionPerformed
+
+    private void bcari_akun_pendapatanAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcari_akun_pendapatanAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_pendapatanAncestorAdded
+
+    private void bcari_akun_pendapatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_pendapatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_pendapatanActionPerformed
+
+    private void edakun_harga_pokokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edakun_harga_pokokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edakun_harga_pokokActionPerformed
+
+    private void bcari_akun_harga_pokokAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcari_akun_harga_pokokAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_harga_pokokAncestorAdded
+
+    private void bcari_akun_harga_pokokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_harga_pokokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_harga_pokokActionPerformed
+
+    private void bcari_akun_pembelianAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcari_akun_pembelianAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_pembelianAncestorAdded
+
+    private void bcari_akun_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_pembelianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_pembelianActionPerformed
+
+    private void edakun_retur_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edakun_retur_pembelianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edakun_retur_pembelianActionPerformed
+
+    private void bcari_akun_retur_pembelianAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_bcari_akun_retur_pembelianAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_retur_pembelianAncestorAdded
+
+    private void bcari_akun_retur_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_retur_pembelianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_akun_retur_pembelianActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
     public javax.swing.JButton bcalc;
+    public javax.swing.JButton bcari_akun_harga_pokok;
+    public javax.swing.JButton bcari_akun_pembelian;
+    public javax.swing.JButton bcari_akun_pendapatan;
+    public javax.swing.JButton bcari_akun_persediaan;
+    public javax.swing.JButton bcari_akun_retur_pembelian;
+    public javax.swing.JButton bcari_akun_retur_penjualan;
     public javax.swing.JButton bcari_department;
     public javax.swing.JButton bcari_gudang;
     public javax.swing.JButton bcari_kelompok;
@@ -1175,6 +1530,12 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox ckharga_jual_persen;
     public javax.swing.JCheckBox ckhpp;
     public javax.swing.JComboBox<String> cmbharga_berdasarkan;
+    public javax.swing.JTextField edakun_harga_pokok;
+    public javax.swing.JTextField edakun_pembelian;
+    public javax.swing.JTextField edakun_pendapatan;
+    public javax.swing.JTextField edakun_persediaan;
+    public javax.swing.JTextField edakun_retur_pembelian;
+    public javax.swing.JTextField edakun_retur_penjualan;
     public javax.swing.JButton edcari_gambar;
     public javax.swing.JTextField eddepartment_persediaan;
     public javax.swing.JTextField edgudang_persediaan;
@@ -1234,17 +1595,23 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     public javax.swing.JLabel jLabel47;
     public javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    public javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1258,11 +1625,17 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel lharga_pokok;
+    public javax.swing.JLabel lhargaberdasar;
+    public javax.swing.JLabel lhutang_giro;
+    public javax.swing.JLabel lhutang_usaha;
     public javax.swing.JLabel ljumlah_stock;
+    public javax.swing.JLabel lpembelian_tunai;
+    public javax.swing.JLabel lpenjualan_tunai;
     public javax.swing.JLabel lpesan_pelanggan;
     public javax.swing.JLabel lpesan_supplier;
+    public javax.swing.JLabel lpiutang_giro;
+    public javax.swing.JLabel lpiutang_usaha;
     public javax.swing.JRadioButton rbaverage;
     public javax.swing.JRadioButton rbfifo;
     public javax.swing.JRadioButton rblifo;
@@ -1270,6 +1643,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     public javax.swing.JTable tablemulti_harga_jual;
     public javax.swing.JTable tablemulti_lokasi;
     public javax.swing.JTable tablemulti_satuan;
+    public javax.swing.JTabbedPane tabpersediaan;
     public javax.swing.JTextField tlokasi_gambar;
     // End of variables declaration//GEN-END:variables
 }
