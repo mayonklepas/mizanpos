@@ -729,6 +729,7 @@ public class DaftarpersediaaninputController {
                     } else {
                         pane.ckharga_jual_persen.setSelected(false);
                     }
+
                 }
 
                 //multisatuan
@@ -893,9 +894,12 @@ public class DaftarpersediaaninputController {
             metodehpp = "3";
         }
         int harga_berdasar = 0;
+        int tipe_harga_jual = 0;
         if (pane.ckharga_jual_persen.isSelected()) {
             harga_berdasar = 0;
+            tipe_harga_jual = 1;
         } else {
+            tipe_harga_jual = 0;
             switch (pane.cmbharga_berdasarkan.getSelectedIndex()) {
                 case 0:
                     harga_berdasar = 1;
@@ -963,7 +967,7 @@ public class DaftarpersediaaninputController {
                     valsupplier,
                     pane.edketerangan_persediaan.getText(),
                     "0",
-                    "0",
+                    tipe_harga_jual,
                     "0",
                     valservice,
                     valakun_persediaan,
@@ -1042,7 +1046,7 @@ public class DaftarpersediaaninputController {
                     valsupplier,
                     pane.edketerangan_persediaan.getText(),
                     "0",
-                    "0",
+                    tipe_harga_jual,
                     "0",
                     valservice,
                     valakun_persediaan,
@@ -1451,9 +1455,12 @@ public class DaftarpersediaaninputController {
                                 lssatuanentity.add(new SatuanEntity(valsatuan, pane.edsatuan_persediaan.getText()));
                                 for (int i = 0; i < multisatuanlist.size(); i++) {
                                     if (!multisatuanlist.get(i).getId_satuan().equals(valsatuan)) {
-                                        lssatuanentity.add(new SatuanEntity(
-                                                multisatuanlist.get(i).getId_satuan(),
-                                                multisatuanlist.get(i).getKode_satuan()));
+                                        if (!multisatuanlist.get(i).getId_satuan().equals("")) {
+                                            lssatuanentity.add(new SatuanEntity(
+                                                    multisatuanlist.get(i).getId_satuan(),
+                                                    multisatuanlist.get(i).getKode_satuan()));
+                                        }
+
                                     }
                                 }
 
