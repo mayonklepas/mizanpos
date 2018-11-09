@@ -490,16 +490,25 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel32.setText(":");
 
         ljumlah_stock.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        ljumlah_stock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ljumlah_stock.setText("0.00");
 
         lpesan_supplier.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lpesan_supplier.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lpesan_supplier.setText("0.00");
 
         lpesan_pelanggan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lpesan_pelanggan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lpesan_pelanggan.setText("0.00");
 
         edstock_minimal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edstock_minimal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         edstock_minimal.setText("0.00");
+        edstock_minimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edstock_minimalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -526,13 +535,10 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel31))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(edstock_minimal)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ljumlah_stock)
-                            .addComponent(lpesan_supplier)
-                            .addComponent(lpesan_pelanggan))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(edstock_minimal, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(ljumlah_stock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lpesan_supplier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lpesan_pelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -586,12 +592,15 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel41.setText(":");
 
         lharga_pokok.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        lharga_pokok.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lharga_pokok.setText("0.00");
 
         edharga_jual.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edharga_jual.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         edharga_jual.setText("0.00");
 
         edharga_beli_akhir.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edharga_beli_akhir.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         edharga_beli_akhir.setText("0.00");
 
         ckhpp.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -619,7 +628,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel39)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lharga_pokok))
+                                .addComponent(lharga_pokok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(jLabel41)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -658,6 +667,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel42.setText("Harga Master");
 
         edharga_master.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edharga_master.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel43.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel43.setText(":");
@@ -670,6 +680,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel46.setText(":");
 
         edupharga_beli.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edupharga_beli.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1505,6 +1516,10 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
     private void bcari_akun_retur_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_akun_retur_pembelianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_akun_retur_pembelianActionPerformed
+
+    private void edstock_minimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edstock_minimalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edstock_minimalActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;

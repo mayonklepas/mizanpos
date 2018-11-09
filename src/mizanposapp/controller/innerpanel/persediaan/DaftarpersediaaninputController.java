@@ -1740,16 +1740,18 @@ public class DaftarpersediaaninputController {
                     jd.toFront();
                     multihargalist.get(row).setId_golongan(Staticvar.resid);
                     pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, row, 0);
-                    multihargalist.get(row).setDari("999");
-                    pane.tablemulti_harga_jual.setValueAt("0", row, 1);
-                    multihargalist.get(row).setHingga("999");
-                    pane.tablemulti_harga_jual.setValueAt("999", row, 2);
-                    multihargalist.get(row).setHarga_jual("0");
-                    pane.tablemulti_harga_jual.setValueAt("0", row, 4);
-                    multihargalist.get(row).setHarga_jual_persen("0");
-                    pane.tablemulti_harga_jual.setValueAt("0", row, 5);
-                    multihargalist.get(row).setId_satuan(valsatuan);
-                    pane.tablemulti_harga_jual.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                    if (!Staticvar.resid.equals(Staticvar.preid)) {
+                        multihargalist.get(row).setDari("999");
+                        pane.tablemulti_harga_jual.setValueAt("0", row, 1);
+                        multihargalist.get(row).setHingga("999");
+                        pane.tablemulti_harga_jual.setValueAt("999", row, 2);
+                        multihargalist.get(row).setHarga_jual("0");
+                        pane.tablemulti_harga_jual.setValueAt("0", row, 4);
+                        multihargalist.get(row).setHarga_jual_persen("0");
+                        pane.tablemulti_harga_jual.setValueAt("0", row, 5);
+                        multihargalist.get(row).setId_satuan(valsatuan);
+                        pane.tablemulti_harga_jual.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                    }
 
                 } else if (col == 3) {
                     Staticvar.sfilter = "";
@@ -1796,12 +1798,18 @@ public class DaftarpersediaaninputController {
                         jd.toFront();
                         multihargalist.get(row).setId_golongan(Staticvar.resid);
                         pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, row, 0);
-                        multihargalist.get(row).setDari("99");
-                        pane.tablemulti_harga_jual.setValueAt("0", row, 1);
-                        multihargalist.get(row).setHingga("999");
-                        pane.tablemulti_harga_jual.setValueAt("999", row, 2);
-                        multihargalist.get(row).setId_satuan(valsatuan);
-                        pane.tablemulti_harga_jual.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                        if (!Staticvar.resid.equals(Staticvar.preid)) {
+                            multihargalist.get(row).setDari("999");
+                            pane.tablemulti_harga_jual.setValueAt("0", row, 1);
+                            multihargalist.get(row).setHingga("999");
+                            pane.tablemulti_harga_jual.setValueAt("999", row, 2);
+                            multihargalist.get(row).setHarga_jual("0");
+                            pane.tablemulti_harga_jual.setValueAt("0", row, 4);
+                            multihargalist.get(row).setHarga_jual_persen("0");
+                            pane.tablemulti_harga_jual.setValueAt("0", row, 5);
+                            multihargalist.get(row).setId_satuan(valsatuan);
+                            pane.tablemulti_harga_jual.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                        }
                     }
                 }
             }
@@ -1957,8 +1965,8 @@ public class DaftarpersediaaninputController {
             String last_barcode_check = multisatuanlist.get(jumlah_row).getBarcode();
             String last_qty_check = multisatuanlist.get(jumlah_row).getQty_satuan_pengali();
             //String last_id_satuan_pengali = multisatuanlist.get(jumlah_row).getId_satuan_pengali();
-            if (!id_satuan_check.equals("") && !barcode_check.equals("") && !qty_check.equals("")) {
-                if (!last_id_satuan_check.equals("") && !last_barcode_check.equals("") && !last_qty_check.equals("")) {
+            if (!id_satuan_check.equals("") && !qty_check.equals("")) {
+                if (!last_id_satuan_check.equals("") && !last_qty_check.equals("")) {
                     multisatuanlist.add(new multisatuan("", "", "", "", "", "", ""));
                     dtmmultisatuan.addRow(rowmultisatuan);
                     pane.tablemulti_satuan.requestFocus();
