@@ -45,6 +45,7 @@ public class Popupcaripersediaan extends javax.swing.JPanel {
 
         jLabel1.setText("jLabel1");
 
+        tabledata.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

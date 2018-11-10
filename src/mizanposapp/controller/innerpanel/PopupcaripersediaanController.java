@@ -18,6 +18,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import mizanposapp.helper.Staticvar;
@@ -30,9 +31,8 @@ import mizanposapp.view.innerpanel.Popupcaripersediaan;
 public class PopupcaripersediaanController {
 
     Popupcaripersediaan pane;
-    DefaultTableModel dtm = new DefaultTableModel();
+
     ArrayList<SatuanEntity> ls = new ArrayList();
-    Object[] obj = new Object[2];
 
     public PopupcaripersediaanController(Popupcaripersediaan pane, ArrayList<SatuanEntity> ls) {
         this.pane = pane;
@@ -58,9 +58,15 @@ public class PopupcaripersediaanController {
     }
 
     private void loaddata() {
+        pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        pane.tabledata.setDefaultEditor(Object.class, null);
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.getDataVector().removeAllElements();
+        dtm.fireTableDataChanged();
         dtm.setRowCount(0);
         dtm.addColumn("Satuan");
         dtm.addColumn("Jumlah Pengali");
+        Object[] obj = new Object[2];
         for (int i = 0; i < ls.size(); i++) {
             obj[0] = ls.get(i).getNama();
             obj[1] = ls.get(i).getQty_pengali();
