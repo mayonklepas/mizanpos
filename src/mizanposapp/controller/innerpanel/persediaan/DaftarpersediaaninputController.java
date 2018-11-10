@@ -248,7 +248,7 @@ public class DaftarpersediaaninputController {
         dtmmultihargajual = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 0 ? false : true;
+                return column == 0 || column == 3 ? false : true;
             }
 
         };
@@ -730,6 +730,16 @@ public class DaftarpersediaaninputController {
                         pane.ckharga_jual_persen.setSelected(false);
                     }
 
+                    int valhargajualberdasar = Integer.parseInt(String.valueOf(joindata.get("harga_jual_berdasar")));
+
+                    if (valhargajualberdasar == 1) {
+                        pane.cmbharga_berdasarkan.setSelectedIndex(0);
+                    } else if (valhargajualberdasar == 2) {
+                        pane.cmbharga_berdasarkan.setSelectedIndex(1);
+                    } else {
+                        pane.cmbharga_berdasarkan.setSelectedIndex(2);
+                    }
+
                 }
 
                 //multisatuan
@@ -896,25 +906,28 @@ public class DaftarpersediaaninputController {
         int harga_berdasar = 0;
         int tipe_harga_jual = 0;
         if (pane.ckharga_jual_persen.isSelected()) {
-            harga_berdasar = 0;
             tipe_harga_jual = 1;
         } else {
             tipe_harga_jual = 0;
-            switch (pane.cmbharga_berdasarkan.getSelectedIndex()) {
-                case 0:
-                    harga_berdasar = 1;
-                    break;
-                case 1:
-                    harga_berdasar = 2;
-                    break;
-                case 2:
-                    harga_berdasar = 3;
-                    break;
-                default:
-                    break;
-            }
         }
-        if (id.equals("")) {
+
+        switch (pane.cmbharga_berdasarkan.getSelectedIndex()) {
+            case 0:
+                harga_berdasar = 1;
+                break;
+            case 1:
+                harga_berdasar = 2;
+                break;
+            case 2:
+                harga_berdasar = 3;
+                break;
+            default:
+                harga_berdasar = 0;
+                break;
+        }
+
+        if (id.equals(
+                "")) {
             String data = String.format("data=kode='%s'::"
                     + "nama='%s'::"
                     + "id_kelompok='%s'::"
@@ -1124,7 +1137,7 @@ public class DaftarpersediaaninputController {
                             if (tipe.equals("satuan")) {
                                 String idsatuanterhapus = multisatuanlist.get(row).getId_satuan();
                                 int counthargaindex = 0;
-                                if (multihargalist.get(multihargalist.size() - 1).getId().equals("")) {
+                                if (multihargalist.get(multihargalist.size() - 1).getId_satuan().equals("")) {
                                     counthargaindex = multihargalist.size() - 2;
                                 } else {
                                     counthargaindex = multihargalist.size() - 1;
@@ -1557,7 +1570,6 @@ public class DaftarpersediaaninputController {
                         } else {
                             defnilai = String.valueOf(pane.tablemulti_satuan.getValueAt(row, 0));
                         }
-                        Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = "";
                         Staticvar.prelabel = defnilai;
                         JDialog jd = new JDialog(new Mainmenu());
@@ -1584,10 +1596,23 @@ public class DaftarpersediaaninputController {
                             pane.tablemulti_satuan.setValueAt(Staticvar.reslabel, row, 0);
                             multisatuanlist.get(row).setId_satuan_pengali(valsatuan);
                             pane.tablemulti_satuan.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                            int counthargaindex = 0;
+                            if (multihargalist.get(multihargalist.size() - 1).getId_satuan().equals("")) {
+                                counthargaindex = multihargalist.size() - 1;
+                            } else {
+                                counthargaindex = multihargalist.size();
+                            }
+
+                            for (int i = 0; i < counthargaindex; i++) {
+                                if (multihargalist.get(i).getId_satuan().equals(Staticvar.preid)) {
+                                    multihargalist.get(i).setId_satuan(Staticvar.resid);
+                                    pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, i, 3);
+                                }
+                            }
+
                         }
 
                     }
-                } else if (col == 3) {
                 }
 
             }
@@ -1620,12 +1645,38 @@ public class DaftarpersediaaninputController {
                             jd.setLocationRelativeTo(null);
                             jd.setVisible(true);
                             jd.toFront();
-                            multisatuanlist.get(row).setId_satuan(Staticvar.resid);
-                            pane.tablemulti_satuan.setValueAt(Staticvar.reslabel, row, 0);
-                            multisatuanlist.get(row).setId_satuan_pengali(valsatuan);
-                            pane.tablemulti_satuan.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
-                            dtmmultisatuan.fireTableCellUpdated(row, 0);
-                            dtmmultisatuan.fireTableCellUpdated(row, 0);
+                            boolean status_ada = false;
+                            for (int i = 0; i < multisatuanlist.size(); i++) {
+                                if (multisatuanlist.get(i).getId_satuan().equals(Staticvar.resid)) {
+                                    status_ada = true;
+                                    JOptionPane.showMessageDialog(null, Staticvar.reslabel + " Sudah Ada");
+                                    break;
+                                } else {
+                                    status_ada = false;
+                                }
+                            }
+
+                            if (status_ada == false) {
+                                multisatuanlist.get(row).setId_satuan(Staticvar.resid);
+                                multisatuanlist.get(row).setKode_satuan(Staticvar.reslabel);
+                                pane.tablemulti_satuan.setValueAt(Staticvar.reslabel, row, 0);
+                                multisatuanlist.get(row).setId_satuan_pengali(valsatuan);
+                                pane.tablemulti_satuan.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                                int counthargaindex = 0;
+                                if (multihargalist.get(multihargalist.size() - 1).getId().equals("")) {
+                                    counthargaindex = multihargalist.size() - 1;
+                                } else {
+                                    counthargaindex = multihargalist.size();
+                                }
+
+                                for (int i = 0; i < counthargaindex; i++) {
+                                    if (multihargalist.get(i).getId_satuan().equals(Staticvar.preid)) {
+                                        multihargalist.get(i).setId_satuan(Staticvar.resid);
+                                        pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, i, 3);
+                                    }
+                                }
+                            }
+
                         }
                     } else if (col == 3) {
                         /*Staticvar.preid = multisatuanlist.get(row).getId_satuan();
@@ -1737,7 +1788,6 @@ public class DaftarpersediaaninputController {
                     }
                     Staticvar.prelabel = defnilai;
                     Staticvar.sfilter = "";
-                    Staticvar.prelabel = defnilai;
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcari("nama", "popupdaftargolongan?tipe=0", "Daftar Pelanggan"));
                     jd.pack();
@@ -1761,9 +1811,16 @@ public class DaftarpersediaaninputController {
                     }
 
                 } else if (col == 3) {
+                    String defnilai = "";
+                    String cekval = String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 3));
+                    if (cekval.equals("null") || cekval.equals("")) {
+                        defnilai = "";
+                    } else {
+                        defnilai = String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 3));
+                    }
                     Staticvar.sfilter = "";
-                    Staticvar.preid = valsupplier;
-                    Staticvar.prelabel = pane.edsupplier_persediaan.getText();
+                    Staticvar.prelabel = defnilai;
+                    Staticvar.preid = multihargalist.get(row).getId_satuan();
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcaripersediaan(lssatuanentity));
                     jd.pack();
