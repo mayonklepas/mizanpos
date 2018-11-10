@@ -2023,6 +2023,7 @@ public class DaftarpersediaaninputController {
                         multilokasilist.get(row).setId_gudang(Staticvar.resid);
                         pane.tablemulti_lokasi.setValueAt(Staticvar.reslabel, row, 1);
                     }
+
                 }
             }
 
