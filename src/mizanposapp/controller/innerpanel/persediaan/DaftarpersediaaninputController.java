@@ -626,7 +626,7 @@ public class DaftarpersediaaninputController {
                 dtmmultihargajual.addColumn("Satuan");
                 dtmmultihargajual.addColumn("Harga Jual");
                 dtmmultihargajual.addColumn("Harga Jual %");
-                multihargalist.add(new multiharga("", "", "", "0", "0", "", "", "", ""));
+                multihargalist.add(new multiharga("", "", "", "0", "0", "", "", "0", "0", "", "0"));
                 dtmmultihargajual.addRow(rowmultiharga);
                 pane.tablemulti_harga_jual.setModel(dtmmultihargajual);
 
@@ -786,7 +786,7 @@ public class DaftarpersediaaninputController {
                 System.out.println(objmultiharga);
                 JSONArray jamultiharga = (JSONArray) objmultiharga;
                 if (jamultiharga.isEmpty()) {
-                    multihargalist.add(new multiharga("", "", "", "0", "0", "", "", "", ""));
+                    multihargalist.add(new multiharga("", "", "", "0", "0", "", "", "", "", "", "0"));
                     dtmmultihargajual.addRow(rowmultiharga);
                 } else {
                     for (int i = 0; i < jamultiharga.size(); i++) {
@@ -800,7 +800,11 @@ public class DaftarpersediaaninputController {
                         String kode_satuan = String.valueOf(joinmultiharga.get("kode_satuan"));
                         String harga_jual = String.valueOf(joinmultiharga.get("harga_jual"));
                         String harga_jual_persen = String.valueOf(joinmultiharga.get("harga_jual_persen"));
-                        multihargalist.add(new multiharga(id, id_golongan, kode_golongan, dari, hingga, id_satuan, kode_satuan, harga_jual, harga_jual_persen));
+                        String id_satuan_pengali = String.valueOf(joinmultiharga.get("id_satuan_pengali"));
+                        String qty_satuan_pengali = String.valueOf(joinmultiharga.get("qty_satuan_pengali"));
+                        multihargalist.add(new multiharga(id, id_golongan, kode_golongan, dari, hingga,
+                                id_satuan, kode_satuan, harga_jual, harga_jual_persen, id_satuan_pengali,
+                                qty_satuan_pengali));
 
                     }
                     for (int i = 0; i < multihargalist.size(); i++) {
@@ -1150,7 +1154,7 @@ public class DaftarpersediaaninputController {
                                     }
 
                                     if ((pane.tablemulti_harga_jual.getRowCount()) == 0) {
-                                        multihargalist.add(new multiharga("", "", "", "", "", "", "", "0", "0"));
+                                        multihargalist.add(new multiharga("", "", "", "", "", "", "", "0", "0", "", "0"));
                                         dtmmultihargajual.addRow(rowmultiharga);
                                     }
                                     counthargaindex--;
@@ -1172,7 +1176,7 @@ public class DaftarpersediaaninputController {
                                     ls.remove(row);
                                     ((DefaultTableModel) tabledata.getModel()).removeRow(row);
 
-                                    ls.add(new multiharga("", "", "", "", "", "", "", "0", "0"));
+                                    ls.add(new multiharga("", "", "", "", "", "", "", "0", "0", "", "0"));
                                     ((DefaultTableModel) tabledata.getModel()).addRow(rowmultiharga);
                                     tabledata.changeSelection(0, 0, false, false);
                                 } else {
@@ -1465,13 +1469,15 @@ public class DaftarpersediaaninputController {
                                     pane.tablemulti_harga_jual.changeSelection(0, 0, false, false);
                                 }
                                 lssatuanentity.clear();
-                                lssatuanentity.add(new SatuanEntity(valsatuan, pane.edsatuan_persediaan.getText()));
+                                lssatuanentity.add(new SatuanEntity(valsatuan, pane.edsatuan_persediaan.getText(), valsatuan, "1"));
                                 for (int i = 0; i < multisatuanlist.size(); i++) {
                                     if (!multisatuanlist.get(i).getId_satuan().equals(valsatuan)) {
                                         if (!multisatuanlist.get(i).getId_satuan().equals("")) {
                                             lssatuanentity.add(new SatuanEntity(
                                                     multisatuanlist.get(i).getId_satuan(),
-                                                    multisatuanlist.get(i).getKode_satuan()));
+                                                    multisatuanlist.get(i).getKode_satuan(),
+                                                    valsatuan,
+                                                    multisatuanlist.get(i).getQty_satuan_pengali()));
                                         }
 
                                     }
@@ -1678,28 +1684,6 @@ public class DaftarpersediaaninputController {
                             }
 
                         }
-                    } else if (col == 3) {
-                        /*Staticvar.preid = multisatuanlist.get(row).getId_satuan();
-                        String defnilai = "";
-                        String cekval = String.valueOf(pane.tablemulti_satuan.getValueAt(row, col));
-                        if (cekval.equals("null") || cekval.equals("")) {
-                            defnilai = "";
-                        } else {
-                            defnilai = String.valueOf(pane.tablemulti_satuan.getValueAt(row, 3));
-                        }
-                        Staticvar.prelabel = defnilai;
-                        Staticvar.sfilter = "";
-                        Staticvar.prelabel = defnilai;
-                        JDialog jd = new JDialog(new Mainmenu());
-                        jd.add(new Popupcari("satuan", "popupdaftarsatuan", "Daftar Satuan"));
-                        jd.pack();
-                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                        jd.setLocationRelativeTo(null);
-                        jd.setVisible(true);
-                        jd.toFront();
-                        multisatuanlist.get(row).setId_satuan_pengali(Staticvar.resid);
-                        pane.tablemulti_satuan.setValueAt(Staticvar.reslabel, row, 3);
-                        dtmmultisatuan.fireTableCellUpdated(row, 3);*/
                     }
                 }
             }
@@ -1808,6 +1792,8 @@ public class DaftarpersediaaninputController {
                         pane.tablemulti_harga_jual.setValueAt("0", row, 5);
                         multihargalist.get(row).setId_satuan(valsatuan);
                         pane.tablemulti_harga_jual.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                        multihargalist.get(row).setId_satuan_pengali(valsatuan);
+                        multihargalist.get(row).setQty_satuan_pengali("1");
                     }
 
                 } else if (col == 3) {
@@ -1830,6 +1816,9 @@ public class DaftarpersediaaninputController {
                     jd.toFront();
                     multihargalist.get(row).setId_satuan(Staticvar.resid);
                     pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, row, 3);
+                    multihargalist.get(row).setId_satuan_pengali(valsatuan);
+                    multihargalist.get(row).setQty_satuan_pengali(Staticvar.resvalueextended);
+
                 }
 
             }
@@ -1852,7 +1841,6 @@ public class DaftarpersediaaninputController {
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = "";
-                        Staticvar.prelabel = defnilai;
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("nama", "popupdaftargolongan?tipe=0", "Daftar Pelanggan"));
                         jd.pack();
@@ -1873,7 +1861,33 @@ public class DaftarpersediaaninputController {
                             pane.tablemulti_harga_jual.setValueAt("0", row, 5);
                             multihargalist.get(row).setId_satuan(valsatuan);
                             pane.tablemulti_harga_jual.setValueAt(pane.edsatuan_persediaan.getText(), row, 3);
+                            multihargalist.get(row).setId_satuan_pengali(valsatuan);
+                            multihargalist.get(row).setQty_satuan_pengali("1");
                         }
+
+                    } else if (col == 3) {
+                        String defnilai = "";
+                        String cekval = String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 3));
+                        if (cekval.equals("null") || cekval.equals("")) {
+                            defnilai = "";
+                        } else {
+                            defnilai = String.valueOf(pane.tablemulti_harga_jual.getValueAt(row, 3));
+                        }
+                        Staticvar.sfilter = "";
+                        Staticvar.prelabel = defnilai;
+                        Staticvar.preid = multihargalist.get(row).getId_satuan();
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcaripersediaan(lssatuanentity));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        multihargalist.get(row).setId_satuan(Staticvar.resid);
+                        pane.tablemulti_harga_jual.setValueAt(Staticvar.reslabel, row, 3);
+                        multihargalist.get(row).setId_satuan_pengali(valsatuan);
+                        multihargalist.get(row).setQty_satuan_pengali(Staticvar.resvalueextended);
+
                     }
                 }
             }
@@ -2064,7 +2078,7 @@ public class DaftarpersediaaninputController {
             String last_harga_jual_persen_check = multihargalist.get(jumlah_row).getHarga_jual_persen();
             if (!golongan_check.equals("") && !dari_check.equals("") && !hingga_check.equals("") && !satuan_check.equals("") && (!harga_jual_check.equals("") || !harga_jual_persen_check.equals(""))) {
                 if (!last_golongan_check.equals("") && !last_dari_check.equals("") && !last_hingga_check.equals("") && !last_satuan_check.equals("") && (!last_harga_jual_check.equals("") || !last_harga_jual_persen_check.equals(""))) {
-                    multihargalist.add(new multiharga("", "", "", "0", "0", "", "", "0", "0"));
+                    multihargalist.add(new multiharga("", "", "", "0", "0", "", "", "0", "0", "", "0"));
                     dtmmultihargajual.addRow(rowmultiharga);
                     pane.tablemulti_harga_jual.requestFocus();
                     pane.tablemulti_harga_jual.changeSelection(row + 1, 0, false, false);
@@ -2151,7 +2165,9 @@ public class DaftarpersediaaninputController {
                         + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
                         + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
                         + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
-                        + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'");
+                        + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'" + "::"
+                        + "id_satuan_pengali=" + "'" + valsatuan + "'" + "::"
+                        + "qty_satuan_pengali=" + "'" + multihargalist.get(i).getQty_satuan_pengali() + "'");
                 sb.append("--");
             }
         } else {
@@ -2161,7 +2177,9 @@ public class DaftarpersediaaninputController {
                         + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
                         + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
                         + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
-                        + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'");
+                        + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'" + "::"
+                        + "id_satuan_pengali=" + "'" + valsatuan + "'" + "::"
+                        + "qty_satuan_pengali=" + "'" + multihargalist.get(i).getQty_satuan_pengali() + "'");
                 sb.append("--");
             }
         }
@@ -2357,9 +2375,9 @@ public class DaftarpersediaaninputController {
 
     public class multiharga {
 
-        String id, id_golongan, kode_golongan, dari, hingga, id_satuan, kode_satuan, harga_jual, harga_jual_persen;
+        String id, id_golongan, kode_golongan, dari, hingga, id_satuan, kode_satuan, harga_jual, harga_jual_persen, id_satuan_pengali, qty_satuan_pengali;
 
-        public multiharga(String id, String id_golongan, String kode_golongan, String dari, String hingga, String id_satuan, String kode_satuan, String harga_jual, String harga_jual_persen) {
+        public multiharga(String id, String id_golongan, String kode_golongan, String dari, String hingga, String id_satuan, String kode_satuan, String harga_jual, String harga_jual_persen, String id_satuan_pengali, String qty_satuan_pengali) {
             this.id = id;
             this.id_golongan = id_golongan;
             this.kode_golongan = kode_golongan;
@@ -2369,6 +2387,8 @@ public class DaftarpersediaaninputController {
             this.kode_satuan = kode_satuan;
             this.harga_jual = harga_jual;
             this.harga_jual_persen = harga_jual_persen;
+            this.id_satuan_pengali = id_satuan_pengali;
+            this.qty_satuan_pengali = qty_satuan_pengali;
         }
 
         public String getId() {
@@ -2441,6 +2461,22 @@ public class DaftarpersediaaninputController {
 
         public void setHarga_jual_persen(String harga_jual_persen) {
             this.harga_jual_persen = harga_jual_persen;
+        }
+
+        public String getId_satuan_pengali() {
+            return id_satuan_pengali;
+        }
+
+        public void setId_satuan_pengali(String id_satuan_pengali) {
+            this.id_satuan_pengali = id_satuan_pengali;
+        }
+
+        public String getQty_satuan_pengali() {
+            return qty_satuan_pengali;
+        }
+
+        public void setQty_satuan_pengali(String qty_satuan_pengali) {
+            this.qty_satuan_pengali = qty_satuan_pengali;
         }
 
     }

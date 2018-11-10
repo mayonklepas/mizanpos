@@ -59,11 +59,11 @@ public class PopupcaripersediaanController {
 
     private void loaddata() {
         dtm.setRowCount(0);
-        dtm.addColumn("ID");
-        dtm.addColumn("Nama");
+        dtm.addColumn("Satuan");
+        dtm.addColumn("Jumlah Pengali");
         for (int i = 0; i < ls.size(); i++) {
-            obj[0] = ls.get(i).getId();
-            obj[1] = ls.get(i).getNama();
+            obj[0] = ls.get(i).getNama();
+            obj[1] = ls.get(i).getQty_pengali();
             dtm.addRow(obj);
         }
         pane.tabledata.setModel(dtm);
@@ -76,8 +76,9 @@ public class PopupcaripersediaanController {
                 //Staticvar.isupdate = true;
                 int i = pane.tabledata.getSelectedRow();
                 Staticvar.resid = ls.get(i).getId();
-                Staticvar.resvalue = String.valueOf(pane.tabledata.getValueAt(i, 0));
-                Staticvar.reslabel = String.valueOf(pane.tabledata.getValueAt(i, 1));
+                Staticvar.resvalue = ls.get(i).getId_pengali();
+                Staticvar.resvalueextended = ls.get(i).getQty_pengali();
+                Staticvar.reslabel = String.valueOf(pane.tabledata.getValueAt(i, 0));
                 Staticvar.sfilter = "";
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();

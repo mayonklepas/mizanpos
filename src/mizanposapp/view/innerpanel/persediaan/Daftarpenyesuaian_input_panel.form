@@ -2,16 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.JTextField" name="tcari3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cari Data..."/>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[51, 20]"/>
-        </Property>
-      </Properties>
+    <Component class="javax.swing.ButtonGroup" name="bgopsi_penyesuaian">
     </Component>
   </NonVisualComponents>
   <AuxValues>
@@ -80,6 +71,29 @@
                               <Component id="jTextField2" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tcari5" min="-2" pref="140" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="bcari_dept1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rbkurangi_stock" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtambah_stock" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane6" max="32767" attributes="0"/>
@@ -98,12 +112,21 @@
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tcari" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tcari5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bcari_dept1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCalendarCombo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbtambah_stock" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -111,6 +134,7 @@
                   <Component id="tcari2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bcari_dept" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rbkurangi_stock" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -126,7 +150,7 @@
                   <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-              <Component id="jScrollPane6" pref="253" max="32767" attributes="0"/>
+              <Component id="jScrollPane6" pref="247" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -155,7 +179,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="621" max="32767" attributes="0"/>
+                  <EmptySpace pref="602" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -213,7 +237,7 @@
     <Component class="javax.swing.JTextField" name="tcari">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[51, 20]"/>
@@ -226,7 +250,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No. Transaksi"/>
       </Properties>
@@ -234,7 +258,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tanggal"/>
       </Properties>
@@ -242,7 +266,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Dept"/>
       </Properties>
@@ -250,7 +274,7 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Keterangan"/>
       </Properties>
@@ -258,7 +282,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
@@ -266,7 +290,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
@@ -274,7 +298,7 @@
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
@@ -282,7 +306,7 @@
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
@@ -290,7 +314,7 @@
     <Component class="javax.swing.JTextField" name="tcari2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[51, 20]"/>
@@ -303,7 +327,7 @@
     <Component class="javax.swing.JTextField" name="tcari4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[51, 20]"/>
@@ -316,7 +340,7 @@
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Barcode Scanner Atau Kode Barang [F2]"/>
       </Properties>
@@ -327,7 +351,7 @@
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Qty"/>
       </Properties>
@@ -335,7 +359,7 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
@@ -343,7 +367,7 @@
     <Component class="javax.swing.JTextField" name="jTextField2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="1"/>
       </Properties>
@@ -361,7 +385,7 @@
     <Component class="javax.swing.JButton" name="bcari_dept">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Century Gothic" size="11" style="0"/>
+          <Font name="Segoe UI" size="11" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cari"/>
       </Properties>
@@ -414,7 +438,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="11" style="0"/>
+              <Font name="Segoe UI" size="11" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Simpan"/>
           </Properties>
@@ -422,7 +446,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="11" style="0"/>
+              <Font name="Segoe UI" size="11" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Batal"/>
           </Properties>
@@ -430,7 +454,7 @@
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="11" style="0"/>
+              <Font name="Segoe UI" size="11" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hapus Baris"/>
           </Properties>
@@ -441,12 +465,81 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Century Gothic" size="11" style="0"/>
+              <Font name="Segoe UI" size="11" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cetak Faktur"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel12">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Akun Penyesuain"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel13">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tcari5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="11" style="0"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[51, 20]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tcari5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bcari_dept1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cari"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bcari_dept1ActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Opsi Penyesuaian"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rbtambah_stock">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tambah Stock"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rbkurangi_stock">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kurangi Stok"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

@@ -30,7 +30,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tcari3 = new javax.swing.JTextField();
+        bgopsi_penyesuaian = new javax.swing.ButtonGroup();
         jPanel12 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -57,10 +57,14 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-
-        tcari3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        tcari3.setText("Cari Data...");
-        tcari3.setPreferredSize(new java.awt.Dimension(51, 20));
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        tcari5 = new javax.swing.JTextField();
+        bcari_dept1 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        rbtambah_stock = new javax.swing.JRadioButton();
+        rbkurangi_stock = new javax.swing.JRadioButton();
 
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -76,7 +80,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addContainerGap(602, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +104,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         ));
         jScrollPane6.setViewportView(tabledata);
 
-        tcari.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        tcari.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tcari.setPreferredSize(new java.awt.Dimension(51, 20));
         tcari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,31 +112,31 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel2.setText("No. Transaksi");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel3.setText("Tanggal");
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel4.setText("Dept");
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setText("Keterangan");
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel6.setText(":");
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel7.setText(":");
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel8.setText(":");
 
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel9.setText(":");
 
-        tcari2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        tcari2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tcari2.setPreferredSize(new java.awt.Dimension(51, 20));
         tcari2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +144,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        tcari4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        tcari4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         tcari4.setPreferredSize(new java.awt.Dimension(51, 20));
         tcari4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +152,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jTextField1.setText("Barcode Scanner Atau Kode Barang [F2]");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,13 +160,13 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel10.setText("Qty");
 
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel11.setText(":");
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jTextField2.setText("1");
 
         jCalendarCombo1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -172,7 +176,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        bcari_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        bcari_dept.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         bcari_dept.setText("Cari");
         bcari_dept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,17 +186,17 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton2.setText("Simpan");
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton1.setText("Batal");
 
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton5.setText("Hapus Baris");
 
         jCheckBox1.setBackground(new java.awt.Color(204, 204, 204));
-        jCheckBox1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jCheckBox1.setText("Cetak Faktur");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -221,6 +225,38 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                     .addComponent(jCheckBox1))
                 .addContainerGap())
         );
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel12.setText("Akun Penyesuain");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel13.setText(":");
+
+        tcari5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        tcari5.setPreferredSize(new java.awt.Dimension(51, 20));
+        tcari5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcari5ActionPerformed(evt);
+            }
+        });
+
+        bcari_dept1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bcari_dept1.setText("Cari");
+        bcari_dept1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bcari_dept1ActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel14.setText("Opsi Penyesuaian");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel15.setText(":");
+
+        rbtambah_stock.setText("Tambah Stock");
+
+        rbkurangi_stock.setText("Kurangi Stok");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -266,6 +302,24 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField2)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tcari5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(bcari_dept1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbkurangi_stock)
+                                    .addComponent(rbtambah_stock))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane6)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -279,18 +333,27 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(tcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(tcari5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12)
+                        .addComponent(bcari_dept1)))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel3)
-                    .addComponent(jCalendarCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCalendarCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(rbtambah_stock))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tcari2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(bcari_dept))
+                    .addComponent(bcari_dept)
+                    .addComponent(rbkurangi_stock))
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -303,7 +366,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel11)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -334,8 +397,18 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCalendarCombo1ActionPerformed
 
+    private void tcari5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcari5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tcari5ActionPerformed
+
+    private void bcari_dept1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_dept1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcari_dept1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bcari_dept;
+    public javax.swing.JButton bcari_dept1;
+    private javax.swing.ButtonGroup bgopsi_penyesuaian;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
@@ -344,6 +417,10 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -357,10 +434,12 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JRadioButton rbkurangi_stock;
+    private javax.swing.JRadioButton rbtambah_stock;
     public javax.swing.JTable tabledata;
     private javax.swing.JTextField tcari;
     private javax.swing.JTextField tcari2;
-    private javax.swing.JTextField tcari3;
     private javax.swing.JTextField tcari4;
+    private javax.swing.JTextField tcari5;
     // End of variables declaration//GEN-END:variables
 }
