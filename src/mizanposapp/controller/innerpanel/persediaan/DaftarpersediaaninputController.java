@@ -1979,6 +1979,9 @@ public class DaftarpersediaaninputController {
         pane.tablemulti_lokasi.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                int row = pane.tablemulti_lokasi.getSelectedRow();
+                int col = pane.tablemulti_lokasi.getSelectedColumn();
+
                 if (e.getClickCount() == 2) {
                     if (col == 0) {
                         Staticvar.preid = multilokasilist.get(row).getId_lokasi();
@@ -2008,7 +2011,7 @@ public class DaftarpersediaaninputController {
                         if (cekval.equals("null") || cekval.equals("")) {
                             defnilai = "";
                         } else {
-                            defnilai = String.valueOf(pane.tablemulti_lokasi.getValueAt(row, 0));
+                            defnilai = String.valueOf(pane.tablemulti_lokasi.getValueAt(row, 1));
                         }
                         Staticvar.prelabel = defnilai;
                         Staticvar.sfilter = "";
