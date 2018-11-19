@@ -264,8 +264,8 @@ public class DaftarreturpembelianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                    lshide.set(gx(order), 0);
-                    lsresize.set(gx(order), 0);
+                    lshide.set(gx(order), lsoldhide.get(gx(order)));
+                    lsresize.set(gx(order), lsoldsize.get(gx(order)));
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -351,7 +351,7 @@ public class DaftarreturpembelianinputController {
                         valcheck = 1;
                     }
                     if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                        hidetable(gx(order));
+                        showtable(gx(order));
                     } else {
                         showtable(gx(order));
                     }
@@ -381,7 +381,7 @@ public class DaftarreturpembelianinputController {
                         valcheck = 1;
                     }
                     if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                        hidetable(gx(order));
+                        showtable(gx(order));
                     } else {
                         showtable(gx(order));
                     }
@@ -554,7 +554,7 @@ public class DaftarreturpembelianinputController {
                     valcheck = 1;
                 }
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                    hidetable(gx(order));
+                    showtable(gx(order));
                 } else {
                     showtable(gx(order));
                 }
@@ -606,8 +606,8 @@ public class DaftarreturpembelianinputController {
                     }
 
                     if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                        lshide.set(gx(order), 0);
-                        lsresize.set(gx(order), 0);
+                        lshide.set(gx(order), lsoldhide.get(gx(order)));
+                        lsresize.set(gx(order), lsoldsize.get(gx(order)));
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
                             hidetable(gx(diskon_nominal));
@@ -757,7 +757,7 @@ public class DaftarreturpembelianinputController {
                             valcheck = 1;
                         }
                         if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                            hidetable(gx(order));
+                            showtable(gx(order));
                         } else {
                             showtable(gx(order));
                         }
@@ -786,7 +786,7 @@ public class DaftarreturpembelianinputController {
                             valcheck = 1;
                         }
                         if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                            hidetable(gx(order));
+                            showtable(gx(order));
                         } else {
                             showtable(gx(order));
                         }
@@ -1290,8 +1290,8 @@ public class DaftarreturpembelianinputController {
                                 tipe_bayar = ConvertFunc.ToInt(joinpembelian.get("tipe_pembayaran"));
                                 pane.cmb_tipe_bayar.setSelectedIndex(tipe_bayar);
                                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                                    lshide.set(gx(order), 0);
-                                    lsresize.set(gx(order), 0);
+                                    lshide.set(gx(order), lsoldhide.get(gx(order)));
+                                    lsresize.set(gx(order), lsoldsize.get(gx(order)));
                                     setheader();
                                     setheader();
                                     if (pane.ckdiskon.isSelected()) {
