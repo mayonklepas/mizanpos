@@ -1220,7 +1220,11 @@ public class DaftarreturpenjualaninputController {
                 Staticvar.preid = valreturatas;
                 Staticvar.prelabel = pane.ednoso.getText();
                 JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Popupcari("returpenjualan", "popupdaftarpiutangperpelanggan?id=" + valpelanggan, "Daftar Piutang " + pane.edpelanggan.getText()));
+                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                    jd.add(new Popupcari("returpenjualan", "popupdaftarfakturpenjualan?id=" + valpelanggan, "Daftar Penjualan " + pane.edpelanggan.getText()));
+                } else {
+                    jd.add(new Popupcari("returpenjualan", "popupdaftarpiutangperpelanggan?id=" + valpelanggan, "Daftar Piutang " + pane.edpelanggan.getText()));
+                }
                 jd.pack();
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 jd.setLocationRelativeTo(null);
@@ -1296,10 +1300,10 @@ public class DaftarreturpenjualaninputController {
                                         showtable(gx(diskon_nominal));
                                         valcheck = 1;
                                     }
-                                    pane.lreturatas.setVisible(false);
-                                    pane.ltitikduareturatas.setVisible(false);
-                                    pane.ednoso.setVisible(false);
-                                    pane.bcari_po.setVisible(false);
+                                    pane.lreturatas.setVisible(true);
+                                    pane.ltitikduareturatas.setVisible(true);
+                                    pane.ednoso.setVisible(true);
+                                    pane.bcari_po.setVisible(true);
                                     pane.eduang_muka.setText("0");
                                     valtop = "";
                                     pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);

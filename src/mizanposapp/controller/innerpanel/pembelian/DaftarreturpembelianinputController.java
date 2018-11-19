@@ -1304,10 +1304,10 @@ public class DaftarreturpembelianinputController {
                                         showtable(gx(diskon_nominal));
                                         valcheck = 1;
                                     }
-                                    pane.lreturatas.setVisible(false);
-                                    pane.ltitikduareturatas.setVisible(false);
-                                    pane.ednopo.setVisible(false);
-                                    pane.bcari_po.setVisible(false);
+                                    pane.lreturatas.setVisible(true);
+                                    pane.ltitikduareturatas.setVisible(true);
+                                    pane.ednopo.setVisible(true);
+                                    pane.bcari_po.setVisible(true);
                                     pane.eduang_muka.setText("0");
                                     valtop = "";
                                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
