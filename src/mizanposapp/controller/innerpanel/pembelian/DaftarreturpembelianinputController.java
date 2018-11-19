@@ -278,10 +278,10 @@ public class DaftarreturpembelianinputController {
                         showtable(gx(diskon_nominal));
                         valcheck = 1;
                     }
-                    pane.lreturatas.setVisible(false);
-                    pane.ltitikduareturatas.setVisible(false);
-                    pane.ednopo.setVisible(false);
-                    pane.bcari_po.setVisible(false);
+                    pane.lreturatas.setVisible(true);
+                    pane.ltitikduareturatas.setVisible(true);
+                    pane.ednopo.setVisible(true);
+                    pane.bcari_po.setVisible(true);
                     pane.eduang_muka.setText("0");
                     /*pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
@@ -502,10 +502,10 @@ public class DaftarreturpembelianinputController {
                 pane.cmb_tipe_pembelian.setSelectedIndex(0);
                 tipe_beli = 0;
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
-                pane.lreturatas.setVisible(false);
-                pane.ltitikduareturatas.setVisible(false);
-                pane.ednopo.setVisible(false);
-                pane.bcari_po.setVisible(false);
+                pane.lreturatas.setVisible(true);
+                pane.ltitikduareturatas.setVisible(true);
+                pane.ednopo.setVisible(true);
+                pane.bcari_po.setVisible(true);
                 pane.eduang_muka.setText("0");
                 /*pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
@@ -515,12 +515,6 @@ public class DaftarreturpembelianinputController {
                 valtop = "";
                 pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                 valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
-
-                pane.lreturatas.setVisible(false);
-                pane.ltitikduareturatas.setVisible(false);
-                pane.ednopo.setVisible(false);
-                pane.bcari_po.setVisible(false);
-                pane.eduang_muka.setText("0");
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
                 pane.edsupplier.setText("");
@@ -625,10 +619,10 @@ public class DaftarreturpembelianinputController {
                             showtable(gx(diskon_nominal));
                             valcheck = 1;
                         }
-                        pane.lreturatas.setVisible(false);
-                        pane.ltitikduareturatas.setVisible(false);
-                        pane.ednopo.setVisible(false);
-                        pane.bcari_po.setVisible(false);
+                        pane.lreturatas.setVisible(true);
+                        pane.ltitikduareturatas.setVisible(true);
+                        pane.ednopo.setVisible(true);
+                        pane.bcari_po.setVisible(true);
                         pane.eduang_muka.setText("0");
                         /*pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);

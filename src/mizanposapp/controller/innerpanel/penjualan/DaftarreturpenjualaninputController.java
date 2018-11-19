@@ -280,10 +280,10 @@ public class DaftarreturpenjualaninputController {
                         showtable(gx(diskon_nominal));
                         valcheck = 1;
                     }
-                    pane.lreturatas.setVisible(false);
-                    pane.ltitikduareturatas.setVisible(false);
-                    pane.ednoso.setVisible(false);
-                    pane.bcari_po.setVisible(false);
+                    pane.lreturatas.setVisible(true);
+                    pane.ltitikduareturatas.setVisible(true);
+                    pane.ednoso.setVisible(true);
+                    pane.bcari_po.setVisible(true);
                     pane.eduang_muka.setText("0");
                     /*pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
@@ -500,10 +500,10 @@ public class DaftarreturpenjualaninputController {
                 pane.cmb_tipe_penjualan.setSelectedIndex(0);
                 tipe_jual = 0;
                 pane.cmb_tipe_bayar.setSelectedIndex(0);
-                pane.lreturatas.setVisible(false);
-                pane.ltitikduareturatas.setVisible(false);
-                pane.ednoso.setVisible(false);
-                pane.bcari_po.setVisible(false);
+                pane.lreturatas.setVisible(true);
+                pane.ltitikduareturatas.setVisible(true);
+                pane.ednoso.setVisible(true);
+                pane.bcari_po.setVisible(true);
                 pane.eduang_muka.setText("0");
                 tipe_bayar = 0;
                 valtop = "";
@@ -614,10 +614,10 @@ public class DaftarreturpenjualaninputController {
                             showtable(gx(diskon_nominal));
                             valcheck = 1;
                         }
-                        pane.lreturatas.setVisible(false);
-                        pane.ltitikduareturatas.setVisible(false);
-                        pane.ednoso.setVisible(false);
-                        pane.bcari_po.setVisible(false);
+                        pane.lreturatas.setVisible(true);
+                        pane.ltitikduareturatas.setVisible(true);
+                        pane.ednoso.setVisible(true);
+                        pane.bcari_po.setVisible(true);
                         pane.eduang_muka.setText("0");
                         /*pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
@@ -1665,7 +1665,7 @@ public class DaftarreturpenjualaninputController {
                                             JSONObject joindata2 = (JSONObject) jadata2.get(i);
                                             tabeldatalist.get(row).setId_barang(Staticvar.resid);
                                             tm.setValueAt(String.valueOf(joindata2.get("kode")), row, gx(kode));
-                                            tm.setValueAt(String.valueOf(joindata2.get("nama")), row, gx(kode));
+                                            tm.setValueAt(String.valueOf(joindata2.get("nama")), row, gx(nama));
                                             tabeldatalist.get(row).setOrder("0");
                                             tabeldatalist.get(row).setJumlah("0");
                                             tm.setValueAt("0", row, gx(order));
