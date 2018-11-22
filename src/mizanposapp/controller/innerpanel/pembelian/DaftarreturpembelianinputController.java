@@ -264,7 +264,7 @@ public class DaftarreturpembelianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                    lshide.set(gx(order), lsoldhide.get(gx(order)));
+                    /*lshide.set(gx(order), lsoldhide.get(gx(order)));
                     lsresize.set(gx(order), lsoldsize.get(gx(order)));
                     setheader();
                     setheader();
@@ -283,7 +283,7 @@ public class DaftarreturpembelianinputController {
                     pane.ednopo.setVisible(true);
                     pane.bcari_po.setVisible(true);
                     pane.eduang_muka.setText("0");
-                    /*pane.eduang_muka.setEnabled(false);
+                    pane.eduang_muka.setEnabled(false);
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
                     pane.ltop.setVisible(false);*/
@@ -292,7 +292,7 @@ public class DaftarreturpembelianinputController {
                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                     valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
                 } else {
-                    lshide.set(gx(order), lsoldhide.get(gx(order)));
+                    /*lshide.set(gx(order), lsoldhide.get(gx(order)));
                     lsresize.set(gx(order), lsoldsize.get(gx(order)));
                     setheader();
                     setheader();
@@ -310,7 +310,7 @@ public class DaftarreturpembelianinputController {
                     pane.ltitikduareturatas.setVisible(true);
                     pane.ednopo.setVisible(true);
                     pane.bcari_po.setVisible(true);
-                    /*pane.eduang_muka.setEnabled(true);
+                    pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
                     pane.bcaritop.setVisible(true);
                     pane.ltop.setVisible(true);*/

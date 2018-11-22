@@ -380,7 +380,7 @@
         },
         {
             "key": [
-                "no_ref",
+                "noref",
                 "No. Ref",
                 "1",
                 "30"
@@ -389,7 +389,7 @@
         {
             "key": [
                 "keterangan",
-                "Ketarangan",
+                "Keterangan",
                 "1",
                 "30"
             ]
@@ -2653,6 +2653,64 @@
             "key": [
                 "kredit",
                 "Kredit",
+                "1",
+                "10"
+            ]
+        }
+    ],
+    "inputpenyesuaian": [
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "harga",
+                "Harga",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "gudang",
+                "Gudang",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
                 "1",
                 "10"
             ]

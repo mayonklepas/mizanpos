@@ -6,6 +6,7 @@
 package mizanposapp.view.innerpanel.persediaan;
 
 import mizanposapp.controller.innerpanel.persediaan.DaftarpenyesuaianinputController;
+import mizanposapp.helper.Tablestyle;
 
 /**
  *
@@ -30,12 +31,11 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgopsi_penyesuaian = new javax.swing.ButtonGroup();
         jPanel12 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabledata = new javax.swing.JTable();
-        ednotransaksi = new javax.swing.JTextField();
+        tabledata = new Tablestyle(1);
+        edno_transaksi = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -46,13 +46,13 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         eddept = new javax.swing.JTextField();
         edketerangan = new javax.swing.JTextField();
-        dttanggal = new org.freixas.jcalendar.JCalendarCombo();
         bcari_dept = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         bsimpan = new javax.swing.JButton();
         bbatal = new javax.swing.JButton();
-        bhapus = new javax.swing.JButton();
+        bhapus_baris = new javax.swing.JButton();
         ckcetak_faktur = new javax.swing.JCheckBox();
+        btambah_baris = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         edakun_penyesuaian = new javax.swing.JTextField();
@@ -61,6 +61,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         rbtambah_stock = new javax.swing.JRadioButton();
         rbkurangi_stock = new javax.swing.JRadioButton();
+        dtanggal = new com.toedter.calendar.JDateChooser();
 
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -100,11 +101,11 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         ));
         jScrollPane6.setViewportView(tabledata);
 
-        ednotransaksi.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        ednotransaksi.setPreferredSize(new java.awt.Dimension(51, 20));
-        ednotransaksi.addActionListener(new java.awt.event.ActionListener() {
+        edno_transaksi.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        edno_transaksi.setPreferredSize(new java.awt.Dimension(51, 20));
+        edno_transaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ednotransaksiActionPerformed(evt);
+                edno_transaksiActionPerformed(evt);
             }
         });
 
@@ -148,13 +149,6 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             }
         });
 
-        dttanggal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        dttanggal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dttanggalActionPerformed(evt);
-            }
-        });
-
         bcari_dept.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         bcari_dept.setText("Cari");
         bcari_dept.addActionListener(new java.awt.event.ActionListener() {
@@ -171,12 +165,15 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         bbatal.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         bbatal.setText("Batal");
 
-        bhapus.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        bhapus.setText("Hapus Baris");
+        bhapus_baris.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        bhapus_baris.setText("Hapus Baris");
 
         ckcetak_faktur.setBackground(new java.awt.Color(204, 204, 204));
         ckcetak_faktur.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         ckcetak_faktur.setText("Cetak Faktur");
+
+        btambah_baris.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btambah_baris.setText("Tambah Baris");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,7 +181,9 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bhapus)
+                .addComponent(bhapus_baris)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btambah_baris)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ckcetak_faktur)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -200,8 +199,9 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbatal)
                     .addComponent(bsimpan)
-                    .addComponent(bhapus)
-                    .addComponent(ckcetak_faktur))
+                    .addComponent(bhapus_baris)
+                    .addComponent(ckcetak_faktur)
+                    .addComponent(btambah_baris))
                 .addContainerGap())
         );
 
@@ -256,7 +256,7 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ednotransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(edno_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7)
@@ -265,12 +265,12 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(edketerangan, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(edketerangan, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(eddept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(2, 2, 2)
-                                        .addComponent(bcari_dept)))))
+                                        .addComponent(bcari_dept))
+                                    .addComponent(dtanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
@@ -307,17 +307,18 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                         .addComponent(bcari_akun_penyesuaian))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(ednotransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(edno_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel3)
-                    .addComponent(dttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(rbtambah_stock))
-                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel14)
+                        .addComponent(jLabel15)
+                        .addComponent(rbtambah_stock))
+                    .addComponent(dtanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(eddept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,16 +331,16 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
                     .addComponent(edketerangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ednotransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ednotransaksiActionPerformed
+    private void edno_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edno_transaksiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ednotransaksiActionPerformed
+    }//GEN-LAST:event_edno_transaksiActionPerformed
 
     private void eddeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eddeptActionPerformed
         // TODO add your handling code here:
@@ -353,10 +354,6 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_edketeranganActionPerformed
 
-    private void dttanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dttanggalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dttanggalActionPerformed
-
     private void edakun_penyesuaianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edakun_penyesuaianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edakun_penyesuaianActionPerformed
@@ -366,18 +363,18 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_bcari_akun_penyesuaianActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bbatal;
+    public javax.swing.JButton bbatal;
     public javax.swing.JButton bcari_akun_penyesuaian;
     public javax.swing.JButton bcari_dept;
-    private javax.swing.ButtonGroup bgopsi_penyesuaian;
-    private javax.swing.JButton bhapus;
-    private javax.swing.JButton bsimpan;
-    private javax.swing.JCheckBox ckcetak_faktur;
-    private org.freixas.jcalendar.JCalendarCombo dttanggal;
-    private javax.swing.JTextField edakun_penyesuaian;
-    private javax.swing.JTextField eddept;
-    private javax.swing.JTextField edketerangan;
-    private javax.swing.JTextField ednotransaksi;
+    public javax.swing.JButton bhapus_baris;
+    public javax.swing.JButton bsimpan;
+    public javax.swing.JButton btambah_baris;
+    public javax.swing.JCheckBox ckcetak_faktur;
+    public com.toedter.calendar.JDateChooser dtanggal;
+    public javax.swing.JTextField edakun_penyesuaian;
+    public javax.swing.JTextField eddept;
+    public javax.swing.JTextField edketerangan;
+    public javax.swing.JTextField edno_transaksi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -394,8 +391,8 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JRadioButton rbkurangi_stock;
-    private javax.swing.JRadioButton rbtambah_stock;
+    public javax.swing.JRadioButton rbkurangi_stock;
+    public javax.swing.JRadioButton rbtambah_stock;
     public javax.swing.JTable tabledata;
     // End of variables declaration//GEN-END:variables
 }
