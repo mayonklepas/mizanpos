@@ -34,8 +34,8 @@ import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
-import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_inner_panel;
-import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_input_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarstokopname_inner_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarstokopname_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -45,16 +45,16 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarpenyesuaianinnerController {
+public class DaftarstokopnameinnerController {
 
     CrudHelper ch = new CrudHelper();
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
-    Daftarpenyesuaian_inner_panel pane;
+    Daftarstokopname_inner_panel pane;
 
-    public DaftarpenyesuaianinnerController(Daftarpenyesuaian_inner_panel pane) {
+    public DaftarstokopnameinnerController(Daftarstokopname_inner_panel pane) {
         this.pane = pane;
         loadheader();
         loaddata();
@@ -82,7 +82,7 @@ public class DaftarpenyesuaianinnerController {
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("penyesuaian");
+            JSONArray jaheader = (JSONArray) joheader.get("stokopname");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -101,7 +101,7 @@ public class DaftarpenyesuaianinnerController {
                 tcm.getColumn(i).setMaxWidth(wi);
             }
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarpenyesuaianinnerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftarstokopnameinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,7 +116,7 @@ public class DaftarpenyesuaianinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
-                Object objdata = jpdata.parse(ch.getdatadetails("daftarpenyesuaian", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("daftarstokopname", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -155,7 +155,7 @@ public class DaftarpenyesuaianinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s&cari=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN, pane.tcari.getText());
-                Object objdata = jpdata.parse(ch.getdatadetails("caripenyesuaian", param));
+                Object objdata = jpdata.parse(ch.getdatadetails("caristokopname", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
                 for (int i = 0; i < jadata.size(); i++) {
@@ -226,7 +226,7 @@ public class DaftarpenyesuaianinnerController {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
             Staticvar.ids = idlist.get(row);
-            Daftarpenyesuaian_input_panel inpane = new Daftarpenyesuaian_input_panel();
+            Daftarstokopname_input_panel inpane = new Daftarstokopname_input_panel();
             Staticvar.psp.container.removeAll();
             Staticvar.psp.container.setLayout(new BorderLayout());
             Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
@@ -248,7 +248,7 @@ public class DaftarpenyesuaianinnerController {
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
-            Daftarpenyesuaian_input_panel inpane = new Daftarpenyesuaian_input_panel();
+            Daftarstokopname_input_panel inpane = new Daftarstokopname_input_panel();
             Staticvar.psp.container.removeAll();
             Staticvar.psp.container.setLayout(new BorderLayout());
             Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
@@ -266,7 +266,7 @@ public class DaftarpenyesuaianinnerController {
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
                      "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
-                    ch.deletedata("deletepenyesuaian", data);
+                    ch.deletedata("deletestokopname", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
@@ -331,12 +331,12 @@ public class DaftarpenyesuaianinnerController {
         });
     }
 
-    private void disablebutton(Daftarpenyesuaian_inner_panel pane) {
+    private void disablebutton(Daftarstokopname_inner_panel pane) {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftarpenyesuaian_inner_panel pane) {
+    private void enablebutton(Daftarstokopname_inner_panel pane) {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }

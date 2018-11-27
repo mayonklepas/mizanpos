@@ -50,7 +50,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.controller.innerpanel.persediaan.DaftarpenyesuaianinnerController;
+import mizanposapp.controller.innerpanel.persediaan.DaftarstokopnameinnerController;
 import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
@@ -59,8 +59,8 @@ import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
-import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_inner_panel;
-import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_input_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarstokopname_inner_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarstokopname_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -70,12 +70,12 @@ import org.json.simple.parser.ParseException;
  *
  * @author Minami
  */
-public class DaftarpenyesuaianinputController {
+public class DaftarstokopnameinputController {
 
     String id;
     CrudHelper ch = new CrudHelper();
-    Daftarpenyesuaian_input_panel pane;
-    String valdept = "", valakun_pernyesuaian = "";
+    Daftarstokopname_input_panel pane;
+    String valdept = "", valakun_stokopname = "", valgudang = "";
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
     Object[] rowtabledata = new Object[12];
     ArrayList<Entitytabledata> tabeldatalist = new ArrayList<>();
@@ -101,13 +101,15 @@ public class DaftarpenyesuaianinputController {
 
     String kode = "kode";
     String nama = "nama";
+    String jumlah_program = "jumlah_program";
+    String jumlah_fisik = "jumlah_fisik";
     String jumlah = "jumlah";
     String satuan = "satuan";
     String harga = "harga";
     String gudang = "gudang";
     String total = "total";
 
-    public DaftarpenyesuaianinputController(Daftarpenyesuaian_input_panel pane) {
+    public DaftarstokopnameinputController(Daftarstokopname_input_panel pane) {
         this.pane = pane;
         skinning();
         loadsession();
@@ -115,6 +117,7 @@ public class DaftarpenyesuaianinputController {
         simpandata();
         caridepartment();
         cariakunpersediaan();
+        carigudang();
         addtotable();
         hapusbaris();
         tambahbaris();
@@ -124,35 +127,26 @@ public class DaftarpenyesuaianinputController {
     }
 
     private void rbselect() {
-        bg.add(pane.rbtambah_stock);
-        bg.add(pane.rbkurangi_stock);
+        bg.add(pane.rbgunakan_hpp);
+        bg.add(pane.rbgunakan_akunlainnya);
 
-        pane.rbkurangi_stock.addActionListener(new ActionListener() {
+        pane.rbgunakan_akunlainnya.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int jumlahrow = pane.tabledata.getRowCount();
-                for (int i = 0; i < jumlahrow; i++) {
-                    double jum = Math.abs(ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(i, gx(jumlah)))));
-                    if (jum != 0) {
-                        jum = -1 * jum;
-                    }
-
-                    //String jumlahawal = String.valueOf(pane.tabledata.getValueAt(i, gx(jumlah)));
-                    pane.tabledata.getModel().setValueAt(jum, i, gx(jumlah));
-                }
+                pane.edakun_stokopname.setVisible(true);
+                pane.lakunstokopname.setVisible(true);
+                pane.ltitik2akunstokopname.setVisible(true);
+                pane.bcari_akun_stokopname.setVisible(true);
             }
         });
 
-        pane.rbtambah_stock.addActionListener(new ActionListener() {
+        pane.rbgunakan_hpp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int jumlahrow = pane.tabledata.getRowCount();
-                for (int i = 0; i < jumlahrow; i++) {
-                    String jumlahawal = String.valueOf(pane.tabledata.getValueAt(i, gx(jumlah)));
-                    if (jumlahawal.substring(0, 1).equals("-")) {
-                        pane.tabledata.getModel().setValueAt(jumlahawal.substring(1), i, gx(jumlah));
-                    }
-                }
+                pane.edakun_stokopname.setVisible(false);
+                pane.lakunstokopname.setVisible(false);
+                pane.ltitik2akunstokopname.setVisible(false);
+                pane.bcari_akun_stokopname.setVisible(false);
             }
         });
 
@@ -175,7 +169,7 @@ public class DaftarpenyesuaianinputController {
             public void run() {
                 try {
                     JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "5");
+                    String param = String.format("id_keltrans=%s", "51");
                     Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
                     JSONArray ja = (JSONArray) ob;
                     for (int i = 0; i < ja.size(); i++) {
@@ -185,7 +179,7 @@ public class DaftarpenyesuaianinputController {
                     }
 
                 } catch (ParseException ex) {
-                    Logger.getLogger(DaftarpenyesuaianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DaftarstokopnameinputController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -199,7 +193,7 @@ public class DaftarpenyesuaianinputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == gx(nama) || column == gx(satuan) || column == gx(gudang) || column == gx(total) ? false : true;
+                return column == gx(nama) || column == gx(satuan) || column == gx(jumlah_program) || column == gx(jumlah) || column == gx(gudang) || column == gx(total) ? false : true;
             }
 
         };
@@ -245,7 +239,7 @@ public class DaftarpenyesuaianinputController {
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
-            JSONArray jaheader = (JSONArray) joheader.get("inputpenyesuaian");
+            JSONArray jaheader = (JSONArray) joheader.get("inputstokopname");
             //perulangan mengambil header
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
@@ -272,7 +266,7 @@ public class DaftarpenyesuaianinputController {
 
             setheader();
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarpenyesuaianinnerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftarstokopnameinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -314,21 +308,25 @@ public class DaftarpenyesuaianinputController {
         try {
             id = Staticvar.ids;
             if (id.equals("")) {
-                pane.rbtambah_stock.setSelected(true);
+                pane.rbgunakan_hpp.setSelected(true);
+                pane.edakun_stokopname.setVisible(false);
+                pane.lakunstokopname.setVisible(false);
+                pane.ltitik2akunstokopname.setVisible(false);
+                pane.bcari_akun_stokopname.setVisible(false);
                 getkodetransaksi();
                 pane.dtanggal.setDate(new Date());
                 pane.edno_transaksi.setText("");
                 pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
                 valdept = Globalsession.DEFAULT_DEPT_ID;
                 pane.edketerangan.setText("");
-                tabeldatalist.add(new Entitytabledata("", "", "", "0", "", "", "0", "", "0", "", "", "0"));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "0", "0", "0", "", "", "0", "", "0", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
 
             } else {
 
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);
-                Object rawobjdata = jpdata.parse(ch.getdatadetails("datapenyesuaian", param));
+                Object rawobjdata = jpdata.parse(ch.getdatadetails("datastokopname", param));
                 JSONObject jsonobjdata = (JSONObject) rawobjdata;
 
                 Object jogenjur = jsonobjdata.get("genjur");
@@ -343,7 +341,7 @@ public class DaftarpenyesuaianinputController {
                     try {
                         pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
                     } catch (java.text.ParseException ex) {
-                        Logger.getLogger(DaftarpenyesuaianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(DaftarstokopnameinputController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                 }
@@ -352,18 +350,13 @@ public class DaftarpenyesuaianinputController {
                 JSONArray jatabledata = (JSONArray) objtabeldata;
                 for (int i = 0; i < jatabledata.size(); i++) {
                     JSONObject jointabeldata = (JSONObject) jatabledata.get(i);
-                    valakun_pernyesuaian = String.valueOf(jointabeldata.get("id_akun"));
-                    pane.edakun_penyesuaian.setText(String.valueOf(jointabeldata.get("id_akun")) + "-"
-                         + String.valueOf(jointabeldata.get("nama_akun")));
+                    String id_akun = String.valueOf(jointabeldata.get("id_akun"));
                     String id_inv = String.valueOf(jointabeldata.get("id_inv"));
                     String kode_inv = String.valueOf(jointabeldata.get("kode_inv"));
                     String nama_inv = String.valueOf(jointabeldata.get("nama_inv"));
+                    String jumlah_program = String.valueOf(jointabeldata.get("jumlah_program"));
+                    String jumlah_fisik = String.valueOf(jointabeldata.get("jumlah_fisik"));
                     String jumlah = String.valueOf(jointabeldata.get("jumlah"));
-                    if (jumlah.substring(0, 1).equals("-")) {
-                        pane.rbkurangi_stock.setSelected(true);
-                    } else {
-                        pane.rbtambah_stock.setSelected(true);
-                    }
                     String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                     String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                     String harga = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga")));
@@ -372,18 +365,20 @@ public class DaftarpenyesuaianinputController {
                     String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
                     String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
                     String total = nf.format(kalkulasiload(jumlah, harga));
-                    tabeldatalist.add(new Entitytabledata(id_inv, kode_inv, nama_inv, jumlah, id_satuan,
+                    tabeldatalist.add(new Entitytabledata(id_akun, id_inv, kode_inv, nama_inv, jumlah_program, jumlah_fisik, jumlah, id_satuan,
                          nama_satuan, harga, id_satuan_pengali, qty_satuan_pengali, id_gudang, nama_gudang, total));
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
                     rowtabledata[0] = tabeldatalist.get(i).getKode();
                     rowtabledata[1] = tabeldatalist.get(i).getNama();
-                    rowtabledata[2] = tabeldatalist.get(i).getJumlah();
-                    rowtabledata[3] = tabeldatalist.get(i).getSatuan();
-                    rowtabledata[4] = tabeldatalist.get(i).getHarga();
-                    rowtabledata[5] = tabeldatalist.get(i).getGudang();
-                    rowtabledata[6] = tabeldatalist.get(i).getTotal();
+                    rowtabledata[2] = tabeldatalist.get(i).getJumlah_program();
+                    rowtabledata[3] = tabeldatalist.get(i).getJumlah_fisik();
+                    rowtabledata[4] = tabeldatalist.get(i).getJumlah();
+                    rowtabledata[5] = tabeldatalist.get(i).getSatuan();
+                    rowtabledata[6] = tabeldatalist.get(i).getHarga();
+                    rowtabledata[7] = tabeldatalist.get(i).getGudang();
+                    rowtabledata[8] = tabeldatalist.get(i).getTotal();
                     dtmtabeldata.addRow(rowtabledata);
                 }
 
@@ -394,22 +389,21 @@ public class DaftarpenyesuaianinputController {
             }
 
         } catch (ParseException ex) {
-            Logger.getLogger(DaftarpenyesuaianinputController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaftarstokopnameinputController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private void rawsimpan() {
         if (id.equals("")) {
-
             String data = "genjur="
-                 + "id_keltrans='5'::"
+                 + "id_keltrans='51'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                  + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
                  + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&" + kirimtexpersediaan();
 
-            ch.insertdata("insertpenyesuaian", data);
+            ch.insertdata("insertstokopname", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
                     int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
@@ -424,14 +418,14 @@ public class DaftarpenyesuaianinputController {
                                 }
                                 tabeldatalist.clear();
                                 dtmtabeldata.setRowCount(0);
-                                tabeldatalist.add(new Entitytabledata("", "", "", "0", "", "", "0", "", "0", "", "", "0"));
+                                tabeldatalist.add(new Entitytabledata("", "", "", "", "0", "0", "0", "", "", "0", "", "0", "", "", "0"));
                                 dtmtabeldata.addRow(rowtabledata);
                             }
                         };
                         SwingUtilities.invokeLater(run);
                         getkodetransaksi();;
                     } else {
-                        Daftarpenyesuaian_inner_panel inpane = new Daftarpenyesuaian_inner_panel();
+                        Daftarstokopname_inner_panel inpane = new Daftarstokopname_inner_panel();
                         Staticvar.psp.container.removeAll();
                         Staticvar.psp.container.setLayout(new BorderLayout());
                         Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
@@ -461,9 +455,9 @@ public class DaftarpenyesuaianinputController {
                  + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
                  + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&" + kirimtexpersediaan();
-            ch.updatedata("updatepenyesuaian", data, id);
+            ch.updatedata("updatestokopname", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
-                Daftarpenyesuaian_inner_panel inpane = new Daftarpenyesuaian_inner_panel();
+                Daftarstokopname_inner_panel inpane = new Daftarstokopname_inner_panel();
                 Staticvar.psp.container.removeAll();
                 Staticvar.psp.container.setLayout(new BorderLayout());
                 Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
@@ -488,8 +482,14 @@ public class DaftarpenyesuaianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                if (pane.edakun_penyesuaian.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Akun Penyesuaian tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                if (pane.rbgunakan_akunlainnya.isSelected()) {
+                    if (pane.edakun_stokopname.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Akun tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+
+                if (pane.edgudang.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Gudang tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
 
                 } else if (tabeldatalist.size() == 0) {
                     JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
@@ -537,9 +537,10 @@ public class DaftarpenyesuaianinputController {
             listcount = tabeldatalist.size();
         }
         for (int i = 0; i < listcount; i++) {
-            sb.append(
-                 "id_akun=" + "'" + valakun_pernyesuaian + "'" + "::"
+            sb.append("id_akun=" + "'" + tabeldatalist.get(i).getId_akun() + "'" + "::"
                  + "id_inv=" + "'" + tabeldatalist.get(i).getId_inv() + "'" + "::"
+                 + "jumlah_program=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_program()) + "'" + "::"
+                 + "jumlah_fisik=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_fisik()) + "'" + "::"
                  + "jumlah=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
                  + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga()) + "'" + "::"
                  + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
@@ -569,7 +570,7 @@ public class DaftarpenyesuaianinputController {
                             tabeldatalist.remove(row);
                             dtmtabeldata.removeRow(row);
                             if (pane.tabledata.getRowCount() <= 0) {
-                                tabeldatalist.add(new Entitytabledata("", "", "", "0", "", "", "0", "", "0", "", "", "0"));
+                                tabeldatalist.add(new Entitytabledata("", "", "", "", "0", "0", "0", "", "", "0", "", "0", "", "", "0"));
                                 dtmtabeldata.addRow(rowtabledata);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(0, 0, false, false);
@@ -595,7 +596,7 @@ public class DaftarpenyesuaianinputController {
             public void actionPerformed(ActionEvent e) {
                 int lastrow = pane.tabledata.getRowCount() - 1;
                 if (lastrow < 0) {
-                    tabeldatalist.add(new Entitytabledata("", "", "", "0", "", "", "0", "", "0", "", "", "0"));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "0", "0", "0", "", "", "0", "", "0", "", "", "0"));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(0, 0, false, false);
@@ -615,10 +616,10 @@ public class DaftarpenyesuaianinputController {
                     @Override
                     public void run() {
                         if (id.equals("")) {
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "5", String.valueOf(no_urut));
+                            String data = String.format("id_keltrans=%s&no_urut=%s", "51", String.valueOf(no_urut));
                             ch.insertdata("insertnomorgagal", data);
                         }
-                        Daftarpenyesuaian_inner_panel inpane = new Daftarpenyesuaian_inner_panel();
+                        Daftarstokopname_inner_panel inpane = new Daftarstokopname_inner_panel();
                         Staticvar.psp.container.removeAll();
                         Staticvar.psp.container.setLayout(new BorderLayout());
                         Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
@@ -649,6 +650,24 @@ public class DaftarpenyesuaianinputController {
 
     }
 
+    private void carigudang() {
+        pane.bcari_gudang.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valgudang;
+            Staticvar.prelabel = pane.edgudang.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valgudang = Staticvar.resid;
+            pane.edgudang.setText(Staticvar.reslabel);
+        });
+
+    }
+
     private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
         Staticvar.preid = previd;
@@ -663,12 +682,12 @@ public class DaftarpenyesuaianinputController {
     }
 
     private void cariakunpersediaan() {
-        pane.bcari_akun_penyesuaian.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_penyesuaian.getText(), valakun_pernyesuaian);
-            if (!Staticvar.resid.equals(valakun_pernyesuaian)) {
-                valakun_pernyesuaian = Staticvar.resid;
+        pane.bcari_akun_stokopname.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakun_stokopname.getText(), valakun_stokopname);
+            if (!Staticvar.resid.equals(valakun_stokopname)) {
+                valakun_stokopname = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
-                pane.edakun_penyesuaian.setText(val);
+                pane.edakun_stokopname.setText(val);
             }
         });
 
@@ -709,9 +728,18 @@ public class DaftarpenyesuaianinputController {
                             if (jadata.size() == 1) {
                                 for (int i = 0; i < jadata.size(); i++) {
                                     JSONObject joindata = (JSONObject) jadata.get(i);
+                                    if (pane.rbgunakan_hpp.isSelected()) {
+                                        tabeldatalist.get(row).setId_akun(String.valueOf(joindata.get("akun_hpp")));
+                                    } else {
+                                        tabeldatalist.get(row).setId_akun(valakun_stokopname);
+                                    }
                                     tabeldatalist.get(row).setId_inv(String.valueOf(joindata.get("id")));
                                     tm.setValueAt(String.valueOf(joindata.get("kode")), row, gx(kode));
                                     tm.setValueAt(String.valueOf(joindata.get("nama")), row, gx(nama));
+                                    tabeldatalist.get(row).setJumlah_program(String.valueOf(joindata.get("stok")));
+                                    tm.setValueAt(String.valueOf(joindata.get("stok")), row, gx(jumlah_program));
+                                    tabeldatalist.get(row).setJumlah_fisik("0");
+                                    tm.setValueAt("0", row, gx(jumlah_fisik));
                                     tabeldatalist.get(row).setJumlah("0");
                                     tm.setValueAt("0", row, gx(jumlah));
                                     tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
@@ -720,13 +748,13 @@ public class DaftarpenyesuaianinputController {
                                     tabeldatalist.get(row).setQty_satuan_pengali("1");
                                     tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
                                     tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
-                                    tabeldatalist.get(row).setId_gudang(Globalsession.DEFAULT_ID_GUDANG);
-                                    tm.setValueAt(Globalsession.DEFAULT_NAMA_GUDANG, row, gx(gudang));
+                                    tabeldatalist.get(row).setId_gudang(valgudang);
+                                    tm.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                     tabeldatalist.get(row).setTotal("0");
                                     tm.setValueAt("0", row, gx(total));
                                 }
                                 pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(row, gx(jumlah), false, false);
+                                pane.tabledata.changeSelection(row, gx(jumlah_fisik), false, false);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
                                 jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
@@ -744,9 +772,18 @@ public class DaftarpenyesuaianinputController {
                                     JSONArray jadata2 = (JSONArray) objdata2;
                                     for (int i = 0; i < jadata2.size(); i++) {
                                         JSONObject joindata = (JSONObject) jadata2.get(i);
+                                        if (pane.rbgunakan_hpp.isSelected()) {
+                                            tabeldatalist.get(row).setId_akun(String.valueOf(joindata.get("akun_hpp")));
+                                        } else {
+                                            tabeldatalist.get(row).setId_akun(valakun_stokopname);
+                                        }
                                         tabeldatalist.get(row).setId_inv(String.valueOf(joindata.get("id")));
                                         tm.setValueAt(String.valueOf(joindata.get("kode")), row, gx(kode));
                                         tm.setValueAt(String.valueOf(joindata.get("nama")), row, gx(nama));
+                                        tabeldatalist.get(row).setJumlah_program(String.valueOf(joindata.get("stok")));
+                                        tm.setValueAt(String.valueOf(joindata.get("stok")), row, gx(jumlah_program));
+                                        tabeldatalist.get(row).setJumlah_fisik("0");
+                                        tm.setValueAt("0", row, gx(jumlah_fisik));
                                         tabeldatalist.get(row).setJumlah("0");
                                         tm.setValueAt("0", row, gx(jumlah));
                                         tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
@@ -755,13 +792,13 @@ public class DaftarpenyesuaianinputController {
                                         tabeldatalist.get(row).setQty_satuan_pengali("1");
                                         tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
                                         tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
-                                        tabeldatalist.get(row).setId_gudang(Globalsession.DEFAULT_ID_GUDANG);
-                                        tm.setValueAt(Globalsession.DEFAULT_NAMA_GUDANG, row, gx(gudang));
+                                        tabeldatalist.get(row).setId_gudang(valgudang);
+                                        tm.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                         tabeldatalist.get(row).setTotal("0");
                                         tm.setValueAt("0", row, gx(total));
                                     }
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(row, gx(jumlah), false, false);
+                                    pane.tabledata.changeSelection(row, gx(jumlah_fisik), false, false);
                                 }
                             }
 
@@ -776,27 +813,19 @@ public class DaftarpenyesuaianinputController {
                             jd.setVisible(true);
                             jd.toFront();
                             Staticvar.resid = "";
-                            Logger.getLogger(DaftarpenyesuaianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(DaftarstokopnameinputController.class.getName()).log(Level.SEVERE, null, ex);
                         } finally {
                             ischangevalue = false;
                         }
 
-                    } else if (col == gx(jumlah)) {
+                    } else if (col == gx(jumlah_fisik)) {
                         try {
                             ischangevalue = true;
-                            if (pane.rbkurangi_stock.isSelected()) {
-                                double jum = Math.abs(ConvertFunc.ToDouble(String.valueOf(tm.getValueAt(row, gx(jumlah)))));
-                                if (jum != 0) {
-                                    jum = -1 * jum;
-                                }
-
-                                tabeldatalist.get(row).setJumlah(String.valueOf(jum));
-                                pane.tabledata.getModel().setValueAt(jum, row, gx(jumlah));
-                            } else {
-                                tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
-                            }
-
-                            columnfunction(row, gx(jumlah), false);
+                            tabeldatalist.get(row).setJumlah_fisik(String.valueOf(tm.getValueAt(row, gx(jumlah_fisik))));
+                            double selisih = Double.parseDouble(String.valueOf(tm.getValueAt(row, gx(jumlah_fisik)))) - Double.parseDouble(String.valueOf(tm.getValueAt(row, gx(jumlah_program))));
+                            tabeldatalist.get(row).setJumlah(String.valueOf(selisih));
+                            pane.tabledata.setValueAt(nf.format(selisih), row, gx(jumlah));
+                            columnfunction(row, gx(jumlah_fisik), false);
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
@@ -872,30 +901,40 @@ public class DaftarpenyesuaianinputController {
                                     Object objdata2 = jodataraw2.get("data");
                                     JSONArray jadata2 = (JSONArray) objdata2;
                                     for (int i = 0; i < jadata2.size(); i++) {
-                                        JSONObject joindata2 = (JSONObject) jadata2.get(i);
-                                        tabeldatalist.get(row).setId_inv(String.valueOf(joindata2.get("id")));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("kode")), row, gx(kode));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama")), row, gx(nama));
+
+                                        JSONObject joindata = (JSONObject) jadata2.get(i);
+                                        if (pane.rbgunakan_hpp.isSelected()) {
+                                            tabeldatalist.get(row).setId_akun(String.valueOf(joindata.get("akun_hpp")));
+                                        } else {
+                                            tabeldatalist.get(row).setId_akun(valakun_stokopname);
+                                        }
+                                        tabeldatalist.get(row).setId_inv(String.valueOf(joindata.get("id")));
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("kode")), row, gx(kode));
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("nama")), row, gx(nama));
+                                        tabeldatalist.get(row).setJumlah_program(String.valueOf(joindata.get("stok")));
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("stok")), row, gx(jumlah_program));
+                                        tabeldatalist.get(row).setJumlah_fisik("0");
+                                        pane.tabledata.setValueAt("0", row, gx(jumlah_fisik));
                                         tabeldatalist.get(row).setJumlah("0");
                                         pane.tabledata.setValueAt("0", row, gx(jumlah));
-                                        tabeldatalist.get(row).setId_satuan(String.valueOf(joindata2.get("id_satuan")));
-                                        pane.tabledata.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, gx(satuan));
-                                        tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
+                                        tabeldatalist.get(row).setId_satuan(String.valueOf(joindata.get("id_satuan")));
+                                        pane.tabledata.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, gx(satuan));
+                                        tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                         tabeldatalist.get(row).setQty_satuan_pengali("1");
-                                        tabeldatalist.get(row).setHarga(String.valueOf(joindata2.get("harga")));
-                                        pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga"))), row, gx(harga));
-                                        tabeldatalist.get(row).setId_gudang(Globalsession.DEFAULT_ID_GUDANG);
-                                        pane.tabledata.setValueAt(Globalsession.DEFAULT_NAMA_GUDANG, row, gx(gudang));
+                                        tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
+                                        pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
+                                        tabeldatalist.get(row).setId_gudang(valgudang);
+                                        pane.tabledata.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                         tabeldatalist.get(row).setTotal("0");
                                         pane.tabledata.setValueAt("0", row, gx(total));
                                     }
                                     pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(row, gx(jumlah), false, false);
+                                    pane.tabledata.changeSelection(row, gx(jumlah_fisik), false, false);
                                 } else {
                                     pane.tabledata.requestFocus();
                                 }
                             } catch (ParseException ex) {
-                                Logger.getLogger(DaftarpenyesuaianinputController.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(DaftarstokopnameinputController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                         kalkulasitotalperrow(row);
@@ -1138,7 +1177,7 @@ public class DaftarpenyesuaianinputController {
              || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")
              || !pane.tabledata.getValueAt(row, gx(satuan)).equals("")) {
             if (row == lastrow) {
-                tabeldatalist.add(new Entitytabledata("", "", "", "0", "", "", "0", "", "0", "", "", "0"));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "0", "0", "0", "", "", "0", "", "0", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row + 1, 0, false, false);
@@ -1166,10 +1205,6 @@ public class DaftarpenyesuaianinputController {
         double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
         double inharga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga)));
         double intotal = qty * inharga;
-        if (intotal == -0) {
-            intotal = 0;
-        }
-
         tabeldatalist.get(row).setTotal(String.valueOf(intotal));
         pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
     }
@@ -1191,12 +1226,15 @@ public class DaftarpenyesuaianinputController {
 
     public class Entitytabledata {
 
-        String id_inv, kode, nama, jumlah, id_satuan, satuan, harga, id_satuan_pengali, qty_satuan_pengali, id_gudang, gudang, total;
+        String id_akun, id_inv, kode, nama, jumlah_program, jumlah_fisik, jumlah, id_satuan, satuan, harga, id_satuan_pengali, qty_satuan_pengali, id_gudang, gudang, total;
 
-        public Entitytabledata(String id_inv, String kode, String nama, String jumlah, String id_satuan, String satuan, String harga, String id_satuan_pengali, String qty_satuan_pengali, String id_gudang, String gudang, String total) {
+        public Entitytabledata(String id_akun, String id_inv, String kode, String nama, String jumlah_program, String jumlah_fisik, String jumlah, String id_satuan, String satuan, String harga, String id_satuan_pengali, String qty_satuan_pengali, String id_gudang, String gudang, String total) {
+            this.id_akun = id_akun;
             this.id_inv = id_inv;
             this.kode = kode;
             this.nama = nama;
+            this.jumlah_program = jumlah_program;
+            this.jumlah_fisik = jumlah_fisik;
             this.jumlah = jumlah;
             this.id_satuan = id_satuan;
             this.satuan = satuan;
@@ -1206,6 +1244,14 @@ public class DaftarpenyesuaianinputController {
             this.id_gudang = id_gudang;
             this.gudang = gudang;
             this.total = total;
+        }
+
+        public String getId_akun() {
+            return id_akun;
+        }
+
+        public void setId_akun(String id_akun) {
+            this.id_akun = id_akun;
         }
 
         public String getId_inv() {
@@ -1230,6 +1276,22 @@ public class DaftarpenyesuaianinputController {
 
         public void setNama(String nama) {
             this.nama = nama;
+        }
+
+        public String getJumlah_program() {
+            return jumlah_program;
+        }
+
+        public void setJumlah_program(String jumlah_program) {
+            this.jumlah_program = jumlah_program;
+        }
+
+        public String getJumlah_fisik() {
+            return jumlah_fisik;
+        }
+
+        public void setJumlah_fisik(String jumlah_fisik) {
+            this.jumlah_fisik = jumlah_fisik;
         }
 
         public String getJumlah() {

@@ -67,7 +67,7 @@ public class Persedian_panel extends javax.swing.JPanel {
         ldaftar_klasifikasi = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         menupanel = new javax.swing.JPanel();
-        pkoreksistok = new javax.swing.JPanel();
+        pstokopname = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         bpenyesuaian = new javax.swing.JPanel();
@@ -140,16 +140,16 @@ public class Persedian_panel extends javax.swing.JPanel {
 
         menupanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pkoreksistok.setPreferredSize(new java.awt.Dimension(100, 100));
+        pstokopname.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/koreksi_stok.png"))); // NOI18N
-        pkoreksistok.add(jLabel9);
+        pstokopname.add(jLabel9);
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel10.setText("Stock Opname");
-        pkoreksistok.add(jLabel10);
+        jLabel10.setText("Stok Opname");
+        pstokopname.add(jLabel10);
 
-        menupanel.add(pkoreksistok, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
+        menupanel.add(pstokopname, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         bpenyesuaian.setMinimumSize(new java.awt.Dimension(100, 100));
         bpenyesuaian.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -305,6 +305,6 @@ public class Persedian_panel extends javax.swing.JPanel {
     public javax.swing.JLabel ldaftar_stock_minimum;
     public javax.swing.JLabel ldaftar_supplier;
     private javax.swing.JPanel menupanel;
-    public javax.swing.JPanel pkoreksistok;
+    public javax.swing.JPanel pstokopname;
     // End of variables declaration//GEN-END:variables
 }

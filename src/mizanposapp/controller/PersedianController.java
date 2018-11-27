@@ -24,6 +24,7 @@ import mizanposapp.view.innerpanel.persediaan.Daftarservice_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarstokminimum_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarkoreksistok_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpenyesuaian_inner_panel;
+import mizanposapp.view.innerpanel.persediaan.Daftarstokopname_inner_panel;
 
 /**
  *
@@ -34,14 +35,14 @@ public class PersedianController {
     //Persedian_panel pp;
     public PersedianController() {
     }
-
+    
     public PersedianController(Mainmenu mm) {
-
+        
     }
-
+    
     public PersedianController(Persedian_panel pp) {
         penyesuaianview(pp);
-        koreksistokview(pp);
+        stockopnameview(pp);
         daftarkelompokbarangview(pp);
         daftarsatuanbarangview(pp);
         daftarlokasibarangview(pp);
@@ -55,14 +56,14 @@ public class PersedianController {
         daftardatastockminimumview(pp);
         daftardatasupplierklasifikasiview(pp);
     }
-
+    
     private void penyesuaianview(Persedian_panel pp) {
         pp.bpenyesuaian.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -74,56 +75,56 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
-    private void koreksistokview(Persedian_panel pp) {
-        pp.pkoreksistok.addMouseListener(new MouseListener() {
+    
+    private void stockopnameview(Persedian_panel pp) {
+        pp.pstokopname.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                
+            }
+            
+            @Override
+            public void mousePressed(MouseEvent e) {
                 System.gc();
                 Staticvar.psp = pp;
-                Daftarkoreksistok_inner_panel pane = new Daftarkoreksistok_inner_panel();
+                Daftarstokopname_inner_panel pane = new Daftarstokopname_inner_panel();
                 pp.container.removeAll();
                 pp.container.setLayout(new BorderLayout());
                 pp.container.add(pane, BorderLayout.CENTER);
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftarkelompokbarangview(Persedian_panel pp) {
         pp.ldaftar_kelompok_barang.addMouseListener(new MouseListener() {
             @Override
@@ -136,27 +137,27 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftarsatuanbarangview(Persedian_panel pp) {
         pp.ldaftar_satuan_barang.addMouseListener(new MouseListener() {
             @Override
@@ -169,27 +170,27 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftarlokasibarangview(Persedian_panel pp) {
         pp.ldaftar_lokasi_barang.addMouseListener(new MouseListener() {
             @Override
@@ -202,27 +203,27 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftarmerekbarangview(Persedian_panel pp) {
         pp.ldaftar_merek.addMouseListener(new MouseListener() {
             @Override
@@ -235,27 +236,27 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftarserviceview(Persedian_panel pp) {
         pp.ldaftar_service.addMouseListener(new MouseListener() {
             @Override
@@ -268,33 +269,33 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftardatapajakview(Persedian_panel pp) {
         pp.ldaftar_data_pajak.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -305,29 +306,29 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftargudangview(Persedian_panel pp) {
         pp.ldaftar_gudang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -338,29 +339,29 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftardatadeptview(Persedian_panel pp) {
         pp.ldaftar_data_dept.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -371,29 +372,29 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftardatalokasiview(Persedian_panel pp) {
         pp.ldaftar_lokasi_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -404,29 +405,29 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftardatasupplierview(Persedian_panel pp) {
         pp.ldaftar_supplier.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -437,29 +438,29 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftardatasupplierklasifikasiview(Persedian_panel pp) {
         pp.ldaftar_klasifikasi.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -470,29 +471,29 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
     private void daftardatastockminimumview(Persedian_panel pp) {
         pp.ldaftar_stock_minimum.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                
             }
-
+            
             @Override
             public void mousePressed(MouseEvent e) {
                 System.gc();
@@ -503,20 +504,20 @@ public class PersedianController {
                 pp.container.revalidate();
                 pp.container.repaint();
             }
-
+            
             @Override
             public void mouseReleased(MouseEvent e) {
                 //pp.bpenyesuaian.setBackground(new Color(3, 3, 3));
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-
+            
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
     }
-
+    
 }
