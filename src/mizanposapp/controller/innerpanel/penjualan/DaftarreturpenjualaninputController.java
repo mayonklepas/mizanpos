@@ -289,6 +289,19 @@ public class DaftarreturpenjualaninputController {
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
                     pane.ltop.setVisible(false);*/
+                    valreturatas = "";
+                    pane.ednoso.setText("");
+                    tabeldatalist.clear();
+                    int rowcount = pane.tabledata.getRowCount();
+                    for (int i = 0; i < rowcount; i++) {
+                        dtmtabeldata.removeRow(0);
+                    }
+                    dtmtabeldata.setRowCount(0);
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    dtmtabeldata.addRow(rowtabledata);
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(0, 0, false, false);
+
                     tipe_bayar = 0;
                     valtop = "";
                     pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
@@ -316,6 +329,18 @@ public class DaftarreturpenjualaninputController {
                     pane.edtop.setVisible(true);
                     pane.bcaritop.setVisible(true);
                     pane.ltop.setVisible(true);*/
+                    valreturatas = "";
+                    pane.ednoso.setText("");
+                    tabeldatalist.clear();
+                    int rowcount = pane.tabledata.getRowCount();
+                    for (int i = 0; i < rowcount; i++) {
+                        dtmtabeldata.removeRow(0);
+                    }
+                    dtmtabeldata.setRowCount(0);
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    dtmtabeldata.addRow(rowtabledata);
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(0, 0, false, false);
                     tipe_bayar = 1;
                     valtop = "";
                     pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
@@ -1279,7 +1304,7 @@ public class DaftarreturpenjualaninputController {
                                     valcheck = 1;
                                 }
 
-                                tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
+                                /*tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
                                 if (tipe_bayar == 0) {
                                     pane.cmb_tipe_bayar.setSelectedIndex(0);
                                 } else {
@@ -1330,8 +1355,7 @@ public class DaftarreturpenjualaninputController {
                                     valtop = "";
                                     pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
                                     valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
-                                }
-
+                                }*/
                                 tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
                                 if (tipe_jual == 0) {
                                     pane.cmb_tipe_penjualan.setSelectedIndex(0);
