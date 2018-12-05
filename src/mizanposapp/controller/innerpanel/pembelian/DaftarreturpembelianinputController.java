@@ -287,6 +287,18 @@ public class DaftarreturpembelianinputController {
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
                     pane.ltop.setVisible(false);*/
+                    valreturatas = "";
+                    pane.ednopo.setText("");
+                    tabeldatalist.clear();
+                    int rowcount = pane.tabledata.getRowCount();
+                    for (int i = 0; i < rowcount; i++) {
+                        dtmtabeldata.removeRow(0);
+                    }
+                    dtmtabeldata.setRowCount(0);
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    dtmtabeldata.addRow(rowtabledata);
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(0, 0, false, false);
                     tipe_bayar = 0;
                     valtop = "";
                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
@@ -314,6 +326,18 @@ public class DaftarreturpembelianinputController {
                     pane.edtop.setVisible(true);
                     pane.bcaritop.setVisible(true);
                     pane.ltop.setVisible(true);*/
+                    valreturatas = "";
+                    pane.ednopo.setText("");
+                    tabeldatalist.clear();
+                    int rowcount = pane.tabledata.getRowCount();
+                    for (int i = 0; i < rowcount; i++) {
+                        dtmtabeldata.removeRow(0);
+                    }
+                    dtmtabeldata.setRowCount(0);
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    dtmtabeldata.addRow(rowtabledata);
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(0, 0, false, false);
                     tipe_bayar = 1;
                     valtop = "";
                     pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
@@ -1236,7 +1260,7 @@ public class DaftarreturpembelianinputController {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 1) {
                     jd.add(new Popupcari("returpembelian", "popupdaftarhutangpersupplier?ishutang=1&id=" + valsupplier, "Daftar Hutang Usaha " + pane.edsupplier.getText()));
                 } else {
-                    jd.add(new Popupcari("returpembelian", "popupdaftarfakturpembelian?ishutang=1&id=" + valsupplier, "Daftar Pembelian " + pane.edsupplier.getText()));
+                    jd.add(new Popupcari("returpembelian", "popupdaftarfakturpembelian?id=" + valsupplier, "Daftar Pembelian " + pane.edsupplier.getText()));
                 }
 
                 jd.pack();
@@ -1292,7 +1316,7 @@ public class DaftarreturpembelianinputController {
                                     valcheck = 1;
                                 }
 
-                                tipe_bayar = ConvertFunc.ToInt(joinpembelian.get("tipe_pembayaran"));
+                                /*tipe_bayar = ConvertFunc.ToInt(joinpembelian.get("tipe_pembayaran"));
                                 pane.cmb_tipe_bayar.setSelectedIndex(tipe_bayar);
                                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                                     lshide.set(gx(order), lsoldhide.get(gx(order)));
@@ -1339,8 +1363,7 @@ public class DaftarreturpembelianinputController {
                                     valtop = "";
                                     pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
                                     valakun_pembelian = Globalsession.AKUNHUTANGUSAHA;
-                                }
-
+                                }*/
                                 tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
                                 if (tipe_beli == 0) {
                                     pane.cmb_tipe_pembelian.setSelectedIndex(0);

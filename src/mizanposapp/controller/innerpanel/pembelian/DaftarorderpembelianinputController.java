@@ -273,6 +273,7 @@ public class DaftarorderpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 JComboBox cmb = (JComboBox) e.getSource();
                 if (cmb.getSelectedIndex() == 0) {
+
                     pane.edtop.setVisible(false);
                     pane.bcaritop.setVisible(false);
                     pane.ltop.setVisible(false);
