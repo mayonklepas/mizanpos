@@ -73,7 +73,7 @@ public class DaftarfakturpembelianinputController {
     CrudHelper ch = new CrudHelper();
     Daftarfakturpembelian_input_panel pane;
     String valsupplier, valgudang, valdept, valsalesman, valshipvia, valtop,
-            valakun_pembelian, valakun_ongkir, valakun_diskon, valakun_uang_muka, valorder;
+         valakun_pembelian, valakun_ongkir, valakun_diskon, valakun_uang_muka, valorder;
     int valcheck;
     int tipe_bayar, tipe_beli;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -521,9 +521,9 @@ public class DaftarfakturpembelianinputController {
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.setModel(dtmtabeldata);
                 if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
-                        || Globalsession.DEFAULT_DISKON_DALAM.equals("")
-                        || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
-                        || Globalsession.DEFAULT_DISKON_DALAM.equals("null")) {
+                     || Globalsession.DEFAULT_DISKON_DALAM.equals("")
+                     || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
+                     || Globalsession.DEFAULT_DISKON_DALAM.equals("null")) {
                     pane.ckdiskon.setSelected(true);
                     valcheck = 0;
                 } else {
@@ -617,22 +617,22 @@ public class DaftarfakturpembelianinputController {
                     pane.ltotal_pajak.setText(String.valueOf(joinpembelian.get("total_pajak")));
 
                     pane.edakun_pembelian.setText(String.valueOf(joinpembelian.get("akun_pembelian")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_pembelian")));
+                         + String.valueOf(joinpembelian.get("nama_akun_pembelian")));
 
                     valakun_pembelian = String.valueOf(joinpembelian.get("akun_pembelian"));
 
                     pane.edakun_ongkir.setText(String.valueOf(joinpembelian.get("akun_biaya")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_biaya")));
+                         + String.valueOf(joinpembelian.get("nama_akun_biaya")));
 
                     valakun_ongkir = String.valueOf(joinpembelian.get("akun_biaya"));
 
                     pane.edakun_diskon_pembelian.setText(String.valueOf(joinpembelian.get("akun_diskon")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_diskon")));
+                         + String.valueOf(joinpembelian.get("nama_akun_diskon")));
 
                     valakun_diskon = String.valueOf(joinpembelian.get("akun_diskon"));
 
                     pane.edakun_uang_muka.setText(String.valueOf(joinpembelian.get("akun_uang_muka")) + "-"
-                            + String.valueOf(joinpembelian.get("nama_akun_uang_muka")));
+                         + String.valueOf(joinpembelian.get("nama_akun_uang_muka")));
 
                     valakun_uang_muka = String.valueOf(joinpembelian.get("akun_uang_muka"));
 
@@ -741,8 +741,8 @@ public class DaftarfakturpembelianinputController {
                     String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
 
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
-                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen,
-                            diskon_nominal, id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                         nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen,
+                         diskon_nominal, id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total));
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
@@ -777,41 +777,41 @@ public class DaftarfakturpembelianinputController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                    + "id_keltrans='3'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&pembelian="
-                    + "id_supplier='" + valsupplier + "'::"
-                    + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                    + "id_gudang='" + valgudang + "'::"
-                    + "total_pembelian='" + total_pembelian_all + "'::"
-                    + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
-                    + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
-                    + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
-                    + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
-                    + "total_pajak='" + total_pajak + "'::"
-                    + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
-                    + "nilai_kurs='1'::"
-                    + "akun_pembelian='" + valakun_pembelian + "'::"
-                    + "akun_biaya='" + valakun_ongkir + "'::"
-                    + "akun_diskon='" + valakun_diskon + "'::"
-                    + "akun_uang_muka='" + valakun_uang_muka + "'::"
-                    + "diskon_dalam='" + valcheck + "'::"
-                    + "tanggal_pengantaran='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal_pengantaran.getDate()) + "'::"
-                    + "id_pengantaran='" + valshipvia + "'::"
-                    + "id_bagian_pembelian='" + valsalesman + "'::"
-                    + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_pembelian='" + tipe_beli + "'::"
-                    + "id_nopo='" + valorder + "'::"
-                    + "&" + kirimtexpembelian();
+                 + "id_keltrans='3'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&pembelian="
+                 + "id_supplier='" + valsupplier + "'::"
+                 + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
+                 + "id_gudang='" + valgudang + "'::"
+                 + "total_pembelian='" + total_pembelian_all + "'::"
+                 + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
+                 + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
+                 + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
+                 + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
+                 + "total_pajak='" + total_pajak + "'::"
+                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "nilai_kurs='1'::"
+                 + "akun_pembelian='" + valakun_pembelian + "'::"
+                 + "akun_biaya='" + valakun_ongkir + "'::"
+                 + "akun_diskon='" + valakun_diskon + "'::"
+                 + "akun_uang_muka='" + valakun_uang_muka + "'::"
+                 + "diskon_dalam='" + valcheck + "'::"
+                 + "tanggal_pengantaran='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal_pengantaran.getDate()) + "'::"
+                 + "id_pengantaran='" + valshipvia + "'::"
+                 + "id_bagian_pembelian='" + valsalesman + "'::"
+                 + "id_termofpayment='" + valtop + "'::"
+                 + "tipe_pembelian='" + tipe_beli + "'::"
+                 + "id_nopo='" + valorder + "'::"
+                 + "&" + kirimtexpembelian();
 
             ch.insertdata("insertpembelian", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
                     int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                            + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (dialog == 0) {
                         Runnable run = new Runnable() {
                             @Override
@@ -866,35 +866,35 @@ public class DaftarfakturpembelianinputController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='3'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&pembelian="
-                    + "id_supplier='" + valsupplier + "'::"
-                    + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                    + "id_gudang='" + valgudang + "'::"
-                    + "total_pembelian='" + total_pembelian_all + "'::"
-                    + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
-                    + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
-                    + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
-                    + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
-                    + "total_pajak='" + total_pajak + "'::"
-                    + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
-                    + "nilai_kurs='1'::"
-                    + "akun_pembelian='" + valakun_pembelian + "'::"
-                    + "akun_biaya='" + valakun_ongkir + "'::"
-                    + "akun_diskon='" + valakun_diskon + "'::"
-                    + "akun_uang_muka='" + valakun_uang_muka + "'::"
-                    + "diskon_dalam='" + valcheck + "'::"
-                    + "tanggal_pengantaran='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal_pengantaran.getDate()) + "'::"
-                    + "id_pengantaran='" + valshipvia + "'::"
-                    + "id_bagian_pembelian='" + valsalesman + "'::"
-                    + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_pembelian='" + tipe_beli + "'::"
-                    + "id_nopo='" + valorder + "'::"
-                    + "&" + kirimtexpembelian();
+                 + "id_keltrans='3'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&pembelian="
+                 + "id_supplier='" + valsupplier + "'::"
+                 + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
+                 + "id_gudang='" + valgudang + "'::"
+                 + "total_pembelian='" + total_pembelian_all + "'::"
+                 + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
+                 + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
+                 + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
+                 + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
+                 + "total_pajak='" + total_pajak + "'::"
+                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "nilai_kurs='1'::"
+                 + "akun_pembelian='" + valakun_pembelian + "'::"
+                 + "akun_biaya='" + valakun_ongkir + "'::"
+                 + "akun_diskon='" + valakun_diskon + "'::"
+                 + "akun_uang_muka='" + valakun_uang_muka + "'::"
+                 + "diskon_dalam='" + valcheck + "'::"
+                 + "tanggal_pengantaran='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal_pengantaran.getDate()) + "'::"
+                 + "id_pengantaran='" + valshipvia + "'::"
+                 + "id_bagian_pembelian='" + valsalesman + "'::"
+                 + "id_termofpayment='" + valtop + "'::"
+                 + "tipe_pembelian='" + tipe_beli + "'::"
+                 + "id_nopo='" + valorder + "'::"
+                 + "&" + kirimtexpembelian();
             ch.updatedata("updatepembelian", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 JPanel inpane = new JPanel();
@@ -938,7 +938,7 @@ public class DaftarfakturpembelianinputController {
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
                             double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
                             if (inuangmuka >= total_pembelian_all) {
@@ -952,8 +952,8 @@ public class DaftarfakturpembelianinputController {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
                         ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                                + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                                + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                             + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                             + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
                         jd.add(ep);
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -984,17 +984,17 @@ public class DaftarfakturpembelianinputController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
-                    + "qty_order=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getOrder()) + "'" + "::"
-                    + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                    + "harga=" + "'" + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(harga_beli))) + "'" + "::"
-                    + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                    + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
-                    + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
-                    + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
-                    + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
-                    + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
-                    + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
-                    + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
+                 + "qty_order=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getOrder()) + "'" + "::"
+                 + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                 + "harga=" + "'" + ConvertFunc.ToDouble(pane.tabledata.getValueAt(i, gx(harga_beli))) + "'" + "::"
+                 + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
+                 + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
+                 + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
+                 + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
+                 + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
+                 + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
+                 + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
+                 + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
             sb.append("--");
 
         }
@@ -1015,9 +1015,9 @@ public class DaftarfakturpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null,
-                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                        + pane.tabledata.getValueAt(row, gx(nama)),
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(nama)),
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
                         @Override
@@ -1219,8 +1219,8 @@ public class DaftarfakturpembelianinputController {
                                 String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
-                                        nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                        nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                     nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total));
 
                             }
                             for (int i = 0; i < tabeldatalist.size(); i++) {
@@ -1780,9 +1780,9 @@ public class DaftarfakturpembelianinputController {
                         Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Popupcari("satuanperbarang",
-                                String.format("popupdaftarsatuanperbarang?id_inv=%s",
-                                        tabeldatalist.get(row).getId_barang()),
-                                "Daftar Satuan Perbarang"));
+                             String.format("popupdaftarsatuanperbarang?id_inv=%s",
+                                  tabeldatalist.get(row).getId_barang()),
+                             "Daftar Satuan Perbarang"));
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                         jd.setLocationRelativeTo(null);
@@ -1923,9 +1923,9 @@ public class DaftarfakturpembelianinputController {
                     Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Popupcari("satuanperbarang",
-                            String.format("popupdaftarsatuanperbarang?id_inv=%s",
-                                    tabeldatalist.get(row).getId_barang()),
-                            "Daftar Satuan Perbarang"));
+                         String.format("popupdaftarsatuanperbarang?id_inv=%s",
+                              tabeldatalist.get(row).getId_barang()),
+                         "Daftar Satuan Perbarang"));
                     jd.pack();
                     jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                     jd.setLocationRelativeTo(null);
@@ -1933,10 +1933,14 @@ public class DaftarfakturpembelianinputController {
                     jd.toFront();
                     tabeldatalist.get(row).setId_satuan(Staticvar.resid);
                     pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(satuan));
+                    double hargasebelumnya = ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli()) / ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan());
+                    tabeldatalist.get(row).setHarga_beli(String.valueOf(hargasebelumnya));
                     tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                     dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
+
                     double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
-                    pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(satuan));
+                    tabeldatalist.get(row).setHarga_beli(String.valueOf(sebenaryaharga));
+                    pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(harga_beli));
                     kalkulasitotalperrow(row);
                 } else if (col == gx(pajak)) {
                     Staticvar.sfilter = "";
@@ -2072,10 +2076,10 @@ public class DaftarfakturpembelianinputController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(harga_beli)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
+             || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(harga_beli)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
@@ -2201,7 +2205,7 @@ public class DaftarfakturpembelianinputController {
             subtotal = subtotal + total_beli_masing;
 
             double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, gx(total)))
-                    * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
+                 * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
@@ -2326,7 +2330,7 @@ public class DaftarfakturpembelianinputController {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row + 1, gx(kode), false, false);
             } else if (String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("")
-                    || String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("null")) {
+                 || String.valueOf(pane.tabledata.getValueAt(row, gx(kode))).equals("null")) {
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row, gx(kode), false, false);
             } else {
@@ -2438,8 +2442,8 @@ public class DaftarfakturpembelianinputController {
     public class Entitytabledata {
 
         String id_barang, kode_barang, nama_barang, order, jumlah,
-                id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
-                id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
+             id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
+             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
 
         public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String order, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
             this.id_barang = id_barang;

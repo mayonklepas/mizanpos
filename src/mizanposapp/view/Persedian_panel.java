@@ -73,6 +73,9 @@ public class Persedian_panel extends javax.swing.JPanel {
         bpenyesuaian = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        ptransferpersediaan = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
@@ -164,6 +167,17 @@ public class Persedian_panel extends javax.swing.JPanel {
         bpenyesuaian.add(jLabel8);
 
         menupanel.add(bpenyesuaian, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        ptransferpersediaan.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/koreksi_stok.png"))); // NOI18N
+        ptransferpersediaan.add(jLabel11);
+
+        jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel12.setText("<html><center>Transfer </center><center>Persediaan</center></html>");
+        ptransferpersediaan.add(jLabel12);
+
+        menupanel.add(ptransferpersediaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, 110));
 
         jPanel4.setBackground(new java.awt.Color(41, 39, 40));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -287,6 +301,8 @@ public class Persedian_panel extends javax.swing.JPanel {
     public javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -306,5 +322,6 @@ public class Persedian_panel extends javax.swing.JPanel {
     public javax.swing.JLabel ldaftar_supplier;
     private javax.swing.JPanel menupanel;
     public javax.swing.JPanel pstokopname;
+    public javax.swing.JPanel ptransferpersediaan;
     // End of variables declaration//GEN-END:variables
 }

@@ -414,8 +414,50 @@
         },
         {
             "key": [
+                "dept_id",
+                "Dept ID",
+                "0",
+                "0"
+            ]
+        },
+        {
+            "key": [
                 "tanggal",
                 "Tanggal",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "noref",
+                "No. Ref",
+                "1",
+                "25"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "35"
+            ]
+        },
+        {
+            "key": [
+                "total",
+                "Total",
+                "1",
+                "20"
+            ]
+        }
+    ],
+    "transferpersediaan": [
+        {
+            "key": [
+                "id",
+                "ID",
                 "0",
                 "0"
             ]
@@ -2789,6 +2831,41 @@
                 "10"
             ]
         }
+    ],
+    "inputtransferpersediaan": [
+        {
+            "key": [
+                "kode",
+                "Kode",
+                "1",
+                "8"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "7"
+            ]
+        },
+        {
+            "key": [
+                "satuan",
+                "Satuan",
+                "1",
+                "8"
+            ]
+        }
+        
     ]
     
 }
