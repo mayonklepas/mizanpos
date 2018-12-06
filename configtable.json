@@ -464,14 +464,6 @@
         },
         {
             "key": [
-                "dept_id",
-                "Dept ID",
-                "0",
-                "0"
-            ]
-        },
-        {
-            "key": [
                 "tanggal",
                 "Tanggal",
                 "1",
@@ -496,8 +488,16 @@
         },
         {
             "key": [
-                "total",
-                "Total",
+                "nama_gudang_dari",
+                "Dari Gudang",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "nama_gudang_tujuan",
+                "Ke  Gudang",
                 "1",
                 "20"
             ]

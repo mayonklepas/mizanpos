@@ -137,7 +137,7 @@ public class DaftartransferpersediaaninputController {
             public void run() {
                 try {
                     JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "51");
+                    String param = String.format("id_keltrans=%s", "53");
                     Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
                     JSONArray ja = (JSONArray) ob;
                     for (int i = 0; i < ja.size(); i++) {
@@ -346,7 +346,7 @@ public class DaftartransferpersediaaninputController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                 + "id_keltrans='51'::"
+                 + "id_keltrans='53'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                  + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
@@ -484,8 +484,8 @@ public class DaftartransferpersediaaninputController {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_inv() + "'" + "::"
                  + "jumlah=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
                  + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                 + "id_gudang_dari=" + "'" + valgudangdari + "'" + "::"
-                 + "id_gudang_ke=" + "'" + valgudangke + "'" + "::"
+                 + "id_gudang=" + "'" + valgudangdari + "'" + "::"
+                 + "id_gudang2=" + "'" + valgudangke + "'" + "::"
                  + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
                  + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getQty_satuan_pengali() + "'");
             sb.append("--");
@@ -557,7 +557,7 @@ public class DaftartransferpersediaaninputController {
                     @Override
                     public void run() {
                         if (id.equals("")) {
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "51", String.valueOf(no_urut));
+                            String data = String.format("id_keltrans=%s&no_urut=%s", "53", String.valueOf(no_urut));
                             ch.insertdata("insertnomorgagal", data);
                         }
                         Daftartransferpersediaan_inner_panel inpane = new Daftartransferpersediaan_inner_panel();

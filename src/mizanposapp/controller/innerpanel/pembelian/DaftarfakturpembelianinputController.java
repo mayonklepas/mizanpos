@@ -288,7 +288,7 @@ public class DaftarfakturpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 JComboBox jc = (JComboBox) e.getSource();
                 if (jc.getSelectedIndex() == 0) {
-                    valorder = "";
+                    /*valorder = "";
                     pane.ednopo.setText("");
                     tabeldatalist.clear();
                     int rowcount = pane.tabledata.getRowCount();
@@ -299,7 +299,7 @@ public class DaftarfakturpembelianinputController {
                     tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(0, 0, false, false);
+                    pane.tabledata.changeSelection(0, 0, false, false);*/
 
                     pane.eduang_muka.setText("0");
                     pane.eduang_muka.setEnabled(false);
@@ -311,7 +311,7 @@ public class DaftarfakturpembelianinputController {
                     pane.edakun_pembelian.setText(Globalsession.AKUNPEMBELIANTUNAI + "-" + Globalsession.NAMAAKUNPEMBELIANTUNAI);
                     valakun_pembelian = Globalsession.AKUNPEMBELIANTUNAI;
                 } else {
-                    valorder = "";
+                    /*valorder = "";
                     pane.ednopo.setText("");
                     tabeldatalist.clear();
                     int rowcount = pane.tabledata.getRowCount();
@@ -322,7 +322,7 @@ public class DaftarfakturpembelianinputController {
                     tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(0, 0, false, false);
+                    pane.tabledata.changeSelection(0, 0, false, false);*/
 
                     pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);

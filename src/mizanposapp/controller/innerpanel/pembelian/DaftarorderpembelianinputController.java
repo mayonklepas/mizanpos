@@ -566,6 +566,58 @@ public class DaftarorderpembelianinputController {
                         pane.edakun_pembelian.setText(Globalsession.AKUNHUTANGUSAHA + "-" + Globalsession.NAMAAKUNHUTANGUSAHA);
                     }
 
+                    tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
+                    pane.cmb_tipe_pembelian.setSelectedIndex(tipe_beli);
+
+                    if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
+                        pane.lgudang.setVisible(true);
+                        pane.ltitik2gudang.setVisible(true);
+                        pane.edgudang.setVisible(true);
+                        pane.bcari_gudang.setVisible(true);
+                        valgudang = "";
+                        lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
+                        lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
+                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                        lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
+                        lsresize.set(gx(harga_jual), lsoldsize.get(gx(harga_jual)));
+                        lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                    } else {
+                        pane.lgudang.setVisible(false);
+                        pane.ltitik2gudang.setVisible(false);
+                        pane.edgudang.setVisible(false);
+                        pane.bcari_gudang.setVisible(false);
+                        valgudang = "";
+                        lshide.set(gx(satuan), 0);
+                        lshide.set(gx(harga_jual), 0);
+                        lshide.set(gx(gudang), 0);
+                        lsresize.set(gx(satuan), 0);
+                        lsresize.set(gx(harga_jual), 0);
+                        lsresize.set(gx(gudang), 0);
+                        setheader();
+                        setheader();
+                        if (pane.ckdiskon.isSelected()) {
+                            hidetable(gx(diskon_nominal));
+                            showtable(gx(diskon_persen));
+                            valcheck = 0;
+                        } else {
+                            hidetable(gx(diskon_persen));
+                            showtable(gx(diskon_nominal));
+                            valcheck = 1;
+                        }
+                    }
+
                     try {
                         pane.dtanggal_pengantaran.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(String.valueOf(joinpembelian.get("tanggal_pengantaran")))));
                     } catch (java.text.ParseException ex) {
@@ -626,58 +678,6 @@ public class DaftarorderpembelianinputController {
 
                     valsalesman = String.valueOf(joinpembelian.get("id_bagian_pembelian"));
                     pane.edsalesman.setText(String.valueOf(joinpembelian.get("nama_bagian_pembelian")));
-
-                    tipe_beli = ConvertFunc.ToInt(joinpembelian.get("tipe_pembelian"));
-                    pane.cmb_tipe_pembelian.setSelectedIndex(tipe_beli);
-
-                    if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
-                        pane.lgudang.setVisible(true);
-                        pane.ltitik2gudang.setVisible(true);
-                        pane.edgudang.setVisible(true);
-                        pane.bcari_gudang.setVisible(true);
-                        valgudang = "";
-                        lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
-                        lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
-                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
-                        lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
-                        lsresize.set(gx(harga_jual), lsoldsize.get(gx(harga_jual)));
-                        lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
-                        setheader();
-                        setheader();
-                        if (pane.ckdiskon.isSelected()) {
-                            hidetable(gx(diskon_nominal));
-                            showtable(gx(diskon_persen));
-                            valcheck = 0;
-
-                        } else {
-                            hidetable(gx(diskon_persen));
-                            showtable(gx(diskon_nominal));
-                            valcheck = 1;
-                        }
-                    } else {
-                        pane.lgudang.setVisible(false);
-                        pane.ltitik2gudang.setVisible(false);
-                        pane.edgudang.setVisible(false);
-                        pane.bcari_gudang.setVisible(false);
-                        valgudang = "";
-                        lshide.set(gx(satuan), 0);
-                        lshide.set(gx(harga_jual), 0);
-                        lshide.set(gx(gudang), 0);
-                        lsresize.set(gx(satuan), 0);
-                        lsresize.set(gx(harga_jual), 0);
-                        lsresize.set(gx(gudang), 0);
-                        setheader();
-                        setheader();
-                        if (pane.ckdiskon.isSelected()) {
-                            hidetable(gx(diskon_nominal));
-                            showtable(gx(diskon_persen));
-                            valcheck = 0;
-                        } else {
-                            hidetable(gx(diskon_persen));
-                            showtable(gx(diskon_nominal));
-                            valcheck = 1;
-                        }
-                    }
 
                 }
 

@@ -297,7 +297,7 @@ public class DaftarfakturpenjualaninputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
-                    valorder = "";
+                    /*valorder = "";
                     pane.ednoso.setText("");
                     tabeldatalist.clear();
                     int rowcount = pane.tabledata.getRowCount();
@@ -308,7 +308,7 @@ public class DaftarfakturpenjualaninputController {
                     tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(0, 0, false, false);
+                    pane.tabledata.changeSelection(0, 0, false, false);*/
 
                     pane.eduang_muka.setText("0");
                     pane.eduang_muka.setEnabled(false);
@@ -320,7 +320,7 @@ public class DaftarfakturpenjualaninputController {
                     pane.edakun_penjualan.setText(Globalsession.AKUNPENJUALANTUNAI + "-" + Globalsession.NAMAAKUNPENJUALANTUNAI);
                     valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
                 } else {
-                    valorder = "";
+                    /*valorder = "";
                     pane.ednoso.setText("");
                     tabeldatalist.clear();
                     int rowcount = pane.tabledata.getRowCount();
@@ -331,7 +331,7 @@ public class DaftarfakturpenjualaninputController {
                     tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(0, 0, false, false);
+                    pane.tabledata.changeSelection(0, 0, false, false);*/
 
                     pane.eduang_muka.setEnabled(true);
                     pane.edtop.setVisible(true);
