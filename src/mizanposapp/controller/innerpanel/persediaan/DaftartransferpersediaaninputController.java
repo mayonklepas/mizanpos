@@ -321,6 +321,10 @@ public class DaftartransferpersediaaninputController {
                     String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                     String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                     String qty_satuan_pengali = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                    valgudangdari = String.valueOf(jointabeldata.get("id_gudang"));
+                    valgudangke = String.valueOf(jointabeldata.get("id_gudang2"));
+                    pane.edgudang_dari.setText(String.valueOf(jointabeldata.get("nama_gudang")));
+                    pane.edgudang_ke.setText(String.valueOf(jointabeldata.get("nama_gudang2")));
                     tabeldatalist.add(new Entitytabledata(id_inv, kode_inv, nama_inv, jumlah, id_satuan, nama_satuan, id_satuan_pengali, qty_satuan_pengali));
 
                 }
@@ -399,7 +403,7 @@ public class DaftartransferpersediaaninputController {
             }
         } else {
             String data = "genjur="
-                 + "id_keltrans='5'::"
+                 + "id_keltrans='53'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                  + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
