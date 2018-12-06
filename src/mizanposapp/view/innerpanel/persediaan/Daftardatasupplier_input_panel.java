@@ -104,6 +104,7 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         jLabel35.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel35.setText("Alamat");
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -149,6 +150,10 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
 
         ckaktif.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ckaktif.setText("Aktif");
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel10.setText("Klasifikasi");
@@ -238,6 +243,8 @@ public class Daftardatasupplier_input_panel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Detail", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel16.setText("Alamat");

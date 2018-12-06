@@ -68,6 +68,8 @@ public class Daftarstokopname_input_panel extends javax.swing.JPanel {
         edakun_stokopname = new javax.swing.JTextField();
         bcari_akun_stokopname = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
@@ -238,8 +240,10 @@ public class Daftarstokopname_input_panel extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel15.setText(":");
 
+        rbgunakan_hpp.setBackground(new java.awt.Color(255, 255, 255));
         rbgunakan_hpp.setText("Gunakan Akun HPP");
 
+        rbgunakan_akunlainnya.setBackground(new java.awt.Color(255, 255, 255));
         rbgunakan_akunlainnya.setText("Gunakan Akun Lainnya");
 
         lakunstokopname.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N

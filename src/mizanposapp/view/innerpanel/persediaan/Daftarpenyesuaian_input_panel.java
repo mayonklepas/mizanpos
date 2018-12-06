@@ -63,6 +63,8 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         rbkurangi_stock = new javax.swing.JRadioButton();
         dtanggal = new com.toedter.calendar.JDateChooser();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
@@ -233,8 +235,10 @@ public class Daftarpenyesuaian_input_panel extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel15.setText(":");
 
+        rbtambah_stock.setBackground(new java.awt.Color(255, 255, 255));
         rbtambah_stock.setText("Tambah Stock");
 
+        rbkurangi_stock.setBackground(new java.awt.Color(255, 255, 255));
         rbkurangi_stock.setText("Kurangi Stok");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -48,6 +48,7 @@ public class Daftarservice_input_panel extends javax.swing.JPanel {
         edid_akun = new javax.swing.JTextField();
         bcari_akun = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

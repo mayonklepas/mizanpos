@@ -45,6 +45,8 @@ public class Popupcari extends javax.swing.JPanel {
 
         jLabel1.setText("jLabel1");
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         tabledata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -65,6 +65,8 @@ public class Daftartransferpersediaan_input_panel extends javax.swing.JPanel {
         edgudang_ke = new javax.swing.JTextField();
         bcari_gudang_ke = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 

@@ -63,6 +63,7 @@ public class Daftarkelompokbarang_input_panel extends javax.swing.JPanel {
         eddept = new javax.swing.JTextField();
         bcari_dept = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -166,16 +167,20 @@ public class Daftarkelompokbarang_input_panel extends javax.swing.JPanel {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Metode Harga Pokok", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
 
+        rbfifo.setBackground(new java.awt.Color(255, 255, 255));
         bgroupmetodeharga.add(rbfifo);
         rbfifo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rbfifo.setText("FIFO");
 
+        rblifo.setBackground(new java.awt.Color(255, 255, 255));
         bgroupmetodeharga.add(rblifo);
         rblifo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rblifo.setText("LIFO");
 
+        rbaverage.setBackground(new java.awt.Color(255, 255, 255));
         bgroupmetodeharga.add(rbaverage);
         rbaverage.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rbaverage.setText("AVERAGE");
@@ -204,6 +209,7 @@ public class Daftarkelompokbarang_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        cknon_poin.setBackground(new java.awt.Color(255, 255, 255));
         cknon_poin.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         cknon_poin.setText("Non Poin");
         cknon_poin.addActionListener(new java.awt.event.ActionListener() {

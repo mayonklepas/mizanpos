@@ -49,6 +49,7 @@ public class Daftargudang_input_panel extends javax.swing.JPanel {
         bcari_department = new javax.swing.JButton();
         bcari_penanggungjawab = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

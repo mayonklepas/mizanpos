@@ -68,6 +68,8 @@ public class Daftarkoreksistok_input_panel extends javax.swing.JPanel {
         tcari3.setText("Cari Data...");
         tcari3.setPreferredSize(new java.awt.Dimension(51, 20));
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 

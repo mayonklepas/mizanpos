@@ -41,6 +41,7 @@ public class Daftarsatuanbarang_input_panel extends javax.swing.JPanel {
         bsimpan = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

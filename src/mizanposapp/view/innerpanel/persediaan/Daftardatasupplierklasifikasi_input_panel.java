@@ -44,6 +44,7 @@ public class Daftardatasupplierklasifikasi_input_panel extends javax.swing.JPane
         jLabel6 = new javax.swing.JLabel();
         edketerangan = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N

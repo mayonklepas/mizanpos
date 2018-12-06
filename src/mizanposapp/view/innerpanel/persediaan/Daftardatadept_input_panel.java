@@ -45,6 +45,7 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
         cmbsub_dept = new javax.swing.JComboBox<>();
         ckis_subdept = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -95,6 +96,7 @@ public class Daftardatadept_input_panel extends javax.swing.JPanel {
 
         cmbsub_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        ckis_subdept.setBackground(new java.awt.Color(255, 255, 255));
         ckis_subdept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ckis_subdept.setText("Sub Dept");
 

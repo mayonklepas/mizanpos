@@ -171,6 +171,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         jLabel33 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -249,6 +250,8 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel11.setText("Merk");
 
@@ -312,16 +315,20 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Metode Harga Pokok", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
 
+        rbfifo.setBackground(new java.awt.Color(255, 255, 255));
         rgmetode_harga_pokok.add(rbfifo);
         rbfifo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rbfifo.setText("FIFO");
 
+        rblifo.setBackground(new java.awt.Color(255, 255, 255));
         rgmetode_harga_pokok.add(rblifo);
         rblifo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rblifo.setText("LIFO");
 
+        rbaverage.setBackground(new java.awt.Color(255, 255, 255));
         rgmetode_harga_pokok.add(rbaverage);
         rbaverage.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         rbaverage.setText("AVERAGE");
@@ -350,6 +357,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informasi Pajak dan Service", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -463,6 +471,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informasi Pajak dan Service", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -571,6 +580,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informasi Pajak dan Service", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
 
         jLabel36.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -603,6 +613,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         edharga_beli_akhir.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         edharga_beli_akhir.setText("0.00");
 
+        ckhpp.setBackground(new java.awt.Color(255, 255, 255));
         ckhpp.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ckhpp.setText("HPP sama dengan Harga Jual");
 
@@ -658,6 +669,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                 .addComponent(ckhpp))
         );
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tambahan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 11))); // NOI18N
 
         jLabel44.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -843,6 +855,8 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         );
 
         tabpersediaan.addTab("Informasi", jPanel1);
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         lpenjualan_tunai.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lpenjualan_tunai.setText("Retur Penjualan");
@@ -1106,7 +1120,7 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel45)
                     .addComponent(edakun_retur_penjualan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari_akun_retur_penjualan))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         tabpersediaan.addTab("Kontrol Akun", jPanel11);
@@ -1224,6 +1238,8 @@ public class Daftarpersediaan_input_panel extends javax.swing.JPanel {
         );
 
         tabpersediaan.addTab("Multi Lokasi", jPanel10);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel47.setText("Lokasi Gambar");
 
