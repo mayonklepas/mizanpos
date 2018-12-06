@@ -1996,6 +1996,8 @@ public class DaftarreturpembelianinputController {
                         jd.toFront();
                         tabeldatalist.get(row).setId_satuan(Staticvar.resid);
                         tb.setValueAt(Staticvar.reslabel, row, gx(satuan));
+                        double hargasebelumnya = ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli()) / ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan());
+                        tabeldatalist.get(row).setHarga_beli(String.valueOf(hargasebelumnya));
                         tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                         dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
                         double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
