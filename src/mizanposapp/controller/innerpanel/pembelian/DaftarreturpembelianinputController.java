@@ -295,7 +295,7 @@ public class DaftarreturpembelianinputController {
                         dtmtabeldata.removeRow(0);
                     }
                     dtmtabeldata.setRowCount(0);
-                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(0, 0, false, false);
@@ -334,7 +334,7 @@ public class DaftarreturpembelianinputController {
                         dtmtabeldata.removeRow(0);
                     }
                     dtmtabeldata.setRowCount(0);
-                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(0, 0, false, false);
@@ -424,7 +424,7 @@ public class DaftarreturpembelianinputController {
                         }
                         tabeldatalist.clear();
                         dtmtabeldata.setRowCount(0);
-                        tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                        tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                         dtmtabeldata.addRow(rowtabledata);
                     }
                 };
@@ -564,7 +564,7 @@ public class DaftarreturpembelianinputController {
                 pane.eduang_muka.setText("0");
                 pane.ltotal_pembelian.setText("0");
 
-                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.setModel(dtmtabeldata);
                 if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
@@ -853,7 +853,7 @@ public class DaftarreturpembelianinputController {
                     String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
                          nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                         nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                         nilai_pajak, id_gudang, nama_gudang, keterangan, total, isi_satuan));
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
@@ -935,7 +935,7 @@ public class DaftarreturpembelianinputController {
                                 }
                                 tabeldatalist.clear();
                                 dtmtabeldata.setRowCount(0);
-                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                                 dtmtabeldata.addRow(rowtabledata);
                             }
                         };
@@ -1171,7 +1171,7 @@ public class DaftarreturpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 int lastrow = pane.tabledata.getRowCount() - 1;
                 if (lastrow < 0) {
-                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(1, 0, false, false);
@@ -1409,7 +1409,7 @@ public class DaftarreturpembelianinputController {
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
                                      nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total, isi_satuan));
 
                             }
                             System.out.println(tabeldatalist.size());
@@ -1626,6 +1626,7 @@ public class DaftarreturpembelianinputController {
                                         tabeldatalist.get(row).setOrder("0");
                                         tabeldatalist.get(row).setJumlah("0");
                                         tabeldatalist.get(row).setIsi_satuan("1");
+                                        tabeldatalist.get(row).setIsi_satuan_tetap("1");
                                         tabeldatalist.get(row).setHarga_beli("0");
                                         tabeldatalist.get(row).setHarga_jual("0");
                                         tm.setValueAt("0", row, gx(order));
@@ -1662,6 +1663,7 @@ public class DaftarreturpembelianinputController {
                                         tm.setValueAt(String.valueOf(joindata.get("nama_satuan")), row, gx(satuan));
                                         tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                         tabeldatalist.get(row).setIsi_satuan("1");
+                                        tabeldatalist.get(row).setIsi_satuan_tetap("1");
                                         tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata.get("harga_beli")));
                                         tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_beli"))), row, gx(harga_beli));
                                         tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata.get("harga_jual")));
@@ -1711,6 +1713,7 @@ public class DaftarreturpembelianinputController {
                                             tm.setValueAt(String.valueOf(joindata2.get("nama_satuan")), row, gx(satuan));
                                             tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
                                             tabeldatalist.get(row).setIsi_satuan("1");
+                                            tabeldatalist.get(row).setIsi_satuan_tetap("1");
                                             tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
                                             tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
                                             tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
@@ -1755,23 +1758,23 @@ public class DaftarreturpembelianinputController {
                     } else if (col == gx(jumlah)) {
                         try {
                             ischangevalue = true;
-                            if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                            /*if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                                 tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
                                 columnfunction(row, gx(jumlah), false);
+                            } else{*/
+                            double curjumlah = ConvertFunc.ToDouble(tm.getValueAt(row, gx(jumlah))) * ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan());
+                            double curorder = ConvertFunc.ToDouble(tm.getValueAt(row, gx(order))) * ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan_tetap());
+                            if ((curjumlah > curorder) && (curorder > 0)) {
+                                JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah pembelian", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                tabeldatalist.get(row).setJumlah("0");
+                                tm.setValueAt("0", row, gx(jumlah));
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, gx(jumlah), false, false);
                             } else {
-                                double curjumlah = ConvertFunc.ToDouble(tm.getValueAt(row, gx(jumlah)));
-                                double curorder = ConvertFunc.ToDouble(tm.getValueAt(row, gx(order)));
-                                if ((curjumlah > curorder) && (curorder > 0)) {
-                                    JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah pembelian", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                                    tabeldatalist.get(row).setJumlah("0");
-                                    tm.setValueAt("0", row, gx(jumlah));
-                                    pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(row, gx(jumlah), false, false);
-                                } else {
-                                    tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
-                                    columnfunction(row, gx(jumlah), false);
-                                }
+                                tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
+                                columnfunction(row, gx(jumlah), false);
                             }
+                            //}
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
@@ -2247,7 +2250,7 @@ public class DaftarreturpembelianinputController {
              || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
              || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
             if (row == lastrow) {
-                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row + 1, 0, false, false);
@@ -2612,9 +2615,9 @@ public class DaftarreturpembelianinputController {
 
         String id_barang, kode_barang, nama_barang, order, jumlah,
              id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
-             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
+             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total, isi_satuan_tetap;
 
-        public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String order, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
+        public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String order, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total, String isi_satuan_tetap) {
             this.id_barang = id_barang;
             this.kode_barang = kode_barang;
             this.nama_barang = nama_barang;
@@ -2635,6 +2638,7 @@ public class DaftarreturpembelianinputController {
             this.nama_gudang = nama_gudang;
             this.keterangan = keterangan;
             this.total = total;
+            this.isi_satuan_tetap = isi_satuan_tetap;
         }
 
         public String getId_barang() {
@@ -2795,6 +2799,14 @@ public class DaftarreturpembelianinputController {
 
         public void setTotal(String total) {
             this.total = total;
+        }
+
+        public String getIsi_satuan_tetap() {
+            return isi_satuan_tetap;
+        }
+
+        public void setIsi_satuan_tetap(String isi_satuan_tetap) {
+            this.isi_satuan_tetap = isi_satuan_tetap;
         }
 
     }

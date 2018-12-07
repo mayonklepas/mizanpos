@@ -1823,7 +1823,7 @@
         {
             "key": [
                 "order",
-                "Beli",
+                "Order",
                 "1",
                 "7"
             ]
@@ -1831,7 +1831,7 @@
         {
             "key": [
                 "jumlah",
-                "Retur",
+                "Jumlah",
                 "1",
                 "7"
             ]

@@ -297,7 +297,7 @@ public class DaftarreturpenjualaninputController {
                         dtmtabeldata.removeRow(0);
                     }
                     dtmtabeldata.setRowCount(0);
-                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(0, 0, false, false);
@@ -337,7 +337,7 @@ public class DaftarreturpenjualaninputController {
                         dtmtabeldata.removeRow(0);
                     }
                     dtmtabeldata.setRowCount(0);
-                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(0, 0, false, false);
@@ -423,7 +423,7 @@ public class DaftarreturpenjualaninputController {
                         }
                         tabeldatalist.clear();
                         dtmtabeldata.setRowCount(0);
-                        tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                        tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                         dtmtabeldata.addRow(rowtabledata);
                     }
                 };
@@ -559,7 +559,7 @@ public class DaftarreturpenjualaninputController {
                 pane.eduang_muka.setText("0");
                 pane.ltotal_penjualan.setText("0");
 
-                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.setModel(dtmtabeldata);
                 if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
@@ -841,7 +841,7 @@ public class DaftarreturpenjualaninputController {
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
                          nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
                          id_pajak, nama_pajak,
-                         nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                         nilai_pajak, id_gudang, nama_gudang, keterangan, total, isi_satuan));
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
@@ -923,7 +923,7 @@ public class DaftarreturpenjualaninputController {
                                 }
                                 tabeldatalist.clear();
                                 dtmtabeldata.setRowCount(0);
-                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                                 dtmtabeldata.addRow(rowtabledata);
                             }
                         };
@@ -1159,7 +1159,7 @@ public class DaftarreturpenjualaninputController {
             public void actionPerformed(ActionEvent e) {
                 int lastrow = pane.tabledata.getRowCount() - 1;
                 if (lastrow < 0) {
-                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                    tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                     dtmtabeldata.addRow(rowtabledata);
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(1, 0, false, false);
@@ -1400,7 +1400,7 @@ public class DaftarreturpenjualaninputController {
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_beli, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, order, jumlah, id_satuan,
                                      nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total, isi_satuan));
 
                             }
                             System.out.println(tabeldatalist.size());
@@ -1746,23 +1746,23 @@ public class DaftarreturpenjualaninputController {
                     } else if (col == gx(jumlah)) {
                         try {
                             ischangevalue = true;
-                            if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                            /* if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                                 tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
                                 columnfunction(row, gx(jumlah), false);
+                            } else {*/
+                            double curjumlah = ConvertFunc.ToDouble(tm.getValueAt(row, gx(jumlah))) * ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan());
+                            double curorder = ConvertFunc.ToDouble(tm.getValueAt(row, gx(order))) * ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan_tetap());
+                            if ((curjumlah > curorder) && (curorder > 0)) {
+                                JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah penjualan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                tabeldatalist.get(row).setJumlah("0");
+                                tm.setValueAt("0", row, gx(jumlah));
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(row, gx(jumlah), false, false);
                             } else {
-                                double curjumlah = ConvertFunc.ToDouble(tm.getValueAt(row, gx(jumlah)));
-                                double curorder = ConvertFunc.ToDouble(tm.getValueAt(row, gx(order)));
-                                if ((curjumlah > curorder) && (curorder > 0)) {
-                                    JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah penjualan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                                    tabeldatalist.get(row).setJumlah("0");
-                                    tm.setValueAt("0", row, gx(jumlah));
-                                    pane.tabledata.requestFocus();
-                                    pane.tabledata.changeSelection(row, gx(jumlah), false, false);
-                                } else {
-                                    tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
-                                    columnfunction(row, gx(jumlah), false);
-                                }
+                                tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
+                                columnfunction(row, gx(jumlah), false);
                             }
+                            // }
                         } catch (Exception ex) {
                         } finally {
                             ischangevalue = false;
@@ -1851,7 +1851,8 @@ public class DaftarreturpenjualaninputController {
                     ischangevalue = false;
                 }
             }
-        });
+        }
+        );
 
         MouseAdapter madap = new MouseAdapter() {
 
@@ -2036,193 +2037,230 @@ public class DaftarreturpenjualaninputController {
             }
 
         };
+
         pane.tabledata.addMouseListener(madap);
 
-        pane.tabledata.addKeyListener(new KeyListener() {
+        pane.tabledata.addKeyListener(
+             new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e
+            ) {
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(KeyEvent e
+            ) {
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent e
+            ) {
                 System.out.println(e.getKeyChar());
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
-        pane.tabledata.getActionMap().put("hapus", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pane.bhapus_baris.doClick();
-            }
-        });
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
-        pane.tabledata.getActionMap().put("enter", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-
-                oldvalue = String.valueOf(pane.tabledata.getValueAt(row, col));
-
-                if (pane.tabledata.editCellAt(row, col)) {
-                    Component editor = pane.tabledata.getEditorComponent();
-                    editor.requestFocusInWindow();
-                }
-                if (col == gx(satuan)) {
-                    Staticvar.sfilter = "";
-                    Staticvar.preid = tabeldatalist.get(row).getId_satuan();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(satuan)));
-                    Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
-                    JDialog jd = new JDialog(new Mainmenu());
-                    jd.add(new Popupcari("satuanperbarang",
-                         String.format("popupdaftarsatuanperbarang?id_inv=%s",
-                              tabeldatalist.get(row).getId_barang()),
-                         "Daftar Satuan Perbarang"));
-                    jd.pack();
-                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                    jd.setLocationRelativeTo(null);
-                    jd.setVisible(true);
-                    jd.toFront();
-                    tabeldatalist.get(row).setId_satuan(Staticvar.resid);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(satuan));
-                    tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
-                    dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
-                    double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
-                    pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(harga_beli));
-                    kalkulasitotalperrow(row);
-                } else if (col == gx(pajak)) {
-                    Staticvar.sfilter = "";
-                    Staticvar.preid = tabeldatalist.get(row).getId_pajak();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(pajak)));
-                    Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
-                    JDialog jd = new JDialog(new Mainmenu());
-                    jd.add(new Popupcari("pajak", "popupdaftarpajak", "Daftar Pajak"));
-                    jd.pack();
-                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                    jd.setLocationRelativeTo(null);
-                    jd.setVisible(true);
-                    jd.toFront();
-                    tabeldatalist.get(row).setId_pajak(Staticvar.resid);
-                    tabeldatalist.get(row).setNilai_pajak(Staticvar.resvalueextended);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(pajak));
-                    dtmtabeldata.fireTableCellUpdated(row, gx(pajak));
-                    kalkulasitotalperrow(row);
-                } else if (col == gx(gudang)) {
-                    Staticvar.sfilter = "";
-                    Staticvar.preid = tabeldatalist.get(row).getId_gudang();
-                    Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(gudang)));
-                    JDialog jd = new JDialog(new Mainmenu());
-                    jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
-                    jd.pack();
-                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                    jd.setLocationRelativeTo(null);
-                    jd.setVisible(true);
-                    jd.toFront();
-                    tabeldatalist.get(row).setId_gudang(Staticvar.resid);
-                    pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(gudang));
-                    dtmtabeldata.fireTableCellUpdated(row, gx(gudang));
-                }
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
-        pane.tabledata.getActionMap().put("right", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                if (pane.tabledata.isEditing()) {
-                    pane.tabledata.getCellEditor().stopCellEditing();
-                }
-
-                nextcolom(col, row);
-
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
-        pane.tabledata.getActionMap().put("left", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                if (pane.tabledata.isEditing()) {
-                    pane.tabledata.getCellEditor().stopCellEditing();
-                }
-                backcolom(col, row);
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
-        pane.tabledata.getActionMap().put("up", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                if (pane.tabledata.isEditing()) {
-                    pane.tabledata.getCellEditor().stopCellEditing();
-                }
-
-                if (row == 0) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, col, false, false);
-                } else {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row - 1, col, false, false);
-                }
-
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
-        pane.tabledata.getActionMap().put("down", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                if (pane.tabledata.isEditing()) {
-                    pane.tabledata.getCellEditor().stopCellEditing();
-                }
-                if (row == pane.tabledata.getRowCount() - 1) {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row, col, false, false);
-                } else {
-                    pane.tabledata.requestFocus();
-                    pane.tabledata.changeSelection(row + 1, col, false, false);
-                }
-                addautorow(row);
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "tab");
-        pane.tabledata.getActionMap().put("tab", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                nextcolom(col, row);
-
-            }
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_DOWN_MASK), "shift_tab");
-        pane.tabledata.getActionMap().put("shift_tab", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int col = pane.tabledata.getSelectedColumn();
-                if (pane.tabledata.isEditing()) {
-                    pane.tabledata.getCellEditor().stopCellEditing();
-                }
-                backcolom(col, row);
             }
         }
         );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke("DELETE"), "hapus");
+        pane.tabledata.getActionMap()
+             .put("hapus", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     pane.bhapus_baris.doClick();
+                 }
+             }
+             );
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
+        pane.tabledata.getActionMap()
+             .put("enter", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+
+                     oldvalue = String.valueOf(pane.tabledata.getValueAt(row, col));
+
+                     if (pane.tabledata.editCellAt(row, col)) {
+                         Component editor = pane.tabledata.getEditorComponent();
+                         editor.requestFocusInWindow();
+                     }
+                     if (col == gx(satuan)) {
+                         Staticvar.sfilter = "";
+                         Staticvar.preid = tabeldatalist.get(row).getId_satuan();
+                         Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(satuan)));
+                         Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
+                         JDialog jd = new JDialog(new Mainmenu());
+                         jd.add(new Popupcari("satuanperbarang",
+                              String.format("popupdaftarsatuanperbarang?id_inv=%s",
+                                   tabeldatalist.get(row).getId_barang()),
+                              "Daftar Satuan Perbarang"));
+                         jd.pack();
+                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                         jd.setLocationRelativeTo(null);
+                         jd.setVisible(true);
+                         jd.toFront();
+                         tabeldatalist.get(row).setId_satuan(Staticvar.resid);
+                         pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(satuan));
+                         tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
+                         dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
+                         double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
+                         pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(harga_beli));
+                         kalkulasitotalperrow(row);
+                     } else if (col == gx(pajak)) {
+                         Staticvar.sfilter = "";
+                         Staticvar.preid = tabeldatalist.get(row).getId_pajak();
+                         Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(pajak)));
+                         Staticvar.prevalueextended = tabeldatalist.get(row).getNilai_pajak();
+                         JDialog jd = new JDialog(new Mainmenu());
+                         jd.add(new Popupcari("pajak", "popupdaftarpajak", "Daftar Pajak"));
+                         jd.pack();
+                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                         jd.setLocationRelativeTo(null);
+                         jd.setVisible(true);
+                         jd.toFront();
+                         tabeldatalist.get(row).setId_pajak(Staticvar.resid);
+                         tabeldatalist.get(row).setNilai_pajak(Staticvar.resvalueextended);
+                         pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(pajak));
+                         dtmtabeldata.fireTableCellUpdated(row, gx(pajak));
+                         kalkulasitotalperrow(row);
+                     } else if (col == gx(gudang)) {
+                         Staticvar.sfilter = "";
+                         Staticvar.preid = tabeldatalist.get(row).getId_gudang();
+                         Staticvar.prelabel = String.valueOf(pane.tabledata.getValueAt(row, gx(gudang)));
+                         JDialog jd = new JDialog(new Mainmenu());
+                         jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
+                         jd.pack();
+                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                         jd.setLocationRelativeTo(null);
+                         jd.setVisible(true);
+                         jd.toFront();
+                         tabeldatalist.get(row).setId_gudang(Staticvar.resid);
+                         pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(gudang));
+                         dtmtabeldata.fireTableCellUpdated(row, gx(gudang));
+                     }
+                 }
+             }
+             );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "right");
+        pane.tabledata.getActionMap()
+             .put("right", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+                     if (pane.tabledata.isEditing()) {
+                         pane.tabledata.getCellEditor().stopCellEditing();
+                     }
+
+                     nextcolom(col, row);
+
+                 }
+             }
+             );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
+        pane.tabledata.getActionMap()
+             .put("left", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+                     if (pane.tabledata.isEditing()) {
+                         pane.tabledata.getCellEditor().stopCellEditing();
+                     }
+                     backcolom(col, row);
+                 }
+             }
+             );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
+        pane.tabledata.getActionMap()
+             .put("up", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+                     if (pane.tabledata.isEditing()) {
+                         pane.tabledata.getCellEditor().stopCellEditing();
+                     }
+
+                     if (row == 0) {
+                         pane.tabledata.requestFocus();
+                         pane.tabledata.changeSelection(row, col, false, false);
+                     } else {
+                         pane.tabledata.requestFocus();
+                         pane.tabledata.changeSelection(row - 1, col, false, false);
+                     }
+
+                 }
+             }
+             );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
+        pane.tabledata.getActionMap()
+             .put("down", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+                     if (pane.tabledata.isEditing()) {
+                         pane.tabledata.getCellEditor().stopCellEditing();
+                     }
+                     if (row == pane.tabledata.getRowCount() - 1) {
+                         pane.tabledata.requestFocus();
+                         pane.tabledata.changeSelection(row, col, false, false);
+                     } else {
+                         pane.tabledata.requestFocus();
+                         pane.tabledata.changeSelection(row + 1, col, false, false);
+                     }
+                     addautorow(row);
+                 }
+             }
+             );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "tab");
+        pane.tabledata.getActionMap()
+             .put("tab", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+                     nextcolom(col, row);
+
+                 }
+             }
+             );
+
+        pane.tabledata.getInputMap()
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_DOWN_MASK), "shift_tab");
+        pane.tabledata.getActionMap()
+             .put("shift_tab", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = pane.tabledata.getSelectedRow();
+                     int col = pane.tabledata.getSelectedColumn();
+                     if (pane.tabledata.isEditing()) {
+                         pane.tabledata.getCellEditor().stopCellEditing();
+                     }
+                     backcolom(col, row);
+                 }
+             }
+             );
 
     }
 
@@ -2234,7 +2272,7 @@ public class DaftarreturpenjualaninputController {
              || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
              || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
             if (row == lastrow) {
-                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row + 1, 0, false, false);
@@ -2599,9 +2637,9 @@ public class DaftarreturpenjualaninputController {
 
         String id_barang, kode_barang, nama_barang, order, jumlah,
              id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
-             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
+             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total, isi_satuan_tetap;
 
-        public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String order, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
+        public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String order, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total, String isi_satuan_tetap) {
             this.id_barang = id_barang;
             this.kode_barang = kode_barang;
             this.nama_barang = nama_barang;
@@ -2622,6 +2660,7 @@ public class DaftarreturpenjualaninputController {
             this.nama_gudang = nama_gudang;
             this.keterangan = keterangan;
             this.total = total;
+            this.isi_satuan_tetap = isi_satuan_tetap;
         }
 
         public String getId_barang() {
@@ -2782,6 +2821,14 @@ public class DaftarreturpenjualaninputController {
 
         public void setTotal(String total) {
             this.total = total;
+        }
+
+        public String getIsi_satuan_tetap() {
+            return isi_satuan_tetap;
+        }
+
+        public void setIsi_satuan_tetap(String isi_satuan_tetap) {
+            this.isi_satuan_tetap = isi_satuan_tetap;
         }
 
     }

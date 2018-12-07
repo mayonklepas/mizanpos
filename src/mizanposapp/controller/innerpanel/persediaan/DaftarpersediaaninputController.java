@@ -69,7 +69,7 @@ public class DaftarpersediaaninputController {
     CrudHelper ch = new CrudHelper();
     Daftarpersediaan_input_panel pane;
     String valkelompok, valsupplier, valmerek, valsatuan, valgudang, vallokasi, valdepartment,
-            valpajakpenjualan, valpajakpembelian, valservice, metodehpp;
+         valpajakpenjualan, valpajakpembelian, valservice, metodehpp;
     String valakun_persediaan, valakun_pendapatan, valakun_hpp, valakun_retur_pembelian, valakun_retur_penjualan, valakun_pembelian;
     DefaultTableModel dtmmultisatuan = new DefaultTableModel();
     DefaultTableModel dtmmultihargajual = new DefaultTableModel();
@@ -803,8 +803,8 @@ public class DaftarpersediaaninputController {
                         String id_satuan_pengali = String.valueOf(joinmultiharga.get("id_satuan_pengali"));
                         String qty_satuan_pengali = String.valueOf(joinmultiharga.get("qty_satuan_pengali"));
                         multihargalist.add(new multiharga(id, id_golongan, kode_golongan, dari, hingga,
-                                id_satuan, kode_satuan, harga_jual, harga_jual_persen, id_satuan_pengali,
-                                qty_satuan_pengali));
+                             id_satuan, kode_satuan, harga_jual, harga_jual_persen, id_satuan_pengali,
+                             qty_satuan_pengali));
 
                     }
                     for (int i = 0; i < multihargalist.size(); i++) {
@@ -931,69 +931,69 @@ public class DaftarpersediaaninputController {
         }
 
         if (id.equals(
-                "")) {
+             "")) {
             String data = String.format("data=kode='%s'::"
-                    + "nama='%s'::"
-                    + "id_kelompok='%s'::"
-                    + "id_satuan='%s'::"
-                    + "id_gudang='%s'::"
-                    + "id_dept='%s'::"
-                    + "metode_hpp='%s'::"
-                    + "stok_minimum='%s'::"
-                    + "harga_beli='%s'::"
-                    + "harga_jual='%s'::"
-                    + "harga_master='%s'::"
-                    + "id_pajak_beli='%s'::"
-                    + "id_pajak_jual='%s'::"
-                    + "id_currency='%s'::"
-                    + "gambar='%s'::"
-                    + "isaktif='%s'::"
-                    + "id_lokasi='%s'::"
-                    + "id_merek='%s'::"
-                    + "id_supplier='%s'::"
-                    + "keterangan='%s'::"
-                    + "ishargajualdarigol='%s'::"
-                    + "ishargajualpersen='%s'::"
-                    + "ishppsamadenganhargajual='%s'::"
-                    + "id_service='%s'::"
-                    + "akun_persediaan='%s'::"
-                    + "akun_pendapatan='%s'::"
-                    + "akun_hpp='%s'::"
-                    + "akun_pembelian='%s'::"
-                    + "akun_retur_pembelian='%s'::"
-                    + "akun_retur_penjualan='%s'::"
-                    + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
-                    pane.edkode_persediaan.getText(),
-                    pane.ednama_persediaan.getText(),
-                    valkelompok,
-                    valsatuan,
-                    valgudang,
-                    valdepartment,
-                    metodehpp,
-                    pane.edstock_minimal.getText(),
-                    pane.edharga_beli_akhir.getText(),
-                    pane.edharga_jual.getText(),
-                    pane.edharga_master.getText(),
-                    valpajakpembelian,
-                    valpajakpenjualan,
-                    "1-1",
-                    "",
-                    ckval,
-                    vallokasi,
-                    valmerek,
-                    valsupplier,
-                    pane.edketerangan_persediaan.getText(),
-                    "0",
-                    tipe_harga_jual,
-                    "0",
-                    valservice,
-                    valakun_persediaan,
-                    valakun_pendapatan,
-                    valakun_hpp,
-                    valakun_pembelian,
-                    valakun_retur_pembelian,
-                    valakun_retur_penjualan,
-                    String.valueOf(harga_berdasar));
+                 + "nama='%s'::"
+                 + "id_kelompok='%s'::"
+                 + "id_satuan='%s'::"
+                 + "id_gudang='%s'::"
+                 + "id_dept='%s'::"
+                 + "metode_hpp='%s'::"
+                 + "stok_minimum='%s'::"
+                 + "harga_beli='%s'::"
+                 + "harga_jual='%s'::"
+                 + "harga_master='%s'::"
+                 + "id_pajak_beli='%s'::"
+                 + "id_pajak_jual='%s'::"
+                 + "id_currency='%s'::"
+                 + "gambar='%s'::"
+                 + "isaktif='%s'::"
+                 + "id_lokasi='%s'::"
+                 + "id_merek='%s'::"
+                 + "id_supplier='%s'::"
+                 + "keterangan='%s'::"
+                 + "ishargajualdarigol='%s'::"
+                 + "ishargajualpersen='%s'::"
+                 + "ishppsamadenganhargajual='%s'::"
+                 + "id_service='%s'::"
+                 + "akun_persediaan='%s'::"
+                 + "akun_pendapatan='%s'::"
+                 + "akun_hpp='%s'::"
+                 + "akun_pembelian='%s'::"
+                 + "akun_retur_pembelian='%s'::"
+                 + "akun_retur_penjualan='%s'::"
+                 + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
+                 pane.edkode_persediaan.getText(),
+                 pane.ednama_persediaan.getText(),
+                 valkelompok,
+                 valsatuan,
+                 valgudang,
+                 valdepartment,
+                 metodehpp,
+                 pane.edstock_minimal.getText(),
+                 pane.edharga_beli_akhir.getText(),
+                 pane.edharga_jual.getText(),
+                 pane.edharga_master.getText(),
+                 valpajakpembelian,
+                 valpajakpenjualan,
+                 "1-1",
+                 "",
+                 ckval,
+                 vallokasi,
+                 valmerek,
+                 valsupplier,
+                 pane.edketerangan_persediaan.getText(),
+                 "0",
+                 tipe_harga_jual,
+                 "0",
+                 valservice,
+                 valakun_persediaan,
+                 valakun_pendapatan,
+                 valakun_hpp,
+                 valakun_pembelian,
+                 valakun_retur_pembelian,
+                 valakun_retur_penjualan,
+                 String.valueOf(harga_berdasar));
 
             ch.insertdata("dm/insertpersediaan", data);
             if (!Staticvar.getresult.equals("berhasil")) {
@@ -1012,67 +1012,67 @@ public class DaftarpersediaaninputController {
             }
         } else {
             String data = String.format("data=kode='%s'::"
-                    + "nama='%s'::"
-                    + "id_kelompok='%s'::"
-                    + "id_satuan='%s'::"
-                    + "id_gudang='%s'::"
-                    + "id_dept='%s'::"
-                    + "metode_hpp='%s'::"
-                    + "stok_minimum='%s'::"
-                    + "harga_beli='%s'::"
-                    + "harga_jual='%s'::"
-                    + "harga_master='%s'::"
-                    + "id_pajak_beli='%s'::"
-                    + "id_pajak_jual='%s'::"
-                    + "id_currency='%s'::"
-                    + "gambar='%s'::"
-                    + "isaktif='%s'::"
-                    + "id_lokasi='%s'::"
-                    + "id_merek='%s'::"
-                    + "id_supplier='%s'::"
-                    + "keterangan='%s'::"
-                    + "ishargajualdarigol='%s'::"
-                    + "ishargajualpersen='%s'::"
-                    + "ishppsamadenganhargajual='%s'::"
-                    + "id_service='%s'::"
-                    + "akun_persediaan='%s'::"
-                    + "akun_pendapatan='%s'::"
-                    + "akun_hpp='%s'::"
-                    + "akun_pembelian='%s'::"
-                    + "akun_retur_pembelian='%s'::"
-                    + "akun_retur_penjualan='%s'::"
-                    + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
-                    pane.edkode_persediaan.getText(),
-                    pane.ednama_persediaan.getText(),
-                    valkelompok,
-                    valsatuan,
-                    valgudang,
-                    valdepartment,
-                    metodehpp,
-                    pane.edstock_minimal.getText(),
-                    pane.edharga_beli_akhir.getText(),
-                    pane.edharga_jual.getText(),
-                    pane.edharga_master.getText(),
-                    valpajakpembelian,
-                    valpajakpenjualan,
-                    "1-1",
-                    "",
-                    ckval,
-                    vallokasi,
-                    valmerek,
-                    valsupplier,
-                    pane.edketerangan_persediaan.getText(),
-                    "0",
-                    tipe_harga_jual,
-                    "0",
-                    valservice,
-                    valakun_persediaan,
-                    valakun_pendapatan,
-                    valakun_hpp,
-                    valakun_pembelian,
-                    valakun_retur_pembelian,
-                    valakun_retur_penjualan,
-                    String.valueOf(harga_berdasar));
+                 + "nama='%s'::"
+                 + "id_kelompok='%s'::"
+                 + "id_satuan='%s'::"
+                 + "id_gudang='%s'::"
+                 + "id_dept='%s'::"
+                 + "metode_hpp='%s'::"
+                 + "stok_minimum='%s'::"
+                 + "harga_beli='%s'::"
+                 + "harga_jual='%s'::"
+                 + "harga_master='%s'::"
+                 + "id_pajak_beli='%s'::"
+                 + "id_pajak_jual='%s'::"
+                 + "id_currency='%s'::"
+                 + "gambar='%s'::"
+                 + "isaktif='%s'::"
+                 + "id_lokasi='%s'::"
+                 + "id_merek='%s'::"
+                 + "id_supplier='%s'::"
+                 + "keterangan='%s'::"
+                 + "ishargajualdarigol='%s'::"
+                 + "ishargajualpersen='%s'::"
+                 + "ishppsamadenganhargajual='%s'::"
+                 + "id_service='%s'::"
+                 + "akun_persediaan='%s'::"
+                 + "akun_pendapatan='%s'::"
+                 + "akun_hpp='%s'::"
+                 + "akun_pembelian='%s'::"
+                 + "akun_retur_pembelian='%s'::"
+                 + "akun_retur_penjualan='%s'::"
+                 + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
+                 pane.edkode_persediaan.getText(),
+                 pane.ednama_persediaan.getText(),
+                 valkelompok,
+                 valsatuan,
+                 valgudang,
+                 valdepartment,
+                 metodehpp,
+                 pane.edstock_minimal.getText(),
+                 pane.edharga_beli_akhir.getText(),
+                 pane.edharga_jual.getText(),
+                 pane.edharga_master.getText(),
+                 valpajakpembelian,
+                 valpajakpenjualan,
+                 "1-1",
+                 "",
+                 ckval,
+                 vallokasi,
+                 valmerek,
+                 valsupplier,
+                 pane.edketerangan_persediaan.getText(),
+                 "0",
+                 tipe_harga_jual,
+                 "0",
+                 valservice,
+                 valakun_persediaan,
+                 valakun_pendapatan,
+                 valakun_hpp,
+                 valakun_pembelian,
+                 valakun_retur_pembelian,
+                 valakun_retur_penjualan,
+                 String.valueOf(harga_berdasar));
             ch.updatedata("dm/updatepersediaan", data, id);
             if (!Staticvar.getresult.equals("berhasil")) {
                 JDialog jd = new JDialog(new Mainmenu());
@@ -1130,9 +1130,9 @@ public class DaftarpersediaaninputController {
             public void actionPerformed(ActionEvent e) {
                 int row = tabledata.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null,
-                        "Yakin akan menghapus " + tabledata.getValueAt(row, 0) + " - "
-                        + tabledata.getValueAt(row, 1),
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Yakin akan menghapus " + tabledata.getValueAt(row, 0) + " - "
+                     + tabledata.getValueAt(row, 1),
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
                         @Override
@@ -1258,170 +1258,170 @@ public class DaftarpersediaaninputController {
         });
 
         tabledata.getInputMap()
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
         tabledata.getActionMap()
-                .put("left", new AbstractAction() {
-                    @Override
-                    public void actionPerformed(ActionEvent e
-                    ) {
-                        int row = tabledata.getSelectedRow();
-                        int col = tabledata.getSelectedColumn();
-                        if (tabledata.isEditing()) {
-                            tabledata.getCellEditor().stopCellEditing();
-                        }
-                        tabledata.requestFocus();
-                        if (tipe.equals("harga")) {
-                            if (row > 0) {
-                                if (col > 0) {
-                                    if (pane.ckharga_jual_persen.isSelected()) {
-                                        if (col == 5) {
-                                            tabledata.changeSelection(row, 3, false, false);
-                                        } else {
-                                            tabledata.changeSelection(row, col - 1, false, false);
-                                        }
-                                    } else {
-                                        tabledata.changeSelection(row, col - 1, false, false);
-                                    }
-                                } else {
-                                    if (pane.ckharga_jual_persen.isSelected()) {
-                                        tabledata.changeSelection(row - 1, tabledata.getColumnCount() - 1, false, false);
-                                    } else {
-                                        tabledata.changeSelection(row - 1, tabledata.getColumnCount() - 2, false, false);
-                                    }
+             .put("left", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = tabledata.getSelectedRow();
+                     int col = tabledata.getSelectedColumn();
+                     if (tabledata.isEditing()) {
+                         tabledata.getCellEditor().stopCellEditing();
+                     }
+                     tabledata.requestFocus();
+                     if (tipe.equals("harga")) {
+                         if (row > 0) {
+                             if (col > 0) {
+                                 if (pane.ckharga_jual_persen.isSelected()) {
+                                     if (col == 5) {
+                                         tabledata.changeSelection(row, 3, false, false);
+                                     } else {
+                                         tabledata.changeSelection(row, col - 1, false, false);
+                                     }
+                                 } else {
+                                     tabledata.changeSelection(row, col - 1, false, false);
+                                 }
+                             } else {
+                                 if (pane.ckharga_jual_persen.isSelected()) {
+                                     tabledata.changeSelection(row - 1, tabledata.getColumnCount() - 1, false, false);
+                                 } else {
+                                     tabledata.changeSelection(row - 1, tabledata.getColumnCount() - 2, false, false);
+                                 }
 
-                                }
-                            } else {
-                                if (col > 0) {
-                                    tabledata.changeSelection(row, col - 1, false, false);
-                                }
-                            }
+                             }
+                         } else {
+                             if (col > 0) {
+                                 tabledata.changeSelection(row, col - 1, false, false);
+                             }
+                         }
 
-                        } else {
-                            if (row > 0) {
-                                if (col > 0) {
-                                    tabledata.changeSelection(row, col - 1, false, false);
-                                } else {
-                                    tabledata.changeSelection(row - 1, tabledata.getColumnCount() - 1, false, false);
-                                }
-                            } else {
-                                if (col > 0) {
-                                    tabledata.changeSelection(row, col - 1, false, false);
-                                }
-                            }
+                     } else {
+                         if (row > 0) {
+                             if (col > 0) {
+                                 tabledata.changeSelection(row, col - 1, false, false);
+                             } else {
+                                 tabledata.changeSelection(row - 1, tabledata.getColumnCount() - 1, false, false);
+                             }
+                         } else {
+                             if (col > 0) {
+                                 tabledata.changeSelection(row, col - 1, false, false);
+                             }
+                         }
 
-                        }
+                     }
 
-                    }
-                }
-                );
+                 }
+             }
+             );
 
         tabledata.getInputMap()
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "up");
         tabledata.getActionMap()
-                .put("up", new AbstractAction() {
-                    @Override
-                    public void actionPerformed(ActionEvent e
-                    ) {
-                        int row = tabledata.getSelectedRow();
-                        int col = tabledata.getSelectedColumn();
-                        if (tabledata.isEditing()) {
-                            tabledata.getCellEditor().stopCellEditing();
-                        }
+             .put("up", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = tabledata.getSelectedRow();
+                     int col = tabledata.getSelectedColumn();
+                     if (tabledata.isEditing()) {
+                         tabledata.getCellEditor().stopCellEditing();
+                     }
 
-                        if (row == 0) {
-                            tabledata.requestFocus();
-                            tabledata.changeSelection(row, col, false, false);
-                        } else {
-                            tabledata.requestFocus();
-                            tabledata.changeSelection(row - 1, col, false, false);
-                        }
+                     if (row == 0) {
+                         tabledata.requestFocus();
+                         tabledata.changeSelection(row, col, false, false);
+                     } else {
+                         tabledata.requestFocus();
+                         tabledata.changeSelection(row - 1, col, false, false);
+                     }
 
-                    }
-                }
-                );
+                 }
+             }
+             );
 
         tabledata.getInputMap()
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "down");
         tabledata.getActionMap()
-                .put("down", new AbstractAction() {
-                    @Override
-                    public void actionPerformed(ActionEvent e
-                    ) {
-                        int row = tabledata.getSelectedRow();
-                        int col = tabledata.getSelectedColumn();
-                        if (tabledata.isEditing()) {
-                            tabledata.getCellEditor().stopCellEditing();
-                        }
-                        if (row == tabledata.getRowCount() - 1) {
-                            if (tipe.equals("satuan")) {
-                                addautorowmultisatuan(row);
-                            } else if (tipe.equals("harga")) {
-                                addautorowmultiharga(row);
-                            } else {
-                                addautorowmultilokasi(row);
-                            }
-                        } else {
-                            tabledata.requestFocus();
-                            tabledata.changeSelection(row + 1, col, false, false);
-                        }
+             .put("down", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = tabledata.getSelectedRow();
+                     int col = tabledata.getSelectedColumn();
+                     if (tabledata.isEditing()) {
+                         tabledata.getCellEditor().stopCellEditing();
+                     }
+                     if (row == tabledata.getRowCount() - 1) {
+                         if (tipe.equals("satuan")) {
+                             addautorowmultisatuan(row);
+                         } else if (tipe.equals("harga")) {
+                             addautorowmultiharga(row);
+                         } else {
+                             addautorowmultilokasi(row);
+                         }
+                     } else {
+                         tabledata.requestFocus();
+                         tabledata.changeSelection(row + 1, col, false, false);
+                     }
 
-                    }
-                }
-                );
+                 }
+             }
+             );
 
         tabledata.getInputMap()
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "tab");
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "tab");
         tabledata.getActionMap()
-                .put("tab", new AbstractAction() {
-                    @Override
-                    public void actionPerformed(ActionEvent e
-                    ) {
-                        int row = tabledata.getSelectedRow();
-                        int col = tabledata.getSelectedColumn();
-                        if (tabledata.isEditing()) {
-                            tabledata.getCellEditor().stopCellEditing();
-                        }
-                        tabledata.requestFocus();
-                        if (col == 3) {
-                            if (tabledata.getValueAt(row, 3).equals("")
-                                    || tabledata.getValueAt(row, 3).equals("")) {
-                            } else {
-                                if (tipe.equals("satuan")) {
-                                    addautorowmultisatuan(row);
-                                } else if (tipe.equals("harga")) {
-                                    addautorowmultiharga(row);
-                                } else {
-                                    addautorowmultilokasi(row);
-                                }
-                            }
-                        } else {
-                            tabledata.changeSelection(row, col + 1, false, false);
-                        }
+             .put("tab", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = tabledata.getSelectedRow();
+                     int col = tabledata.getSelectedColumn();
+                     if (tabledata.isEditing()) {
+                         tabledata.getCellEditor().stopCellEditing();
+                     }
+                     tabledata.requestFocus();
+                     if (col == 3) {
+                         if (tabledata.getValueAt(row, 3).equals("")
+                              || tabledata.getValueAt(row, 3).equals("")) {
+                         } else {
+                             if (tipe.equals("satuan")) {
+                                 addautorowmultisatuan(row);
+                             } else if (tipe.equals("harga")) {
+                                 addautorowmultiharga(row);
+                             } else {
+                                 addautorowmultilokasi(row);
+                             }
+                         }
+                     } else {
+                         tabledata.changeSelection(row, col + 1, false, false);
+                     }
 
-                    }
-                }
-                );
+                 }
+             }
+             );
 
         tabledata.getInputMap()
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_DOWN_MASK), "shift_tab");
+             .put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, InputEvent.SHIFT_DOWN_MASK), "shift_tab");
         tabledata.getActionMap()
-                .put("shift_tab", new AbstractAction() {
-                    @Override
-                    public void actionPerformed(ActionEvent e
-                    ) {
-                        int row = tabledata.getSelectedRow();
-                        int col = tabledata.getSelectedColumn();
-                        if (tabledata.isEditing()) {
-                            tabledata.getCellEditor().stopCellEditing();
-                        }
-                        tabledata.requestFocus();
-                        if (col > 0) {
-                            tabledata.changeSelection(row, col - 1, false, false);
-                        }
+             .put("shift_tab", new AbstractAction() {
+                 @Override
+                 public void actionPerformed(ActionEvent e
+                 ) {
+                     int row = tabledata.getSelectedRow();
+                     int col = tabledata.getSelectedColumn();
+                     if (tabledata.isEditing()) {
+                         tabledata.getCellEditor().stopCellEditing();
+                     }
+                     tabledata.requestFocus();
+                     if (col > 0) {
+                         tabledata.changeSelection(row, col - 1, false, false);
+                     }
 
-                    }
-                }
-                );
+                 }
+             }
+             );
     }
 
     private void changepane() {
@@ -1474,10 +1474,10 @@ public class DaftarpersediaaninputController {
                                     if (!multisatuanlist.get(i).getId_satuan().equals(valsatuan)) {
                                         if (!multisatuanlist.get(i).getId_satuan().equals("")) {
                                             lssatuanentity.add(new SatuanEntity(
-                                                    multisatuanlist.get(i).getId_satuan(),
-                                                    multisatuanlist.get(i).getKode_satuan(),
-                                                    valsatuan,
-                                                    multisatuanlist.get(i).getQty_satuan_pengali()));
+                                                 multisatuanlist.get(i).getId_satuan(),
+                                                 multisatuanlist.get(i).getKode_satuan(),
+                                                 valsatuan,
+                                                 multisatuanlist.get(i).getQty_satuan_pengali()));
                                         }
 
                                     }
@@ -2135,17 +2135,17 @@ public class DaftarpersediaaninputController {
         if (tipe == 0) {
             for (int i = 0; i < listcount; i++) {
                 sb.append("id_satuan=" + "'" + multisatuanlist.get(i).getId_satuan() + "'" + "::"
-                        + "barcode=" + "'" + multisatuanlist.get(i).getBarcode() + "'" + "::"
-                        + "id_satuan_pengali=" + "'" + multisatuanlist.get(i).getId_satuan_pengali() + "'" + "::"
-                        + "qty_satuan_pengali=" + "'" + multisatuanlist.get(i).getQty_satuan_pengali() + "'");
+                     + "barcode=" + "'" + multisatuanlist.get(i).getBarcode() + "'" + "::"
+                     + "id_satuan_pengali=" + "'" + multisatuanlist.get(i).getId_satuan_pengali() + "'" + "::"
+                     + "qty_satuan_pengali=" + "'" + multisatuanlist.get(i).getQty_satuan_pengali() + "'");
                 sb.append("--");
             }
         } else {
             for (int i = 0; i < listcount; i++) {
                 sb.append("id_satuan=" + "'" + multisatuanlist.get(i).getId_satuan() + "'" + "::"
-                        + "barcode=" + "'" + multisatuanlist.get(i).getBarcode() + "'" + "::"
-                        + "id_satuan_pengali=" + "'" + multisatuanlist.get(i).getId_satuan_pengali() + "'" + "::"
-                        + "qty_satuan_pengali=" + "'" + multisatuanlist.get(i).getQty_satuan_pengali() + "'");
+                     + "barcode=" + "'" + multisatuanlist.get(i).getBarcode() + "'" + "::"
+                     + "id_satuan_pengali=" + "'" + multisatuanlist.get(i).getId_satuan_pengali() + "'" + "::"
+                     + "qty_satuan_pengali=" + "'" + multisatuanlist.get(i).getQty_satuan_pengali() + "'");
                 sb.append("--");
             }
         }
@@ -2165,25 +2165,25 @@ public class DaftarpersediaaninputController {
         if (tipe == 0) {
             for (int i = 0; i < listcount; i++) {
                 sb.append("id_golongan=" + "'" + multihargalist.get(i).getId_golongan() + "'" + "::"
-                        + "dari=" + "'" + multihargalist.get(i).getDari() + "'" + "::"
-                        + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
-                        + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
-                        + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
-                        + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'" + "::"
-                        + "id_satuan_pengali=" + "'" + valsatuan + "'" + "::"
-                        + "qty_satuan_pengali=" + "'" + multihargalist.get(i).getQty_satuan_pengali() + "'");
+                     + "dari=" + "'" + multihargalist.get(i).getDari() + "'" + "::"
+                     + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
+                     + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
+                     + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
+                     + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'" + "::"
+                     + "id_satuan_pengali=" + "'" + valsatuan + "'" + "::"
+                     + "qty_satuan_pengali=" + "'" + multihargalist.get(i).getQty_satuan_pengali() + "'");
                 sb.append("--");
             }
         } else {
             for (int i = 0; i < listcount; i++) {
                 sb.append("id_golongan=" + "'" + multihargalist.get(i).getId_golongan() + "'" + "::"
-                        + "dari=" + "'" + multihargalist.get(i).getDari() + "'" + "::"
-                        + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
-                        + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
-                        + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
-                        + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'" + "::"
-                        + "id_satuan_pengali=" + "'" + valsatuan + "'" + "::"
-                        + "qty_satuan_pengali=" + "'" + multihargalist.get(i).getQty_satuan_pengali() + "'");
+                     + "dari=" + "'" + multihargalist.get(i).getDari() + "'" + "::"
+                     + "hingga=" + "'" + multihargalist.get(i).getHingga() + "'" + "::"
+                     + "id_satuan=" + "'" + multihargalist.get(i).getId_satuan() + "'" + "::"
+                     + "harga_jual=" + "'" + multihargalist.get(i).getHarga_jual() + "'" + "::"
+                     + "harga_jual_persen=" + "'" + multihargalist.get(i).getHarga_jual_persen() + "'" + "::"
+                     + "id_satuan_pengali=" + "'" + valsatuan + "'" + "::"
+                     + "qty_satuan_pengali=" + "'" + multihargalist.get(i).getQty_satuan_pengali() + "'");
                 sb.append("--");
             }
         }
@@ -2202,13 +2202,13 @@ public class DaftarpersediaaninputController {
         if (tipe == 0) {
             for (int i = 0; i < listcount; i++) {
                 sb.append("id_lokasi=" + "'" + multilokasilist.get(i).getId_lokasi() + "'" + "::"
-                        + "id_gudang=" + "'" + multilokasilist.get(i).getId_gudang() + "'");
+                     + "id_gudang=" + "'" + multilokasilist.get(i).getId_gudang() + "'");
                 sb.append("--");
             }
         } else {
             for (int i = 0; i < listcount; i++) {
                 sb.append("id_lokasi=" + "'" + multilokasilist.get(i).getId_lokasi() + "'" + "::"
-                        + "id_gudang=" + "'" + multilokasilist.get(i).getId_gudang() + "'");
+                     + "id_gudang=" + "'" + multilokasilist.get(i).getId_gudang() + "'");
                 sb.append("--");
             }
         }
