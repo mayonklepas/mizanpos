@@ -153,7 +153,7 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
         jLabel3.setText("Tanggal");
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel4.setText("Customer");
+        jLabel4.setText("Pelanggan");
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setText("No. Transaksi");
