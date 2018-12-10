@@ -801,14 +801,15 @@ public class PosframeController {
                                 pane.edbarcode.select(0, 0);
                                 pane.edbarcode.setForeground(Color.GRAY);
                             }
-                        } else if (pane.edbarcode.getText().equals(DefaultCari)) {
+                        }
+                        /*else if (pane.edbarcode.getText().equals(DefaultCari)) {
                             pane.edbarcode.setText("");
                             pane.edbarcode.setForeground(Color.BLACK);
                         } else if (pane.edbarcode.getText().equals("")) {
                             pane.edbarcode.setText(DefaultCari);
                             pane.edbarcode.select(0, 0);
                             pane.edbarcode.setForeground(Color.GRAY);
-                        }
+                        }*/
                     }
                 }
                 if (e.getID() == KeyEvent.KEY_PRESSED) {
@@ -825,7 +826,6 @@ public class PosframeController {
                     if (e.getKeyCode() == KeyEvent.VK_F2) {
                         if (!pane.edbarcode.isFocusOwner()) {
                             pane.tabledata.clearSelection();
-                            //pane.edbarcode.setText("");
                             pane.edbarcode.requestFocus();
                         } else {
                             additemtotable();
@@ -1203,7 +1203,10 @@ public class PosframeController {
         } catch (ParseException ex) {
             Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        pane.edbarcode.setText("");
+        pane.edbarcode.setText(DefaultCari);
+        pane.edbarcode.setForeground(Color.GRAY);
+        pane.edbarcode.select(0, 0);
+        
         pane.edbarcode.requestFocus();
     }
 
