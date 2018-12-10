@@ -103,44 +103,6 @@ public class PosframeController {
 
     public PosframeController(Posframe pane) {
         this.pane = pane;
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
-            @Override
-            public boolean dispatchKeyEvent(KeyEvent e) {
-                if (e.getID() == KeyEvent.KEY_PRESSED) {
-                    if (e.getKeyCode() == KeyEvent.VK_F2) {
-                        pane.tabledata.clearSelection();
-                        pane.edbarcode.setText("");
-                        pane.edbarcode.requestFocus();
-                    } else if (e.getKeyCode() == KeyEvent.VK_F9) {
-                        pane.bsimpan.doClick();
-                    } else if (e.getKeyCode() == KeyEvent.VK_F10) {
-                        pane.bpending.doClick();
-                    } else if (e.getKeyCode() == KeyEvent.VK_F11) {
-                        pane.brecall.doClick();
-                    } else if (e.getKeyCode() == KeyEvent.VK_F12) {
-                        pane.bbatal.doClick();
-                    } else if (e.getKeyCode() == KeyEvent.VK_F5) {
-                        pane.bupdate.doClick();
-                    } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        pane.btutup.doClick();
-                    } else if (e.getKeyCode() == KeyEvent.VK_INSERT) {
-                        Staticvar.sfilter = "";
-                        Staticvar.preid = valpelanggan;
-                        Staticvar.prelabel = String.valueOf(pane.cmbpelanggan.getEditor().getItem());
-                        JDialog jd = new JDialog(new Mainmenu());
-                        jd.add(new Insertpos_pane());
-                        jd.pack();
-                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                        jd.setLocationRelativeTo(null);
-                        jd.setVisible(true);
-                        jd.toFront();
-                        valpelanggan = Staticvar.resid;
-                        valgolongan = Staticvar.resvalueextended;
-                    }
-                }
-                return false;
-            }
-        });
         skinning();
         loadsession();
         loaddata();
@@ -152,7 +114,7 @@ public class PosframeController {
         //hapusbaris();
         //tambahbaris();
         //batal();
-        addtotable();
+        keyfunction();
 
     }
 
@@ -765,350 +727,12 @@ public class PosframeController {
         jd.toFront();
     }
 
-    private void addtotable() {
+    private void keyfunction() {
         pane.edbarcode.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    try {
-                        JSONParser jpdata = new JSONParser();
-                        String kode_barcode = pane.edbarcode.getText();
-                        if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                            try {
-
-                                String splitcode[] = pane.edbarcode.getText().toLowerCase().split("x");
-                                if (splitcode.length == 2) {
-                                    String pre = splitcode[0];
-                                    String post = splitcode[1];
-                                    String rawkode_barcode = "";
-                                    if (pre.matches("[0-9]+")) {
-                                        rawkode_barcode = post;
-                                    } else {
-                                        rawkode_barcode = pre + "x" + post;
-                                    }
-
-                                    if (kode_barcode.substring(kode_barcode.length() - 1, kode_barcode.length()).toLowerCase().equals("x")) {
-                                        kode_barcode = rawkode_barcode + "x";
-                                    } else {
-                                        kode_barcode = rawkode_barcode;
-                                    }
-
-                                } else if (splitcode.length > 2) {
-                                    String pre = splitcode[0];
-                                    String post = "";
-                                    StringBuilder sbpost = new StringBuilder();
-                                    for (int i = 0; i < splitcode.length; i++) {
-                                        if (i > 0) {
-                                            sbpost.append(splitcode[i]).append("x");
-                                        }
-                                    }
-                                    post = sbpost.toString().substring(0, sbpost.toString().length() - 1);
-                                    if (kode_barcode.substring(kode_barcode.length() - 1, kode_barcode.length()).toLowerCase().equals("x")) {
-                                        post = post + "x";
-                                    }
-                                    if (pre.matches("[0-9]+")) {
-                                        kode_barcode = post;
-                                    } else {
-                                        kode_barcode = pre + "x" + post;
-                                    }
-                                } else {
-                                    String pre = splitcode[0];
-                                    String post = "";
-                                    if (pre.matches("[0-9]+")) {
-                                        kode_barcode = post;
-                                    } else {
-                                        kode_barcode = pre + post;
-                                    }
-                                }
-                            } catch (Exception es) {
-                                kode_barcode = "";
-                            }
-
-                        }
-
-                        Staticvar.preid = kode_barcode;
-                        String defnilai = "";
-                        String cekval = kode_barcode;
-                        if (cekval.equals("null") || cekval.equals("")) {
-                            defnilai = "";
-                        } else {
-                            defnilai = kode_barcode;
-                        }
-                        Staticvar.prelabel = defnilai;
-                        Staticvar.sfilter = defnilai;
-                        Staticvar.prelabel = defnilai;
-
-                        String param = String.format("kode=%s", kode_barcode);
-                        Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
-                        JSONObject jodataraw = (JSONObject) objdataraw;
-                        Object objdata = jodataraw.get("data");
-                        JSONArray jadata = (JSONArray) objdata;
-                        if (jadata.size() == 1) {
-                            for (int i = 0; i < jadata.size(); i++) {
-                                JSONObject jointabeldata = (JSONObject) jadata.get(i);
-                                if (tabeldatalist.isEmpty()) {
-                                    String id_barang = String.valueOf(jointabeldata.get("id"));
-                                    String kode_barang = String.valueOf(jointabeldata.get("kode"));
-                                    String nama_barang = String.valueOf(jointabeldata.get("nama"));
-                                    String jumlah_qty = "1";
-                                    if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                        String pre = pane.edbarcode.getText().split("x")[0];
-                                        if (pre.matches("[0-9]+")) {
-                                            jumlah_qty = pre;
-                                        }
-                                    }
-                                    String jumlah = jumlah_qty;
-                                    String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                                    String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                                    String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                                    String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                                    String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                                    String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
-                                    String diskon_persen = "0";
-                                    String diskon_nominal = "0";
-                                    String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
-                                    String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
-                                    String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                                    String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                                    String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
-                                    String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
-                                    tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                         nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                         nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-                                    int rowcount = pane.tabledata.getRowCount();
-                                    rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
-                                    rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
-                                    rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
-                                    rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
-                                    rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
-                                    rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
-                                    rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
-                                    rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
-                                    rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
-                                    rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
-                                    rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
-                                    rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
-                                    dtmtabeldata.addRow(rowtabledata);
-                                    kalkulasitotal();
-                                } else {
-                                    boolean status_ada = true;
-
-                                    for (int j = 0; j < tabeldatalist.size(); j++) {
-                                        if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
-                                            String jumlah_qty = "1";
-                                            if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                                String pre = pane.edbarcode.getText().split("x")[0];
-                                                if (pre.matches("[0-9]+")) {
-                                                    jumlah_qty = pre;
-                                                }
-                                            }
-                                            int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
-                                            tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
-                                            pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
-                                            kalkulasitotalperrow(j);
-                                            status_ada = true;
-                                            break;
-                                        } else {
-                                            status_ada = false;
-                                        }
-                                    }
-
-                                    if (status_ada == false) {
-                                        String id_barang = String.valueOf(jointabeldata.get("id"));
-                                        String kode_barang = String.valueOf(jointabeldata.get("kode"));
-                                        String nama_barang = String.valueOf(jointabeldata.get("nama"));
-                                        String jumlah_qty = "1";
-                                        if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                            String pre = pane.edbarcode.getText().split("x")[0];
-                                            if (pre.matches("[0-9]+")) {
-                                                jumlah_qty = pre;
-                                            }
-                                        }
-                                        String jumlah = jumlah_qty;
-                                        String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                                        String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                                        String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                                        String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                                        String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
-                                        String diskon_persen = "0";
-                                        String diskon_nominal = "0";
-                                        String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
-                                        String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
-                                        String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                                        String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                                        String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
-                                        String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                                        String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
-                                        tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-                                        int rowcount = pane.tabledata.getRowCount();
-                                        rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
-                                        rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
-                                        rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
-                                        rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
-                                        rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
-                                        rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
-                                        rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
-                                        rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
-                                        rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
-                                        rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
-                                        rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
-                                        rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
-                                        dtmtabeldata.addRow(rowtabledata);
-                                        kalkulasitotal();
-
-                                    }
-                                }
-                            }
-
-                        } else {
-                            JDialog jd = new JDialog(new Mainmenu());
-                            jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
-                            jd.pack();
-                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                            jd.setLocationRelativeTo(null);
-                            jd.setVisible(true);
-                            jd.toFront();
-                            if (!Staticvar.reslabel.equals("")) {
-                                JSONParser jpdata2 = new JSONParser();
-                                String param2 = String.format("id=%s", Staticvar.resid);
-                                Object objdataraw2 = jpdata2.parse(ch.getdatadetails("dm/datapersediaan", param2));
-                                JSONObject jodataraw2 = (JSONObject) objdataraw2;
-                                Object objdata2 = jodataraw2.get("data");
-                                JSONArray jadata2 = (JSONArray) objdata2;
-                                for (int i = 0; i < jadata2.size(); i++) {
-                                    JSONObject jointabeldata = (JSONObject) jadata2.get(i);
-                                    if (tabeldatalist.isEmpty()) {
-                                        String id_barang = String.valueOf(jointabeldata.get("id"));
-                                        String kode_barang = String.valueOf(jointabeldata.get("kode"));
-
-                                        String nama_barang = String.valueOf(jointabeldata.get("nama"));
-                                        String jumlah_qty = "1";
-
-                                        if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                            String pre = pane.edbarcode.getText().split("x")[0];
-                                            if (pre.matches("[0-9]+")) {
-                                                jumlah_qty = pre;
-                                            }
-                                        }
-                                        String jumlah = jumlah_qty;
-                                        String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                                        String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                                        String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                                        String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                                        String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
-                                        String diskon_persen = "0";
-                                        String diskon_nominal = "0";
-                                        String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
-                                        String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
-                                        String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                                        String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                                        String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
-                                        String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                                        String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
-                                        tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-                                        int rowcount = pane.tabledata.getRowCount();
-                                        rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
-                                        rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
-                                        rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
-                                        rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
-                                        rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
-                                        rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
-                                        rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
-                                        rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
-                                        rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
-                                        rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
-                                        rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
-                                        rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
-                                        dtmtabeldata.addRow(rowtabledata);
-                                        kalkulasitotal();
-                                        pane.edbarcode.setText(kode_barang);
-                                    } else {
-                                        boolean status_ada = true;
-
-                                        for (int j = 0; j < tabeldatalist.size(); j++) {
-                                            if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
-                                                String jumlah_qty = "1";
-                                                if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                                    String pre = pane.edbarcode.getText().split("x")[0];
-                                                    if (pre.matches("[0-9]+")) {
-                                                        jumlah_qty = pre;
-                                                    }
-                                                }
-                                                int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
-                                                tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
-                                                pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
-                                                kalkulasitotalperrow(j);
-                                                status_ada = true;
-                                                break;
-                                            } else {
-                                                status_ada = false;
-                                            }
-                                        }
-
-                                        if (status_ada == false) {
-                                            String id_barang = String.valueOf(jointabeldata.get("id"));
-                                            String kode_barang = String.valueOf(jointabeldata.get("kode"));
-
-                                            String nama_barang = String.valueOf(jointabeldata.get("nama"));
-                                            String jumlah_qty = "1";
-                                            if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                                String pre = pane.edbarcode.getText().split("x")[0];
-                                                if (pre.matches("[0-9]+")) {
-                                                    jumlah_qty = pre;
-                                                }
-                                            }
-                                            String jumlah = jumlah_qty;
-                                            String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                                            String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                                            String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                                            String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
-                                            String diskon_persen = "0";
-                                            String diskon_nominal = "0";
-                                            String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
-                                            String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
-                                            String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                                            String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                                            String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
-                                            String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                                            String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
-                                            tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                                 nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-                                            int rowcount = pane.tabledata.getRowCount();
-                                            rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
-                                            rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
-                                            rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
-                                            rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
-                                            rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
-                                            rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
-                                            rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
-                                            rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
-                                            rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
-                                            rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
-                                            rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
-                                            rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
-                                            dtmtabeldata.addRow(rowtabledata);
-                                            kalkulasitotal();
-                                            pane.edbarcode.setText(kode_barang);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } catch (ParseException ex) {
-                        Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    pane.edbarcode.setText("");
-                    pane.edbarcode.requestFocus();
+                    additemtotable();
                 }
 
             }
@@ -1140,6 +764,392 @@ public class PosframeController {
             }
         });
 
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getID() == KeyEvent.KEY_RELEASED) {
+                    if (e.getKeyCode() == KeyEvent.VK_F2) {
+                        if (pane.edbarcode.isFocusable() == false) {
+                            pane.tabledata.clearSelection();
+                            pane.edbarcode.setText("");
+                            pane.edbarcode.requestFocus();
+                        } else {
+                            additemtotable();
+                        }
+
+                    } else if (e.getKeyCode() == KeyEvent.VK_F9) {
+                        pane.bsimpan.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_F10) {
+                        pane.bpending.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_F11) {
+                        pane.brecall.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_F12) {
+                        pane.bbatal.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_F5) {
+                        pane.bupdate.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        pane.btutup.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_INSERT) {
+                        Staticvar.sfilter = "";
+                        Staticvar.preid = valpelanggan;
+                        Staticvar.prelabel = String.valueOf(pane.cmbpelanggan.getEditor().getItem());
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Insertpos_pane());
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        valpelanggan = Staticvar.resid;
+                        valgolongan = Staticvar.resvalueextended;
+                    }
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void additemtotable() {
+        try {
+            JSONParser jpdata = new JSONParser();
+            String kode_barcode = pane.edbarcode.getText().toLowerCase();
+            if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                try {
+
+                    String splitcode[] = pane.edbarcode.getText().toLowerCase().split("x");
+                    if (splitcode.length == 2) {
+                        String pre = splitcode[0];
+                        String post = splitcode[1];
+                        String rawkode_barcode = "";
+                        if (pre.matches("[0-9]+")) {
+                            rawkode_barcode = post;
+                        } else {
+                            rawkode_barcode = pre + "x" + post;
+                        }
+
+                        if (kode_barcode.substring(kode_barcode.length() - 1, kode_barcode.length()).toLowerCase().equals("x")) {
+                            kode_barcode = rawkode_barcode + "x";
+                        } else {
+                            kode_barcode = rawkode_barcode;
+                        }
+
+                    } else if (splitcode.length > 2) {
+                        String pre = splitcode[0];
+                        String post = "";
+                        StringBuilder sbpost = new StringBuilder();
+                        for (int i = 0; i < splitcode.length; i++) {
+                            if (i > 0) {
+                                sbpost.append(splitcode[i]).append("x");
+                            }
+                        }
+                        post = sbpost.toString().substring(0, sbpost.toString().length() - 1);
+                        if (kode_barcode.substring(kode_barcode.length() - 1, kode_barcode.length()).toLowerCase().equals("x")) {
+                            post = post + "x";
+                        }
+                        if (pre.matches("[0-9]+")) {
+                            kode_barcode = post;
+                        } else {
+                            kode_barcode = pre + "x" + post;
+                        }
+                    } else {
+                        String pre = splitcode[0];
+                        String post = "";
+                        if (pre.matches("[0-9]+")) {
+                            kode_barcode = post;
+                        } else {
+                            kode_barcode = pre + post;
+                        }
+                    }
+                } catch (Exception es) {
+                    kode_barcode = "";
+                }
+
+            }
+
+            Staticvar.preid = kode_barcode;
+            String defnilai = "";
+            String cekval = kode_barcode;
+            if (cekval.equals("null") || cekval.equals("")) {
+                defnilai = "";
+            } else {
+                defnilai = kode_barcode;
+            }
+            Staticvar.prelabel = defnilai;
+            Staticvar.sfilter = defnilai;
+            Staticvar.prelabel = defnilai;
+
+            String param = String.format("kode=%s", kode_barcode);
+            Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
+            JSONObject jodataraw = (JSONObject) objdataraw;
+            Object objdata = jodataraw.get("data");
+            JSONArray jadata = (JSONArray) objdata;
+            if (jadata.size() == 1) {
+                for (int i = 0; i < jadata.size(); i++) {
+                    JSONObject jointabeldata = (JSONObject) jadata.get(i);
+                    if (tabeldatalist.isEmpty()) {
+                        String id_barang = String.valueOf(jointabeldata.get("id"));
+                        String kode_barang = String.valueOf(jointabeldata.get("kode"));
+                        String nama_barang = String.valueOf(jointabeldata.get("nama"));
+                        String jumlah_qty = "1";
+                        if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                            String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                            if (pre.matches("[0-9]+")) {
+                                jumlah_qty = pre;
+                            }
+                        }
+                        String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                        String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
+                        String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
+                        String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                        String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
+                        String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                        String diskon_persen = "0";
+                        String diskon_nominal = "0";
+                        String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
+                        String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
+                        String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                        String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
+                        String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                        String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                        String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
+                        tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
+                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                        int rowcount = pane.tabledata.getRowCount();
+                        rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
+                        rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
+                        rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
+                        rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
+                        rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
+                        rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
+                        rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
+                        rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
+                        rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
+                        rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
+                        rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
+                        rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
+                        dtmtabeldata.addRow(rowtabledata);
+                        kalkulasitotal();
+                    } else {
+                        boolean status_ada = true;
+
+                        for (int j = 0; j < tabeldatalist.size(); j++) {
+                            if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
+                                String jumlah_qty = "1";
+                                if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                                    String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                                    if (pre.matches("[0-9]+")) {
+                                        jumlah_qty = pre;
+                                    }
+                                }
+                                int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
+                                tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
+                                pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
+                                kalkulasitotalperrow(j);
+                                status_ada = true;
+                                break;
+                            } else {
+                                status_ada = false;
+                            }
+                        }
+
+                        if (status_ada == false) {
+                            String id_barang = String.valueOf(jointabeldata.get("id"));
+                            String kode_barang = String.valueOf(jointabeldata.get("kode"));
+                            String nama_barang = String.valueOf(jointabeldata.get("nama"));
+                            String jumlah_qty = "1";
+                            if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                                String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                                if (pre.matches("[0-9]+")) {
+                                    jumlah_qty = pre;
+                                }
+                            }
+                            String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                            String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
+                            String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
+                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                            String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
+                            String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                            String diskon_persen = "0";
+                            String diskon_nominal = "0";
+                            String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
+                            String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
+                            String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                            String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
+                            String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                            String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                            String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
+                            tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
+                                 nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                            int rowcount = pane.tabledata.getRowCount();
+                            rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
+                            rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
+                            rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
+                            rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
+                            rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
+                            rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
+                            rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
+                            rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
+                            rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
+                            rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
+                            rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
+                            rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
+                            dtmtabeldata.addRow(rowtabledata);
+                            kalkulasitotal();
+
+                        }
+                    }
+                }
+
+            } else {
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+                if (!Staticvar.reslabel.equals("")) {
+                    JSONParser jpdata2 = new JSONParser();
+                    String param2 = String.format("id=%s", Staticvar.resid);
+                    Object objdataraw2 = jpdata2.parse(ch.getdatadetails("dm/datapersediaan", param2));
+                    JSONObject jodataraw2 = (JSONObject) objdataraw2;
+                    Object objdata2 = jodataraw2.get("data");
+                    JSONArray jadata2 = (JSONArray) objdata2;
+                    for (int i = 0; i < jadata2.size(); i++) {
+                        JSONObject jointabeldata = (JSONObject) jadata2.get(i);
+                        if (tabeldatalist.isEmpty()) {
+                            String id_barang = String.valueOf(jointabeldata.get("id"));
+                            String kode_barang = String.valueOf(jointabeldata.get("kode"));
+
+                            String nama_barang = String.valueOf(jointabeldata.get("nama"));
+                            String jumlah_qty = "1";
+
+                            if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                                String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                                if (pre.matches("[0-9]+")) {
+                                    jumlah_qty = pre;
+                                }
+                            }
+                            String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                            String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
+                            String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
+                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                            String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
+                            String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                            String diskon_persen = "0";
+                            String diskon_nominal = "0";
+                            String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
+                            String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
+                            String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                            String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
+                            String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                            String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                            String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
+                            tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
+                                 nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                            int rowcount = pane.tabledata.getRowCount();
+                            rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
+                            rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
+                            rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
+                            rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
+                            rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
+                            rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
+                            rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
+                            rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
+                            rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
+                            rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
+                            rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
+                            rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
+                            dtmtabeldata.addRow(rowtabledata);
+                            kalkulasitotal();
+                            pane.edbarcode.setText(kode_barang);
+                        } else {
+                            boolean status_ada = true;
+
+                            for (int j = 0; j < tabeldatalist.size(); j++) {
+                                if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
+                                    String jumlah_qty = "1";
+                                    if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                                        String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                                        if (pre.matches("[0-9]+")) {
+                                            jumlah_qty = pre;
+                                        }
+                                    }
+                                    int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
+                                    tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
+                                    pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
+                                    kalkulasitotalperrow(j);
+                                    status_ada = true;
+                                    break;
+                                } else {
+                                    status_ada = false;
+                                }
+                            }
+
+                            if (status_ada == false) {
+                                String id_barang = String.valueOf(jointabeldata.get("id"));
+                                String kode_barang = String.valueOf(jointabeldata.get("kode"));
+
+                                String nama_barang = String.valueOf(jointabeldata.get("nama"));
+                                String jumlah_qty = "1";
+                                if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                                    String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                                    if (pre.matches("[0-9]+")) {
+                                        jumlah_qty = pre;
+                                    }
+                                }
+                                String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                                String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
+                                String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
+                                String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                                String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                                String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
+                                String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                                String diskon_persen = "0";
+                                String diskon_nominal = "0";
+                                String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
+                                String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
+                                String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                                String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
+                                String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                                String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                                String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
+                                tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
+                                     nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                int rowcount = pane.tabledata.getRowCount();
+                                rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
+                                rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
+                                rowtabledata[2] = tabeldatalist.get(rowcount).getJumlah();
+                                rowtabledata[3] = tabeldatalist.get(rowcount).getNama_satuan();
+                                rowtabledata[4] = tabeldatalist.get(rowcount).getHarga_beli();
+                                rowtabledata[5] = tabeldatalist.get(rowcount).getHarga_jual();
+                                rowtabledata[6] = tabeldatalist.get(rowcount).getDiskon_persen();
+                                rowtabledata[7] = tabeldatalist.get(rowcount).getDiskon_nominal();
+                                rowtabledata[8] = tabeldatalist.get(rowcount).getNama_pajak();
+                                rowtabledata[9] = tabeldatalist.get(rowcount).getNama_gudang();
+                                rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
+                                rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
+                                dtmtabeldata.addRow(rowtabledata);
+                                kalkulasitotal();
+                                pane.edbarcode.setText(kode_barang);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        pane.edbarcode.setText("");
+        pane.edbarcode.requestFocus();
     }
 
     private void inserttorow() {
