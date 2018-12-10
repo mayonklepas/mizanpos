@@ -62,7 +62,7 @@ public class PosframeController {
     CrudHelper ch = new CrudHelper();
     Posframe pane;
     String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
-            valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "";
+         valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "";
     int valcheck = 0;
     int tipe_bayar = 0, tipe_jual = 0, status_selesai = 0;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -315,9 +315,9 @@ public class PosframeController {
                 pane.ltotal_pajak.setText("0");
                 pane.ltotal_penjualan.setText("0");
                 if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
-                        || Globalsession.DEFAULT_DISKON_DALAM.equals("")
-                        || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
-                        || Globalsession.DEFAULT_DISKON_DALAM.equals("null")) {
+                     || Globalsession.DEFAULT_DISKON_DALAM.equals("")
+                     || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
+                     || Globalsession.DEFAULT_DISKON_DALAM.equals("null")) {
                     pane.ckdiskon.setSelected(true);
                     valcheck = 0;
                 } else {
@@ -416,8 +416,8 @@ public class PosframeController {
                     String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                     String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                     tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                            nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                            nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                         nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                         nilai_pajak, id_gudang, nama_gudang, keterangan, total));
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
@@ -450,35 +450,35 @@ public class PosframeController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                    + "id_keltrans='22'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&penjualan="
-                    + "id_pelanggan='" + valpelanggan + "'::"
-                    + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                    + "id_gudang='" + valgudang + "'::"
-                    + "total_penjualan='" + total_penjualan_all + "'::"
-                    + "total_uang_muka='0'::"
-                    + "total_pajak='" + total_pajak + "'::"
-                    + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
-                    + "nilai_kurs='1'::"
-                    + "akun_penjualan='" + valakun_penjualan + "'::"
-                    + "akun_diskon='" + valakun_diskon + "'::"
-                    + "akun_uang_muka='" + valakun_uang_muka + "'::"
-                    + "diskon_dalam='" + valcheck + "'::"
-                    + "id_bagian_penjualan='" + valsalesman + "'::"
-                    + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_penjualan='" + tipe_jual + "'::"
-                    + "isorderselesai='" + status_selesai + "'"
-                    + "&" + kirimtexpenjualan();
+                 + "id_keltrans='22'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&penjualan="
+                 + "id_pelanggan='" + valpelanggan + "'::"
+                 + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
+                 + "id_gudang='" + valgudang + "'::"
+                 + "total_penjualan='" + total_penjualan_all + "'::"
+                 + "total_uang_muka='0'::"
+                 + "total_pajak='" + total_pajak + "'::"
+                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "nilai_kurs='1'::"
+                 + "akun_penjualan='" + valakun_penjualan + "'::"
+                 + "akun_diskon='" + valakun_diskon + "'::"
+                 + "akun_uang_muka='" + valakun_uang_muka + "'::"
+                 + "diskon_dalam='" + valcheck + "'::"
+                 + "id_bagian_penjualan='" + valsalesman + "'::"
+                 + "id_termofpayment='" + valtop + "'::"
+                 + "tipe_penjualan='" + tipe_jual + "'::"
+                 + "isorderselesai='" + status_selesai + "'"
+                 + "&" + kirimtexpenjualan();
 
             ch.insertdata("insertorderpenjualan", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
                     int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                            + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (dialog == 0) {
                         Runnable run = new Runnable() {
                             @Override
@@ -517,31 +517,31 @@ public class PosframeController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='22'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&penjualan="
-                    + "id_pelanggan='" + valpelanggan + "'::"
-                    + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                    + "id_gudang='" + valgudang + "'::"
-                    + "total_penjualan='" + total_penjualan_all + "'::"
-                    + "total_uang_muka='0'::"
-                    + "total_pajak='" + total_pajak + "'::"
-                    + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
-                    + "nilai_kurs='1'::"
-                    + "akun_penjualan='" + valakun_penjualan + "'::"
-                    + "akun_biaya='" + valakun_ongkir + "'::"
-                    + "akun_diskon='" + valakun_diskon + "'::"
-                    + "akun_uang_muka='" + valakun_uang_muka + "'::"
-                    + "diskon_dalam='" + valcheck + "'::"
-                    + "id_pengantaran='" + valshipvia + "'::"
-                    + "id_bagian_penjualan='" + valsalesman + "'::"
-                    + "id_termofpayment='" + valtop + "'::"
-                    + "tipe_penjualan='" + tipe_jual + "'::"
-                    + "isorderselesai='" + status_selesai + "'"
-                    + "&" + kirimtexpenjualan();
+                 + "id_keltrans='22'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&penjualan="
+                 + "id_pelanggan='" + valpelanggan + "'::"
+                 + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
+                 + "id_gudang='" + valgudang + "'::"
+                 + "total_penjualan='" + total_penjualan_all + "'::"
+                 + "total_uang_muka='0'::"
+                 + "total_pajak='" + total_pajak + "'::"
+                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "nilai_kurs='1'::"
+                 + "akun_penjualan='" + valakun_penjualan + "'::"
+                 + "akun_biaya='" + valakun_ongkir + "'::"
+                 + "akun_diskon='" + valakun_diskon + "'::"
+                 + "akun_uang_muka='" + valakun_uang_muka + "'::"
+                 + "diskon_dalam='" + valcheck + "'::"
+                 + "id_pengantaran='" + valshipvia + "'::"
+                 + "id_bagian_penjualan='" + valsalesman + "'::"
+                 + "id_termofpayment='" + valtop + "'::"
+                 + "tipe_penjualan='" + tipe_jual + "'::"
+                 + "isorderselesai='" + status_selesai + "'"
+                 + "&" + kirimtexpenjualan();
             ch.updatedata("updateorderpenjualan", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
 
@@ -571,7 +571,7 @@ public class PosframeController {
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
 
                             rawsimpan();
@@ -581,8 +581,8 @@ public class PosframeController {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
                         ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                                + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                                + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                             + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                             + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
                         jd.add(ep);
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -610,16 +610,16 @@ public class PosframeController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
-                    + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                    + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
-                    + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                    + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
-                    + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
-                    + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
-                    + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
-                    + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
-                    + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
-                    + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
+                 + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                 + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
+                 + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
+                 + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
+                 + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
+                 + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
+                 + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
+                 + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
+                 + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
+                 + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
             sb.append("--");
 
         }
@@ -637,9 +637,9 @@ public class PosframeController {
     private void hapusbaris() {
         int row = pane.tabledata.getSelectedRow();
         int dialog = JOptionPane.showConfirmDialog(null,
-                "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                + pane.tabledata.getValueAt(row, gx(nama)),
-                "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+             "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+             + pane.tabledata.getValueAt(row, gx(nama)),
+             "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
         if (dialog == 0) {
             Runnable rn = new Runnable() {
                 @Override
@@ -770,9 +770,9 @@ public class PosframeController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null,
-                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                        + pane.tabledata.getValueAt(row, gx(nama)),
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(nama)),
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
                         @Override
@@ -822,7 +822,7 @@ public class PosframeController {
                             pane.edbarcode.setForeground(Color.GRAY);
                         }
                     }
-                    
+
                     if (e.getKeyCode() == KeyEvent.VK_F2) {
                         if (!pane.edbarcode.isFocusOwner()) {
                             pane.tabledata.clearSelection();
@@ -844,9 +844,44 @@ public class PosframeController {
                     } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         pane.btutup.doClick();
                     } else if (e.getKeyCode() == KeyEvent.VK_INSERT) {
-                        Staticvar.sfilter = "";
-                        Staticvar.preid = valpelanggan;
-                        Staticvar.prelabel = String.valueOf(pane.cmbpelanggan.getEditor().getItem());
+                        if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+                            int crow = pane.tabledata.getRowCount() - 1;
+                            InsertposController.id_barang = tabeldatalist.get(crow).getId_barang();
+                            InsertposController.jumlah = tabeldatalist.get(crow).getJumlah();
+                            InsertposController.satuan = tabeldatalist.get(crow).getNama_satuan();
+                            InsertposController.id_satuan_pengali = tabeldatalist.get(crow).getId_satuan_pengali();
+                            InsertposController.qty_satuan_pengali = tabeldatalist.get(crow).getIsi_satuan();
+                            InsertposController.id_satuan = tabeldatalist.get(crow).getId_satuan();
+                            InsertposController.keterangan = tabeldatalist.get(crow).getKeterangan();
+                            InsertposController.diskon_persen = tabeldatalist.get(crow).getDiskon_persen();
+                            InsertposController.diskon_nominal = tabeldatalist.get(crow).getDiskon_nominal();
+                            InsertposController.harga_persatuan = tabeldatalist.get(crow).getHarga_jual();
+                            InsertposController.golongan = valgolongan;
+                            if (pane.ckdiskon.isSelected()) {
+                                InsertposController.status_diskon_persen = true;
+                            } else {
+                                InsertposController.status_diskon_persen = false;
+                            }
+                        } else {
+                            int crow = pane.tabledata.getSelectedRow();
+                            InsertposController.id_barang = tabeldatalist.get(crow).getId_barang();
+                            InsertposController.jumlah = tabeldatalist.get(crow).getJumlah();
+                            InsertposController.satuan = tabeldatalist.get(crow).getNama_satuan();
+                            InsertposController.id_satuan_pengali = tabeldatalist.get(crow).getId_satuan_pengali();
+                            InsertposController.qty_satuan_pengali = tabeldatalist.get(crow).getIsi_satuan();
+                            InsertposController.id_satuan = tabeldatalist.get(crow).getId_satuan();
+                            InsertposController.keterangan = tabeldatalist.get(crow).getKeterangan();
+                            InsertposController.diskon_persen = tabeldatalist.get(crow).getDiskon_persen();
+                            InsertposController.diskon_nominal = tabeldatalist.get(crow).getDiskon_nominal();
+                            InsertposController.harga_persatuan = tabeldatalist.get(crow).getHarga_jual();
+                            InsertposController.golongan = valgolongan;
+                            if (pane.ckdiskon.isSelected()) {
+                                InsertposController.status_diskon_persen = true;
+                            } else {
+                                InsertposController.status_diskon_persen = false;
+                            }
+                        }
+
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Insertpos_pane());
                         jd.pack();
@@ -854,8 +889,44 @@ public class PosframeController {
                         jd.setLocationRelativeTo(null);
                         jd.setVisible(true);
                         jd.toFront();
-                        valpelanggan = Staticvar.resid;
-                        valgolongan = Staticvar.resvalueextended;
+                        if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+                            int crow = pane.tabledata.getRowCount() - 1;
+                            tabeldatalist.get(crow).setJumlah(InsertposController.jumlah);
+                            tabeldatalist.get(crow).setNama_satuan(InsertposController.satuan);
+                            tabeldatalist.get(crow).setId_satuan(InsertposController.id_satuan);
+                            tabeldatalist.get(crow).setId_satuan_pengali(InsertposController.id_satuan_pengali);
+                            tabeldatalist.get(crow).setIsi_satuan(InsertposController.qty_satuan_pengali);
+                            tabeldatalist.get(crow).setKeterangan(InsertposController.keterangan);
+                            tabeldatalist.get(crow).setDiskon_persen(InsertposController.diskon_persen);
+                            tabeldatalist.get(crow).setDiskon_nominal(InsertposController.diskon_nominal);
+                            tabeldatalist.get(crow).setHarga_jual(InsertposController.harga_persatuan);
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.jumlah), crow, gx(jumlah));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.satuan), crow, gx(satuan));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_persen), crow, gx(diskon_persen));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_nominal), crow, gx(diskon_nominal));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.harga_persatuan), crow, gx(harga_jual));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.keterangan), crow, gx(keterangan));
+                            kalkulasitotalperrow(crow);
+                        } else {
+                            int crow = pane.tabledata.getSelectedRow();
+                            tabeldatalist.get(crow).setJumlah(InsertposController.jumlah);
+                            tabeldatalist.get(crow).setNama_satuan(InsertposController.satuan);
+                            tabeldatalist.get(crow).setId_satuan(InsertposController.id_satuan);
+                            tabeldatalist.get(crow).setId_satuan_pengali(InsertposController.id_satuan_pengali);
+                            tabeldatalist.get(crow).setIsi_satuan(InsertposController.qty_satuan_pengali);
+                            tabeldatalist.get(crow).setKeterangan(InsertposController.keterangan);
+                            tabeldatalist.get(crow).setDiskon_persen(InsertposController.diskon_persen);
+                            tabeldatalist.get(crow).setDiskon_nominal(InsertposController.diskon_nominal);
+                            tabeldatalist.get(crow).setHarga_jual(InsertposController.harga_persatuan);
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.jumlah), crow, gx(jumlah));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.satuan), crow, gx(satuan));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_persen), crow, gx(diskon_persen));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_nominal), crow, gx(diskon_nominal));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.harga_persatuan), crow, gx(harga_jual));
+                            pane.tabledata.setValueAt(String.valueOf(InsertposController.keterangan), crow, gx(keterangan));
+                            kalkulasitotalperrow(crow);
+                        }
+
                     }
                 }
                 return false;
@@ -970,8 +1041,8 @@ public class PosframeController {
                         String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                         String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                         tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                             nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
                         int rowcount = pane.tabledata.getRowCount();
                         rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                         rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1038,8 +1109,8 @@ public class PosframeController {
                             String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                    nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                    nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                 nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
                             int rowcount = pane.tabledata.getRowCount();
                             rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                             rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1107,8 +1178,8 @@ public class PosframeController {
                             String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                    nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                    nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                 nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
                             int rowcount = pane.tabledata.getRowCount();
                             rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                             rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1177,8 +1248,8 @@ public class PosframeController {
                                 String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                                        nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                        nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                     nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
+                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total));
                                 int rowcount = pane.tabledata.getRowCount();
                                 rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                                 rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1206,7 +1277,7 @@ public class PosframeController {
         pane.edbarcode.setText(DefaultCari);
         pane.edbarcode.setForeground(Color.GRAY);
         pane.edbarcode.select(0, 0);
-        
+
         pane.edbarcode.requestFocus();
     }
 
@@ -1217,10 +1288,10 @@ public class PosframeController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, gx(kode)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(satuan)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
+             || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(satuan)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
@@ -1395,8 +1466,8 @@ public class PosframeController {
     public class Entitytabledata {
 
         String id_barang, kode_barang, nama_barang, jumlah,
-                id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
-                id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
+             id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
+             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
 
         public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
             this.id_barang = id_barang;

@@ -94,7 +94,7 @@ public class Posframe extends javax.swing.JFrame {
         bupdate = new javax.swing.JButton();
         dtanggal = new com.toedter.calendar.JDateChooser();
         ckdiskon = new javax.swing.JCheckBox();
-        ckdiskon1 = new javax.swing.JCheckBox();
+        ckjenisbayar = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -558,8 +558,8 @@ public class Posframe extends javax.swing.JFrame {
         ckdiskon.setBackground(new java.awt.Color(255, 255, 255));
         ckdiskon.setText("Diskon (%)");
 
-        ckdiskon1.setBackground(new java.awt.Color(255, 255, 255));
-        ckdiskon1.setText("Tunai");
+        ckjenisbayar.setBackground(new java.awt.Color(255, 255, 255));
+        ckjenisbayar.setText("Tunai");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -594,7 +594,7 @@ public class Posframe extends javax.swing.JFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(bcari_pelanggan)
                                                 .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(ckdiskon1, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                            .addComponent(ckjenisbayar, javax.swing.GroupLayout.Alignment.TRAILING)))))
                             .addComponent(edbarcode)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,7 +635,7 @@ public class Posframe extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel9)
                             .addComponent(edno_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckdiskon1))
+                            .addComponent(ckjenisbayar))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -774,7 +774,7 @@ public class Posframe extends javax.swing.JFrame {
     public javax.swing.JButton btutup;
     public javax.swing.JButton bupdate;
     public javax.swing.JCheckBox ckdiskon;
-    public javax.swing.JCheckBox ckdiskon1;
+    public javax.swing.JCheckBox ckjenisbayar;
     public javax.swing.JComboBox<String> cmbpelanggan;
     public com.toedter.calendar.JDateChooser dtanggal;
     public javax.swing.JTextField edbarcode;

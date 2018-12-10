@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.innerpanel.penjualan;
 
+import mizanposapp.controller.innerpanel.penjualan.InsertposController;
+
 /**
  *
  * @author Minami
@@ -16,6 +18,7 @@ public class Insertpos_pane extends javax.swing.JPanel {
      */
     public Insertpos_pane() {
         initComponents();
+        new InsertposController(this);
     }
 
     /**
@@ -53,7 +56,7 @@ public class Insertpos_pane extends javax.swing.JPanel {
         edjumlah.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel2.setText("Satuan [F12]");
+        jLabel2.setText("Satuan [F2]");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel3.setText("Diskon [F3]");
@@ -73,6 +76,7 @@ public class Insertpos_pane extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel8.setText(":");
 
+        edsatuan.setEditable(false);
         edsatuan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
         eddiskon.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -113,7 +117,7 @@ public class Insertpos_pane extends javax.swing.JPanel {
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                                 .addComponent(jLabel6))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
