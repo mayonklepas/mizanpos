@@ -523,41 +523,6 @@ public class PosframeController {
         });
     }
 
-    private void hapusbaris() {
-        int row = pane.tabledata.getSelectedRow();
-        int dialog = JOptionPane.showConfirmDialog(null,
-             "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-             + pane.tabledata.getValueAt(row, gx(nama)),
-             "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-        if (dialog == 0) {
-            Runnable rn = new Runnable() {
-                @Override
-                public void run() {
-                    tabeldatalist.remove(row);
-                    dtmtabeldata.removeRow(row);
-                    kalkulasitotal();
-                    if (row >= 0) {
-                        pane.tabledata.changeSelection(0, 0, false, false);
-                    }
-                }
-            };
-            SwingUtilities.invokeLater(rn);
-        }
-
-    }
-
-    private void tambahbaris() {
-        int lastrow = pane.tabledata.getRowCount() - 1;
-        if (lastrow < 0) {
-            tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-            dtmtabeldata.addRow(rowtabledata);
-            pane.tabledata.requestFocus();
-            pane.tabledata.changeSelection(1, 0, false, false);
-        } else {
-            addautorow(lastrow);
-        }
-    }
-
     private void tutup() {
         pane.btutup.addActionListener(new ActionListener() {
             @Override
@@ -578,6 +543,7 @@ public class PosframeController {
 
     private void caripelanggan() {
         pane.bcari_pelanggan.addActionListener((ActionEvent e) -> {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             Staticvar.sfilter = "";
             Staticvar.preid = valpelanggan;
             Staticvar.resvalueextended = valgolongan;
@@ -593,12 +559,14 @@ public class PosframeController {
             valgolongan = Staticvar.resvalueextended;
             pane.edpelanggan.setText(Staticvar.reslabel);
             pane.edbarcode.requestFocus();
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
 
     }
 
     private void carisalesman() {
         pane.bcari_salesman.addActionListener((ActionEvent e) -> {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             Staticvar.sfilter = "";
             Staticvar.preid = valsalesman;
             Staticvar.prelabel = pane.edsalesman.getText();
@@ -611,12 +579,14 @@ public class PosframeController {
             jd.toFront();
             valsalesman = Staticvar.resid;
             pane.edsalesman.setText(Staticvar.reslabel);
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
 
     }
 
     private void caridepartment() {
         pane.bcari_dept.addActionListener((ActionEvent e) -> {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             Staticvar.sfilter = "";
             Staticvar.preid = valdept;
             Staticvar.prelabel = pane.eddept.getText();
@@ -629,12 +599,14 @@ public class PosframeController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
 
     }
 
     private void carigudang() {
         pane.bcari_gudang.addActionListener((ActionEvent e) -> {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             Staticvar.sfilter = "";
             Staticvar.preid = valgudang;
             Staticvar.prelabel = pane.edgudang.getText();
@@ -647,6 +619,7 @@ public class PosframeController {
             jd.toFront();
             valgudang = Staticvar.resid;
             pane.edgudang.setText(Staticvar.reslabel);
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
 
     }
