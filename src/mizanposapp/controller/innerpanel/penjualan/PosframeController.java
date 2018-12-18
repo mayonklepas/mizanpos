@@ -60,7 +60,7 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class PosframeController {
-    
+
     String DefaultCari = "Barcode Scanner Atau Kode Barang [F2]";
     String id;
     CrudHelper ch = new CrudHelper();
@@ -108,7 +108,7 @@ public class PosframeController {
     String keterangan = "keterangan";
     String total = "total";
     boolean panggil = true;
-    
+
     KeyEventDispatcher keydis = new KeyEventDispatcher() {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
@@ -133,7 +133,7 @@ public class PosframeController {
                         pane.edbarcode.setForeground(Color.GRAY);
                     }
                 }
-                
+
                 if (e.getKeyCode() == KeyEvent.VK_F2) {
                     if (!pane.edbarcode.isFocusOwner()) {
                         pane.tabledata.clearSelection();
@@ -141,7 +141,7 @@ public class PosframeController {
                     } else {
                         additemtotable();
                     }
-                    
+
                 } else if (e.getKeyCode() == KeyEvent.VK_F9) {
                     pane.bsimpan.doClick();
                 } else if (e.getKeyCode() == KeyEvent.VK_F10) {
@@ -195,7 +195,7 @@ public class PosframeController {
                             InsertposController.status_diskon_persen = false;
                         }
                     }
-                    
+
                     JDialog jd = new JDialog(new Mainmenu());
                     jd.add(new Insertpos_pane());
                     jd.pack();
@@ -240,17 +240,17 @@ public class PosframeController {
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.keterangan), crow, gx(keterangan));
                         kalkulasitotalperrow(crow);
                     }
-                    
+
                     KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
                 }
             }
             return false;
         }
     };
-    
+
     public PosframeController() {
     }
-    
+
     public PosframeController(Posframe pane) {
         this.pane = pane;
         skinning();
@@ -268,23 +268,23 @@ public class PosframeController {
         keyfunction();
         carigudang();
         tutup();
-        
+
     }
-    
+
     private void loadsession() {
         valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
         valakun_uang_muka = Globalsession.AKUNUANGMUKAPENJUALAN;
         valakun_diskon = Globalsession.AKUNDISKONPENJUALAN;
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPENJUALAN;
-        
+
     }
-    
+
     private void skinning() {
         pane.dtanggal.setDateFormatString("dd MMMM yyyy");
         pane.dtanggal.setDate(new Date());
         pane.dtanggal.getDateEditor().setEnabled(false);
     }
-    
+
     private void getkodetransaksi() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -299,21 +299,21 @@ public class PosframeController {
                         pane.edno_transaksi.setText(String.valueOf(jo.get("no_transaksi")));
                         no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
                     }
-                    
+
                 } catch (ParseException ex) {
                     Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
-        
+
     }
-    
+
     private void customtable() {
         pane.tabledata.setDefaultEditor(Object.class, null);
         pane.tabledata.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-        
+
     }
-    
+
     private void setPlaceHolder() {
         pane.edbarcode.setForeground(Color.GRAY);
         pane.edbarcode.addFocusListener(new FocusListener() {
@@ -325,7 +325,7 @@ public class PosframeController {
                     pane.edbarcode.setForeground(Color.GRAY);
                 }
             }
-            
+
             @Override
             public void focusLost(FocusEvent e) {
                 if (pane.edbarcode.getText().isEmpty()) {
@@ -335,7 +335,7 @@ public class PosframeController {
             }
         });
     }
-    
+
     private void checkandcombocontrol() {
         pane.ckdiskon.addActionListener(new ActionListener() {
             @Override
@@ -348,7 +348,7 @@ public class PosframeController {
                     hidetable(gx(diskon_nominal));
                     showtable(gx(diskon_persen));
                     valcheck = 0;
-                    
+
                 } else {
                     hidetable(gx(diskon_persen));
                     showtable(gx(diskon_nominal));
@@ -356,9 +356,9 @@ public class PosframeController {
                 }
             }
         });
-        
+
     }
-    
+
     private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -391,37 +391,37 @@ public class PosframeController {
                 lsoldsize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 lshide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
             }
-            
+
             setheader();
         } catch (ParseException ex) {
             Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private void setheader() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         TableColumnModel tcm = pane.tabledata.getColumnModel();
-        
+
         double lebar = d.getWidth() - Staticvar.lebarPanelMenu;;
         double lebarAll = 0;
-        
+
         for (int i = 0; i < lshide.size(); i++) {
             if (lshide.get(i) == 0) {
                 hidetable(i);
             }
         }
-        
+
         for (int i = 0; i < lsresize.size(); i++) {
-            
+
             if (cekcolomnol(i)) {
                 continue;
             }
-            
+
             int setsize = lsresize.get(i);
             lebarAll = lebarAll + setsize;
         }
-        
+
         double pembagi = lebar / lebarAll;
         double lebarAllNew = 0;
         for (int i = 0; i < lsresize.size() - 1; i++) {
@@ -431,7 +431,7 @@ public class PosframeController {
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
-                
+
                 lebarAllNew = lebarAllNew + wi;
             } else {
                 int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
@@ -440,7 +440,7 @@ public class PosframeController {
             }
         }
     }
-    
+
     private void loaddata() {
         customtable();
         loadheader();
@@ -481,12 +481,12 @@ public class PosframeController {
                 showtable(gx(diskon_persen));
                 hidetable(gx(diskon_nominal));
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void simpandata() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
@@ -501,7 +501,7 @@ public class PosframeController {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                              + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
-                            
+
                         }
                     } else if (tahunbulan < periodetahunnulan) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -516,13 +516,13 @@ public class PosframeController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
-                        
+
                     }
                 }
             }
         });
     }
-    
+
     private void hapusbaris() {
         int row = pane.tabledata.getSelectedRow();
         int dialog = JOptionPane.showConfirmDialog(null,
@@ -543,9 +543,9 @@ public class PosframeController {
             };
             SwingUtilities.invokeLater(rn);
         }
-        
+
     }
-    
+
     private void tambahbaris() {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (lastrow < 0) {
@@ -557,7 +557,7 @@ public class PosframeController {
             addautorow(lastrow);
         }
     }
-    
+
     private void tutup() {
         pane.btutup.addActionListener(new ActionListener() {
             @Override
@@ -571,11 +571,11 @@ public class PosframeController {
                         pane.dispose();
                     }
                 });
-                
+
             }
         });
     }
-    
+
     private void caripelanggan() {
         pane.bcari_pelanggan.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -594,9 +594,9 @@ public class PosframeController {
             pane.edpelanggan.setText(Staticvar.reslabel);
             pane.edbarcode.requestFocus();
         });
-        
+
     }
-    
+
     private void carisalesman() {
         pane.bcari_salesman.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -612,9 +612,9 @@ public class PosframeController {
             valsalesman = Staticvar.resid;
             pane.edsalesman.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void caridepartment() {
         pane.bcari_dept.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -630,9 +630,9 @@ public class PosframeController {
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void carigudang() {
         pane.bcari_gudang.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -648,9 +648,9 @@ public class PosframeController {
             valgudang = Staticvar.resid;
             pane.edgudang.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
         Staticvar.preid = previd;
@@ -663,7 +663,7 @@ public class PosframeController {
         jd.setVisible(true);
         jd.toFront();
     }
-    
+
     private void keyfunction() {
         pane.edbarcode.addKeyListener(new KeyAdapter() {
             @Override
@@ -699,7 +699,7 @@ public class PosframeController {
                             } else {
                                 BayarposController.ispersen = false;
                             }
-                            
+
                             if (pane.ckjenisbayar.isSelected()) {
                                 BayarposController.istunai = true;
                             } else {
@@ -715,6 +715,7 @@ public class PosframeController {
                             int rowcount = pane.tabledata.getRowCount();
                             if (Staticvar.isupdate == true) {
                                 for (int i = 0; i < rowcount; i++) {
+                                    tabeldatalist.remove(0);
                                     dtmtabeldata.removeRow(0);
                                 }
                                 kalkulasitotal();
@@ -725,15 +726,15 @@ public class PosframeController {
                     } else {
                         additemtotable();
                     }
-                    
+
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     pane.tabledata.requestFocus();
                     pane.tabledata.changeSelection(0, 0, false, false);
                 }
-                
+
             }
         });
-        
+
         pane.tabledata.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -744,9 +745,9 @@ public class PosframeController {
                     }
                 }
             }
-            
+
         });
-        
+
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
         pane.tabledata.getActionMap().put("hapus", new AbstractAction() {
             @Override
@@ -772,18 +773,18 @@ public class PosframeController {
                 }
             }
         });
-        
+
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
-        
+
     }
-    
+
     private void additemtotable() {
         try {
             JSONParser jpdata = new JSONParser();
             String kode_barcode = pane.edbarcode.getText().toLowerCase();
             if (pane.edbarcode.getText().toLowerCase().contains("x")) {
                 try {
-                    
+
                     String splitcode[] = pane.edbarcode.getText().toLowerCase().split("x");
                     if (splitcode.length == 2) {
                         String pre = splitcode[0];
@@ -794,13 +795,13 @@ public class PosframeController {
                         } else {
                             rawkode_barcode = pre + "x" + post;
                         }
-                        
+
                         if (kode_barcode.substring(kode_barcode.length() - 1, kode_barcode.length()).toLowerCase().equals("x")) {
                             kode_barcode = rawkode_barcode + "x";
                         } else {
                             kode_barcode = rawkode_barcode;
                         }
-                        
+
                     } else if (splitcode.length > 2) {
                         String pre = splitcode[0];
                         String post = "";
@@ -831,9 +832,9 @@ public class PosframeController {
                 } catch (Exception es) {
                     kode_barcode = "";
                 }
-                
+
             }
-            
+
             Staticvar.preid = kode_barcode;
             String defnilai = "";
             String cekval = kode_barcode;
@@ -845,7 +846,7 @@ public class PosframeController {
             Staticvar.prelabel = defnilai;
             Staticvar.sfilter = defnilai;
             Staticvar.prelabel = defnilai;
-            
+
             String param = String.format("kode=%s", kode_barcode);
             Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
             JSONObject jodataraw = (JSONObject) objdataraw;
@@ -901,7 +902,7 @@ public class PosframeController {
                         kalkulasitotal();
                     } else {
                         boolean status_ada = true;
-                        
+
                         for (int j = 0; j < tabeldatalist.size(); j++) {
                             if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
                                 String jumlah_qty = "1";
@@ -921,7 +922,7 @@ public class PosframeController {
                                 status_ada = false;
                             }
                         }
-                        
+
                         if (status_ada == false) {
                             String id_barang = String.valueOf(jointabeldata.get("id"));
                             String kode_barang = String.valueOf(jointabeldata.get("kode"));
@@ -967,11 +968,11 @@ public class PosframeController {
                             rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
                             dtmtabeldata.addRow(rowtabledata);
                             kalkulasitotal();
-                            
+
                         }
                     }
                 }
-                
+
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 jd.add(new Popupcari("persediaan", "popupdaftarpersediaan", "Daftar Persediaan"));
@@ -992,10 +993,10 @@ public class PosframeController {
                         if (tabeldatalist.isEmpty()) {
                             String id_barang = String.valueOf(jointabeldata.get("id"));
                             String kode_barang = String.valueOf(jointabeldata.get("kode"));
-                            
+
                             String nama_barang = String.valueOf(jointabeldata.get("nama"));
                             String jumlah_qty = "1";
-                            
+
                             if (pane.edbarcode.getText().toLowerCase().contains("x")) {
                                 String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
                                 if (pre.matches("[0-9]+")) {
@@ -1039,7 +1040,7 @@ public class PosframeController {
                             pane.edbarcode.setText(kode_barang);
                         } else {
                             boolean status_ada = true;
-                            
+
                             for (int j = 0; j < tabeldatalist.size(); j++) {
                                 if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
                                     String jumlah_qty = "1";
@@ -1059,11 +1060,11 @@ public class PosframeController {
                                     status_ada = false;
                                 }
                             }
-                            
+
                             if (status_ada == false) {
                                 String id_barang = String.valueOf(jointabeldata.get("id"));
                                 String kode_barang = String.valueOf(jointabeldata.get("kode"));
-                                
+
                                 String nama_barang = String.valueOf(jointabeldata.get("nama"));
                                 String jumlah_qty = "1";
                                 if (pane.edbarcode.getText().toLowerCase().contains("x")) {
@@ -1118,14 +1119,14 @@ public class PosframeController {
         pane.edbarcode.setText(DefaultCari);
         pane.edbarcode.setForeground(Color.GRAY);
         pane.edbarcode.select(0, 0);
-        
+
         pane.edbarcode.requestFocus();
     }
-    
+
     private void inserttorow() {
-        
+
     }
-    
+
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, gx(kode)).equals("")
@@ -1141,7 +1142,7 @@ public class PosframeController {
             }
         }
     }
-    
+
     private void hidetable(int index) {
         TableColumn col = pane.tabledata.getColumnModel().getColumn(index);
         col.setMinWidth(0);
@@ -1149,7 +1150,7 @@ public class PosframeController {
         col.setWidth(0);
         col.setPreferredWidth(0);
     }
-    
+
     private void showtable(int index) {
         TableColumn col = pane.tabledata.getColumnModel().getColumn(index);
         col.setMinWidth(100);
@@ -1157,7 +1158,7 @@ public class PosframeController {
         col.setWidth(100);
         col.setPreferredWidth(100);
     }
-    
+
     private void columnfunction(int row, int col, boolean addrow) {
         if (pane.tabledata.getValueAt(row, col).equals("")) {
             return;
@@ -1178,7 +1179,7 @@ public class PosframeController {
             }
         }
     }
-    
+
     private String kirimtexpenjualan() {
         StringBuilder sb = new StringBuilder();
         sb.append("penjualan_detail=");
@@ -1201,34 +1202,34 @@ public class PosframeController {
                  + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
                  + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
             sb.append("--");
-            
+
         }
         String hasil = sb.toString().substring(0, sb.toString().length() - 2);
         return hasil;
     }
-    
+
     private void kalkulasitotal() {
         int jumlah_row = pane.tabledata.getRowCount();
         subtotal = 0;
         total_penjualan_all = 0;
         total_pajak = 0;
-        
+
         for (int i = 0; i < jumlah_row; i++) {
             double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, 11));
             subtotal = subtotal + total_beli_masing;
-            
+
             double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, 11)) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
-        
+
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.lsubtotal.setText(nf.format(subtotal));
         total_penjualan_all = subtotal + ConvertFunc.ToDouble(pajak);
-        
+
         pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
         pane.ltota_lbelanja.setText(nf.format(total_penjualan_all));
     }
-    
+
     private void kalkulasitotalperrow(int row) {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
@@ -1254,7 +1255,7 @@ public class PosframeController {
                 pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             }
         } else {
-            
+
             double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
             double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
             double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
@@ -1264,7 +1265,7 @@ public class PosframeController {
         }
         kalkulasitotal();
     }
-    
+
     private double kalkulasitotalperindex(String rawdiskonpersen, String rawdiskonnominal, String rawqty, String rawharga, String isisatuan) {
         double total = 0;
         if (pane.ckdiskon.isSelected() == true) {
@@ -1286,7 +1287,7 @@ public class PosframeController {
                 total = qty * (harga - (diskon / 100 * harga));
             }
         } else {
-            
+
             double qty = ConvertFunc.ToDouble(rawqty);
             double harga = ConvertFunc.ToDouble(rawharga);
             double diskon = ConvertFunc.ToDouble(rawdiskonnominal);
@@ -1294,11 +1295,11 @@ public class PosframeController {
         }
         return total;
     }
-    
+
     private String emptycellcheck(int row, int col) {
         String ret = "";
         String value = String.valueOf(pane.tabledata.getValueAt(row, col));
-        
+
         try {
             if (value.equals("") || value.equals("null")) {
                 ret = "0";
@@ -1308,10 +1309,10 @@ public class PosframeController {
         } catch (NullPointerException e) {
             ret = "0";
         }
-        
+
         return ret;
     }
-    
+
     private boolean cekcolomnol(int colom) {
         boolean result = false;
         if (lshide.get(colom) == 0) {
@@ -1321,23 +1322,23 @@ public class PosframeController {
         }
         return result;
     }
-    
+
     private double gethargajual(String id_inv, String id_satuan, String qty) {
         String param = String.format("id_golongan=%s&id_inv=%s&id_satuan=%s&qty=%s", valgolongan, id_inv, id_satuan, qty);
         String hargajual = ch.getdatadetails("gethargajual", param);
         return Double.parseDouble(hargajual);
     }
-    
+
     private int gx(String columname) {
         return listheadername.indexOf(columname);
     }
-    
+
     public class Entitytabledata {
-        
+
         String id_barang, kode_barang, nama_barang, jumlah,
              id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
              id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
-        
+
         public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
             this.id_barang = id_barang;
             this.kode_barang = kode_barang;
@@ -1359,158 +1360,158 @@ public class PosframeController {
             this.keterangan = keterangan;
             this.total = total;
         }
-        
+
         public String getId_barang() {
             return id_barang;
         }
-        
+
         public void setId_barang(String id_barang) {
             this.id_barang = id_barang;
         }
-        
+
         public String getKode_barang() {
             return kode_barang;
         }
-        
+
         public void setKode_barang(String kode_barang) {
             this.kode_barang = kode_barang;
         }
-        
+
         public String getNama_barang() {
             return nama_barang;
         }
-        
+
         public void setNama_barang(String nama_barang) {
             this.nama_barang = nama_barang;
         }
-        
+
         public String getJumlah() {
             return jumlah;
         }
-        
+
         public void setJumlah(String jumlah) {
             this.jumlah = jumlah;
         }
-        
+
         public String getId_satuan() {
             return id_satuan;
         }
-        
+
         public void setId_satuan(String id_satuan) {
             this.id_satuan = id_satuan;
         }
-        
+
         public String getNama_satuan() {
             return nama_satuan;
         }
-        
+
         public void setNama_satuan(String nama_satuan) {
             this.nama_satuan = nama_satuan;
         }
-        
+
         public String getIsi_satuan() {
             return isi_satuan;
         }
-        
+
         public void setIsi_satuan(String isi_satuan) {
             this.isi_satuan = isi_satuan;
         }
-        
+
         public String getId_satuan_pengali() {
             return id_satuan_pengali;
         }
-        
+
         public void setId_satuan_pengali(String id_satuan_pengali) {
             this.id_satuan_pengali = id_satuan_pengali;
         }
-        
+
         public String getHarga_beli() {
             return harga_beli;
         }
-        
+
         public void setHarga_beli(String harga_beli) {
             this.harga_beli = harga_beli;
         }
-        
+
         public String getHarga_jual() {
             return harga_jual;
         }
-        
+
         public void setHarga_jual(String harga_jual) {
             this.harga_jual = harga_jual;
         }
-        
+
         public String getDiskon_persen() {
             return diskon_persen;
         }
-        
+
         public void setDiskon_persen(String diskon_persen) {
             this.diskon_persen = diskon_persen;
         }
-        
+
         public String getDiskon_nominal() {
             return diskon_nominal;
         }
-        
+
         public void setDiskon_nominal(String diskon_nominal) {
             this.diskon_nominal = diskon_nominal;
         }
-        
+
         public String getId_pajak() {
             return id_pajak;
         }
-        
+
         public void setId_pajak(String id_pajak) {
             this.id_pajak = id_pajak;
         }
-        
+
         public String getNama_pajak() {
             return nama_pajak;
         }
-        
+
         public void setNama_pajak(String nama_pajak) {
             this.nama_pajak = nama_pajak;
         }
-        
+
         public String getNilai_pajak() {
             return nilai_pajak;
         }
-        
+
         public void setNilai_pajak(String nilai_pajak) {
             this.nilai_pajak = nilai_pajak;
         }
-        
+
         public String getId_gudang() {
             return id_gudang;
         }
-        
+
         public void setId_gudang(String id_gudang) {
             this.id_gudang = id_gudang;
         }
-        
+
         public String getNama_gudang() {
             return nama_gudang;
         }
-        
+
         public void setNama_gudang(String nama_gudang) {
             this.nama_gudang = nama_gudang;
         }
-        
+
         public String getKeterangan() {
             return keterangan;
         }
-        
+
         public void setKeterangan(String keterangan) {
             this.keterangan = keterangan;
         }
-        
+
         public String getTotal() {
             return total;
         }
-        
+
         public void setTotal(String total) {
             this.total = total;
         }
-        
+
     }
 }
