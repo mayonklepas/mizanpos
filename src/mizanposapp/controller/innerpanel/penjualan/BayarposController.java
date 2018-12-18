@@ -420,10 +420,10 @@ public class BayarposController {
             }
 
             if (istunai) {
-                tipe_beli = "1";
+                tipe_beli = "0";
                 uang_muka = "0";
             } else {
-                tipe_beli = "0";
+                tipe_beli = "1";
                 uang_muka = pane.edbayar.getText();
             }
 

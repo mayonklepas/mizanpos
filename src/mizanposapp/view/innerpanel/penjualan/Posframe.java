@@ -513,6 +513,11 @@ public class Posframe extends javax.swing.JFrame {
 
         btutup.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btutup.setText("[ESC] Tutup");
+        btutup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btutupActionPerformed(evt);
+            }
+        });
 
         bbatal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bbatal.setText("[F12] Batal");
@@ -786,6 +791,11 @@ public class Posframe extends javax.swing.JFrame {
     private void bcari_gudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcari_gudangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bcari_gudangActionPerformed
+
+    private void btutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btutupActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btutupActionPerformed
 
     /**
      * @param args the command line arguments

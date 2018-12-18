@@ -125,6 +125,7 @@ public class PosframeController {
         //batal();
         keyfunction();
         carigudang();
+        batal();
 
     }
 
@@ -422,8 +423,9 @@ public class PosframeController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "22", String.valueOf(no_urut));
+                        String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
+
                     }
                 });
 
@@ -447,6 +449,7 @@ public class PosframeController {
             valpelanggan = Staticvar.resid;
             valgolongan = Staticvar.resvalueextended;
             pane.edpelanggan.setText(Staticvar.reslabel);
+            pane.edbarcode.requestFocus();
         });
 
     }
@@ -571,6 +574,7 @@ public class PosframeController {
                                     dtmtabeldata.removeRow(0);
                                 }
                                 kalkulasitotal();
+                                getkodetransaksi();
                             }
                         }
                     } else {
@@ -636,14 +640,6 @@ public class PosframeController {
                                 pane.edbarcode.setForeground(Color.GRAY);
                             }
                         }
-                        /*else if (pane.edbarcode.getText().equals(DefaultCari)) {
-                            pane.edbarcode.setText("");
-                            pane.edbarcode.setForeground(Color.BLACK);
-                        } else if (pane.edbarcode.getText().equals("")) {
-                            pane.edbarcode.setText(DefaultCari);
-                            pane.edbarcode.select(0, 0);
-                            pane.edbarcode.setForeground(Color.GRAY);
-                        }*/
                     }
                 }
                 if (e.getID() == KeyEvent.KEY_PRESSED) {
