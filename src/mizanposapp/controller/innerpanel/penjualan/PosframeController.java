@@ -750,6 +750,7 @@ public class PosframeController {
 
     private void additemtotable() {
         try {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             JSONParser jpdata = new JSONParser();
             String kode_barcode = pane.edbarcode.getText().toLowerCase();
             if (pane.edbarcode.getText().toLowerCase().contains("x")) {
@@ -1083,6 +1084,7 @@ public class PosframeController {
                     }
                 }
             }
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         } catch (ParseException ex) {
             Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
         }
