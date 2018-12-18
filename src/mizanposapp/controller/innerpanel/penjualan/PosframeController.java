@@ -737,9 +737,6 @@ public class PosframeController {
                             tabeldatalist.remove(row);
                             dtmtabeldata.removeRow(row);
                             kalkulasitotal();
-                            if (row >= 0) {
-                                pane.tabledata.changeSelection(0, 0, false, false);
-                            }
                         }
                     };
                     SwingUtilities.invokeLater(rn);
