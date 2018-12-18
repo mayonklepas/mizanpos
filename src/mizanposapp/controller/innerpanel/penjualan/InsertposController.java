@@ -37,6 +37,21 @@ public class InsertposController {
     public static boolean status_diskon_persen = true;
     public static String golongan, id_barang, jumlah, id_satuan, satuan, id_satuan_pengali, qty_satuan_pengali, diskon_persen, diskon_nominal, harga_persatuan, keterangan;
 
+    KeyEventDispatcher keydis = new KeyEventDispatcher() {
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                if (e.getKeyCode() == KeyEvent.VK_F2) {
+                    carisatuan();
+                } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    pane.bbatal.doClick();
+                }
+
+            }
+            return false;
+        }
+    };
+
     public InsertposController(Insertpos_pane pane) {
         this.pane = pane;
         loaddata();
@@ -61,15 +76,7 @@ public class InsertposController {
 
     private void kontrol() {
 
-        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        pane.getInputMap().put(KeyStroke.getKeyStroke("F2"), "F2");
-        pane.getActionMap().put("F2", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carisatuan();
-            }
-        });
-
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         pane.edjumlah.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -81,8 +88,6 @@ public class InsertposController {
                         pane.eddiskon2.requestFocus();
                         pane.eddiskon2.selectAll();
                     }
-                } else if (e.getKeyCode() == KeyEvent.VK_F2) {
-                    carisatuan();
                 }
             }
 
@@ -94,8 +99,6 @@ public class InsertposController {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     pane.edharga_persatuan.requestFocus();
                     pane.edharga_persatuan.selectAll();
-                } else if (e.getKeyCode() == KeyEvent.VK_F2) {
-                    carisatuan();
                 }
             }
 
@@ -107,8 +110,6 @@ public class InsertposController {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     pane.edharga_persatuan.requestFocus();
                     pane.edharga_persatuan.selectAll();
-                } else if (e.getKeyCode() == KeyEvent.VK_F2) {
-                    carisatuan();
                 }
             }
 
@@ -120,8 +121,6 @@ public class InsertposController {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     pane.edketerangan.requestFocus();
                     pane.edketerangan.selectAll();
-                } else if (e.getKeyCode() == KeyEvent.VK_F2) {
-                    carisatuan();
                 }
             }
 
@@ -132,8 +131,6 @@ public class InsertposController {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     pane.bok.doClick();
-                } else if (e.getKeyCode() == KeyEvent.VK_F2) {
-                    carisatuan();
                 }
             }
 
@@ -142,6 +139,7 @@ public class InsertposController {
         pane.bok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                 jumlah = pane.edjumlah.getText();
                 satuan = pane.edsatuan.getText();
                 diskon_persen = pane.eddiskon.getText();
@@ -156,6 +154,7 @@ public class InsertposController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }

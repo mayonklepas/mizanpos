@@ -6,6 +6,8 @@
 package mizanposapp.controller.innerpanel.penjualan;
 
 import java.awt.Dialog;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -57,6 +59,34 @@ public class BayarposController {
     public static ArrayList<PosframeController.Entitytabledata> tabeldatalist;
 
     ArrayList<Entitycombo> pembayaranlist = new ArrayList<>();
+
+    KeyEventDispatcher keydis = new KeyEventDispatcher() {
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                if (e.getKeyCode() == KeyEvent.VK_F5) {
+                    pane.edbiaya_lain.requestFocus();
+                    pane.edbiaya_lain.selectAll();
+                } else if (e.getKeyCode() == KeyEvent.VK_F6) {
+                    if (ispersen == true) {
+                        pane.eddiskon_persen.requestFocus();
+                        pane.eddiskon_persen.selectAll();
+                    } else {
+                        pane.eddiskon_nominal.requestFocus();
+                        pane.eddiskon_nominal.selectAll();
+                    }
+                } else if (e.getKeyCode() == KeyEvent.VK_F7) {
+                    pane.edbayar.requestFocus();
+                    pane.edbayar.selectAll();
+                } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    pane.bbatal.doClick();
+                } else if (e.getKeyCode() == KeyEvent.VK_F8) {
+                    pane.cmb_pembayaran.requestFocus();
+                }
+            }
+            return false;
+        }
+    };
 
     public BayarposController(Bayarpos_pane pane) {
         this.pane = pane;
@@ -118,15 +148,8 @@ public class BayarposController {
     }
 
     private void onfocusbykey() {
-        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        pane.getInputMap().put(KeyStroke.getKeyStroke("F5"), "F5");
-        pane.getActionMap().put("F5", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pane.edbiaya_lain.requestFocus();
-                pane.edbiaya_lain.selectAll();
-            }
-        });
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
 
         pane.edbiaya_lain.addKeyListener(new KeyAdapter() {
             @Override
@@ -150,22 +173,6 @@ public class BayarposController {
                 }
             }
 
-        });
-
-        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        pane.getInputMap().put(KeyStroke.getKeyStroke("F6"), "F6");
-        pane.getActionMap().put("F6", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (ispersen == true) {
-                    pane.eddiskon_persen.requestFocus();
-                    pane.eddiskon_persen.selectAll();
-                } else {
-                    pane.eddiskon_nominal.requestFocus();
-                    pane.eddiskon_nominal.selectAll();
-                }
-
-            }
         });
 
         pane.eddiskon_persen.addKeyListener(new KeyAdapter() {
@@ -194,18 +201,6 @@ public class BayarposController {
                 }
             }
 
-        });
-
-        pane.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        pane.getInputMap().put(KeyStroke.getKeyStroke("F7"), "F7");
-        pane.getActionMap().put("F7", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                pane.edbayar.requestFocus();
-                pane.edbayar.selectAll();
-
-            }
         });
 
         pane.edbayar.addKeyListener(new KeyAdapter() {
@@ -522,6 +517,7 @@ public class BayarposController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
                 Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
