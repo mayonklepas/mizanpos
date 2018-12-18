@@ -191,6 +191,7 @@ public class PopupcariController {
                 public void actionPerformed(ActionEvent e) {
                     pane.tcari.setText(e.getActionCommand());
                     pane.tcari.requestFocus();
+                    pane.tabledata.clearSelection();
                 }
             });
         }
@@ -362,7 +363,7 @@ public class PopupcariController {
                 int row = pane.tabledata.getSelectedRow();
                 System.out.println(idlist.get(row));
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
                     String deletepagefrag1 = page.substring(5);
                     String deletepagefrag2 = deletepagefrag1.replace("daftar", "delete");

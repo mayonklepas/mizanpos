@@ -45,6 +45,7 @@ import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.penjualan.Insertpos_pane;
+import mizanposapp.view.innerpanel.penjualan.Bayarpos_pane;
 import mizanposapp.view.innerpanel.penjualan.Posframe;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -75,6 +76,7 @@ public class PosframeController {
     NumberFormat nf = NumberFormat.getInstance();
     double total_penjualan_all = 0;
     double total_pajak = 0;
+    double subtotal = 0;
     int no_urut = 0;
     JTextField jt2;
     JTextField jt4;
@@ -104,6 +106,9 @@ public class PosframeController {
     String total = "total";
     boolean panggil = true;
 
+    public PosframeController() {
+    }
+
     public PosframeController(Posframe pane) {
         this.pane = pane;
         skinning();
@@ -119,6 +124,7 @@ public class PosframeController {
         //tambahbaris();
         //batal();
         keyfunction();
+        carigudang();
 
     }
 
@@ -127,6 +133,7 @@ public class PosframeController {
         valakun_uang_muka = Globalsession.AKUNUANGMUKAPENJUALAN;
         valakun_diskon = Globalsession.AKUNDISKONPENJUALAN;
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPENJUALAN;
+
     }
 
     private void skinning() {
@@ -295,267 +302,45 @@ public class PosframeController {
         customtable();
         loadheader();
         try {
-            id = Staticvar.ids;
-            if (id.equals("")) {
-                getkodetransaksi();
-                status_selesai = 0;
-                tipe_jual = 0;
-                pane.dtanggal.setDate(new Date());
-                valpelanggan = "";
-                pane.edno_transaksi.setText("");
-                pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
-                valdept = Globalsession.DEFAULT_DEPT_ID;
-                valgudang = Globalsession.DEFAULT_ID_GUDANG;
-                pane.edketerangan.setText("");
-                pane.edsalesman.setText("");
-                valsalesman = "";
-                valshipvia = "";
-                valtop = "";
-                pane.lsubtotal.setText("0");
-                pane.ltotal_pajak.setText("0");
-                pane.ltotal_penjualan.setText("0");
-                if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
-                     || Globalsession.DEFAULT_DISKON_DALAM.equals("")
-                     || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
-                     || Globalsession.DEFAULT_DISKON_DALAM.equals("null")) {
-                    pane.ckdiskon.setSelected(true);
-                    valcheck = 0;
-                } else {
-                    pane.ckdiskon.setSelected(false);
-                    valcheck = 1;
-                }
-                if (pane.ckdiskon.isSelected()) {
-                    hidetable(gx(diskon_nominal));
-                    showtable(gx(diskon_persen));
-                } else {
-                    showtable(gx(diskon_persen));
-                    hidetable(gx(diskon_nominal));
-                }
-
+            getkodetransaksi();
+            status_selesai = 0;
+            tipe_jual = 0;
+            pane.dtanggal.setDate(new Date());
+            valpelanggan = "";
+            pane.edno_transaksi.setText("");
+            pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
+            pane.edketerangan.setText("Penjualan POS");
+            pane.ckjenisbayar.setSelected(true);
+            valdept = Globalsession.DEFAULT_DEPT_ID;
+            valgudang = Globalsession.DEFAULT_ID_GUDANG;
+            pane.edgudang.setText(Globalsession.DEFAULT_NAMA_GUDANG);
+            pane.edsalesman.setText("");
+            valsalesman = "";
+            valshipvia = "";
+            valtop = "";
+            pane.lsubtotal.setText("0");
+            pane.ltotal_pajak.setText("0");
+            pane.ltotal_penjualan.setText("0");
+            if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
+                 || Globalsession.DEFAULT_DISKON_DALAM.equals("")
+                 || Globalsession.DEFAULT_DISKON_DALAM.equals("NULL")
+                 || Globalsession.DEFAULT_DISKON_DALAM.equals("null")) {
+                pane.ckdiskon.setSelected(true);
+                valcheck = 0;
             } else {
-
-                JSONParser jpdata = new JSONParser();
-                String param = String.format("id=%s", id);
-                Object rawobjdata = jpdata.parse(ch.getdatadetails("dataorderpenjualan", param));
-                JSONObject jsonobjdata = (JSONObject) rawobjdata;
-
-                Object jogenjur = jsonobjdata.get("genjur");
-                JSONArray jagenjur = (JSONArray) jogenjur;
-
-                for (int i = 0; i < jagenjur.size(); i++) {
-                    JSONObject joingenjur = (JSONObject) jagenjur.get(i);
-                    pane.edno_transaksi.setText(String.valueOf(joingenjur.get("noref")));
-                    pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
-                    pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
-                    valdept = String.valueOf(joingenjur.get("id_dept"));
-                    try {
-                        pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
-                    } catch (java.text.ParseException ex) {
-                        Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-                Object jopenjualan = jsonobjdata.get("penjualan");
-                JSONArray japenjualan = (JSONArray) jopenjualan;
-
-                for (int i = 0; i < japenjualan.size(); i++) {
-                    JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
-                    valpelanggan = String.valueOf(joinpenjualan.get("id_pelanggan"));
-                    valgolongan = String.valueOf(joinpenjualan.get("id_golongan"));
-
-                    pane.ltotal_penjualan.setText(String.valueOf(joinpenjualan.get("total_penjualan")));
-
-                    pane.ltotal_pajak.setText(String.valueOf(joinpenjualan.get("total_pajak")));
-
-                    valakun_penjualan = String.valueOf(joinpenjualan.get("akun_penjualan"));
-
-                    valakun_uang_muka = String.valueOf(joinpenjualan.get("akun_uang_muka"));
-
-                    valcheck = Integer.parseInt(String.valueOf(joinpenjualan.get("diskon_dalam")));
-                    if (valcheck == 0) {
-                        pane.ckdiskon.setSelected(true);
-                    } else {
-                        pane.ckdiskon.setSelected(false);
-                    }
-
-                    if (pane.ckdiskon.isSelected()) {
-                        hidetable(gx(diskon_nominal));
-                        showtable(gx(diskon_persen));
-                    } else {
-                        hidetable(gx(diskon_persen));
-                        showtable(gx(diskon_nominal));
-                    }
-
-                    valsalesman = String.valueOf(joinpenjualan.get("id_bagian_penjualan"));
-                    pane.edsalesman.setText(String.valueOf(joinpenjualan.get("nama_bagian_penjualan")));
-
-                }
-
-                Object objtabeldata = jsonobjdata.get("penjualan_detail");
-                JSONArray jatabledata = (JSONArray) objtabeldata;
-                for (int i = 0; i < jatabledata.size(); i++) {
-                    JSONObject jointabeldata = (JSONObject) jatabledata.get(i);
-                    String id_barang = String.valueOf(jointabeldata.get("id_inv"));
-                    String kode_barang = String.valueOf(jointabeldata.get("kode_inv"));
-                    String nama_barang = String.valueOf(jointabeldata.get("nama_inv"));
-                    String jumlah = String.valueOf(jointabeldata.get("qty"));
-                    String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                    String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                    String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                    String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                    String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                    String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
-                    String diskon_persen = String.valueOf(jointabeldata.get("diskon_persen"));
-                    String diskon_nominal = String.valueOf(jointabeldata.get("diskon_nominal"));
-                    String id_pajak = String.valueOf(jointabeldata.get("id_pajak"));
-                    String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak"));
-                    String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak"));
-                    String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                    String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
-                    String keterangan = String.valueOf(jointabeldata.get("keterangan"));
-                    String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
-                    tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
-                         nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                         nilai_pajak, id_gudang, nama_gudang, keterangan, total));
-
-                }
-                for (int i = 0; i < tabeldatalist.size(); i++) {
-                    rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
-                    rowtabledata[1] = tabeldatalist.get(i).getNama_barang();
-                    rowtabledata[2] = tabeldatalist.get(i).getJumlah();
-                    rowtabledata[3] = tabeldatalist.get(i).getNama_satuan();
-                    rowtabledata[4] = tabeldatalist.get(i).getHarga_beli();
-                    rowtabledata[5] = tabeldatalist.get(i).getHarga_jual();
-                    rowtabledata[6] = tabeldatalist.get(i).getDiskon_persen();
-                    rowtabledata[7] = tabeldatalist.get(i).getDiskon_nominal();
-                    rowtabledata[8] = tabeldatalist.get(i).getNama_pajak();
-                    rowtabledata[9] = tabeldatalist.get(i).getNama_gudang();
-                    rowtabledata[10] = tabeldatalist.get(i).getKeterangan();
-                    rowtabledata[11] = tabeldatalist.get(i).getTotal();
-                    dtmtabeldata.addRow(rowtabledata);
-                }
-                kalkulasitotal();
-                for (int i = 0; i < rowtabledata.length; i++) {
-                    rowtabledata[i] = "";
-                }
-
+                pane.ckdiskon.setSelected(false);
+                valcheck = 1;
+            }
+            if (pane.ckdiskon.isSelected()) {
+                hidetable(gx(diskon_nominal));
+                showtable(gx(diskon_persen));
+            } else {
+                showtable(gx(diskon_persen));
+                hidetable(gx(diskon_nominal));
             }
 
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void rawsimpan() {
-        if (id.equals("")) {
-            String data = "genjur="
-                 + "id_keltrans='22'::"
-                 + "id_dept='" + valdept + "'::"
-                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                 + "&penjualan="
-                 + "id_pelanggan='" + valpelanggan + "'::"
-                 + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                 + "id_gudang='" + valgudang + "'::"
-                 + "total_penjualan='" + total_penjualan_all + "'::"
-                 + "total_uang_muka='0'::"
-                 + "total_pajak='" + total_pajak + "'::"
-                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
-                 + "nilai_kurs='1'::"
-                 + "akun_penjualan='" + valakun_penjualan + "'::"
-                 + "akun_diskon='" + valakun_diskon + "'::"
-                 + "akun_uang_muka='" + valakun_uang_muka + "'::"
-                 + "diskon_dalam='" + valcheck + "'::"
-                 + "id_bagian_penjualan='" + valsalesman + "'::"
-                 + "id_termofpayment='" + valtop + "'::"
-                 + "tipe_penjualan='" + tipe_jual + "'::"
-                 + "isorderselesai='" + status_selesai + "'"
-                 + "&" + kirimtexpenjualan();
-
-            ch.insertdata("insertorderpenjualan", data);
-            if (Staticvar.getresult.equals("berhasil")) {
-                try {
-                    int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    if (dialog == 0) {
-                        Runnable run = new Runnable() {
-                            @Override
-                            public void run() {
-                                int rowcount = pane.tabledata.getRowCount();
-                                for (int i = 0; i < rowcount; i++) {
-                                    dtmtabeldata.removeRow(0);
-                                }
-                                tabeldatalist.clear();
-                                dtmtabeldata.setRowCount(0);
-                                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-                                dtmtabeldata.addRow(rowtabledata);
-                            }
-                        };
-                        SwingUtilities.invokeLater(run);
-                        getkodetransaksi();
-                        pane.tabledata.requestFocus();
-                        pane.lsubtotal.setText("0");
-                        pane.ltotal_pajak.setText("0");
-                        pane.ltotal_penjualan.setText("0");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            } else {
-                JDialog jd = new JDialog(new Mainmenu());
-                Errorpanel ep = new Errorpanel();
-                ep.ederror.setText(Staticvar.getresult);
-                jd.add(ep);
-                jd.pack();
-                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setLocationRelativeTo(null);
-                jd.setVisible(true);
-                jd.toFront();
-            }
-        } else {
-            String data = "genjur="
-                 + "id_keltrans='22'::"
-                 + "id_dept='" + valdept + "'::"
-                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
-                 + "&penjualan="
-                 + "id_pelanggan='" + valpelanggan + "'::"
-                 + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                 + "id_gudang='" + valgudang + "'::"
-                 + "total_penjualan='" + total_penjualan_all + "'::"
-                 + "total_uang_muka='0'::"
-                 + "total_pajak='" + total_pajak + "'::"
-                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
-                 + "nilai_kurs='1'::"
-                 + "akun_penjualan='" + valakun_penjualan + "'::"
-                 + "akun_biaya='" + valakun_ongkir + "'::"
-                 + "akun_diskon='" + valakun_diskon + "'::"
-                 + "akun_uang_muka='" + valakun_uang_muka + "'::"
-                 + "diskon_dalam='" + valcheck + "'::"
-                 + "id_pengantaran='" + valshipvia + "'::"
-                 + "id_bagian_penjualan='" + valsalesman + "'::"
-                 + "id_termofpayment='" + valtop + "'::"
-                 + "tipe_penjualan='" + tipe_jual + "'::"
-                 + "isorderselesai='" + status_selesai + "'"
-                 + "&" + kirimtexpenjualan();
-            ch.updatedata("updateorderpenjualan", data, id);
-            if (Staticvar.getresult.equals("berhasil")) {
-
-            } else {
-                JDialog jd = new JDialog(new Mainmenu());
-                Errorpanel ep = new Errorpanel();
-                ep.ederror.setText(Staticvar.getresult);
-                jd.add(ep);
-                jd.pack();
-                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setLocationRelativeTo(null);
-                jd.setVisible(true);
-                jd.toFront();
-            }
         }
     }
 
@@ -574,8 +359,6 @@ public class PosframeController {
                              + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
 
-                            rawsimpan();
-
                         }
                     } else if (tahunbulan < periodetahunnulan) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -591,47 +374,10 @@ public class PosframeController {
                         jd.toFront();
                     } else {
 
-                        rawsimpan();
-
                     }
                 }
             }
         });
-    }
-
-    private String kirimtexpenjualan() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("penjualan_detail=");
-        int listcount = 0;
-        if (tabeldatalist.get(tabeldatalist.size() - 1).getId_barang().equals("")) {
-            listcount = tabeldatalist.size() - 1;
-        } else {
-            listcount = tabeldatalist.size();
-        }
-        for (int i = 0; i < listcount; i++) {
-            sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
-                 + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                 + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
-                 + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                 + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
-                 + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
-                 + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
-                 + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
-                 + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
-                 + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
-                 + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
-            sb.append("--");
-
-        }
-        String rawhasil = sb.toString().substring(0, sb.toString().length() - 2);
-        String finalhasil = "";
-        if (tipe_jual == 1) {
-            finalhasil = rawhasil.replace("id_inv", "akun");
-        } else {
-            finalhasil = rawhasil;
-        }
-
-        return finalhasil;
     }
 
     private void hapusbaris() {
@@ -689,7 +435,8 @@ public class PosframeController {
         pane.bcari_pelanggan.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
             Staticvar.preid = valpelanggan;
-            Staticvar.prelabel = String.valueOf(pane.cmbpelanggan.getEditor().getItem());
+            Staticvar.resvalueextended = valgolongan;
+            Staticvar.prelabel = String.valueOf(pane.edpelanggan.getText());
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Pelanggan"));
             jd.pack();
@@ -699,7 +446,7 @@ public class PosframeController {
             jd.toFront();
             valpelanggan = Staticvar.resid;
             valgolongan = Staticvar.resvalueextended;
-            pane.cmbpelanggan.getEditor().setItem(Staticvar.reslabel);
+            pane.edpelanggan.setText(Staticvar.reslabel);
         });
 
     }
@@ -740,6 +487,24 @@ public class PosframeController {
 
     }
 
+    private void carigudang() {
+        pane.bcari_gudang.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valgudang;
+            Staticvar.prelabel = pane.edgudang.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valgudang = Staticvar.resid;
+            pane.edgudang.setText(Staticvar.reslabel);
+        });
+
+    }
+
     private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
         Staticvar.preid = previd;
@@ -758,10 +523,79 @@ public class PosframeController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    additemtotable();
+                    if (pane.edbarcode.getText().equals("") || pane.edbarcode.equals("Barcode Scanner Atau Kode Barang [F2]")) {
+                        if (pane.tabledata.getRowCount() == 0) {
+                            JOptionPane.showMessageDialog(null, "Data Belum dimasukan");
+                        } else {
+                            Staticvar.isupdate = false;
+                            BayarposController.totalbayar = total_penjualan_all;
+                            BayarposController.sub_total = subtotal;
+                            BayarposController.total_pajak = total_pajak;
+                            BayarposController.valpelanggan = valpelanggan;
+                            BayarposController.valgudang = valgudang;
+                            BayarposController.valdept = valdept;
+                            BayarposController.valsalesman = valsalesman;
+                            BayarposController.valshipvia = valshipvia;
+                            BayarposController.valtop = valtop;
+                            BayarposController.valakun_penjualan = valakun_penjualan;
+                            BayarposController.valakun_ongkir = valakun_ongkir;
+                            BayarposController.valakun_diskon = valakun_diskon;
+                            BayarposController.valakun_uang_muka = valakun_uang_muka;
+                            BayarposController.valgolongan = valgolongan;
+                            BayarposController.tabeldatalist = tabeldatalist;
+                            BayarposController.tanggal = pane.dtanggal.getDate();
+                            BayarposController.no_transaksi = pane.edno_transaksi.getText();
+                            BayarposController.keterangan = pane.edketerangan.getText();
+                            BayarposController.kirimtextpenjualan = kirimtexpenjualan();
+                            if (pane.ckdiskon.isSelected()) {
+                                BayarposController.ispersen = true;
+                            } else {
+                                BayarposController.ispersen = false;
+                            }
+
+                            if (pane.ckjenisbayar.isSelected()) {
+                                BayarposController.istunai = true;
+                            } else {
+                                BayarposController.istunai = false;
+                            }
+                            JDialog jd = new JDialog(new Mainmenu());
+                            jd.add(new Bayarpos_pane());
+                            jd.pack();
+                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                            jd.setLocationRelativeTo(null);
+                            jd.setVisible(true);
+                            jd.toFront();
+                            int rowcount = pane.tabledata.getRowCount();
+                            if (Staticvar.isupdate == true) {
+                                for (int i = 0; i < rowcount; i++) {
+                                    dtmtabeldata.removeRow(0);
+                                }
+                                kalkulasitotal();
+                            }
+                        }
+                    } else {
+                        additemtotable();
+                    }
+
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    pane.tabledata.requestFocus();
+                    pane.tabledata.changeSelection(0, 0, false, false);
                 }
 
             }
+        });
+
+        pane.tabledata.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    if (pane.tabledata.getSelectedRow() == 0) {
+                        pane.edbarcode.requestFocus();
+                        pane.tabledata.clearSelection();
+                    }
+                }
+            }
+
         });
 
         pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
@@ -841,6 +675,8 @@ public class PosframeController {
                         pane.bbatal.doClick();
                     } else if (e.getKeyCode() == KeyEvent.VK_F5) {
                         pane.bupdate.doClick();
+                    } else if (e.getKeyCode() == KeyEvent.VK_F4) {
+                        pane.bcari_pelanggan.doClick();
                     } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         pane.btutup.doClick();
                     } else if (e.getKeyCode() == KeyEvent.VK_INSERT) {
@@ -1027,8 +863,8 @@ public class PosframeController {
                         String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
                         String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                         String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                        String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                        String isi_satuan = "1";
+                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
                         String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
                         String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
                         String diskon_persen = "0";
@@ -1036,8 +872,8 @@ public class PosframeController {
                         String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                         String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                         String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                        String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                        String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                        String id_gudang = valgudang;
+                        String nama_gudang = pane.edgudang.getText();
                         String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                         String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                         tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
@@ -1095,8 +931,8 @@ public class PosframeController {
                             String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
                             String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                             String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                            String isi_satuan = "1";
+                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
                             String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
                             String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
                             String diskon_persen = "0";
@@ -1104,8 +940,8 @@ public class PosframeController {
                             String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                             String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                             String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                            String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                            String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                            String id_gudang = valgudang;
+                            String nama_gudang = pane.edgudang.getText();
                             String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
@@ -1164,8 +1000,8 @@ public class PosframeController {
                             String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
                             String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                             String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                            String isi_satuan = "1";
+                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
                             String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
                             String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
                             String diskon_persen = "0";
@@ -1173,8 +1009,8 @@ public class PosframeController {
                             String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                             String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                             String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                            String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                            String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                            String id_gudang = valgudang;
+                            String nama_gudang = pane.edgudang.getText();
                             String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
@@ -1234,8 +1070,8 @@ public class PosframeController {
                                 String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
                                 String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                                 String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                                String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
-                                String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
+                                String isi_satuan = "1";
+                                String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
                                 String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
                                 String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
                                 String diskon_persen = "0";
@@ -1243,8 +1079,8 @@ public class PosframeController {
                                 String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                                 String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                                 String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
-                                String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
-                                String nama_gudang = String.valueOf(jointabeldata.get("nama_gudang"));
+                                String id_gudang = valgudang;
+                                String nama_gudang = pane.edgudang.getText();
                                 String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
@@ -1338,9 +1174,37 @@ public class PosframeController {
         }
     }
 
+    private String kirimtexpenjualan() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("penjualan_detail=");
+        int listcount = 0;
+        if (tabeldatalist.get(tabeldatalist.size() - 1).getId_barang().equals("")) {
+            listcount = tabeldatalist.size() - 1;
+        } else {
+            listcount = tabeldatalist.size();
+        }
+        for (int i = 0; i < listcount; i++) {
+            sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
+                 + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                 + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
+                 + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
+                 + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
+                 + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
+                 + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
+                 + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
+                 + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
+                 + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
+                 + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
+            sb.append("--");
+
+        }
+        String hasil = sb.toString().substring(0, sb.toString().length() - 2);
+        return hasil;
+    }
+
     private void kalkulasitotal() {
         int jumlah_row = pane.tabledata.getRowCount();
-        double subtotal = 0;
+        subtotal = 0;
         total_penjualan_all = 0;
         total_pajak = 0;
 

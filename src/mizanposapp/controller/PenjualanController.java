@@ -7,11 +7,13 @@ package mizanposapp.controller;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Penjualan_panel;
@@ -131,6 +133,8 @@ public class PenjualanController {
             public void mousePressed(MouseEvent e) {
                 System.gc();
                 Posframe pf = new Posframe();
+                pf.setExtendedState(MAXIMIZED_BOTH);
+                pf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 pf.setVisible(true);
             }
             
