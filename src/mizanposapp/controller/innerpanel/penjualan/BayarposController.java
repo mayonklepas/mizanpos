@@ -499,7 +499,20 @@ public class BayarposController {
         pane.bcetak_struk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                rawsimpan();
+                double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText());
+                if (istunai) {
+                    if (jumlah_uang < totalbayar) {
+                        JOptionPane.showMessageDialog(null, "Jumlah Uang tidak boleh lebh kecil dari jumlah bayar");
+                    } else {
+                        rawsimpan();
+                    }
+                } else {
+                    if (jumlah_uang > totalbayar) {
+                        JOptionPane.showMessageDialog(null, "Jumlah Uang tidak boleh lebh besar dari jumlah bayar");
+                    } else {
+                        rawsimpan();
+                    }
+                }
 
             }
         });
