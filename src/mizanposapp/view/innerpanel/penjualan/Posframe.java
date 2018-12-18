@@ -6,6 +6,7 @@
 package mizanposapp.view.innerpanel.penjualan;
 
 import mizanposapp.controller.innerpanel.penjualan.PosframeController;
+import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Tablestyle;
 
 /**
@@ -13,6 +14,8 @@ import mizanposapp.helper.Tablestyle;
  * @author Minami
  */
 public class Posframe extends javax.swing.JFrame {
+
+    CrudHelper ch = new CrudHelper();
 
     /**
      * Creates new form Pos_frame
@@ -794,7 +797,6 @@ public class Posframe extends javax.swing.JFrame {
 
     private void btutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btutupActionPerformed
         // TODO add your handling code here:
-        this.dispose();
     }//GEN-LAST:event_btutupActionPerformed
 
     /**

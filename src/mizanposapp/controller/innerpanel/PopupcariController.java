@@ -672,21 +672,6 @@ public class PopupcariController {
                 pane.btutup.doClick();
             }
         });
-
-        /*JDialog jd = (JDialog) pane.getRootPane().getParent();
-        WindowAdapter wadap = new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                pane.btutup.doClick();
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                pane.btutup.doClick();
-            }
-
-        };
-        jd.addWindowListener(wadap);*/
     }
 
 }

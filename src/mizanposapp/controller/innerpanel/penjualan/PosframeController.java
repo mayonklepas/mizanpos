@@ -18,6 +18,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowStateListener;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import java.util.regex.Pattern;
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -417,7 +420,7 @@ public class PosframeController {
     }
 
     private void batal() {
-        pane.bbatal.addActionListener(new ActionListener() {
+        pane.btutup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
@@ -425,7 +428,7 @@ public class PosframeController {
                     public void run() {
                         String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
-
+                        pane.dispose();
                     }
                 });
 

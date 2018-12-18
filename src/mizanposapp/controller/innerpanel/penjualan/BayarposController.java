@@ -12,6 +12,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,6 +60,19 @@ public class BayarposController {
 
     public BayarposController(Bayarpos_pane pane) {
         this.pane = pane;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JDialog jdin = (JDialog) pane.getRootPane().getParent();
+                jdin.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        pane.bbatal.doClick();
+                    }
+
+                });
+            }
+        });
         loadcontrol();
         ckpoint();
         loadtotalbayar();
