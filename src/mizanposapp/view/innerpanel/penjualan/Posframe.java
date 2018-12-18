@@ -797,7 +797,7 @@ public class Posframe extends javax.swing.JFrame {
     }//GEN-LAST:event_bcari_gudangActionPerformed
 
     private void btutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btutupActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:llll
     }//GEN-LAST:event_btutupActionPerformed
 
     /**
