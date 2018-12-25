@@ -50,6 +50,9 @@ public class Staticvar {
     public static String reslabel = "";
     public static String resvalue = "";
     public static String resvalueextended = "";
+    public static String resvalueextended2 = "";
+    public static String resvalueextended3 = "";
+    public static String resvalueextended4 = "";
     public static boolean isupdate = false;
     public static String sfilter = "";
     public static int lebarPanelMenu = 344;

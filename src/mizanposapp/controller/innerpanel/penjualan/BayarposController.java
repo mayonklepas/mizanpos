@@ -32,6 +32,7 @@ import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
+import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.penjualan.Bayarpos_pane;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -50,6 +51,7 @@ public class BayarposController {
     public static String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
          valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "",
          no_transaksi, keterangan, kirimtextpenjualan = "";
+    String val_tipe_bayar;
     public static Date tanggal;
     public static boolean ispersen = true;
     public static boolean istunai = true;
@@ -81,7 +83,7 @@ public class BayarposController {
                 } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     pane.bbatal.doClick();
                 } else if (e.getKeyCode() == KeyEvent.VK_F8) {
-                    pane.cmb_pembayaran.requestFocus();
+                    pane.bcari_tipe_bayar.doClick();
                 }
             }
             return false;
@@ -97,7 +99,9 @@ public class BayarposController {
                 jdin.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+
                         pane.bbatal.doClick();
+
                     }
 
                 });
@@ -108,8 +112,9 @@ public class BayarposController {
         loadtotalbayar();
         kalkulasi();
         onfocusbykey();
-        loadcomboakun();
-        combopembayarancontrol();
+        caricard();
+        //loadcomboakun();
+        //combopembayarancontrol();
         simpan();
         tutup();
     }
@@ -144,6 +149,7 @@ public class BayarposController {
         });
 
         id_card = "1";
+        pane.edtipe_bayar.setText("TUNAI");
 
     }
 
@@ -340,7 +346,7 @@ public class BayarposController {
         });
     }
 
-    private void loadcomboakun() {
+    /*private void loadcomboakun() {
         pane.cmb_pembayaran.removeAllItems();
         pembayaranlist.clear();
         try {
@@ -363,9 +369,9 @@ public class BayarposController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    private void combopembayarancontrol() {
+ /*private void combopembayarancontrol() {
         pane.cmb_pembayaran.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -412,8 +418,7 @@ public class BayarposController {
                 }
             }
         });
-    }
-
+    }*/
     public void rawsimpan() {
         if (pane.lperingatan.isVisible()) {
             Staticvar.isupdate = true;
@@ -530,12 +535,78 @@ public class BayarposController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                 Staticvar.isupdate = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }
         });
+
+    }
+
+    private void caricard() {
+
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.bcari_tipe_bayar.removeActionListener(this);
+                Staticvar.sfilter = "";
+                Staticvar.preid = val_tipe_bayar;
+                Staticvar.resvalueextended = valgolongan;
+                Staticvar.prelabel = String.valueOf(pane.edtipe_bayar.getText());
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Popupcari("tipepembayaran", "dm/daftarposbayardengan", "Daftar Pembayaran"));
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+                id_card = Staticvar.resid;
+                pane.edtipe_bayar.setText(Staticvar.reslabel);
+                charge = ConvertFunc.ToDouble(Staticvar.resvalueextended);
+                status_voucher = ConvertFunc.ToInt(Staticvar.resvalueextended2);
+                status_card = ConvertFunc.ToInt(Staticvar.resvalueextended3);
+                if (status_card == 1) {
+                    pane.lno_kartu.setVisible(true);
+                    pane.lttk_no_kartu.setVisible(true);
+                    pane.lnama_pemilik.setVisible(true);
+                    pane.lttk_nama_pemilik.setVisible(true);
+                    pane.edno_kartu.setVisible(true);
+                    pane.ednama_pemilik.setVisible(true);
+                    pane.lno_kartu.setText("No. Kartu");
+                    pane.lnama_pemilik.setText("Nama Pemilik");
+                    totalbayar = ((charge / 100) * totalbayar) + totalbayar;
+                    pane.ltotal.setText(nf.format(totalbayar));
+                    pane.edbayar.setText(String.valueOf(totalbayar));
+                    pane.ljumlah_bayar.setText(nf.format(totalbayar));
+
+                } else if (status_voucher == 1) {
+                    pane.lno_kartu.setVisible(true);
+                    pane.lttk_no_kartu.setVisible(true);
+                    pane.lnama_pemilik.setVisible(true);
+                    pane.lttk_nama_pemilik.setVisible(true);
+                    pane.edno_kartu.setVisible(true);
+                    pane.ednama_pemilik.setVisible(true);
+
+                    pane.lno_kartu.setText("No Voucher");
+                    pane.lnama_pemilik.setText("Nama Voucher");
+                } else {
+                    pane.lno_kartu.setVisible(false);
+                    pane.lttk_no_kartu.setVisible(false);
+                    pane.lnama_pemilik.setVisible(false);
+                    pane.lttk_nama_pemilik.setVisible(false);
+                    pane.edno_kartu.setVisible(false);
+                    pane.ednama_pemilik.setVisible(false);
+                    pane.ltotal.setText(nf.format(totalbayar));
+                    pane.edbayar.setText(String.valueOf("0"));
+                    pane.ljumlah_bayar.setText(String.valueOf("0"));
+                }
+
+                pane.bcari_tipe_bayar.addActionListener(this);
+            }
+        };
+
+        pane.bcari_tipe_bayar.addActionListener(al);
 
     }
 

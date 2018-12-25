@@ -43,7 +43,6 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         edbayar = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
-        cmb_pembayaran = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         ljumlah_bayar = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -86,6 +85,8 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         lttk_nama_pemilik = new javax.swing.JLabel();
         ednama_pemilik = new javax.swing.JTextField();
         lperingatan = new javax.swing.JLabel();
+        edtipe_bayar = new javax.swing.JTextField();
+        bcari_tipe_bayar = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -168,9 +169,6 @@ public class Bayarpos_pane extends javax.swing.JPanel {
 
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel40.setText(":");
-
-        cmb_pembayaran.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        cmb_pembayaran.setMinimumSize(new java.awt.Dimension(51, 20));
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -497,6 +495,18 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         lperingatan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lperingatan.setText("Tekan ENTER Untuk Melanjutkan");
 
+        edtipe_bayar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        edtipe_bayar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        edtipe_bayar.setMinimumSize(new java.awt.Dimension(51, 20));
+        edtipe_bayar.setPreferredSize(new java.awt.Dimension(51, 20));
+        edtipe_bayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtipe_bayarActionPerformed(evt);
+            }
+        });
+
+        bcari_tipe_bayar.setText("Cari");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -534,10 +544,13 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                                 .addComponent(lttk_nama_pemilik)))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ednama_pemilik, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(cmb_pembayaran, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ednama_pemilik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(edbayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(edno_kartu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(edno_kartu, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(edtipe_bayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(2, 2, 2)
+                                .addComponent(bcari_tipe_bayar)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -554,27 +567,30 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel26)
-                    .addComponent(edbayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lperingatan))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel39)
-                    .addComponent(cmb_pembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lno_kartu)
-                    .addComponent(edno_kartu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lttk_no_kartu))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lnama_pemilik)
-                    .addComponent(ednama_pemilik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lttk_nama_pemilik))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lperingatan)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel26)
+                            .addComponent(edbayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel39)
+                            .addComponent(edtipe_bayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bcari_tipe_bayar))
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lno_kartu)
+                            .addComponent(edno_kartu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lttk_no_kartu))
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lnama_pemilik)
+                            .addComponent(ednama_pemilik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lttk_nama_pemilik))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -611,13 +627,17 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ednama_pemilikActionPerformed
 
+    private void edtipe_bayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtipe_bayarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtipe_bayarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
+    public javax.swing.JButton bcari_tipe_bayar;
     public javax.swing.JButton bcetak_lagi;
     public javax.swing.JButton bcetak_struk;
     public javax.swing.JButton btanpa_struk;
     public javax.swing.JCheckBox ckgunakan_poin;
-    public javax.swing.JComboBox<String> cmb_pembayaran;
     public javax.swing.JTextField edbayar;
     public javax.swing.JTextField edbiaya_lain;
     public javax.swing.JTextField eddiskon_nominal;
@@ -626,6 +646,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     public javax.swing.JTextField ednama_pemilik;
     public javax.swing.JTextField ednilai_poin;
     public javax.swing.JTextField edno_kartu;
+    public javax.swing.JTextField edtipe_bayar;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;

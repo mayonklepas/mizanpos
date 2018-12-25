@@ -530,9 +530,9 @@ public class PosframeController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                         String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
                         ch.insertdata("insertnomorgagal", data);
-                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                         pane.dispose();
                     }
                 });

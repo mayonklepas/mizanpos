@@ -83,7 +83,7 @@
                 "1",
                 "20"
             ]
-        },{
+        }, {
             "key": [
                 "isi",
                 "Isi",
@@ -1221,21 +1221,21 @@
                 "0",
                 "0"
             ]
-        },{
+        }, {
             "key": [
                 "diskon_hari",
                 "Diskon Hari",
                 "1",
                 "15"
             ]
-        },{
+        }, {
             "key": [
                 "top",
                 "Top",
                 "1",
                 "15"
             ]
-        },{
+        }, {
             "key": [
                 "keterangan",
                 "Keterangan",
@@ -1291,6 +1291,48 @@
                 "Harga Jual (%)",
                 "1",
                 "15"
+            ]
+        }
+    ],
+    "tipepembayaran": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "10"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "charge",
+                "Charge",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "isvoucher",
+                "Voucher",
+                "1",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "iscard",
+                "Card",
+                "1",
+                "0"
             ]
         }
     ]

@@ -48,6 +48,7 @@ import mizanposapp.view.innerpanel.pembelian.Daftartop_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatagolongan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftartipe_pembayaran_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatadept_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatasupplier_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatasupplierklasifikasi_input_panel;
@@ -477,6 +478,9 @@ public class PopupcariController {
                 case "pajak":
                     inpane = new Daftardatapajak_inner_panel();
                     break;
+                case "tipepembayaran":
+                    inpane = new Daftartipe_pembayaran_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -553,6 +557,9 @@ public class PopupcariController {
                 case "pajak":
                     inpane = new Daftardatapajak_inner_panel();
                     break;
+                case "tipepembayaran":
+                    inpane = new Daftartipe_pembayaran_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -608,8 +615,27 @@ public class PopupcariController {
                 Staticvar.resid = idlist.get(i);
                 Staticvar.resvalue = String.valueOf(pane.tabledata.getValueAt(i, 0));
                 Staticvar.reslabel = String.valueOf(pane.tabledata.getValueAt(i, 1));
-                if (pane.tabledata.getColumnCount() >= 3) {
-                    Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
+                switch (pane.tabledata.getColumnCount()) {
+                    case 3:
+                        Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
+                        break;
+                    case 4:
+                        Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
+                        Staticvar.resvalueextended2 = String.valueOf(pane.tabledata.getValueAt(i, 3));
+                        break;
+                    case 5:
+                        Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
+                        Staticvar.resvalueextended2 = String.valueOf(pane.tabledata.getValueAt(i, 3));
+                        Staticvar.resvalueextended3 = String.valueOf(pane.tabledata.getValueAt(i, 4));
+                        break;
+                    case 6:
+                        Staticvar.resvalueextended = String.valueOf(pane.tabledata.getValueAt(i, 2));
+                        Staticvar.resvalueextended2 = String.valueOf(pane.tabledata.getValueAt(i, 3));
+                        Staticvar.resvalueextended3 = String.valueOf(pane.tabledata.getValueAt(i, 4));
+                        Staticvar.resvalueextended4 = String.valueOf(pane.tabledata.getValueAt(i, 5));
+                        break;
+                    default:
+                        break;
                 }
                 Staticvar.sfilter = "";
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
