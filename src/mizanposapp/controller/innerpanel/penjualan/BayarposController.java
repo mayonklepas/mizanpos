@@ -298,7 +298,10 @@ public class BayarposController {
                 double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText());
                 double kembalian = 0;
                 try {
-                    kembalian = jumlah_uang - totalbayar;
+                    kembalian = jumlah_uang - ConvertFunc.ToDouble(pane.ltotal.getText());
+                    if (kembalian < 0) {
+                        kembalian = 0;
+                    }
                 } catch (Exception es) {
                     kembalian = 0;
                 }
@@ -575,11 +578,10 @@ public class BayarposController {
                     pane.ednama_pemilik.setVisible(true);
                     pane.lno_kartu.setText("No. Kartu");
                     pane.lnama_pemilik.setText("Nama Pemilik");
-                    totalbayar = ((charge / 100) * totalbayar) + totalbayar;
-                    pane.ltotal.setText(nf.format(totalbayar));
-                    pane.edbayar.setText(String.valueOf(totalbayar));
-                    pane.ljumlah_bayar.setText(nf.format(totalbayar));
-
+                    double total_bayar = ((charge / 100) * totalbayar) + totalbayar;
+                    pane.ltotal.setText(nf.format(total_bayar));
+                    pane.edbayar.setText(String.valueOf(total_bayar));
+                    pane.ljumlah_bayar.setText(nf.format(total_bayar));
                 } else if (status_voucher == 1) {
                     pane.lno_kartu.setVisible(true);
                     pane.lttk_no_kartu.setVisible(true);
@@ -587,7 +589,6 @@ public class BayarposController {
                     pane.lttk_nama_pemilik.setVisible(true);
                     pane.edno_kartu.setVisible(true);
                     pane.ednama_pemilik.setVisible(true);
-
                     pane.lno_kartu.setText("No Voucher");
                     pane.lnama_pemilik.setText("Nama Voucher");
                 } else {

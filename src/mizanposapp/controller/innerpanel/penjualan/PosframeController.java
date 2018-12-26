@@ -142,6 +142,8 @@ public class PosframeController {
                         additemtotable();
                     }
 
+                } else if (e.getKeyCode() == KeyEvent.VK_F8) {
+                    carisatuan();
                 } else if (e.getKeyCode() == KeyEvent.VK_F9) {
                     pane.bsimpan.doClick();
                 } else if (e.getKeyCode() == KeyEvent.VK_F10) {
@@ -242,6 +244,32 @@ public class PosframeController {
                     }
 
                     KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
+                } else if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                    int row = pane.tabledata.getSelectedRow();
+                    if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+                        row = pane.tabledata.getRowCount() - 1;
+                    }
+                    int dialog = JOptionPane.showConfirmDialog(null,
+                         "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                         + pane.tabledata.getValueAt(row, gx(nama)),
+                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    if (dialog == 0) {
+                        Runnable rn = new Runnable() {
+                            @Override
+                            public void run() {
+                                int row = pane.tabledata.getSelectedRow();
+                                if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+                                    row = pane.tabledata.getRowCount() - 1;
+                                }
+                                tabeldatalist.remove(row);
+                                dtmtabeldata.removeRow(row);
+                                pane.tabledata.requestFocus();
+                                pane.tabledata.changeSelection(0, 0, false, false);
+                                kalkulasitotal();
+                            }
+                        };
+                        SwingUtilities.invokeLater(rn);
+                    }
                 }
             }
             return false;
@@ -624,6 +652,41 @@ public class PosframeController {
 
     }
 
+    private void carisatuan() {
+        int row = pane.tabledata.getSelectedRow();
+        if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+            row = pane.tabledata.getRowCount() - 1;
+        }
+        Staticvar.sfilter = "";
+        Staticvar.preid = tabeldatalist.get(row).getId_satuan();
+        Staticvar.prelabel = tabeldatalist.get(row).getNama_satuan();
+        Staticvar.prevalueextended = tabeldatalist.get(row).getIsi_satuan();
+        JDialog jd = new JDialog();
+        jd.add(new Popupcari("satuanperbarang",
+             String.format("popupdaftarsatuanperbarang?id_inv=%s",
+                  tabeldatalist.get(row).getId_barang()),
+             "Daftar Satuan Perbarang"));
+        jd.pack();
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        jd.toFront();
+        if (!tabeldatalist.get(row).getId_satuan().equals(Staticvar.resid)) {
+            tabeldatalist.get(row).setId_satuan(Staticvar.resid);
+            tabeldatalist.get(row).setNama_satuan(Staticvar.reslabel);
+            tabeldatalist.get(row).setJumlah(Staticvar.resvalueextended);
+
+            double callhargajual = gethargajual(
+                 tabeldatalist.get(row).getId_barang(),
+                 tabeldatalist.get(row).getId_satuan(),
+                 jumlah);
+            pane.tabledata.setValueAt(Staticvar.reslabel, row, 3);
+            pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
+            kalkulasitotalperrow(row);
+
+        }
+    }
+
     private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
         Staticvar.preid = previd;
@@ -719,29 +782,6 @@ public class PosframeController {
                 }
             }
 
-        });
-
-        pane.tabledata.getInputMap().put(KeyStroke.getKeyStroke("DELETE"), "hapus");
-        pane.tabledata.getActionMap().put("hapus", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int row = pane.tabledata.getSelectedRow();
-                int dialog = JOptionPane.showConfirmDialog(null,
-                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                     + pane.tabledata.getValueAt(row, gx(nama)),
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
-                    Runnable rn = new Runnable() {
-                        @Override
-                        public void run() {
-                            tabeldatalist.remove(row);
-                            dtmtabeldata.removeRow(row);
-                            kalkulasitotal();
-                        }
-                    };
-                    SwingUtilities.invokeLater(rn);
-                }
-            }
         });
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import mizanposapp.helper.ConvertFunc;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.innerpanel.Popupcari;
@@ -56,6 +57,7 @@ public class InsertposController {
         this.pane = pane;
         loaddata();
         kontrol();
+        kalkulasipersen();
     }
 
     private void loaddata() {
@@ -187,6 +189,41 @@ public class InsertposController {
                  jumlah);
             pane.edharga_persatuan.setText(nf.format(callhargajual));
         }
+    }
+
+    private void kalkulasipersen() {
+        KeyAdapter keaddiskonpersen = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                char cr = e.getKeyChar();
+                if (!Character.isLetter(cr)) {
+                    double jmldiskon_persen = ConvertFunc.ToDouble(pane.eddiskon.getText());
+                    double hasildiskon_nominal = (ConvertFunc.ToDouble(pane.edharga_persatuan.getText())) * (jmldiskon_persen / 100);
+                    pane.eddiskon2.setText(nf.format(hasildiskon_nominal));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                }
+            }
+
+        };
+
+        KeyAdapter keaddiskonnominal = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                char cr = e.getKeyChar();
+                if (!Character.isLetter(cr)) {
+                    double jmldiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+                    double hasildiskon_persen = (jmldiskon_nominal / (ConvertFunc.ToDouble(pane.edharga_persatuan.getText()))) * 100;
+                    pane.eddiskon.setText(ConvertFunc.rounding(hasildiskon_persen));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                }
+            }
+
+        };
+
+        pane.eddiskon.addKeyListener(keaddiskonpersen);
+        pane.eddiskon2.addKeyListener(keaddiskonnominal);
     }
 
     private double gethargajual(String id_inv, String id_satuan, String qty) {
