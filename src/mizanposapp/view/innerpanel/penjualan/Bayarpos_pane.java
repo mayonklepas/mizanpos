@@ -48,7 +48,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lkembali = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lkembalilabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lmax_poin = new javax.swing.JLabel();
         lttk_nilai_poin = new javax.swing.JLabel();
@@ -200,11 +200,11 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         lkembali.setText("0");
         jPanel6.add(lkembali, java.awt.BorderLayout.CENTER);
 
-        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel6.setText("KEMBALI");
-        jPanel6.add(jLabel6, java.awt.BorderLayout.PAGE_START);
+        lkembalilabel.setBackground(new java.awt.Color(0, 0, 0));
+        lkembalilabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lkembalilabel.setForeground(new java.awt.Color(255, 153, 0));
+        lkembalilabel.setText("KEMBALI");
+        jPanel6.add(lkembalilabel, java.awt.BorderLayout.PAGE_START);
 
         lmax_poin.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         lmax_poin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -664,7 +664,6 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -674,6 +673,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     public javax.swing.JLabel ljumlah_bayar;
     public javax.swing.JLabel ljumlah_poin;
     public javax.swing.JLabel lkembali;
+    public javax.swing.JLabel lkembalilabel;
     public javax.swing.JLabel lmax_poin;
     public javax.swing.JLabel lmax_poinl;
     public javax.swing.JLabel lnama_pemilik;

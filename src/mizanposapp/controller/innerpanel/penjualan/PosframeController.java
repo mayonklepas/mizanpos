@@ -523,10 +523,15 @@ public class PosframeController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
-                        ch.insertdata("insertnomorgagal", data);
-                        pane.dispose();
+                        int dialog = JOptionPane.showConfirmDialog(null, "Yakin ingin keluar dari Point Of Sales",
+                             "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                        if (dialog == 0) {
+                            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
+                            String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
+                            ch.insertdata("insertnomorgagal", data);
+                            pane.dispose();
+                        }
+
                     }
                 });
 
