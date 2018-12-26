@@ -87,6 +87,9 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         lperingatan = new javax.swing.JLabel();
         edtipe_bayar = new javax.swing.JTextField();
         bcari_tipe_bayar = new javax.swing.JButton();
+        ltambah_cash = new javax.swing.JLabel();
+        lttk_nama_cash = new javax.swing.JLabel();
+        edtambah_cash = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -507,6 +510,22 @@ public class Bayarpos_pane extends javax.swing.JPanel {
 
         bcari_tipe_bayar.setText("Cari");
 
+        ltambah_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        ltambah_cash.setText("Tambah Cash");
+
+        lttk_nama_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lttk_nama_cash.setText(":");
+
+        edtambah_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        edtambah_cash.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        edtambah_cash.setMinimumSize(new java.awt.Dimension(51, 20));
+        edtambah_cash.setPreferredSize(new java.awt.Dimension(51, 20));
+        edtambah_cash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtambah_cashActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -525,32 +544,38 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lperingatan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lno_kartu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lttk_no_kartu))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel27))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel39)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel40))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lnama_pemilik)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lttk_nama_pemilik)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ltambah_cash)
+                                .addGap(25, 25, 25)
+                                .addComponent(lttk_nama_cash))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lno_kartu)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lttk_no_kartu))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel26)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel27))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel39)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel40))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lnama_pemilik)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lttk_nama_pemilik))))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ednama_pemilik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(edbayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(edno_kartu, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edno_kartu, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(edtipe_bayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(2, 2, 2)
-                                .addComponent(bcari_tipe_bayar)))))
+                                .addComponent(bcari_tipe_bayar))
+                            .addComponent(edtambah_cash, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -590,7 +615,13 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                             .addComponent(lnama_pemilik)
                             .addComponent(ednama_pemilik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lttk_nama_pemilik))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lttk_nama_cash)
+                        .addComponent(ltambah_cash))
+                    .addComponent(edtambah_cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -631,6 +662,10 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtipe_bayarActionPerformed
 
+    private void edtambah_cashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtambah_cashActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtambah_cashActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbatal;
     public javax.swing.JButton bcari_tipe_bayar;
@@ -646,6 +681,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     public javax.swing.JTextField ednama_pemilik;
     public javax.swing.JTextField ednilai_poin;
     public javax.swing.JTextField edno_kartu;
+    public javax.swing.JTextField edtambah_cash;
     public javax.swing.JTextField edtipe_bayar;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -681,11 +717,13 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     public javax.swing.JLabel lno_kartu;
     public javax.swing.JLabel lperingatan;
     public javax.swing.JLabel lsubtotal;
+    public javax.swing.JLabel ltambah_cash;
     public javax.swing.JLabel ltotal;
     public javax.swing.JLabel ltotal_pajak;
     public javax.swing.JLabel ltotal_service;
     public javax.swing.JLabel lttk_jumlah_poin;
     public javax.swing.JLabel lttk_max_poin;
+    public javax.swing.JLabel lttk_nama_cash;
     public javax.swing.JLabel lttk_nama_pemilik;
     public javax.swing.JLabel lttk_nilai_poin;
     public javax.swing.JLabel lttk_no_kartu;

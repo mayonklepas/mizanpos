@@ -663,8 +663,27 @@ public class PopupcariController {
                 Staticvar.resid = Staticvar.preid;
                 Staticvar.reslabel = Staticvar.prelabel;
                 Staticvar.resvalue = Staticvar.prevalue;
-                if (pane.tabledata.getColumnCount() >= 3) {
-                    Staticvar.resvalueextended = Staticvar.prevalueextended;
+                switch (pane.tabledata.getColumnCount()) {
+                    case 3:
+                        Staticvar.resvalueextended = Staticvar.prevalueextended;
+                        break;
+                    case 4:
+                        Staticvar.resvalueextended = Staticvar.prevalueextended;
+                        Staticvar.resvalueextended2 = Staticvar.prevalueextended2;
+                        break;
+                    case 5:
+                        Staticvar.resvalueextended = Staticvar.prevalueextended;
+                        Staticvar.resvalueextended2 = Staticvar.prevalueextended2;
+                        Staticvar.resvalueextended3 = Staticvar.prevalueextended3;
+                        break;
+                    case 6:
+                        Staticvar.resvalueextended = Staticvar.prevalueextended;
+                        Staticvar.resvalueextended2 = Staticvar.prevalueextended2;
+                        Staticvar.resvalueextended3 = Staticvar.prevalueextended3;
+                        Staticvar.resvalueextended4 = Staticvar.prevalueextended4;
+                        break;
+                    default:
+                        break;
                 }
                 Staticvar.sfilter = "";
                 JDialog jd = (JDialog) pane.getRootPane().getParent();

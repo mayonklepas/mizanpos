@@ -46,6 +46,9 @@ public class Staticvar {
     public static String prelabel = "";
     public static String prevalue = "";
     public static String prevalueextended = "";
+    public static String prevalueextended2 = "";
+    public static String prevalueextended3 = "";
+    public static String prevalueextended4 = "";
     public static String resid = "";
     public static String reslabel = "";
     public static String resvalue = "";
