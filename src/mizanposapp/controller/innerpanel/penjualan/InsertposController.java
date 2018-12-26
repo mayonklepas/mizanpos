@@ -35,7 +35,7 @@ public class InsertposController {
     NumberFormat nf = NumberFormat.getInstance();
     CrudHelper ch = new CrudHelper();
     Insertpos_pane pane;
-    public static boolean status_diskon_persen = true;
+    public static boolean status_diskon_persen = true, status_update = true;
     public static String golongan, id_barang, jumlah, id_satuan, satuan, id_satuan_pengali, qty_satuan_pengali, diskon_persen, diskon_nominal, harga_persatuan, keterangan;
 
     KeyEventDispatcher keydis = new KeyEventDispatcher() {
@@ -142,6 +142,7 @@ public class InsertposController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
+                status_update = true;
                 jumlah = pane.edjumlah.getText();
                 satuan = pane.edsatuan.getText();
                 diskon_persen = pane.eddiskon.getText();
@@ -157,6 +158,7 @@ public class InsertposController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
+                status_update = false;
                 JDialog jd = (JDialog) pane.getRootPane().getParent();
                 jd.dispose();
             }

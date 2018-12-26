@@ -160,42 +160,25 @@ public class PosframeController {
                     pane.btutup.doClick();
                 } else if (e.getKeyCode() == KeyEvent.VK_INSERT) {
                     KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(this);
+                    int crow = pane.tabledata.getSelectedRow();
                     if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
-                        int crow = pane.tabledata.getRowCount() - 1;
-                        InsertposController.id_barang = tabeldatalist.get(crow).getId_barang();
-                        InsertposController.jumlah = tabeldatalist.get(crow).getJumlah();
-                        InsertposController.satuan = tabeldatalist.get(crow).getNama_satuan();
-                        InsertposController.id_satuan_pengali = tabeldatalist.get(crow).getId_satuan_pengali();
-                        InsertposController.qty_satuan_pengali = tabeldatalist.get(crow).getIsi_satuan();
-                        InsertposController.id_satuan = tabeldatalist.get(crow).getId_satuan();
-                        InsertposController.keterangan = tabeldatalist.get(crow).getKeterangan();
-                        InsertposController.diskon_persen = tabeldatalist.get(crow).getDiskon_persen();
-                        InsertposController.diskon_nominal = tabeldatalist.get(crow).getDiskon_nominal();
-                        InsertposController.harga_persatuan = tabeldatalist.get(crow).getHarga_jual();
-                        InsertposController.golongan = valgolongan;
-                        if (pane.ckdiskon.isSelected()) {
-                            InsertposController.status_diskon_persen = true;
-                        } else {
-                            InsertposController.status_diskon_persen = false;
-                        }
+                        crow = pane.tabledata.getRowCount() - 1;
+                    }
+                    InsertposController.id_barang = tabeldatalist.get(crow).getId_barang();
+                    InsertposController.jumlah = tabeldatalist.get(crow).getJumlah();
+                    InsertposController.satuan = tabeldatalist.get(crow).getNama_satuan();
+                    InsertposController.id_satuan_pengali = tabeldatalist.get(crow).getId_satuan_pengali();
+                    InsertposController.qty_satuan_pengali = tabeldatalist.get(crow).getIsi_satuan();
+                    InsertposController.id_satuan = tabeldatalist.get(crow).getId_satuan();
+                    InsertposController.keterangan = tabeldatalist.get(crow).getKeterangan();
+                    InsertposController.diskon_persen = tabeldatalist.get(crow).getDiskon_persen();
+                    InsertposController.diskon_nominal = tabeldatalist.get(crow).getDiskon_nominal();
+                    InsertposController.harga_persatuan = tabeldatalist.get(crow).getHarga_jual();
+                    InsertposController.golongan = valgolongan;
+                    if (pane.ckdiskon.isSelected()) {
+                        InsertposController.status_diskon_persen = true;
                     } else {
-                        int crow = pane.tabledata.getSelectedRow();
-                        InsertposController.id_barang = tabeldatalist.get(crow).getId_barang();
-                        InsertposController.jumlah = tabeldatalist.get(crow).getJumlah();
-                        InsertposController.satuan = tabeldatalist.get(crow).getNama_satuan();
-                        InsertposController.id_satuan_pengali = tabeldatalist.get(crow).getId_satuan_pengali();
-                        InsertposController.qty_satuan_pengali = tabeldatalist.get(crow).getIsi_satuan();
-                        InsertposController.id_satuan = tabeldatalist.get(crow).getId_satuan();
-                        InsertposController.keterangan = tabeldatalist.get(crow).getKeterangan();
-                        InsertposController.diskon_persen = tabeldatalist.get(crow).getDiskon_persen();
-                        InsertposController.diskon_nominal = tabeldatalist.get(crow).getDiskon_nominal();
-                        InsertposController.harga_persatuan = tabeldatalist.get(crow).getHarga_jual();
-                        InsertposController.golongan = valgolongan;
-                        if (pane.ckdiskon.isSelected()) {
-                            InsertposController.status_diskon_persen = true;
-                        } else {
-                            InsertposController.status_diskon_persen = false;
-                        }
+                        InsertposController.status_diskon_persen = false;
                     }
 
                     JDialog jd = new JDialog(new Mainmenu());
@@ -205,26 +188,7 @@ public class PosframeController {
                     jd.setLocationRelativeTo(null);
                     jd.setVisible(true);
                     jd.toFront();
-                    if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
-                        int crow = pane.tabledata.getRowCount() - 1;
-                        tabeldatalist.get(crow).setJumlah(InsertposController.jumlah);
-                        tabeldatalist.get(crow).setNama_satuan(InsertposController.satuan);
-                        tabeldatalist.get(crow).setId_satuan(InsertposController.id_satuan);
-                        tabeldatalist.get(crow).setId_satuan_pengali(InsertposController.id_satuan_pengali);
-                        tabeldatalist.get(crow).setIsi_satuan(InsertposController.qty_satuan_pengali);
-                        tabeldatalist.get(crow).setKeterangan(InsertposController.keterangan);
-                        tabeldatalist.get(crow).setDiskon_persen(InsertposController.diskon_persen);
-                        tabeldatalist.get(crow).setDiskon_nominal(InsertposController.diskon_nominal);
-                        tabeldatalist.get(crow).setHarga_jual(InsertposController.harga_persatuan);
-                        pane.tabledata.setValueAt(String.valueOf(InsertposController.jumlah), crow, gx(jumlah));
-                        pane.tabledata.setValueAt(String.valueOf(InsertposController.satuan), crow, gx(satuan));
-                        pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_persen), crow, gx(diskon_persen));
-                        pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_nominal), crow, gx(diskon_nominal));
-                        pane.tabledata.setValueAt(String.valueOf(InsertposController.harga_persatuan), crow, gx(harga_jual));
-                        pane.tabledata.setValueAt(String.valueOf(InsertposController.keterangan), crow, gx(keterangan));
-                        kalkulasitotalperrow(crow);
-                    } else {
-                        int crow = pane.tabledata.getSelectedRow();
+                    if (InsertposController.status_update == true) {
                         tabeldatalist.get(crow).setJumlah(InsertposController.jumlah);
                         tabeldatalist.get(crow).setNama_satuan(InsertposController.satuan);
                         tabeldatalist.get(crow).setId_satuan(InsertposController.id_satuan);
@@ -654,6 +618,7 @@ public class PosframeController {
     }
 
     private void carisatuan() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
         int row = pane.tabledata.getSelectedRow();
         if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
             row = pane.tabledata.getRowCount() - 1;
@@ -675,7 +640,7 @@ public class PosframeController {
         if (!tabeldatalist.get(row).getId_satuan().equals(Staticvar.resid)) {
             tabeldatalist.get(row).setId_satuan(Staticvar.resid);
             tabeldatalist.get(row).setNama_satuan(Staticvar.reslabel);
-            tabeldatalist.get(row).setJumlah(Staticvar.resvalueextended);
+            tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
 
             double callhargajual = gethargajual(
                  tabeldatalist.get(row).getId_barang(),
@@ -687,6 +652,7 @@ public class PosframeController {
             kalkulasitotalperrow(row);
 
         }
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
     }
 
     private void rawgetidakun(String prevlabel, String previd) {
