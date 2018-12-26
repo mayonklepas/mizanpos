@@ -263,8 +263,9 @@ public class PosframeController {
                                 }
                                 tabeldatalist.remove(row);
                                 dtmtabeldata.removeRow(row);
-                                pane.tabledata.requestFocus();
-                                pane.tabledata.changeSelection(0, 0, false, false);
+                                pane.edbarcode.requestFocus();
+                                //pane.tabledata.requestFocus();
+                                //pane.tabledata.changeSelection(0, 0, false, false);
                                 kalkulasitotal();
                             }
                         };
@@ -682,6 +683,7 @@ public class PosframeController {
                  jumlah);
             pane.tabledata.setValueAt(Staticvar.reslabel, row, 3);
             pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
+            tabeldatalist.get(row).setHarga_jual(nf.format(callhargajual));
             kalkulasitotalperrow(row);
 
         }
