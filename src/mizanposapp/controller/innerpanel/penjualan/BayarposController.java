@@ -47,7 +47,7 @@ public class BayarposController {
     NumberFormat nf = NumberFormat.getInstance();
     CrudHelper ch = new CrudHelper();
     Bayarpos_pane pane;
-    public static double totalbayar = 0, total_pajak = 0, total_service = 0, sub_total = 0;
+    public static double totalbayar = 0, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash;
     public static String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
          valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "",
          no_transaksi, keterangan, kirimtextpenjualan = "";
@@ -55,7 +55,7 @@ public class BayarposController {
     public static Date tanggal;
     public static boolean ispersen = true;
     public static boolean istunai = true;
-    String id_card = "";
+    public static String id_card = "";
     double charge = 0;
     int status_voucher = 0, status_card = 0;
     public static ArrayList<PosframeController.Entitytabledata> tabeldatalist;
@@ -501,6 +501,9 @@ public class BayarposController {
                  + "pos_nomor_kartu='" + pane.edno_kartu.getText() + "'::"
                  + "pos_pemilik_kartu='" + pane.ednama_pemilik.getText() + "'::"
                  + "pos_nilai_poin='" + ConvertFunc.ToDouble(pane.ednilai_poin.getText()) + "'::"
+                 + "pos_charge_nominal='" + charge_nominal + "'::"
+                 + "pos_akun_charge='" + id_card + "'::"
+                 + "pos_bayar_cash='" + pane.edtambah_cash.getText() + "'::"
                  + "&" + kirimtextpenjualan;
 
             ch.insertdata("insertpenjualan", data);
@@ -600,7 +603,8 @@ public class BayarposController {
                     pane.ednama_pemilik.setVisible(true);
                     pane.lno_kartu.setText("No. Kartu");
                     pane.lnama_pemilik.setText("Nama Pemilik");
-                    double total_bayar = ((charge / 100) * totalbayar) + totalbayar;
+                    charge_nominal = ((charge / 100) * totalbayar);
+                    double total_bayar = charge_nominal + totalbayar;
                     pane.ltotal.setText(nf.format(total_bayar));
                     pane.edbayar.setText(String.valueOf(total_bayar));
                     pane.ljumlah_bayar.setText(nf.format(total_bayar));
