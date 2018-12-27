@@ -288,6 +288,13 @@ public class PosframeController {
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 jd.setTitle("Edit Data Persediaan");
                 jd.setVisible(true);
+                double callhargajual = gethargajual(
+                     tabeldatalist.get(row).getId_barang(),
+                     tabeldatalist.get(row).getId_satuan(),
+                     jumlah);
+                pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
+                tabeldatalist.get(row).setHarga_jual(nf.format(callhargajual));
+                kalkulasitotalperrow(row);
             }
         });
 
