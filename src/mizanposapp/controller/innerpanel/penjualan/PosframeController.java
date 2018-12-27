@@ -210,6 +210,12 @@ public class PosframeController {
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_nominal), crow, gx(diskon_nominal));
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.harga_persatuan), crow, gx(harga_jual));
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.keterangan), crow, gx(keterangan));
+                        double callhargajual = gethargajual(
+                             tabeldatalist.get(crow).getId_barang(),
+                             tabeldatalist.get(crow).getId_satuan(),
+                             tabeldatalist.get(crow).getJumlah());
+                        pane.tabledata.setValueAt(nf.format(callhargajual), crow, 5);
+                        tabeldatalist.get(crow).setHarga_jual(nf.format(callhargajual));
                         kalkulasitotalperrow(crow);
                     }
 
@@ -292,7 +298,7 @@ public class PosframeController {
                 double callhargajual = gethargajual(
                      tabeldatalist.get(row).getId_barang(),
                      tabeldatalist.get(row).getId_satuan(),
-                     jumlah);
+                     tabeldatalist.get(row).getJumlah());
                 pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
                 tabeldatalist.get(row).setHarga_jual(nf.format(callhargajual));
                 kalkulasitotalperrow(row);
@@ -603,7 +609,7 @@ public class PosframeController {
             KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             Staticvar.sfilter = "";
             Staticvar.preid = valpelanggan;
-            Staticvar.resvalueextended = valgolongan;
+            Staticvar.prevalueextended = valgolongan;
             Staticvar.prelabel = String.valueOf(pane.edpelanggan.getText());
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Pelanggan"));
@@ -709,7 +715,7 @@ public class PosframeController {
             double callhargajual = gethargajual(
                  tabeldatalist.get(row).getId_barang(),
                  tabeldatalist.get(row).getId_satuan(),
-                 jumlah);
+                 tabeldatalist.get(row).getJumlah());
             pane.tabledata.setValueAt(Staticvar.reslabel, row, 3);
             pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
             tabeldatalist.get(row).setHarga_jual(nf.format(callhargajual));
