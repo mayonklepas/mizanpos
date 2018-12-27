@@ -518,6 +518,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
 
         edtambah_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         edtambah_cash.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        edtambah_cash.setText("0");
         edtambah_cash.setMinimumSize(new java.awt.Dimension(51, 20));
         edtambah_cash.setPreferredSize(new java.awt.Dimension(51, 20));
         edtambah_cash.addActionListener(new java.awt.event.ActionListener() {
