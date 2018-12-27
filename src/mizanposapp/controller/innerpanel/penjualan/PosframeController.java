@@ -210,12 +210,6 @@ public class PosframeController {
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.diskon_nominal), crow, gx(diskon_nominal));
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.harga_persatuan), crow, gx(harga_jual));
                         pane.tabledata.setValueAt(String.valueOf(InsertposController.keterangan), crow, gx(keterangan));
-                        double callhargajual = gethargajual(
-                             tabeldatalist.get(crow).getId_barang(),
-                             tabeldatalist.get(crow).getId_satuan(),
-                             tabeldatalist.get(crow).getJumlah());
-                        pane.tabledata.setValueAt(nf.format(callhargajual), crow, 5);
-                        tabeldatalist.get(crow).setHarga_jual(nf.format(callhargajual));
                         kalkulasitotalperrow(crow);
                     }
 

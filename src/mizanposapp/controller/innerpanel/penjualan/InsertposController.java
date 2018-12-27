@@ -77,12 +77,16 @@ public class InsertposController {
     }
 
     private void kontrol() {
-
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         pane.edjumlah.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    double callhargajual = gethargajual(
+                         id_barang,
+                         id_satuan,
+                         pane.edjumlah.getText());
+                    pane.edharga_persatuan.setText(nf.format(callhargajual));
                     if (status_diskon_persen == true) {
                         pane.eddiskon.requestFocus();
                         pane.eddiskon.selectAll();
@@ -166,6 +170,7 @@ public class InsertposController {
     }
 
     private void carisatuan() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
         Staticvar.sfilter = "";
         Staticvar.preid = id_satuan;
         Staticvar.prelabel = satuan;
@@ -180,6 +185,7 @@ public class InsertposController {
         jd.setLocationRelativeTo(null);
         jd.setVisible(true);
         jd.toFront();
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         if (!id_satuan.equals(Staticvar.resid)) {
             id_satuan = Staticvar.resid;
             satuan = Staticvar.reslabel;
