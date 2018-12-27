@@ -279,6 +279,7 @@ public class PosframeController {
         editpersediaan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                 int row = pane.tabledata.getSelectedRow();
                 Staticvar.ids = tabeldatalist.get(row).getId_barang();
                 JDialog jd = new JDialog(new Mainmenu());
@@ -295,6 +296,7 @@ public class PosframeController {
                 pane.tabledata.setValueAt(nf.format(callhargajual), row, 5);
                 tabeldatalist.get(row).setHarga_jual(nf.format(callhargajual));
                 kalkulasitotalperrow(row);
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
             }
         });
 
