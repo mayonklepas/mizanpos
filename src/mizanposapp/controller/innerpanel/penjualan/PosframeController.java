@@ -950,7 +950,7 @@ public class PosframeController {
                         double callhargajual = gethargajual(
                              tabeldatalist.get(rowcount).getId_barang(),
                              tabeldatalist.get(rowcount).getId_satuan(),
-                             jumlah);
+                             tabeldatalist.get(rowcount).getJumlah());
                         pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
                         tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
                         kalkulasitotalperrow(rowcount);
@@ -1025,7 +1025,7 @@ public class PosframeController {
                             double callhargajual = gethargajual(
                                  tabeldatalist.get(rowcount).getId_barang(),
                                  tabeldatalist.get(rowcount).getId_satuan(),
-                                 jumlah);
+                                 tabeldatalist.get(rowcount).getJumlah());
                             pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
                             tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
                             kalkulasitotalperrow(rowcount);
@@ -1101,7 +1101,7 @@ public class PosframeController {
                             double callhargajual = gethargajual(
                                  tabeldatalist.get(rowcount).getId_barang(),
                                  tabeldatalist.get(rowcount).getId_satuan(),
-                                 jumlah);
+                                 tabeldatalist.get(rowcount).getJumlah());
                             pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
                             tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
                             kalkulasitotalperrow(rowcount);
@@ -1178,7 +1178,7 @@ public class PosframeController {
                                 double callhargajual = gethargajual(
                                      tabeldatalist.get(rowcount).getId_barang(),
                                      tabeldatalist.get(rowcount).getId_satuan(),
-                                     jumlah);
+                                     tabeldatalist.get(rowcount).getJumlah());
                                 pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
                                 tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
                                 kalkulasitotalperrow(rowcount);
