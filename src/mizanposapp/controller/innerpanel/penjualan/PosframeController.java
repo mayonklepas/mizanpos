@@ -940,7 +940,14 @@ public class PosframeController {
                         rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
                         rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
                         dtmtabeldata.addRow(rowtabledata);
-                        kalkulasitotal();
+                        double callhargajual = gethargajual(
+                             tabeldatalist.get(rowcount).getId_barang(),
+                             tabeldatalist.get(rowcount).getId_satuan(),
+                             jumlah);
+                        pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
+                        tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
+                        kalkulasitotalperrow(rowcount);
+                        //kalkulasitotal();
                     } else {
                         boolean status_ada = true;
 
@@ -1008,7 +1015,14 @@ public class PosframeController {
                             rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
                             rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
                             dtmtabeldata.addRow(rowtabledata);
-                            kalkulasitotal();
+                            double callhargajual = gethargajual(
+                                 tabeldatalist.get(rowcount).getId_barang(),
+                                 tabeldatalist.get(rowcount).getId_satuan(),
+                                 jumlah);
+                            pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
+                            tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
+                            kalkulasitotalperrow(rowcount);
+                            //kalkulasitotal();
 
                         }
                     }
@@ -1077,7 +1091,14 @@ public class PosframeController {
                             rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
                             rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
                             dtmtabeldata.addRow(rowtabledata);
-                            kalkulasitotal();
+                            double callhargajual = gethargajual(
+                                 tabeldatalist.get(rowcount).getId_barang(),
+                                 tabeldatalist.get(rowcount).getId_satuan(),
+                                 jumlah);
+                            pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
+                            tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
+                            kalkulasitotalperrow(rowcount);
+                            //kalkulasitotal();
                             pane.edbarcode.setText(kode_barang);
                         } else {
                             boolean status_ada = true;
@@ -1147,7 +1168,14 @@ public class PosframeController {
                                 rowtabledata[10] = tabeldatalist.get(rowcount).getKeterangan();
                                 rowtabledata[11] = tabeldatalist.get(rowcount).getTotal();
                                 dtmtabeldata.addRow(rowtabledata);
-                                kalkulasitotal();
+                                double callhargajual = gethargajual(
+                                     tabeldatalist.get(rowcount).getId_barang(),
+                                     tabeldatalist.get(rowcount).getId_satuan(),
+                                     jumlah);
+                                pane.tabledata.setValueAt(nf.format(callhargajual), rowcount, 5);
+                                tabeldatalist.get(rowcount).setHarga_jual(nf.format(callhargajual));
+                                kalkulasitotalperrow(rowcount);
+                                //kalkulasitotal();
                                 pane.edbarcode.setText(kode_barang);
                             }
                         }
