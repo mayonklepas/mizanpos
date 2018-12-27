@@ -273,7 +273,7 @@ public class PosframeController {
 
     private void setpopup() {
         pop = new JPopupMenu();
-        JMenuItem editpersediaan = new JMenuItem("Edit Persediaan");
+        JMenuItem editpersediaan = new JMenuItem("Edit Data Barang");
         pop.add(editpersediaan);
 
         editpersediaan.addActionListener(new ActionListener() {
