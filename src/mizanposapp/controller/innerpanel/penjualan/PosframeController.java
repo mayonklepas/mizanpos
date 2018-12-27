@@ -970,12 +970,19 @@ public class PosframeController {
                                 int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
                                 tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
                                 pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
+                                double callhargajual = gethargajual(
+                                     tabeldatalist.get(j).getId_barang(),
+                                     tabeldatalist.get(j).getId_satuan(),
+                                     tabeldatalist.get(j).getJumlah());
+                                pane.tabledata.setValueAt(nf.format(callhargajual), j, 5);
+                                tabeldatalist.get(j).setHarga_jual(nf.format(callhargajual));
                                 kalkulasitotalperrow(j);
                                 status_ada = true;
                                 break;
                             } else {
                                 status_ada = false;
                             }
+
                         }
 
                         if (status_ada == false) {
@@ -1122,6 +1129,12 @@ public class PosframeController {
                                     int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
                                     tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
                                     pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
+                                    double callhargajual = gethargajual(
+                                         tabeldatalist.get(j).getId_barang(),
+                                         tabeldatalist.get(j).getId_satuan(),
+                                         tabeldatalist.get(j).getJumlah());
+                                    pane.tabledata.setValueAt(nf.format(callhargajual), j, 5);
+                                    tabeldatalist.get(j).setHarga_jual(nf.format(callhargajual));
                                     kalkulasitotalperrow(j);
                                     status_ada = true;
                                     break;
