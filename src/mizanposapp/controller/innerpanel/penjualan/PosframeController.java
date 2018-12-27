@@ -286,7 +286,7 @@ public class PosframeController {
                 jd.pack();
                 jd.setLocationRelativeTo(null);
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setTitle("Edit Data Persediaan");
+                jd.setTitle("Edit Data Barang");
                 jd.setVisible(true);
                 double callhargajual = gethargajual(
                      tabeldatalist.get(row).getId_barang(),
