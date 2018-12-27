@@ -55,7 +55,7 @@ public class BayarposController {
     public static Date tanggal;
     public static boolean ispersen = true;
     public static boolean istunai = true;
-    public static String id_card = "";
+    String id_card = "", id_akun_charge;
     double charge = 0;
     int status_voucher = 0, status_card = 0;
     public static ArrayList<PosframeController.Entitytabledata> tabeldatalist;
@@ -219,6 +219,16 @@ public class BayarposController {
 
         });
 
+        pane.edtambah_cash.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    pane.bcetak_struk.doClick();
+                }
+            }
+
+        });
+
     }
 
     private void loadtotalbayar() {
@@ -331,10 +341,49 @@ public class BayarposController {
 
         };
 
+        KeyAdapter kebayar2 = new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText()) + ConvertFunc.ToDouble(pane.edtambah_cash.getText());
+                double kembalian = 0;
+                double setkembalilabel = 0;
+                try {
+                    kembalian = jumlah_uang - totalbayar;
+                    if (kembalian < 0) {
+                        if (istunai == true) {
+                            pane.lkembalilabel.setText("KURANG");
+                        } else {
+                            pane.lkembalilabel.setText("SISA");
+                        }
+                        setkembalilabel = kembalian * -1;
+                    } else {
+                        if (istunai == true) {
+                            pane.lkembalilabel.setText("KEMBALI");
+                            setkembalilabel = kembalian;
+                        } else {
+                            pane.lkembalilabel.setText("SISA");
+                            if (kembalian >= 0) {
+                                JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebih besar dari total");
+                                pane.edbayar.setText("");
+                            }
+                        }
+
+                    }
+                } catch (Exception es) {
+                    kembalian = 0;
+                    setkembalilabel = 0;
+                }
+
+                pane.lkembali.setText(nf.format(setkembalilabel));
+                pane.ljumlah_bayar.setText(nf.format(jumlah_uang));
+            }
+
+        };
         pane.eddiskon_persen.addKeyListener(keaddiskonpersen);
         pane.edbiaya_lain.addKeyListener(keadbiaya);
         pane.eddiskon_nominal.addKeyListener(keaddiskonnominal);
         pane.edbayar.addKeyListener(kebayar);
+        pane.edtambah_cash.addKeyListener(kebayar2);
 
     }
 
@@ -443,6 +492,7 @@ public class BayarposController {
     }*/
     public void rawsimpan() {
         if (pane.lperingatan.isVisible()) {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
@@ -502,7 +552,7 @@ public class BayarposController {
                  + "pos_pemilik_kartu='" + pane.ednama_pemilik.getText() + "'::"
                  + "pos_nilai_poin='" + ConvertFunc.ToDouble(pane.ednilai_poin.getText()) + "'::"
                  + "pos_charge_nominal='" + charge_nominal + "'::"
-                 + "pos_akun_charge='" + id_card + "'::"
+                 + "pos_akun_charge='" + id_akun_charge + "'::"
                  + "pos_bayar_cash='" + pane.edtambah_cash.getText() + "'::"
                  + "&" + kirimtextpenjualan;
 
@@ -530,9 +580,14 @@ public class BayarposController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText());
+                double tambah_cash = ConvertFunc.ToDouble(pane.edtambah_cash.getText());
                 if (istunai) {
                     if (jumlah_uang < totalbayar) {
-                        JOptionPane.showMessageDialog(null, "Jumlah Uang tidak boleh lebh kecil dari jumlah bayar");
+                        if ((jumlah_uang + tambah_cash) == totalbayar) {
+                            rawsimpan();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Jumlah Uang tidak boleh lebh kecil dari jumlah bayar");
+                        }
                     } else {
                         rawsimpan();
                     }
@@ -594,6 +649,7 @@ public class BayarposController {
                 charge = ConvertFunc.ToDouble(Staticvar.resvalueextended);
                 status_voucher = ConvertFunc.ToInt(Staticvar.resvalueextended2);
                 status_card = ConvertFunc.ToInt(Staticvar.resvalueextended3);
+                id_akun_charge = Staticvar.resvalueextended4;
                 if (status_card == 1) {
                     pane.lno_kartu.setVisible(true);
                     pane.lttk_no_kartu.setVisible(true);
@@ -601,10 +657,15 @@ public class BayarposController {
                     pane.lttk_nama_pemilik.setVisible(true);
                     pane.edno_kartu.setVisible(true);
                     pane.ednama_pemilik.setVisible(true);
+                    pane.edtambah_cash.setVisible(true);
+                    pane.ltambah_cash.setVisible(true);
+                    pane.lttk_tambah_cash.setVisible(true);
+                    pane.edtambah_cash.setText("0");
                     pane.lno_kartu.setText("No. Kartu");
                     pane.lnama_pemilik.setText("Nama Pemilik");
                     charge_nominal = ((charge / 100) * totalbayar);
                     double total_bayar = charge_nominal + totalbayar;
+                    totalbayar = total_bayar;
                     pane.ltotal.setText(nf.format(total_bayar));
                     pane.edbayar.setText(String.valueOf(total_bayar));
                     pane.ljumlah_bayar.setText(nf.format(total_bayar));
@@ -616,6 +677,10 @@ public class BayarposController {
                     pane.lttk_nama_pemilik.setVisible(true);
                     pane.edno_kartu.setVisible(true);
                     pane.ednama_pemilik.setVisible(true);
+                    pane.edtambah_cash.setVisible(true);
+                    pane.ltambah_cash.setVisible(true);
+                    pane.edtambah_cash.setText("0");
+                    pane.lttk_tambah_cash.setVisible(true);
                     pane.lno_kartu.setText("No Voucher");
                     pane.lnama_pemilik.setText("Nama Voucher");
                 } else {
@@ -625,6 +690,10 @@ public class BayarposController {
                     pane.lttk_nama_pemilik.setVisible(false);
                     pane.edno_kartu.setVisible(false);
                     pane.ednama_pemilik.setVisible(false);
+                    pane.edtambah_cash.setVisible(false);
+                    pane.ltambah_cash.setVisible(false);
+                    pane.edtambah_cash.setText("0");
+                    pane.lttk_tambah_cash.setVisible(false);
                     pane.ltotal.setText(nf.format(totalbayar));
                     pane.edbayar.setText(String.valueOf("0"));
                     pane.ljumlah_bayar.setText(String.valueOf("0"));

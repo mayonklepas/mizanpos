@@ -18,6 +18,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowStateListener;
 import java.text.NumberFormat;
@@ -32,7 +34,9 @@ import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -50,6 +54,7 @@ import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.penjualan.Insertpos_pane;
 import mizanposapp.view.innerpanel.penjualan.Bayarpos_pane;
 import mizanposapp.view.innerpanel.penjualan.Posframe;
+import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_input_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -108,6 +113,7 @@ public class PosframeController {
     String keterangan = "keterangan";
     String total = "total";
     boolean panggil = true;
+    JPopupMenu pop;
 
     KeyEventDispatcher keydis = new KeyEventDispatcher() {
         @Override
@@ -258,9 +264,53 @@ public class PosframeController {
         //hapusbaris();
         //tambahbaris();
         //batal();
+        setpopup();
         keyfunction();
         carigudang();
         tutup();
+
+    }
+
+    private void setpopup() {
+        pop = new JPopupMenu();
+        JMenuItem editpersediaan = new JMenuItem("Edit Persediaan");
+        pop.add(editpersediaan);
+
+        editpersediaan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = pane.tabledata.getSelectedRow();
+                Staticvar.ids = tabeldatalist.get(row).getId_barang();
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Daftarpersediaan_input_panel());
+                jd.pack();
+                jd.setLocationRelativeTo(null);
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setTitle("Edit Data Persediaan");
+                jd.setVisible(true);
+            }
+        });
+
+        pane.tabledata.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (!pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+                    if (e.isPopupTrigger()) {
+                        pop.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!pane.tabledata.getSelectionModel().isSelectionEmpty()) {
+                    if (e.isPopupTrigger()) {
+                        pop.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+            }
+
+        });
 
     }
 

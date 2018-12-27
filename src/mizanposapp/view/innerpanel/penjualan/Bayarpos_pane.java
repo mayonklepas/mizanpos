@@ -88,7 +88,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         edtipe_bayar = new javax.swing.JTextField();
         bcari_tipe_bayar = new javax.swing.JButton();
         ltambah_cash = new javax.swing.JLabel();
-        lttk_nama_cash = new javax.swing.JLabel();
+        lttk_tambah_cash = new javax.swing.JLabel();
         edtambah_cash = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -513,8 +513,8 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         ltambah_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         ltambah_cash.setText("Tambah Cash");
 
-        lttk_nama_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        lttk_nama_cash.setText(":");
+        lttk_tambah_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lttk_tambah_cash.setText(":");
 
         edtambah_cash.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         edtambah_cash.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -548,7 +548,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ltambah_cash)
                                 .addGap(25, 25, 25)
-                                .addComponent(lttk_nama_cash))
+                                .addComponent(lttk_tambah_cash))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(lno_kartu)
@@ -618,7 +618,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lttk_nama_cash)
+                        .addComponent(lttk_tambah_cash)
                         .addComponent(ltambah_cash))
                     .addComponent(edtambah_cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -723,9 +723,9 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     public javax.swing.JLabel ltotal_service;
     public javax.swing.JLabel lttk_jumlah_poin;
     public javax.swing.JLabel lttk_max_poin;
-    public javax.swing.JLabel lttk_nama_cash;
     public javax.swing.JLabel lttk_nama_pemilik;
     public javax.swing.JLabel lttk_nilai_poin;
     public javax.swing.JLabel lttk_no_kartu;
+    public javax.swing.JLabel lttk_tambah_cash;
     // End of variables declaration//GEN-END:variables
 }
