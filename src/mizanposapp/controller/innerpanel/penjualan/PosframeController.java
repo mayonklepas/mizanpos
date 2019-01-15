@@ -268,6 +268,8 @@ public class PosframeController {
         keyfunction();
         carigudang();
         tutup();
+        carikasmasuklain();
+        carikaskeluarlain();
 
     }
 
@@ -601,6 +603,38 @@ public class PosframeController {
 
             }
         });
+    }
+
+    private void carikasmasuklain() {
+        pane.bkas_masuk_lain.addActionListener((ActionEvent e) -> {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("poskasmasuk", "popupdaftarposkasmasuk?id_kasir=" + Globalsession.DEFAULT_ID_PENGGUNA + "&"
+                 + "tgl=" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "", "Daftar POS Kas Masuk"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+        });
+
+    }
+
+    private void carikaskeluarlain() {
+        pane.bkas_keluar_lain.addActionListener((ActionEvent e) -> {
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("poskaskeluar", "popupdaftarposkaskeluar?id_kasir=" + Globalsession.DEFAULT_ID_PENGGUNA + "&"
+                 + "tgl=" + new SimpleDateFormat("yyyy-MM-dd").format(new Date()) + "", "Daftar POS Kas Keluar"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+        });
+
     }
 
     private void caripelanggan() {

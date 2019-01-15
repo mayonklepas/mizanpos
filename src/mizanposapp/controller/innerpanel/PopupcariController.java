@@ -48,6 +48,10 @@ import mizanposapp.view.innerpanel.pembelian.Daftartop_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatagolongan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatakaryawan_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarkelompok_pos_kas_keluar_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarkelompok_pos_kas_masuk_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarpos_kas_keluar_input_panel;
+import mizanposapp.view.innerpanel.penjualan.Daftarpos_kas_masuk_input_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftartipe_pembayaran_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatadept_input_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftardatasupplier_input_panel;
@@ -481,6 +485,18 @@ public class PopupcariController {
                 case "tipepembayaran":
                     inpane = new Daftartipe_pembayaran_input_panel();
                     break;
+                case "poskasmasuk":
+                    inpane = new Daftarpos_kas_masuk_input_panel();
+                    break;
+                case "poskaskeluar":
+                    inpane = new Daftarpos_kas_keluar_input_panel();
+                    break;
+                case "poskelkasmasuk":
+                    inpane = new Daftarkelompok_pos_kas_masuk_input_panel();
+                    break;
+                case "poskelkaskeluar":
+                    inpane = new Daftarkelompok_pos_kas_keluar_input_panel();
+                    break;
 
             }
             JDialog jd = new JDialog(new Mainmenu());
@@ -559,6 +575,18 @@ public class PopupcariController {
                     break;
                 case "tipepembayaran":
                     inpane = new Daftartipe_pembayaran_input_panel();
+                    break;
+                case "poskasmasuk":
+                    inpane = new Daftarpos_kas_masuk_input_panel();
+                    break;
+                case "poskaskeluar":
+                    inpane = new Daftarpos_kas_keluar_input_panel();
+                    break;
+                case "poskelkasmasuk":
+                    inpane = new Daftarkelompok_pos_kas_masuk_input_panel();
+                    break;
+                case "poskelkaskeluar":
+                    inpane = new Daftarkelompok_pos_kas_keluar_input_panel();
                     break;
 
             }

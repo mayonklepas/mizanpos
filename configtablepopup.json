@@ -1343,5 +1343,126 @@
                 "20"
             ]
         }
+    ],
+    "poskasmasuk": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "nama_kel_kas_masuk",
+                "Kelompok",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1", 
+                "20"
+            ]
+        }
+    ],
+    "poskaskeluar": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "nama_kel_kas_keluar",
+                "Kelompok",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "jumlah",
+                "Jumlah",
+                "1",
+                "15"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1", 
+                "20"
+            ]
+        }
+    ],
+    "poskelkasmasuk": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        }
+    ],
+    "poskelkaskeluar": [
+        {
+            "key": [
+                "id",
+                "ID",
+                "1",
+                "0"
+            ]
+        },
+        {
+            "key": [
+                "nama",
+                "Nama",
+                "1",
+                "20"
+            ]
+        },
+        {
+            "key": [
+                "keterangan",
+                "Keterangan",
+                "1",
+                "30"
+            ]
+        }
     ]
+    
 }

@@ -84,6 +84,8 @@ public class Globalsession {
     public static String DEFAULT_KODE_SERVICE = "";
     public static String DEFAULT_ID_KELOMPOK = "";
     public static String DEFAULT_NAMA_KELOMPOK = "";
+    public static String DEFAULT_ID_PENGGUNA = "";
+    public static String DEFAULT_NAMA_PENGGUNA = "";
 
     public Globalsession() {
         StringBuilder sb = new StringBuilder();
@@ -165,6 +167,8 @@ public class Globalsession {
             DEFAULT_ID_GUDANG = String.valueOf(jodata.get("default_id_gudang"));
             DEFAULT_NAMA_GUDANG = String.valueOf(jodata.get("default_nama_gudang"));
             DEFAULT_DISKON_DALAM = String.valueOf(jodata.get("default_diskon_dalam"));
+            DEFAULT_ID_PENGGUNA = String.valueOf(jodata.get("default_id_pengguna"));
+            DEFAULT_NAMA_PENGGUNA = String.valueOf(jodata.get("default_nama_pengguna"));
 
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
