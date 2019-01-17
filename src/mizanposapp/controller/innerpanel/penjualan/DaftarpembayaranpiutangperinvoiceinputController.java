@@ -40,7 +40,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -205,7 +205,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.ednoref.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -279,14 +279,14 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
         for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
-                int wi = ConvertFunc.ToInt(pembagi * setsize);
+                int wi = FuncHelper.ToInt(pembagi * setsize);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-                int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
+                int wi = FuncHelper.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -351,7 +351,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
 
                     pane.edtotal_nilai.setText(String.valueOf(joinpenjualan.get("jumlah")));
 
-                    valgiro = ConvertFunc.ToInt(joinpenjualan.get("isgiro"));
+                    valgiro = FuncHelper.ToInt(joinpenjualan.get("isgiro"));
                     if (valgiro == 0) {
                         pane.ckgiro.setSelected(false);
                     } else {
@@ -397,9 +397,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     String noref = String.valueOf(jointabledata.get("noref"));
                     String tanggal = String.valueOf(jointabledata.get("tanggal"));
                     String totalpiutang = String.valueOf(jointabledata.get("total"));
-                    double sebenarnyasisa = ConvertFunc.ToDouble(jointabledata.get("sisa"))
-                            + ConvertFunc.ToDouble(jointabledata.get("diskon_nominal"))
-                            + ConvertFunc.ToDouble(jointabledata.get("jumlah"));
+                    double sebenarnyasisa = FuncHelper.ToDouble(jointabledata.get("sisa"))
+                            + FuncHelper.ToDouble(jointabledata.get("diskon_nominal"))
+                            + FuncHelper.ToDouble(jointabledata.get("jumlah"));
                     String sisapiutang = String.valueOf(sebenarnyasisa);
                     String diskon = String.valueOf(jointabledata.get("diskon_nominal"));
                     String jumlah_bayar = String.valueOf(jointabledata.get("jumlah"));
@@ -443,8 +443,8 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                             ischangevalue = true;
                             String noref = tabeldatalist.get(row).getNoref();
                             tabeldatalist.get(row).setDiskon(String.valueOf(tm.getValueAt(row, gx(diskon))));
-                            double indiskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
-                            double insisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisapiutang());
+                            double indiskon = FuncHelper.ToDouble(tabeldatalist.get(row).getDiskon());
+                            double insisa = FuncHelper.ToDouble(tabeldatalist.get(row).getSisapiutang());
                             if (indiskon > insisa) {
                                 JOptionPane.showMessageDialog(null,
                                         "Jumlah Diskon " + noref + " Tidak boleh Nol atau lebih besar dari Sisa Piutang", "Informasi", JOptionPane.INFORMATION_MESSAGE);
@@ -471,9 +471,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                             tabeldatalist.get(row).setJumlah_bayar(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah_bayar))));
                             tabeldatalist.get(row).setSisapiutang(String.valueOf(pane.tabledata.getValueAt(row, gx(sisa))));
                             tabeldatalist.get(row).setDiskon(String.valueOf(pane.tabledata.getValueAt(row, gx(diskon))));
-                            double injumlah_bayar = ConvertFunc.ToDouble(tabeldatalist.get(row).getJumlah_bayar());
-                            double insisa = ConvertFunc.ToDouble(tabeldatalist.get(row).getSisapiutang());
-                            double indiskon = ConvertFunc.ToDouble(tabeldatalist.get(row).getDiskon());
+                            double injumlah_bayar = FuncHelper.ToDouble(tabeldatalist.get(row).getJumlah_bayar());
+                            double insisa = FuncHelper.ToDouble(tabeldatalist.get(row).getSisapiutang());
+                            double indiskon = FuncHelper.ToDouble(tabeldatalist.get(row).getDiskon());
                             double totabayartambahdiskon = injumlah_bayar + indiskon;
 
                             if (totabayartambahdiskon > insisa || injumlah_bayar <= 0) {
@@ -482,7 +482,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
                                 tabeldatalist.get(row).setJumlah_bayar(pane.edtotal_nilai.getText());
-                                tm.setValueAt(ConvertFunc.ToDouble(pane.edtotal_nilai.getText()), row, gx(jumlah_bayar));
+                                tm.setValueAt(FuncHelper.ToDouble(pane.edtotal_nilai.getText()), row, gx(jumlah_bayar));
                             } else {
                                 tabeldatalist.get(row).setJumlah_bayar(String.valueOf(tm.getValueAt(row, gx(jumlah_bayar))));
                                 kalkulasi();
@@ -787,12 +787,12 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     + "id_keltrans='43'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
                     + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
                     + "isgiro='" + valgiro + "'::"
                     + "no_giro='" + pane.ednocek.getText() + "'::"
                     + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
@@ -854,12 +854,12 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     + "id_keltrans='43'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
                     + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
                     + "isgiro='" + valgiro + "'::"
                     + "no_giro='" + pane.ednocek.getText() + "'::"
                     + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
@@ -913,9 +913,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                             for (int i = 0; i < jumlahrow; i++) {
                                 if (!tabeldatalist.get(i).getNoref().equals("")) {
                                     String noref = tabeldatalist.get(i).getNoref();
-                                    double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
-                                    double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisapiutang());
-                                    double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
+                                    double jumlahbayar = FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
+                                    double sisa = FuncHelper.ToDouble(tabeldatalist.get(i).getSisapiutang());
+                                    double diskon = FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon());
                                     double totabayartambahdiskon = jumlahbayar + diskon;
                                     if (jumlahbayar <= 0) {
                                         JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh Nol", "Informasi", JOptionPane.INFORMATION_MESSAGE);
@@ -947,9 +947,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                         for (int i = 0; i < jumlahrow; i++) {
                             if (!tabeldatalist.get(i).getNoref().equals("")) {
                                 String noref = tabeldatalist.get(i).getNoref();
-                                double jumlahbayar = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
-                                double sisa = ConvertFunc.ToDouble(tabeldatalist.get(i).getSisapiutang());
-                                double diskon = ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon());
+                                double jumlahbayar = FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
+                                double sisa = FuncHelper.ToDouble(tabeldatalist.get(i).getSisapiutang());
+                                double diskon = FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon());
                                 double totabayartambahdiskon = jumlahbayar + diskon;
                                 if (jumlahbayar <= 0) {
                                     JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh Nol", "Informasi", JOptionPane.INFORMATION_MESSAGE);
@@ -981,8 +981,8 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
         for (int i = 0; i < listcount; i++) {
             sb.append("id_no_genjur=" + "'" + tabeldatalist.get(i).getId() + "'" + "::"
                     + "akun=" + "'" + tabeldatalist.get(i).getAkun() + "'" + "::"
-                    + "jumlah=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar()) + "'" + "::"
-                    + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon()) + "'" + "::"
+                    + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_bayar()) + "'" + "::"
+                    + "diskon_nominal=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon()) + "'" + "::"
                     + "akun_diskon=" + "'" + valakun_diskon + "'");
             sb.append("--");
 
@@ -1004,7 +1004,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             return;
         }
         if ((col == 4) || (col == 5)) {
-            String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
+            String value = nf.format(FuncHelper.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             if (addrow == true) {
                 addautorow(row);
@@ -1184,7 +1184,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
         int rowcount = pane.tabledata.getRowCount();
         double hasil = 0;
         for (int i = 0; i < rowcount; i++) {
-            double jumlah = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
+            double jumlah = FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_bayar());
             hasil = hasil + jumlah;
         }
         pane.edtotal_nilai.setText(nf.format(hasil));

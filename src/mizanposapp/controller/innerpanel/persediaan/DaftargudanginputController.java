@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -112,10 +112,10 @@ public class DaftargudanginputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_gudang.getText()) + "'::"
-                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_gudang.getText()) + "'::"
-                            + "id_penanggung_jawab='" + ConvertFunc.EncodeString(idpenanggungjawab) + "'::"
-                            + "id_dept='" + ConvertFunc.EncodeString(iddepartment) + "'";
+                    String data = "data=kode='" + FuncHelper.EncodeString(pane.edkode_gudang.getText()) + "'::"
+                            + "nama='" + FuncHelper.EncodeString(pane.ednama_gudang.getText()) + "'::"
+                            + "id_penanggung_jawab='" + FuncHelper.EncodeString(idpenanggungjawab) + "'::"
+                            + "id_dept='" + FuncHelper.EncodeString(iddepartment) + "'";
                     ch.insertdata("dm/insertgudang", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -132,10 +132,10 @@ public class DaftargudanginputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_gudang.getText()) + "'::"
-                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_gudang.getText()) + "'::"
-                            + "id_penanggung_jawab='" + ConvertFunc.EncodeString(idpenanggungjawab) + "'::"
-                            + "id_dept='" + ConvertFunc.EncodeString(iddepartment) + "'";
+                    String data = "data=kode='" + FuncHelper.EncodeString(pane.edkode_gudang.getText()) + "'::"
+                            + "nama='" + FuncHelper.EncodeString(pane.ednama_gudang.getText()) + "'::"
+                            + "id_penanggung_jawab='" + FuncHelper.EncodeString(idpenanggungjawab) + "'::"
+                            + "id_dept='" + FuncHelper.EncodeString(iddepartment) + "'";
                     ch.updatedata("dm/updategudang", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

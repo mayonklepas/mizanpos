@@ -46,7 +46,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -184,7 +184,7 @@ public class DaftarreturpenjualaninputController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.edno_transaksi.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -501,14 +501,14 @@ public class DaftarreturpenjualaninputController {
         for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
-                int wi = ConvertFunc.ToInt(pembagi * setsize);
+                int wi = FuncHelper.ToInt(pembagi * setsize);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-                int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
+                int wi = FuncHelper.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -617,7 +617,7 @@ public class DaftarreturpenjualaninputController {
                     valpelanggan = String.valueOf(joinpenjualan.get("id_pelanggan"));
                     pane.edpelanggan.setText(String.valueOf(joinpenjualan.get("nama_pelanggan")));
 
-                    tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
+                    tipe_bayar = FuncHelper.ToInt(joinpenjualan.get("tipe_pembayaran"));
                     if (tipe_bayar == 0) {
                         pane.cmb_tipe_bayar.setSelectedIndex(0);
                     } else {
@@ -688,7 +688,7 @@ public class DaftarreturpenjualaninputController {
 
                     valreturatas = String.valueOf(joinpenjualan.get("id_noso"));
                     pane.ednoso.setText(String.valueOf(joinpenjualan.get("noso")));
-                    total_piutang = ConvertFunc.ToDouble(joinpenjualan.get("sisa_noso"));
+                    total_piutang = FuncHelper.ToDouble(joinpenjualan.get("sisa_noso"));
 
                     valshipvia = String.valueOf(joinpenjualan.get("id_pengantaran"));
                     pane.edshipvia.setText(String.valueOf(joinpenjualan.get("nama_pengantaran")));
@@ -746,7 +746,7 @@ public class DaftarreturpenjualaninputController {
                     valsalesman = String.valueOf(joinpenjualan.get("id_bagian_penjualan"));
                     pane.edsalesman.setText(String.valueOf(joinpenjualan.get("nama_bagian_penjualan")));
 
-                    tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+                    tipe_jual = FuncHelper.ToInt(joinpenjualan.get("tipe_penjualan"));
                     pane.cmb_tipe_penjualan.setSelectedIndex(tipe_jual);
                     if (pane.cmb_tipe_penjualan.getSelectedIndex() == 0) {
                         pane.lgudang.setVisible(true);
@@ -827,8 +827,8 @@ public class DaftarreturpenjualaninputController {
                     String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                     String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
                     String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                    String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                    String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                    String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
+                    String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                     String diskon_persen = String.valueOf(jointabeldata.get("diskon_persen"));
                     String diskon_nominal = String.valueOf(jointabeldata.get("diskon_nominal"));
                     String id_pajak = String.valueOf(jointabeldata.get("id_pajak"));
@@ -881,18 +881,18 @@ public class DaftarreturpenjualaninputController {
                  + "id_keltrans='21'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&penjualan="
                  + "id_pelanggan='" + valpelanggan + "'::"
                  + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                 + "id_noso='" + ConvertFunc.EncodeString(valreturatas) + "'::"
+                 + "id_noso='" + FuncHelper.EncodeString(valreturatas) + "'::"
                  + "id_gudang='" + valgudang + "'::"
                  + "total_penjualan='" + total_penjualan_all + "'::"
-                 + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
-                 + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
-                 + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
-                 + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
+                 + "total_biaya='" + FuncHelper.ToDouble(pane.edbiayalain.getText()) + "'::"
+                 + "diskon_persen='" + FuncHelper.ToDouble(pane.eddiskon1.getText()) + "'::"
+                 + "diskon_nominal='" + FuncHelper.ToDouble(pane.eddiskon2.getText()) + "'::"
+                 + "total_uang_muka='" + FuncHelper.ToDouble(pane.eduang_muka.getText()) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
                  + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
                  + "nilai_kurs='1'::"
@@ -970,18 +970,18 @@ public class DaftarreturpenjualaninputController {
                  + "id_keltrans='21'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&penjualan="
                  + "id_pelanggan='" + valpelanggan + "'::"
                  + "tipe_pembayaran='" + String.valueOf(tipe_bayar) + "'::"
-                 + "id_noso='" + ConvertFunc.EncodeString(valreturatas) + "'::"
+                 + "id_noso='" + FuncHelper.EncodeString(valreturatas) + "'::"
                  + "id_gudang='" + valgudang + "'::"
                  + "total_penjualan='" + total_penjualan_all + "'::"
-                 + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiayalain.getText()) + "'::"
-                 + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon1.getText()) + "'::"
-                 + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon2.getText()) + "'::"
-                 + "total_uang_muka='" + ConvertFunc.ToDouble(pane.eduang_muka.getText()) + "'::"
+                 + "total_biaya='" + FuncHelper.ToDouble(pane.edbiayalain.getText()) + "'::"
+                 + "diskon_persen='" + FuncHelper.ToDouble(pane.eddiskon1.getText()) + "'::"
+                 + "diskon_nominal='" + FuncHelper.ToDouble(pane.eddiskon2.getText()) + "'::"
+                 + "total_uang_muka='" + FuncHelper.ToDouble(pane.eduang_muka.getText()) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
                  + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
                  + "nilai_kurs='1'::"
@@ -1041,7 +1041,7 @@ public class DaftarreturpenjualaninputController {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                              + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
-                            double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
+                            double inuangmuka = FuncHelper.ToDouble(pane.eduang_muka.getText());
                             if (inuangmuka >= total_penjualan_all) {
                                 JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                             } else {
@@ -1070,7 +1070,7 @@ public class DaftarreturpenjualaninputController {
                         jd.setVisible(true);
                         jd.toFront();
                     } else {
-                        double inuangmuka = ConvertFunc.ToDouble(pane.eduang_muka.getText());
+                        double inuangmuka = FuncHelper.ToDouble(pane.eduang_muka.getText());
                         if (inuangmuka >= total_penjualan_all) {
                             JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                         } else {
@@ -1101,17 +1101,17 @@ public class DaftarreturpenjualaninputController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
-                 + "qty_order=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getOrder()) + "'" + "::"
-                 + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                 + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
+                 + "qty_order=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getOrder()) + "'" + "::"
+                 + "qty=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                 + "harga=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
                  + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                 + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
-                 + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
+                 + "diskon_persen=" + "'" + FuncHelper.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
+                 + "diskon_nominal=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
                  + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
                  + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
                  + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
                  + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
-                 + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
+                 + "keterangan=" + "'" + FuncHelper.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
             sb.append("--");
 
         }
@@ -1257,7 +1257,7 @@ public class DaftarreturpenjualaninputController {
                 jd.toFront();
                 valreturatas = Staticvar.resid;
                 pane.ednoso.setText(Staticvar.reslabel);
-                total_piutang = ConvertFunc.ToDouble(Staticvar.resvalueextended);
+                total_piutang = FuncHelper.ToDouble(Staticvar.resvalueextended);
                 if (Staticvar.preid != valreturatas) {
                     if (!valreturatas.equals("") || !valreturatas.equals("null")) {
                         try {
@@ -1286,7 +1286,7 @@ public class DaftarreturpenjualaninputController {
                                 JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
                                 valgudang = String.valueOf(joinpenjualan.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
-                                valcheck = ConvertFunc.ToInt(joinpenjualan.get("diskon_dalam"));
+                                valcheck = FuncHelper.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
                                     pane.ckdiskon.setSelected(true);
                                 } else {
@@ -1304,7 +1304,7 @@ public class DaftarreturpenjualaninputController {
                                     valcheck = 1;
                                 }
 
-                                /*tipe_bayar = ConvertFunc.ToInt(joinpenjualan.get("tipe_pembayaran"));
+                                /*tipe_bayar = FuncHelper.ToInt(joinpenjualan.get("tipe_pembayaran"));
                                 if (tipe_bayar == 0) {
                                     pane.cmb_tipe_bayar.setSelectedIndex(0);
                                 } else {
@@ -1356,7 +1356,7 @@ public class DaftarreturpenjualaninputController {
                                     pane.edakun_penjualan.setText(Globalsession.AKUNPIUTANGUSAHA + "-" + Globalsession.NAMAAKUNPIUTANGUSAHA);
                                     valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                                 }*/
-                                tipe_jual = ConvertFunc.ToInt(joinpenjualan.get("tipe_penjualan"));
+                                tipe_jual = FuncHelper.ToInt(joinpenjualan.get("tipe_penjualan"));
                                 if (tipe_jual == 0) {
                                     pane.cmb_tipe_penjualan.setSelectedIndex(0);
                                 } else {
@@ -1387,8 +1387,8 @@ public class DaftarreturpenjualaninputController {
                                 String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                                 String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
                                 String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
-                                String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                                String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                                String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
+                                String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                                 String diskon_persen = String.valueOf(jointabeldata.get("diskon_persen"));
                                 String diskon_nominal = String.valueOf(jointabeldata.get("diskon_nominal"));
                                 String id_pajak = String.valueOf(jointabeldata.get("id_pajak"));
@@ -1654,9 +1654,9 @@ public class DaftarreturpenjualaninputController {
                                         tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                         tabeldatalist.get(row).setIsi_satuan("1");
                                         tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata.get("harga_beli")));
-                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_beli"))), row, gx(harga_beli));
+                                        tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_beli"))), row, gx(harga_beli));
                                         tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata.get("harga_jual")));
-                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_jual"))), row, gx(harga_jual));
+                                        tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_jual"))), row, gx(harga_jual));
                                         tm.setValueAt("0", row, gx(diskon_persen));
                                         tm.setValueAt("0", row, gx(diskon_nominal));
                                         tabeldatalist.get(row).setDiskon_persen("0");
@@ -1703,9 +1703,9 @@ public class DaftarreturpenjualaninputController {
                                             tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
                                             tabeldatalist.get(row).setIsi_satuan("1");
                                             tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
-                                            tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
+                                            tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
                                             tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
-                                            tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_jual"))), row, gx(harga_jual));
+                                            tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata2.get("harga_jual"))), row, gx(harga_jual));
                                             tm.setValueAt("0", row, gx(diskon_persen));
                                             tm.setValueAt("0", row, gx(diskon_nominal));
                                             tabeldatalist.get(row).setDiskon_persen("0");
@@ -1750,8 +1750,8 @@ public class DaftarreturpenjualaninputController {
                                 tabeldatalist.get(row).setJumlah(String.valueOf(tm.getValueAt(row, gx(jumlah))));
                                 columnfunction(row, gx(jumlah), false);
                             } else {*/
-                            double curjumlah = ConvertFunc.ToDouble(tm.getValueAt(row, gx(jumlah))) * ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan());
-                            double curorder = ConvertFunc.ToDouble(tm.getValueAt(row, gx(order))) * ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan_tetap());
+                            double curjumlah = FuncHelper.ToDouble(tm.getValueAt(row, gx(jumlah))) * FuncHelper.ToDouble(tabeldatalist.get(row).getIsi_satuan());
+                            double curorder = FuncHelper.ToDouble(tm.getValueAt(row, gx(order))) * FuncHelper.ToDouble(tabeldatalist.get(row).getIsi_satuan_tetap());
                             if ((curjumlah > curorder) && (curorder > 0)) {
                                 JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah penjualan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 tabeldatalist.get(row).setJumlah("0");
@@ -1809,7 +1809,7 @@ public class DaftarreturpenjualaninputController {
                             String valcol = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
                             if (checknumerik(valcol) == true) {
                                 columnfunction(row, gx(diskon_nominal), false);
-                                tabeldatalist.get(row).setDiskon_nominal(String.valueOf(ConvertFunc.ToDouble(tm.getValueAt(row, gx(diskon_persen)))));
+                                tabeldatalist.get(row).setDiskon_nominal(String.valueOf(FuncHelper.ToDouble(tm.getValueAt(row, gx(diskon_persen)))));
                                 //nextcolom(col, row);
                             } else {
                                 JDialog jd = new JDialog(new Mainmenu());
@@ -1943,9 +1943,9 @@ public class DaftarreturpenjualaninputController {
                                             tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata2.get("id_satuan")));
                                             tabeldatalist.get(row).setIsi_satuan("1");
                                             tabeldatalist.get(row).setHarga_beli(String.valueOf(joindata2.get("harga_beli")));
-                                            pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
+                                            pane.tabledata.setValueAt(nf.format(FuncHelper.ToDouble(joindata2.get("harga_beli"))), row, gx(harga_beli));
                                             tabeldatalist.get(row).setHarga_jual(String.valueOf(joindata2.get("harga_jual")));
-                                            pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata2.get("harga_jual"))), row, gx(harga_jual));
+                                            pane.tabledata.setValueAt(nf.format(FuncHelper.ToDouble(joindata2.get("harga_jual"))), row, gx(harga_jual));
                                             pane.tabledata.setValueAt("0", row, gx(diskon_persen));
                                             pane.tabledata.setValueAt("0", row, gx(diskon_nominal));
                                             tabeldatalist.get(row).setDiskon_persen("0");
@@ -1990,7 +1990,7 @@ public class DaftarreturpenjualaninputController {
                         tb.setValueAt(Staticvar.reslabel, row, gx(satuan));
                         tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                         dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
-                        double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
+                        double sebenaryaharga = FuncHelper.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * FuncHelper.ToDouble(tabeldatalist.get(row).getHarga_beli());
                         pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(harga_beli));
                         kalkulasitotalperrow(row);
                     } else if (col == gx(pajak)) {
@@ -2106,7 +2106,7 @@ public class DaftarreturpenjualaninputController {
                          pane.tabledata.setValueAt(Staticvar.reslabel, row, gx(satuan));
                          tabeldatalist.get(row).setIsi_satuan(Staticvar.resvalueextended);
                          dtmtabeldata.fireTableCellUpdated(row, gx(satuan));
-                         double sebenaryaharga = ConvertFunc.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * ConvertFunc.ToDouble(tabeldatalist.get(row).getHarga_beli());
+                         double sebenaryaharga = FuncHelper.ToDouble(tabeldatalist.get(row).getIsi_satuan()) * FuncHelper.ToDouble(tabeldatalist.get(row).getHarga_beli());
                          pane.tabledata.setValueAt(nf.format(sebenaryaharga), row, gx(harga_beli));
                          kalkulasitotalperrow(row);
                      } else if (col == gx(pajak)) {
@@ -2301,7 +2301,7 @@ public class DaftarreturpenjualaninputController {
             return;
         }
         if ((col == gx(jumlah)) || (col == gx(harga_jual)) || (col == gx(diskon_nominal))) {
-            String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
+            String value = nf.format(FuncHelper.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
             if (addrow == true) {
@@ -2323,10 +2323,10 @@ public class DaftarreturpenjualaninputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double subtotal = ConvertFunc.ToDouble(pane.lsubtotal.getText());
-                    double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
-                    double diskon = ConvertFunc.ToDouble(pane.eddiskon2.getText());
-                    double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
+                    double subtotal = FuncHelper.ToDouble(pane.lsubtotal.getText());
+                    double biayalain = FuncHelper.ToDouble(pane.edbiayalain.getText());
+                    double diskon = FuncHelper.ToDouble(pane.eddiskon2.getText());
+                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
                     total_penjualan_all = subtotal + biayalain - diskon + pajak;
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
@@ -2342,11 +2342,11 @@ public class DaftarreturpenjualaninputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double subtotal = ConvertFunc.ToDouble(pane.lsubtotal.getText());
-                    double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
-                    double diskon_persen = ConvertFunc.ToDouble(pane.eddiskon1.getText());
+                    double subtotal = FuncHelper.ToDouble(pane.lsubtotal.getText());
+                    double biayalain = FuncHelper.ToDouble(pane.edbiayalain.getText());
+                    double diskon_persen = FuncHelper.ToDouble(pane.eddiskon1.getText());
                     double diskon_nominal = (subtotal + biayalain) * (diskon_persen / 100);
-                    double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
+                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
                     total_penjualan_all = subtotal + biayalain - diskon_nominal + pajak;
 
                     pane.eddiskon2.setText(nf.format(diskon_nominal));
@@ -2364,14 +2364,14 @@ public class DaftarreturpenjualaninputController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double subtotal = ConvertFunc.ToDouble(pane.lsubtotal.getText());
-                    double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
-                    double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-                    double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+                    double subtotal = FuncHelper.ToDouble(pane.lsubtotal.getText());
+                    double biayalain = FuncHelper.ToDouble(pane.edbiayalain.getText());
+                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
+                    double indiskon_nominal = FuncHelper.ToDouble(pane.eddiskon2.getText());
                     double indiskon_persen = (indiskon_nominal / (subtotal + biayalain)) * 100;
                     total_penjualan_all = subtotal + biayalain - indiskon_nominal + pajak;
 
-                    pane.eddiskon1.setText(ConvertFunc.rounding(indiskon_persen));
+                    pane.eddiskon1.setText(FuncHelper.rounding(indiskon_persen));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
@@ -2393,19 +2393,19 @@ public class DaftarreturpenjualaninputController {
         total_pajak = 0;
 
         for (int i = 0; i < jumlah_row; i++) {
-            double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, 12));
+            double total_beli_masing = FuncHelper.ToDouble(emptycellcheck(i, 12));
             subtotal = subtotal + total_beli_masing;
 
-            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, 12)) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
+            double total_pajak_masing = FuncHelper.ToDouble(emptycellcheck(i, 12)) * (FuncHelper.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.lsubtotal.setText(nf.format(subtotal));
 
-        double biayalain = ConvertFunc.ToDouble(pane.edbiayalain.getText());
-        double inpajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-        double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
+        double biayalain = FuncHelper.ToDouble(pane.edbiayalain.getText());
+        double inpajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
+        double indiskon_nominal = FuncHelper.ToDouble(pane.eddiskon2.getText());
         //double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
         total_penjualan_all = subtotal + biayalain - indiskon_nominal + inpajak;
 
@@ -2417,31 +2417,31 @@ public class DaftarreturpenjualaninputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
+                double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+                double harga = FuncHelper.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
                 double intotal = harga;
                 String s = "";
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
-                    double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
+                    double diskonper = FuncHelper.ToDouble(multidiskon[i]);
                     intotal = ((intotal - (diskonper / 100 * intotal)));
                 }
                 intotal = qty * intotal;
                 tabeldatalist.get(row).setTotal(String.valueOf(intotal));
                 pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             } else {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(harga_jual))));
-                double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_persen)));
+                double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+                double harga = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(harga_jual))));
+                double diskon = FuncHelper.ToDouble(emptycellcheck(row, gx(diskon_persen)));
                 double intotal = qty * (harga - (diskon / 100 * harga));
                 tabeldatalist.get(row).setTotal(String.valueOf(intotal));
                 pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
-            double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
+            double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+            double harga = FuncHelper.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
+            double diskon = FuncHelper.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
             double intotal = qty * (harga - diskon);
             tabeldatalist.get(row).setTotal(String.valueOf(intotal));
             pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
@@ -2455,26 +2455,26 @@ public class DaftarreturpenjualaninputController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = rawdiskonpersen;
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(rawqty);
-                double harga = ConvertFunc.ToDouble(rawharga);
+                double qty = FuncHelper.ToDouble(rawqty);
+                double harga = FuncHelper.ToDouble(rawharga);
                 intotal = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
-                    double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
+                    double diskonper = FuncHelper.ToDouble(multidiskon[i]);
                     intotal = ((intotal - (diskonper / 100 * intotal)));
                 }
                 intotal = qty * intotal;
             } else {
-                double qty = ConvertFunc.ToDouble(rawqty);
-                double harga = ConvertFunc.ToDouble(rawharga);
-                double diskon = ConvertFunc.ToDouble(rawdiskonpersen);
+                double qty = FuncHelper.ToDouble(rawqty);
+                double harga = FuncHelper.ToDouble(rawharga);
+                double diskon = FuncHelper.ToDouble(rawdiskonpersen);
                 intotal = qty * (harga - (diskon / 100 * harga));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(rawqty);
-            double harga = ConvertFunc.ToDouble(rawharga);
-            double diskon = ConvertFunc.ToDouble(rawdiskonnominal);
+            double qty = FuncHelper.ToDouble(rawqty);
+            double harga = FuncHelper.ToDouble(rawharga);
+            double diskon = FuncHelper.ToDouble(rawdiskonnominal);
             intotal = qty * (harga - diskon);
         }
         return intotal;
@@ -2500,7 +2500,7 @@ public class DaftarreturpenjualaninputController {
     private boolean checknumerik(String val) {
         boolean hasil = false;
         try {
-            ConvertFunc.ToDouble(val);
+            FuncHelper.ToDouble(val);
             hasil = true;
         } catch (Exception e) {
             hasil = false;

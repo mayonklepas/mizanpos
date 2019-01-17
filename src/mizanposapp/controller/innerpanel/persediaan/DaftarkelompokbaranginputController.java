@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -185,12 +185,12 @@ public class DaftarkelompokbaranginputController {
                 metodehpp = "3";
             }
             if (id.equals("")) {
-                String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_kelompok.getText()) + "'::"
-                        + "nama='" + ConvertFunc.EncodeString(pane.ednama_kelompok.getText()) + "'::"
-                        + "id_satuan='" + ConvertFunc.EncodeString(valsatuan) + "'::"
-                        + "id_gudang='" + ConvertFunc.EncodeString(valgudang) + "'::"
-                        + "id_lokasi='" + ConvertFunc.EncodeString(vallokasi) + "'::"
-                        + "id_dept='" + ConvertFunc.EncodeString(valdept) + "'::"
+                String data = "data=kode='" + FuncHelper.EncodeString(pane.edkode_kelompok.getText()) + "'::"
+                        + "nama='" + FuncHelper.EncodeString(pane.ednama_kelompok.getText()) + "'::"
+                        + "id_satuan='" + FuncHelper.EncodeString(valsatuan) + "'::"
+                        + "id_gudang='" + FuncHelper.EncodeString(valgudang) + "'::"
+                        + "id_lokasi='" + FuncHelper.EncodeString(vallokasi) + "'::"
+                        + "id_dept='" + FuncHelper.EncodeString(valdept) + "'::"
                         + "isnonpoin='" + nonpoin + "'::"
                         + "metode_hpp='" + metodehpp + "'";
                 ch.insertdata("dm/insertkelompokbarang", data);
@@ -209,12 +209,12 @@ public class DaftarkelompokbaranginputController {
                     jd.dispose();
                 }
             } else {
-                String data = "data=kode='" + ConvertFunc.EncodeString(pane.edkode_kelompok.getText()) + "'::"
-                        + "nama='" + ConvertFunc.EncodeString(pane.ednama_kelompok.getText()) + "'::"
-                        + "id_satuan='" + ConvertFunc.EncodeString(valsatuan) + "'::"
-                        + "id_gudang='" + ConvertFunc.EncodeString(valgudang) + "'::"
-                        + "id_lokasi='" + ConvertFunc.EncodeString(vallokasi) + "'::"
-                        + "id_dept='" + ConvertFunc.EncodeString(valdept) + "'::"
+                String data = "data=kode='" + FuncHelper.EncodeString(pane.edkode_kelompok.getText()) + "'::"
+                        + "nama='" + FuncHelper.EncodeString(pane.ednama_kelompok.getText()) + "'::"
+                        + "id_satuan='" + FuncHelper.EncodeString(valsatuan) + "'::"
+                        + "id_gudang='" + FuncHelper.EncodeString(valgudang) + "'::"
+                        + "id_lokasi='" + FuncHelper.EncodeString(vallokasi) + "'::"
+                        + "id_dept='" + FuncHelper.EncodeString(valdept) + "'::"
                         + "isnonpoin='" + nonpoin + "'::"
                         + "metode_hpp='" + metodehpp + "'";
                 ch.updatedata("dm/updatekelompokbarang", data, id);

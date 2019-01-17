@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -121,10 +121,10 @@ public class DaftardatadeptinputController {
                 }
                 if (id.equals("")) {
 
-                    String data = "data=id='" + ConvertFunc.EncodeString(pane.edid_dept.getText()) + "'::"
-                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_dept.getText()) + "'::"
+                    String data = "data=id='" + FuncHelper.EncodeString(pane.edid_dept.getText()) + "'::"
+                            + "nama='" + FuncHelper.EncodeString(pane.ednama_dept.getText()) + "'::"
                             + "issubdept='" + pane.ednama_dept.getText() + "'::"
-                            + "id_sub_dept='" + ConvertFunc.EncodeString(subvalue) + "'";
+                            + "id_sub_dept='" + FuncHelper.EncodeString(subvalue) + "'";
                     ch.insertdata("dm/insertdept", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -141,10 +141,10 @@ public class DaftardatadeptinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = "data=id='" + ConvertFunc.EncodeString(pane.edid_dept.getText()) + "'::"
-                            + "nama='" + ConvertFunc.EncodeString(pane.ednama_dept.getText()) + "'::"
+                    String data = "data=id='" + FuncHelper.EncodeString(pane.edid_dept.getText()) + "'::"
+                            + "nama='" + FuncHelper.EncodeString(pane.ednama_dept.getText()) + "'::"
                             + "issubdept='" + pane.ednama_dept.getText() + "'::"
-                            + "id_sub_dept='" + ConvertFunc.EncodeString(subvalue) + "'";
+                            + "id_sub_dept='" + FuncHelper.EncodeString(subvalue) + "'";
                     ch.updatedata("dm/updatedept", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

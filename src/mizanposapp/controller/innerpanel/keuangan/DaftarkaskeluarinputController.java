@@ -39,7 +39,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -210,7 +210,7 @@ public class DaftarkaskeluarinputController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.ednoref.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -284,14 +284,14 @@ public class DaftarkaskeluarinputController {
         for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
-                int wi = ConvertFunc.ToInt(pembagi * setsize);
+                int wi = FuncHelper.ToInt(pembagi * setsize);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-                int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
+                int wi = FuncHelper.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -358,7 +358,7 @@ public class DaftarkaskeluarinputController {
 
                     pane.edtotal_nilai.setText(String.valueOf(joinkeuangan.get("jumlah")));
 
-                    valgiro = ConvertFunc.ToInt(joinkeuangan.get("isgiro"));
+                    valgiro = FuncHelper.ToInt(joinkeuangan.get("isgiro"));
                     if (valgiro == 0) {
                         pane.ckgiro.setSelected(false);
                     } else {
@@ -641,12 +641,12 @@ public class DaftarkaskeluarinputController {
                     + "id_keltrans='41'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&kas_keluar="
                     + "id_cards='" + valpenerima + "'::"
                     + "akun_keluar_dari='" + valakun_kas + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
                     + "isgiro='" + valgiro + "'::"
                     + "no_giro='" + pane.ednocek.getText() + "'::"
                     + "akun_giro='" + valakungiro + "'::"
@@ -705,12 +705,12 @@ public class DaftarkaskeluarinputController {
                     + "id_keltrans='41'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&kas_keluar="
                     + "id_cards='" + valpenerima + "'::"
                     + "akun_keluar_dari='" + valakun_kas + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
                     + "isgiro='" + valgiro + "'::"
                     + "no_giro='" + pane.ednocek.getText() + "'::"
                     + "akun_giro='" + valakungiro + "'::"
@@ -795,7 +795,7 @@ public class DaftarkaskeluarinputController {
         for (int i = 0; i < listcount; i++) {
             sb.append("akun=" + "'" + tabeldatalist.get(i).getAkun() + "'" + "::"
                     + "keterangan=" + "'" + tabeldatalist.get(i).getKeterangan() + "'" + "::"
-                    + "jumlah=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'");
+                    + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah()) + "'");
             sb.append("--");
 
         }
@@ -816,7 +816,7 @@ public class DaftarkaskeluarinputController {
             return;
         }
         if ((col == gx(jumlah))) {
-            String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
+            String value = nf.format(FuncHelper.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             if (addrow == true) {
                 addautorow(row);
@@ -991,7 +991,7 @@ public class DaftarkaskeluarinputController {
         int rowcount = pane.tabledata.getRowCount();
         double hasil = 0;
         for (int i = 0; i < rowcount; i++) {
-            double jumlah = ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah());
+            double jumlah = FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah());
             hasil = hasil + jumlah;
         }
         pane.edtotal_nilai.setText(nf.format(hasil));

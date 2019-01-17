@@ -51,7 +51,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import mizanposapp.controller.innerpanel.persediaan.DaftarstokopnameinnerController;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -175,7 +175,7 @@ public class DaftarstokopnameinputController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.edno_transaksi.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -288,14 +288,14 @@ public class DaftarstokopnameinputController {
         for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
-                int wi = ConvertFunc.ToInt(pembagi * setsize);
+                int wi = FuncHelper.ToInt(pembagi * setsize);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-                int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
+                int wi = FuncHelper.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -359,7 +359,7 @@ public class DaftarstokopnameinputController {
                     String jumlah = String.valueOf(jointabeldata.get("jumlah"));
                     String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                     String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                    String harga = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga")));
+                    String harga = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga")));
                     String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                     String qty_satuan_pengali = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
                     String id_gudang = String.valueOf(jointabeldata.get("id_gudang"));
@@ -399,8 +399,8 @@ public class DaftarstokopnameinputController {
                  + "id_keltrans='51'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&" + kirimtexpersediaan();
 
             ch.insertdata("insertstokopname", data);
@@ -452,8 +452,8 @@ public class DaftarstokopnameinputController {
                  + "id_keltrans='5'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(pane.edno_transaksi.getText()) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&" + kirimtexpersediaan();
             ch.updatedata("updatestokopname", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
@@ -539,10 +539,10 @@ public class DaftarstokopnameinputController {
         for (int i = 0; i < listcount; i++) {
             sb.append("id_akun=" + "'" + tabeldatalist.get(i).getId_akun() + "'" + "::"
                  + "id_inv=" + "'" + tabeldatalist.get(i).getId_inv() + "'" + "::"
-                 + "jumlah_program=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_program()) + "'" + "::"
-                 + "jumlah_fisik=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah_fisik()) + "'" + "::"
-                 + "jumlah=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                 + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga()) + "'" + "::"
+                 + "jumlah_program=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_program()) + "'" + "::"
+                 + "jumlah_fisik=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_fisik()) + "'" + "::"
+                 + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                 + "harga=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getHarga()) + "'" + "::"
                  + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
                  + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
                  + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
@@ -747,7 +747,7 @@ public class DaftarstokopnameinputController {
                                     tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                     tabeldatalist.get(row).setQty_satuan_pengali("1");
                                     tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
-                                    tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
+                                    tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
                                     tabeldatalist.get(row).setId_gudang(valgudang);
                                     tm.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                     tabeldatalist.get(row).setTotal("0");
@@ -791,7 +791,7 @@ public class DaftarstokopnameinputController {
                                         tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                         tabeldatalist.get(row).setQty_satuan_pengali("1");
                                         tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
-                                        tm.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
+                                        tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
                                         tabeldatalist.get(row).setId_gudang(valgudang);
                                         tm.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                         tabeldatalist.get(row).setTotal("0");
@@ -922,7 +922,7 @@ public class DaftarstokopnameinputController {
                                         tabeldatalist.get(row).setId_satuan_pengali(String.valueOf(joindata.get("id_satuan")));
                                         tabeldatalist.get(row).setQty_satuan_pengali("1");
                                         tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
-                                        pane.tabledata.setValueAt(nf.format(ConvertFunc.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
+                                        pane.tabledata.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
                                         tabeldatalist.get(row).setId_gudang(valgudang);
                                         pane.tabledata.setValueAt(pane.edgudang.getText(), row, gx(gudang));
                                         tabeldatalist.get(row).setTotal("0");
@@ -1193,7 +1193,7 @@ public class DaftarstokopnameinputController {
             return;
         }
         if ((col == gx(jumlah)) || (col == gx(harga))) {
-            String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
+            String value = nf.format(FuncHelper.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             if (addrow == true) {
                 addautorow(row);
@@ -1202,16 +1202,16 @@ public class DaftarstokopnameinputController {
     }
 
     private void kalkulasitotalperrow(int row) {
-        double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-        double inharga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga)));
+        double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+        double inharga = FuncHelper.ToDouble(pane.tabledata.getValueAt(row, gx(harga)));
         double intotal = qty * inharga;
         tabeldatalist.get(row).setTotal(String.valueOf(intotal));
         pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
     }
 
     private double kalkulasiload(String qty, String harga) {
-        double inqty = ConvertFunc.ToDouble(qty);
-        double inharga = ConvertFunc.ToDouble(harga);
+        double inqty = FuncHelper.ToDouble(qty);
+        double inharga = FuncHelper.ToDouble(harga);
         double intotal = inqty * inharga;
         if (intotal == -0) {
             intotal = 0;

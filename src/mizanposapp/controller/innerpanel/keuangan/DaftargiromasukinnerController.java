@@ -32,7 +32,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -225,7 +225,7 @@ public class DaftargiromasukinnerController {
             public void mouseClicked(MouseEvent e) {
                 int irow = pane.tabledata.getSelectedRow();
                 id_giro_untuk_cair = idlist.get(irow);
-                status = ConvertFunc.ToInt(pane.tabledata.getValueAt(irow, 5));
+                status = FuncHelper.ToInt(pane.tabledata.getValueAt(irow, 5));
                 if (status == 0) {
                     pane.mproses.setText("Cairkan Giro");
                 } else {

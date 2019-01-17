@@ -45,7 +45,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -101,7 +101,7 @@ public class DaftarakuninputController {
                     in_isparent = "1";
                 }
                 in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
-                if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
+                if (FuncHelper.ToInt(in_id_kelompok) == 1 && FuncHelper.ToInt(in_isparent) == 0) {
                     pane.cktipe_akun.setVisible(true);
                     pane.bdata_bank.setVisible(true);
                 } else {
@@ -109,14 +109,14 @@ public class DaftarakuninputController {
                     pane.bdata_bank.setVisible(false);
                 }
 
-                if (ConvertFunc.ToInt(in_isparent) == 0) {
+                if (FuncHelper.ToInt(in_isparent) == 0) {
                     sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
 
-                } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
+                } else if (FuncHelper.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                     sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     pane.cmbsub_akun_dari.setVisible(true);
@@ -154,7 +154,7 @@ public class DaftarakuninputController {
                     in_isparent = "1";
                 }
                 in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
-                if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
+                if (FuncHelper.ToInt(in_id_kelompok) == 1 && FuncHelper.ToInt(in_isparent) == 0) {
                     pane.cktipe_akun.setVisible(true);
                     pane.bdata_bank.setVisible(true);
                 } else {
@@ -162,13 +162,13 @@ public class DaftarakuninputController {
                     pane.bdata_bank.setVisible(false);
                 }
 
-                if (ConvertFunc.ToInt(in_isparent) == 0) {
+                if (FuncHelper.ToInt(in_isparent) == 0) {
                     sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
-                } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
+                } else if (FuncHelper.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
                     sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                     pane.cmbsub_akun_dari.setVisible(true);
@@ -205,7 +205,7 @@ public class DaftarakuninputController {
                     in_isparent = "1";
                 }
                 in_acc_level = String.valueOf(pane.cmbakun_level.getSelectedItem());
-                if (ConvertFunc.ToInt(in_id_kelompok) == 1 && ConvertFunc.ToInt(in_isparent) == 0) {
+                if (FuncHelper.ToInt(in_id_kelompok) == 1 && FuncHelper.ToInt(in_isparent) == 0) {
                     pane.cktipe_akun.setVisible(true);
                     pane.bdata_bank.setVisible(true);
                 } else {
@@ -213,14 +213,14 @@ public class DaftarakuninputController {
                     pane.bdata_bank.setVisible(false);
                 }
 
-                if (ConvertFunc.ToInt(in_isparent) == 0) {
+                if (FuncHelper.ToInt(in_isparent) == 0) {
                     sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                     pane.cmbsub_akun_dari.setVisible(true);
                     pane.lsubakun.setVisible(true);
                     pane.ltitikduasubakun.setVisible(true);
 
-                } else if (ConvertFunc.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
+                } else if (FuncHelper.ToInt(in_isparent) == 1 && !in_acc_level.equals("2")) {
                     sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                     loadsubakun(in_id_kelompok, in_isparent, in_acc_level);
                     pane.cmbsub_akun_dari.setVisible(true);
@@ -324,8 +324,8 @@ public class DaftarakuninputController {
                         pane.cmbakun_level.setSelectedIndex(1);
                     }
 
-                    int statusaktif = ConvertFunc.ToInt(jo.get("isaktif"));
-                    int statuskas = ConvertFunc.ToInt(jo.get("iskasbank"));
+                    int statusaktif = FuncHelper.ToInt(jo.get("isaktif"));
+                    int statuskas = FuncHelper.ToInt(jo.get("iskasbank"));
                     if (statusaktif == 1) {
                         pane.ckstatus.setSelected(true);
                     } else {
@@ -338,7 +338,7 @@ public class DaftarakuninputController {
                         pane.cktipe_akun.setSelected(false);
                     }
 
-                    if (ConvertFunc.ToInt(jo.get("id_kelompok")) == 1 && ConvertFunc.ToInt(jo.get("isparent")) == 0) {
+                    if (FuncHelper.ToInt(jo.get("id_kelompok")) == 1 && FuncHelper.ToInt(jo.get("isparent")) == 0) {
                         pane.cktipe_akun.setVisible(true);
                         pane.bdata_bank.setVisible(true);
                     } else {
@@ -346,13 +346,13 @@ public class DaftarakuninputController {
                         pane.bdata_bank.setVisible(false);
                     }
 
-                    if (ConvertFunc.ToInt(jo.get("isparent")) == 0) {
+                    if (FuncHelper.ToInt(jo.get("isparent")) == 0) {
                         sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                         pane.cmbsub_akun_dari.setVisible(true);
                         pane.lsubakun.setVisible(true);
                         pane.ltitikduasubakun.setVisible(true);
 
-                    } else if (ConvertFunc.ToInt(jo.get("isparent")) == 1 && !String.valueOf(jo.get("acc_level")).equals("2")) {
+                    } else if (FuncHelper.ToInt(jo.get("isparent")) == 1 && !String.valueOf(jo.get("acc_level")).equals("2")) {
                         sudah_jangan_set_lagi_kau_membuat_semua_kacau = false;
                         pane.cmbsub_akun_dari.setVisible(true);
                         pane.lsubakun.setVisible(true);

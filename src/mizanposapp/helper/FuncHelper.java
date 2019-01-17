@@ -6,16 +6,27 @@
 package mizanposapp.helper;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+import mizanposapp.controller.innerpanel.penjualan.PosframeController;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author Minami
  */
-public class ConvertFunc {
+public class FuncHelper {
 
-    public ConvertFunc() {
+    CrudHelper ch = new CrudHelper();
+
+    public FuncHelper() {
     }
 
     public static double ToDouble(String str) {
@@ -34,7 +45,7 @@ public class ConvertFunc {
             result = Double.parseDouble(String.valueOf(obj).replace(",", ""));
         } catch (Exception ex) {
             result = 0;
-            Logger.getLogger(ConvertFunc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -67,7 +78,7 @@ public class ConvertFunc {
             }
         } catch (Exception ex) {
             result = 0;
-            Logger.getLogger(ConvertFunc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -94,4 +105,42 @@ public class ConvertFunc {
         double hasil = Math.round(value * scale) / scale;
         return String.valueOf(hasil);
     }
+
+    public HashMap getkodetransaksi(String keltrans, Date tanggal, String iddept) {
+        HashMap<String, String> hashmap = new HashMap<>();
+        try {
+            JSONParser jpdata = new JSONParser();
+            String param = String.format("id_keltrans=%s&tahun=%s&bulan=%s&id_dept=%s",
+                 keltrans,
+                 new SimpleDateFormat("yyyy").format(tanggal),
+                 new SimpleDateFormat("MM").format(tanggal),
+                 iddept);
+            Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
+            JSONArray ja = (JSONArray) ob;
+            for (int i = 0; i < ja.size(); i++) {
+                JSONObject jo = (JSONObject) ja.get(i);
+                hashmap.put("kode_transaksi", String.valueOf(jo.get("no_transaksi")));
+                hashmap.put("no_urut", String.valueOf(jo.get("no_urut")));
+            }
+
+        } catch (ParseException ex) {
+            Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hashmap;
+    }
+
+    public void insertnogagal(String keltrans, Date tanggal, String iddept) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                String data = String.format("id_keltrans=%s&tahun=%s&bulan=%s&id_dept=%s",
+                     keltrans,
+                     new SimpleDateFormat("yyyy").format(tanggal),
+                     new SimpleDateFormat("MM").format(tanggal),
+                     iddept);
+                ch.insertdata("insertnomorgagal", data);
+            }
+        });
+    }
+
 }

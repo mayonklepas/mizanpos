@@ -323,5 +323,4 @@ public class CrudHelper {
             Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

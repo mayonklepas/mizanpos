@@ -22,10 +22,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowStateListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -44,7 +47,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -53,6 +56,7 @@ import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.penjualan.Insertpos_pane;
 import mizanposapp.view.innerpanel.penjualan.Bayarpos_pane;
+import mizanposapp.view.innerpanel.penjualan.Pos_hutang_pane;
 import mizanposapp.view.innerpanel.penjualan.Posframe;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_input_panel;
 import org.json.simple.JSONArray;
@@ -85,7 +89,7 @@ public class PosframeController {
     double total_penjualan_all = 0;
     double total_pajak = 0;
     double subtotal = 0;
-    int no_urut = 0;
+    String no_urut = "0";
     JTextField jt2;
     JTextField jt4;
     JTextField jt6;
@@ -257,19 +261,18 @@ public class PosframeController {
         loaddata();
         simpandata();
         checkandcombocontrol();
+        gantitanggal();
         setPlaceHolder();
         caripelanggan();
         caridepartment();
         carisalesman();
-        //hapusbaris();
-        //tambahbaris();
-        //batal();
         setpopup();
         keyfunction();
         carigudang();
         tutup();
         carikasmasuklain();
         carikaskeluarlain();
+        showhutang();
 
     }
 
@@ -338,33 +341,22 @@ public class PosframeController {
 
     }
 
+    private void gantitanggal() {
+        pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept);
+                HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+                pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                no_urut = String.valueOf(hm.get("no_urut"));
+            }
+        });
+    }
+
     private void skinning() {
         pane.dtanggal.setDateFormatString("dd MMMM yyyy");
         pane.dtanggal.setDate(new Date());
         pane.dtanggal.getDateEditor().setEnabled(false);
-    }
-
-    private void getkodetransaksi() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "2");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.edno_transaksi.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-
     }
 
     private void customtable() {
@@ -407,12 +399,14 @@ public class PosframeController {
                     hidetable(gx(diskon_nominal));
                     showtable(gx(diskon_persen));
                     valcheck = 0;
-
+                    valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
                 } else {
                     hidetable(gx(diskon_persen));
                     showtable(gx(diskon_nominal));
                     valcheck = 1;
+                    valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                 }
+
             }
         });
 
@@ -486,14 +480,14 @@ public class PosframeController {
         for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
-                int wi = ConvertFunc.ToInt(pembagi * setsize);
+                int wi = FuncHelper.ToInt(pembagi * setsize);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-                int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
+                int wi = FuncHelper.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -504,7 +498,7 @@ public class PosframeController {
         customtable();
         loadheader();
         try {
-            getkodetransaksi();
+
             status_selesai = 0;
             tipe_jual = 0;
             pane.dtanggal.setDate(new Date());
@@ -540,6 +534,10 @@ public class PosframeController {
                 showtable(gx(diskon_persen));
                 hidetable(gx(diskon_nominal));
             }
+
+            HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+            pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+            no_urut = String.valueOf(hm.get("no_urut"));
 
         } catch (Exception ex) {
             Logger.getLogger(PosframeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -593,8 +591,7 @@ public class PosframeController {
                              "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                         if (dialog == 0) {
                             KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "2", String.valueOf(no_urut));
-                            ch.insertdata("insertnomorgagal", data);
+                            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept);
                             pane.dispose();
                         }
 
@@ -695,6 +692,10 @@ public class PosframeController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
+            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept);
+            HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+            pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+            no_urut = String.valueOf(hm.get("no_urut"));
             KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
 
@@ -756,6 +757,26 @@ public class PosframeController {
 
         }
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+    }
+
+    private void showhutang() {
+        pane.bpembayaran.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
+                PoshutangController.id_pelanggan = valpelanggan;
+                PoshutangController.nama_pelanggan = pane.edpelanggan.getText();
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Pos_hutang_pane());
+                jd.pack();
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setLocationRelativeTo(null);
+                jd.setVisible(true);
+                jd.toFront();
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+            }
+        });
+
     }
 
     private void rawgetidakun(String prevlabel, String previd) {
@@ -826,7 +847,9 @@ public class PosframeController {
                                     dtmtabeldata.removeRow(0);
                                 }
                                 kalkulasitotal();
-                                getkodetransaksi();
+                                HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+                                pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                                no_urut = String.valueOf(hm.get("no_urut"));
                             }
                             KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
                         }
@@ -948,13 +971,13 @@ public class PosframeController {
                                 jumlah_qty = pre;
                             }
                         }
-                        String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                        String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                         String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                         String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                         String isi_satuan = "1";
                         String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
-                        String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                        String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                        String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
+                        String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                         String diskon_persen = "0";
                         String diskon_nominal = "0";
                         String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
@@ -1001,7 +1024,7 @@ public class PosframeController {
                                         jumlah_qty = pre;
                                     }
                                 }
-                                int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
+                                int curjumlah = FuncHelper.ToInt(tabeldatalist.get(j).getJumlah()) + FuncHelper.ToInt(jumlah_qty);
                                 tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
                                 pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
                                 double callhargajual = gethargajual(
@@ -1030,13 +1053,13 @@ public class PosframeController {
                                     jumlah_qty = pre;
                                 }
                             }
-                            String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                            String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                             String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                             String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                             String isi_satuan = "1";
                             String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
-                            String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                            String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                            String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
+                            String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                             String diskon_persen = "0";
                             String diskon_nominal = "0";
                             String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
@@ -1106,13 +1129,13 @@ public class PosframeController {
                                     jumlah_qty = pre;
                                 }
                             }
-                            String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                            String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                             String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                             String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                             String isi_satuan = "1";
                             String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
-                            String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                            String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                            String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
+                            String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                             String diskon_persen = "0";
                             String diskon_nominal = "0";
                             String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
@@ -1160,7 +1183,7 @@ public class PosframeController {
                                             jumlah_qty = pre;
                                         }
                                     }
-                                    int curjumlah = ConvertFunc.ToInt(tabeldatalist.get(j).getJumlah()) + ConvertFunc.ToInt(jumlah_qty);
+                                    int curjumlah = FuncHelper.ToInt(tabeldatalist.get(j).getJumlah()) + FuncHelper.ToInt(jumlah_qty);
                                     tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
                                     pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
                                     double callhargajual = gethargajual(
@@ -1189,13 +1212,13 @@ public class PosframeController {
                                         jumlah_qty = pre;
                                     }
                                 }
-                                String jumlah = String.valueOf(ConvertFunc.ToInt(jumlah_qty));
+                                String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                                 String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                                 String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
                                 String isi_satuan = "1";
                                 String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
-                                String harga_beli = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_beli")));
-                                String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                                String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
+                                String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                                 String diskon_persen = "0";
                                 String diskon_nominal = "0";
                                 String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
@@ -1288,7 +1311,7 @@ public class PosframeController {
             return;
         }
         if ((col == gx(jumlah)) || (col == gx(harga_jual)) || (col == gx(diskon_nominal))) {
-            String value = nf.format(ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, col)));
+            String value = nf.format(FuncHelper.ToDouble(pane.tabledata.getValueAt(row, col)));
             pane.tabledata.setValueAt(value, row, col);
             kalkulasitotalperrow(row);
             if (addrow == true) {
@@ -1315,16 +1338,16 @@ public class PosframeController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_inv=" + "'" + tabeldatalist.get(i).getId_barang() + "'" + "::"
-                 + "qty=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
-                 + "harga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
+                 + "qty=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah()) + "'" + "::"
+                 + "harga=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
                  + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                 + "diskon_persen=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
-                 + "diskon_nominal=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
+                 + "diskon_persen=" + "'" + FuncHelper.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
+                 + "diskon_nominal=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
                  + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
                  + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
                  + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
                  + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
-                 + "keterangan=" + "'" + ConvertFunc.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
+                 + "keterangan=" + "'" + FuncHelper.EncodeString(tabeldatalist.get(i).getKeterangan()) + "'");
             sb.append("--");
 
         }
@@ -1339,16 +1362,16 @@ public class PosframeController {
         total_pajak = 0;
 
         for (int i = 0; i < jumlah_row; i++) {
-            double total_beli_masing = ConvertFunc.ToDouble(emptycellcheck(i, 11));
+            double total_beli_masing = FuncHelper.ToDouble(emptycellcheck(i, 11));
             subtotal = subtotal + total_beli_masing;
 
-            double total_pajak_masing = ConvertFunc.ToDouble(emptycellcheck(i, 11)) * (ConvertFunc.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
+            double total_pajak_masing = FuncHelper.ToDouble(emptycellcheck(i, 11)) * (FuncHelper.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
         }
 
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.lsubtotal.setText(nf.format(subtotal));
-        total_penjualan_all = subtotal + ConvertFunc.ToDouble(pajak);
+        total_penjualan_all = subtotal + FuncHelper.ToDouble(pajak);
 
         pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
         pane.ltota_lbelanja.setText(nf.format(total_penjualan_all));
@@ -1358,31 +1381,31 @@ public class PosframeController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = String.valueOf(pane.tabledata.getValueAt(row, gx(diskon_persen)));
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-                double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
+                double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+                double harga = FuncHelper.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
                 double intotal = harga;
                 String s = "";
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
-                    double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
+                    double diskonper = FuncHelper.ToDouble(multidiskon[i]);
                     intotal = ((intotal - (diskonper / 100 * intotal)));
                 }
                 intotal = qty * intotal;
                 tabeldatalist.get(row).setTotal(String.valueOf(intotal));
                 pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             } else {
-                double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-                double harga = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(harga_jual))));
-                double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_persen)));
+                double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+                double harga = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(harga_jual))));
+                double diskon = FuncHelper.ToDouble(emptycellcheck(row, gx(diskon_persen)));
                 double intotal = qty * (harga - (diskon / 100 * harga));
                 tabeldatalist.get(row).setTotal(String.valueOf(total));
                 pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
-            double harga = ConvertFunc.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
-            double diskon = ConvertFunc.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
+            double qty = FuncHelper.ToDouble(String.valueOf(pane.tabledata.getValueAt(row, gx(jumlah))));
+            double harga = FuncHelper.ToDouble(pane.tabledata.getValueAt(row, gx(harga_jual)));
+            double diskon = FuncHelper.ToDouble(emptycellcheck(row, gx(diskon_nominal)));
             double intotal = qty * (harga - diskon);
             tabeldatalist.get(row).setTotal(String.valueOf(intotal));
             pane.tabledata.setValueAt(nf.format(intotal), row, gx(total));
@@ -1395,26 +1418,26 @@ public class PosframeController {
         if (pane.ckdiskon.isSelected() == true) {
             String isifielddiskon = rawdiskonpersen;
             if (isifielddiskon.contains("+")) {
-                double qty = ConvertFunc.ToDouble(rawqty);
-                double harga = ConvertFunc.ToDouble(rawharga);
+                double qty = FuncHelper.ToDouble(rawqty);
+                double harga = FuncHelper.ToDouble(rawharga);
                 total = harga;
                 String[] multidiskon = isifielddiskon.split("\\+");
                 for (int i = 0; i < multidiskon.length; i++) {
-                    double diskonper = ConvertFunc.ToDouble(multidiskon[i]);
+                    double diskonper = FuncHelper.ToDouble(multidiskon[i]);
                     total = ((total - (diskonper / 100 * total)));
                 }
                 total = qty * total;
             } else {
-                double qty = ConvertFunc.ToDouble(rawqty);
-                double harga = ConvertFunc.ToDouble(rawharga);
-                double diskon = ConvertFunc.ToDouble(rawdiskonpersen);
+                double qty = FuncHelper.ToDouble(rawqty);
+                double harga = FuncHelper.ToDouble(rawharga);
+                double diskon = FuncHelper.ToDouble(rawdiskonpersen);
                 total = qty * (harga - (diskon / 100 * harga));
             }
         } else {
 
-            double qty = ConvertFunc.ToDouble(rawqty);
-            double harga = ConvertFunc.ToDouble(rawharga);
-            double diskon = ConvertFunc.ToDouble(rawdiskonnominal);
+            double qty = FuncHelper.ToDouble(rawqty);
+            double harga = FuncHelper.ToDouble(rawharga);
+            double diskon = FuncHelper.ToDouble(rawdiskonnominal);
             total = qty * (harga - diskon);
         }
         return total;

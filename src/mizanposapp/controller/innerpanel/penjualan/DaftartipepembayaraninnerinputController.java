@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JDialog;
 import jdk.nashorn.internal.parser.TokenType;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -76,10 +76,10 @@ public class DaftartipepembayaraninnerinputController {
                     pane.edcharge.setText(String.valueOf(joindata.get("charge")));
                     pane.edakun_pembayaran.setText(joindata.get("akun_pembayaran") + " : " + String.valueOf(joindata.get("nama_akun_")));
                     pane.edakun_charge.setText(String.valueOf(joindata.get("akun_charge")) + " : " + String.valueOf(joindata.get("nama_akun_charge")));
-                    int isvoucer = ConvertFunc.ToInt(String.valueOf(joindata.get("isvoucher")));
-                    int iscard = ConvertFunc.ToInt(String.valueOf(joindata.get("iscard")));
-                    int isdebitcard = ConvertFunc.ToInt(String.valueOf(joindata.get("isdebitcard")));
-                    int iskreditcard = ConvertFunc.ToInt(String.valueOf(joindata.get("iskreditcard")));
+                    int isvoucer = FuncHelper.ToInt(String.valueOf(joindata.get("isvoucher")));
+                    int iscard = FuncHelper.ToInt(String.valueOf(joindata.get("iscard")));
+                    int isdebitcard = FuncHelper.ToInt(String.valueOf(joindata.get("isdebitcard")));
+                    int iskreditcard = FuncHelper.ToInt(String.valueOf(joindata.get("iskreditcard")));
                     if (iscard == 1) {
                         pane.rbkartu.setSelected(true);
                         pane.pkartu.setVisible(true);
@@ -127,10 +127,10 @@ public class DaftartipepembayaraninnerinputController {
                     kreditcard = "0";
                 }
                 if (id.equals("")) {
-                    String data = "data=nama='" + ConvertFunc.EncodeString(pane.ednama.getText()) + "'::"
-                         + "charge='" + ConvertFunc.EncodeString(pane.edcharge.getText()) + "'::"
-                         + "akun_pembayaran='" + ConvertFunc.EncodeString(valakun_pembayaran) + "'::"
-                         + "akun_charge='" + ConvertFunc.EncodeString(valakun_charge) + "'::"
+                    String data = "data=nama='" + FuncHelper.EncodeString(pane.ednama.getText()) + "'::"
+                         + "charge='" + FuncHelper.EncodeString(pane.edcharge.getText()) + "'::"
+                         + "akun_pembayaran='" + FuncHelper.EncodeString(valakun_pembayaran) + "'::"
+                         + "akun_charge='" + FuncHelper.EncodeString(valakun_charge) + "'::"
                          + "isvoucher='" + voucher + "'::"
                          + "iscard='" + card + "'::"
                          + "isdebitcard='" + debitcard + "'::"
@@ -151,10 +151,10 @@ public class DaftartipepembayaraninnerinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = "data=nama='" + ConvertFunc.EncodeString(pane.ednama.getText()) + "'::"
-                         + "charge='" + ConvertFunc.EncodeString(pane.edcharge.getText()) + "'::"
-                         + "akun_pembayaran='" + ConvertFunc.EncodeString(valakun_pembayaran) + "'::"
-                         + "akun_charge='" + ConvertFunc.EncodeString(valakun_charge) + "'::"
+                    String data = "data=nama='" + FuncHelper.EncodeString(pane.ednama.getText()) + "'::"
+                         + "charge='" + FuncHelper.EncodeString(pane.edcharge.getText()) + "'::"
+                         + "akun_pembayaran='" + FuncHelper.EncodeString(valakun_pembayaran) + "'::"
+                         + "akun_charge='" + FuncHelper.EncodeString(valakun_charge) + "'::"
                          + "isvoucher='" + voucher + "'::"
                          + "iscard='" + card + "'::"
                          + "isdebitcard='" + debitcard + "'::"

@@ -42,7 +42,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import mizanposapp.controller.innerpanel.SatuanEntity;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -149,7 +149,7 @@ public class DaftarpersediaaninputController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.edkode_persediaan.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -355,7 +355,7 @@ public class DaftarpersediaaninputController {
                 JSONArray jadata = (JSONArray) objdata;
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
-                    int mhppcek = ConvertFunc.ToInt(joindata.get("metode_hpp"));
+                    int mhppcek = FuncHelper.ToInt(joindata.get("metode_hpp"));
                     if (mhppcek == 1) {
                         pane.rbfifo.setSelected(true);
                     } else if (mhppcek == 2) {

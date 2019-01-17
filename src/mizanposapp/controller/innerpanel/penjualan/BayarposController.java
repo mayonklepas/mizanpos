@@ -26,7 +26,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -250,8 +250,8 @@ public class BayarposController {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
                     double subtotal = sub_total;
-                    double biayalain = ConvertFunc.ToDouble(pane.edbiaya_lain.getText());
-                    double diskon = ConvertFunc.ToDouble(pane.eddiskon_nominal.getText());
+                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
+                    double diskon = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
                     double pajak = total_pajak;
                     totalbayar = subtotal + biayalain - diskon + pajak;
                     pane.ltotal.setText(nf.format(totalbayar));
@@ -269,10 +269,10 @@ public class BayarposController {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
                     double subtotal = sub_total;
-                    double biayalain = ConvertFunc.ToDouble(pane.edbiaya_lain.getText());
-                    double indiskon_persen = ConvertFunc.ToDouble(pane.eddiskon_persen.getText());
+                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
+                    double indiskon_persen = FuncHelper.ToDouble(pane.eddiskon_persen.getText());
                     double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
-                    double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
+                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
                     totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
 
                     pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
@@ -291,12 +291,12 @@ public class BayarposController {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
                     double subtotal = sub_total;
-                    double biayalain = ConvertFunc.ToDouble(pane.edbiaya_lain.getText());
-                    double pajak = ConvertFunc.ToDouble(pane.ltotal_pajak.getText());
-                    double indiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon_nominal.getText());
+                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
+                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
+                    double indiskon_nominal = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
                     double indiskon_persen = (indiskon_nominal / (subtotal + biayalain)) * 100;
                     totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
-                    pane.eddiskon_persen.setText(ConvertFunc.rounding(indiskon_persen));
+                    pane.eddiskon_persen.setText(FuncHelper.rounding(indiskon_persen));
                     pane.ltotal.setText(nf.format(totalbayar));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
@@ -309,11 +309,11 @@ public class BayarposController {
         KeyAdapter kebayar = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText()) + ConvertFunc.ToDouble(pane.edtambah_cash.getText());
+                double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText()) + FuncHelper.ToDouble(pane.edtambah_cash.getText());
                 double kembalian = 0;
                 double setkembalilabel = 0;
                 try {
-                    kembalian = jumlah_uang - ConvertFunc.ToDouble(pane.ltotal.getText());
+                    kembalian = jumlah_uang - FuncHelper.ToDouble(pane.ltotal.getText());
                     if (kembalian < 0) {
                         if (istunai == true) {
                             pane.lkembalilabel.setText("KURANG");
@@ -348,7 +348,7 @@ public class BayarposController {
         KeyAdapter kebayar2 = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText()) + ConvertFunc.ToDouble(pane.edtambah_cash.getText());
+                double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText()) + FuncHelper.ToDouble(pane.edtambah_cash.getText());
                 double kembalian = 0;
                 double setkembalilabel = 0;
                 try {
@@ -453,9 +453,9 @@ public class BayarposController {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     int index = pane.cmb_pembayaran.getSelectedIndex();
                     id_card = pembayaranlist.get(index).getId();
-                    charge = ConvertFunc.ToDouble(pembayaranlist.get(index).getCharge());
-                    status_card = ConvertFunc.ToInt(pembayaranlist.get(index).getStatus_card());
-                    status_voucher = ConvertFunc.ToInt(pembayaranlist.get(index).getStatus_voucher());
+                    charge = FuncHelper.ToDouble(pembayaranlist.get(index).getCharge());
+                    status_card = FuncHelper.ToInt(pembayaranlist.get(index).getStatus_card());
+                    status_voucher = FuncHelper.ToInt(pembayaranlist.get(index).getStatus_voucher());
                     if (status_card == 1) {
                         pane.lno_kartu.setVisible(true);
                         pane.lttk_no_kartu.setVisible(true);
@@ -526,17 +526,17 @@ public class BayarposController {
                  + "id_keltrans='2'::"
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(tanggal) + "'::"
-                 + "noref='" + ConvertFunc.EncodeString(no_transaksi) + "'::"
-                 + "keterangan='" + ConvertFunc.EncodeString(keterangan) + "'"
+                 + "noref='" + FuncHelper.EncodeString(no_transaksi) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(keterangan) + "'"
                  + "&penjualan="
                  + "id_pelanggan='" + valpelanggan + "'::"
                  + "tipe_pembayaran='" + tipe_beli + "'::"
                  + "id_gudang='" + valgudang + "'::"
                  + "total_penjualan='" + totalbayar + "'::"
-                 + "total_biaya='" + ConvertFunc.ToDouble(pane.edbiaya_lain.getText()) + "'::"
-                 + "diskon_persen='" + ConvertFunc.ToDouble(pane.eddiskon_persen.getText()) + "'::"
-                 + "diskon_nominal='" + ConvertFunc.ToDouble(pane.eddiskon_nominal.getText()) + "'::"
-                 + "total_uang_muka='" + ConvertFunc.ToDouble(uang_muka) + "'::"
+                 + "total_biaya='" + FuncHelper.ToDouble(pane.edbiaya_lain.getText()) + "'::"
+                 + "diskon_persen='" + FuncHelper.ToDouble(pane.eddiskon_persen.getText()) + "'::"
+                 + "diskon_nominal='" + FuncHelper.ToDouble(pane.eddiskon_nominal.getText()) + "'::"
+                 + "total_uang_muka='" + FuncHelper.ToDouble(uang_muka) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
                  + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
                  + "nilai_kurs='1'::"
@@ -551,10 +551,10 @@ public class BayarposController {
                  + "id_termofpayment='" + valtop + "'::"
                  + "tipe_penjualan='" + "0" + "'::"
                  + "pos_bayar_dengan='" + id_card + "'::"
-                 + "pos_jumlah_bayar='" + ConvertFunc.ToDouble(pane.edbayar.getText()) + "'::"
+                 + "pos_jumlah_bayar='" + FuncHelper.ToDouble(pane.edbayar.getText()) + "'::"
                  + "pos_nomor_kartu='" + pane.edno_kartu.getText() + "'::"
                  + "pos_pemilik_kartu='" + pane.ednama_pemilik.getText() + "'::"
-                 + "pos_nilai_poin='" + ConvertFunc.ToDouble(pane.ednilai_poin.getText()) + "'::"
+                 + "pos_nilai_poin='" + FuncHelper.ToDouble(pane.ednilai_poin.getText()) + "'::"
                  + "pos_charge_nominal='" + charge_nominal + "'::"
                  + "pos_akun_charge='" + id_akun_charge + "'::"
                  + "pos_bayar_cash='" + pane.edtambah_cash.getText() + "'::"
@@ -583,8 +583,8 @@ public class BayarposController {
         pane.bcetak_struk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double jumlah_uang = ConvertFunc.ToDouble(pane.edbayar.getText());
-                double tambah_cash = ConvertFunc.ToDouble(pane.edtambah_cash.getText());
+                double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText());
+                double tambah_cash = FuncHelper.ToDouble(pane.edtambah_cash.getText());
                 if (istunai) {
                     if (status_card == 1) {
                         if ((jumlah_uang + tambah_cash) == totalbayar) {
@@ -664,9 +664,9 @@ public class BayarposController {
                 jd.toFront();
                 id_card = Staticvar.resid;
                 pane.edtipe_bayar.setText(Staticvar.reslabel);
-                charge = ConvertFunc.ToDouble(Staticvar.resvalueextended);
-                status_voucher = ConvertFunc.ToInt(Staticvar.resvalueextended2);
-                status_card = ConvertFunc.ToInt(Staticvar.resvalueextended3);
+                charge = FuncHelper.ToDouble(Staticvar.resvalueextended);
+                status_voucher = FuncHelper.ToInt(Staticvar.resvalueextended2);
+                status_card = FuncHelper.ToInt(Staticvar.resvalueextended3);
                 id_akun_charge = Staticvar.resvalueextended4;
                 if (status_card == 1) {
                     pane.lno_kartu.setVisible(true);

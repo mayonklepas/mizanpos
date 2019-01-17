@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -69,8 +69,8 @@ public class DaftarkelompokposkasmasukinputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
-                    String data = "data=nama='" + ConvertFunc.EncodeString(pane.ednama.getText()) + "'::"
-                         + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'";
+                    String data = "data=nama='" + FuncHelper.EncodeString(pane.ednama.getText()) + "'::"
+                         + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'";
                     ch.insertdata("dm/insertposkelkasmasuk", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -87,8 +87,8 @@ public class DaftarkelompokposkasmasukinputController {
                         jd.dispose();
                     }
                 } else {
-                    String data = "data=nama='" + ConvertFunc.EncodeString(pane.ednama.getText()) + "'::"
-                         + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'";
+                    String data = "data=nama='" + FuncHelper.EncodeString(pane.ednama.getText()) + "'::"
+                         + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'";
                     ch.updatedata("dm/updateposkelkasmasuk", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());

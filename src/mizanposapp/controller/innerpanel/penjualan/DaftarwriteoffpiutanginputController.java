@@ -40,7 +40,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -101,7 +101,7 @@ public class DaftarwriteoffpiutanginputController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.ednoref.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -147,7 +147,7 @@ public class DaftarwriteoffpiutanginputController {
                     pane.ednotransaksi.setText(String.valueOf(jointabledata.get("noref")));
                     pane.edtanggaltransaksi.setText(String.valueOf(jointabledata.get("tanggal")));
                     pane.edtotal.setText(String.valueOf(jointabledata.get("total")));
-                    double sebenarnyasisa = ConvertFunc.ToDouble(jointabledata.get("sisa"));
+                    double sebenarnyasisa = FuncHelper.ToDouble(jointabledata.get("sisa"));
                     pane.edsisa_piutang.setText(String.valueOf(sebenarnyasisa));
                     pane.edjumlah_hapus.setText(String.valueOf(jointabledata.get("sisa")));
                 }
@@ -193,7 +193,7 @@ public class DaftarwriteoffpiutanginputController {
                     pane.ednotransaksi.setText(String.valueOf(joinkasmasuk_detail.get("noref")));
                     pane.edtanggaltransaksi.setText(String.valueOf(joinkasmasuk_detail.get("tanggal")));
                     pane.edtotal.setText(String.valueOf(joinkasmasuk_detail.get("total")));
-                    double sebenarnyasisa = ConvertFunc.ToDouble(joinkasmasuk_detail.get("sisa")) + ConvertFunc.ToDouble(joinkasmasuk_detail.get("jumlah"));
+                    double sebenarnyasisa = FuncHelper.ToDouble(joinkasmasuk_detail.get("sisa")) + FuncHelper.ToDouble(joinkasmasuk_detail.get("jumlah"));
                     pane.edsisa_piutang.setText(String.valueOf(sebenarnyasisa));
                     pane.edjumlah_hapus.setText(String.valueOf(joinkasmasuk_detail.get("jumlah")));
                 }
@@ -210,12 +210,12 @@ public class DaftarwriteoffpiutanginputController {
                     + "id_keltrans='46'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
                     + "akun_masuk_dari='" + valakun_penerimaan + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal.getText()) + "'"
                     + "&kasmasuk_detail="
                     + "id_no_genjur='" + valid_transaksi + "'::"
                     + "akun='" + valakun_transaksi + "'::"
@@ -242,12 +242,12 @@ public class DaftarwriteoffpiutanginputController {
                     + "id_keltrans='46'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&kasmasuk="
                     + "id_cards='" + valpelanggan + "'::"
                     + "akun_masuk_dari='" + valakun_penerimaan + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edtotal.getText()) + "'"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal.getText()) + "'"
                     + "&kasmasuk_detail="
                     + "id_no_genjur='" + valid_transaksi + "'::"
                     + "akun='" + valakun_transaksi + "'::"
@@ -277,8 +277,8 @@ public class DaftarwriteoffpiutanginputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                double jumlahbayar = ConvertFunc.ToDouble(pane.edjumlah_hapus.getText());
-                double sisa = ConvertFunc.ToDouble(pane.edsisa_piutang.getText());
+                double jumlahbayar = FuncHelper.ToDouble(pane.edjumlah_hapus.getText());
+                double sisa = FuncHelper.ToDouble(pane.edsisa_piutang.getText());
                 if (pane.edakun_penerimaan.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Akun tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
 

@@ -41,7 +41,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -105,7 +105,7 @@ public class FormtransferkasController {
                     for (int i = 0; i < ja.size(); i++) {
                         JSONObject jo = (JSONObject) ja.get(i);
                         pane.ednotransaksi.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = ConvertFunc.ToInt(String.valueOf(jo.get("no_urut")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
                     }
 
                 } catch (ParseException ex) {
@@ -172,13 +172,13 @@ public class FormtransferkasController {
                     + "id_keltrans='44'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednotransaksi.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednotransaksi.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&transfer_kas="
                     + "akun_dari='" + valakundari + "'::"
                     + "akun_tujuan='" + valakuntujuan + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edjumlah.getText()) + "'::"
-                    + "bank_charge_nominal='" + ConvertFunc.ToDouble(pane.edcharge.getText()) + "'::"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edjumlah.getText()) + "'::"
+                    + "bank_charge_nominal='" + FuncHelper.ToDouble(pane.edcharge.getText()) + "'::"
                     + "akun_bank_charge='" + valakun_charge + "'";
             ch.insertdata("inserttransferkas", data);
             if (Staticvar.getresult.equals("berhasil")) {
@@ -201,13 +201,13 @@ public class FormtransferkasController {
                     + "id_keltrans='44'::"
                     + "id_dept='" + valdept + "'::"
                     + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + ConvertFunc.EncodeString(pane.ednotransaksi.getText()) + "'::"
-                    + "keterangan='" + ConvertFunc.EncodeString(pane.edketerangan.getText()) + "'"
+                    + "noref='" + FuncHelper.EncodeString(pane.ednotransaksi.getText()) + "'::"
+                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                     + "&transfer_kas="
                     + "akun_dari='" + valakundari + "'::"
                     + "akun_tujuan='" + valakuntujuan + "'::"
-                    + "jumlah='" + ConvertFunc.ToDouble(pane.edjumlah.getText()) + "'::"
-                    + "bank_charge_nominal='" + ConvertFunc.ToDouble(pane.edcharge.getText()) + "'::"
+                    + "jumlah='" + FuncHelper.ToDouble(pane.edjumlah.getText()) + "'::"
+                    + "bank_charge_nominal='" + FuncHelper.ToDouble(pane.edcharge.getText()) + "'::"
                     + "akun_bank_charge='" + valakun_charge + "'";
             ch.updatedata("updatetransferkas", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
@@ -233,7 +233,7 @@ public class FormtransferkasController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                double jumlahbayar = ConvertFunc.ToDouble(pane.edjumlah.getText());
+                double jumlahbayar = FuncHelper.ToDouble(pane.edjumlah.getText());
                 if (pane.edakun_penerimaan.getText().equals("") || pane.edtujuan.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Akun penerima dan tujuan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else if (pane.eddept.getText().equals("")) {

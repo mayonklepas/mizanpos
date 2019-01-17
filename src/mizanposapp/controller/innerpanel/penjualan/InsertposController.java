@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.innerpanel.Popupcari;
@@ -205,8 +205,8 @@ public class InsertposController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double jmldiskon_persen = ConvertFunc.ToDouble(pane.eddiskon.getText());
-                    double hasildiskon_nominal = (ConvertFunc.ToDouble(pane.edharga_persatuan.getText())) * (jmldiskon_persen / 100);
+                    double jmldiskon_persen = FuncHelper.ToDouble(pane.eddiskon.getText());
+                    double hasildiskon_nominal = (FuncHelper.ToDouble(pane.edharga_persatuan.getText())) * (jmldiskon_persen / 100);
                     pane.eddiskon2.setText(nf.format(hasildiskon_nominal));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
@@ -220,9 +220,9 @@ public class InsertposController {
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
                 if (!Character.isLetter(cr)) {
-                    double jmldiskon_nominal = ConvertFunc.ToDouble(pane.eddiskon2.getText());
-                    double hasildiskon_persen = (jmldiskon_nominal / (ConvertFunc.ToDouble(pane.edharga_persatuan.getText()))) * 100;
-                    pane.eddiskon.setText(ConvertFunc.rounding(hasildiskon_persen));
+                    double jmldiskon_nominal = FuncHelper.ToDouble(pane.eddiskon2.getText());
+                    double hasildiskon_persen = (jmldiskon_nominal / (FuncHelper.ToDouble(pane.edharga_persatuan.getText()))) * 100;
+                    pane.eddiskon.setText(FuncHelper.rounding(hasildiskon_persen));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                 }

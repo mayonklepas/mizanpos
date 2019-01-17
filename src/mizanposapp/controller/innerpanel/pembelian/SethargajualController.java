@@ -44,7 +44,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import mizanposapp.helper.ConvertFunc;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
@@ -237,14 +237,14 @@ public class SethargajualController {
         for (int i = 0; i < lsresize.size() - 1; i++) {
             int setsize = lsresize.get(i);
             if (i != lsresize.size() - 1) {
-                int wi = ConvertFunc.ToInt(pembagi * setsize);
+                int wi = FuncHelper.ToInt(pembagi * setsize);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
 
                 lebarAllNew = lebarAllNew + wi;
             } else {
-                int wi = ConvertFunc.ToInt(lebar - lebarAllNew);
+                int wi = FuncHelper.ToInt(lebar - lebarAllNew);
                 tcm.getColumn(i).setMinWidth(wi);
                 tcm.getColumn(i).setMaxWidth(wi);
             }
@@ -313,7 +313,7 @@ public class SethargajualController {
                     String hingga = String.valueOf(jointabeldata.get("hingga"));
                     String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
                     String kode_satuan = String.valueOf(jointabeldata.get("kode_satuan"));
-                    String harga_jual = nf.format(ConvertFunc.ToDouble(jointabeldata.get("harga_jual")));
+                    String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                     String harga_jual_persen = String.valueOf(jointabeldata.get("harga_jual_persen"));
                     String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                     String qty_satuan_pengali = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
@@ -839,10 +839,10 @@ public class SethargajualController {
 
     private void rawsimpan(String id_barang) {
         String data = "datapersediaan="
-                + "harga_beli='" + ConvertFunc.ToDouble(pane.edharga_beli.getText()) + "'::"
-                + "harga_jual='" + ConvertFunc.ToDouble(pane.edharga_jual.getText()) + "'::"
-                + "harga_master='" + ConvertFunc.ToDouble(pane.edharga_master.getText()) + "'::"
-                + "harga_jual_persen='" + ConvertFunc.ToDouble(pane.edmark_up_harga_beli.getText()) + "'::"
+                + "harga_beli='" + FuncHelper.ToDouble(pane.edharga_beli.getText()) + "'::"
+                + "harga_jual='" + FuncHelper.ToDouble(pane.edharga_jual.getText()) + "'::"
+                + "harga_master='" + FuncHelper.ToDouble(pane.edharga_master.getText()) + "'::"
+                + "harga_jual_persen='" + FuncHelper.ToDouble(pane.edmark_up_harga_beli.getText()) + "'::"
                 + "ishargajualpersen='" + val_harga_jual_tipe + "'::"
                 + "harga_jual_berdasar='" + val_harga_berdasar_tipe + "'"
                 + "&" + kirimtexharga();
@@ -879,13 +879,13 @@ public class SethargajualController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_golongan=" + "'" + tabeldatalist.get(i).getId_golongan() + "'" + "::"
-                    + "dari=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getDari()) + "'" + "::"
-                    + "hingga=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHingga()) + "'" + "::"
+                    + "dari=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDari()) + "'" + "::"
+                    + "hingga=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getHingga()) + "'" + "::"
                     + "id_satuan=" + "'" + tabeldatalist.get(i).getId_satuan() + "'" + "::"
-                    + "harga_jual=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
-                    + "harga_jual_persen=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getHarga_jual_persen()) + "'" + "::"
+                    + "harga_jual=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getHarga_jual()) + "'" + "::"
+                    + "harga_jual_persen=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getHarga_jual_persen()) + "'" + "::"
                     + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
-                    + "qty_satuan_pengali=" + "'" + ConvertFunc.ToDouble(tabeldatalist.get(i).getQty_satuan_pengali()) + "'");
+                    + "qty_satuan_pengali=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getQty_satuan_pengali()) + "'");
             sb.append("--");
         }
         String rawhasil = sb.toString().substring(0, sb.toString().length() - 2);
