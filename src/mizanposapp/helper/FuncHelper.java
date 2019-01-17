@@ -129,18 +129,14 @@ public class FuncHelper {
         return hashmap;
     }
 
-    public void insertnogagal(String keltrans, Date tanggal, String iddept) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                String data = String.format("id_keltrans=%s&tahun=%s&bulan=%s&id_dept=%s",
-                     keltrans,
-                     new SimpleDateFormat("yyyy").format(tanggal),
-                     new SimpleDateFormat("MM").format(tanggal),
-                     iddept);
-                ch.insertdata("insertnomorgagal", data);
-            }
-        });
+    public void insertnogagal(String keltrans, Date tanggal, String iddept, String no_urut) {
+        String data = String.format("id_keltrans=%s&tahun=%s&bulan=%s&id_dept=%s&no_urut=%s",
+             keltrans,
+             new SimpleDateFormat("yyyy").format(tanggal),
+             new SimpleDateFormat("MM").format(tanggal),
+             iddept,
+             no_urut);
+        ch.insertdata("insertnomorgagal", data);
     }
 
 }

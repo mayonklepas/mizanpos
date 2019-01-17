@@ -117,6 +117,7 @@ public class PosframeController {
     String keterangan = "keterangan";
     String total = "total";
     boolean panggil = true;
+    double jumlah_piutang = 0;
     JPopupMenu pop;
 
     KeyEventDispatcher keydis = new KeyEventDispatcher() {
@@ -345,10 +346,12 @@ public class PosframeController {
         pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept);
-                HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
-                pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
-                no_urut = String.valueOf(hm.get("no_urut"));
+                if (evt.getPropertyName().equals("date")) {
+                    new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
+                    HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+                    pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                    no_urut = String.valueOf(hm.get("no_urut"));
+                }
             }
         });
     }
@@ -591,7 +594,7 @@ public class PosframeController {
                              "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                         if (dialog == 0) {
                             KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
-                            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept);
+                            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
                             pane.dispose();
                         }
 
@@ -652,6 +655,9 @@ public class PosframeController {
             valgolongan = Staticvar.resvalueextended;
             pane.edpelanggan.setText(Staticvar.reslabel);
             pane.edbarcode.requestFocus();
+            String param = String.format("id=%s", valpelanggan);
+            jumlah_piutang = Double.parseDouble(ch.getdatadetails("getsaldopiutang", param));
+            pane.ltotalpiutang.setText(nf.format(jumlah_piutang));
             KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
 
@@ -692,7 +698,7 @@ public class PosframeController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
-            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept);
+            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
             pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
             no_urut = String.valueOf(hm.get("no_urut"));
@@ -766,6 +772,7 @@ public class PosframeController {
                 KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                 PoshutangController.id_pelanggan = valpelanggan;
                 PoshutangController.nama_pelanggan = pane.edpelanggan.getText();
+                PoshutangController.jumlah_piutang = jumlah_piutang;
                 JDialog jd = new JDialog(new Mainmenu());
                 jd.add(new Pos_hutang_pane());
                 jd.pack();
@@ -773,7 +780,11 @@ public class PosframeController {
                 jd.setLocationRelativeTo(null);
                 jd.setVisible(true);
                 jd.toFront();
+                String param = String.format("id=%s", valpelanggan);
+                jumlah_piutang = Double.parseDouble(ch.getdatadetails("getsaldopiutang", param));
+                pane.ltotalpiutang.setText(nf.format(jumlah_piutang));
                 KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+
             }
         });
 

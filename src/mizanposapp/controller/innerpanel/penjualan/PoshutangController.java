@@ -11,8 +11,12 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.helper.numtoword;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
 import mizanposapp.view.innerpanel.Popupcari;
@@ -55,21 +60,18 @@ public class PoshutangController {
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
     Object[] rowtabledata = new Object[5];
-    String tanggal = "tanggal";
-    String noref = "noref";
-    String total = "total";
-    String terbayar = "terbayar";
-    String sisa = "sisa";
-    String valakun_pemesanan = "";
+    String valakun_penerimaan = "";
     String valpelanggan = "";
     SwingWorker worker;
     public static String id_pelanggan = "";
     public static String nama_pelanggan = "";
+    public static double jumlah_piutang = 0;
     String no_urut = "0";
     String valdept = "";
 
     public PoshutangController(Pos_hutang_pane pane) {
         this.pane = pane;
+        loadsession();
         customtable();
         loadheader();
         loaddata();
@@ -79,23 +81,41 @@ public class PoshutangController {
         caripelanggan();
         gantitanggal();
         caridepartment();
+        setterbilang();
     }
 
     private void gantitanggal() {
-        pane.dtanggal.addMouseListener(new MouseAdapter() {
+        pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                HashMap hm = new FuncHelper().getkodetransaksi("43", pane.dtanggal.getDate(), valdept);
-                pane.ednoref.setText(String.valueOf(hm.get("kode_transaksi")));
-                no_urut = String.valueOf(hm.get("no_urut"));
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("date")) {
+                    new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
+                    HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+                    pane.ednoref.setText(String.valueOf(hm.get("kode_transaksi")));
+                    no_urut = String.valueOf(hm.get("no_urut"));
+                }
             }
-
         });
     }
 
     private void customtable() {
         pane.tabledata.setDefaultEditor(Object.class, null);
         pane.tabledata.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+    }
+
+    private void loadsession() {
+        valdept = Globalsession.DEFAULT_DEPT_ID;
+        pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
+        pane.dtanggal.setDate(new Date());
+        valakun_penerimaan = Globalsession.AKUNPIUTANGUSAHA;
+        pane.edakun_pemesanan.setText(Globalsession.NAMAAKUNPIUTANGUSAHA);
+        pane.edterima_dari.setText(nama_pelanggan);
+        valpelanggan = id_pelanggan;
+        pane.ltotal_piutang.setText(nf.format(jumlah_piutang));
+        HashMap hm = new FuncHelper().getkodetransaksi("43", pane.dtanggal.getDate(), valdept);
+        pane.ednoref.setText(String.valueOf(hm.get("kode_transaksi")));
+        no_urut = String.valueOf(hm.get("no_urut"));
+
     }
 
     private void loadheader() {
@@ -138,7 +158,7 @@ public class PoshutangController {
             @Override
             protected Void doInBackground() throws Exception {
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("id=%s", id_pelanggan);
+                String param = String.format("id=%s", valpelanggan);
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarpiutangperpelanggan", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtmtabeldata.setRowCount(0);
@@ -169,8 +189,31 @@ public class PoshutangController {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String data = "no_ref=" + pane.ednoref.getText() + "&"
+                     + "tanggal=" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "&"
+                     + "id_dept=" + valdept + "&"
+                     + "id_cards=" + valpelanggan + "&"
+                     + "akun_penerimaan=" + valakun_penerimaan + "&"
+                     + "jumlah=" + pane.edjumlah_bayar.getText() + "&";
+                ch.insertdata("insertpembayaranpiutangtotal", data);
+                if (Staticvar.getresult.equals("berhasil")) {
+                    JOptionPane.showMessageDialog(pane, "Berhasil Disimpan");
+                    JDialog jd = (JDialog) pane.getRootPane().getParent();
+                    jd.dispose();
+                }
 
             }
+        });
+    }
+
+    private void setterbilang() {
+        pane.edjumlah_bayar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                double jumlah_bayar = FuncHelper.ToDouble(pane.edjumlah_bayar.getText());
+                pane.lterbilang.setText(numtoword.TerbilangIndonesia(jumlah_bayar));
+            }
+
         });
     }
 
@@ -178,6 +221,9 @@ public class PoshutangController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new FuncHelper().insertnogagal("43", pane.dtanggal.getDate(), valdept, no_urut);
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
             }
         });
     }
@@ -197,9 +243,9 @@ public class PoshutangController {
 
     private void cariakunpemesanan() {
         pane.bcari_akun_pemesanan.addActionListener((ActionEvent e) -> {
-            rawgetidakun(pane.edakun_pemesanan.getText(), valakun_pemesanan);
-            if (!Staticvar.resid.equals(valakun_pemesanan)) {
-                valakun_pemesanan = Staticvar.resid;
+            rawgetidakun(pane.edakun_pemesanan.getText(), valakun_penerimaan);
+            if (!Staticvar.resid.equals(valakun_penerimaan)) {
+                valakun_penerimaan = Staticvar.resid;
                 String val = Staticvar.resid + "-" + Staticvar.reslabel;
                 pane.edakun_pemesanan.setText(val);
             }
@@ -239,7 +285,7 @@ public class PoshutangController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
-            HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+            HashMap hm = new FuncHelper().getkodetransaksi("43", pane.dtanggal.getDate(), valdept);
             pane.ednoref.setText(String.valueOf(hm.get("kode_transaksi")));
             no_urut = String.valueOf(hm.get("no_urut"));
         });

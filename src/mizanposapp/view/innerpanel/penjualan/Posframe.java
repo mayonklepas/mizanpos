@@ -323,7 +323,7 @@ public class Posframe extends javax.swing.JFrame {
         ltotalpiutang.setBackground(new java.awt.Color(204, 204, 204));
         ltotalpiutang.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         ltotalpiutang.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        ltotalpiutang.setText("200000000");
+        ltotalpiutang.setText("0");
 
         bkas_keluar_lain.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bkas_keluar_lain.setText("Kas Keluar Lain");
@@ -657,18 +657,12 @@ public class Posframe extends javax.swing.JFrame {
                                         .addComponent(bcari_gudang))))
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(ckdiskon))
-                            .addComponent(jScrollPane6))
-                        .addGap(6, 6, 6))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ckdiskon))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
