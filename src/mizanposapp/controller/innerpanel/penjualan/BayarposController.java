@@ -58,6 +58,7 @@ public class BayarposController {
     String id_card = "", id_akun_charge;
     double charge = 0;
     int status_voucher = 0, status_card = 0;
+    double totallama;
     public static ArrayList<PosframeController.Entitytabledata> tabeldatalist;
 
     ArrayList<Entitycombo> pembayaranlist = new ArrayList<>();
@@ -261,8 +262,17 @@ public class BayarposController {
                     double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
                     double diskon = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
                     double pajak = total_pajak;
-                    totalbayar = subtotal + biayalain - diskon + pajak;
-                    pane.ltotal.setText(nf.format(totalbayar));
+                    totallama = (subtotal + biayalain - diskon + pajak);
+                    if (pane.cktambahpiutang.isSelected()) {
+                        totalbayar = (subtotal + biayalain - diskon + pajak) + jumlah_piutang;
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    } else {
+                        totalbayar = subtotal + biayalain - diskon + pajak;
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                     pane.edbiaya_lain.setText("0");
@@ -281,10 +291,19 @@ public class BayarposController {
                     double indiskon_persen = FuncHelper.ToDouble(pane.eddiskon_persen.getText());
                     double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
                     double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
-                    totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
+                    totallama = subtotal + biayalain - indiskon_nominal + pajak;
+                    if (pane.cktambahpiutang.isSelected()) {
+                        totalbayar = (subtotal + biayalain - indiskon_nominal + pajak) + jumlah_piutang;
+                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    } else {
+                        totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
+                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    }
 
-                    pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
-                    pane.ltotal.setText(nf.format(totalbayar));
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                     pane.eddiskon_persen.setText("0");
@@ -303,9 +322,19 @@ public class BayarposController {
                     double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
                     double indiskon_nominal = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
                     double indiskon_persen = (indiskon_nominal / (subtotal + biayalain)) * 100;
-                    totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
-                    pane.eddiskon_persen.setText(FuncHelper.rounding(indiskon_persen));
-                    pane.ltotal.setText(nf.format(totalbayar));
+                    totallama = (subtotal + biayalain - indiskon_nominal + pajak);
+                    if (pane.cktambahpiutang.isSelected()) {
+                        totalbayar = (subtotal + biayalain - indiskon_nominal + pajak) + jumlah_piutang;
+                        pane.eddiskon_persen.setText(FuncHelper.rounding(indiskon_persen));
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    } else {
+                        totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
+                        pane.eddiskon_persen.setText(FuncHelper.rounding(indiskon_persen));
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
                     pane.eddiskon_nominal.setText("0");
@@ -412,6 +441,7 @@ public class BayarposController {
         pane.cktambahpiutang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (status_card == 1) {
                     pane.lno_kartu.setVisible(true);
                     pane.lttk_no_kartu.setVisible(true);
@@ -427,6 +457,7 @@ public class BayarposController {
                     pane.lnama_pemilik.setText("Nama Pemilik");
                     charge_nominal = ((charge / 100) * totalbayar);
                     double total_bayar = charge_nominal + totalbayar;
+                    //if()
                     if (istunai) {
                         if (pane.cktambahpiutang.isSelected()) {
                             pane.ltotal.setText(nf.format(total_bayar + jumlah_piutang));
@@ -508,6 +539,24 @@ public class BayarposController {
                     } else {
                         pane.lkembalilabel.setText("SISA");
                     }
+
+                    double subtotal = sub_total;
+                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
+                    double indiskon_persen = FuncHelper.ToDouble(pane.eddiskon_persen.getText());
+                    double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
+                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
+                    if (pane.cktambahpiutang.isSelected()) {
+                        totalbayar = (subtotal + biayalain - indiskon_nominal + pajak) + jumlah_piutang;
+                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    } else {
+                        totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
+                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
+                        pane.ltotal.setText(nf.format(totalbayar));
+                        pane.lkembali.setText(nf.format(totalbayar));
+                    }
+
                 }
 
             }
