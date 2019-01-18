@@ -15,6 +15,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
@@ -71,6 +73,22 @@ public class PoshutangController {
 
     public PoshutangController(Pos_hutang_pane pane) {
         this.pane = pane;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                pane.edjumlah_bayar.requestFocus();
+                JDialog jdin = (JDialog) pane.getRootPane().getParent();
+                jdin.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+
+                        pane.bbatal.doClick();
+
+                    }
+
+                });
+            }
+        });
         loadsession();
         customtable();
         loadheader();
@@ -107,8 +125,8 @@ public class PoshutangController {
         valdept = Globalsession.DEFAULT_DEPT_ID;
         pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
         pane.dtanggal.setDate(new Date());
-        valakun_penerimaan = Globalsession.AKUNPIUTANGUSAHA;
-        pane.edakun_pemesanan.setText(Globalsession.NAMAAKUNPIUTANGUSAHA);
+        valakun_penerimaan = Globalsession.AKUNKAS;
+        pane.edakun_pemesanan.setText(Globalsession.NAMAAKUNKAS);
         pane.edterima_dari.setText(nama_pelanggan);
         valpelanggan = id_pelanggan;
         pane.ltotal_piutang.setText(nf.format(jumlah_piutang));
@@ -177,8 +195,6 @@ public class PoshutangController {
             @Override
             protected void done() {
                 pane.tabledata.setModel(dtmtabeldata);
-                pane.tabledata.requestFocus();
-                pane.tabledata.changeSelection(0, 0, false, false);
             }
 
         };

@@ -833,6 +833,7 @@ public class PosframeController {
                             BayarposController.no_transaksi = pane.edno_transaksi.getText();
                             BayarposController.keterangan = pane.edketerangan.getText();
                             BayarposController.kirimtextpenjualan = kirimtexpenjualan();
+                            BayarposController.jumlah_piutang = jumlah_piutang;
                             if (pane.ckdiskon.isSelected()) {
                                 BayarposController.ispersen = true;
                             } else {
@@ -863,6 +864,9 @@ public class PosframeController {
                                 no_urut = String.valueOf(hm.get("no_urut"));
                             }
                             KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
+                            String param = String.format("id=%s", valpelanggan);
+                            jumlah_piutang = Double.parseDouble(ch.getdatadetails("getsaldopiutang", param));
+                            pane.ltotalpiutang.setText(nf.format(jumlah_piutang));
                         }
                     } else {
                         additemtotable();

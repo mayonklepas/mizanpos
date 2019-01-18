@@ -5,7 +5,6 @@
  */
 package mizanposapp.controller.innerpanel.akuntansi;
 
-import com.sun.org.apache.xerces.internal.impl.dtd.models.CMBinOp;
 import mizanposapp.controller.innerpanel.akuntansi.*;
 import mizanposapp.controller.innerpanel.penjualan.*;
 import mizanposapp.controller.innerpanel.penjualan.*;
@@ -105,13 +104,13 @@ public class DaftarkasbankinputController {
 
     private void rawsimpan() {
         String param = "data_bank=akun='" + id + "'::"
-                + "nomor_rekening_bank='" + pane.ednorek.getText() + "'::"
-                + "atas_nama_rekening='" + pane.ednama.getText() + "'::"
-                + "kantor_cabang='" + pane.edkantor_cabang.getText() + "'::"
-                + "alamat='" + pane.edalamat.getText() + "'::"
-                + "telp='" + pane.edtelp.getText() + "'::"
-                + "fax='" + pane.edfax.getText() + "'::"
-                + "kontak_person='" + pane.edkontak.getText() + "'";
+             + "nomor_rekening_bank='" + pane.ednorek.getText() + "'::"
+             + "atas_nama_rekening='" + pane.ednama.getText() + "'::"
+             + "kantor_cabang='" + pane.edkantor_cabang.getText() + "'::"
+             + "alamat='" + pane.edalamat.getText() + "'::"
+             + "telp='" + pane.edtelp.getText() + "'::"
+             + "fax='" + pane.edfax.getText() + "'::"
+             + "kontak_person='" + pane.edkontak.getText() + "'";
         ch.updatedata("dm/updatedatabank", param, id);
         if (Staticvar.getresult.equals("berhasil")) {
             Staticvar.isupdate = true;

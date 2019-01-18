@@ -47,7 +47,7 @@ public class BayarposController {
     NumberFormat nf = NumberFormat.getInstance();
     CrudHelper ch = new CrudHelper();
     Bayarpos_pane pane;
-    public static double totalbayar = 0, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash;
+    public static double totalbayar = 0, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash, jumlah_piutang;
     public static String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
          valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "",
          no_transaksi, keterangan, kirimtextpenjualan = "";
@@ -120,6 +120,14 @@ public class BayarposController {
     }
 
     private void loadcontrol() {
+        if (jumlah_piutang > 0) {
+            pane.cktambahpiutang.setVisible(true);
+            pane.ljumlahpiutang.setVisible(true);
+            pane.ljumlahpiutang.setText(nf.format(jumlah_piutang));
+        } else {
+            pane.cktambahpiutang.setVisible(false);
+            pane.ljumlahpiutang.setVisible(false);
+        }
         pane.ckgunakan_poin.setSelected(false);
         pane.ljumlah_poin.setVisible(false);
         pane.lttk_jumlah_poin.setVisible(false);
@@ -391,6 +399,41 @@ public class BayarposController {
 
     }
 
+    private void rawkalkulasi(Double jumlah) {
+        double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText()) + FuncHelper.ToDouble(pane.edtambah_cash.getText());
+        double kembalian = 0;
+        double setkembalilabel = 0;
+        try {
+            kembalian = jumlah_uang - (totalbayar + jumlah);
+            if (kembalian < 0) {
+                if (istunai == true) {
+                    pane.lkembalilabel.setText("KURANG");
+                } else {
+                    pane.lkembalilabel.setText("SISA");
+                }
+                setkembalilabel = kembalian * -1;
+            } else {
+                if (istunai == true) {
+                    pane.lkembalilabel.setText("KEMBALI");
+                    setkembalilabel = kembalian;
+                } else {
+                    pane.lkembalilabel.setText("SISA");
+                    if (kembalian >= 0) {
+                        JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebih besar dari total");
+                        pane.edbayar.setText("");
+                    }
+                }
+
+            }
+        } catch (Exception es) {
+            kembalian = 0;
+            setkembalilabel = 0;
+        }
+
+        pane.lkembali.setText(nf.format(setkembalilabel));
+        pane.ljumlah_bayar.setText(nf.format(jumlah_uang));
+    }
+
     private void ckpoint() {
         pane.ckgunakan_poin.addActionListener(new ActionListener() {
             @Override
@@ -419,81 +462,22 @@ public class BayarposController {
 
             }
         });
-    }
 
-    /*private void loadcomboakun() {
-        pane.cmb_pembayaran.removeAllItems();
-        pembayaranlist.clear();
-        try {
-            JSONParser jpdata = new JSONParser();
-            Object rawobjdata = jpdata.parse(ch.getdatas("dm/daftarposbayardengan"));
-            JSONArray ja = (JSONArray) rawobjdata;
-            for (int i = 0; i < ja.size(); i++) {
-                JSONObject jo = (JSONObject) ja.get(i);
-                pembayaranlist.add(new Entitycombo(String.valueOf(jo.get("id")),
-                     String.valueOf(jo.get("nama")),
-                     String.valueOf(jo.get("charge")),
-                     String.valueOf(jo.get("iscard")),
-                     String.valueOf(jo.get("isvoucher"))));
-            }
-
-            for (int i = 0; i < pembayaranlist.size(); i++) {
-                pane.cmb_pembayaran.addItem(pembayaranlist.get(i).getNama());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
- /*private void combopembayarancontrol() {
-        pane.cmb_pembayaran.addItemListener(new ItemListener() {
+        pane.cktambahpiutang.addActionListener(new ActionListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    int index = pane.cmb_pembayaran.getSelectedIndex();
-                    id_card = pembayaranlist.get(index).getId();
-                    charge = FuncHelper.ToDouble(pembayaranlist.get(index).getCharge());
-                    status_card = FuncHelper.ToInt(pembayaranlist.get(index).getStatus_card());
-                    status_voucher = FuncHelper.ToInt(pembayaranlist.get(index).getStatus_voucher());
-                    if (status_card == 1) {
-                        pane.lno_kartu.setVisible(true);
-                        pane.lttk_no_kartu.setVisible(true);
-                        pane.lnama_pemilik.setVisible(true);
-                        pane.lttk_nama_pemilik.setVisible(true);
-                        pane.edno_kartu.setVisible(true);
-                        pane.ednama_pemilik.setVisible(true);
-                        pane.lno_kartu.setText("No. Kartu");
-                        pane.lnama_pemilik.setText("Nama Pemilik");
-                        double sebenarnya_total = ((charge / 100) * totalbayar) + totalbayar;
-                        pane.ltotal.setText(nf.format(sebenarnya_total));
-                        pane.edbayar.setText(String.valueOf(sebenarnya_total));
-                        pane.ljumlah_bayar.setText(nf.format(sebenarnya_total));
-                    } else if (status_voucher == 1) {
-                        pane.lno_kartu.setVisible(true);
-                        pane.lttk_no_kartu.setVisible(true);
-                        pane.lnama_pemilik.setVisible(true);
-                        pane.lttk_nama_pemilik.setVisible(true);
-                        pane.edno_kartu.setVisible(true);
-                        pane.ednama_pemilik.setVisible(true);
-
-                        pane.lno_kartu.setText("No Voucher");
-                        pane.lnama_pemilik.setText("Nama Voucher");
-                    } else {
-                        pane.lno_kartu.setVisible(false);
-                        pane.lttk_no_kartu.setVisible(false);
-                        pane.lnama_pemilik.setVisible(false);
-                        pane.lttk_nama_pemilik.setVisible(false);
-                        pane.edno_kartu.setVisible(false);
-                        pane.ednama_pemilik.setVisible(false);
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.edbayar.setText(String.valueOf("0"));
-                        pane.ljumlah_bayar.setText(String.valueOf("0"));
-                    }
+            public void actionPerformed(ActionEvent e) {
+                if (pane.cktambahpiutang.isSelected()) {
+                    pane.ltotal.setText(nf.format(totalbayar + jumlah_piutang));
+                    rawkalkulasi(jumlah_piutang);
+                } else {
+                    pane.ltotal.setText(nf.format(totalbayar));
+                    rawkalkulasi(0.0);
                 }
+
             }
         });
-    }*/
+    }
+
     public void rawsimpan() {
         if (pane.lperingatan.isVisible()) {
             KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);

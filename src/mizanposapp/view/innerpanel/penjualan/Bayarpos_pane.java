@@ -90,6 +90,8 @@ public class Bayarpos_pane extends javax.swing.JPanel {
         ltambah_cash = new javax.swing.JLabel();
         lttk_tambah_cash = new javax.swing.JLabel();
         edtambah_cash = new javax.swing.JTextField();
+        cktambahpiutang = new javax.swing.JCheckBox();
+        ljumlahpiutang = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -527,6 +529,10 @@ public class Bayarpos_pane extends javax.swing.JPanel {
             }
         });
 
+        cktambahpiutang.setText("Tambahkan Sisa Piutang");
+
+        ljumlahpiutang.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -535,6 +541,11 @@ public class Bayarpos_pane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cktambahpiutang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ljumlahpiutang)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -622,7 +633,11 @@ public class Bayarpos_pane extends javax.swing.JPanel {
                         .addComponent(lttk_tambah_cash)
                         .addComponent(ltambah_cash))
                     .addComponent(edtambah_cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cktambahpiutang)
+                    .addComponent(ljumlahpiutang))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -674,6 +689,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     public javax.swing.JButton bcetak_struk;
     public javax.swing.JButton btanpa_struk;
     public javax.swing.JCheckBox ckgunakan_poin;
+    public javax.swing.JCheckBox cktambahpiutang;
     public javax.swing.JTextField edbayar;
     public javax.swing.JTextField edbiaya_lain;
     public javax.swing.JTextField eddiskon_nominal;
@@ -709,6 +725,7 @@ public class Bayarpos_pane extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     public javax.swing.JLabel ljumlah_bayar;
     public javax.swing.JLabel ljumlah_poin;
+    public javax.swing.JLabel ljumlahpiutang;
     public javax.swing.JLabel lkembali;
     public javax.swing.JLabel lkembalilabel;
     public javax.swing.JLabel lmax_poin;

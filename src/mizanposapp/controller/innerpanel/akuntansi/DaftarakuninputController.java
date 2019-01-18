@@ -5,7 +5,6 @@
  */
 package mizanposapp.controller.innerpanel.akuntansi;
 
-import com.sun.org.apache.xerces.internal.impl.dtd.models.CMBinOp;
 import mizanposapp.controller.innerpanel.akuntansi.*;
 import mizanposapp.controller.innerpanel.penjualan.*;
 import mizanposapp.controller.innerpanel.penjualan.*;
@@ -308,10 +307,10 @@ public class DaftarakuninputController {
                     loaddeptwithval(String.valueOf(jo.get("id_dept")), String.valueOf(jo.get("nama_dept")));
                     loadmatauangwithval(String.valueOf(jo.get("id_currency")), String.valueOf(jo.get("kode_currency")));
                     loadsubakunwithval(String.valueOf(jo.get("id_kelompok")),
-                            String.valueOf(jo.get("isparent")),
-                            String.valueOf(jo.get("acc_level")),
-                            String.valueOf(jo.get("akun_parent")),
-                            String.valueOf(jo.get("nama_akun_parent")));
+                         String.valueOf(jo.get("isparent")),
+                         String.valueOf(jo.get("acc_level")),
+                         String.valueOf(jo.get("akun_parent")),
+                         String.valueOf(jo.get("nama_akun_parent")));
                     if (String.valueOf(jo.get("isparent")).equals("0")) {
                         pane.cmbjenis_akun.setSelectedIndex(0);
                     } else {
@@ -391,15 +390,15 @@ public class DaftarakuninputController {
         }
         if (id.equals("")) {
             String param = "acc=id='" + pane.edkode_akun.getText() + "'::"
-                    + "nama='" + pane.ednama_akun.getText() + "'::"
-                    + "id_acc_class='" + in_id_kelompok + "'::"
-                    + "isparent='" + in_isparent + "'::"
-                    + "akun_parent='" + subid + "'::"
-                    + "isaktif='" + statusaktif + "'::"
-                    + "acc_level='" + in_acc_level + "'::"
-                    + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
-                    + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
-                    + "iskasbank='" + statusbank + "'";
+                 + "nama='" + pane.ednama_akun.getText() + "'::"
+                 + "id_acc_class='" + in_id_kelompok + "'::"
+                 + "isparent='" + in_isparent + "'::"
+                 + "akun_parent='" + subid + "'::"
+                 + "isaktif='" + statusaktif + "'::"
+                 + "acc_level='" + in_acc_level + "'::"
+                 + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
+                 + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
+                 + "iskasbank='" + statusbank + "'";
             ch.insertdata("dm/insertakun", param);
             if (Staticvar.getresult.equals("berhasil")) {
                 Staticvar.isupdate = true;
@@ -418,15 +417,15 @@ public class DaftarakuninputController {
             }
         } else {
             String param = "acc=id='" + pane.edkode_akun.getText() + "'::"
-                    + "nama='" + pane.ednama_akun.getText() + "'::"
-                    + "id_acc_class='" + in_id_kelompok + "'::"
-                    + "isparent='" + in_isparent + "'::"
-                    + "akun_parent='" + subid + "'::"
-                    + "isaktif='" + statusaktif + "'::"
-                    + "acc_level='" + in_acc_level + "'::"
-                    + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
-                    + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
-                    + "iskasbank='" + statusbank + "'";
+                 + "nama='" + pane.ednama_akun.getText() + "'::"
+                 + "id_acc_class='" + in_id_kelompok + "'::"
+                 + "isparent='" + in_isparent + "'::"
+                 + "akun_parent='" + subid + "'::"
+                 + "isaktif='" + statusaktif + "'::"
+                 + "acc_level='" + in_acc_level + "'::"
+                 + "id_currency='" + listcur.get(pane.cmbmata_uang.getSelectedIndex()).getId_currency() + "'::"
+                 + "id_dept='" + listdept.get(pane.cmbdept.getSelectedIndex()).getId_dept() + "'::"
+                 + "iskasbank='" + statusbank + "'";
             ch.updatedata("dm/updateakun", param, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 Staticvar.isupdate = true;
@@ -487,7 +486,7 @@ public class DaftarakuninputController {
             for (int i = 0; i < ja.size(); i++) {
                 JSONObject jo = (JSONObject) ja.get(i);
                 listkelompok.add(new kelompokakun(String.valueOf(jo.get("id_kelompok")),
-                        String.valueOf(jo.get("nama_kelompok"))));
+                     String.valueOf(jo.get("nama_kelompok"))));
 
             }
 
@@ -512,7 +511,7 @@ public class DaftarakuninputController {
                 JSONObject jo = (JSONObject) ja.get(i);
                 if (!id.equals(jo.get("id_kelompok")) && !nama.equals(jo.get("nama_kelompok"))) {
                     listkelompok.add(new kelompokakun(String.valueOf(jo.get("id_kelompok")),
-                            String.valueOf(jo.get("nama_kelompok"))));
+                         String.valueOf(jo.get("nama_kelompok"))));
                 }
 
             }
@@ -560,7 +559,7 @@ public class DaftarakuninputController {
                 JSONObject jo = (JSONObject) ja.get(i);
                 if (!id.equals(jo.get("id_subakun")) && !nama.equals(jo.get("nama_subakun"))) {
                     listsub.add(new subakun(String.valueOf(jo.get("id_subakun")),
-                            String.valueOf(jo.get("nama_subakun"))));
+                         String.valueOf(jo.get("nama_subakun"))));
                 }
             }
 
@@ -627,7 +626,7 @@ public class DaftarakuninputController {
             for (int i = 0; i < ja.size(); i++) {
                 JSONObject jo = (JSONObject) ja.get(i);
                 listcur.add(new currdata(String.valueOf(jo.get("id_currency")),
-                        String.valueOf(jo.get("nama_currency"))));
+                     String.valueOf(jo.get("nama_currency"))));
             }
 
             for (int i = 0; i < listcur.size(); i++) {
@@ -651,7 +650,7 @@ public class DaftarakuninputController {
                 JSONObject jo = (JSONObject) ja.get(i);
                 if (!id.equals(jo.get("id_currency")) && !nama.equals(jo.get("nama_currency"))) {
                     listcur.add(new currdata(String.valueOf(jo.get("id_currency")),
-                            String.valueOf(jo.get("nama_currency"))));
+                         String.valueOf(jo.get("nama_currency"))));
                 }
             }
 
@@ -669,10 +668,10 @@ public class DaftarakuninputController {
         try {
             JSONParser jpdata = new JSONParser();
             String param = "id_kelompok=" + id_kelompok + ""
-                    + "&isparent=" + isparent + ""
-                    + "&id_subakun=" + id_subakun + ""
-                    + "&acc_level=" + acc_level + ""
-                    + "&id_dept=" + id_dept + "";
+                 + "&isparent=" + isparent + ""
+                 + "&id_subakun=" + id_subakun + ""
+                 + "&acc_level=" + acc_level + ""
+                 + "&id_dept=" + id_dept + "";
             reskode = ch.getdatadetails("dm/getkodeakun", param);
 
         } catch (Exception e) {
