@@ -347,8 +347,11 @@ public class PosframeController {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("date")) {
-                    new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
-                    HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+
+                    Date zaman_old = (Date) evt.getOldValue();
+                    Date zaman_now = (Date) evt.getNewValue();
+                    new FuncHelper().insertnogagal("2", zaman_old, valdept, no_urut);
+                    HashMap hm = new FuncHelper().getkodetransaksi("2", zaman_now, valdept);
                     pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
                     no_urut = String.valueOf(hm.get("no_urut"));
                 }
@@ -698,7 +701,7 @@ public class PosframeController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
-            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
+            new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), Staticvar.preid, no_urut);
             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
             pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
             no_urut = String.valueOf(hm.get("no_urut"));
