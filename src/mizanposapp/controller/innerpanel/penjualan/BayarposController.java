@@ -47,7 +47,7 @@ public class BayarposController {
     NumberFormat nf = NumberFormat.getInstance();
     CrudHelper ch = new CrudHelper();
     Bayarpos_pane pane;
-    public static double totalbayar = 0, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash, jumlah_piutang;
+    public static double total_bayar, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash, jumlah_piutang;
     public static String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
          valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "",
          no_transaksi, keterangan, kirimtextpenjualan = "";
@@ -111,7 +111,7 @@ public class BayarposController {
         loadcontrol();
         ckpoint();
         loadtotalbayar();
-        kalkulasi();
+        eventkalkulasi();
         onfocusbykey();
         caricard();
         //loadcomboakun();
@@ -245,38 +245,18 @@ public class BayarposController {
     }
 
     private void loadtotalbayar() {
-        pane.ltotal.setText(nf.format(totalbayar));
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.ltotal_service.setText(nf.format(total_service));
         pane.lsubtotal.setText(nf.format(sub_total));
+        rawkalkulasi();
 
     }
 
-    private void kalkulasi() {
+    private void eventkalkulasi() {
         KeyAdapter keadbiaya = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                char cr = e.getKeyChar();
-                if (!Character.isLetter(cr)) {
-                    double subtotal = sub_total;
-                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
-                    double diskon = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
-                    double pajak = total_pajak;
-                    totallama = (subtotal + biayalain - diskon + pajak);
-                    if (pane.cktambahpiutang.isSelected()) {
-                        totalbayar = (subtotal + biayalain - diskon + pajak) + jumlah_piutang;
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    } else {
-                        totalbayar = subtotal + biayalain - diskon + pajak;
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
-                    pane.edbiaya_lain.setText("0");
-                }
+                rawkalkulasi();
             }
 
         };
@@ -285,29 +265,10 @@ public class BayarposController {
             @Override
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
-                if (!Character.isLetter(cr)) {
-                    double subtotal = sub_total;
-                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
-                    double indiskon_persen = FuncHelper.ToDouble(pane.eddiskon_persen.getText());
-                    double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
-                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
-                    totallama = subtotal + biayalain - indiskon_nominal + pajak;
-                    if (pane.cktambahpiutang.isSelected()) {
-                        totalbayar = (subtotal + biayalain - indiskon_nominal + pajak) + jumlah_piutang;
-                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    } else {
-                        totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
-                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    }
+                double diskon_nominal = (FuncHelper.ToDouble(pane.eddiskon_persen.getText()) / 100) * sub_total;
+                pane.eddiskon_nominal.setText(nf.format(diskon_nominal));
+                rawkalkulasi();
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
-                    pane.eddiskon_persen.setText("0");
-                }
             }
 
         };
@@ -316,29 +277,9 @@ public class BayarposController {
             @Override
             public void keyReleased(KeyEvent e) {
                 char cr = e.getKeyChar();
-                if (!Character.isLetter(cr)) {
-                    double subtotal = sub_total;
-                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
-                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
-                    double indiskon_nominal = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
-                    double indiskon_persen = (indiskon_nominal / (subtotal + biayalain)) * 100;
-                    totallama = (subtotal + biayalain - indiskon_nominal + pajak);
-                    if (pane.cktambahpiutang.isSelected()) {
-                        totalbayar = (subtotal + biayalain - indiskon_nominal + pajak) + jumlah_piutang;
-                        pane.eddiskon_persen.setText(FuncHelper.rounding(indiskon_persen));
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    } else {
-                        totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
-                        pane.eddiskon_persen.setText(FuncHelper.rounding(indiskon_persen));
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
-                    pane.eddiskon_nominal.setText("0");
-                }
+                double diskon_persen = (FuncHelper.ToDouble(pane.eddiskon_nominal.getText()) / sub_total) * 100;
+                pane.eddiskon_persen.setText(nf.format(diskon_persen));
+                rawkalkulasi();
             }
 
         };
@@ -346,11 +287,7 @@ public class BayarposController {
         KeyAdapter kebayar = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (pane.cktambahpiutang.isSelected()) {
-                    rawkalkulasi(jumlah_piutang);
-                } else {
-                    rawkalkulasi(0.0);
-                }
+                rawkalkulasi();
             }
 
         };
@@ -358,11 +295,7 @@ public class BayarposController {
         KeyAdapter kebayar2 = new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (pane.cktambahpiutang.isSelected()) {
-                    rawkalkulasi(jumlah_piutang);
-                } else {
-                    rawkalkulasi(0.0);
-                }
+                rawkalkulasi();
             }
 
         };
@@ -372,41 +305,6 @@ public class BayarposController {
         pane.edbayar.addKeyListener(kebayar);
         pane.edtambah_cash.addKeyListener(kebayar2);
 
-    }
-
-    private void rawkalkulasi(double jumlah) {
-        double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText()) + FuncHelper.ToDouble(pane.edtambah_cash.getText());
-        double kembalian = 0;
-        double setkembalilabel = 0;
-        try {
-            kembalian = jumlah_uang - (totalbayar + jumlah);
-            if (kembalian < 0) {
-                if (istunai == true) {
-                    pane.lkembalilabel.setText("KURANG");
-                } else {
-                    pane.lkembalilabel.setText("SISA");
-                }
-                setkembalilabel = kembalian * -1;
-            } else {
-                if (istunai == true) {
-                    pane.lkembalilabel.setText("KEMBALI");
-                    setkembalilabel = kembalian;
-                } else {
-                    pane.lkembalilabel.setText("SISA");
-                    if (kembalian >= 0) {
-                        JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebih besar dari total");
-                        pane.edbayar.setText("");
-                    }
-                }
-
-            }
-        } catch (Exception es) {
-            kembalian = 0;
-            setkembalilabel = 0;
-        }
-
-        pane.lkembali.setText(nf.format(setkembalilabel));
-        pane.ljumlah_bayar.setText(nf.format(jumlah_uang));
     }
 
     private void ckpoint() {
@@ -423,6 +321,7 @@ public class BayarposController {
                     pane.lmax_poinl.setVisible(true);
                     pane.lttk_max_poin.setVisible(true);
                     pane.lmax_poin.setVisible(true);
+                    rawkalkulasi();
                 } else {
                     pane.ljumlah_poin.setVisible(false);
                     pane.lttk_jumlah_poin.setVisible(false);
@@ -433,6 +332,7 @@ public class BayarposController {
                     pane.lmax_poinl.setVisible(false);
                     pane.lttk_max_poin.setVisible(false);
                     pane.lmax_poin.setVisible(false);
+                    rawkalkulasi();
                 }
 
             }
@@ -441,7 +341,7 @@ public class BayarposController {
         pane.cktambahpiutang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                pane.edbayar.setText("0");
                 if (status_card == 1) {
                     pane.lno_kartu.setVisible(true);
                     pane.lttk_no_kartu.setVisible(true);
@@ -455,41 +355,7 @@ public class BayarposController {
                     pane.edtambah_cash.setText("0");
                     pane.lno_kartu.setText("No. Kartu");
                     pane.lnama_pemilik.setText("Nama Pemilik");
-                    charge_nominal = ((charge / 100) * totalbayar);
-                    double total_bayar = charge_nominal + totalbayar;
-                    //if()
-                    if (istunai) {
-                        if (pane.cktambahpiutang.isSelected()) {
-                            pane.ltotal.setText(nf.format(total_bayar + jumlah_piutang));
-                            pane.edbayar.setText(String.valueOf(total_bayar + jumlah_piutang));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembali.setText("0");
-                            pane.lkembalilabel.setText("KEMBALI");
-                        } else {
-                            pane.ltotal.setText(nf.format(total_bayar));
-                            pane.edbayar.setText(String.valueOf(total_bayar));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembali.setText("0");
-                            pane.lkembalilabel.setText("KEMBALI");
-                        }
-                    } else {
-                        if (pane.cktambahpiutang.isSelected()) {
-                            pane.ltotal.setText(nf.format(total_bayar + jumlah_piutang));
-                            pane.edbayar.setText(String.valueOf(0));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembalilabel.setText("SISA");
-                            pane.lkembali.setText(nf.format(total_bayar + jumlah_piutang));
-                            pane.edbayar.selectAll();
-                        } else {
-                            pane.ltotal.setText(nf.format(total_bayar));
-                            pane.edbayar.setText(String.valueOf(0));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembalilabel.setText("SISA");
-                            pane.lkembali.setText(nf.format(total_bayar));
-                            pane.edbayar.selectAll();
-                        }
-
-                    }
+                    rawkalkulasi();
                 } else if (status_voucher == 1) {
                     pane.lno_kartu.setVisible(true);
                     pane.lttk_no_kartu.setVisible(true);
@@ -503,15 +369,7 @@ public class BayarposController {
                     pane.lttk_tambah_cash.setVisible(true);
                     pane.lno_kartu.setText("No Voucher");
                     pane.lnama_pemilik.setText("Nama Voucher");
-                    if (pane.cktambahpiutang.isSelected()) {
-                        pane.ltotal.setText(nf.format(totalbayar + jumlah_piutang));
-                        pane.edbayar.setText(nf.format(totalbayar + jumlah_piutang));
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                    } else {
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.edbayar.setText("0");
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                    }
+                    rawkalkulasi();
                 } else {
                     pane.lno_kartu.setVisible(false);
                     pane.lttk_no_kartu.setVisible(false);
@@ -523,39 +381,7 @@ public class BayarposController {
                     pane.ltambah_cash.setVisible(false);
                     pane.edtambah_cash.setText("0");
                     pane.lttk_tambah_cash.setVisible(false);
-                    if (pane.cktambahpiutang.isSelected()) {
-                        pane.ltotal.setText(nf.format(totalbayar + jumlah_piutang));
-                        pane.edbayar.setText("0");
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                        pane.lkembali.setText(nf.format(totalbayar + jumlah_piutang));
-                    } else {
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.edbayar.setText("0");
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    }
-                    if (istunai) {
-                        pane.lkembalilabel.setText("KURANG");
-                    } else {
-                        pane.lkembalilabel.setText("SISA");
-                    }
-
-                    double subtotal = sub_total;
-                    double biayalain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
-                    double indiskon_persen = FuncHelper.ToDouble(pane.eddiskon_persen.getText());
-                    double indiskon_nominal = (subtotal + biayalain) * (indiskon_persen / 100);
-                    double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
-                    if (pane.cktambahpiutang.isSelected()) {
-                        totalbayar = (subtotal + biayalain - indiskon_nominal + pajak) + jumlah_piutang;
-                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    } else {
-                        totalbayar = subtotal + biayalain - indiskon_nominal + pajak;
-                        pane.eddiskon_nominal.setText(nf.format(indiskon_nominal));
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    }
+                    rawkalkulasi();
 
                 }
 
@@ -654,15 +480,16 @@ public class BayarposController {
             public void actionPerformed(ActionEvent e) {
                 double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText());
                 double tambah_cash = FuncHelper.ToDouble(pane.edtambah_cash.getText());
+                double grandtotal = FuncHelper.ToDouble(pane.ltotal.getText());
                 if (istunai) {
                     if (status_card == 1) {
-                        if ((jumlah_uang + tambah_cash) == totalbayar) {
+                        if ((jumlah_uang + tambah_cash) == grandtotal) {
                             rawsimpan();
                         } else {
                             JOptionPane.showMessageDialog(null, "Jumlah uang harus pas dengan jumlah bayar");
                         }
                     } else {
-                        if (jumlah_uang < totalbayar) {
+                        if (jumlah_uang < grandtotal) {
                             JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh kurang dari jumlah bayar");
                         } else {
                             rawsimpan();
@@ -671,13 +498,13 @@ public class BayarposController {
 
                 } else {
                     if (status_card == 1) {
-                        if ((jumlah_uang + tambah_cash) > totalbayar) {
+                        if ((jumlah_uang + tambah_cash) > grandtotal) {
                             JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebh besar dari jumlah bayar");
                         } else {
                             rawsimpan();
                         }
                     } else {
-                        if (jumlah_uang > totalbayar) {
+                        if (jumlah_uang > grandtotal) {
                             JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebh besar dari jumlah bayar");
                         } else {
                             rawsimpan();
@@ -751,40 +578,28 @@ public class BayarposController {
                     pane.edtambah_cash.setText("0");
                     pane.lno_kartu.setText("No. Kartu");
                     pane.lnama_pemilik.setText("Nama Pemilik");
-                    charge_nominal = ((charge / 100) * totalbayar);
-                    double total_bayar = charge_nominal + totalbayar;
-                    if (istunai) {
+                    double biaya_lain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
+                    double disc = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
+                    double grantotal = 0;
+                    if (status_card == 1) {
+                        double nominal_charge = ((charge / 100) * (sub_total + biaya_lain - disc + total_pajak + total_service));
                         if (pane.cktambahpiutang.isSelected()) {
-                            pane.ltotal.setText(nf.format(total_bayar + jumlah_piutang));
-                            pane.edbayar.setText(String.valueOf(total_bayar + jumlah_piutang));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembali.setText("0");
-                            pane.lkembalilabel.setText("KEMBALI");
+                            grantotal = (sub_total + biaya_lain - disc + total_pajak + total_service) + nominal_charge + jumlah_piutang;
                         } else {
-                            pane.ltotal.setText(nf.format(total_bayar));
-                            pane.edbayar.setText(String.valueOf(total_bayar));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembali.setText("0");
-                            pane.lkembalilabel.setText("KEMBALI");
+                            grantotal = (sub_total + biaya_lain - disc + total_pajak + total_service) + nominal_charge;
                         }
+
                     } else {
                         if (pane.cktambahpiutang.isSelected()) {
-                            pane.ltotal.setText(nf.format(total_bayar + jumlah_piutang));
-                            pane.edbayar.setText(String.valueOf(0));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembalilabel.setText("SISA");
-                            pane.lkembali.setText(nf.format(total_bayar + jumlah_piutang));
-                            pane.edbayar.selectAll();
+                            grantotal = sub_total + biaya_lain - disc + total_pajak + total_service + jumlah_piutang;
                         } else {
-                            pane.ltotal.setText(nf.format(total_bayar));
-                            pane.edbayar.setText(String.valueOf(0));
-                            pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                            pane.lkembalilabel.setText("SISA");
-                            pane.lkembali.setText(nf.format(total_bayar));
-                            pane.edbayar.selectAll();
+                            grantotal = sub_total + biaya_lain - disc + total_pajak + total_service;
                         }
 
                     }
+                    pane.edbayar.setText(nf.format(grantotal));
+                    pane.ljumlah_bayar.setText(pane.edbayar.getText());
+                    rawkalkulasi();
                 } else if (status_voucher == 1) {
                     pane.lno_kartu.setVisible(true);
                     pane.lttk_no_kartu.setVisible(true);
@@ -798,15 +613,9 @@ public class BayarposController {
                     pane.lttk_tambah_cash.setVisible(true);
                     pane.lno_kartu.setText("No Voucher");
                     pane.lnama_pemilik.setText("Nama Voucher");
-                    if (pane.cktambahpiutang.isSelected()) {
-                        pane.ltotal.setText(nf.format(totalbayar + jumlah_piutang));
-                        pane.edbayar.setText(nf.format(totalbayar + jumlah_piutang));
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                    } else {
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.edbayar.setText("0");
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                    }
+                    pane.edbayar.setText("0");
+                    pane.ljumlah_bayar.setText(pane.edbayar.getText());
+                    rawkalkulasi();
                 } else {
                     pane.lno_kartu.setVisible(false);
                     pane.lttk_no_kartu.setVisible(false);
@@ -818,22 +627,9 @@ public class BayarposController {
                     pane.ltambah_cash.setVisible(false);
                     pane.edtambah_cash.setText("0");
                     pane.lttk_tambah_cash.setVisible(false);
-                    if (pane.cktambahpiutang.isSelected()) {
-                        pane.ltotal.setText(nf.format(totalbayar + jumlah_piutang));
-                        pane.edbayar.setText("0");
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                        pane.lkembali.setText(nf.format(totalbayar + jumlah_piutang));
-                    } else {
-                        pane.ltotal.setText(nf.format(totalbayar));
-                        pane.edbayar.setText("0");
-                        pane.ljumlah_bayar.setText(nf.format(FuncHelper.ToDouble(pane.edbayar.getText())));
-                        pane.lkembali.setText(nf.format(totalbayar));
-                    }
-                    if (istunai) {
-                        pane.lkembalilabel.setText("KURANG");
-                    } else {
-                        pane.lkembalilabel.setText("SISA");
-                    }
+                    pane.edbayar.setText("0");
+                    pane.ljumlah_bayar.setText(pane.edbayar.getText());
+                    rawkalkulasi();
                 }
                 KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
                 pane.bcari_tipe_bayar.addActionListener(this);
@@ -897,6 +693,62 @@ public class BayarposController {
             this.status_voucher = status_voucher;
         }
 
+    }
+
+    private void rawkalkulasi() {
+        double jumlah_uang = FuncHelper.ToDouble(pane.edbayar.getText()) + FuncHelper.ToDouble(pane.edtambah_cash.getText());
+        double kembalian = 0;
+        double setkembalilabel = 0;
+        double biaya_lain = FuncHelper.ToDouble(pane.edbiaya_lain.getText());
+        double disc = FuncHelper.ToDouble(pane.eddiskon_nominal.getText());
+        double grantotal = 0;
+        if (status_card == 1) {
+            double nominal_charge = ((charge / 100) * (sub_total + biaya_lain - disc + total_pajak + total_service));
+            if (pane.cktambahpiutang.isSelected()) {
+                grantotal = (sub_total + biaya_lain - disc + total_pajak + total_service) + nominal_charge + jumlah_piutang;
+            } else {
+                grantotal = (sub_total + biaya_lain - disc + total_pajak + total_service) + nominal_charge;
+            }
+
+        } else {
+            if (pane.cktambahpiutang.isSelected()) {
+                grantotal = sub_total + biaya_lain - disc + total_pajak + total_service + jumlah_piutang;
+            } else {
+                grantotal = sub_total + biaya_lain - disc + total_pajak + total_service;
+            }
+
+        }
+        try {
+
+            kembalian = jumlah_uang - grantotal;
+            if (kembalian < 0) {
+                if (istunai == true) {
+                    pane.lkembalilabel.setText("KURANG");
+                } else {
+                    pane.lkembalilabel.setText("SISA");
+                }
+                setkembalilabel = kembalian * -1;
+            } else {
+                if (istunai == true) {
+                    pane.lkembalilabel.setText("KEMBALI");
+                    setkembalilabel = kembalian;
+                } else {
+                    pane.lkembalilabel.setText("SISA");
+                    if (kembalian >= 0) {
+                        JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebih besar dari total");
+                        pane.edbayar.setText("");
+                    }
+                }
+
+            }
+        } catch (Exception es) {
+            kembalian = 0;
+            setkembalilabel = 0;
+        }
+
+        pane.ltotal.setText(nf.format(grantotal));
+        pane.lkembali.setText(nf.format(setkembalilabel));
+        pane.ljumlah_bayar.setText(nf.format(jumlah_uang));
     }
 
 }

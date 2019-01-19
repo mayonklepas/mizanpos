@@ -817,7 +817,6 @@ public class PosframeController {
                         } else {
                             KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                             Staticvar.isupdate = false;
-                            BayarposController.totalbayar = total_penjualan_all;
                             BayarposController.sub_total = subtotal;
                             BayarposController.total_pajak = total_pajak;
                             BayarposController.valpelanggan = valpelanggan;
