@@ -598,8 +598,14 @@ public class BayarposController {
                         }
 
                     }
-                    pane.edbayar.setText(nf.format(grantotal));
-                    pane.ljumlah_bayar.setText(pane.edbayar.getText());
+                    if (istunai) {
+                        pane.edbayar.setText(nf.format(grantotal));
+                        pane.ljumlah_bayar.setText(pane.edbayar.getText());
+                    } else {
+                        pane.edbayar.setText("0");
+                        pane.ljumlah_bayar.setText(pane.edbayar.getText());
+                    }
+
                     rawkalkulasi();
                 } else if (status_voucher == 1) {
                     pane.lno_kartu.setVisible(true);
@@ -736,8 +742,7 @@ public class BayarposController {
                 } else {
                     pane.lkembalilabel.setText("SISA");
                     if (kembalian >= 0) {
-                        JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebih besar dari total");
-                        pane.edbayar.setText("");
+
                     }
                 }
 
