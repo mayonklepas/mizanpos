@@ -742,6 +742,8 @@ public class BayarposController {
                 } else {
                     pane.lkembalilabel.setText("SISA");
                     if (kembalian >= 0) {
+                        JOptionPane.showMessageDialog(null, "Jumlah uang tidak boleh lebih besar dari total");
+                        pane.edbayar.setText("0");
 
                     }
                 }
