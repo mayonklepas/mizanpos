@@ -88,6 +88,7 @@ public class PosframeController {
     NumberFormat nf = NumberFormat.getInstance();
     double total_penjualan_all = 0;
     double total_pajak = 0;
+    double total_service = 0;
     double subtotal = 0;
     String no_urut = "0";
     JTextField jt2;
@@ -522,6 +523,7 @@ public class PosframeController {
             valtop = "";
             pane.lsubtotal.setText("0");
             pane.ltotal_pajak.setText("0");
+            pane.ltotal_service.setText("0");
             pane.ltotal_penjualan.setText("0");
             if (Globalsession.DEFAULT_DISKON_DALAM.equals("0")
                  || Globalsession.DEFAULT_DISKON_DALAM.equals("")
@@ -700,7 +702,7 @@ public class PosframeController {
             jd.setVisible(true);
             jd.toFront();
             valdept = Staticvar.resid;
-            pane.eddept.setText(Staticvar.reslabel);
+            pane.eddept.setText(Staticvar.resvalue);
             new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), Staticvar.preid, no_urut);
             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
             pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
@@ -819,6 +821,7 @@ public class PosframeController {
                             Staticvar.isupdate = false;
                             BayarposController.sub_total = subtotal;
                             BayarposController.total_pajak = total_pajak;
+                            BayarposController.total_service = total_service;
                             BayarposController.valpelanggan = valpelanggan;
                             BayarposController.valgudang = valgudang;
                             BayarposController.valdept = valdept;
@@ -1000,13 +1003,15 @@ public class PosframeController {
                         String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                         String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                         String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                        String id_service = String.valueOf(jointabeldata.get("id_service"));
+                        String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                         String id_gudang = valgudang;
                         String nama_gudang = pane.edgudang.getText();
                         String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                         String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                         tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                              nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                             nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                             nilai_pajak, id_service, nilai_service, id_gudang, nama_gudang, keterangan, total));
                         int rowcount = pane.tabledata.getRowCount();
                         rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                         rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1082,13 +1087,15 @@ public class PosframeController {
                             String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                             String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                             String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                            String id_service = String.valueOf(jointabeldata.get("id_service"));
+                            String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                             String id_gudang = valgudang;
                             String nama_gudang = pane.edgudang.getText();
                             String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                                  nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                 nilai_pajak, id_service, nilai_service, id_gudang, nama_gudang, keterangan, total));
                             int rowcount = pane.tabledata.getRowCount();
                             rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                             rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1158,13 +1165,15 @@ public class PosframeController {
                             String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                             String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                             String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                            String id_service = String.valueOf(jointabeldata.get("id_service"));
+                            String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                             String id_gudang = valgudang;
                             String nama_gudang = pane.edgudang.getText();
                             String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                                  nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                 nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                 nilai_pajak, id_service, nilai_service, id_gudang, nama_gudang, keterangan, total));
                             int rowcount = pane.tabledata.getRowCount();
                             rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                             rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1241,13 +1250,16 @@ public class PosframeController {
                                 String id_pajak = String.valueOf(jointabeldata.get("id_pajak_jual"));
                                 String nama_pajak = String.valueOf(jointabeldata.get("nama_pajak_jual"));
                                 String nilai_pajak = String.valueOf(jointabeldata.get("nilai_pajak_jual"));
+                                String id_service = String.valueOf(jointabeldata.get("id_service"));
+                                String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                                 String id_gudang = valgudang;
                                 String nama_gudang = pane.edgudang.getText();
                                 String keterangan = String.valueOf(jointabeldata.get("keterangan"));
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                                      nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
-                                     nilai_pajak, id_gudang, nama_gudang, keterangan, total));
+                                     nilai_pajak, id_service, nilai_service, id_gudang, nama_gudang, keterangan, total
+                                ));
                                 int rowcount = pane.tabledata.getRowCount();
                                 rowtabledata[0] = tabeldatalist.get(rowcount).getKode_barang();
                                 rowtabledata[1] = tabeldatalist.get(rowcount).getNama_barang();
@@ -1299,7 +1311,7 @@ public class PosframeController {
              || !pane.tabledata.getValueAt(row, gx(diskon_persen)).equals("")
              || !pane.tabledata.getValueAt(row, gx(diskon_nominal)).equals("")) {
             if (row == lastrow) {
-                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+                tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
                 pane.tabledata.requestFocus();
                 pane.tabledata.changeSelection(row + 1, 0, false, false);
@@ -1361,6 +1373,7 @@ public class PosframeController {
                  + "diskon_persen=" + "'" + FuncHelper.EncodeString(tabeldatalist.get(i).getDiskon_persen()) + "'" + "::"
                  + "diskon_nominal=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon_nominal()) + "'" + "::"
                  + "id_pajak=" + "'" + tabeldatalist.get(i).getId_pajak() + "'" + "::"
+                 + "id_service=" + "'" + tabeldatalist.get(i).getId_service() + "'" + "::"
                  + "id_gudang=" + "'" + tabeldatalist.get(i).getId_gudang() + "'" + "::"
                  + "id_satuan_pengali=" + "'" + tabeldatalist.get(i).getId_satuan_pengali() + "'" + "::"
                  + "qty_satuan_pengali=" + "'" + tabeldatalist.get(i).getIsi_satuan() + "'" + "::"
@@ -1377,6 +1390,7 @@ public class PosframeController {
         subtotal = 0;
         total_penjualan_all = 0;
         total_pajak = 0;
+        total_service = 0;
 
         for (int i = 0; i < jumlah_row; i++) {
             double total_beli_masing = FuncHelper.ToDouble(emptycellcheck(i, 11));
@@ -1384,9 +1398,13 @@ public class PosframeController {
 
             double total_pajak_masing = FuncHelper.ToDouble(emptycellcheck(i, 11)) * (FuncHelper.ToDouble(tabeldatalist.get(i).getNilai_pajak()) / 100);
             total_pajak = total_pajak + total_pajak_masing;
+
+            double total_service_masing = FuncHelper.ToDouble(emptycellcheck(i, 11)) * (FuncHelper.ToDouble(tabeldatalist.get(i).getNilai_service()) / 100);
+            total_service = total_service + total_service_masing;
         }
 
         pane.ltotal_pajak.setText(nf.format(total_pajak));
+        pane.ltotal_service.setText(nf.format(total_service));
         pane.lsubtotal.setText(nf.format(subtotal));
         total_penjualan_all = subtotal + FuncHelper.ToDouble(pajak);
 
@@ -1501,9 +1519,9 @@ public class PosframeController {
 
         String id_barang, kode_barang, nama_barang, jumlah,
              id_satuan, nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal,
-             id_pajak, nama_pajak, nilai_pajak, id_gudang, nama_gudang, keterangan, total;
+             id_pajak, nama_pajak, nilai_pajak, id_service, nilai_service, id_gudang, nama_gudang, keterangan, total;
 
-        public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_gudang, String nama_gudang, String keterangan, String total) {
+        public Entitytabledata(String id_barang, String kode_barang, String nama_barang, String jumlah, String id_satuan, String nama_satuan, String isi_satuan, String id_satuan_pengali, String harga_beli, String harga_jual, String diskon_persen, String diskon_nominal, String id_pajak, String nama_pajak, String nilai_pajak, String id_service, String nilai_service, String id_gudang, String nama_gudang, String keterangan, String total) {
             this.id_barang = id_barang;
             this.kode_barang = kode_barang;
             this.nama_barang = nama_barang;
@@ -1519,6 +1537,8 @@ public class PosframeController {
             this.id_pajak = id_pajak;
             this.nama_pajak = nama_pajak;
             this.nilai_pajak = nilai_pajak;
+            this.id_service = id_service;
+            this.nilai_service = nilai_service;
             this.id_gudang = id_gudang;
             this.nama_gudang = nama_gudang;
             this.keterangan = keterangan;
@@ -1643,6 +1663,22 @@ public class PosframeController {
 
         public void setNilai_pajak(String nilai_pajak) {
             this.nilai_pajak = nilai_pajak;
+        }
+
+        public String getId_service() {
+            return id_service;
+        }
+
+        public void setId_service(String id_service) {
+            this.id_service = id_service;
+        }
+
+        public String getNilai_service() {
+            return nilai_service;
+        }
+
+        public void setNilai_service(String nilai_service) {
+            this.nilai_service = nilai_service;
         }
 
         public String getId_gudang() {

@@ -47,7 +47,7 @@ public class BayarposController {
     NumberFormat nf = NumberFormat.getInstance();
     CrudHelper ch = new CrudHelper();
     Bayarpos_pane pane;
-    public static double total_bayar, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash, jumlah_piutang;
+    public static double total_bayar = 0, total_pajak = 0, total_service = 0, sub_total = 0, charge_nominal = 0, pos_bayar_cash, jumlah_piutang;
     public static String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
          valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "",
          no_transaksi, keterangan, kirimtextpenjualan = "";
@@ -433,6 +433,7 @@ public class BayarposController {
                  + "diskon_nominal='" + FuncHelper.ToDouble(pane.eddiskon_nominal.getText()) + "'::"
                  + "total_uang_muka='" + FuncHelper.ToDouble(uang_muka) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
+                 + "total_service='" + total_service + "'::"
                  + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
                  + "nilai_kurs='1'::"
                  + "akun_penjualan='" + valakun_penjualan + "'::"

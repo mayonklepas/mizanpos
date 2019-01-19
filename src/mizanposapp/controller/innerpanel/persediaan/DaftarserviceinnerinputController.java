@@ -60,7 +60,7 @@ public class DaftarserviceinnerinputController {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     pane.edkode_service.setText(String.valueOf(joindata.get("kode")));
                     pane.ednama_service.setText(String.valueOf(joindata.get("nama")));
-                    pane.edpersen_service.setText(String.valueOf(joindata.get("persen_service")));
+                    pane.edpersen_service.setText(String.valueOf(joindata.get("nilai_service")));
                     pane.edid_akun.setText(String.valueOf(joindata.get("akun_service")) + " | " + String.valueOf(joindata.get("nama_akun_service")));
                 }
             }
@@ -77,9 +77,9 @@ public class DaftarserviceinnerinputController {
                 Staticvar.isupdate = true;
                 if (id.equals("")) {
                     String data = "data=kode='" + FuncHelper.EncodeString(pane.edkode_service.getText()) + "'::"
-                            + "nama='" + FuncHelper.EncodeString(pane.ednama_service.getText()) + "'::"
-                            + "persen_service='" + FuncHelper.EncodeString(pane.edpersen_service.getText()) + "'::"
-                            + "akun_service='" + FuncHelper.EncodeString(pane.edid_akun.getText().split(" | ")[0]) + "'";
+                         + "nama='" + FuncHelper.EncodeString(pane.ednama_service.getText()) + "'::"
+                         + "nilai_service='" + FuncHelper.EncodeString(pane.edpersen_service.getText()) + "'::"
+                         + "akun_service='" + FuncHelper.EncodeString(pane.edid_akun.getText().split(" | ")[0]) + "'";
                     ch.insertdata("dm/insertservice", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
@@ -97,9 +97,9 @@ public class DaftarserviceinnerinputController {
                     }
                 } else {
                     String data = "data=kode='" + FuncHelper.EncodeString(pane.edkode_service.getText()) + "'::"
-                            + "nama='" + FuncHelper.EncodeString(pane.ednama_service.getText()) + "'::"
-                            + "persen_service='" + FuncHelper.EncodeString(pane.edpersen_service.getText()) + "'::"
-                            + "akun_service='" + FuncHelper.EncodeString(pane.edid_akun.getText().split(" | ")[0]) + "'";
+                         + "nama='" + FuncHelper.EncodeString(pane.ednama_service.getText()) + "'::"
+                         + "nilai_service='" + FuncHelper.EncodeString(pane.edpersen_service.getText()) + "'::"
+                         + "akun_service='" + FuncHelper.EncodeString(pane.edid_akun.getText().split(" | ")[0]) + "'";
                     ch.updatedata("dm/updateservice", data, id);
                     if (!Staticvar.getresult.equals("berhasil")) {
                         JDialog jd = new JDialog(new Mainmenu());
