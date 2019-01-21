@@ -47,6 +47,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import static mizanposapp.controller.innerpanel.penjualan.BayarposController.istunai;
 import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
@@ -553,37 +554,41 @@ public class PosframeController {
     }
 
     private void simpandata() {
-        pane.bsimpan.addActionListener(new ActionListener() {
+        pane.bpending.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                if (tabeldatalist.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
-                    int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
-                    if (tahunbulan > periodetahunnulan) {
-                        int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                        if (dialog == 0) {
-
-                        }
-                    } else if (tahunbulan < periodetahunnulan) {
-                        JDialog jd = new JDialog(new Mainmenu());
-                        Errorpanel ep = new Errorpanel();
-                        ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                             + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                             + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
-                        jd.add(ep);
-                        jd.pack();
-                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                        jd.setLocationRelativeTo(null);
-                        jd.setVisible(true);
-                        jd.toFront();
+                int dialogpending = JOptionPane.showConfirmDialog(null, "Apakah anda ingin melakukan pending transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                if (dialogpending == 0) {
+                    if (tabeldatalist.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-
+                        int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                        int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
+                        if (tahunbulan > periodetahunnulan) {
+                            int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
+                                 + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                            if (dialog == 0) {
+                                rawsimpan();
+                            }
+                        } else if (tahunbulan < periodetahunnulan) {
+                            JDialog jd = new JDialog(new Mainmenu());
+                            Errorpanel ep = new Errorpanel();
+                            ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
+                                 + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                                 + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                            jd.add(ep);
+                            jd.pack();
+                            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                            jd.setLocationRelativeTo(null);
+                            jd.setVisible(true);
+                            jd.toFront();
+                        } else {
+                            rawsimpan();
+                        }
                     }
                 }
+
             }
         });
     }
@@ -1385,6 +1390,80 @@ public class PosframeController {
         return hasil;
     }
 
+    public void rawsimpan() {
+        String tipe_beli = "0";
+        if (pane.ckjenisbayar.isSelected()) {
+            tipe_beli = "0";
+        } else {
+            tipe_beli = "1";
+        }
+
+        String diskon_dalam = "0";
+        if (pane.ckdiskon.isSelected()) {
+            diskon_dalam = "0";
+        } else {
+            diskon_dalam = "1";
+        }
+        String data = "genjur="
+             + "id_keltrans='2'::"
+             + "id_dept='" + valdept + "'::"
+             + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+             + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+             + "keterangan='" + FuncHelper.EncodeString(keterangan) + "'"
+             + "&penjualan="
+             + "id_pelanggan='" + valpelanggan + "'::"
+             + "tipe_pembayaran='" + tipe_beli + "'::"
+             + "id_gudang='" + valgudang + "'::"
+             + "total_penjualan='" + FuncHelper.ToDouble(total_penjualan_all) + "'::"
+             + "total_biaya='" + FuncHelper.ToDouble("0") + "'::"
+             + "diskon_persen='" + FuncHelper.ToDouble("0") + "'::"
+             + "diskon_nominal='" + FuncHelper.ToDouble("0") + "'::"
+             + "total_uang_muka='" + FuncHelper.ToDouble("0") + "'::"
+             + "total_pajak='" + total_pajak + "'::"
+             + "total_service='" + total_service + "'::"
+             + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+             + "nilai_kurs='1'::"
+             + "akun_penjualan='" + valakun_penjualan + "'::"
+             + "akun_biaya='" + valakun_ongkir + "'::"
+             + "akun_diskon='" + valakun_diskon + "'::"
+             + "akun_uang_muka='" + valakun_uang_muka + "'::"
+             + "diskon_dalam='" + diskon_dalam + "'::"
+             + "tanggal_pengantaran='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+             + "id_pengantaran='" + valshipvia + "'::"
+             + "id_bagian_penjualan='" + valsalesman + "'::"
+             + "id_termofpayment='" + valtop + "'::"
+             + "tipe_penjualan='0'"
+             + "&" + kirimtexpenjualan();
+
+        ch.insertdata("insertpendingpenjualan", data);
+        if (Staticvar.getresult.equals("berhasil")) {
+            int rowcount = pane.tabledata.getRowCount();
+            if (Staticvar.isupdate == true) {
+                for (int i = 0; i < rowcount; i++) {
+                    tabeldatalist.remove(0);
+                    dtmtabeldata.removeRow(0);
+                }
+                kalkulasitotal();
+                HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
+                pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                no_urut = String.valueOf(hm.get("no_urut"));
+            }
+            String param = String.format("id=%s", valpelanggan);
+            jumlah_piutang = Double.parseDouble(ch.getdatadetails("getsaldopiutang", param));
+            pane.ltotalpiutang.setText(nf.format(jumlah_piutang));
+        } else {
+            JDialog jd = new JDialog(new Mainmenu());
+            Errorpanel ep = new Errorpanel();
+            ep.ederror.setText(Staticvar.getresult);
+            jd.add(ep);
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+        }
+    }
+
     private void kalkulasitotal() {
         int jumlah_row = pane.tabledata.getRowCount();
         subtotal = 0;
@@ -1513,6 +1592,7 @@ public class PosframeController {
 
     private int gx(String columname) {
         return listheadername.indexOf(columname);
+
     }
 
     public class Entitytabledata {
