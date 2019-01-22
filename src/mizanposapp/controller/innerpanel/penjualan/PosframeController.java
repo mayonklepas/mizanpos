@@ -607,6 +607,7 @@ public class PosframeController {
                     } else {
                         KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                         Staticvar.isupdate = false;
+                        BayarposController.validtransaksi = validtransaksi;
                         BayarposController.sub_total = subtotal;
                         BayarposController.total_pajak = total_pajak;
                         BayarposController.total_service = total_service;
@@ -1542,7 +1543,7 @@ public class PosframeController {
         } else {
             diskon_dalam = "1";
         }
-        String data = "genjur="
+        String data = "id=" + validtransaksi + "&genjur="
              + "id_keltrans='2'::"
              + "id_dept='" + valdept + "'::"
              + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
