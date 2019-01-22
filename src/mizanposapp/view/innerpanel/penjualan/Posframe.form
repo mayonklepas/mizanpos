@@ -887,7 +887,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ltota_lbelanja" max="32767" attributes="0"/>
+                              <Component id="ltotal_belanja" max="32767" attributes="0"/>
                               <Component id="jLabel34" alignment="0" pref="382" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -900,14 +900,14 @@
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Component id="jLabel34" min="-2" pref="20" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ltota_lbelanja" pref="71" max="32767" attributes="0"/>
+                          <Component id="ltotal_belanja" pref="71" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="ltota_lbelanja">
+                <Component class="javax.swing.JLabel" name="ltotal_belanja">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Impact" size="48" style="1"/>

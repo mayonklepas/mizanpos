@@ -713,6 +713,8 @@ public class PosframeController {
                                 JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
                                 valgudang = String.valueOf(joinpenjualan.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
+                                valpelanggan = String.valueOf(joinpenjualan.get("id_pelanggan"));
+                                pane.edpelanggan.setText(String.valueOf(joinpenjualan.get("nama_pelanggan")));
 
                                 valcheck = FuncHelper.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
@@ -784,6 +786,8 @@ public class PosframeController {
 
                     }
                 }
+
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
             }
         });
     }
@@ -1619,10 +1623,10 @@ public class PosframeController {
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.ltotal_service.setText(nf.format(total_service));
         pane.lsubtotal.setText(nf.format(subtotal));
-        total_penjualan_all = subtotal + FuncHelper.ToDouble(pajak);
+        total_penjualan_all = subtotal + FuncHelper.ToDouble(total_pajak) + FuncHelper.ToDouble(total_service);
 
         pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
-        pane.ltota_lbelanja.setText(nf.format(total_penjualan_all));
+        pane.ltotal_belanja.setText(nf.format(total_penjualan_all));
     }
 
     private void kalkulasitotalperrow(int row) {

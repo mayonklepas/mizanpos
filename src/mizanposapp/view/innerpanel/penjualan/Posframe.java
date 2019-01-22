@@ -84,7 +84,7 @@ public class Posframe extends javax.swing.JFrame {
         bcari_pelanggan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        ltota_lbelanja = new javax.swing.JLabel();
+        ltotal_belanja = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         bsimpan = new javax.swing.JButton();
@@ -457,11 +457,11 @@ public class Posframe extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
-        ltota_lbelanja.setFont(new java.awt.Font("Impact", 1, 48)); // NOI18N
-        ltota_lbelanja.setForeground(new java.awt.Color(0, 255, 51));
-        ltota_lbelanja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        ltota_lbelanja.setText("0");
-        ltota_lbelanja.setIconTextGap(10);
+        ltotal_belanja.setFont(new java.awt.Font("Impact", 1, 48)); // NOI18N
+        ltotal_belanja.setForeground(new java.awt.Color(0, 255, 51));
+        ltotal_belanja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ltotal_belanja.setText("0");
+        ltotal_belanja.setIconTextGap(10);
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
@@ -474,7 +474,7 @@ public class Posframe extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ltota_lbelanja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ltotal_belanja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -484,7 +484,7 @@ public class Posframe extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ltota_lbelanja, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addComponent(ltotal_belanja, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -893,7 +893,7 @@ public class Posframe extends javax.swing.JFrame {
     public javax.swing.JScrollPane jScrollPane6;
     public javax.swing.JLabel lsisa_piutang;
     public javax.swing.JLabel lsubtotal;
-    public javax.swing.JLabel ltota_lbelanja;
+    public javax.swing.JLabel ltotal_belanja;
     public javax.swing.JLabel ltotal_item;
     public javax.swing.JLabel ltotal_pajak;
     public javax.swing.JLabel ltotal_penjualan;
