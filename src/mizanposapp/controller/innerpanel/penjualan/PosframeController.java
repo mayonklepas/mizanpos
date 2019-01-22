@@ -682,7 +682,9 @@ public class PosframeController {
                 jd.setVisible(true);
                 jd.toFront();
                 validtransaksi = Staticvar.resid;
-                new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), Staticvar.preid, no_urut);
+
+                new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
+
                 if (Staticvar.preid != validtransaksi) {
                     if (!validtransaksi.equals("") || !validtransaksi.equals("null")) {
                         try {
