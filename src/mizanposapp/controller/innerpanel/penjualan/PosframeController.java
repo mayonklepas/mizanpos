@@ -280,6 +280,7 @@ public class PosframeController {
         showhutang();
         recallpending();
         bayar();
+        batal();
 
     }
 
@@ -813,6 +814,32 @@ public class PosframeController {
                     }
                 });
 
+            }
+        });
+    }
+
+    private void batal() {
+        pane.bbatal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int dialog = JOptionPane.showConfirmDialog(null,
+                     "Yakin akan membatalkan Transaksi ini ",
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (dialog == 0) {
+                    Runnable rn = new Runnable() {
+                        @Override
+                        public void run() {
+                            int jumlahrow = pane.tabledata.getRowCount();
+                            for (int i = 0; i < jumlahrow; i++) {
+                                tabeldatalist.remove(0);
+                                dtmtabeldata.removeRow(0);
+                                pane.edbarcode.requestFocus();
+                            }
+                            kalkulasitotal();
+                        }
+                    };
+                    SwingUtilities.invokeLater(rn);
+                }
             }
         });
     }
