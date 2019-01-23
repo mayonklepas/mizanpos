@@ -291,11 +291,7 @@ public class PopupcaripendingController {
     }
 
     private void loaddatadetail() {
-        pane.tcari.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
+        pane.tcari.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -303,11 +299,8 @@ public class PopupcaripendingController {
                 }
             }
 
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
         });
+
     }
 
     private void selectdata() {

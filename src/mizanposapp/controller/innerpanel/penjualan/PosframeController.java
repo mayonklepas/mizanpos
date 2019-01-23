@@ -1118,7 +1118,7 @@ public class PosframeController {
             Staticvar.prelabel = defnilai;
 
             String param = String.format("kode=%s", kode_barcode);
-            Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanbykode", param));
+            Object objdataraw = jpdata.parse(ch.getdatadetails("dm/datapersediaanpos", param));
             JSONObject jodataraw = (JSONObject) objdataraw;
             Object objdata = jodataraw.get("data");
             JSONArray jadata = (JSONArray) objdata;
@@ -1138,9 +1138,9 @@ public class PosframeController {
                         }
                         String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                         String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                        String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                        String isi_satuan = "1";
-                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
+                        String nama_satuan = String.valueOf(jointabeldata.get("kode_satuan"));
+                        String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                        String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                         String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
                         String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                         String diskon_persen = "0";
@@ -1152,7 +1152,7 @@ public class PosframeController {
                         String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                         String id_gudang = valgudang;
                         String nama_gudang = pane.edgudang.getText();
-                        String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                        String keterangan = "";
                         String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                         tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                              nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
@@ -1183,7 +1183,8 @@ public class PosframeController {
                         boolean status_ada = true;
 
                         for (int j = 0; j < tabeldatalist.size(); j++) {
-                            if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
+                            if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))
+                                 && tabeldatalist.get(j).getId_satuan().matches(String.valueOf(jointabeldata.get("id_satuan")))) {
                                 String jumlah_qty = "1";
                                 if (pane.edbarcode.getText().toLowerCase().contains("x")) {
                                     String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
@@ -1222,9 +1223,9 @@ public class PosframeController {
                             }
                             String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                             String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                            String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                            String isi_satuan = "1";
-                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
+                            String nama_satuan = String.valueOf(jointabeldata.get("kode_satuan"));
+                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                             String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
                             String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                             String diskon_persen = "0";
@@ -1236,7 +1237,7 @@ public class PosframeController {
                             String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                             String id_gudang = valgudang;
                             String nama_gudang = pane.edgudang.getText();
-                            String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                            String keterangan = "";
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                                  nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
@@ -1300,9 +1301,9 @@ public class PosframeController {
                             }
                             String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                             String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                            String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                            String isi_satuan = "1";
-                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
+                            String nama_satuan = String.valueOf(jointabeldata.get("kode_satuan"));
+                            String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                            String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                             String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
                             String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                             String diskon_persen = "0";
@@ -1314,7 +1315,7 @@ public class PosframeController {
                             String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                             String id_gudang = valgudang;
                             String nama_gudang = pane.edgudang.getText();
-                            String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                            String keterangan = "";
                             String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                             tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                                  nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
@@ -1346,7 +1347,8 @@ public class PosframeController {
                             boolean status_ada = true;
 
                             for (int j = 0; j < tabeldatalist.size(); j++) {
-                                if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))) {
+                                if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))
+                                     && tabeldatalist.get(j).getId_satuan().matches(String.valueOf(jointabeldata.get("id_satuan")))) {
                                     String jumlah_qty = "1";
                                     if (pane.edbarcode.getText().toLowerCase().contains("x")) {
                                         String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
@@ -1386,9 +1388,9 @@ public class PosframeController {
                                 }
                                 String jumlah = String.valueOf(FuncHelper.ToInt(jumlah_qty));
                                 String id_satuan = String.valueOf(jointabeldata.get("id_satuan"));
-                                String nama_satuan = String.valueOf(jointabeldata.get("nama_satuan"));
-                                String isi_satuan = "1";
-                                String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan"));
+                                String nama_satuan = String.valueOf(jointabeldata.get("kode_satuan"));
+                                String isi_satuan = String.valueOf(jointabeldata.get("qty_satuan_pengali"));
+                                String id_satuan_pengali = String.valueOf(jointabeldata.get("id_satuan_pengali"));
                                 String harga_beli = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_beli")));
                                 String harga_jual = nf.format(FuncHelper.ToDouble(jointabeldata.get("harga_jual")));
                                 String diskon_persen = "0";
@@ -1400,7 +1402,7 @@ public class PosframeController {
                                 String nilai_service = String.valueOf(jointabeldata.get("nilai_service"));
                                 String id_gudang = valgudang;
                                 String nama_gudang = pane.edgudang.getText();
-                                String keterangan = String.valueOf(jointabeldata.get("keterangan"));
+                                String keterangan = "";
                                 String total = nf.format(kalkulasitotalperindex(diskon_persen, diskon_nominal, jumlah, harga_jual, isi_satuan));
                                 tabeldatalist.add(new Entitytabledata(id_barang, kode_barang, nama_barang, jumlah, id_satuan,
                                      nama_satuan, isi_satuan, id_satuan_pengali, harga_beli, harga_jual, diskon_persen, diskon_nominal, id_pajak, nama_pajak,
