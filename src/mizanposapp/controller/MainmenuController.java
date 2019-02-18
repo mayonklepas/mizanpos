@@ -81,9 +81,9 @@ public class MainmenuController {
         mm.psetting.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.gc();
                 isclick = true;
                 mm.ppembelian.setBackground(new Color(3, 3, 3));
-                System.gc();
                 isclick = true;
                 Pengaturan_inner_panel pp = new Pengaturan_inner_panel();
                 mm.panel_tengah.removeAll();

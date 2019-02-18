@@ -30,6 +30,7 @@ import org.json.simple.parser.ParseException;
 public class CrudHelper {
 
     File flheader = new File("configtable.json");
+    File flheaderinput = new File("configtableinput.json");
     File flheaderpopup = new File("configtablepopup.json");
 
     public CrudHelper() {
@@ -42,6 +43,23 @@ public class CrudHelper {
             }
         } else {
         }
+    }
+
+    public String getheaderinputs() {
+        StringBuilder sbheader = new StringBuilder();
+        try {
+            BufferedReader brheader = new BufferedReader(new FileReader(flheaderinput));
+            String lineheader = "";
+            while ((lineheader = brheader.readLine()) != null) {
+                sbheader.append(lineheader);
+            }
+            brheader.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CrudHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sbheader.toString();
     }
 
     public String getheaders() {
