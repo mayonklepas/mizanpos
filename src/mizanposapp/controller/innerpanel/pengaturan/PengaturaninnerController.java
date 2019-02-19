@@ -33,6 +33,7 @@ import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
+import mizanposapp.view.innerpanel.Popupcari;
 import mizanposapp.view.innerpanel.pengaturan.Pengaturan_inner_panel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -84,6 +85,10 @@ public class PengaturaninnerController {
         loadconfigprop();
         kusimpankau();
         hidecontrol();
+        cariakunstockopname();
+        carigudang();
+        caripelanggan();
+        caridepartment();
         pane.kontrolserial.setVisible(false);
 
     }
@@ -1252,6 +1257,7 @@ public class PengaturaninnerController {
              + "Persediaan_HPPdariHargaBeli='" + Persediaan_HPPdariHargaBeli + "'::"
              + "Persediaan_OpnameGunakanAkunHPP='" + Persediaan_OpnameGunakanAkunHPP + "'::"
              + "Persediaan_OpnameGunakanAkunLain='" + Persediaan_OpnameGunakanAkunLain + "'::"
+             + "Persediaan_OpnameAkunLain='" + valopnameakunlain + "'::"
              + "Persediaan_BatasiPanjangSerial='" + Persediaan_BatasiPanjangSerial + "'::"
              + "Persediaan_SerialIsDigit='" + Persediaan_SerialIsDigit + "'::"
              + "Global_PemisahTanggal='" + pane.edpemisahtanggal.getText() + "'::"
@@ -1701,6 +1707,86 @@ public class PengaturaninnerController {
                 simpankedb();
             }
         });
+    }
+
+    private void carigudang() {
+        pane.bcarigudang.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valgudang;
+            Staticvar.prelabel = pane.edgudangdef.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("gudang", "popupdaftargudang", "Daftar Gudang"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valgudang = Staticvar.resid;
+            pane.edgudangdef.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void caridepartment() {
+        pane.bcarideptgudang.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valdept;
+            Staticvar.prelabel = pane.eddefdept.getText();
+            Staticvar.prevalue = pane.eddefdept.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("department", "popupdaftardept", "Daftar Department"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valdept = Staticvar.resid;
+            pane.eddefdept.setText(Staticvar.resvalue);
+        });
+
+    }
+
+    private void caripelanggan() {
+        pane.bcaripelangganpenjualan.addActionListener((ActionEvent e) -> {
+            Staticvar.sfilter = "";
+            Staticvar.preid = valpelanggan;
+            Staticvar.prelabel = pane.edpelangganpenjualan.getText();
+            JDialog jd = new JDialog(new Mainmenu());
+            jd.add(new Popupcari("nama", "popupdaftarnama?tipe=0", "Daftar Pelanggan"));
+            jd.pack();
+            jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            jd.setLocationRelativeTo(null);
+            jd.setVisible(true);
+            jd.toFront();
+            valpelanggan = Staticvar.resid;
+            pane.edpelangganpenjualan.setText(Staticvar.reslabel);
+        });
+
+    }
+
+    private void rawgetidakun(String prevlabel, String previd) {
+        Staticvar.sfilter = "";
+        Staticvar.preid = previd;
+        Staticvar.prelabel = prevlabel;
+        JDialog jd = new JDialog(new Mainmenu());
+        jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
+        jd.pack();
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setLocationRelativeTo(null);
+        jd.setVisible(true);
+        jd.toFront();
+    }
+
+    private void cariakunstockopname() {
+        pane.bcariakunstockopnamepersediaan.addActionListener((ActionEvent e) -> {
+            rawgetidakun(pane.edakunstockopnamepersediaan.getText(), valopnameakunlain);
+            if (!Staticvar.resid.equals(valopnameakunlain)) {
+                valopnameakunlain = Staticvar.resid;
+                String val = Staticvar.resid + "-" + Staticvar.reslabel;
+                pane.edakunstockopnamepersediaan.setText(val);
+            }
+        });
+
     }
 
 }
