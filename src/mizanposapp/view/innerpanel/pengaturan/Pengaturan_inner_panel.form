@@ -21,24 +21,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="bbatal" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel27" alignment="0" pref="1224" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="bsimpan" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="bbatal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="bsimpan" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel27" alignment="0" pref="1224" max="32767" attributes="0"/>
-          <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane1" min="-2" pref="537" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bsimpan" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bbatal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -89,7 +94,7 @@
                       <Component id="jPanel36" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel37" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="308" max="32767" attributes="0"/>
+                      <EmptySpace pref="288" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -101,7 +106,7 @@
                           <Component id="jPanel36" max="32767" attributes="0"/>
                           <Component id="jPanel37" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="244" max="32767" attributes="0"/>
+                      <EmptySpace pref="277" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -125,34 +130,19 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel126" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel128" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel124" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel122" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel116" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel112" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel114" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel120" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel123" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel125" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                          <Component id="cmbbulanawalakuntansiperusahaan" min="-2" pref="205" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="sptahunawalakuntansiperusahaan" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="ednamadeptperusahaan" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="jLabel123" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="ednamadeptperusahaan" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel129" min="-2" max="-2" attributes="0"/>
@@ -171,13 +161,6 @@
                                       <Component id="edalamat2perusahaan" max="32767" attributes="0"/>
                                       <Component id="edalamatperusahaan" max="32767" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel127" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbperiodeakuntansiperusahaan" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="spperiodeakuntansiperusahaan" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -241,22 +224,6 @@
                               <Component id="jLabel123" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel122" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ednamadeptperusahaan" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel125" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel124" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbbulanawalakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="sptahunawalakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel127" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel126" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spperiodeakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbperiodeakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -344,79 +311,6 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="ednamadeptperusahaan">
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel124">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Periode Awal Akuntansi"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel125">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value=":"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="cmbbulanawalakuntansiperusahaan">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="12">
-                        <StringItem index="0" value="Januari"/>
-                        <StringItem index="1" value="Februari"/>
-                        <StringItem index="2" value="Maret"/>
-                        <StringItem index="3" value="April"/>
-                        <StringItem index="4" value="Mei"/>
-                        <StringItem index="5" value="Juni"/>
-                        <StringItem index="6" value="Juli"/>
-                        <StringItem index="7" value="Agustus"/>
-                        <StringItem index="8" value="September"/>
-                        <StringItem index="9" value="Oktober"/>
-                        <StringItem index="10" value="November"/>
-                        <StringItem index="11" value="Desember"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbbulanawalakuntansiperusahaanActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JSpinner" name="sptahunawalakuntansiperusahaan">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel126">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Periode  Akuntansi"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel127">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value=":"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="cmbperiodeakuntansiperusahaan">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="12">
-                        <StringItem index="0" value="Januari"/>
-                        <StringItem index="1" value="Februari"/>
-                        <StringItem index="2" value="Maret"/>
-                        <StringItem index="3" value="April"/>
-                        <StringItem index="4" value="Mei"/>
-                        <StringItem index="5" value="Juni"/>
-                        <StringItem index="6" value="Juli"/>
-                        <StringItem index="7" value="Agustus"/>
-                        <StringItem index="8" value="September"/>
-                        <StringItem index="9" value="Oktober"/>
-                        <StringItem index="10" value="November"/>
-                        <StringItem index="11" value="Desember"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JSpinner" name="spperiodeakuntansiperusahaan">
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel128">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Mata Uang Utama"/>
@@ -449,27 +343,6 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel134" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel138" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel139" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="spnourutterakhirfakturpajakperusahaan" max="32767" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="cknourutpajakotomatis" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel135" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="ednoserifakturpajakperusahaan" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel140" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -527,19 +400,6 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel134" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel135" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ednoserifakturpajakperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel139" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="spnourutterakhirfakturpajakperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel138" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cknourutpajakotomatis" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel141" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel140" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="edalamatpkpfakturpajakperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -550,9 +410,9 @@
                               <Component id="jLabel142" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="edkotafakturpajakperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel38" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -582,30 +442,6 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value=":"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel134">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="No Seri"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel135">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value=":"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="ednoserifakturpajakperusahaan">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel138">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="No Terakhir"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel139">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value=":"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JSpinner" name="spnourutterakhirfakturpajakperusahaan">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel140">
                   <Properties>
@@ -716,14 +552,6 @@
                 </Container>
                 <Component class="com.toedter.calendar.JDateChooser" name="dtanggalpkpfakturpajakperusahaan">
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="cknourutpajakotomatis">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Otomatis"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JTextField" name="edkotafakturpajakperusahaan">
                 </Component>
               </SubComponents>
@@ -749,18 +577,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="1219" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="1199" max="32767" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" max="32767" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane3" alignment="0" pref="536" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -798,7 +622,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -807,10 +631,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jPanel9" min="-2" pref="126" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jPanel11" max="32767" attributes="0"/>
+                                      <Component id="jPanel11" min="-2" pref="384" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="137" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1026,7 +850,7 @@
                                       <Component id="jLabel59" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="edprekaskeluar" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1870,24 +1694,20 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1219" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1199" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="571" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="536" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" min="-2" pref="514" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -2531,11 +2351,11 @@
                           <Component id="jPanel18" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel21" max="32767" attributes="0"/>
-                          <Component id="jPanel20" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="kontrolserial" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="283" max="32767" attributes="0"/>
+                      <EmptySpace pref="277" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2550,9 +2370,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jPanel18" max="32767" attributes="0"/>
-                          <Component id="jPanel20" max="32767" attributes="0"/>
+                          <Component id="kontrolserial" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="261" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2578,9 +2398,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ckhpphargabeliterakhirpersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ckcekstocksebelumsimpanpersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="ckeditfakturtanpapengecekanpersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="207" max="32767" attributes="0"/>
+                          <EmptySpace pref="233" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2591,9 +2410,7 @@
                           <Component id="ckhpphargabeliterakhirpersediaan" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="ckcekstocksebelumsimpanpersediaan" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ckeditfakturtanpapengecekanpersediaan" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="56" max="32767" attributes="0"/>
+                          <EmptySpace pref="79" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2613,14 +2430,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cek Stock Sebelum Simpan ke Transaksi "/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JCheckBox" name="ckeditfakturtanpapengecekanpersediaan">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Edit Faktur Tanpa Pengecekan Mutasi Barang"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -2785,7 +2594,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel20">
+            <Container class="javax.swing.JPanel" name="kontrolserial">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2801,13 +2610,12 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ckserialunikpersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ckserialhanyadigitpersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="ckbatasipenjangserialpersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="255" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2871,9 +2679,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lakunstockopnamepersediaan" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel79" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ltitik2akunstockopnamepersediaan" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="edakunstockopnamepersediaan" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -2884,7 +2692,7 @@
                                       <Component id="rbgunakanakunhpppersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="rbgunakanakunlainnyapersediaan" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="271" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -2900,8 +2708,8 @@
                           <Component id="rbgunakanakunlainnyapersediaan" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel78" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel79" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lakunstockopnamepersediaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ltitik2akunstockopnamepersediaan" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="edakunstockopnamepersediaan" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bcariakunstockopnamepersediaan" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -2927,12 +2735,12 @@
                     <Property name="text" type="java.lang.String" value="Gunakan Akun Lainnya"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel78">
+                <Component class="javax.swing.JLabel" name="lakunstockopnamepersediaan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Akun"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel79">
+                <Component class="javax.swing.JLabel" name="ltitik2akunstockopnamepersediaan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=":"/>
                   </Properties>
@@ -2976,7 +2784,7 @@
                           <Component id="jPanel40" max="32767" attributes="0"/>
                           <Component id="jPanel16" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="481" max="32767" attributes="0"/>
+                      <EmptySpace pref="461" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3436,7 +3244,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="ckgunakanpembulatanpos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel92" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lpembulatanpos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="sppembulatanpos" min="-2" pref="67" max="-2" attributes="0"/>
                               </Group>
@@ -3464,7 +3272,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="ckgunakanpembulatanpos" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel92" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lpembulatanpos" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="sppembulatanpos" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -3534,7 +3342,7 @@
                     <Property name="text" type="java.lang.String" value="Gunakan Pembulatan"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel92">
+                <Component class="javax.swing.JLabel" name="lpembulatanpos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Per :"/>
                   </Properties>
@@ -4225,7 +4033,7 @@
                           <Component id="Tools" max="32767" attributes="0"/>
                           <Component id="jPanel35" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="623" max="32767" attributes="0"/>
+                      <EmptySpace pref="472" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -4239,10 +4047,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel35" max="32767" attributes="0"/>
                           <Component id="jPanel34" max="32767" attributes="0"/>
+                          <Component id="jPanel35" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="389" max="32767" attributes="0"/>
+                      <EmptySpace pref="354" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -4355,7 +4163,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="bkoreksijurnaltakseimbang" pref="258" max="32767" attributes="0"/>
+                          <Component id="bkoreksijurnaltakseimbang" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -4395,21 +4203,27 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel91" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel110" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bperiodetahunakuntansi" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel93" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel124" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel111" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="bperiodebulanakuntansi" max="32767" attributes="0"/>
+                                  <Component id="jLabel125" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel126" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabel127" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmbperiodeakuntansiperusahaan" max="32767" attributes="0"/>
+                              <Component id="cmbbulanawalakuntansiperusahaan" pref="146" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="spperiodeakuntansiperusahaan" pref="88" max="32767" attributes="0"/>
+                              <Component id="sptahunawalakuntansiperusahaan" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -4417,18 +4231,24 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel91" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel110" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="bperiodetahunakuntansi" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel125" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel124" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbbulanawalakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sptahunawalakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel93" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel111" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="bperiodebulanakuntansi" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel126" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel127" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="cmbperiodeakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="spperiodeakuntansiperusahaan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -4436,27 +4256,54 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel91">
+                <Component class="javax.swing.JLabel" name="jLabel124">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Tahun"/>
+                    <Property name="text" type="java.lang.String" value="Periode Awal Akuntansi"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel93">
+                <Component class="javax.swing.JLabel" name="jLabel126">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Bulan"/>
+                    <Property name="text" type="java.lang.String" value="Periode  Akuntansi"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel110">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value=":"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel111">
+                <Component class="javax.swing.JLabel" name="jLabel125">
                   <Properties>
                     <Property name="text" type="java.lang.String" value=":"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="bperiodebulanakuntansi">
+                <Component class="javax.swing.JLabel" name="jLabel127">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value=":"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmbbulanawalakuntansiperusahaan">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="12">
+                        <StringItem index="0" value="Januari"/>
+                        <StringItem index="1" value="Februari"/>
+                        <StringItem index="2" value="Maret"/>
+                        <StringItem index="3" value="April"/>
+                        <StringItem index="4" value="Mei"/>
+                        <StringItem index="5" value="Juni"/>
+                        <StringItem index="6" value="Juli"/>
+                        <StringItem index="7" value="Agustus"/>
+                        <StringItem index="8" value="September"/>
+                        <StringItem index="9" value="Oktober"/>
+                        <StringItem index="10" value="November"/>
+                        <StringItem index="11" value="Desember"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbbulanawalakuntansiperusahaanActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmbperiodeakuntansiperusahaan">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="12">
@@ -4479,7 +4326,12 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="bperiodetahunakuntansi">
+                <Component class="javax.swing.JSpinner" name="sptahunawalakuntansiperusahaan">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="spperiodeakuntansiperusahaan">
                 </Component>
               </SubComponents>
             </Container>
@@ -4548,34 +4400,6 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="indi">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Century Gothic" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/mizanposapp/icon/ic_compare_arrows_white_24dp.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Sedang Memuat Data..."/>
-                <Property name="horizontalTextPosition" type="int" value="4"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-              </AuxValues>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

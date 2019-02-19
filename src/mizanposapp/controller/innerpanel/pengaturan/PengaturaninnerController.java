@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -68,16 +70,57 @@ public class PengaturaninnerController {
     ArrayList listheaderpersediaan = new ArrayList();
 
     Properties prop = new Properties();
-    String valgudang = "", valdept = "", valpelanggan = "";
+    String valgudang = "", valdept = "", valpelanggan = "", valcurrency = "", validcompany = "", valopnameakunlain = "";
 
     public PengaturaninnerController(Pengaturan_inner_panel pane) {
         this.pane = pane;
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(pane.rbgunakanakunhpppersediaan);
+        bg.add(pane.rbgunakanakunlainnyapersediaan);
         loadjsonpembelian();
         loadjsonpenjualan();
         loadjsonpersediaan();
         loadsettingfromdb();
         loadconfigprop();
         kusimpankau();
+        hidecontrol();
+        pane.kontrolserial.setVisible(false);
+
+    }
+
+    private void hidecontrol() {
+        pane.rbgunakanakunhpppersediaan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.lakunstockopnamepersediaan.setVisible(false);
+                pane.ltitik2akunstockopnamepersediaan.setVisible(false);
+                pane.edakunstockopnamepersediaan.setVisible(false);
+                pane.bcariakunstockopnamepersediaan.setVisible(false);
+            }
+        });
+
+        pane.rbgunakanakunlainnyapersediaan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pane.lakunstockopnamepersediaan.setVisible(true);
+                pane.ltitik2akunstockopnamepersediaan.setVisible(true);
+                pane.edakunstockopnamepersediaan.setVisible(true);
+                pane.bcariakunstockopnamepersediaan.setVisible(true);
+            }
+        });
+
+        pane.ckgunakanpembulatanpos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (pane.ckgunakanpembulatanpos.isSelected()) {
+                    pane.sppembulatanpos.setVisible(true);
+                    pane.lpembulatanpos.setVisible(true);
+                } else {
+                    pane.sppembulatanpos.setVisible(false);
+                    pane.lpembulatanpos.setVisible(false);
+                }
+            }
+        });
     }
 
     private void loadjsonpembelian() {
@@ -772,11 +815,7 @@ public class PengaturaninnerController {
                         }
                         break;
                     case "POS_PembulatanPer":
-                        if (nilai.equals("1")) {
-                            pane.ckgunakanpembulatanpos.setSelected(true);
-                        } else {
-                            pane.ckgunakanpembulatanpos.setSelected(false);
-                        }
+                        pane.sppembulatanpos.setValue(Integer.parseInt(nilai));
                         break;
                     case "POS_TampilkanPiutangTotal":
                         if (nilai.equals("1")) {
@@ -784,6 +823,9 @@ public class PengaturaninnerController {
                         } else {
                             pane.cktampilpiutangpos.setSelected(false);
                         }
+                        break;
+                    case "POS_FooterStruk":
+                        pane.tafooterpos.setText(nilai);
                         break;
                     case "Pembelian_EditFakturTanpaMutasi":
                         if (nilai.equals("1")) {
@@ -838,16 +880,17 @@ public class PengaturaninnerController {
                         break;
                     case "Persediaan_EdMenggunakanFIFO":
                         if (nilai.equals("1")) {
+                            //pane.ckhpphargabeliterakhirpersediaan.setSelected(true);
+                        } else {
+                            //pane.ckhpphargabeliterakhirpersediaan.setSelected(false);
+                        }
+                        break;
+
+                    case "Persediaan_HPPdariHargaBeli":
+                        if (nilai.equals("1")) {
                             pane.ckhpphargabeliterakhirpersediaan.setSelected(true);
                         } else {
                             pane.ckhpphargabeliterakhirpersediaan.setSelected(false);
-                        }
-                        break;
-                    case "Persediaan_HPPdariHargaBeli":
-                        if (nilai.equals("1")) {
-                            pane.ckpembayaranhutangpiutangformtotalpenjualan.setSelected(true);
-                        } else {
-                            pane.ckpembayaranhutangpiutangformtotalpenjualan.setSelected(false);
                         }
                         break;
                     case "Persediaan_OpnameGunakanAkunHPP":
@@ -863,6 +906,10 @@ public class PengaturaninnerController {
                         } else {
                             pane.rbgunakanakunlainnyapersediaan.setSelected(false);
                         }
+                        break;
+                    case "Persediaan_OpnameAkunLain":
+                        valopnameakunlain = nilai.split("#")[0];
+                        pane.edakunstockopnamepersediaan.setText(nilai.split("#")[0] + "-" + nilai.split("#")[1]);
                         break;
                     case "Persediaan_PanjangSerial":
                         if (nilai.equals("1")) {
@@ -884,6 +931,32 @@ public class PengaturaninnerController {
                         } else {
                             pane.ckserialunikpersediaan.setSelected(false);
                         }
+                        break;
+                    case "Penjualan_SetOrderSelesai":
+                        if (nilai.equals("1")) {
+                            pane.cksetselesaiorderpenjualan.setSelected(true);
+                        } else {
+                            pane.cksetselesaiorderpenjualan.setSelected(false);
+                        }
+                        break;
+                    case "Penjualan_HargaJualIncTaxService":
+                        if (nilai.equals("1")) {
+                            pane.ckhargajualtermasukpajakdanservicepenjualan.setSelected(true);
+                        } else {
+                            pane.ckhargajualtermasukpajakdanservicepenjualan.setSelected(false);
+                        }
+                        break;
+                    case "Global_DesimalDigit":
+                        pane.spdesimaldigit.setValue(Integer.parseInt(nilai));
+                        break;
+                    case "Global_PemisahTanggal":
+                        pane.edpemisahtanggal.setText(nilai);
+                        break;
+                    case "Global_LongDateFormat":
+                        pane.edlongdateformat.setText(nilai);
+                        break;
+                    case "Global_ShortDateFormat":
+                        pane.edshortdateformat.setText(nilai);
                         break;
                     default:
                         break;
@@ -974,29 +1047,54 @@ public class PengaturaninnerController {
                 }
             }
 
+            if (pane.rbgunakanakunhpppersediaan.isSelected()) {
+                pane.lakunstockopnamepersediaan.setVisible(false);
+                pane.ltitik2akunstockopnamepersediaan.setVisible(false);
+                pane.edakunstockopnamepersediaan.setVisible(false);
+                pane.bcariakunstockopnamepersediaan.setVisible(false);
+            } else {
+                pane.lakunstockopnamepersediaan.setVisible(true);
+                pane.ltitik2akunstockopnamepersediaan.setVisible(true);
+                pane.edakunstockopnamepersediaan.setVisible(true);
+                pane.bcariakunstockopnamepersediaan.setVisible(true);
+            }
+
+            if (pane.ckgunakanpembulatanpos.isSelected()) {
+                pane.sppembulatanpos.setVisible(true);
+                pane.lpembulatanpos.setVisible(true);
+            } else {
+                pane.sppembulatanpos.setVisible(false);
+                pane.lpembulatanpos.setVisible(false);
+            }
+
             Object objcompany = jodata.get("company");
             JSONArray jacompany = (JSONArray) objcompany;
 
             for (int i = 0; i < jacompany.size(); i++) {
                 JSONObject joindata = (JSONObject) jacompany.get(i);
+                validcompany = String.valueOf(joindata.get("id"));
                 pane.ednamaperusahaan.setText(String.valueOf(joindata.get("company_name")));
                 pane.edalamatperusahaan.setText(String.valueOf(joindata.get("alamat1")));
                 pane.edalamat2perusahaan.setText(String.valueOf(joindata.get("alamat2")));
                 pane.ednotelpperusahaan.setText(String.valueOf(joindata.get("telp")));
+                pane.spnodeptperusahaan.setValue(Integer.parseInt(String.valueOf(joindata.get("id_dept"))));
+                pane.ednamadeptperusahaan.setText(String.valueOf(joindata.get("nama_dept")));
+                valcurrency = String.valueOf(joindata.get("id_dept"));
                 pane.ednofaxperusahaan.setText(String.valueOf(joindata.get("fax")));
-                pane.cmbbulanawalakuntansiperusahaan.setSelectedIndex(Integer.parseInt(String.valueOf(joindata.get("create_data_month"))));
+                pane.cmbbulanawalakuntansiperusahaan.setSelectedIndex(Integer.parseInt(String.valueOf(joindata.get("create_data_month"))) - 1);
                 pane.sptahunawalakuntansiperusahaan.setValue(Integer.parseInt(String.valueOf(joindata.get("create_data_year"))));
-                pane.cmbperiodeakuntansiperusahaan.setSelectedIndex(Integer.parseInt(String.valueOf(joindata.get("periode_month"))));
+                pane.cmbperiodeakuntansiperusahaan.setSelectedIndex(Integer.parseInt(String.valueOf(joindata.get("periode_month"))) - 1);
                 pane.spperiodeakuntansiperusahaan.setValue(Integer.parseInt(String.valueOf(joindata.get("periode_year"))));
                 pane.ednpwpfakturpajakperusahaan.setText(String.valueOf(joindata.get("npwp")));
                 Date pkp_tanggal = new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joindata.get("pkp_tanggal")));
                 pane.dtanggalpkpfakturpajakperusahaan.setDate(pkp_tanggal);
-                pane.ednoserifakturpajakperusahaan.setText("");
-                pane.spnourutterakhirfakturpajakperusahaan.setValue(0);
                 pane.edalamatpkpfakturpajakperusahaan.setText(String.valueOf(joindata.get("pkp_alamat")));
                 pane.edkotafakturpajakperusahaan.setText(String.valueOf(joindata.get("pkp_kota")));
                 pane.edttdpajaknama.setText(String.valueOf(joindata.get("ttd_pajak_nama")));
-                pane.edjabatanpenandatanganfakturpajakperusahaan.setText(String.valueOf(joindata.get("ttd_pajak_alamat")));
+                pane.edjabatanpenandatanganfakturpajakperusahaan.setText(String.valueOf(joindata.get("ttd_pajak_jabatan")));
+                pane.edmatauangutama.setText(String.valueOf(joindata.get("nama_currency")));
+                valcurrency = String.valueOf(joindata.get("id_currency"));
+
             }
 
         } catch (ParseException ex) {
@@ -1009,11 +1107,13 @@ public class PengaturaninnerController {
     private void simpankedb() {
         String POS_BarcodeMenggunakanSerial,
              POS_BuatBarisBaru, POS_GunakanPembulatan,
-             POS_HargaJualMinimum, POS_HarusMenggunakanSalesman, POS_PembulatanPer,
+             POS_HargaJualMinimum, POS_HarusMenggunakanSalesman,
              POS_TampilkanPiutangTotal, Pembelian_MasukkanPajakKeHargaPokok,
-             Pembelian_SetOrderSelesai, Penjualan_PembHutangPiutangSimple, Persediaan_BatasiPanjangSerial,
+             Pembelian_EditFakturTanpaMutasi, Pembelian_HitungTotalBuatBarisBaru,
+             Pembelian_SetOrderSelesai, Penjualan_PembHutangPiutangSimple, Penjualan_SetOrderSelesai,
+             Penjualan_HargaJualIncTaxService, Persediaan_BatasiPanjangSerial,
              Persediaan_CekStockSebelumSimpan, Persediaan_EdMenggunakanFIFO, Persediaan_HPPdariHargaBeli,
-             Persediaan_OpnameGunakanAkunHPP, Persediaan_OpnameGunakanAkunLain, Persediaan_PanjangSerial,
+             Persediaan_OpnameGunakanAkunHPP, Persediaan_OpnameGunakanAkunLain, Persediaan_OpnameAkunLain, Persediaan_PanjangSerial,
              Persediaan_SerialIsDigit, Persediaan_SerialUnique;
 
         if (pane.ckbarcodedenganserialbarangpos.isSelected()) {
@@ -1064,6 +1164,30 @@ public class PengaturaninnerController {
             Pembelian_SetOrderSelesai = "0";
         }
 
+        if (pane.ckhitungtotalbarispembelian.isSelected()) {
+            Pembelian_HitungTotalBuatBarisBaru = "1";
+        } else {
+            Pembelian_HitungTotalBuatBarisBaru = "0";
+        }
+
+        if (pane.ckfakturtanpapengecekanmutasipembelian.isSelected()) {
+            Pembelian_EditFakturTanpaMutasi = "1";
+        } else {
+            Pembelian_EditFakturTanpaMutasi = "0";
+        }
+
+        if (pane.cksetselesaiorderpenjualan.isSelected()) {
+            Penjualan_SetOrderSelesai = "1";
+        } else {
+            Penjualan_SetOrderSelesai = "0";
+        }
+
+        if (pane.ckhargajualtermasukpajakdanservicepenjualan.isSelected()) {
+            Penjualan_HargaJualIncTaxService = "1";
+        } else {
+            Penjualan_HargaJualIncTaxService = "0";
+        }
+
         if (pane.ckpembayaranhutangpiutangformtotalpenjualan.isSelected()) {
             Penjualan_PembHutangPiutangSimple = "1";
         } else {
@@ -1108,24 +1232,79 @@ public class PengaturaninnerController {
             Persediaan_SerialUnique = "0";
         }
 
-        String data = "data="
-             + "nama=POS_BarcodeMenggunakanSerial::nilai='" + POS_BarcodeMenggunakanSerial + "'"
-             + "nama=POS_BuatBarisBaru::nilai='" + POS_BuatBarisBaru + "'"
-             + "nama=POS_GunakanPembulatan::nilai='" + POS_GunakanPembulatan + "'"
-             + "nama=POS_HargaJualMinimum::nilai='" + POS_HargaJualMinimum + "'"
-             + "nama=POS_HarusMenggunakanSalesman::nilai='" + POS_HarusMenggunakanSalesman + "'"
-             + "nama=POS_TampilkanPiutangTotal::nilai='" + POS_TampilkanPiutangTotal + "'"
-             + "nama=Pembelian_MasukkanPajakKeHargaPokok::nilai='" + Pembelian_MasukkanPajakKeHargaPokok + "'"
-             + "nama=Pembelian_SetOrderSelesai::nilai='" + Pembelian_SetOrderSelesai + "'"
-             + "nama=Penjualan_PembHutangPiutangSimple::nilai='" + Penjualan_PembHutangPiutangSimple + "'"
-             + "nama=Persediaan_CekStockSebelumSimpan::nilai='" + Persediaan_CekStockSebelumSimpan + "'"
-             + "nama=Persediaan_HPPdariHargaBeli::nilai='" + Persediaan_HPPdariHargaBeli + "'"
-             + "nama=Persediaan_OpnameGunakanAkunHPP::nilai='" + Persediaan_OpnameGunakanAkunHPP + "'"
-             + "nama=Persediaan_OpnameGunakanAkunLain::nilai='" + Persediaan_OpnameGunakanAkunLain + "'"
-             + "nama=Persediaan_BatasiPanjangSerial::nilai='" + Persediaan_BatasiPanjangSerial + "'"
-             + "nama=Persediaan_SerialIsDigit::nilai='" + Persediaan_SerialIsDigit + "'"
-             + "nama=Persediaan_SerialUnique::nilai='" + Persediaan_SerialUnique + "'";
-        ch.insertdata("insertpengaturan", data);
+        String data = "setupprogram="
+             + "POS_BarcodeMenggunakanSerial='" + POS_BarcodeMenggunakanSerial + "'::"
+             + "POS_BuatBarisBaru='" + POS_BuatBarisBaru + "'::"
+             + "POS_GunakanPembulatan='" + POS_GunakanPembulatan + "'::"
+             + "POS_HargaJualMinimum='" + POS_HargaJualMinimum + "'::"
+             + "POS_HarusMenggunakanSalesman='" + POS_HarusMenggunakanSalesman + "'::"
+             + "POS_TampilkanPiutangTotal='" + POS_TampilkanPiutangTotal + "'::"
+             + "POS_PembulatanPer='" + pane.sppembulatanpos.getValue() + "'::"
+             + "POS_FooterStruk='" + pane.tafooterpos.getText() + "'::"
+             + "Pembelian_MasukkanPajakKeHargaPokok='" + Pembelian_MasukkanPajakKeHargaPokok + "'::"
+             + "Pembelian_SetOrderSelesai='" + Pembelian_SetOrderSelesai + "'::"
+             + "Pembelian_EditFakturTanpaMutasi='" + Pembelian_EditFakturTanpaMutasi + "'::"
+             + "Pembelian_HitungTotalBuatBarisBaru='" + Pembelian_HitungTotalBuatBarisBaru + "'::"
+             + "Penjualan_PembHutangPiutangSimple='" + Penjualan_PembHutangPiutangSimple + "'::"
+             + "Penjualan_SetOrderSelesai='" + Penjualan_SetOrderSelesai + "'::"
+             + "Penjualan_HargaJualIncTaxService='" + Penjualan_HargaJualIncTaxService + "'::"
+             + "Persediaan_CekStockSebelumSimpan='" + Persediaan_CekStockSebelumSimpan + "'::"
+             + "Persediaan_HPPdariHargaBeli='" + Persediaan_HPPdariHargaBeli + "'::"
+             + "Persediaan_OpnameGunakanAkunHPP='" + Persediaan_OpnameGunakanAkunHPP + "'::"
+             + "Persediaan_OpnameGunakanAkunLain='" + Persediaan_OpnameGunakanAkunLain + "'::"
+             + "Persediaan_BatasiPanjangSerial='" + Persediaan_BatasiPanjangSerial + "'::"
+             + "Persediaan_SerialIsDigit='" + Persediaan_SerialIsDigit + "'::"
+             + "Global_PemisahTanggal='" + pane.edpemisahtanggal.getText() + "'::"
+             + "Global_LongDateFormat='" + pane.edlongdateformat.getText() + "'::"
+             + "Global_ShortDateFormat='" + pane.edshortdateformat.getText() + "'::"
+             + "Global_DesimalDigit='" + pane.spdesimaldigit.getValue() + "'&"
+             + "prefix="
+             + "Jurnal Umum='" + pane.edprejurnalumum.getText() + "'::"
+             + "Penjualan='" + pane.edprefakturpenjualan.getText() + "'::"
+             + "Retur Penjualan='" + pane.edprereturrpenjualan.getText() + "'::"
+             + "Pembelian='" + pane.edprefakturpembelian.getText() + "'::"
+             + "Retur Pembelian='" + pane.edprereturpembelian.getText() + "'::"
+             + "Pembayaran Hutang='" + pane.edprepembayaranhutang.getText() + "'::"
+             + "Pembayaran Piutang='" + pane.edprepembayaranpiutang.getText() + "'::"
+             + "Order Penjualan='" + pane.edpreorderpenjualan.getText() + "'::"
+             + "Order Pembelian='" + pane.edpreorderpembelian.getText() + "'::"
+             + "PenyesuaianPersediaan='" + pane.edprepenyediapersediaan.getText() + "'::"
+             + "StockOpname='" + pane.edprestockopname.getText() + "'::"
+             + "TransferPersediaan='" + pane.edpretransferbarang.getText() + "'::"
+             + "PerakitanPersediaan='" + pane.edpreperakitanbarang.getText() + "'::"
+             + "Kas Masuk='" + pane.edprekasmasuk.getText() + "'::"
+             + "Kas Keluar='" + pane.edprekaskeluar.getText() + "'::"
+             + "Data Supplier='" + pane.edpresupplier.getText() + "'::"
+             + "Data Karyawan='" + pane.edprekaryawan.getText() + "'::"
+             + "Data Rekan='" + pane.edprerekan.getText() + "'::"
+             + "Data Pelanggan='" + pane.edprepelanggan.getText() + "'::"
+             + "Data Barang='" + pane.edprepersediaan.getText() + "'::"
+             + "Data Gudang='" + pane.edpregudang.getText() + "'::"
+             + "Data Kelompok Barang='" + pane.edprekelompokpersediaan.getText() + "'::"
+             + "Data Golongan Karyawan='" + pane.edpregolkaryawan.getText() + "'::"
+             + "Data Golongan Pelanggan='" + pane.edpregolpelanggan.getText() + "'&"
+             + "company="
+             + "company_name='" + pane.ednamaperusahaan.getText() + "'::"
+             + "create_data_year='" + pane.sptahunawalakuntansiperusahaan.getValue() + "'::"
+             + "create_data_month='" + (pane.cmbbulanawalakuntansiperusahaan.getSelectedIndex() + 1) + "'::"
+             + "periode_year='" + pane.spperiodeakuntansiperusahaan.getValue() + "'::"
+             + "periode_month='" + (pane.cmbperiodeakuntansiperusahaan.getSelectedIndex() + 1) + "'::"
+             + "alamat1='" + pane.edalamatperusahaan.getText() + "'::"
+             + "alamat2='" + pane.edalamat2perusahaan.getText() + "'::"
+             + "telp='" + pane.ednotelpperusahaan.getText() + "'::"
+             + "fax='" + pane.ednofaxperusahaan.getText() + "'::"
+             + "kota=''::"
+             + "kode_pos=''::"
+             + "negara=''::"
+             + "website=''::"
+             + "npwp='" + pane.ednpwpfakturpajakperusahaan.getText() + "'::"
+             + "pkp_tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggalpkpfakturpajakperusahaan.getDate()) + "'::"
+             + "pkp_alamat='" + pane.edalamatpkpfakturpajakperusahaan.getText() + "'::"
+             + "pkp_kota='" + pane.edkotafakturpajakperusahaan.getText() + "'::"
+             + "ttd_pajak_nama='" + pane.edttdpajaknama.getText() + "'::"
+             + "ttd_pajak_jabatan='" + pane.edjabatanpenandatanganfakturpajakperusahaan.getText() + "'&"
+             + "id=" + validcompany;
+        ch.insertdata("insertdatasetupprogram", data);
         if (Staticvar.getresult.equals("berhasil")) {
             simpankefile();
             if (JOptionPane.showConfirmDialog(null, "Pengaturan Disimpan, Aplikasi Akan Merestart", "Informasi", JOptionPane.OK_CANCEL_OPTION) == 0) {

@@ -54,14 +54,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         jLabel122 = new javax.swing.JLabel();
         jLabel123 = new javax.swing.JLabel();
         ednamadeptperusahaan = new javax.swing.JTextField();
-        jLabel124 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
-        cmbbulanawalakuntansiperusahaan = new javax.swing.JComboBox<>();
-        sptahunawalakuntansiperusahaan = new javax.swing.JSpinner();
-        jLabel126 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
-        cmbperiodeakuntansiperusahaan = new javax.swing.JComboBox<>();
-        spperiodeakuntansiperusahaan = new javax.swing.JSpinner();
         jLabel128 = new javax.swing.JLabel();
         jLabel129 = new javax.swing.JLabel();
         edmatauangutama = new javax.swing.JTextField();
@@ -71,12 +63,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         ednpwpfakturpajakperusahaan = new javax.swing.JTextField();
         jLabel132 = new javax.swing.JLabel();
         jLabel133 = new javax.swing.JLabel();
-        jLabel134 = new javax.swing.JLabel();
-        jLabel135 = new javax.swing.JLabel();
-        ednoserifakturpajakperusahaan = new javax.swing.JTextField();
-        jLabel138 = new javax.swing.JLabel();
-        jLabel139 = new javax.swing.JLabel();
-        spnourutterakhirfakturpajakperusahaan = new javax.swing.JSpinner();
         jLabel140 = new javax.swing.JLabel();
         jLabel141 = new javax.swing.JLabel();
         edalamatpkpfakturpajakperusahaan = new javax.swing.JTextField();
@@ -90,7 +76,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         jLabel146 = new javax.swing.JLabel();
         edttdpajaknama = new javax.swing.JTextField();
         dtanggalpkpfakturpajakperusahaan = new com.toedter.calendar.JDateChooser();
-        cknourutpajakotomatis = new javax.swing.JCheckBox();
         edkotafakturpajakperusahaan = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -247,7 +232,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         jPanel17 = new javax.swing.JPanel();
         ckhpphargabeliterakhirpersediaan = new javax.swing.JCheckBox();
         ckcekstocksebelumsimpanpersediaan = new javax.swing.JCheckBox();
-        ckeditfakturtanpapengecekanpersediaan = new javax.swing.JCheckBox();
         jPanel18 = new javax.swing.JPanel();
         cktampilfieldkodepersediaan = new javax.swing.JCheckBox();
         cktampilfieldkelompokpersediaan = new javax.swing.JCheckBox();
@@ -259,15 +243,15 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         cktampilfieldhpppersediaan = new javax.swing.JCheckBox();
         cktampilfieldhargajualpersediaan = new javax.swing.JCheckBox();
         cktampilfieldketeranganpersediaan = new javax.swing.JCheckBox();
-        jPanel20 = new javax.swing.JPanel();
+        kontrolserial = new javax.swing.JPanel();
         ckserialunikpersediaan = new javax.swing.JCheckBox();
         ckserialhanyadigitpersediaan = new javax.swing.JCheckBox();
         ckbatasipenjangserialpersediaan = new javax.swing.JCheckBox();
         jPanel21 = new javax.swing.JPanel();
         rbgunakanakunhpppersediaan = new javax.swing.JRadioButton();
         rbgunakanakunlainnyapersediaan = new javax.swing.JRadioButton();
-        jLabel78 = new javax.swing.JLabel();
-        jLabel79 = new javax.swing.JLabel();
+        lakunstockopnamepersediaan = new javax.swing.JLabel();
+        ltitik2akunstockopnamepersediaan = new javax.swing.JLabel();
         edakunstockopnamepersediaan = new javax.swing.JTextField();
         bcariakunstockopnamepersediaan = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -302,7 +286,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         cktransaksiharussalesmanpos = new javax.swing.JCheckBox();
         ckhargajualtidakbolehkecildarimasterpos = new javax.swing.JCheckBox();
         ckgunakanpembulatanpos = new javax.swing.JCheckBox();
-        jLabel92 = new javax.swing.JLabel();
+        lpembulatanpos = new javax.swing.JLabel();
         sppembulatanpos = new javax.swing.JSpinner();
         cktampilpiutangpos = new javax.swing.JCheckBox();
         jPanel23 = new javax.swing.JPanel();
@@ -367,16 +351,17 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         Tools = new javax.swing.JPanel();
         bkoreksijurnaltakseimbang = new javax.swing.JButton();
         jPanel35 = new javax.swing.JPanel();
-        jLabel91 = new javax.swing.JLabel();
-        jLabel93 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        bperiodebulanakuntansi = new javax.swing.JComboBox<>();
-        bperiodetahunakuntansi = new javax.swing.JTextField();
+        jLabel124 = new javax.swing.JLabel();
+        jLabel126 = new javax.swing.JLabel();
+        jLabel125 = new javax.swing.JLabel();
+        jLabel127 = new javax.swing.JLabel();
+        cmbbulanawalakuntansiperusahaan = new javax.swing.JComboBox<>();
+        cmbperiodeakuntansiperusahaan = new javax.swing.JComboBox<>();
+        sptahunawalakuntansiperusahaan = new javax.swing.JSpinner();
+        spperiodeakuntansiperusahaan = new javax.swing.JSpinner();
         jPanel27 = new javax.swing.JPanel();
         jLabel90 = new javax.swing.JLabel();
         jPanel29 = new javax.swing.JPanel();
-        indi = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -416,23 +401,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
 
         jLabel123.setText(":");
 
-        jLabel124.setText("Periode Awal Akuntansi");
-
-        jLabel125.setText(":");
-
-        cmbbulanawalakuntansiperusahaan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
-        cmbbulanawalakuntansiperusahaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbbulanawalakuntansiperusahaanActionPerformed(evt);
-            }
-        });
-
-        jLabel126.setText("Periode  Akuntansi");
-
-        jLabel127.setText(":");
-
-        cmbperiodeakuntansiperusahaan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
-
         jLabel128.setText("Mata Uang Utama");
 
         jLabel129.setText(":");
@@ -444,29 +412,18 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
             .addGroup(jPanel36Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel126)
                     .addComponent(jLabel128)
-                    .addComponent(jLabel124)
                     .addComponent(jLabel122)
                     .addComponent(jLabel116)
                     .addComponent(jLabel112)
                     .addComponent(jLabel114)
                     .addComponent(jLabel120))
-                .addGap(29, 29, 29)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel36Layout.createSequentialGroup()
-                        .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel123)
-                            .addComponent(jLabel125))
-                        .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel36Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(cmbbulanawalakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sptahunawalakuntansiperusahaan))
-                            .addGroup(jPanel36Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ednamadeptperusahaan))))
+                        .addComponent(jLabel123)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ednamadeptperusahaan))
                     .addGroup(jPanel36Layout.createSequentialGroup()
                         .addComponent(jLabel129)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -481,12 +438,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                         .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(edalamat2perusahaan)
                             .addComponent(edalamatperusahaan)))
-                    .addGroup(jPanel36Layout.createSequentialGroup()
-                        .addComponent(jLabel127)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbperiodeakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spperiodeakuntansiperusahaan))
                     .addGroup(jPanel36Layout.createSequentialGroup()
                         .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel36Layout.createSequentialGroup()
@@ -538,19 +489,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addComponent(jLabel123)
                     .addComponent(jLabel122)
                     .addComponent(ednamadeptperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel125)
-                    .addComponent(jLabel124)
-                    .addComponent(cmbbulanawalakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sptahunawalakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel127)
-                    .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel126)
-                        .addComponent(spperiodeakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmbperiodeakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel128)
@@ -575,14 +513,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         jLabel132.setText("Tanggal PKP");
 
         jLabel133.setText(":");
-
-        jLabel134.setText("No Seri");
-
-        jLabel135.setText(":");
-
-        jLabel138.setText("No Terakhir");
-
-        jLabel139.setText(":");
 
         jLabel140.setText("Alamat PKP");
 
@@ -640,9 +570,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        cknourutpajakotomatis.setBackground(new java.awt.Color(255, 255, 255));
-        cknourutpajakotomatis.setText("Otomatis");
-
         javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
         jPanel37.setLayout(jPanel37Layout);
         jPanel37Layout.setHorizontalGroup(
@@ -650,22 +577,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
             .addGroup(jPanel37Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel37Layout.createSequentialGroup()
-                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel134)
-                            .addComponent(jLabel138))
-                        .addGap(90, 90, 90)
-                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel37Layout.createSequentialGroup()
-                                .addComponent(jLabel139)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(spnourutterakhirfakturpajakperusahaan)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cknourutpajakotomatis))
-                            .addGroup(jPanel37Layout.createSequentialGroup()
-                                .addComponent(jLabel135)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ednoserifakturpajakperusahaan))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel37Layout.createSequentialGroup()
                         .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel140)
@@ -709,17 +620,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addComponent(dtanggalpkpfakturpajakperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel134)
-                    .addComponent(jLabel135)
-                    .addComponent(ednoserifakturpajakperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel139)
-                    .addComponent(spnourutterakhirfakturpajakperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel138)
-                    .addComponent(cknourutpajakotomatis))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel141)
                     .addComponent(jLabel140)
                     .addComponent(edalamatpkpfakturpajakperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -728,9 +628,9 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addComponent(jLabel143)
                     .addComponent(jLabel142)
                     .addComponent(edkotafakturpajakperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
@@ -742,7 +642,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -751,7 +651,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Setup Informasi Perusahaan", jPanel33);
@@ -996,7 +896,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addComponent(jLabel56)
                     .addComponent(jLabel59)
                     .addComponent(edprekaskeluar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -1384,7 +1284,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1392,8 +1292,8 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel30);
@@ -1404,15 +1304,12 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1219, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1199, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane3)
-                .addGap(0, 0, 0))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Setup Global", jPanel1);
@@ -1797,21 +1694,18 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1219, Short.MAX_VALUE)
+            .addGap(0, 1199, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane5))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Penjualan", jPanel3);
@@ -1827,9 +1721,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         ckcekstocksebelumsimpanpersediaan.setBackground(new java.awt.Color(255, 255, 255));
         ckcekstocksebelumsimpanpersediaan.setText("Cek Stock Sebelum Simpan ke Transaksi ");
 
-        ckeditfakturtanpapengecekanpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        ckeditfakturtanpapengecekanpersediaan.setText("Edit Faktur Tanpa Pengecekan Mutasi Barang");
-
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -1838,9 +1729,8 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ckhpphargabeliterakhirpersediaan)
-                    .addComponent(ckcekstocksebelumsimpanpersediaan)
-                    .addComponent(ckeditfakturtanpapengecekanpersediaan))
-                .addContainerGap(207, Short.MAX_VALUE))
+                    .addComponent(ckcekstocksebelumsimpanpersediaan))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1849,9 +1739,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addComponent(ckhpphargabeliterakhirpersediaan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ckcekstocksebelumsimpanpersediaan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ckeditfakturtanpapengecekanpersediaan)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -1945,8 +1833,8 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setBorder(javax.swing.BorderFactory.createTitledBorder("Control Barang Serial"));
+        kontrolserial.setBackground(new java.awt.Color(255, 255, 255));
+        kontrolserial.setBorder(javax.swing.BorderFactory.createTitledBorder("Control Barang Serial"));
 
         ckserialunikpersediaan.setBackground(new java.awt.Color(255, 255, 255));
         ckserialunikpersediaan.setText("Serial Unik");
@@ -1957,21 +1845,20 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         ckbatasipenjangserialpersediaan.setBackground(new java.awt.Color(255, 255, 255));
         ckbatasipenjangserialpersediaan.setText("Batasi Panjang Serial");
 
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout kontrolserialLayout = new javax.swing.GroupLayout(kontrolserial);
+        kontrolserial.setLayout(kontrolserialLayout);
+        kontrolserialLayout.setHorizontalGroup(
+            kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kontrolserialLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ckserialunikpersediaan)
                     .addComponent(ckserialhanyadigitpersediaan)
-                    .addComponent(ckbatasipenjangserialpersediaan))
-                .addContainerGap(255, Short.MAX_VALUE))
+                    .addComponent(ckbatasipenjangserialpersediaan)))
         );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
+        kontrolserialLayout.setVerticalGroup(
+            kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kontrolserialLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ckserialunikpersediaan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1990,9 +1877,9 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         rbgunakanakunlainnyapersediaan.setBackground(new java.awt.Color(255, 255, 255));
         rbgunakanakunlainnyapersediaan.setText("Gunakan Akun Lainnya");
 
-        jLabel78.setText("Akun");
+        lakunstockopnamepersediaan.setText("Akun");
 
-        jLabel79.setText(":");
+        ltitik2akunstockopnamepersediaan.setText(":");
 
         bcariakunstockopnamepersediaan.setText("Cari");
 
@@ -2004,9 +1891,9 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addComponent(jLabel78)
+                        .addComponent(lakunstockopnamepersediaan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel79)
+                        .addComponent(ltitik2akunstockopnamepersediaan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edakunstockopnamepersediaan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2015,7 +1902,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rbgunakanakunhpppersediaan)
                             .addComponent(rbgunakanakunlainnyapersediaan))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 271, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -2027,8 +1914,8 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addComponent(rbgunakanakunlainnyapersediaan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel78)
-                    .addComponent(jLabel79)
+                    .addComponent(lakunstockopnamepersediaan)
+                    .addComponent(ltitik2akunstockopnamepersediaan)
                     .addComponent(edakunstockopnamepersediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcariakunstockopnamepersediaan))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -2044,10 +1931,10 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kontrolserial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2059,8 +1946,8 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(261, Short.MAX_VALUE))
+                    .addComponent(kontrolserial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Persediaan", jPanel5);
@@ -2290,7 +2177,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addContainerGap(461, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2339,7 +2226,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         ckgunakanpembulatanpos.setBackground(new java.awt.Color(255, 255, 255));
         ckgunakanpembulatanpos.setText("Gunakan Pembulatan");
 
-        jLabel92.setText("Per :");
+        lpembulatanpos.setText("Per :");
 
         cktampilpiutangpos.setBackground(new java.awt.Color(255, 255, 255));
         cktampilpiutangpos.setText("Tampilkan Piutang Total");
@@ -2360,7 +2247,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addComponent(ckgunakanpembulatanpos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel92)
+                        .addComponent(lpembulatanpos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sppembulatanpos, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cktampilpiutangpos))
@@ -2384,7 +2271,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckgunakanpembulatanpos)
-                    .addComponent(jLabel92)
+                    .addComponent(lpembulatanpos)
                     .addComponent(sppembulatanpos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cktampilpiutangpos)
@@ -2857,7 +2744,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
             ToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ToolsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bkoreksijurnaltakseimbang, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(bkoreksijurnaltakseimbang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         ToolsLayout.setVerticalGroup(
@@ -2871,15 +2758,25 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         jPanel35.setBackground(new java.awt.Color(255, 255, 255));
         jPanel35.setBorder(javax.swing.BorderFactory.createTitledBorder("Periode Akuntansi"));
 
-        jLabel91.setText("Tahun");
+        jLabel124.setText("Periode Awal Akuntansi");
 
-        jLabel93.setText("Bulan");
+        jLabel126.setText("Periode  Akuntansi");
 
-        jLabel110.setText(":");
+        jLabel125.setText(":");
 
-        jLabel111.setText(":");
+        jLabel127.setText(":");
 
-        bperiodebulanakuntansi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
+        cmbbulanawalakuntansiperusahaan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
+        cmbbulanawalakuntansiperusahaan.setEnabled(false);
+        cmbbulanawalakuntansiperusahaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbbulanawalakuntansiperusahaanActionPerformed(evt);
+            }
+        });
+
+        cmbperiodeakuntansiperusahaan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
+
+        sptahunawalakuntansiperusahaan.setEnabled(false);
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
@@ -2887,34 +2784,42 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel35Layout.createSequentialGroup()
-                        .addComponent(jLabel91)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel110)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bperiodetahunakuntansi))
-                    .addGroup(jPanel35Layout.createSequentialGroup()
-                        .addComponent(jLabel93)
+                        .addComponent(jLabel124)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel111)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bperiodebulanakuntansi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel125))
+                    .addGroup(jPanel35Layout.createSequentialGroup()
+                        .addComponent(jLabel126)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel127)))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmbperiodeakuntansiperusahaan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbbulanawalakuntansiperusahaan, 0, 146, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spperiodeakuntansiperusahaan, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(sptahunawalakuntansiperusahaan))
                 .addContainerGap())
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel35Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel91)
-                    .addComponent(jLabel110)
-                    .addComponent(bperiodetahunakuntansi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel125)
+                    .addComponent(jLabel124)
+                    .addComponent(cmbbulanawalakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sptahunawalakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel93)
-                    .addComponent(jLabel111)
-                    .addComponent(bperiodebulanakuntansi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel126)
+                        .addComponent(jLabel127))
+                    .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmbperiodeakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spperiodeakuntansiperusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2931,7 +2836,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Tools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(623, Short.MAX_VALUE))
+                .addContainerGap(472, Short.MAX_VALUE))
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2942,9 +2847,9 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
                     .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(389, Short.MAX_VALUE))
+                    .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Setup Akuntansi", jPanel31);
@@ -2959,14 +2864,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
 
         jPanel29.setBackground(new java.awt.Color(41, 39, 40));
         jPanel29.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        indi.setBackground(new java.awt.Color(255, 255, 255));
-        indi.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        indi.setForeground(new java.awt.Color(255, 255, 255));
-        indi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/ic_compare_arrows_white_24dp.png"))); // NOI18N
-        indi.setText("Sedang Memuat Data...");
-        indi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel29.add(indi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -2991,22 +2888,25 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bbatal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bsimpan)
-                .addContainerGap())
             .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 1224, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bbatal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bsimpan))
+                    .addComponent(jTabbedPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jTabbedPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bsimpan)
                     .addComponent(bbatal))
@@ -3130,8 +3030,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JButton bcarireturpenjualan;
     public javax.swing.JButton bhitungulangsaldoakun;
     public javax.swing.JButton bkoreksijurnaltakseimbang;
-    public javax.swing.JComboBox<String> bperiodebulanakuntansi;
-    public javax.swing.JTextField bperiodetahunakuntansi;
     public javax.swing.JButton bresetpoin;
     public javax.swing.JButton bsimpan;
     public javax.swing.JButton btutupbukubulanan;
@@ -3142,7 +3040,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox ckbatasipenjangserialpersediaan;
     public javax.swing.JCheckBox ckcashdrawerusbpos;
     public javax.swing.JCheckBox ckcekstocksebelumsimpanpersediaan;
-    public javax.swing.JCheckBox ckeditfakturtanpapengecekanpersediaan;
     public javax.swing.JCheckBox ckfakturtanpapengecekanmutasipembelian;
     public javax.swing.JCheckBox ckfilterdataperdepartment;
     public javax.swing.JCheckBox ckgunakanpembulatanpos;
@@ -3151,7 +3048,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox ckhitungtotalbarispembelian;
     public javax.swing.JCheckBox ckhpphargabeliterakhirpersediaan;
     public javax.swing.JCheckBox ckmasukanpajakpembelian;
-    public javax.swing.JCheckBox cknourutpajakotomatis;
     public javax.swing.JCheckBox ckotomatiscetakstrukpos;
     public javax.swing.JCheckBox ckpembayaranhutangpiutangformtotalpenjualan;
     public javax.swing.JCheckBox ckpilihformfaktur;
@@ -3226,7 +3122,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JTextField ednamadeptperusahaan;
     public javax.swing.JTextField ednamaperusahaan;
     public javax.swing.JTextField ednofaxperusahaan;
-    public javax.swing.JTextField ednoserifakturpajakperusahaan;
     public javax.swing.JTextField ednotelpperusahaan;
     public javax.swing.JTextField ednpwpfakturpajakperusahaan;
     public javax.swing.JTextField edpelangganpenjualan;
@@ -3259,7 +3154,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JTextField edprinterpos;
     public javax.swing.JTextField edshortdateformat;
     public javax.swing.JTextField edttdpajaknama;
-    public javax.swing.JLabel indi;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel100;
@@ -3273,8 +3167,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JLabel jLabel108;
     public javax.swing.JLabel jLabel109;
     public javax.swing.JLabel jLabel11;
-    public javax.swing.JLabel jLabel110;
-    public javax.swing.JLabel jLabel111;
     public javax.swing.JLabel jLabel112;
     public javax.swing.JLabel jLabel113;
     public javax.swing.JLabel jLabel114;
@@ -3299,10 +3191,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JLabel jLabel131;
     public javax.swing.JLabel jLabel132;
     public javax.swing.JLabel jLabel133;
-    public javax.swing.JLabel jLabel134;
-    public javax.swing.JLabel jLabel135;
-    public javax.swing.JLabel jLabel138;
-    public javax.swing.JLabel jLabel139;
     public javax.swing.JLabel jLabel14;
     public javax.swing.JLabel jLabel140;
     public javax.swing.JLabel jLabel141;
@@ -3371,8 +3259,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JLabel jLabel71;
     public javax.swing.JLabel jLabel72;
     public javax.swing.JLabel jLabel73;
-    public javax.swing.JLabel jLabel78;
-    public javax.swing.JLabel jLabel79;
     public javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabel80;
     public javax.swing.JLabel jLabel81;
@@ -3386,9 +3272,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JLabel jLabel89;
     public javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabel90;
-    public javax.swing.JLabel jLabel91;
-    public javax.swing.JLabel jLabel92;
-    public javax.swing.JLabel jLabel93;
     public javax.swing.JLabel jLabel94;
     public javax.swing.JLabel jLabel95;
     public javax.swing.JLabel jLabel96;
@@ -3406,7 +3289,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JPanel jPanel17;
     public javax.swing.JPanel jPanel18;
     public javax.swing.JPanel jPanel2;
-    public javax.swing.JPanel jPanel20;
     public javax.swing.JPanel jPanel21;
     public javax.swing.JPanel jPanel22;
     public javax.swing.JPanel jPanel23;
@@ -3442,10 +3324,14 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JPanel kontrolserial;
+    public javax.swing.JLabel lakunstockopnamepersediaan;
+    public javax.swing.JLabel lpembulatanpos;
     public javax.swing.JLabel lprefakturpenjualan;
     public javax.swing.JLabel lprejurnalumum;
     public javax.swing.JLabel lpreorderpenjualan;
     public javax.swing.JLabel lprereturpenjualan;
+    public javax.swing.JLabel ltitik2akunstockopnamepersediaan;
     public javax.swing.JRadioButton rbgunakanakunhpppersediaan;
     public javax.swing.JRadioButton rbgunakanakunlainnyapersediaan;
     public javax.swing.JSpinner spdesimaldigit;
@@ -3455,7 +3341,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
     public javax.swing.JSpinner spjarakfooterpos;
     public javax.swing.JSpinner splebartombolbawahpos;
     public javax.swing.JSpinner spnodeptperusahaan;
-    public javax.swing.JSpinner spnourutterakhirfakturpajakperusahaan;
     public javax.swing.JSpinner sppembulatanpos;
     public javax.swing.JSpinner spperiodeakuntansiperusahaan;
     public javax.swing.JSpinner sptahunawalakuntansiperusahaan;
