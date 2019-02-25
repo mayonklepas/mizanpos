@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.innerpanel.pengaturan;
 
+import mizanposapp.controller.innerpanel.pengaturan.DatapenggunainnerController;
+
 /**
  *
  * @author Minami
@@ -16,6 +18,7 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
      */
     public Data_pengguna_inner_panel() {
         initComponents();
+        new DatapenggunainnerController(this);
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package mizanposapp.view.innerpanel.pengaturan;
 
+import mizanposapp.controller.innerpanel.pengaturan.DatapenggunainputController;
 import mizanposapp.view.innerpanel.persediaan.*;
 
 /**
@@ -18,6 +19,7 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
      */
     public Data_pengguna_input_panel() {
         initComponents();
+        new DatapenggunainputController(this);
     }
 
     /**
@@ -135,7 +137,7 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
         });
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel10.setText("Parent");
+        jLabel10.setText("Atasan");
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel11.setText(":");
@@ -287,17 +289,17 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
     }//GEN-LAST:event_bcariparentActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField adparent;
-    private javax.swing.JButton bbatal;
-    private javax.swing.JButton bcarihakakses;
-    private javax.swing.JButton bcarinama;
-    private javax.swing.JButton bcariparent;
-    private javax.swing.JButton bsimpan;
-    private javax.swing.JTextField edhakakses;
-    private javax.swing.JTextField ednama;
-    private javax.swing.JPasswordField edpassword;
-    private javax.swing.JPasswordField edrepassword;
-    private javax.swing.JTextField edusername;
+    public javax.swing.JTextField adparent;
+    public javax.swing.JButton bbatal;
+    public javax.swing.JButton bcarihakakses;
+    public javax.swing.JButton bcarinama;
+    public javax.swing.JButton bcariparent;
+    public javax.swing.JButton bsimpan;
+    public javax.swing.JTextField edhakakses;
+    public javax.swing.JTextField ednama;
+    public javax.swing.JPasswordField edpassword;
+    public javax.swing.JPasswordField edrepassword;
+    public javax.swing.JTextField edusername;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

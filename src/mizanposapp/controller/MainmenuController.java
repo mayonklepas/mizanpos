@@ -7,9 +7,11 @@ package mizanposapp.controller;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JDialog;
 import mizanposapp.view.Akunting_panel;
 import mizanposapp.view.Beranda_panel;
 import mizanposapp.view.Keuangan_panel;
@@ -19,6 +21,7 @@ import mizanposapp.view.Pembelian_panel;
 import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.Persedian_panel;
 import mizanposapp.view.frameform.Bantuan;
+import mizanposapp.view.innerpanel.pengaturan.Data_pengguna_inner_panel;
 import mizanposapp.view.innerpanel.pengaturan.Pengaturan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_inner_panel;
@@ -36,6 +39,7 @@ public class MainmenuController {
         mm.setExtendedState(MAXIMIZED_BOTH);
         mm.setLocationRelativeTo(null);
         mm.setVisible(true);
+        panelusermouseevent();
         panel1mouseevent();
         panel2mouseevent();
         panel3mouseevent();
@@ -111,6 +115,45 @@ public class MainmenuController {
             @Override
             public void mouseExited(MouseEvent e) {
                 mm.psetting.setBackground(new Color(41, 39, 40));
+            }
+        });
+    }
+
+    private void panelusermouseevent() {
+        mm.pakun.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.gc();
+                isclick = true;
+                mm.ppembelian.setBackground(new Color(3, 3, 3));
+                isclick = true;
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Data_pengguna_inner_panel());
+                jd.pack();
+                jd.setLocationRelativeTo(null);
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setTitle("Daftar Data Pengguna");
+                jd.setVisible(true);
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                mm.pakun.setBackground(new Color(3, 3, 3));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                mm.pakun.setBackground(new Color(41, 39, 40));
             }
         });
     }
