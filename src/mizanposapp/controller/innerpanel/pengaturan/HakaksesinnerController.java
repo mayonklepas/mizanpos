@@ -8,11 +8,14 @@ package mizanposapp.controller.innerpanel.pengaturan;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -32,10 +35,19 @@ public class HakaksesinnerController {
     Hak_akses_inner_panel pane;
     CrudHelper ch = new CrudHelper();
     String ids = "";
+    String urlget = "";
+    String urlsave = "";
 
     public HakaksesinnerController(Hak_akses_inner_panel pane) {
         ids = Staticvar.ids;
         Staticvar.ids = "";
+        if (Staticvar.labels.equals("")) {
+            urlget = "dm/datapenggunalevel";
+            urlsave = "dm/updatepenggunalevel";
+        } else {
+            urlget = "dm/datapengguna";
+            urlsave = "dm/updatepenggunahakakses";
+        }
         this.pane = pane;
         //disabletab();
         loaddata();
@@ -44,6 +56,21 @@ public class HakaksesinnerController {
         checkcontrolakuntansi();
         checkcontrolpersediaan();
         simpandata();
+        tutup();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JDialog jdin = (JDialog) pane.getRootPane().getParent();
+                jdin.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        pane.bbatal.doClick();
+                    }
+
+                });
+            }
+        });
     }
 
     private void disabletab() {
@@ -65,7 +92,7 @@ public class HakaksesinnerController {
             try {
                 JSONParser jpdata = new JSONParser();
                 String param = "id=" + ids;
-                Object objdata = jpdata.parse(ch.getdatadetails("dm/datapenggunalevel", param));
+                Object objdata = jpdata.parse(ch.getdatadetails(urlget, param));
                 JSONArray jasetup = (JSONArray) objdata;
                 for (int i = 0; i < jasetup.size(); i++) {
                     JSONObject jo = (JSONObject) jasetup.get(i);
@@ -1747,11 +1774,14 @@ public class HakaksesinnerController {
         if (ids.equals("")) {
             ch.insertdata("dm/insertpenggunalevel", data);
         } else {
-            ch.updatedata("dm/updatepenggunalevel", data, ids);
+            ch.updatedata(urlsave, data, ids);
         }
 
         if (Staticvar.getresult.equals("berhasil")) {
             JOptionPane.showMessageDialog(null, "Hak Akses Berhasil Disimpan");
+            Staticvar.isupdate = true;
+            JDialog jd = (JDialog) pane.getRootPane().getParent();
+            jd.dispose();
         } else {
             JDialog jd = new JDialog(new Mainmenu());
             Errorpanel ep = new Errorpanel();
@@ -1765,4 +1795,14 @@ public class HakaksesinnerController {
         }
     }
 
+    private void tutup() {
+        pane.bbatal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = false;
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            }
+        });
+    }
 }

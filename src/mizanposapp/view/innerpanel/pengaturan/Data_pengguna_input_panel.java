@@ -31,13 +31,11 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        ednama = new javax.swing.JTextField();
         edusername = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         bbatal = new javax.swing.JButton();
@@ -47,21 +45,30 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         edhakakses = new javax.swing.JTextField();
         bcarihakakses = new javax.swing.JButton();
-        bcarinama = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        adparent = new javax.swing.JTextField();
+        edparent = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         edpassword = new javax.swing.JPasswordField();
         edrepassword = new javax.swing.JPasswordField();
         bcariparent = new javax.swing.JButton();
 
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
-
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel1.setText("Nama");
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setText("Username");
@@ -69,16 +76,11 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel3.setText("Password");
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        jLabel4.setText(":");
-
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel5.setText(":");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel6.setText(":");
-
-        ednama.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         edusername.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
@@ -128,24 +130,16 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
             }
         });
 
-        bcarinama.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        bcarinama.setText("Cari");
-        bcarinama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bcarinamaActionPerformed(evt);
-            }
-        });
-
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel10.setText("Atasan");
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel11.setText(":");
 
-        adparent.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        adparent.addActionListener(new java.awt.event.ActionListener() {
+        edparent.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edparent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adparentActionPerformed(evt);
+                edparentActionPerformed(evt);
             }
         });
 
@@ -183,15 +177,10 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel3))
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(edusername)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ednama)
-                                .addGap(2, 2, 2)
-                                .addComponent(bcarinama, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(edpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +191,6 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel11)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
@@ -211,7 +199,7 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                             .addComponent(edrepassword)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(adparent, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edparent, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(edhakakses))
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,13 +215,7 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(ednama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bcarinama))
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
@@ -258,9 +240,9 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
-                    .addComponent(adparent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edparent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcariparent, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbatal)
                     .addComponent(bsimpan))
@@ -276,38 +258,31 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bcarihakaksesActionPerformed
 
-    private void bcarinamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcarinamaActionPerformed
+    private void edparentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edparentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bcarinamaActionPerformed
-
-    private void adparentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adparentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adparentActionPerformed
+    }//GEN-LAST:event_edparentActionPerformed
 
     private void bcariparentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcariparentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bcariparentActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField adparent;
     public javax.swing.JButton bbatal;
     public javax.swing.JButton bcarihakakses;
-    public javax.swing.JButton bcarinama;
     public javax.swing.JButton bcariparent;
     public javax.swing.JButton bsimpan;
     public javax.swing.JTextField edhakakses;
-    public javax.swing.JTextField ednama;
+    public javax.swing.JTextField edparent;
     public javax.swing.JPasswordField edpassword;
     public javax.swing.JPasswordField edrepassword;
     public javax.swing.JTextField edusername;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

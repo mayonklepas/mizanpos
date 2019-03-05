@@ -39,6 +39,7 @@ public class Staticvar {
     public static String getresult = "";
     public static HashMap map_var = new HashMap();
     public static String ids = "";
+    public static String labels = "";
     public static String idsextend_1 = "";
     public static String idsextend_2 = "";
     public static String idsextend_3 = "";
