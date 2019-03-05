@@ -57,7 +57,6 @@ public class DatapenggunainputController {
                 String param = String.format("id=%s", ids);
                 Object objdata = jpdata.parse(ch.getdatadetails("dm/datapengguna", param));
                 JSONArray jadata = (JSONArray) objdata;
-                System.out.println(objdata);
                 for (int i = 0; i < jadata.size(); i++) {
                     JSONObject joindata = (JSONObject) jadata.get(i);
                     pane.edusername.setText(String.valueOf(joindata.get("nama")));
@@ -149,7 +148,7 @@ public class DatapenggunainputController {
                 Staticvar.preid = valparent;
                 Staticvar.prelabel = pane.edparent.getText();
                 JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Popupcari("datapengguna", "popupdaftarpengguna", "Daftar Pengguna"));
+                jd.add(new Popupcari("datapengguna", "popupdaftarpenggunaparent", "Daftar Pengguna"));
                 jd.pack();
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                 jd.setLocationRelativeTo(null);
