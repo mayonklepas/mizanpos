@@ -21,6 +21,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -97,20 +98,9 @@ public class FormtransferkasController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "44");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.ednotransaksi.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(DaftarorderpenjualaninputController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                HashMap hm = new FuncHelper().getkodetransaksi("44", new Date(), valdept);
+                pane.ednotransaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
         });
 
@@ -169,17 +159,17 @@ public class FormtransferkasController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                    + "id_keltrans='44'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednotransaksi.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&transfer_kas="
-                    + "akun_dari='" + valakundari + "'::"
-                    + "akun_tujuan='" + valakuntujuan + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edjumlah.getText()) + "'::"
-                    + "bank_charge_nominal='" + FuncHelper.ToDouble(pane.edcharge.getText()) + "'::"
-                    + "akun_bank_charge='" + valakun_charge + "'";
+                 + "id_keltrans='44'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednotransaksi.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&transfer_kas="
+                 + "akun_dari='" + valakundari + "'::"
+                 + "akun_tujuan='" + valakuntujuan + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edjumlah.getText()) + "'::"
+                 + "bank_charge_nominal='" + FuncHelper.ToDouble(pane.edcharge.getText()) + "'::"
+                 + "akun_bank_charge='" + valakun_charge + "'";
             ch.insertdata("inserttransferkas", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 Staticvar.isupdate = true;
@@ -198,17 +188,17 @@ public class FormtransferkasController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='44'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednotransaksi.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&transfer_kas="
-                    + "akun_dari='" + valakundari + "'::"
-                    + "akun_tujuan='" + valakuntujuan + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edjumlah.getText()) + "'::"
-                    + "bank_charge_nominal='" + FuncHelper.ToDouble(pane.edcharge.getText()) + "'::"
-                    + "akun_bank_charge='" + valakun_charge + "'";
+                 + "id_keltrans='44'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednotransaksi.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&transfer_kas="
+                 + "akun_dari='" + valakundari + "'::"
+                 + "akun_tujuan='" + valakuntujuan + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edjumlah.getText()) + "'::"
+                 + "bank_charge_nominal='" + FuncHelper.ToDouble(pane.edcharge.getText()) + "'::"
+                 + "akun_bank_charge='" + valakun_charge + "'";
             ch.updatedata("updatetransferkas", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 Staticvar.isupdate = true;
@@ -245,7 +235,7 @@ public class FormtransferkasController {
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
 
                             rawsimpan();
@@ -255,8 +245,8 @@ public class FormtransferkasController {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
                         ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                                + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                                + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                             + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                             + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
                         jd.add(ep);
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -361,8 +351,7 @@ public class FormtransferkasController {
                     @Override
                     public void run() {
                         Staticvar.isupdate = false;
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "44", String.valueOf(no_urut));
-                        ch.insertdata("insertnomorgagal", data);
+                        new FuncHelper().insertnogagal("44", new Date(), valdept, String.valueOf(no_urut));
                         JDialog jd = (JDialog) pane.getRootPane().getParent();
                         jd.dispose();
                     }

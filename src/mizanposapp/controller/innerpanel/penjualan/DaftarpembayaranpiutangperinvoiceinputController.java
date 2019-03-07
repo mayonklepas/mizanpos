@@ -20,6 +20,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -197,20 +198,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "43");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.ednoref.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(DaftarorderpenjualaninputController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                HashMap hm = new FuncHelper().getkodetransaksi("43", new Date(), valdept);
+                pane.ednoref.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
         });
 
@@ -383,7 +373,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     }
 
                     pane.edakun_penerimaan.setText(String.valueOf(joinpenjualan.get("akun_masuk_dari")) + "-"
-                            + String.valueOf(joinpenjualan.get("nama_akun_masuk_dari")));
+                         + String.valueOf(joinpenjualan.get("nama_akun_masuk_dari")));
 
                     valakun_pengengeluaran = String.valueOf(joinpenjualan.get("akun_masuk_dari"));
                 }
@@ -398,8 +388,8 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     String tanggal = String.valueOf(jointabledata.get("tanggal"));
                     String totalpiutang = String.valueOf(jointabledata.get("total"));
                     double sebenarnyasisa = FuncHelper.ToDouble(jointabledata.get("sisa"))
-                            + FuncHelper.ToDouble(jointabledata.get("diskon_nominal"))
-                            + FuncHelper.ToDouble(jointabledata.get("jumlah"));
+                         + FuncHelper.ToDouble(jointabledata.get("diskon_nominal"))
+                         + FuncHelper.ToDouble(jointabledata.get("jumlah"));
                     String sisapiutang = String.valueOf(sebenarnyasisa);
                     String diskon = String.valueOf(jointabledata.get("diskon_nominal"));
                     String jumlah_bayar = String.valueOf(jointabledata.get("jumlah"));
@@ -447,7 +437,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                             double insisa = FuncHelper.ToDouble(tabeldatalist.get(row).getSisapiutang());
                             if (indiskon > insisa) {
                                 JOptionPane.showMessageDialog(null,
-                                        "Jumlah Diskon " + noref + " Tidak boleh Nol atau lebih besar dari Sisa Piutang", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                     "Jumlah Diskon " + noref + " Tidak boleh Nol atau lebih besar dari Sisa Piutang", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(diskon), false, false);
                                 tabeldatalist.get(row).setDiskon(String.valueOf("0"));
@@ -478,7 +468,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
 
                             if (totabayartambahdiskon > insisa || injumlah_bayar <= 0) {
                                 JOptionPane.showMessageDialog(null,
-                                        "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Sisa Piutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                     "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Sisa Piutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                                 pane.tabledata.requestFocus();
                                 pane.tabledata.changeSelection(row, gx(jumlah_bayar), false, false);
                                 tabeldatalist.get(row).setJumlah_bayar(pane.edtotal_nilai.getText());
@@ -769,9 +759,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, gx(tanggal)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(sisa)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(diskon)).equals("")) {
+             || !pane.tabledata.getValueAt(row, gx(tanggal)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(sisa)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(diskon)).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
@@ -784,25 +774,25 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                    + "id_keltrans='43'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kasmasuk="
-                    + "id_cards='" + valpelanggan + "'::"
-                    + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
-                    + "isgiro='" + valgiro + "'::"
-                    + "no_giro='" + pane.ednocek.getText() + "'::"
-                    + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
-                    + "&" + kirimtextdata();
+                 + "id_keltrans='43'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&kasmasuk="
+                 + "id_cards='" + valpelanggan + "'::"
+                 + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                 + "isgiro='" + valgiro + "'::"
+                 + "no_giro='" + pane.ednocek.getText() + "'::"
+                 + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
+                 + "&" + kirimtextdata();
 
             ch.insertdata("insertpembayaranpiutang", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
                     int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                            + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (dialog == 0) {
                         Runnable run = new Runnable() {
                             @Override
@@ -851,19 +841,19 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='43'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kasmasuk="
-                    + "id_cards='" + valpelanggan + "'::"
-                    + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
-                    + "isgiro='" + valgiro + "'::"
-                    + "no_giro='" + pane.ednocek.getText() + "'::"
-                    + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
-                    + "&" + kirimtextdata();
+                 + "id_keltrans='43'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&kasmasuk="
+                 + "id_cards='" + valpelanggan + "'::"
+                 + "akun_masuk_dari='" + valakun_pengengeluaran + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                 + "isgiro='" + valgiro + "'::"
+                 + "no_giro='" + pane.ednocek.getText() + "'::"
+                 + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
+                 + "&" + kirimtextdata();
             ch.updatedata("updatepembayaranpiutang", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 JPanel inpane = new JPanel();
@@ -907,7 +897,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
                             int jumlahrow = pane.tabledata.getRowCount();
                             for (int i = 0; i < jumlahrow; i++) {
@@ -934,8 +924,8 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
                         ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                                + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                                + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                             + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                             + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
                         jd.add(ep);
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -980,10 +970,10 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("id_no_genjur=" + "'" + tabeldatalist.get(i).getId() + "'" + "::"
-                    + "akun=" + "'" + tabeldatalist.get(i).getAkun() + "'" + "::"
-                    + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_bayar()) + "'" + "::"
-                    + "diskon_nominal=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon()) + "'" + "::"
-                    + "akun_diskon=" + "'" + valakun_diskon + "'");
+                 + "akun=" + "'" + tabeldatalist.get(i).getAkun() + "'" + "::"
+                 + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah_bayar()) + "'" + "::"
+                 + "diskon_nominal=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon()) + "'" + "::"
+                 + "akun_diskon=" + "'" + valakun_diskon + "'");
             sb.append("--");
 
         }
@@ -1114,8 +1104,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "43", String.valueOf(no_urut));
-                        ch.insertdata("insertnomorgagal", data);
+                        new FuncHelper().insertnogagal("43", new Date(), valdept, String.valueOf(no_urut));
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.equals("piutang")) {
                             inpane = new Daftarpiutang_inner_panel();
@@ -1140,9 +1129,9 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null,
-                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(noref)) + " - "
-                        + pane.tabledata.getValueAt(row, gx(total)),
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(noref)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(total)),
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
                         @Override

@@ -19,6 +19,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -92,20 +93,9 @@ public class DaftarwriteoffhutanginputController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "45");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.ednoref.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(DaftarorderpembelianinputController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                HashMap hm = new FuncHelper().getkodetransaksi("45", new Date(), valdept);
+                pane.ednoref.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
         });
 
@@ -206,19 +196,19 @@ public class DaftarwriteoffhutanginputController {
     private void rawsimpan(String tipe, String id) {
         if (tipe.equals("add")) {
             String data = "genjur="
-                    + "id_keltrans='45'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kaskeluar="
-                    + "id_cards='" + valsupplier + "'::"
-                    + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal.getText()) + "'"
-                    + "&kaskeluar_detail="
-                    + "id_no_genjur='" + valid_transaksi + "'::"
-                    + "akun='" + valakun_transaksi + "'::"
-                    + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
+                 + "id_keltrans='45'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&kaskeluar="
+                 + "id_cards='" + valsupplier + "'::"
+                 + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edtotal.getText()) + "'"
+                 + "&kaskeluar_detail="
+                 + "id_no_genjur='" + valid_transaksi + "'::"
+                 + "akun='" + valakun_transaksi + "'::"
+                 + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
 
             ch.insertdata("insertpembayaranhutang", data);
             if (Staticvar.getresult.equals("berhasil")) {
@@ -238,19 +228,19 @@ public class DaftarwriteoffhutanginputController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='45'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kaskeluar="
-                    + "id_cards='" + valsupplier + "'::"
-                    + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal.getText()) + "'"
-                    + "&kaskeluar_detail="
-                    + "id_no_genjur='" + valid_transaksi + "'::"
-                    + "akun='" + valakun_transaksi + "'::"
-                    + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
+                 + "id_keltrans='45'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&kaskeluar="
+                 + "id_cards='" + valsupplier + "'::"
+                 + "akun_keluar_dari='" + valakun_pengeluaran + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edtotal.getText()) + "'"
+                 + "&kaskeluar_detail="
+                 + "id_no_genjur='" + valid_transaksi + "'::"
+                 + "akun='" + valakun_transaksi + "'::"
+                 + "jumlah='" + pane.edjumlah_hapus.getText() + "'";
 
             ch.updatedata("updatepembayaranhutang", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
@@ -290,7 +280,7 @@ public class DaftarwriteoffhutanginputController {
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
 
                             rawsimpan(tipe, id);
@@ -300,8 +290,8 @@ public class DaftarwriteoffhutanginputController {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
                         ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                                + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
-                                + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
+                             + "Anda tidak dapat memasukan, mengedit,menghapus transaksi sebelum periode. \n"
+                             + "Untuk dapat memasukan atau mengedit transaksi, silahkan merubah periode akuntansi");
                         jd.add(ep);
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -370,8 +360,7 @@ public class DaftarwriteoffhutanginputController {
                     public void run() {
                         Staticvar.isupdate = false;
                         if (tipe.equals("add")) {
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "45", String.valueOf(no_urut));
-                            ch.insertdata("insertnomorgagal", data);
+                            new FuncHelper().insertnogagal("45", new Date(), valdept, String.valueOf(no_urut));
                         }
                         JDialog jd = (JDialog) pane.getRootPane().getParent();
                         jd.dispose();

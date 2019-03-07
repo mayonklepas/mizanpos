@@ -25,6 +25,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -167,20 +168,9 @@ public class DaftarstokopnameinputController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "51");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.edno_transaksi.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(DaftarstokopnameinputController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                HashMap hm = new FuncHelper().getkodetransaksi("51", new Date(), valdept);
+                pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
         });
 
@@ -616,8 +606,7 @@ public class DaftarstokopnameinputController {
                     @Override
                     public void run() {
                         if (id.equals("")) {
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "51", String.valueOf(no_urut));
-                            ch.insertdata("insertnomorgagal", data);
+                            new FuncHelper().insertnogagal("51", new Date(), valdept, String.valueOf(no_urut));
                         }
                         Daftarstokopname_inner_panel inpane = new Daftarstokopname_inner_panel();
                         Staticvar.psp.container.removeAll();

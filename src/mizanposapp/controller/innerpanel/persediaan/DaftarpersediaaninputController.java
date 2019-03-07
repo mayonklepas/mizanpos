@@ -22,6 +22,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -141,20 +143,9 @@ public class DaftarpersediaaninputController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "5001");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.edkode_persediaan.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(DaftarpersediaaninputController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                HashMap hm = new FuncHelper().getkodetransaksi("5001", new Date(), Globalsession.DEFAULT_DEPT_ID);
+                pane.edkode_persediaan.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
         });
 
@@ -1110,8 +1101,7 @@ public class DaftarpersediaaninputController {
                     @Override
                     public void run() {
                         if (id.equals("")) {
-                            String data = String.format("id_keltrans=%s&no_urut=%s", "5001", String.valueOf(no_urut));
-                            ch.insertdata("insertnomorgagal", data);
+                            new FuncHelper().insertnogagal("5001", new Date(), Globalsession.DEFAULT_DEPT_ID, String.valueOf(no_urut));
                         }
                         Staticvar.isupdate = false;
                         JDialog jd = (JDialog) pane.getRootPane().getParent();

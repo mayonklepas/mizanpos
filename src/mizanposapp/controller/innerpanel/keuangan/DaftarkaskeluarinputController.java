@@ -19,6 +19,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -202,20 +203,9 @@ public class DaftarkaskeluarinputController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    JSONParser jpdata = new JSONParser();
-                    String param = String.format("id_keltrans=%s", "41");
-                    Object ob = jpdata.parse(ch.getdatadetails("getnomortransaksi", param));
-                    JSONArray ja = (JSONArray) ob;
-                    for (int i = 0; i < ja.size(); i++) {
-                        JSONObject jo = (JSONObject) ja.get(i);
-                        pane.ednoref.setText(String.valueOf(jo.get("no_transaksi")));
-                        no_urut = FuncHelper.ToInt(String.valueOf(jo.get("no_urut")));
-                    }
-
-                } catch (ParseException ex) {
-                    Logger.getLogger(DaftarkaskeluarinputController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                HashMap hm = new FuncHelper().getkodetransaksi("41", new Date(), valdept);
+                pane.ednoref.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
         });
 
@@ -398,12 +388,12 @@ public class DaftarkaskeluarinputController {
                     }
 
                     pane.edakun_kas.setText(String.valueOf(joinkeuangan.get("akun_keluar_dari")) + "-"
-                            + String.valueOf(joinkeuangan.get("nama_akun_keluar_dari")));
+                         + String.valueOf(joinkeuangan.get("nama_akun_keluar_dari")));
 
                     valakun_kas = String.valueOf(joinkeuangan.get("akun_keluar_dari"));
 
                     pane.edakun_giro.setText(String.valueOf(joinkeuangan.get("akun_giro")) + "-"
-                            + String.valueOf(joinkeuangan.get("nama_akun_giro")));
+                         + String.valueOf(joinkeuangan.get("nama_akun_giro")));
                     valakungiro = String.valueOf(joinkeuangan.get("akun_giro"));
 
                 }
@@ -589,7 +579,7 @@ public class DaftarkaskeluarinputController {
                 int col = pane.tabledata.getSelectedColumn();
                 if (col == gx(jumlah)) {
                     if (pane.tabledata.getValueAt(row, gx(akun)).equals("")
-                            || pane.tabledata.getValueAt(row, gx(jumlah)).equals("")) {
+                         || pane.tabledata.getValueAt(row, gx(jumlah)).equals("")) {
                     } else {
                         addautorow(row);
                     }
@@ -624,8 +614,8 @@ public class DaftarkaskeluarinputController {
     private void addautorow(int row) {
         int lastrow = pane.tabledata.getRowCount() - 1;
         if (!pane.tabledata.getValueAt(row, 0).equals("")
-                || !pane.tabledata.getValueAt(row, gx(akun)).equals("")
-                || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")) {
+             || !pane.tabledata.getValueAt(row, gx(akun)).equals("")
+             || !pane.tabledata.getValueAt(row, gx(jumlah)).equals("")) {
             if (row == lastrow) {
                 tabeldatalist.add(new Entitytabledata("", "", "", ""));
                 dtmtabeldata.addRow(rowtabledata);
@@ -638,26 +628,26 @@ public class DaftarkaskeluarinputController {
     private void rawsimpan() {
         if (id.equals("")) {
             String data = "genjur="
-                    + "id_keltrans='41'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kas_keluar="
-                    + "id_cards='" + valpenerima + "'::"
-                    + "akun_keluar_dari='" + valakun_kas + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
-                    + "isgiro='" + valgiro + "'::"
-                    + "no_giro='" + pane.ednocek.getText() + "'::"
-                    + "akun_giro='" + valakungiro + "'::"
-                    + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
-                    + "&" + kirimtextdata();
+                 + "id_keltrans='41'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&kas_keluar="
+                 + "id_cards='" + valpenerima + "'::"
+                 + "akun_keluar_dari='" + valakun_kas + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                 + "isgiro='" + valgiro + "'::"
+                 + "no_giro='" + pane.ednocek.getText() + "'::"
+                 + "akun_giro='" + valakungiro + "'::"
+                 + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
+                 + "&" + kirimtextdata();
 
             ch.insertdata("insertkaskeluar", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
                     int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                            + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (dialog == 0) {
                         Runnable run = new Runnable() {
                             @Override
@@ -702,20 +692,20 @@ public class DaftarkaskeluarinputController {
             }
         } else {
             String data = "genjur="
-                    + "id_keltrans='41'::"
-                    + "id_dept='" + valdept + "'::"
-                    + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
-                    + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
-                    + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
-                    + "&kas_keluar="
-                    + "id_cards='" + valpenerima + "'::"
-                    + "akun_keluar_dari='" + valakun_kas + "'::"
-                    + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
-                    + "isgiro='" + valgiro + "'::"
-                    + "no_giro='" + pane.ednocek.getText() + "'::"
-                    + "akun_giro='" + valakungiro + "'::"
-                    + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
-                    + "&" + kirimtextdata();
+                 + "id_keltrans='41'::"
+                 + "id_dept='" + valdept + "'::"
+                 + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
+                 + "noref='" + FuncHelper.EncodeString(pane.ednoref.getText()) + "'::"
+                 + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
+                 + "&kas_keluar="
+                 + "id_cards='" + valpenerima + "'::"
+                 + "akun_keluar_dari='" + valakun_kas + "'::"
+                 + "jumlah='" + FuncHelper.ToDouble(pane.edtotal_nilai.getText()) + "'::"
+                 + "isgiro='" + valgiro + "'::"
+                 + "no_giro='" + pane.ednocek.getText() + "'::"
+                 + "akun_giro='" + valakungiro + "'::"
+                 + "tanggal_giro_jatuh_tempo='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtempo.getDate()) + "'"
+                 + "&" + kirimtextdata();
             ch.updatedata("updatekaskeluar", data, id);
             if (Staticvar.getresult.equals("berhasil")) {
                 JPanel inpane = new JPanel();
@@ -755,7 +745,7 @@ public class DaftarkaskeluarinputController {
                     int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         if (dialog == 0) {
                             if (status == true) {
                                 rawsimpan();
@@ -765,8 +755,8 @@ public class DaftarkaskeluarinputController {
                         JDialog jd = new JDialog(new Mainmenu());
                         Errorpanel ep = new Errorpanel();
                         ep.ederror.setText("Tanggal transaksi sebelum periode akuntansi. \n"
-                                + "Anda tidak dapat mekeluaran, mengedit,menghapus transaksi sebelum periode. \n"
-                                + "Untuk dapat mekeluaran atau mengedit transaksi, silahkan merubah periode akuntansi");
+                             + "Anda tidak dapat mekeluaran, mengedit,menghapus transaksi sebelum periode. \n"
+                             + "Untuk dapat mekeluaran atau mengedit transaksi, silahkan merubah periode akuntansi");
                         jd.add(ep);
                         jd.pack();
                         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -794,8 +784,8 @@ public class DaftarkaskeluarinputController {
         }
         for (int i = 0; i < listcount; i++) {
             sb.append("akun=" + "'" + tabeldatalist.get(i).getAkun() + "'" + "::"
-                    + "keterangan=" + "'" + tabeldatalist.get(i).getKeterangan() + "'" + "::"
-                    + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah()) + "'");
+                 + "keterangan=" + "'" + tabeldatalist.get(i).getKeterangan() + "'" + "::"
+                 + "jumlah=" + "'" + FuncHelper.ToDouble(tabeldatalist.get(i).getJumlah()) + "'");
             sb.append("--");
 
         }
@@ -925,8 +915,7 @@ public class DaftarkaskeluarinputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        String data = String.format("id_keltrans=%s&no_urut=%s", "41", String.valueOf(no_urut));
-                        ch.insertdata("insertnomorgagal", data);
+                        new FuncHelper().insertnogagal("41", new Date(), valdept, String.valueOf(no_urut));
                         JPanel inpane = new JPanel();
                         inpane = new Daftarkaskeluar_inner_panel();
                         Staticvar.kp.container.removeAll();
@@ -947,9 +936,9 @@ public class DaftarkaskeluarinputController {
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null,
-                        "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(akun)) + " - "
-                        + pane.tabledata.getValueAt(row, gx(nama_akun)),
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(akun)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(nama_akun)),
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     Runnable rn = new Runnable() {
                         @Override
