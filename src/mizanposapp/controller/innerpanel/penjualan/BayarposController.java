@@ -440,7 +440,7 @@ public class BayarposController {
                  + "total_uang_muka='" + FuncHelper.ToDouble(uang_muka) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
                  + "total_service='" + total_service + "'::"
-                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "id_currency='" + Globalsession.id_currency_company + "'::"
                  + "nilai_kurs='1'::"
                  + "akun_penjualan='" + valakun_penjualan + "'::"
                  + "akun_biaya='" + valakun_ongkir + "'::"

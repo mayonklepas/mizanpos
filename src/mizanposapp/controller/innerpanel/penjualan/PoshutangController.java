@@ -122,8 +122,8 @@ public class PoshutangController {
     }
 
     private void loadsession() {
-        valdept = Globalsession.DEFAULT_DEPT_ID;
-        pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
+        valdept = Globalsession.Setting_DeptDefault;
+        pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
         pane.dtanggal.setDate(new Date());
         valakun_penerimaan = Globalsession.AKUNKAS;
         pane.edakun_pemesanan.setText(Globalsession.NAMAAKUNKAS);

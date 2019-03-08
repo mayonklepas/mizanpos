@@ -160,8 +160,8 @@ public class DaftarpenyesuaianinputController {
     }
 
     private void loadsession() {
-        pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
-        valdept = Globalsession.DEFAULT_DEPT_ID;
+        pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
+        valdept = Globalsession.Setting_DeptDefault;
     }
 
     private void skinning() {
@@ -308,8 +308,8 @@ public class DaftarpenyesuaianinputController {
                 getkodetransaksi();
                 pane.dtanggal.setDate(new Date());
                 pane.edno_transaksi.setText("");
-                pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
-                valdept = Globalsession.DEFAULT_DEPT_ID;
+                pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
+                valdept = Globalsession.Setting_DeptDefault;
                 pane.edketerangan.setText("");
                 tabeldatalist.add(new Entitytabledata("", "", "", "0", "", "", "0", "", "0", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
@@ -485,7 +485,7 @@ public class DaftarpenyesuaianinputController {
                     JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
-                    int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
+                    int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                              + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
@@ -708,8 +708,8 @@ public class DaftarpenyesuaianinputController {
                                     tabeldatalist.get(row).setQty_satuan_pengali("1");
                                     tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
                                     tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
-                                    tabeldatalist.get(row).setId_gudang(Globalsession.DEFAULT_ID_GUDANG);
-                                    tm.setValueAt(Globalsession.DEFAULT_NAMA_GUDANG, row, gx(gudang));
+                                    tabeldatalist.get(row).setId_gudang(Globalsession.Setting_GudangDefault);
+                                    tm.setValueAt(Globalsession.Setting_GudangDefaultnama, row, gx(gudang));
                                     tabeldatalist.get(row).setTotal("0");
                                     tm.setValueAt("0", row, gx(total));
                                 }
@@ -743,8 +743,8 @@ public class DaftarpenyesuaianinputController {
                                         tabeldatalist.get(row).setQty_satuan_pengali("1");
                                         tabeldatalist.get(row).setHarga(String.valueOf(joindata.get("harga_pokok")));
                                         tm.setValueAt(nf.format(FuncHelper.ToDouble(joindata.get("harga_pokok"))), row, gx(harga));
-                                        tabeldatalist.get(row).setId_gudang(Globalsession.DEFAULT_ID_GUDANG);
-                                        tm.setValueAt(Globalsession.DEFAULT_NAMA_GUDANG, row, gx(gudang));
+                                        tabeldatalist.get(row).setId_gudang(Globalsession.Setting_GudangDefault);
+                                        tm.setValueAt(Globalsession.Setting_GudangDefaultnama, row, gx(gudang));
                                         tabeldatalist.get(row).setTotal("0");
                                         tm.setValueAt("0", row, gx(total));
                                     }
@@ -872,8 +872,8 @@ public class DaftarpenyesuaianinputController {
                                         tabeldatalist.get(row).setQty_satuan_pengali("1");
                                         tabeldatalist.get(row).setHarga(String.valueOf(joindata2.get("harga")));
                                         pane.tabledata.setValueAt(nf.format(FuncHelper.ToDouble(joindata2.get("harga"))), row, gx(harga));
-                                        tabeldatalist.get(row).setId_gudang(Globalsession.DEFAULT_ID_GUDANG);
-                                        pane.tabledata.setValueAt(Globalsession.DEFAULT_NAMA_GUDANG, row, gx(gudang));
+                                        tabeldatalist.get(row).setId_gudang(Globalsession.Setting_GudangDefault);
+                                        pane.tabledata.setValueAt(Globalsession.Setting_GudangDefaultnama, row, gx(gudang));
                                         tabeldatalist.get(row).setTotal("0");
                                         pane.tabledata.setValueAt("0", row, gx(total));
                                     }

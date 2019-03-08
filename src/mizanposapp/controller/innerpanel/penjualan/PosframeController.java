@@ -359,7 +359,7 @@ public class PosframeController {
                     Date zaman_now = (Date) evt.getNewValue();
                     new FuncHelper().insertnogagal("2", zaman_old, valdept, no_urut);
                     HashMap hm = new FuncHelper().getkodetransaksi("2", zaman_now, valdept);
-                    pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                    pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
                     no_urut = String.valueOf(hm.get("no_urut"));
                 }
             }
@@ -517,12 +517,12 @@ public class PosframeController {
             pane.dtanggal.setDate(new Date());
             valpelanggan = "";
             pane.edno_transaksi.setText("");
-            pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
+            pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
             pane.edketerangan.setText("Penjualan POS");
             pane.ckjenisbayar.setSelected(true);
-            valdept = Globalsession.DEFAULT_DEPT_ID;
-            valgudang = Globalsession.DEFAULT_ID_GUDANG;
-            pane.edgudang.setText(Globalsession.DEFAULT_NAMA_GUDANG);
+            valdept = Globalsession.Setting_DeptDefault;
+            valgudang = Globalsession.Setting_GudangDefault;
+            pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
             pane.edsalesman.setText("");
             valsalesman = "";
             valshipvia = "";
@@ -550,7 +550,7 @@ public class PosframeController {
             }
 
             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
-            pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+            pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
             no_urut = String.valueOf(hm.get("no_urut"));
 
         } catch (Exception ex) {
@@ -569,7 +569,7 @@ public class PosframeController {
                         JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
-                        int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
+                        int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                         if (tahunbulan > periodetahunnulan) {
                             int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                                  + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
@@ -655,7 +655,7 @@ public class PosframeController {
                             }
                             kalkulasitotal();
                             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
-                            pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                            pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
                             no_urut = String.valueOf(hm.get("no_urut"));
                         }
                         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
@@ -940,7 +940,7 @@ public class PosframeController {
             pane.eddept.setText(Staticvar.resvalue);
             new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), Staticvar.preid, no_urut);
             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
-            pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+            pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
             no_urut = String.valueOf(hm.get("no_urut"));
             KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keydis);
         });
@@ -1591,7 +1591,7 @@ public class PosframeController {
              + "total_uang_muka='" + FuncHelper.ToDouble("0") + "'::"
              + "total_pajak='" + total_pajak + "'::"
              + "total_service='" + total_service + "'::"
-             + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+             + "id_currency='" + Globalsession.id_currency_company + "'::"
              + "nilai_kurs='1'::"
              + "akun_penjualan='" + valakun_penjualan + "'::"
              + "akun_biaya='" + valakun_ongkir + "'::"
@@ -1615,7 +1615,7 @@ public class PosframeController {
                 }
                 kalkulasitotal();
                 HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
-                pane.edno_transaksi.setText(String.valueOf(hm.get("kode_transaksi")));
+                pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
                 no_urut = String.valueOf(hm.get("no_urut"));
             }
             String param = String.format("id=%s", valpelanggan);

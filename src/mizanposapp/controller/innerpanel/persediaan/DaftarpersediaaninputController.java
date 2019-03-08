@@ -143,7 +143,7 @@ public class DaftarpersediaaninputController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                HashMap hm = new FuncHelper().getkodetransaksi("5001", new Date(), Globalsession.DEFAULT_DEPT_ID);
+                HashMap hm = new FuncHelper().getkodetransaksi("5001", new Date(), Globalsession.Setting_DeptDefault);
                 pane.edkode_persediaan.setText(String.valueOf(hm.get("no_transaksi")));
                 no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
@@ -1101,7 +1101,7 @@ public class DaftarpersediaaninputController {
                     @Override
                     public void run() {
                         if (id.equals("")) {
-                            new FuncHelper().insertnogagal("5001", new Date(), Globalsession.DEFAULT_DEPT_ID, String.valueOf(no_urut));
+                            new FuncHelper().insertnogagal("5001", new Date(), Globalsession.Setting_DeptDefault, String.valueOf(no_urut));
                         }
                         Staticvar.isupdate = false;
                         JDialog jd = (JDialog) pane.getRootPane().getParent();

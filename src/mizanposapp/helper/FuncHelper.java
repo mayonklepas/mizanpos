@@ -119,7 +119,7 @@ public class FuncHelper {
             JSONArray ja = (JSONArray) ob;
             for (int i = 0; i < ja.size(); i++) {
                 JSONObject jo = (JSONObject) ja.get(i);
-                hashmap.put("kode_transaksi", String.valueOf(jo.get("no_transaksi")));
+                hashmap.put("no_transaksi", String.valueOf(jo.get("no_transaksi")));
                 hashmap.put("no_urut", String.valueOf(jo.get("no_urut")));
             }
 

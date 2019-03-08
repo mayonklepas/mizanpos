@@ -97,8 +97,8 @@ public class DaftarjurnalumuminputController {
     }
 
     private void loadsession() {
-        pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
-        valdept = Globalsession.DEFAULT_DEPT_ID;
+        pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
+        valdept = Globalsession.Setting_DeptDefault;
         pane.edproyek.setText("");
         valproyek = "";
     }
@@ -781,7 +781,7 @@ public class DaftarjurnalumuminputController {
                     JOptionPane.showMessageDialog(null, "Tidak Boleh ada selisih", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
-                    int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
+                    int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                              + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);

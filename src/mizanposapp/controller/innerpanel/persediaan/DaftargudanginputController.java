@@ -83,8 +83,8 @@ public class DaftargudanginputController {
                 pane.ednama_gudang.setText("");
                 pane.edpenanggung_jawab.setText("");
                 idpenanggungjawab = String.valueOf("");
-                pane.eddepartment.setText(Globalsession.DEFAULT_DEPT_NAME);
-                iddepartment = Globalsession.DEFAULT_DEPT_ID;
+                pane.eddepartment.setText(Globalsession.Setting_DeptDefaultnama);
+                iddepartment = Globalsession.Setting_DeptDefault;
             } else {
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", id);

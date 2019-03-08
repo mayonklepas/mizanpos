@@ -111,7 +111,7 @@ public class DaftarbukubesarinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("akun=%s&tahun=%s&bulan=%s", id, Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
+                String param = String.format("akun=%s&tahun=%s&bulan=%s", id, Globalsession.periode_year, Globalsession.periode_month);
                 Object objdata = jpdata.parse(ch.getdatadetails("databukubesar", param));
                 System.out.println(objdata);
                 JSONObject jo = (JSONObject) objdata;
@@ -157,7 +157,7 @@ public class DaftarbukubesarinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("akun=%s&cari=%s&tahun=%s&bulan=%s", id, pane.tcari.getText(), Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
+                String param = String.format("akun=%s&cari=%s&tahun=%s&bulan=%s", id, pane.tcari.getText(), Globalsession.periode_year, Globalsession.periode_month);
                 Object objdata = jpdata.parse(ch.getdatadetails("caribukubesar", param));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;

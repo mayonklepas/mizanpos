@@ -514,10 +514,10 @@ public class DaftarfakturpenjualaninputController {
                 pane.edpelanggan.setText("");
                 valpelanggan = "";
                 pane.edno_transaksi.setText("");
-                pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
-                valdept = Globalsession.DEFAULT_DEPT_ID;
-                pane.edgudang.setText(Globalsession.DEFAULT_NAMA_GUDANG);
-                valgudang = Globalsession.DEFAULT_ID_GUDANG;
+                pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
+                valdept = Globalsession.Setting_DeptDefault;
+                pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
+                valgudang = Globalsession.Setting_GudangDefault;
                 pane.edketerangan.setText("");
                 pane.edsalesman.setText("");
                 valsalesman = "";
@@ -817,7 +817,7 @@ public class DaftarfakturpenjualaninputController {
                  + "diskon_nominal='" + FuncHelper.ToDouble(pane.eddiskon2.getText()) + "'::"
                  + "total_uang_muka='" + FuncHelper.ToDouble(pane.eduang_muka.getText()) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
-                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "id_currency='" + Globalsession.id_currency_company + "'::"
                  + "nilai_kurs='1'::"
                  + "akun_penjualan='" + valakun_penjualan + "'::"
                  + "akun_biaya='" + valakun_ongkir + "'::"
@@ -906,7 +906,7 @@ public class DaftarfakturpenjualaninputController {
                  + "diskon_nominal='" + FuncHelper.ToDouble(pane.eddiskon2.getText()) + "'::"
                  + "total_uang_muka='" + FuncHelper.ToDouble(pane.eduang_muka.getText()) + "'::"
                  + "total_pajak='" + total_pajak + "'::"
-                 + "id_currency='" + Globalsession.DEFAULT_CURRENCY_ID + "'::"
+                 + "id_currency='" + Globalsession.id_currency_company + "'::"
                  + "nilai_kurs='1'::"
                  + "akun_penjualan='" + valakun_penjualan + "'::"
                  + "akun_biaya='" + valakun_ongkir + "'::"
@@ -960,7 +960,7 @@ public class DaftarfakturpenjualaninputController {
                     JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
-                    int periodetahunnulan = Integer.parseInt(Globalsession.PERIODE_TAHUN + Globalsession.PERIODE_BULAN);
+                    int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
                              + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);

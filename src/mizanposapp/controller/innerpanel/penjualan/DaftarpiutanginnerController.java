@@ -112,7 +112,7 @@ public class DaftarpiutanginnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                //String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
+                //String param = String.format("tahun=%s&bulan=%s", Globalsession.periode_year, Globalsession.periode_month);
                 Object objdata = jpdata.parse(ch.getdatas("daftarpiutang"));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;

@@ -122,7 +122,7 @@ public class DaftargiromasukinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
+                String param = String.format("tahun=%s&bulan=%s", Globalsession.periode_year, Globalsession.periode_month);
                 Object objdata = jpdata.parse(ch.getdatadetails("daftargiromasuk", param));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
@@ -160,7 +160,7 @@ public class DaftargiromasukinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("cari=%s&tahun=%s&bulan=%s", pane.tcari.getText(), Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
+                String param = String.format("cari=%s&tahun=%s&bulan=%s", pane.tcari.getText(), Globalsession.periode_year, Globalsession.periode_month);
                 Object objdata = jpdata.parse(ch.getdatadetails("carigiromasuk", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);

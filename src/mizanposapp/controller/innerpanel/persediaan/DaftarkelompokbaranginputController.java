@@ -113,13 +113,13 @@ public class DaftarkelompokbaranginputController {
                 pane.edkode_kelompok.setText("");
                 pane.ednama_kelompok.setText("");
                 pane.edsatuan.setText(Globalsession.DEFAULT_NAMA_SATUAN);
-                pane.edgudang.setText(Globalsession.DEFAULT_NAMA_GUDANG);
+                pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
                 pane.edlokasi.setText(Globalsession.DEFAULT_NAMA_LOKASI);
-                pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
+                pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
                 valsatuan = Globalsession.DEFAULT_ID_SATUAN;
-                valgudang = Globalsession.DEFAULT_ID_GUDANG;
+                valgudang = Globalsession.Setting_GudangDefault;
                 vallokasi = Globalsession.DEFAULT_ID_LOKASI;
-                valdept = Globalsession.DEFAULT_DEPT_ID;
+                valdept = Globalsession.Setting_DeptDefault;
                 pane.cknon_poin.setSelected(false);
                 pane.rbaverage.setSelected(true);
 

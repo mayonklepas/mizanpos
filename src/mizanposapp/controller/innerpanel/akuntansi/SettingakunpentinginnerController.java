@@ -109,10 +109,10 @@ public class SettingakunpentinginnerController {
     }
 
     private void loadsession() {
-        valdept = Globalsession.DEFAULT_DEPT_ID;
-        pane.eddept.setText(Globalsession.DEFAULT_DEPT_NAME);
+        valdept = Globalsession.Setting_DeptDefault;
+        pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
 
-        valcurr = Globalsession.DEFAULT_CURRENCY_ID;
+        valcurr = Globalsession.id_currency_company;
         pane.edmata_uang.setText(Globalsession.CURRENCYCODE);
 
         loaddata(valdept, valcurr);

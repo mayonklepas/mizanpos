@@ -117,7 +117,7 @@ public class DaftarorderpembelianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("tahun=%s&bulan=%s", Globalsession.PERIODE_TAHUN, Globalsession.PERIODE_BULAN);
+                String param = String.format("tahun=%s&bulan=%s", Globalsession.periode_year, Globalsession.periode_month);
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarorderpembelian", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -156,8 +156,8 @@ public class DaftarorderpembelianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("tahun=%s&bulan=%s&cari=%s", Globalsession.PERIODE_TAHUN,
-                        Globalsession.PERIODE_BULAN, pane.tcari.getText());
+                String param = String.format("tahun=%s&bulan=%s&cari=%s", Globalsession.periode_year,
+                        Globalsession.periode_month, pane.tcari.getText());
                 Object objdata = jpdata.parse(ch.getdatadetails("cariorderpembelian", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);

@@ -6,13 +6,18 @@
 package mizanposapp.helper;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
@@ -26,15 +31,6 @@ import org.json.simple.parser.ParseException;
  */
 public class Globalsession {
 
-    public static String NAMA_PERUSAHAAN = "";
-    public static String TAHUN_AWAL_DATA = "";
-    public static String BULAN_AWAL_DATA = "";
-    public static String PERIODE_TAHUN = "";
-    public static String PERIODE_BULAN = "";
-    public static String PERIODE_AKHIR_BULAN = "";
-    public static String DEFAULT_CURRENCY_ID = "";
-    public static String DEFAULT_DEPT_ID = "";
-    public static String DEFAULT_DEPT_NAME = "";
     public static String DEFAULT_JOB_ID = "";
     public static String DEFAULT_JOB_KODE = "";
     public static String CURRENCYCODE = "";
@@ -116,6 +112,7 @@ public class Globalsession {
     public static String Global_PemisahTanggal = "";
     public static String Global_LongDateFormat = "";
     public static String Global_ShortDateFormat = "";
+
     public static String Jurnal_Umum = "";
     public static String Order_Penjualan = "";
     public static String Penjualan = "";
@@ -140,6 +137,7 @@ public class Globalsession {
     public static String Data_Golongan_Pelanggan = "";
     public static String Data_Golongan_Karyawan = "";
     public static String Data_Kelompok_Barang = "";
+
     public static String id_company = "";
     public static String company_name = "";
     public static String alamat1 = "";
@@ -161,6 +159,38 @@ public class Globalsession {
     public static String ttd_pajak_jabatan = "";
     public static String nama_currency = "";
     public static String id_currency_company = "";
+    Properties prop = new Properties();
+    public static String Setting_GudangDefaultnama = "";
+    public static String Setting_DeptDefaultnama = "";
+    public static String Setting_GudangDefault = "";
+    public static String Setting_DeptDefault = "";
+    public static String FilterDataPerDept = "";
+    public static String Penjualan_PelangganUmumnama = "";
+    public static String Penjualan_PelangganUmum = "";
+    public static String Penjualan_FileFaktur = "";
+    public static String Penjualan_FileRetur = "";
+    public static String Penjualan_Printer = "";
+    public static String Penjualan_DotMatrixPrinter = "";
+    //public static String Penjualan_HargaJualIncTaxService = "";
+    public static String POS_OtomatisCetakStruk = "";
+    public static String POS_FileStruk = "";
+    public static String POS_Printer = "";
+    public static String POS_DotMatrixPrinter = "";
+    public static String POS_ContinuousForm = "";
+    public static String POS_AutoCutter = "";
+    public static String POS_JarakFooter = "";
+    public static String POS_UseCustomerDisplay = "";
+    public static String POS_UseCashDrawerUSB = "";
+    public static String POS_ScanBarcodeBuatBaru = "";
+    public static String CetakFakturPilihFile = "";
+    public static String POS_Tinggi_Grid_Header = "";
+    public static String POS_Tinggi_Grid_Item = "";
+    public static String POS_Font_Grid_Header = "";
+    public static String POS_Font_Grid_Item = "";
+    public static String POS_Tinggi_Panel = "";
+    public static String POS_Lebar_Tombol = "";
+    public static String POS_Tinggi_Tombol = "";
+    public static String POS_Font_Tombol = "";
 
     public Globalsession() {
         StringBuilder sb = new StringBuilder();
@@ -188,21 +218,6 @@ public class Globalsession {
             DEFAULT_KODE_SERVICE = String.valueOf(joglobalvar.get("default_kode_service"));
             DEFAULT_ID_KELOMPOK = String.valueOf(joglobalvar.get("default_id_kelompok"));
             DEFAULT_NAMA_KELOMPOK = String.valueOf(joglobalvar.get("default_nama_kelompok"));
-            NAMA_PERUSAHAAN = String.valueOf(joglobalvar.get("nama_perusahaan"));
-            TAHUN_AWAL_DATA = String.valueOf(joglobalvar.get("tahun_awal_data"));
-            BULAN_AWAL_DATA = String.valueOf(joglobalvar.get("bulan_awal_data"));
-            PERIODE_TAHUN = String.valueOf(joglobalvar.get("periode_tahun"));
-
-            if (String.valueOf(joglobalvar.get("periode_bulan")).length() == 1) {
-                PERIODE_BULAN = "0" + String.valueOf(joglobalvar.get("periode_bulan"));
-            } else {
-                PERIODE_BULAN = String.valueOf(joglobalvar.get("periode_bulan"));
-            }
-
-            PERIODE_AKHIR_BULAN = String.valueOf(joglobalvar.get("periode_akhir_bulan"));
-            DEFAULT_CURRENCY_ID = String.valueOf(joglobalvar.get("default_currency_id"));
-            DEFAULT_DEPT_ID = String.valueOf(joglobalvar.get("default_dept_id"));
-            DEFAULT_DEPT_NAME = String.valueOf(joglobalvar.get("default_dept_name"));
             DEFAULT_JOB_ID = String.valueOf(joglobalvar.get("default_job_id"));
             DEFAULT_JOB_KODE = String.valueOf(joglobalvar.get("default_job_kode"));
             CURRENCYCODE = String.valueOf(joglobalvar.get("currency_kode"));
@@ -470,6 +485,8 @@ public class Globalsession {
 
             }
 
+            loadconfigprop();
+
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class
                  .getName()).log(Level.SEVERE, null, ex);
@@ -481,6 +498,67 @@ public class Globalsession {
         } catch (ParseException ex) {
             Logger.getLogger(Globalsession.class
                  .getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //load data from file
+    }
+
+    private void loadconfigprop() {
+        try {
+            InputStream ins = new FileInputStream(new File("config.properties"));
+            prop.load(ins);
+            //setup umum
+            Setting_GudangDefaultnama = prop.getProperty("Setting_GudangDefaultnama");
+            Setting_DeptDefaultnama = prop.getProperty("Setting_DeptDefaultnama");
+            Setting_GudangDefault = prop.getProperty("Setting_GudangDefault");
+            Setting_DeptDefault = prop.getProperty("Setting_DeptDefault");
+            FilterDataPerDept = prop.getProperty("FilterDataPerDept");
+            CetakFakturPilihFile = prop.getProperty("FilterDataPerDept");
+
+            //[PEMBELIAN]
+            //[PENJUALAN]
+            Penjualan_PelangganUmumnama = prop.getProperty("Penjualan_PelangganUmumnama");
+            Penjualan_PelangganUmum = prop.getProperty("Penjualan_PelangganUmum");
+            Penjualan_FileFaktur = prop.getProperty("Penjualan_FileFaktur");
+            Penjualan_FileRetur = prop.getProperty("Penjualan_FileRetur");
+            Penjualan_Printer = prop.getProperty("Penjualan_Printer");
+            Penjualan_DotMatrixPrinter = prop.getProperty("Penjualan_DotMatrixPrinter");
+            Penjualan_HargaJualIncTaxService = prop.getProperty("Penjualan_HargaJualIncTaxService");
+            //[POS]
+            POS_OtomatisCetakStruk = prop.getProperty("POS_OtomatisCetakStruk");
+            POS_FileStruk = prop.getProperty("POS_FileStruk");
+            POS_Printer = prop.getProperty("POS_Printer");
+            POS_DotMatrixPrinter = prop.getProperty("POS_DotMatrixPrinter");
+            POS_ContinuousForm = prop.getProperty("POS_ContinuousForm");
+            POS_AutoCutter = prop.getProperty("POS_AutoCutter");
+            POS_JarakFooter = prop.getProperty("POS_JarakFooter");
+            POS_UseCustomerDisplay = prop.getProperty("POS_UseCustomerDisplay");
+            POS_UseCashDrawerUSB = prop.getProperty("POS_UseCashDrawerUSB");
+            POS_ScanBarcodeBuatBaru = prop.getProperty("POS_ScanBarcodeBuatBaru");
+
+            //[EXPORTIMPORT]
+            String ISAUTOEXPORT = prop.getProperty("ISAUTOEXPORT");
+            String ISAUTOIMPORT = prop.getProperty("ISAUTOIMPORT");
+            String ISLOCAL = prop.getProperty("ISLOCAL");
+            String ISFTP = prop.getProperty("ISFTP");
+            String FTPHOST = prop.getProperty("FTPHOST");
+            String FTPUSER = prop.getProperty("FTPUSER");
+            String FTPPASSWORD = prop.getProperty("FTPPASSWORD");
+            String FTPPORT = prop.getProperty("FTPPORT");
+            String EXPORTIMPORTSETIAP = prop.getProperty("EXPORTIMPORTSETIAP");
+            POS_Tinggi_Grid_Header = prop.getProperty("POS_Tinggi_Grid_Header");
+            POS_Tinggi_Grid_Item = prop.getProperty("POS_Tinggi_Grid_Item");
+            POS_Font_Grid_Header = prop.getProperty("POS_Font_Grid_Header");
+            POS_Font_Grid_Item = prop.getProperty("POS_Font_Grid_Item");
+            POS_Tinggi_Panel = prop.getProperty("POS_Tinggi_Panel");
+            POS_Lebar_Tombol = prop.getProperty("POS_Lebar_Tombol");
+            POS_Tinggi_Tombol = prop.getProperty("POS_Tinggi_Tombol");
+            POS_Font_Tombol = prop.getProperty("POS_Font_Tombol");
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
