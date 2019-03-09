@@ -69,6 +69,24 @@ public class DaftarjurnalumuminnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+        userakses();
+
+    }
+
+    private void userakses() {
+        if (Globalsession.akuntansi_jurnal_umum_input.equals("1")) {
+            pane.btambah.setEnabled(true);
+        } else {
+            pane.btambah.setEnabled(false);
+        }
+
+        if (Globalsession.akuntansi_jurnal_umum_edit.equals("1")) {
+            pane.bedit.setEnabled(true);
+            pane.bhapus.setEnabled(true);
+        } else {
+            pane.bedit.setEnabled(false);
+            pane.bhapus.setEnabled(false);
+        }
 
     }
 
@@ -268,8 +286,7 @@ public class DaftarjurnalumuminnerController {
     }
 
     private void enablebutton() {
-        pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
+        userakses();
     }
 
     private void tambahdata() {
@@ -305,7 +322,7 @@ public class DaftarjurnalumuminnerController {
                 int row = pane.tabledata.getSelectedRow();
                 System.out.println(idlist.get(row));
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
                     ch.deletedata("deletejurnalumum", data);
                     if (!Staticvar.getresult.equals("berhasil")) {

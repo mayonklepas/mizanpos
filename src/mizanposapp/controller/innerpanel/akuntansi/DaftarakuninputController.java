@@ -79,7 +79,6 @@ public class DaftarakuninputController {
 
     public DaftarakuninputController(Daftarakun_input_panel pane) {
         this.pane = pane;
-        id = Staticvar.ids;
         Staticvar.ids = "";
         loaddata();
         showhide();

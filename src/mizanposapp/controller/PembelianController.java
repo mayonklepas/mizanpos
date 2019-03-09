@@ -8,6 +8,7 @@ package mizanposapp.controller;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Pembelian_panel;
@@ -42,14 +43,19 @@ public class PembelianController {
     }
 
     private void supplierview(Pembelian_panel pp) {
-        System.gc();
-        Daftardatasupplier_inner_panel pane = new Daftardatasupplier_inner_panel();
-        Staticvar.pmp = pp;
-        pp.container.removeAll();
-        pp.container.setLayout(new BorderLayout());
-        pp.container.add(pane, BorderLayout.CENTER);
-        pp.container.revalidate();
-        pp.container.repaint();
+        if (Staticvar.inputmode == true) {
+            JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            System.gc();
+            Daftardatasupplier_inner_panel pane = new Daftardatasupplier_inner_panel();
+            Staticvar.pmp = pp;
+            pp.container.removeAll();
+            pp.container.setLayout(new BorderLayout());
+            pp.container.add(pane, BorderLayout.CENTER);
+            pp.container.revalidate();
+            pp.container.repaint();
+            Staticvar.inputmode = false;
+        }
     }
 
     private void orderview(Pembelian_panel pp) {
@@ -60,14 +66,19 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftarorderpembelian_inner_panel pane = new Daftarorderpembelian_inner_panel();
-                Staticvar.pmp = pp;
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarorderpembelian_inner_panel pane = new Daftarorderpembelian_inner_panel();
+                    Staticvar.pmp = pp;
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -93,14 +104,19 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftarreturpembelian_inner_panel pane = new Daftarreturpembelian_inner_panel();
-                Staticvar.pmp = pp;
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarreturpembelian_inner_panel pane = new Daftarreturpembelian_inner_panel();
+                    Staticvar.pmp = pp;
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -126,14 +142,19 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftarfakturpembelian_inner_panel pane = new Daftarfakturpembelian_inner_panel();
-                Staticvar.pmp = pp;
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarfakturpembelian_inner_panel pane = new Daftarfakturpembelian_inner_panel();
+                    Staticvar.pmp = pp;
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -159,14 +180,19 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftarhutang_inner_panel pane = new Daftarhutang_inner_panel();
-                Staticvar.pmp = pp;
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarhutang_inner_panel pane = new Daftarhutang_inner_panel();
+                    Staticvar.pmp = pp;
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -192,20 +218,25 @@ public class PembelianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                /*Mainmenu mm = (Mainmenu) pp.getRootPane().getParent();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    /*Mainmenu mm = (Mainmenu) pp.getRootPane().getParent();
                 Settingdiskonkelompok_inner_panel pane = new Settingdiskonkelompok_inner_panel();
                 mm.panel_tengah.removeAll();
                 mm.panel_tengah.setLayout(new BorderLayout());
                 mm.panel_tengah.add(pane, BorderLayout.CENTER);
                 mm.panel_tengah.revalidate();
                 mm.panel_tengah.repaint();*/
-                System.gc();
-                Cekhargabeli_inner_panel pane = new Cekhargabeli_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                    System.gc();
+                    Cekhargabeli_inner_panel pane = new Cekhargabeli_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override

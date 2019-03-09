@@ -121,6 +121,7 @@ public class DaftarreturpembelianinputController {
 
     public DaftarreturpembelianinputController(Daftarreturpembelian_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loadsession();
         loaddata();
@@ -951,6 +952,7 @@ public class DaftarreturpembelianinputController {
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
                         Staticvar.frame = "";
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1012,6 +1014,7 @@ public class DaftarreturpembelianinputController {
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
                 Staticvar.frame = "";
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1181,6 +1184,7 @@ public class DaftarreturpembelianinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("31", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.equals("rincian_hutang")) {
                             inpane = new Daftarhutangrincian_inner_panel();

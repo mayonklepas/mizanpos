@@ -121,6 +121,7 @@ public class DaftarorderpembelianinputController {
 
     public DaftarorderpembelianinputController(Daftarorderpembelian_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loadsession();
         loaddata();
@@ -805,6 +806,7 @@ public class DaftarorderpembelianinputController {
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -860,6 +862,7 @@ public class DaftarorderpembelianinputController {
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1002,6 +1005,7 @@ public class DaftarorderpembelianinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("32", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         Daftarorderpembelian_inner_panel inpane = new Daftarorderpembelian_inner_panel();
                         Staticvar.pmp.container.removeAll();
                         Staticvar.pmp.container.setLayout(new BorderLayout());

@@ -112,6 +112,7 @@ public class DaftarstokopnameinputController {
 
     public DaftarstokopnameinputController(Daftarstokopname_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loadsession();
         loaddata();
@@ -421,6 +422,7 @@ public class DaftarstokopnameinputController {
                         Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.psp.container.revalidate();
                         Staticvar.psp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -453,6 +455,7 @@ public class DaftarstokopnameinputController {
                 Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.psp.container.revalidate();
                 Staticvar.psp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -607,6 +610,7 @@ public class DaftarstokopnameinputController {
                     public void run() {
                         if (id.equals("")) {
                             new FuncHelper().insertnogagal("51", new Date(), valdept, String.valueOf(no_urut));
+                            Staticvar.inputmode = false;
                         }
                         Daftarstokopname_inner_panel inpane = new Daftarstokopname_inner_panel();
                         Staticvar.psp.container.removeAll();

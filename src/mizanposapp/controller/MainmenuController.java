@@ -5,13 +5,20 @@
  */
 package mizanposapp.controller;
 
+import com.sun.xml.internal.ws.api.message.saaj.SAAJFactory;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dialog;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import mizanposapp.helper.Globalsession;
+import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Akunting_panel;
 import mizanposapp.view.Beranda_panel;
 import mizanposapp.view.Keuangan_panel;
@@ -36,13 +43,31 @@ public class MainmenuController {
     boolean isclick = false;
 
     public MainmenuController() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                mm.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        if (Staticvar.inputmode == true) {
+                            JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            if (JOptionPane.showConfirmDialog(mm, "Yain Ingin Keluar Dari Aplikasi?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                                System.exit(0);
+                            }
+                        }
+
+                    }
+
+                });
+            }
+        });
         mm.setExtendedState(MAXIMIZED_BOTH);
         mm.setLocationRelativeTo(null);
         mm.setVisible(true);
         panelusermouseevent();
         panel1mouseevent();
         panel2mouseevent();
-        panel3mouseevent();
         panel12mouseevent();
         panel6mouseevent();
         panel7mouseevent();
@@ -62,6 +87,13 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    if (JOptionPane.showConfirmDialog(mm, "Yain Ingin Keluar Dari Aplikasi?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                        System.exit(0);
+                    }
+                }
             }
 
             @Override
@@ -85,21 +117,26 @@ public class MainmenuController {
         mm.psetting.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.ppembelian.setBackground(new Color(3, 3, 3));
-                isclick = true;
-                Pengaturan_inner_panel pp = new Pengaturan_inner_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(pp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
 
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.ppembelian.setBackground(new Color(3, 3, 3));
+                    isclick = true;
+                    Pengaturan_inner_panel pp = new Pengaturan_inner_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(pp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -123,52 +160,28 @@ public class MainmenuController {
         mm.pakun.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
                 System.gc();
                 isclick = true;
                 mm.ppembelian.setBackground(new Color(3, 3, 3));
                 isclick = true;
-                JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Data_pengguna_inner_panel());
-                jd.pack();
-                jd.setLocationRelativeTo(null);
-                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setTitle("Daftar Data Pengguna");
-                jd.setVisible(true);
+                if (Globalsession.sistem_setting_pengguna.equals("1")) {
+                    JDialog jd = new JDialog(new Mainmenu());
+                    jd.add(new Data_pengguna_inner_panel());
+                    jd.pack();
+                    jd.setLocationRelativeTo(null);
+                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                    jd.setTitle("Daftar Data Pengguna");
+                    jd.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(mm, "Akses Ditolak", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                }
 
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                mm.pakun.setBackground(new Color(3, 3, 3));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                mm.pakun.setBackground(new Color(41, 39, 40));
-            }
-        });
-    }
-
-    private void panel3mouseevent() {
-        mm.pakun.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                isclick = true;
-                mm.pakuntansi.setBackground(new Color(3, 3, 3));
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
             }
 
             @Override
@@ -192,20 +205,25 @@ public class MainmenuController {
         mm.pkeuangan.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.pberanda.setBackground(new Color(3, 3, 3));
-                Keuangan_panel kp = new Keuangan_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(kp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
 
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.pberanda.setBackground(new Color(3, 3, 3));
+                    Keuangan_panel kp = new Keuangan_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(kp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -233,15 +251,20 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.pberanda.setBackground(new Color(3, 3, 3));
-                Beranda_panel bp = new Beranda_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(bp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.pberanda.setBackground(new Color(3, 3, 3));
+                    Beranda_panel bp = new Beranda_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(bp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -270,22 +293,26 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.ppersediaan.setBackground(new Color(3, 3, 3));
-                Persedian_panel pp = new Persedian_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(pp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
-
-                Daftarpersediaan_inner_panel pin = new Daftarpersediaan_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pin, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.ppersediaan.setBackground(new Color(3, 3, 3));
+                    Persedian_panel pp = new Persedian_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(pp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                    Daftarpersediaan_inner_panel pin = new Daftarpersediaan_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pin, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                }
             }
 
             @Override
@@ -314,22 +341,26 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.ppenjualan.setBackground(new Color(3, 3, 3));
-                Penjualan_panel pp = new Penjualan_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(pp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
-
-                Daftardatapelanggan_inner_panel pin = new Daftardatapelanggan_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pin, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.ppenjualan.setBackground(new Color(3, 3, 3));
+                    Penjualan_panel pp = new Penjualan_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(pp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                    Daftardatapelanggan_inner_panel pin = new Daftardatapelanggan_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pin, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                }
             }
 
             @Override
@@ -358,15 +389,20 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.ppembelian.setBackground(new Color(3, 3, 3));
-                Pembelian_panel pp = new Pembelian_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(pp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.ppembelian.setBackground(new Color(3, 3, 3));
+                    Pembelian_panel pp = new Pembelian_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(pp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -395,15 +431,20 @@ public class MainmenuController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                isclick = true;
-                mm.pakuntansi.setBackground(new Color(3, 3, 3));
-                Akunting_panel lp = new Akunting_panel();
-                mm.panel_tengah.removeAll();
-                mm.panel_tengah.setLayout(new BorderLayout());
-                mm.panel_tengah.add(lp, BorderLayout.CENTER);
-                mm.panel_tengah.revalidate();
-                mm.panel_tengah.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    isclick = true;
+                    mm.pakuntansi.setBackground(new Color(3, 3, 3));
+                    Akunting_panel lp = new Akunting_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(lp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override

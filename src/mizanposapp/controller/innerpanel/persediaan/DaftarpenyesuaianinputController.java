@@ -110,6 +110,7 @@ public class DaftarpenyesuaianinputController {
 
     public DaftarpenyesuaianinputController(Daftarpenyesuaian_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loadsession();
         loaddata();
@@ -427,6 +428,7 @@ public class DaftarpenyesuaianinputController {
                         Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.psp.container.revalidate();
                         Staticvar.psp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -459,6 +461,7 @@ public class DaftarpenyesuaianinputController {
                 Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.psp.container.revalidate();
                 Staticvar.psp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -605,6 +608,7 @@ public class DaftarpenyesuaianinputController {
                     public void run() {
                         if (id.equals("")) {
                             new FuncHelper().insertnogagal("5", new Date(), valdept, String.valueOf(no_urut));
+                            Staticvar.inputmode = false;
                         }
                         Daftarpenyesuaian_inner_panel inpane = new Daftarpenyesuaian_inner_panel();
                         Staticvar.psp.container.removeAll();

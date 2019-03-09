@@ -86,6 +86,7 @@ public class DaftarjurnalumuminputController {
 
     public DaftarjurnalumuminputController(Daftarjurnalumum_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loaddata();
         addtotable();
@@ -717,6 +718,7 @@ public class DaftarjurnalumuminputController {
                         Staticvar.ap.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.ap.container.revalidate();
                         Staticvar.ap.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -750,6 +752,7 @@ public class DaftarjurnalumuminputController {
                 Staticvar.ap.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.ap.container.revalidate();
                 Staticvar.ap.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -917,6 +920,7 @@ public class DaftarjurnalumuminputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("1", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         inpane = new Daftarjurnalumum_inner_panel();
                         Staticvar.ap.container.removeAll();

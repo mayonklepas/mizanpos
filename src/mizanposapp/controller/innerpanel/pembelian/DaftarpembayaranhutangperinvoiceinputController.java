@@ -88,6 +88,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
 
     public DaftarpembayaranhutangperinvoiceinputController(Daftarpembayaranhutangperinvoice_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         loadsession();
         skinning();
         loaddata();
@@ -822,6 +823,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                         Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -866,6 +868,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                 Staticvar.pmp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1104,6 +1107,7 @@ public class DaftarpembayaranhutangperinvoiceinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("42", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.equals("hutang")) {
                             inpane = new Daftarhutang_inner_panel();

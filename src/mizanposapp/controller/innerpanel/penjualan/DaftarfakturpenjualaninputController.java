@@ -131,6 +131,7 @@ public class DaftarfakturpenjualaninputController {
 
     public DaftarfakturpenjualaninputController(Daftarfakturpenjualan_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         setpopup();
         skinning();
         loadsession();
@@ -876,6 +877,7 @@ public class DaftarfakturpenjualaninputController {
                         Staticvar.pp.container.revalidate();
                         Staticvar.pp.container.repaint();
                         Staticvar.frame = "";
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -937,6 +939,7 @@ public class DaftarfakturpenjualaninputController {
                 Staticvar.pp.container.revalidate();
                 Staticvar.pp.container.repaint();
                 Staticvar.frame = "";
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1091,6 +1094,7 @@ public class DaftarfakturpenjualaninputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("2", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.endsWith("rincian_piutang")) {
                             inpane = new Daftarpiutangrincian_inner_panel();

@@ -80,5 +80,6 @@ public class Staticvar {
         "COMMA", "ASTERISK", "SUBTRACT", "UNDERSCORE", "SEPARATOR", "SEMICOLON", "COLON", "RIGHT_PARENTHESIS",
         "LEFT_PARENTHESIS", "QUOTEDBL", "QUOTE", "BACK_QUOTE", "OPEN_BRACKET", "CLOSE_BRACKET", "PLUS", "MINUS",
         "PERIOD", "NUMBER_SIGN", "GREATER", "BRACELEFT", "BRACERIGHT"};
+    public static boolean inputmode = false;
 
 }

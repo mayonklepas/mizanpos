@@ -86,6 +86,7 @@ public class DaftarkaskeluarinputController {
 
     public DaftarkaskeluarinputController(Daftarkaskeluar_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         loadsession();
         skinning();
         loaddata();
@@ -674,6 +675,7 @@ public class DaftarkaskeluarinputController {
                         Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.kp.container.revalidate();
                         Staticvar.kp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -715,6 +717,7 @@ public class DaftarkaskeluarinputController {
                 Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.kp.container.revalidate();
                 Staticvar.kp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -916,6 +919,7 @@ public class DaftarkaskeluarinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("41", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         inpane = new Daftarkaskeluar_inner_panel();
                         Staticvar.kp.container.removeAll();

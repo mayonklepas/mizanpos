@@ -107,6 +107,7 @@ public class DaftartransferpersediaaninputController {
 
     public DaftartransferpersediaaninputController(Daftartransferpersediaan_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loadsession();
         loaddata();
@@ -375,6 +376,7 @@ public class DaftartransferpersediaaninputController {
                         Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.psp.container.revalidate();
                         Staticvar.psp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -407,6 +409,7 @@ public class DaftartransferpersediaaninputController {
                 Staticvar.psp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.psp.container.revalidate();
                 Staticvar.psp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -552,6 +555,7 @@ public class DaftartransferpersediaaninputController {
                     public void run() {
                         if (id.equals("")) {
                             new FuncHelper().insertnogagal("53", new Date(), valdept, String.valueOf(no_urut));
+                            Staticvar.inputmode = false;
                         }
                         Daftartransferpersediaan_inner_panel inpane = new Daftartransferpersediaan_inner_panel();
                         Staticvar.psp.container.removeAll();

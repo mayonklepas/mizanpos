@@ -87,6 +87,7 @@ public class DaftarkasmasukinputController {
 
     public DaftarkasmasukinputController(Daftarkasmasuk_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         loadsession();
         skinning();
         loaddata();
@@ -679,6 +680,7 @@ public class DaftarkasmasukinputController {
                         Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.kp.container.revalidate();
                         Staticvar.kp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -724,6 +726,7 @@ public class DaftarkasmasukinputController {
                 Staticvar.kp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.kp.container.revalidate();
                 Staticvar.kp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -925,6 +928,7 @@ public class DaftarkasmasukinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("4", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame == "kasmasuk") {
                             inpane = new Daftarkasmasuk_inner_panel();

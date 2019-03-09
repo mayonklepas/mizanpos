@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
@@ -451,11 +452,11 @@ public class HakaksesinnerController {
                     if (persediaan_penyesuaian.equals("1")) {
                         pane.ckpersediaan_penyesuaian.setSelected(true);
                         pane.ckpersediaan_edit_hapus_penyesuaian.setEnabled(true);
-                        pane.ckpersediaan_edit_hapus_penyesuaian.setEnabled(true);
+                        pane.ckpersediaan_input_penyesuaian.setEnabled(true);
                     } else {
                         pane.ckpersediaan_penyesuaian.setSelected(false);
                         pane.ckpersediaan_edit_hapus_penyesuaian.setEnabled(false);
-                        pane.ckpersediaan_edit_hapus_penyesuaian.setEnabled(false);
+                        pane.ckpersediaan_input_penyesuaian.setEnabled(false);
                     }
                     String persediaan_penyesuaian_input = String.valueOf(jo.get("persediaan_penyesuaian_input"));
                     if (persediaan_penyesuaian_input.equals("1")) {
@@ -541,11 +542,11 @@ public class HakaksesinnerController {
                     if (akuntansi_jurnal_umum.equals("1")) {
                         pane.ckakuntansi_jurnal_umum.setSelected(true);
                         pane.ckakuntansi_input_jurnal_umum.setEnabled(true);
-                        pane.ckakuntansi_buku_besar.setEnabled(true);
+                        pane.ckakuntansi_edit_hapus_jurnal_umum.setEnabled(true);
                     } else {
                         pane.ckakuntansi_jurnal_umum.setSelected(false);
                         pane.ckakuntansi_input_jurnal_umum.setEnabled(false);
-                        pane.ckakuntansi_buku_besar.setEnabled(false);
+                        pane.ckakuntansi_edit_hapus_jurnal_umum.setEnabled(false);
                     }
                     String akuntansi_jurnal_umum_input = String.valueOf(jo.get("akuntansi_jurnal_umum_input"));
                     if (akuntansi_jurnal_umum_input.equals("1")) {
@@ -1779,6 +1780,7 @@ public class HakaksesinnerController {
 
         if (Staticvar.getresult.equals("berhasil")) {
             JOptionPane.showMessageDialog(null, "Hak Akses Berhasil Disimpan");
+            new Globalsession();
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();

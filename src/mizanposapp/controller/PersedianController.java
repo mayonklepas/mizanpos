@@ -8,6 +8,7 @@ package mizanposapp.controller;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Persedian_panel;
@@ -68,14 +69,19 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Staticvar.psp = pp;
-                Daftarpenyesuaian_inner_panel pane = new Daftarpenyesuaian_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Staticvar.psp = pp;
+                    Daftarpenyesuaian_inner_panel pane = new Daftarpenyesuaian_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -102,14 +108,19 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Staticvar.psp = pp;
-                Daftarstokopname_inner_panel pane = new Daftarstokopname_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Staticvar.psp = pp;
+                    Daftarstokopname_inner_panel pane = new Daftarstokopname_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -136,14 +147,19 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Staticvar.psp = pp;
-                Daftartransferpersediaan_inner_panel pane = new Daftartransferpersediaan_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Staticvar.psp = pp;
+                    Daftartransferpersediaan_inner_panel pane = new Daftartransferpersediaan_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -165,18 +181,23 @@ public class PersedianController {
         pp.ldaftar_kelompok_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                Daftarkelompokbarang_inner_panel pane = new Daftarkelompokbarang_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarkelompokbarang_inner_panel pane = new Daftarkelompokbarang_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -198,13 +219,18 @@ public class PersedianController {
         pp.ldaftar_satuan_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                Daftarsatuanbarang_inner_panel pane = new Daftarsatuanbarang_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarsatuanbarang_inner_panel pane = new Daftarsatuanbarang_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -231,18 +257,23 @@ public class PersedianController {
         pp.ldaftar_lokasi_barang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                Daftarlokasibarang_inner_panel pane = new Daftarlokasibarang_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarlokasibarang_inner_panel pane = new Daftarlokasibarang_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -264,18 +295,23 @@ public class PersedianController {
         pp.ldaftar_merek.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                Daftarmerekbarang_inner_panel pane = new Daftarmerekbarang_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarmerekbarang_inner_panel pane = new Daftarmerekbarang_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -297,18 +333,23 @@ public class PersedianController {
         pp.ldaftar_service.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.gc();
-                Daftarservice_inner_panel pane = new Daftarservice_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarservice_inner_panel pane = new Daftarservice_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -334,13 +375,18 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftardatapajak_inner_panel pane = new Daftardatapajak_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftardatapajak_inner_panel pane = new Daftardatapajak_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -367,13 +413,18 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftargudang_inner_panel pane = new Daftargudang_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftargudang_inner_panel pane = new Daftargudang_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -400,13 +451,18 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftardatadept_inner_panel pane = new Daftardatadept_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftardatadept_inner_panel pane = new Daftardatadept_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -433,13 +489,18 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftarlokasibarang_inner_panel pane = new Daftarlokasibarang_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarlokasibarang_inner_panel pane = new Daftarlokasibarang_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -466,13 +527,18 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftardatasupplier_inner_panel pane = new Daftardatasupplier_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftardatasupplier_inner_panel pane = new Daftardatasupplier_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -499,13 +565,18 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftardatasupplierklasifikasi_inner_panel pane = new Daftardatasupplierklasifikasi_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftardatasupplierklasifikasi_inner_panel pane = new Daftardatasupplierklasifikasi_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    pp.container.repaint();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override
@@ -532,13 +603,17 @@ public class PersedianController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.gc();
-                Daftarstokminimum_inner_panel pane = new Daftarstokminimum_inner_panel();
-                pp.container.removeAll();
-                pp.container.setLayout(new BorderLayout());
-                pp.container.add(pane, BorderLayout.CENTER);
-                pp.container.revalidate();
-                pp.container.repaint();
+                if (Staticvar.inputmode == true) {
+                    JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    System.gc();
+                    Daftarstokminimum_inner_panel pane = new Daftarstokminimum_inner_panel();
+                    pp.container.removeAll();
+                    pp.container.setLayout(new BorderLayout());
+                    pp.container.add(pane, BorderLayout.CENTER);
+                    pp.container.revalidate();
+                    Staticvar.inputmode = false;
+                }
             }
 
             @Override

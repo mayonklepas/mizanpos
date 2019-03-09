@@ -89,6 +89,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
 
     public DaftarpembayaranpiutangperinvoiceinputController(Daftarpembayaranpiutangperinvoice_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         loadsession();
         skinning();
         loaddata();
@@ -823,6 +824,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                         Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pp.container.revalidate();
                         Staticvar.pp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -867,6 +869,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                 Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pp.container.revalidate();
                 Staticvar.pp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1105,6 +1108,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("43", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.equals("piutang")) {
                             inpane = new Daftarpiutang_inner_panel();

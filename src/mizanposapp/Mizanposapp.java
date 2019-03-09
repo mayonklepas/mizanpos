@@ -30,6 +30,7 @@ public class Mizanposapp {
             ex.printStackTrace();
         }
         Locale.setDefault(new Locale("en", "en_US"));
+
         new CrudHelper();
         new Globalsession();
         new MainmenuController();

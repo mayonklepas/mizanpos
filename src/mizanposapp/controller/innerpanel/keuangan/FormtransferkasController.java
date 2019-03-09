@@ -352,6 +352,7 @@ public class FormtransferkasController {
                     public void run() {
                         Staticvar.isupdate = false;
                         new FuncHelper().insertnogagal("44", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JDialog jd = (JDialog) pane.getRootPane().getParent();
                         jd.dispose();
                     }

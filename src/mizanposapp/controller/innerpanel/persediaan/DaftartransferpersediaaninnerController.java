@@ -66,6 +66,24 @@ public class DaftartransferpersediaaninnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+        userakses();
+    }
+
+    private void userakses() {
+        if (Globalsession.persediaan_transfer_input.equals("1")) {
+            pane.btambah.setEnabled(true);
+        } else {
+            pane.btambah.setEnabled(false);
+        }
+
+        if (Globalsession.persediaan_transfer_edit.equals("1")) {
+            pane.bedit.setEnabled(true);
+            pane.bhapus.setEnabled(true);
+        } else {
+            pane.bedit.setEnabled(false);
+            pane.bhapus.setEnabled(false);
+        }
+
     }
 
     private void loadheader() {
@@ -107,7 +125,7 @@ public class DaftartransferpersediaaninnerController {
 
     private void loaddata() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -135,7 +153,7 @@ public class DaftartransferpersediaaninnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -146,7 +164,7 @@ public class DaftartransferpersediaaninnerController {
 
     private void loaddatadetailraw() {
         cleardata();
-        disablebutton(pane);
+        disablebutton();
         dtm.getDataVector().removeAllElements();
         dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
@@ -175,7 +193,7 @@ public class DaftartransferpersediaaninnerController {
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
-                disablebutton(pane);
+                disablebutton();
 
             }
 
@@ -209,7 +227,7 @@ public class DaftartransferpersediaaninnerController {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting()) {
-                    enablebutton(pane);
+                    enablebutton();
                     //System.out.println(id);
                 }
 
@@ -331,14 +349,13 @@ public class DaftartransferpersediaaninnerController {
         });
     }
 
-    private void disablebutton(Daftartransferpersediaan_inner_panel pane) {
+    private void disablebutton() {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
 
-    private void enablebutton(Daftartransferpersediaan_inner_panel pane) {
-        pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
+    private void enablebutton() {
+        userakses();
     }
 
 }

@@ -122,6 +122,7 @@ public class DaftarfakturpembelianinputController {
 
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         setpopup();
         skinning();
         loaddata();
@@ -864,6 +865,7 @@ public class DaftarfakturpembelianinputController {
                         Staticvar.pmp.container.revalidate();
                         Staticvar.pmp.container.repaint();
                         Staticvar.frame = "";
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -925,6 +927,7 @@ public class DaftarfakturpembelianinputController {
                 Staticvar.pmp.container.revalidate();
                 Staticvar.pmp.container.repaint();
                 Staticvar.frame = "";
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1079,6 +1082,7 @@ public class DaftarfakturpembelianinputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("3", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.endsWith("rincian_hutang")) {
                             inpane = new Daftarhutangrincian_inner_panel();

@@ -30,6 +30,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
@@ -1313,9 +1314,9 @@ public class PengaturaninnerController {
         ch.insertdata("insertdatasetupprogram", data);
         if (Staticvar.getresult.equals("berhasil")) {
             simpankefile();
-            if (JOptionPane.showConfirmDialog(null, "Pengaturan Disimpan, Aplikasi Akan Merestart", "Informasi", JOptionPane.OK_CANCEL_OPTION) == 0) {
-                System.exit(0);
-            }
+            new Globalsession();
+            JOptionPane.showMessageDialog(null, "Pengaturan Disimpan, Jika Tidak Ada perubahan Restart Aplikasi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+
         } else {
             JDialog jd = new JDialog(new Mainmenu());
             Errorpanel ep = new Errorpanel();

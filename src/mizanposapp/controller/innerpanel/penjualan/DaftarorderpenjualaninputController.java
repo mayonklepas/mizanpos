@@ -118,6 +118,7 @@ public class DaftarorderpenjualaninputController {
 
     public DaftarorderpenjualaninputController(Daftarorderpenjualan_input_panel pane) {
         this.pane = pane;
+        Staticvar.inputmode = true;
         skinning();
         loadsession();
         loaddata();
@@ -820,6 +821,7 @@ public class DaftarorderpenjualaninputController {
                         Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
                         Staticvar.pp.container.revalidate();
                         Staticvar.pp.container.repaint();
+                        Staticvar.inputmode = false;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -875,6 +877,7 @@ public class DaftarorderpenjualaninputController {
                 Staticvar.pp.container.add(inpane, BorderLayout.CENTER);
                 Staticvar.pp.container.revalidate();
                 Staticvar.pp.container.repaint();
+                Staticvar.inputmode = false;
             } else {
                 JDialog jd = new JDialog(new Mainmenu());
                 Errorpanel ep = new Errorpanel();
@@ -1020,6 +1023,7 @@ public class DaftarorderpenjualaninputController {
                     @Override
                     public void run() {
                         new FuncHelper().insertnogagal("22", new Date(), valdept, String.valueOf(no_urut));
+                        Staticvar.inputmode = false;
                         Daftarorderpenjualan_inner_panel inpane = new Daftarorderpenjualan_inner_panel();
                         Staticvar.pp.container.removeAll();
                         Staticvar.pp.container.setLayout(new BorderLayout());

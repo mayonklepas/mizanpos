@@ -217,22 +217,22 @@ public class SettingakunpentinginnerController {
 
     private void rawsimpan() {
         String data = "id_dept=" + valdept + "&id_currency=" + valcurr + ""
-                + "&acc_config="
-                + "akun='" + valhutang_usaha + "'::keterangan='" + pane.lhutang_usaha.getText() + "'--"
-                + "akun='" + valhutang_giro + "'::keterangan='" + pane.lhutang_giro.getText() + "'--"
-                + "akun='" + valpiutang_usaha + "'::keterangan='" + pane.lpiutang_usaha.getText() + "'--"
-                + "akun='" + valpiutang_giro + "'::keterangan='" + pane.lpiutang_giro.getText() + "'--"
-                + "akun='" + valpembelian_tunai + "'::keterangan='" + pane.lpembelian_tunai.getText() + "'--"
-                + "akun='" + valpenjualan_tunai + "'::keterangan='" + pane.lpenjualan_tunai.getText() + "'--"
-                + "akun='" + valakun_kas + "'::keterangan='" + pane.lakun_kas.getText() + "'--"
-                + "akun='" + valdiskon_pembelian + "'::keterangan='" + pane.ldiskon_pembelian.getText() + "'--"
-                + "akun='" + valdiskon_penjualan + "'::keterangan='" + pane.ldiskon_penjualan.getText() + "'--"
-                + "akun='" + valuang_muka_pembelian + "'::keterangan='" + pane.luang_muka_pembelian.getText() + "'--"
-                + "akun='" + valuang_muka_penjualan + "'::keterangan='" + pane.luang_muka_penjualan.getText() + "'--"
-                + "akun='" + valbiaya_lain_pembelian + "'::keterangan='" + pane.lbiaya_lain_pembelian.getText() + "'--"
-                + "akun='" + valbiaya_lain_penjualan + "'::keterangan='" + pane.lbiaya_lain_penjualan.getText() + "'--"
-                + "akun='" + vallabarugi_tahun_berjalan + "'::keterangan='" + pane.llabarugi_tahun_berjalan.getText() + "'--"
-                + "akun='" + vallabarugi_ditahan + "'::keterangan='" + pane.llabarugi_ditahan.getText() + "'";
+             + "&acc_config="
+             + "akun='" + valhutang_usaha + "'::keterangan='" + pane.lhutang_usaha.getText() + "'--"
+             + "akun='" + valhutang_giro + "'::keterangan='" + pane.lhutang_giro.getText() + "'--"
+             + "akun='" + valpiutang_usaha + "'::keterangan='" + pane.lpiutang_usaha.getText() + "'--"
+             + "akun='" + valpiutang_giro + "'::keterangan='" + pane.lpiutang_giro.getText() + "'--"
+             + "akun='" + valpembelian_tunai + "'::keterangan='" + pane.lpembelian_tunai.getText() + "'--"
+             + "akun='" + valpenjualan_tunai + "'::keterangan='" + pane.lpenjualan_tunai.getText() + "'--"
+             + "akun='" + valakun_kas + "'::keterangan='" + pane.lakun_kas.getText() + "'--"
+             + "akun='" + valdiskon_pembelian + "'::keterangan='" + pane.ldiskon_pembelian.getText() + "'--"
+             + "akun='" + valdiskon_penjualan + "'::keterangan='" + pane.ldiskon_penjualan.getText() + "'--"
+             + "akun='" + valuang_muka_pembelian + "'::keterangan='" + pane.luang_muka_pembelian.getText() + "'--"
+             + "akun='" + valuang_muka_penjualan + "'::keterangan='" + pane.luang_muka_penjualan.getText() + "'--"
+             + "akun='" + valbiaya_lain_pembelian + "'::keterangan='" + pane.lbiaya_lain_pembelian.getText() + "'--"
+             + "akun='" + valbiaya_lain_penjualan + "'::keterangan='" + pane.lbiaya_lain_penjualan.getText() + "'--"
+             + "akun='" + vallabarugi_tahun_berjalan + "'::keterangan='" + pane.llabarugi_tahun_berjalan.getText() + "'--"
+             + "akun='" + vallabarugi_ditahan + "'::keterangan='" + pane.llabarugi_ditahan.getText() + "'";
         ch.insertdata("updateakunpenting", data);
         if (Staticvar.getresult.equals("berhasil")) {
             Staticvar.isupdate = true;
@@ -574,20 +574,20 @@ public class SettingakunpentinginnerController {
     private boolean checkakunkosong() {
         boolean status = true;
         if (valhutang_usaha.equals("")
-                || valhutang_giro.equals("")
-                || valpiutang_giro.equals("")
-                || valpiutang_usaha.equals("")
-                || valpembelian_tunai.equals("")
-                || valpenjualan_tunai.equals("")
-                || valakun_kas.equals("")
-                || valdiskon_pembelian.equals("")
-                || valdiskon_penjualan.equals("")
-                || valuang_muka_pembelian.equals("")
-                || valuang_muka_penjualan.equals("")
-                || valbiaya_lain_pembelian.equals("")
-                || valbiaya_lain_penjualan.equals("")
-                || vallabarugi_tahun_berjalan.equals("")
-                || vallabarugi_ditahan.equals("")) {
+             || valhutang_giro.equals("")
+             || valpiutang_giro.equals("")
+             || valpiutang_usaha.equals("")
+             || valpembelian_tunai.equals("")
+             || valpenjualan_tunai.equals("")
+             || valakun_kas.equals("")
+             || valdiskon_pembelian.equals("")
+             || valdiskon_penjualan.equals("")
+             || valuang_muka_pembelian.equals("")
+             || valuang_muka_penjualan.equals("")
+             || valbiaya_lain_pembelian.equals("")
+             || valbiaya_lain_penjualan.equals("")
+             || vallabarugi_tahun_berjalan.equals("")
+             || vallabarugi_ditahan.equals("")) {
             status = false;
         } else {
             status = true;

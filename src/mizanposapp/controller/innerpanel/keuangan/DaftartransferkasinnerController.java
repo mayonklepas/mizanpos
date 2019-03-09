@@ -316,7 +316,7 @@ public class DaftartransferkasinnerController {
                 int row = pane.tabledata.getSelectedRow();
                 System.out.println(idlist.get(row));
                 if (JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                     String data = String.format("id=%s", idlist.get(row));
                     ch.deletedata("deletetransferkas", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
