@@ -527,6 +527,8 @@ public class PosframeController {
             valsalesman = "";
             valshipvia = "";
             valtop = "";
+            pane.edpelanggan.setText(Globalsession.Penjualan_PelangganUmumnama);
+            valpelanggan = Globalsession.Penjualan_PelangganUmum;
             pane.lsubtotal.setText("0");
             pane.ltotal_pajak.setText("0");
             pane.ltotal_service.setText("0");

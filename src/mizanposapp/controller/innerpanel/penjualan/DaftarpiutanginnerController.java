@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.innerpanel.penjualan.Daftarpiutang_inner_panel;
@@ -62,6 +63,16 @@ public class DaftarpiutanginnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+        userakses();
+
+    }
+
+    private void userakses() {
+        if (Globalsession.penjualan_piutang_input.equals("1")) {
+            pane.bbayar.setEnabled(true);
+        } else {
+            pane.bbayar.setEnabled(false);
+        }
 
     }
 
@@ -261,7 +272,11 @@ public class DaftarpiutanginnerController {
     }
 
     private void enablebutton() {
-        pane.bbayar.setEnabled(true);
+        if (Globalsession.penjualan_piutang_input.equals("1")) {
+            pane.bbayar.setEnabled(true);
+        } else {
+            pane.bbayar.setEnabled(false);
+        }
         pane.bdetailbayar.setEnabled(true);
     }
 

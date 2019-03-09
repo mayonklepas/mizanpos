@@ -198,6 +198,9 @@ public class DaftarfakturpenjualaninputController {
         valakun_uang_muka = Globalsession.AKUNUANGMUKAPENJUALAN;
         valakun_diskon = Globalsession.AKUNDISKONPENJUALAN;
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPENJUALAN;
+        pane.edpelanggan.setText(Globalsession.Penjualan_PelangganUmumnama);
+        valpelanggan = Globalsession.Penjualan_PelangganUmum;
+
     }
 
     private void skinning() {
@@ -419,7 +422,7 @@ public class DaftarfakturpenjualaninputController {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             pane.tabledata.setModel(dtmtabeldata);
-            String dataheader = ch.getheaders();
+            String dataheader = ch.getheaderinputs();
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
@@ -511,8 +514,8 @@ public class DaftarfakturpenjualaninputController {
                 pane.eduang_muka.setEnabled(false);
                 pane.dtanggal.setDate(new Date());
                 pane.dtanggal_pengantaran.setDate(new Date());
-                pane.edpelanggan.setText("");
-                valpelanggan = "";
+                pane.edpelanggan.setText(Globalsession.Penjualan_PelangganUmumnama);
+                valpelanggan = Globalsession.Penjualan_PelangganUmum;
                 pane.edno_transaksi.setText("");
                 pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
                 valdept = Globalsession.Setting_DeptDefault;

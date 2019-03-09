@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
@@ -90,6 +91,28 @@ public class DaftarhutangrincianinnerController {
         onbuttoncari();
         deleterincian();
         writeoff();
+        userakses();
+
+    }
+
+    private void userakses() {
+        if (Globalsession.pembelian_hutang_input.equals("1")) {
+            pane.btambah.setEnabled(true);
+        } else {
+            pane.btambah.setEnabled(false);
+        }
+
+        if (Globalsession.pembelian_hutang_edit.equals("1")) {
+            pane.bedit.setEnabled(true);
+        } else {
+            pane.bedit.setEnabled(false);
+        }
+
+        if (Globalsession.pembelian_hutang_writeoff.equals("1")) {
+            pane.bwriteoff.setEnabled(true);
+        } else {
+            pane.bwriteoff.setEnabled(false);
+        }
 
     }
 
@@ -408,8 +431,7 @@ public class DaftarhutangrincianinnerController {
     }
 
     private void enablebutton() {
-        pane.bedit.setEnabled(true);
-        pane.bwriteoff.setEnabled(true);
+        userakses();
     }
 
     private void disablebutton2() {
@@ -510,7 +532,7 @@ public class DaftarhutangrincianinnerController {
                 int row = pane.tabledata.getSelectedRow();
                 int rowdetail = pane.tabledatarincian.getSelectedRow();
                 int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     String data = String.format("id=%s", idlistrincian.get(rowdetail));
                     ch.deletedata("deletepembayaranhutang", data);

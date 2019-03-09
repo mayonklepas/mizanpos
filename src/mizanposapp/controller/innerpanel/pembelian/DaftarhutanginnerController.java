@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.innerpanel.pembelian.Daftarhutang_inner_panel;
@@ -61,6 +62,16 @@ public class DaftarhutanginnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+        userakses();
+
+    }
+
+    private void userakses() {
+        if (Globalsession.pembelian_hutang_input.equals("1")) {
+            pane.bbayar.setEnabled(true);
+        } else {
+            pane.bbayar.setEnabled(false);
+        }
 
     }
 
@@ -260,7 +271,7 @@ public class DaftarhutanginnerController {
     }
 
     private void enablebutton() {
-        pane.bbayar.setEnabled(true);
+        userakses();
         pane.bdetailbayar.setEnabled(true);
     }
 

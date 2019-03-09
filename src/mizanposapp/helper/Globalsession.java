@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -191,6 +192,85 @@ public class Globalsession {
     public static String POS_Lebar_Tombol = "";
     public static String POS_Tinggi_Tombol = "";
     public static String POS_Font_Tombol = "";
+
+    //user
+    public static String id_user = "1-190227135837378103454";
+    public static String nama_user = "";
+    public static String keterangan_user = "";
+    public static String dm_saldo_awal_akun = "";
+    public static String dm_saldo_awal_persediaan = "";
+    public static String dm_saldo_awal_hutang = "";
+    public static String dm_saldo_awal_piutang = "";
+    public static String dm_baru_edit_hapus = "";
+    public static String dm_limitasi_gudang = "";
+    public static String dm_limitasi_dept = "";
+    public static String sistem_setup_program = "";
+    public static String sistem_backup_data = "";
+    public static String sistem_setting_pengguna = "";
+    public static String sistem_sql_editor = "";
+    public static String penjualan_order = "";
+    public static String penjualan_order_input = "";
+    public static String penjualan_order_edit = "";
+    public static String penjualan_faktur = "";
+    public static String penjualan_faktur_input = "";
+    public static String penjualan_faktur_edit = "";
+    public static String penjualan_faktur_kredit = "";
+    public static String penjualan_faktur_tarik_order = "";
+    public static String penjualan_faktur_rubah_harga = "";
+    public static String penjualan_retur = "";
+    public static String penjualan_retur_input = "";
+    public static String penjualan_retur_edit = "";
+    public static String penjualan_retur_kredit = "";
+    public static String penjualan_piutang = "";
+    public static String penjualan_piutang_input = "";
+    public static String penjualan_piutang_edit = "";
+    public static String penjualan_piutang_writeoff = "";
+    public static String pembelian_order = "";
+    public static String pembelian_order_input = "";
+    public static String pembelian_order_edit = "";
+    public static String pembelian_faktur = "";
+    public static String pembelian_faktur_input = "";
+    public static String pembelian_faktur_edit = "";
+    public static String pembelian_faktur_kredit = "";
+    public static String pembelian_faktur_tarik_order = "";
+    public static String pembelian_retur = "";
+    public static String pembelian_retur_input = "";
+    public static String pembelian_retur_edit = "";
+    public static String pembelian_retur_kredit = "";
+    public static String pembelian_hutang = "";
+    public static String pembelian_hutang_input = "";
+    public static String pembelian_hutang_edit = "";
+    public static String pembelian_hutang_writeoff = "";
+    public static String persediaan_tampilkan_modal = "";
+    public static String persediaan_rubah_harga_jual = "";
+    public static String persediaan_stok_opname = "";
+    public static String persediaan_perakitan = "";
+    public static String persediaan_penyesuaian = "";
+    public static String persediaan_penyesuaian_input = "";
+    public static String persediaan_penyesuaian_edit = "";
+    public static String persediaan_transfer = "";
+    public static String persediaan_transfer_input = "";
+    public static String persediaan_transfer_edit = "";
+    public static String keuangan_kas_masuk = "";
+    public static String keuangan_kas_masuk_input = "";
+    public static String keuangan_kas_masuk_edit = "";
+    public static String keuangan_kas_keluar = "";
+    public static String keuangan_kas_keluar_input = "";
+    public static String keuangan_kas_keluar_edit = "";
+    public static String akuntansi_jurnal_umum = "";
+    public static String akuntansi_jurnal_umum_input = "";
+    public static String akuntansi_jurnal_umum_edit = "";
+    public static String akuntansi_buku_besar = "";
+    public static String akuntansi_setting_akun_penting = "";
+    public static String akuntansi_tutup_buku = "";
+    public static String akuntansi_hitung_ulang_saldo = "";
+    public static String akuntansi_reposting = "";
+    public static String akuntansi_ganti_periode = "";
+    public static String laporan_kuangan = "";
+    public static String laporan_buku_besar = "";
+    public static String laporan_pembelian = "";
+    public static String laporan_penjualan = "";
+    public static String laporan_persediaan = "";
 
     public Globalsession() {
         StringBuilder sb = new StringBuilder();
@@ -486,6 +566,7 @@ public class Globalsession {
             }
 
             loadconfigprop();
+            loaddatahakakses();
 
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class
@@ -562,4 +643,115 @@ public class Globalsession {
         }
     }
 
+    private void loaddatahakakses() {
+        StringBuilder sb = new StringBuilder();
+        String param = "id=" + id_user;
+        try {
+            URL url = new URL(Staticvar.url + "dm/datapengguna");
+            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+            huc.setRequestMethod("POST");
+            huc.setDoInput(true);
+            huc.setDoOutput(true);
+            huc.connect();
+            OutputStream os = huc.getOutputStream();
+            os.write(param.getBytes());
+            BufferedReader brdata = new BufferedReader(new InputStreamReader(huc.getInputStream()));
+            String linedata = "";
+            while ((linedata = brdata.readLine()) != null) {
+                sb.append(linedata);
+            }
+            brdata.close();
+            JSONParser jpdata = new JSONParser();
+            Object objdata = jpdata.parse(sb.toString());
+            JSONArray jasetup = (JSONArray) objdata;
+            for (int i = 0; i < jasetup.size(); i++) {
+                JSONObject jo = (JSONObject) jasetup.get(i);
+                id_user = String.valueOf(jo.get("id"));
+                nama_user = String.valueOf(jo.get("nama"));
+                keterangan_user = String.valueOf(jo.get("keterangan"));
+                dm_saldo_awal_akun = String.valueOf(jo.get("dm_saldo_awal_akun"));
+                dm_saldo_awal_persediaan = String.valueOf(jo.get("dm_saldo_awal_persediaan"));
+                dm_saldo_awal_hutang = String.valueOf(jo.get("dm_saldo_awal_hutang"));
+                dm_saldo_awal_piutang = String.valueOf(jo.get("dm_saldo_awal_piutang"));
+                dm_baru_edit_hapus = String.valueOf(jo.get("dm_baru_edit_hapus"));
+                dm_limitasi_gudang = String.valueOf(jo.get("dm_limitasi_gudang"));
+                dm_limitasi_dept = String.valueOf(jo.get("dm_limitasi_dept"));
+                sistem_setup_program = String.valueOf(jo.get("sistem_setup_program"));
+                sistem_backup_data = String.valueOf(jo.get("sistem_backup_data"));
+                sistem_setting_pengguna = String.valueOf(jo.get("sistem_setting_pengguna"));
+                sistem_sql_editor = String.valueOf(jo.get("sistem_sql_editor"));
+                penjualan_order = String.valueOf(jo.get("penjualan_order"));
+                penjualan_order_input = String.valueOf(jo.get("penjualan_order_input"));
+                penjualan_order_edit = String.valueOf(jo.get("penjualan_order_edit"));
+                penjualan_faktur = String.valueOf(jo.get("penjualan_faktur"));
+                penjualan_faktur_input = String.valueOf(jo.get("penjualan_faktur_input"));
+                penjualan_faktur_edit = String.valueOf(jo.get("penjualan_faktur_edit"));
+                penjualan_faktur_kredit = String.valueOf(jo.get("penjualan_faktur_kredit"));
+                penjualan_faktur_tarik_order = String.valueOf(jo.get("penjualan_faktur_tarik_order"));
+                penjualan_faktur_rubah_harga = String.valueOf(jo.get("penjualan_faktur_rubah_harga"));
+                penjualan_retur = String.valueOf(jo.get("penjualan_retur"));
+                penjualan_retur_input = String.valueOf(jo.get("penjualan_retur_input"));
+                penjualan_retur_edit = String.valueOf(jo.get("penjualan_retur_edit"));
+                penjualan_retur_kredit = String.valueOf(jo.get("penjualan_retur_kredit"));
+                penjualan_piutang = String.valueOf(jo.get("penjualan_piutang"));
+                penjualan_piutang_input = String.valueOf(jo.get("penjualan_piutang_input"));
+                penjualan_piutang_edit = String.valueOf(jo.get("penjualan_piutang_edit"));
+                penjualan_piutang_writeoff = String.valueOf(jo.get("penjualan_piutang_writeoff"));
+                pembelian_order = String.valueOf(jo.get("pembelian_order"));
+                pembelian_order_input = String.valueOf(jo.get("pembelian_order_input"));
+                pembelian_order_edit = String.valueOf(jo.get("pembelian_order_edit"));
+                pembelian_faktur = String.valueOf(jo.get("pembelian_faktur"));
+                pembelian_faktur_input = String.valueOf(jo.get("pembelian_faktur_input"));
+                pembelian_faktur_edit = String.valueOf(jo.get("pembelian_faktur_edit"));
+                pembelian_faktur_kredit = String.valueOf(jo.get("pembelian_faktur_kredit"));
+                pembelian_faktur_tarik_order = String.valueOf(jo.get("pembelian_faktur_tarik_order"));
+                pembelian_retur = String.valueOf(jo.get("pembelian_retur"));
+                pembelian_retur_input = String.valueOf(jo.get("pembelian_retur_input"));
+                pembelian_retur_edit = String.valueOf(jo.get("pembelian_retur_edit"));
+                pembelian_retur_kredit = String.valueOf(jo.get("pembelian_retur_kredit"));
+                pembelian_hutang = String.valueOf(jo.get("pembelian_hutang"));
+                pembelian_hutang_input = String.valueOf(jo.get("pembelian_hutang_input"));
+                pembelian_hutang_edit = String.valueOf(jo.get("pembelian_hutang_edit"));
+                pembelian_hutang_writeoff = String.valueOf(jo.get("pembelian_hutang_writeoff"));
+                persediaan_tampilkan_modal = String.valueOf(jo.get("persediaan_tampilkan_modal"));
+                persediaan_rubah_harga_jual = String.valueOf(jo.get("persediaan_rubah_harga_jual"));
+                persediaan_stok_opname = String.valueOf(jo.get("persediaan_stok_opname"));
+                persediaan_perakitan = String.valueOf(jo.get("persediaan_perakitan"));
+                persediaan_penyesuaian = String.valueOf(jo.get("persediaan_penyesuaian"));
+                persediaan_penyesuaian_input = String.valueOf(jo.get("persediaan_penyesuaian_input"));
+                persediaan_penyesuaian_edit = String.valueOf(jo.get("persediaan_penyesuaian_edit"));
+                persediaan_transfer = String.valueOf(jo.get("persediaan_transfer"));
+                persediaan_transfer_input = String.valueOf(jo.get("persediaan_transfer_input"));
+                persediaan_transfer_edit = String.valueOf(jo.get("persediaan_transfer_edit"));
+                keuangan_kas_masuk = String.valueOf(jo.get("keuangan_kas_masuk"));
+                keuangan_kas_masuk_input = String.valueOf(jo.get("keuangan_kas_masuk_input"));
+                keuangan_kas_masuk_edit = String.valueOf(jo.get("keuangan_kas_masuk_edit"));
+                keuangan_kas_keluar = String.valueOf(jo.get("keuangan_kas_keluar"));
+                keuangan_kas_keluar_input = String.valueOf(jo.get("keuangan_kas_keluar_input"));
+                keuangan_kas_keluar_edit = String.valueOf(jo.get("keuangan_kas_keluar_edit"));
+                akuntansi_jurnal_umum = String.valueOf(jo.get("akuntansi_jurnal_umum"));
+                akuntansi_jurnal_umum_input = String.valueOf(jo.get("akuntansi_jurnal_umum_input"));
+                akuntansi_jurnal_umum_edit = String.valueOf(jo.get("akuntansi_jurnal_umum_edit"));
+                akuntansi_buku_besar = String.valueOf(jo.get("akuntansi_buku_besar"));
+                akuntansi_setting_akun_penting = String.valueOf(jo.get("akuntansi_setting_akun_penting"));
+                akuntansi_tutup_buku = String.valueOf(jo.get("akuntansi_tutup_buku"));
+                akuntansi_hitung_ulang_saldo = String.valueOf(jo.get("akuntansi_hitung_ulang_saldo"));
+                akuntansi_reposting = String.valueOf(jo.get("akuntansi_reposting"));
+                akuntansi_ganti_periode = String.valueOf(jo.get("akuntansi_ganti_periode"));
+                laporan_kuangan = String.valueOf(jo.get("laporan_kuangan"));
+                laporan_buku_besar = String.valueOf(jo.get("laporan_buku_besar"));
+                laporan_pembelian = String.valueOf(jo.get("laporan_pembelian"));
+                laporan_penjualan = String.valueOf(jo.get("laporan_penjualan"));
+                laporan_persediaan = String.valueOf(jo.get("laporan_persediaan"));
+
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Globalsession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

@@ -66,6 +66,24 @@ public class DaftarfakturpembelianinnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+        userakses();
+
+    }
+
+    private void userakses() {
+        if (Globalsession.pembelian_faktur_input.equals("1")) {
+            pane.btambah.setEnabled(true);
+        } else {
+            pane.btambah.setEnabled(false);
+        }
+
+        if (Globalsession.pembelian_faktur_edit.equals("1")) {
+            pane.bedit.setEnabled(true);
+            pane.bhapus.setEnabled(true);
+        } else {
+            pane.bedit.setEnabled(false);
+            pane.bhapus.setEnabled(false);
+        }
 
     }
 
@@ -156,7 +174,7 @@ public class DaftarfakturpembelianinnerController {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("tahun=%s&bulan=%s&cari=%s", Globalsession.periode_year,
-                        Globalsession.periode_month, pane.tcari.getText());
+                     Globalsession.periode_month, pane.tcari.getText());
                 Object objdata = jpdata.parse(ch.getdatadetails("caripembelian", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -229,7 +247,7 @@ public class DaftarfakturpembelianinnerController {
                 int row = pane.tabledata.getSelectedRow();
                 System.out.println(idlist.get(row));
                 int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                        "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (dialog == 0) {
                     String data = String.format("id=%s", idlist.get(row));
                     ch.deletedata("deletepembelian", data);
@@ -304,8 +322,7 @@ public class DaftarfakturpembelianinnerController {
     }
 
     private void enablebutton() {
-        pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
+        userakses();
     }
 
     private void inputdata() {

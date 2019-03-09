@@ -430,7 +430,7 @@ public class DaftarreturpembelianinputController {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             pane.tabledata.setModel(dtmtabeldata);
-            String dataheader = ch.getheaders();
+            String dataheader = ch.getheaderinputs();
             JSONParser jpheader = new JSONParser();
             Object objheader = jpheader.parse(dataheader);
             JSONObject joheader = (JSONObject) objheader;
