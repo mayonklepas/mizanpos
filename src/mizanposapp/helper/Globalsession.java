@@ -550,9 +550,9 @@ public class Globalsession {
                 nama_dept_company = String.valueOf(joindata.get("nama_dept"));
                 id_currency = String.valueOf(joindata.get("id_currency"));
                 fax = String.valueOf(joindata.get("fax"));
-                create_data_month = String.valueOf(Integer.parseInt(String.valueOf(joindata.get("create_data_month"))) - 1);
+                create_data_month = String.valueOf(Integer.parseInt(String.valueOf(joindata.get("create_data_month"))));
                 create_data_month = String.valueOf(joindata.get("create_data_year"));
-                periode_month = String.valueOf(Integer.parseInt(String.valueOf(joindata.get("periode_month"))) - 1);
+                periode_month = String.valueOf(String.valueOf(joindata.get("periode_month")));
                 periode_year = String.valueOf(joindata.get("periode_year"));
                 npwp = String.valueOf(joindata.get("npwp"));
                 pkp_tanggal = String.valueOf(joindata.get("pkp_tanggal"));

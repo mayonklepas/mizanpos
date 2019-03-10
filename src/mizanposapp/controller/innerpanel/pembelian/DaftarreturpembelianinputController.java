@@ -365,10 +365,10 @@ public class DaftarreturpembelianinputController {
                         showtable(gx(diskon_nominal));
                         valcheck = 1;
                     }
-                    if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                    if (jc.getSelectedIndex() == 0) {
                         showtable(gx(order));
                     } else {
-                        showtable(gx(order));
+                        hidetable(gx(order));
                     }
 
                 } else {
@@ -395,10 +395,10 @@ public class DaftarreturpembelianinputController {
                         showtable(gx(diskon_nominal));
                         valcheck = 1;
                     }
-                    if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                    if (jc.getSelectedIndex() == 0) {
                         showtable(gx(order));
                     } else {
-                        showtable(gx(order));
+                        hidetable(gx(order));
                     }
                 }
 
@@ -568,10 +568,10 @@ public class DaftarreturpembelianinputController {
                     pane.ckdiskon.setSelected(false);
                     valcheck = 1;
                 }
-                if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
                     showtable(gx(order));
                 } else {
-                    showtable(gx(order));
+                    hidetable(gx(order));
                 }
                 if (pane.ckdiskon.isSelected()) {
                     hidetable(gx(diskon_nominal));
@@ -771,10 +771,10 @@ public class DaftarreturpembelianinputController {
                             showtable(gx(diskon_nominal));
                             valcheck = 1;
                         }
-                        if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
+                        if (pane.cmb_tipe_pembelian.getSelectedIndex() == 0) {
                             showtable(gx(order));
                         } else {
-                            showtable(gx(order));
+                            hidetable(gx(order));
                         }
 
                     } else {
@@ -803,7 +803,7 @@ public class DaftarreturpembelianinputController {
                         if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                             showtable(gx(order));
                         } else {
-                            showtable(gx(order));
+                            hidetable(gx(order));
                         }
                     }
 
@@ -2260,11 +2260,14 @@ public class DaftarreturpembelianinputController {
     }
 
     private void showtable(int index) {
-        TableColumn col = pane.tabledata.getColumnModel().getColumn(index);
-        col.setMinWidth(100);
-        col.setMaxWidth(100);
-        col.setWidth(100);
-        col.setPreferredWidth(100);
+        if (lshide.get(gx(order)).equals("1")) {
+            TableColumn col = pane.tabledata.getColumnModel().getColumn(index);
+            col.setMinWidth(100);
+            col.setMaxWidth(100);
+            col.setWidth(100);
+            col.setPreferredWidth(100);
+        }
+
     }
 
     private void columnfunction(int row, int col, boolean addrow) {

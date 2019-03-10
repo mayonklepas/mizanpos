@@ -228,6 +228,29 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         cktampilfakturpajakpenjualan = new javax.swing.JCheckBox();
         cktampilfakturgudangpenjualan = new javax.swing.JCheckBox();
         cktampilfakturstockpenjualan = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        cktampilorderketeranganpembelian = new javax.swing.JCheckBox();
+        cktampilorderpajakpembelian = new javax.swing.JCheckBox();
+        cktampilorderhargajualpembelian = new javax.swing.JCheckBox();
+        cktampilordergudangpembelian = new javax.swing.JCheckBox();
+        jPanel16 = new javax.swing.JPanel();
+        cksetselesaiorderpembelian = new javax.swing.JCheckBox();
+        ckmasukanpajakpembelian = new javax.swing.JCheckBox();
+        ckhitungtotalbarispembelian = new javax.swing.JCheckBox();
+        ckfakturtanpapengecekanmutasipembelian = new javax.swing.JCheckBox();
+        jPanel39 = new javax.swing.JPanel();
+        cktampilreturorderpembelian = new javax.swing.JCheckBox();
+        cktampilreturketeranganpembelian = new javax.swing.JCheckBox();
+        cktampilreturpajakpembelian = new javax.swing.JCheckBox();
+        cktampilreturhargajualpembelian = new javax.swing.JCheckBox();
+        cktampilreturgudangpembelian = new javax.swing.JCheckBox();
+        jPanel40 = new javax.swing.JPanel();
+        cktampilfakturorderpembelian = new javax.swing.JCheckBox();
+        cktampilfakturketeranganpembelian = new javax.swing.JCheckBox();
+        cktampilfakturpajakpembelian = new javax.swing.JCheckBox();
+        cktampilfakturhargajualpembelian = new javax.swing.JCheckBox();
+        cktampilfakturgudangpembelian = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         ckhpphargabeliterakhirpersediaan = new javax.swing.JCheckBox();
@@ -254,29 +277,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         ltitik2akunstockopnamepersediaan = new javax.swing.JLabel();
         edakunstockopnamepersediaan = new javax.swing.JTextField();
         bcariakunstockopnamepersediaan = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        cktampilorderketeranganpembelian = new javax.swing.JCheckBox();
-        cktampilorderpajakpembelian = new javax.swing.JCheckBox();
-        cktampilorderhargajualpembelian = new javax.swing.JCheckBox();
-        cktampilordergudangpembelian = new javax.swing.JCheckBox();
-        jPanel16 = new javax.swing.JPanel();
-        cksetselesaiorderpembelian = new javax.swing.JCheckBox();
-        ckmasukanpajakpembelian = new javax.swing.JCheckBox();
-        ckhitungtotalbarispembelian = new javax.swing.JCheckBox();
-        ckfakturtanpapengecekanmutasipembelian = new javax.swing.JCheckBox();
-        jPanel39 = new javax.swing.JPanel();
-        cktampilreturorderpembelian = new javax.swing.JCheckBox();
-        cktampilreturketeranganpembelian = new javax.swing.JCheckBox();
-        cktampilreturpajakpembelian = new javax.swing.JCheckBox();
-        cktampilreturhargajualpembelian = new javax.swing.JCheckBox();
-        cktampilreturgudangpembelian = new javax.swing.JCheckBox();
-        jPanel40 = new javax.swing.JPanel();
-        cktampilfakturorderpembelian = new javax.swing.JCheckBox();
-        cktampilfakturketeranganpembelian = new javax.swing.JCheckBox();
-        cktampilfakturpajakpembelian = new javax.swing.JCheckBox();
-        cktampilfakturhargajualpembelian = new javax.swing.JCheckBox();
-        cktampilfakturgudangpembelian = new javax.swing.JCheckBox();
         jPanel6 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         ckbarisbarupos = new javax.swing.JCheckBox();
@@ -1710,248 +1710,6 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Penjualan", jPanel3);
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Setting Umum"));
-
-        ckhpphargabeliterakhirpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        ckhpphargabeliterakhirpersediaan.setText("HPP Menggunakan Harga Beli Terakhir");
-
-        ckcekstocksebelumsimpanpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        ckcekstocksebelumsimpanpersediaan.setText("Cek Stock Sebelum Simpan ke Transaksi ");
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ckhpphargabeliterakhirpersediaan)
-                    .addComponent(ckcekstocksebelumsimpanpersediaan))
-                .addContainerGap(233, Short.MAX_VALUE))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ckhpphargabeliterakhirpersediaan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ckcekstocksebelumsimpanpersediaan)
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
-
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Tampilkan Field Pada Daftar Persediaan"));
-
-        cktampilfieldkodepersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldkodepersediaan.setText("Kode");
-
-        cktampilfieldkelompokpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldkelompokpersediaan.setText("Kelompok");
-
-        cktampilfieldsatuanpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldsatuanpersediaan.setText("Satuan");
-        cktampilfieldsatuanpersediaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cktampilfieldsatuanpersediaanActionPerformed(evt);
-            }
-        });
-
-        cktampilfieldsuplierpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldsuplierpersediaan.setText("Suplier");
-        cktampilfieldsuplierpersediaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cktampilfieldsuplierpersediaanActionPerformed(evt);
-            }
-        });
-
-        cktampilfieldmerekpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldmerekpersediaan.setText("Merek");
-
-        cktampilfieldlokasipersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldlokasipersediaan.setText("Lokasi");
-
-        cktampilfieldhargebeliterakhirpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldhargebeliterakhirpersediaan.setText("Harga Beli Terakhir");
-
-        cktampilfieldhpppersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldhpppersediaan.setText("HPP");
-
-        cktampilfieldhargajualpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldhargajualpersediaan.setText("Harga Jual");
-
-        cktampilfieldketeranganpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        cktampilfieldketeranganpersediaan.setText("Keterangan");
-
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cktampilfieldkodepersediaan)
-                    .addComponent(cktampilfieldkelompokpersediaan)
-                    .addComponent(cktampilfieldsatuanpersediaan)
-                    .addComponent(cktampilfieldsuplierpersediaan))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cktampilfieldhargebeliterakhirpersediaan)
-                    .addComponent(cktampilfieldlokasipersediaan)
-                    .addComponent(cktampilfieldmerekpersediaan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cktampilfieldketeranganpersediaan)
-                    .addComponent(cktampilfieldhargajualpersediaan)
-                    .addComponent(cktampilfieldhpppersediaan))
-                .addContainerGap(136, Short.MAX_VALUE))
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cktampilfieldkodepersediaan)
-                            .addComponent(cktampilfieldmerekpersediaan))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cktampilfieldkelompokpersediaan)
-                            .addComponent(cktampilfieldlokasipersediaan)
-                            .addComponent(cktampilfieldketeranganpersediaan))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cktampilfieldsatuanpersediaan)
-                            .addComponent(cktampilfieldhargebeliterakhirpersediaan)
-                            .addComponent(cktampilfieldhpppersediaan)))
-                    .addComponent(cktampilfieldhargajualpersediaan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cktampilfieldsuplierpersediaan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        kontrolserial.setBackground(new java.awt.Color(255, 255, 255));
-        kontrolserial.setBorder(javax.swing.BorderFactory.createTitledBorder("Control Barang Serial"));
-
-        ckserialunikpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        ckserialunikpersediaan.setText("Serial Unik");
-
-        ckserialhanyadigitpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        ckserialhanyadigitpersediaan.setText("Serial Hanya Menggunakan Digit");
-
-        ckbatasipenjangserialpersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        ckbatasipenjangserialpersediaan.setText("Batasi Panjang Serial");
-
-        javax.swing.GroupLayout kontrolserialLayout = new javax.swing.GroupLayout(kontrolserial);
-        kontrolserial.setLayout(kontrolserialLayout);
-        kontrolserialLayout.setHorizontalGroup(
-            kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kontrolserialLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ckserialunikpersediaan)
-                    .addComponent(ckserialhanyadigitpersediaan)
-                    .addComponent(ckbatasipenjangserialpersediaan)))
-        );
-        kontrolserialLayout.setVerticalGroup(
-            kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kontrolserialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ckserialunikpersediaan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ckserialhanyadigitpersediaan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ckbatasipenjangserialpersediaan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Stock Opname"));
-
-        rbgunakanakunhpppersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        rbgunakanakunhpppersediaan.setText("Gunakan Akun HPP");
-
-        rbgunakanakunlainnyapersediaan.setBackground(new java.awt.Color(255, 255, 255));
-        rbgunakanakunlainnyapersediaan.setText("Gunakan Akun Lainnya");
-
-        lakunstockopnamepersediaan.setText("Akun");
-
-        ltitik2akunstockopnamepersediaan.setText(":");
-
-        bcariakunstockopnamepersediaan.setText("Cari");
-
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addComponent(lakunstockopnamepersediaan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ltitik2akunstockopnamepersediaan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edakunstockopnamepersediaan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bcariakunstockopnamepersediaan))
-                    .addGroup(jPanel21Layout.createSequentialGroup()
-                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbgunakanakunhpppersediaan)
-                            .addComponent(rbgunakanakunlainnyapersediaan))
-                        .addGap(0, 271, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel21Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rbgunakanakunhpppersediaan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbgunakanakunlainnyapersediaan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lakunstockopnamepersediaan)
-                    .addComponent(ltitik2akunstockopnamepersediaan)
-                    .addComponent(edakunstockopnamepersediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bcariakunstockopnamepersediaan))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kontrolserial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(277, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kontrolserial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Persediaan", jPanel5);
-
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -2194,6 +1952,248 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Pembelian", jPanel4);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Setting Umum"));
+
+        ckhpphargabeliterakhirpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        ckhpphargabeliterakhirpersediaan.setText("HPP Menggunakan Harga Beli Terakhir");
+
+        ckcekstocksebelumsimpanpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        ckcekstocksebelumsimpanpersediaan.setText("Cek Stock Sebelum Simpan ke Transaksi ");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckhpphargabeliterakhirpersediaan)
+                    .addComponent(ckcekstocksebelumsimpanpersediaan))
+                .addContainerGap(233, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ckhpphargabeliterakhirpersediaan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ckcekstocksebelumsimpanpersediaan)
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel18.setBorder(javax.swing.BorderFactory.createTitledBorder("Tampilkan Field Pada Daftar Persediaan"));
+
+        cktampilfieldkodepersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldkodepersediaan.setText("Kode");
+
+        cktampilfieldkelompokpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldkelompokpersediaan.setText("Kelompok");
+
+        cktampilfieldsatuanpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldsatuanpersediaan.setText("Satuan");
+        cktampilfieldsatuanpersediaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cktampilfieldsatuanpersediaanActionPerformed(evt);
+            }
+        });
+
+        cktampilfieldsuplierpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldsuplierpersediaan.setText("Suplier");
+        cktampilfieldsuplierpersediaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cktampilfieldsuplierpersediaanActionPerformed(evt);
+            }
+        });
+
+        cktampilfieldmerekpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldmerekpersediaan.setText("Merek");
+
+        cktampilfieldlokasipersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldlokasipersediaan.setText("Lokasi");
+
+        cktampilfieldhargebeliterakhirpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldhargebeliterakhirpersediaan.setText("Harga Beli Terakhir");
+
+        cktampilfieldhpppersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldhpppersediaan.setText("HPP");
+
+        cktampilfieldhargajualpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldhargajualpersediaan.setText("Harga Jual");
+
+        cktampilfieldketeranganpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        cktampilfieldketeranganpersediaan.setText("Keterangan");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cktampilfieldkodepersediaan)
+                    .addComponent(cktampilfieldkelompokpersediaan)
+                    .addComponent(cktampilfieldsatuanpersediaan)
+                    .addComponent(cktampilfieldsuplierpersediaan))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cktampilfieldhargebeliterakhirpersediaan)
+                    .addComponent(cktampilfieldlokasipersediaan)
+                    .addComponent(cktampilfieldmerekpersediaan))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cktampilfieldketeranganpersediaan)
+                    .addComponent(cktampilfieldhargajualpersediaan)
+                    .addComponent(cktampilfieldhpppersediaan))
+                .addContainerGap(136, Short.MAX_VALUE))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cktampilfieldkodepersediaan)
+                            .addComponent(cktampilfieldmerekpersediaan))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cktampilfieldkelompokpersediaan)
+                            .addComponent(cktampilfieldlokasipersediaan)
+                            .addComponent(cktampilfieldketeranganpersediaan))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cktampilfieldsatuanpersediaan)
+                            .addComponent(cktampilfieldhargebeliterakhirpersediaan)
+                            .addComponent(cktampilfieldhpppersediaan)))
+                    .addComponent(cktampilfieldhargajualpersediaan))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cktampilfieldsuplierpersediaan)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        kontrolserial.setBackground(new java.awt.Color(255, 255, 255));
+        kontrolserial.setBorder(javax.swing.BorderFactory.createTitledBorder("Control Barang Serial"));
+
+        ckserialunikpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        ckserialunikpersediaan.setText("Serial Unik");
+
+        ckserialhanyadigitpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        ckserialhanyadigitpersediaan.setText("Serial Hanya Menggunakan Digit");
+
+        ckbatasipenjangserialpersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        ckbatasipenjangserialpersediaan.setText("Batasi Panjang Serial");
+
+        javax.swing.GroupLayout kontrolserialLayout = new javax.swing.GroupLayout(kontrolserial);
+        kontrolserial.setLayout(kontrolserialLayout);
+        kontrolserialLayout.setHorizontalGroup(
+            kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kontrolserialLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckserialunikpersediaan)
+                    .addComponent(ckserialhanyadigitpersediaan)
+                    .addComponent(ckbatasipenjangserialpersediaan)))
+        );
+        kontrolserialLayout.setVerticalGroup(
+            kontrolserialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kontrolserialLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ckserialunikpersediaan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ckserialhanyadigitpersediaan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ckbatasipenjangserialpersediaan)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder("Stock Opname"));
+
+        rbgunakanakunhpppersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        rbgunakanakunhpppersediaan.setText("Gunakan Akun HPP");
+
+        rbgunakanakunlainnyapersediaan.setBackground(new java.awt.Color(255, 255, 255));
+        rbgunakanakunlainnyapersediaan.setText("Gunakan Akun Lainnya");
+
+        lakunstockopnamepersediaan.setText("Akun");
+
+        ltitik2akunstockopnamepersediaan.setText(":");
+
+        bcariakunstockopnamepersediaan.setText("Cari");
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(lakunstockopnamepersediaan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ltitik2akunstockopnamepersediaan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(edakunstockopnamepersediaan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bcariakunstockopnamepersediaan))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbgunakanakunhpppersediaan)
+                            .addComponent(rbgunakanakunlainnyapersediaan))
+                        .addGap(0, 271, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbgunakanakunhpppersediaan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbgunakanakunlainnyapersediaan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lakunstockopnamepersediaan)
+                    .addComponent(ltitik2akunstockopnamepersediaan)
+                    .addComponent(edakunstockopnamepersediaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bcariakunstockopnamepersediaan))
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(kontrolserial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(277, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kontrolserial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Persediaan", jPanel5);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -2888,7 +2888,7 @@ public class Pengaturan_inner_panel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 1224, Short.MAX_VALUE)
+            .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 1295, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

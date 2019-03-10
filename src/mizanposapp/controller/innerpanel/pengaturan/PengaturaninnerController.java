@@ -1456,7 +1456,7 @@ public class PengaturaninnerController {
 
     }
 
-    private JSONArray setjson(boolean termasukorder, boolean termasukstok, boolean order, boolean stok, boolean harga_jual, boolean pajak, boolean gudang, boolean keterangan) {
+    private JSONArray setjson(boolean termasukorder, boolean termasukstok, boolean order, boolean stok, boolean harga_beli, boolean harga_jual, boolean pajak, boolean gudang, boolean keterangan) {
         JSONArray jaroot = new JSONArray();
         for (int i = 0; i < 14; i++) {
             JSONArray jainroot = new JSONArray();
@@ -1479,6 +1479,16 @@ public class PengaturaninnerController {
                     size = "10";
                     break;
                 case 2:
+                    val = "stok";
+                    head = "Stok";
+                    if (stok == true) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 3:
                     val = "order";
                     head = "Order";
                     if (order == true) {
@@ -1488,20 +1498,10 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 3:
+                case 4:
                     val = "jumlah";
                     head = "Jumlah";
                     show = "1";
-                    size = "10";
-                    break;
-                case 4:
-                    val = "stok";
-                    head = "Stok";
-                    if (stok == true) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
                     size = "10";
                     break;
                 case 5:
@@ -1513,7 +1513,11 @@ public class PengaturaninnerController {
                 case 6:
                     val = "harga_beli";
                     head = "Harga Beli";
-                    show = "1";
+                    if (harga_beli == true) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
                     size = "10";
                     break;
                 case 7:
@@ -1579,7 +1583,7 @@ public class PengaturaninnerController {
                     break;
             }
 
-            if (i == 2) {
+            if (i == 3) {
                 if (termasukorder == true) {
                     jainroot.add(val);
                     jainroot.add(head);
@@ -1588,7 +1592,7 @@ public class PengaturaninnerController {
                     joinroot.put("key", jainroot);
                     jaroot.add(joinroot);
                 }
-            } else if (i == 4) {
+            } else if (i == 2) {
                 if (termasukstok == true) {
                     jainroot.add(val);
                     jainroot.add(head);
@@ -1625,7 +1629,7 @@ public class PengaturaninnerController {
             pajak_order_penjualan = pane.cktampilorderpajakpenjualan.isSelected();
             gudang_order_penjualan = pane.cktampilordergudangpenjualan.isSelected();
             keterangan_order_penjualan = pane.cktampilorderketeranganpenjualan.isSelected();
-            jsobj.put("inputorderpenjualan", setjson(false, true, false, stok_order_penjualan, false, pajak_order_penjualan, gudang_order_penjualan, keterangan_order_penjualan));
+            jsobj.put("inputorderpenjualan", setjson(true, true, false, stok_order_penjualan, false, true, pajak_order_penjualan, gudang_order_penjualan, keterangan_order_penjualan));
 
             boolean order_faktur_penjualan = false,
                  stok_faktur_penjualan = false,
@@ -1638,7 +1642,15 @@ public class PengaturaninnerController {
             pajak_faktur_penjualan = pane.cktampilfakturpajakpenjualan.isSelected();
             gudang_faktur_penjualan = pane.cktampilfakturgudangpenjualan.isSelected();
             keterangan_faktur_penjualan = pane.cktampilfakturketeranganpenjualan.isSelected();
-            jsobj.put("inputfakturpenjualan", setjson(true, true, order_faktur_penjualan, stok_faktur_penjualan, false, pajak_faktur_penjualan, gudang_faktur_penjualan, keterangan_faktur_penjualan));
+            jsobj.put("inputfakturpenjualan", setjson(true,
+                 true,
+                 order_faktur_penjualan,
+                 stok_faktur_penjualan,
+                 false,
+                 true,
+                 pajak_faktur_penjualan,
+                 gudang_faktur_penjualan,
+                 keterangan_faktur_penjualan));
 
             boolean order_retur_penjualan = false,
                  stok_retur_penjualan = false,
@@ -1651,7 +1663,7 @@ public class PengaturaninnerController {
             pajak_retur_penjualan = pane.cktampilreturpajakpenjualan.isSelected();
             gudang_retur_penjualan = pane.cktampilreturgudangpenjualan.isSelected();
             keterangan_retur_penjualan = pane.cktampilreturketeranganpenjualan.isSelected();
-            jsobj.put("inputreturpenjualan", setjson(true, true, order_retur_penjualan, stok_retur_penjualan, false, pajak_retur_penjualan, gudang_retur_penjualan, keterangan_retur_penjualan));
+            jsobj.put("inputreturpenjualan", setjson(true, true, order_retur_penjualan, stok_retur_penjualan, false, true, pajak_retur_penjualan, gudang_retur_penjualan, keterangan_retur_penjualan));
             //pembelian
             boolean harga_jual_order_pembelian = false,
                  pajak_order_pembelian = false,
@@ -1662,7 +1674,7 @@ public class PengaturaninnerController {
             pajak_order_pembelian = pane.cktampilorderpajakpembelian.isSelected();
             gudang_order_pembelian = pane.cktampilordergudangpembelian.isSelected();
             keterangan_order_pembelian = pane.cktampilorderketeranganpembelian.isSelected();
-            jsobj.put("inputorderpembelian", setjson(false, false, false, false, harga_jual_order_pembelian, pajak_order_pembelian, gudang_order_pembelian, keterangan_order_pembelian));
+            jsobj.put("inputorderpembelian", setjson(false, false, false, false, true, harga_jual_order_pembelian, pajak_order_pembelian, gudang_order_pembelian, keterangan_order_pembelian));
 
             boolean order_faktur_pembelian = false,
                  harga_jual_faktur_pembelian = false,
@@ -1675,7 +1687,7 @@ public class PengaturaninnerController {
             pajak_faktur_pembelian = pane.cktampilfakturpajakpembelian.isSelected();
             gudang_faktur_pembelian = pane.cktampilfakturgudangpembelian.isSelected();
             keterangan_faktur_pembelian = pane.cktampilfakturketeranganpembelian.isSelected();
-            jsobj.put("inputfakturpembelian", setjson(true, false, order_faktur_pembelian, false, harga_jual_faktur_pembelian, pajak_faktur_pembelian, gudang_faktur_pembelian, keterangan_faktur_pembelian));
+            jsobj.put("inputfakturpembelian", setjson(true, false, order_faktur_pembelian, false, true, harga_jual_faktur_pembelian, pajak_faktur_pembelian, gudang_faktur_pembelian, keterangan_faktur_pembelian));
 
             boolean order_retur_pembelian = false,
                  harga_jual_retur_pembelian = false,
@@ -1688,7 +1700,7 @@ public class PengaturaninnerController {
             pajak_retur_pembelian = pane.cktampilreturpajakpembelian.isSelected();
             gudang_retur_pembelian = pane.cktampilreturgudangpembelian.isSelected();
             keterangan_retur_pembelian = pane.cktampilreturketeranganpembelian.isSelected();
-            jsobj.put("inputreturpembelian", setjson(true, false, order_retur_pembelian, false, harga_jual_retur_pembelian, pajak_retur_pembelian, gudang_retur_pembelian, keterangan_retur_pembelian));
+            jsobj.put("inputreturpembelian", setjson(true, false, order_retur_pembelian, false, true, harga_jual_retur_pembelian, pajak_retur_pembelian, gudang_retur_pembelian, keterangan_retur_pembelian));
 
             jsobj.put("persediaan", setjsonpersediaan());
 
