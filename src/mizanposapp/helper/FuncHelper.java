@@ -139,4 +139,25 @@ public class FuncHelper {
         ch.insertdata("insertnomorgagal", data);
     }
 
+    public double getpembulatan(double totalPenjualan) {
+        double pembulatan = 0.0;
+        if (Globalsession.POS_GunakanPembulatan.equals("1")) {
+            pembulatan = Double.parseDouble(Globalsession.POS_PembulatanPer);
+        }
+
+        double sisa = 0;
+        double result = 0;
+        sisa = (totalPenjualan % pembulatan);
+        if (totalPenjualan > 0) {
+            if ((pembulatan - sisa) < pembulatan) {
+                result = (pembulatan - sisa);
+            }
+        } else {
+            if ((pembulatan + sisa) < pembulatan) {
+                result = (-1 * (pembulatan + sisa));
+            }
+        }
+        return result;
+    }
+
 }
