@@ -162,6 +162,7 @@ public class DatapenggunainnerController {
                     jdin.setTitle("Pengaturan Hak Akses");
                     jdin.setVisible(true);
                     if (Staticvar.isupdate == true) {
+                        LoginController.username = "";
                         loaddata();
                         Staticvar.isupdate = false;
                     }
@@ -193,6 +194,7 @@ public class DatapenggunainnerController {
                     jdin.setTitle("Ganti Password");
                     jdin.setVisible(true);
                     if (Staticvar.isupdate == true) {
+                        LoginController.username = "";
                         loaddata();
                         Staticvar.isupdate = false;
                     }

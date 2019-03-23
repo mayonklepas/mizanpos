@@ -83,6 +83,7 @@ public class LoginController {
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
+            username = pane.edusername.getText();
         } else if (Staticvar.getresult.equals("gagal")) {
             FuncHelper.showmessage("Gagal Mengautentifikasi", "Username atau Password yang anda masukan salah, cek kemudian coba ulang kembali");
         } else {

@@ -17,6 +17,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import mizanposapp.controller.innerpanel.pengaturan.LoginController;
+import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Akunting_panel;
@@ -29,6 +31,7 @@ import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.Persedian_panel;
 import mizanposapp.view.frameform.Bantuan;
 import mizanposapp.view.innerpanel.pengaturan.Data_pengguna_inner_panel;
+import mizanposapp.view.innerpanel.pengaturan.Login_panel;
 import mizanposapp.view.innerpanel.pengaturan.Pengaturan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_inner_panel;
@@ -79,6 +82,23 @@ public class MainmenuController {
         panel8mouseevent();
         panel9mouseevent();
         panel10mouseevent();
+        LoginController.username = "";
+        JDialog jd = new JDialog(new Mainmenu());
+        jd.add(new Login_panel());
+        jd.pack();
+        jd.setLocationRelativeTo(null);
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setTitle("Login");
+        jd.setVisible(true);
+        if (Staticvar.isupdate == false) {
+            System.exit(0);
+        } else {
+            Staticvar.isupdate = false;
+            Globalsession.nama_user = LoginController.username;
+            LoginController.username = "";
+            new CrudHelper();
+            new Globalsession();
+        }
     }
 
     private void loadbrowser() {
