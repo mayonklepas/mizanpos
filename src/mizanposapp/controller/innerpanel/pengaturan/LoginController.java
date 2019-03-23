@@ -23,17 +23,17 @@ import mizanposapp.view.innerpanel.pengaturan.Login_panel;
  * @author Minami
  */
 public class LoginController {
-    
+
     Login_panel pane;
     CrudHelper ch = new CrudHelper();
     public static String username = "";
-    
+
     public LoginController(Login_panel pane) {
         this.pane = pane;
         loaddata();
         login();
     }
-    
+
     private void loaddata() {
         if (username.equals("")) {
             pane.edusername.setEnabled(true);
@@ -42,9 +42,9 @@ public class LoginController {
             pane.edusername.setEnabled(false);
             username = "";
         }
-        
+
     }
-    
+
     private void login() {
         pane.blogin.addActionListener(new ActionListener() {
             @Override
@@ -52,7 +52,7 @@ public class LoginController {
                 rawlogin();
             }
         });
-        
+
         pane.edpassword.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -60,9 +60,9 @@ public class LoginController {
                     rawlogin();
                 }
             }
-            
+
         });
-        
+
         pane.edusername.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -70,17 +70,19 @@ public class LoginController {
                     pane.edpassword.requestFocus();
                 }
             }
-            
+
         });
     }
-    
+
     private void rawlogin() {
-        String data = "nama=" + pane.edusername.getText().trim() + "&pwd=" + pane.edpassword + "";
+        String data = "nama=" + pane.edusername.getText().trim() + "&pwd=" + pane.edpassword.getText() + "";
         ch.insertdata("dm/cekpengguna", data);
         if (Staticvar.getresult.equals("berhasil")) {
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
+        } else if (Staticvar.getresult.equals("gagal")) {
+            JOptionPane.showMessageDialog(pane, "Username atau Password Gagal");
         } else {
             Staticvar.isupdate = false;
             JDialog jd = new JDialog(new Mainmenu());
@@ -94,5 +96,5 @@ public class LoginController {
             jd.toFront();
         }
     }
-    
+
 }
