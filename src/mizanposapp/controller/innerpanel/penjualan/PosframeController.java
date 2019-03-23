@@ -154,7 +154,17 @@ public class PosframeController {
                         pane.tabledata.clearSelection();
                         pane.edbarcode.requestFocus();
                     } else {
-                        additemtotable();
+                        if (Globalsession.POS_HarusMenggunakanSalesman.equals("1")) {
+
+                            if (pane.edsalesman.getText().equals("")) {
+                                JOptionPane.showMessageDialog(null, "Anda Harus Mengisi Salesman !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                additemtotable();
+                            }
+                        } else {
+                            additemtotable();
+                        }
+
                     }
 
                 } else if (e.getKeyCode() == KeyEvent.VK_F8) {
@@ -666,7 +676,15 @@ public class PosframeController {
                         pane.ltotalpiutang.setText(nf.format(jumlah_piutang));
                     }
                 } else {
-                    additemtotable();
+                    if (Globalsession.POS_HarusMenggunakanSalesman.equals("1")) {
+                        if (pane.edsalesman.getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Anda Harus Mengisi Salesman !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            additemtotable();
+                        }
+                    } else {
+                        additemtotable();
+                    }
                 }
             }
         });
@@ -1211,30 +1229,35 @@ public class PosframeController {
                     } else {
                         boolean status_ada = true;
 
-                        for (int j = 0; j < tabeldatalist.size(); j++) {
-                            if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))
-                                 && tabeldatalist.get(j).getId_satuan().matches(String.valueOf(jointabeldata.get("id_satuan")))) {
-                                String jumlah_qty = "1";
-                                if (pane.edbarcode.getText().toLowerCase().contains("x")) {
-                                    String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
-                                    if (pre.matches("[0-9]+")) {
-                                        jumlah_qty = pre;
+                        if (Globalsession.POS_ScanBarcodeBuatBaru.equals("1")) {
+                            status_ada = false;
+                        } else {
+
+                            for (int j = 0; j < tabeldatalist.size(); j++) {
+                                if (tabeldatalist.get(j).getId_barang().matches(String.valueOf(jointabeldata.get("id")))
+                                     && tabeldatalist.get(j).getId_satuan().matches(String.valueOf(jointabeldata.get("id_satuan")))) {
+                                    String jumlah_qty = "1";
+                                    if (pane.edbarcode.getText().toLowerCase().contains("x")) {
+                                        String pre = pane.edbarcode.getText().toLowerCase().split("x")[0];
+                                        if (pre.matches("[0-9]+")) {
+                                            jumlah_qty = pre;
+                                        }
                                     }
+                                    int curjumlah = FuncHelper.ToInt(tabeldatalist.get(j).getJumlah()) + FuncHelper.ToInt(jumlah_qty);
+                                    tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
+                                    pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
+                                    double callhargajual = gethargajual(
+                                         tabeldatalist.get(j).getId_barang(),
+                                         tabeldatalist.get(j).getId_satuan(),
+                                         tabeldatalist.get(j).getJumlah());
+                                    pane.tabledata.setValueAt(nf.format(callhargajual), j, 5);
+                                    tabeldatalist.get(j).setHarga_jual(nf.format(callhargajual));
+                                    kalkulasitotalperrow(j);
+                                    status_ada = true;
+                                    break;
+                                } else {
+                                    status_ada = false;
                                 }
-                                int curjumlah = FuncHelper.ToInt(tabeldatalist.get(j).getJumlah()) + FuncHelper.ToInt(jumlah_qty);
-                                tabeldatalist.get(j).setJumlah(String.valueOf(curjumlah));
-                                pane.tabledata.setValueAt(String.valueOf(curjumlah), j, gx(jumlah));
-                                double callhargajual = gethargajual(
-                                     tabeldatalist.get(j).getId_barang(),
-                                     tabeldatalist.get(j).getId_satuan(),
-                                     tabeldatalist.get(j).getJumlah());
-                                pane.tabledata.setValueAt(nf.format(callhargajual), j, 5);
-                                tabeldatalist.get(j).setHarga_jual(nf.format(callhargajual));
-                                kalkulasitotalperrow(j);
-                                status_ada = true;
-                                break;
-                            } else {
-                                status_ada = false;
                             }
 
                         }
@@ -1658,7 +1681,6 @@ public class PosframeController {
         pane.ltotal_service.setText(nf.format(total_service));
         pane.lsubtotal.setText(nf.format(subtotal));
         total_penjualan_all = subtotal + FuncHelper.ToDouble(total_pajak) + FuncHelper.ToDouble(total_service);
-
         pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
         pane.ltotal_belanja.setText(nf.format(total_penjualan_all));
     }

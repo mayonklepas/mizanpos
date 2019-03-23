@@ -15,6 +15,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Penjualan_panel;
@@ -63,15 +64,20 @@ public class PenjualanController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.pp = pp;
-                    Daftarorderpenjualan_inner_panel pane = new Daftarorderpenjualan_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+                    if (Globalsession.penjualan_order.equals("1")) {
+                        System.gc();
+                        Staticvar.pp = pp;
+                        Daftarorderpenjualan_inner_panel pane = new Daftarorderpenjualan_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 
@@ -86,15 +92,21 @@ public class PenjualanController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.pp = pp;
-                    Daftarreturpenjualan_inner_panel pane = new Daftarreturpenjualan_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.penjualan_retur.equals("1")) {
+                        System.gc();
+                        Staticvar.pp = pp;
+                        Daftarreturpenjualan_inner_panel pane = new Daftarreturpenjualan_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 
@@ -109,15 +121,21 @@ public class PenjualanController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.pp = pp;
-                    Daftarfakturpenjualan_inner_panel pane = new Daftarfakturpenjualan_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.penjualan_faktur.equals("1")) {
+                        System.gc();
+                        Staticvar.pp = pp;
+                        Daftarfakturpenjualan_inner_panel pane = new Daftarfakturpenjualan_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 
@@ -132,15 +150,21 @@ public class PenjualanController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.pp = pp;
-                    Daftarpiutang_inner_panel pane = new Daftarpiutang_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.penjualan_piutang.equals("1")) {
+                        System.gc();
+                        Staticvar.pp = pp;
+                        Daftarpiutang_inner_panel pane = new Daftarpiutang_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 

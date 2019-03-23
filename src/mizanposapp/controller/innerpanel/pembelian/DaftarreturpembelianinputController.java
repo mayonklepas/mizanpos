@@ -122,6 +122,7 @@ public class DaftarreturpembelianinputController {
     public DaftarreturpembelianinputController(Daftarreturpembelian_input_panel pane) {
         this.pane = pane;
         Staticvar.inputmode = true;
+        hakakses();
         skinning();
         loadsession();
         loaddata();
@@ -144,6 +145,15 @@ public class DaftarreturpembelianinputController {
         tambahbaris();
         batal();
 
+    }
+
+    private void hakakses() {
+        if (Globalsession.pembelian_retur_kredit.equals("1")) {
+            pane.cmb_tipe_bayar.setEnabled(true);
+        } else {
+            pane.cmb_tipe_bayar.setSelectedIndex(0);
+            pane.cmb_tipe_bayar.setEnabled(false);
+        }
     }
 
     private void loadsession() {

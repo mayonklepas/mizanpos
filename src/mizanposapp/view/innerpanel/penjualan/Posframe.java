@@ -279,6 +279,7 @@ public class Posframe extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel27.setText("Kasir");
 
+        edkasir.setEditable(false);
         edkasir.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edkasir.setText("Kasir");
         edkasir.setPreferredSize(new java.awt.Dimension(51, 20));
@@ -297,6 +298,7 @@ public class Posframe extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel30.setText(":");
 
+        edsalesman.setEditable(false);
         edsalesman.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edsalesman.setText("Salesman");
         edsalesman.setPreferredSize(new java.awt.Dimension(51, 20));

@@ -40,10 +40,10 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel27" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="537" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="539" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bsimpan" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bbatal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -106,7 +106,7 @@
                           <Component id="jPanel36" max="32767" attributes="0"/>
                           <Component id="jPanel37" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="277" max="32767" attributes="0"/>
+                      <EmptySpace pref="244" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -584,7 +584,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="536" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="513" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -2777,7 +2777,7 @@
                           <Component id="ptampildaftarpersediaan" max="32767" attributes="0"/>
                           <Component id="kontrolserial" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="149" max="32767" attributes="0"/>
+                      <EmptySpace pref="151" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -4050,7 +4050,7 @@
                           <Component id="jPanel34" max="32767" attributes="0"/>
                           <Component id="jPanel35" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="354" max="32767" attributes="0"/>
+                      <EmptySpace pref="329" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -4369,12 +4369,12 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jPanel29" alignment="1" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel90" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
-              <Component id="jPanel29" alignment="1" pref="44" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -4386,6 +4386,9 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/mizanposapp/icon/ic_build_white_36dp.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pengaturan Aplikasi"/>
           </Properties>

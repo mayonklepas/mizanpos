@@ -46,16 +46,17 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class DaftarstokopnameinnerController {
-
+    
     CrudHelper ch = new CrudHelper();
     ArrayList<String> idlist = new ArrayList<>();
     ArrayList<String> lsdata = new ArrayList();
     ArrayList<Integer> lssize = new ArrayList();
     DefaultTableModel dtm = new DefaultTableModel();
     Daftarstokopname_inner_panel pane;
-
+    
     public DaftarstokopnameinnerController(Daftarstokopname_inner_panel pane) {
         this.pane = pane;
+        pane.bedit.setVisible(false);
         loadheader();
         loaddata();
         loaddatadetail();
@@ -67,7 +68,7 @@ public class DaftarstokopnameinnerController {
         oncarienter();
         onbuttoncari();
     }
-
+    
     private void loadheader() {
         try {
             pane.tabledata.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -93,7 +94,7 @@ public class DaftarstokopnameinnerController {
                     lssize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 }
             }
-
+            
             for (int i = 0; i < lssize.size(); i++) {
                 Double wd = d.getWidth() - Staticvar.defmenupanel;
                 int wi = (lssize.get(i) * wd.intValue()) / 100;
@@ -104,7 +105,7 @@ public class DaftarstokopnameinnerController {
             Logger.getLogger(DaftarstokopnameinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void loaddata() {
         cleardata();
         disablebutton(pane);
@@ -130,20 +131,20 @@ public class DaftarstokopnameinnerController {
                 }
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton(pane);
-
+                
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
+    
     private void loaddatadetailraw() {
         cleardata();
         disablebutton(pane);
@@ -167,43 +168,43 @@ public class DaftarstokopnameinnerController {
                     }
                     dtm.addRow(objindata);
                 }
-
+                
                 return null;
             }
-
+            
             @Override
             protected void done() {
                 pane.indi.setVisible(false);
                 pane.tabledata.setModel(dtm);
                 disablebutton(pane);
-
+                
             }
-
+            
         };
         worker.execute();
-
+        
     }
-
+    
     private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-
+            
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     loaddatadetailraw();
                 }
             }
-
+            
             @Override
             public void keyReleased(KeyEvent e) {
-
+                
             }
         });
     }
-
+    
     private void selectdata() {
         pane.tabledata.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -212,16 +213,16 @@ public class DaftarstokopnameinnerController {
                     enablebutton(pane);
                     //System.out.println(id);
                 }
-
+                
             }
         });
     }
-
+    
     private void cleardata() {
         idlist.clear();
         Staticvar.ids = "";
     }
-
+    
     private void editdata() {
         pane.bedit.addActionListener((ActionEvent e) -> {
             int row = pane.tabledata.getSelectedRow();
@@ -244,7 +245,7 @@ public class DaftarstokopnameinnerController {
             Staticvar.isupdate = false;
         });
     }
-
+    
     private void inputdata() {
         pane.btambah.addActionListener((ActionEvent e) -> {
             cleardata();
@@ -256,7 +257,7 @@ public class DaftarstokopnameinnerController {
             Staticvar.psp.container.repaint();
         });
     }
-
+    
     private void deletedata() {
         pane.bhapus.addActionListener(new ActionListener() {
             @Override
@@ -290,12 +291,12 @@ public class DaftarstokopnameinnerController {
                         Staticvar.isupdate = false;
                     }
                 }
-
+                
             }
         });
-
+        
     }
-
+    
     private void updateloaddata() {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
@@ -305,21 +306,21 @@ public class DaftarstokopnameinnerController {
             }
         });
     }
-
+    
     private void oncarienter() {
         pane.tcari.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 pane.tcari.setText("");
             }
-
+            
             @Override
             public void focusLost(FocusEvent e) {
                 //pane.tcari.setText("Cari Data");
             }
         });
     }
-
+    
     private void onbuttoncari() {
         pane.bcari.addActionListener(new ActionListener() {
             @Override
@@ -330,15 +331,15 @@ public class DaftarstokopnameinnerController {
             }
         });
     }
-
+    
     private void disablebutton(Daftarstokopname_inner_panel pane) {
         pane.bedit.setEnabled(false);
         pane.bhapus.setEnabled(false);
     }
-
+    
     private void enablebutton(Daftarstokopname_inner_panel pane) {
         pane.bedit.setEnabled(true);
         pane.bhapus.setEnabled(true);
     }
-
+    
 }

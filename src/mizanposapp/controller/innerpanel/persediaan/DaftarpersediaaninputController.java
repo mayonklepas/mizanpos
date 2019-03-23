@@ -109,6 +109,7 @@ public class DaftarpersediaaninputController {
                 pane.ednama_persediaan.requestFocus();
             }
         });
+        userakses();
         customtablesatuan();
         customtableharga();
         customtablelokasi();
@@ -137,6 +138,22 @@ public class DaftarpersediaaninputController {
         cariakunreturpembelian();
         cariakunreturpenjualan();
 
+    }
+
+    private void userakses() {
+        if (Globalsession.persediaan_rubah_harga_jual.equals("1")) {
+            pane.edharga_jual.setEnabled(true);
+        } else {
+            pane.edharga_jual.setEnabled(false);
+        }
+
+        if (Globalsession.persediaan_tampilkan_modal.equals("1")) {
+            pane.edharga_beli_akhir.setVisible(true);
+            pane.lharga_pokok.setVisible(true);
+        } else {
+            pane.edharga_beli_akhir.setVisible(false);
+            pane.lharga_pokok.setVisible(false);
+        }
     }
 
     private void getkode() {

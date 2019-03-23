@@ -257,6 +257,9 @@ public class Globalsession {
     public static String keuangan_kas_keluar = "";
     public static String keuangan_kas_keluar_input = "";
     public static String keuangan_kas_keluar_edit = "";
+    public static String keuangan_transfer_kas = "";
+    public static String keuangan_transfer_kas_input = "";
+    public static String keuangan_transfer_kas_edit = "";
     public static String akuntansi_jurnal_umum = "";
     public static String akuntansi_jurnal_umum_input = "";
     public static String akuntansi_jurnal_umum_edit = "";
@@ -415,7 +418,7 @@ public class Globalsession {
                         Persediaan_OpnameGunakanAkunLain = nilai;
                         break;
                     case "Persediaan_OpnameAkunLain":
-                        Persediaan_OpnameAkunLain = nilai.split("#")[0];
+                        Persediaan_OpnameAkunLain = nilai;
                         break;
                     case "Persediaan_PanjangSerial":
                         Persediaan_PanjangSerial = nilai;
@@ -729,6 +732,9 @@ public class Globalsession {
                 keuangan_kas_keluar = String.valueOf(jo.get("keuangan_kas_keluar"));
                 keuangan_kas_keluar_input = String.valueOf(jo.get("keuangan_kas_keluar_input"));
                 keuangan_kas_keluar_edit = String.valueOf(jo.get("keuangan_kas_keluar_edit"));
+                keuangan_transfer_kas = String.valueOf(jo.get("keuangan_transfer_kas"));
+                keuangan_transfer_kas_input = String.valueOf(jo.get("keuangan_transfer_kas_input"));
+                keuangan_transfer_kas_edit = String.valueOf(jo.get("keuangan_transfer_kas_edit"));
                 akuntansi_jurnal_umum = String.valueOf(jo.get("akuntansi_jurnal_umum"));
                 akuntansi_jurnal_umum_input = String.valueOf(jo.get("akuntansi_jurnal_umum_input"));
                 akuntansi_jurnal_umum_edit = String.valueOf(jo.get("akuntansi_jurnal_umum_edit"));

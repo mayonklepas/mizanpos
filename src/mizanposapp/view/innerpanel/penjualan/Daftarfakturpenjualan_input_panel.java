@@ -492,6 +492,7 @@ public class Daftarfakturpenjualan_input_panel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel13.setText(":");
 
+        eddept.setEditable(false);
         eddept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         eddept.setPreferredSize(new java.awt.Dimension(51, 20));
         eddept.addActionListener(new java.awt.event.ActionListener() {
@@ -508,6 +509,7 @@ public class Daftarfakturpenjualan_input_panel extends javax.swing.JPanel {
         ltitik2gudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ltitik2gudang.setText(":");
 
+        edgudang.setEditable(false);
         edgudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edgudang.setPreferredSize(new java.awt.Dimension(51, 20));
         edgudang.addActionListener(new java.awt.event.ActionListener() {
@@ -544,6 +546,7 @@ public class Daftarfakturpenjualan_input_panel extends javax.swing.JPanel {
         jLabel45.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel45.setText(":");
 
+        ednoso.setEditable(false);
         ednoso.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ednoso.setPreferredSize(new java.awt.Dimension(51, 20));
         ednoso.addActionListener(new java.awt.event.ActionListener() {
@@ -671,6 +674,7 @@ public class Daftarfakturpenjualan_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        edpelanggan.setEditable(false);
         edpelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edpelangganActionPerformed(evt);

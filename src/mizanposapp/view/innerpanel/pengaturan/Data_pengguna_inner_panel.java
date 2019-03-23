@@ -39,12 +39,15 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
         bhapus = new javax.swing.JButton();
         bhakakses = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel28.setBackground(new java.awt.Color(41, 39, 40));
         jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jPanel28.setPreferredSize(new java.awt.Dimension(284, 46));
 
         jLabel91.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel91.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/ic_supervisor_account_white_36dp.png"))); // NOI18N
         jLabel91.setText("Data Pengguna");
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
@@ -54,16 +57,18 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel91)
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel91)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        treedata.setBackground(new java.awt.Color(255, 255, 255));
+        treedata.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(treedata);
 
         bbaru.setText("Baru");
@@ -96,9 +101,9 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbaru)

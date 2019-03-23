@@ -46,13 +46,14 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
         cksaldo_awal_hutang_usaha = new javax.swing.JCheckBox();
         cksaldo_awal_piutang_usaha = new javax.swing.JCheckBox();
         jPanel10 = new javax.swing.JPanel();
-        cksaldo_buat_baru_edit_hapus = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbmaster_limitasi_gudang = new javax.swing.JTable();
+        ckdm_buat_baru_edit_hapus = new javax.swing.JCheckBox();
         ckmaster_limitasi_gudang = new javax.swing.JCheckBox();
         ckmaster_limitasi_departement = new javax.swing.JCheckBox();
+        pdatamaster_tb = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbmaster_limitasi_departement = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbmaster_limitasi_gudang = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         cksistem_setup_program = new javax.swing.JCheckBox();
@@ -136,6 +137,10 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
         ckakuntansi_hitung_ulang_saldo = new javax.swing.JCheckBox();
         ckakuntansi_reposting_transaksi = new javax.swing.JCheckBox();
         ckakuntansi_periode_akuntansi = new javax.swing.JCheckBox();
+        jPanel29 = new javax.swing.JPanel();
+        ckakuntansi_transfer_kas = new javax.swing.JCheckBox();
+        ckakuntansi_input_transfer_kas = new javax.swing.JCheckBox();
+        ckakuntansi_edit_hapus_transfer_kas = new javax.swing.JCheckBox();
         jPanel8 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
         cklaporan_keuangan = new javax.swing.JCheckBox();
@@ -217,7 +222,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Saldo Awal"));
 
         cksaldo_awal_akun.setBackground(new java.awt.Color(255, 255, 255));
-        cksaldo_awal_akun.setText("Saldo Awal Akun");
+        cksaldo_awal_akun.setText("Saldo Awal Harusnya");
 
         cksaldo_awal_persediaan.setBackground(new java.awt.Color(255, 255, 255));
         cksaldo_awal_persediaan.setText("Saldo Awal Persediaan");
@@ -241,7 +246,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cksaldo_awal_piutang_usaha)
                     .addComponent(cksaldo_awal_persediaan))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,10 +263,10 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Saldo Awal"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Master"));
 
-        cksaldo_buat_baru_edit_hapus.setBackground(new java.awt.Color(255, 255, 255));
-        cksaldo_buat_baru_edit_hapus.setText("Buat Baru, Edit, Hapus");
+        ckdm_buat_baru_edit_hapus.setBackground(new java.awt.Color(255, 255, 255));
+        ckdm_buat_baru_edit_hapus.setText("Buat Baru, Edit, Hapus");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -269,29 +274,16 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cksaldo_buat_baru_edit_hapus)
+                .addComponent(ckdm_buat_baru_edit_hapus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cksaldo_buat_baru_edit_hapus)
+                .addComponent(ckdm_buat_baru_edit_hapus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        tbmaster_limitasi_gudang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbmaster_limitasi_gudang);
 
         ckmaster_limitasi_gudang.setBackground(new java.awt.Color(255, 255, 255));
         ckmaster_limitasi_gudang.setText("Limitasi Gudang");
@@ -312,6 +304,40 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tbmaster_limitasi_departement);
 
+        tbmaster_limitasi_gudang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbmaster_limitasi_gudang);
+
+        javax.swing.GroupLayout pdatamaster_tbLayout = new javax.swing.GroupLayout(pdatamaster_tb);
+        pdatamaster_tb.setLayout(pdatamaster_tbLayout);
+        pdatamaster_tbLayout.setHorizontalGroup(
+            pdatamaster_tbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pdatamaster_tbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pdatamaster_tbLayout.setVerticalGroup(
+            pdatamaster_tbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pdatamaster_tbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pdatamaster_tbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -322,15 +348,11 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(ckmaster_limitasi_gudang)
-                                .addGap(0, 210, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckmaster_limitasi_departement)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(ckmaster_limitasi_gudang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+                        .addComponent(ckmaster_limitasi_departement)
+                        .addGap(146, 146, 146))
+                    .addComponent(pdatamaster_tb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -345,10 +367,8 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                     .addComponent(ckmaster_limitasi_departement, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ckmaster_limitasi_gudang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pdatamaster_tb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         tab_hak_akses.addTab("Data Master", jPanel2);
@@ -645,7 +665,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tab_hak_akses.addTab("Penjualan dan Piutang", jPanel4);
@@ -858,7 +878,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tab_hak_akses.addTab("Pembelian Dan Hutang", jPanel5);
@@ -1035,20 +1055,20 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ckakuntansi_kas_masuk)
                     .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckakuntansi_input_kas_masuk)
-                            .addComponent(ckakuntansi_edit_hapus_kas_masuk))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                            .addComponent(ckakuntansi_edit_hapus_kas_masuk)
+                            .addComponent(ckakuntansi_input_kas_masuk))))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ckakuntansi_kas_masuk)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(9, 9, 9)
                 .addComponent(ckakuntansi_input_kas_masuk)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckakuntansi_edit_hapus_kas_masuk)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1074,20 +1094,20 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ckakuntansi_jurnal_umum)
                     .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ckakuntansi_edit_hapus_jurnal_umum)
                             .addComponent(ckakuntansi_input_jurnal_umum))))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ckakuntansi_jurnal_umum)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckakuntansi_input_jurnal_umum)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckakuntansi_edit_hapus_jurnal_umum)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1117,18 +1137,18 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                         .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ckakuntansi_edit_hapus_kas_keluar)
                             .addComponent(ckakuntansi_input_kas_keluar))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ckakuntansi_kas_keluar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckakuntansi_input_kas_keluar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ckakuntansi_edit_hapus_kas_keluar)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
@@ -1165,7 +1185,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                     .addComponent(ckakuntansi_hitung_ulang_saldo)
                     .addComponent(ckakuntansi_reposting_transaksi)
                     .addComponent(ckakuntansi_periode_akuntansi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1185,20 +1205,65 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer Kas"));
+
+        ckakuntansi_transfer_kas.setBackground(new java.awt.Color(255, 255, 255));
+        ckakuntansi_transfer_kas.setText("Transfer Kas");
+
+        ckakuntansi_input_transfer_kas.setBackground(new java.awt.Color(255, 255, 255));
+        ckakuntansi_input_transfer_kas.setText("Input Transfer Kas");
+
+        ckakuntansi_edit_hapus_transfer_kas.setBackground(new java.awt.Color(255, 255, 255));
+        ckakuntansi_edit_hapus_transfer_kas.setText("Edit, Hapus Transfer Kas");
+
+        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        jPanel29.setLayout(jPanel29Layout);
+        jPanel29Layout.setHorizontalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel29Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ckakuntansi_edit_hapus_transfer_kas)
+                            .addComponent(ckakuntansi_input_transfer_kas)))
+                    .addGroup(jPanel29Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ckakuntansi_transfer_kas, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel29Layout.setVerticalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ckakuntansi_transfer_kas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ckakuntansi_input_transfer_kas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ckakuntansi_edit_hapus_transfer_kas)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1208,10 +1273,13 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         tab_hak_akses.addTab("Akuntansi", jPanel7);
@@ -1321,7 +1389,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel91)
                     .addComponent(ljudullabel))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1340,15 +1408,15 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bbatal)))
                 .addContainerGap())
-            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(tab_hak_akses, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbatal)
                     .addComponent(blanjut)
@@ -1377,17 +1445,21 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox ckakuntansi_edit_hapus_jurnal_umum;
     public javax.swing.JCheckBox ckakuntansi_edit_hapus_kas_keluar;
     public javax.swing.JCheckBox ckakuntansi_edit_hapus_kas_masuk;
+    public javax.swing.JCheckBox ckakuntansi_edit_hapus_transfer_kas;
     public javax.swing.JCheckBox ckakuntansi_hitung_ulang_saldo;
     public javax.swing.JCheckBox ckakuntansi_input_jurnal_umum;
     public javax.swing.JCheckBox ckakuntansi_input_kas_keluar;
     public javax.swing.JCheckBox ckakuntansi_input_kas_masuk;
+    public javax.swing.JCheckBox ckakuntansi_input_transfer_kas;
     public javax.swing.JCheckBox ckakuntansi_jurnal_umum;
     public javax.swing.JCheckBox ckakuntansi_kas_keluar;
     public javax.swing.JCheckBox ckakuntansi_kas_masuk;
     public javax.swing.JCheckBox ckakuntansi_periode_akuntansi;
     public javax.swing.JCheckBox ckakuntansi_reposting_transaksi;
     public javax.swing.JCheckBox ckakuntansi_setting_akun_penting;
+    public javax.swing.JCheckBox ckakuntansi_transfer_kas;
     public javax.swing.JCheckBox ckakuntansi_tutup_buku_bulanan_dan_tahun;
+    public javax.swing.JCheckBox ckdm_buat_baru_edit_hapus;
     public javax.swing.JCheckBox cklaporan_buku_besar;
     public javax.swing.JCheckBox cklaporan_keuangan;
     public javax.swing.JCheckBox cklaporan_pembelian_dan_hutang_usaha;
@@ -1442,7 +1514,6 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
     public javax.swing.JCheckBox cksaldo_awal_hutang_usaha;
     public javax.swing.JCheckBox cksaldo_awal_persediaan;
     public javax.swing.JCheckBox cksaldo_awal_piutang_usaha;
-    public javax.swing.JCheckBox cksaldo_buat_baru_edit_hapus;
     public javax.swing.JCheckBox cksistem_bakcup_data;
     public javax.swing.JCheckBox cksistem_buka_sql_editor;
     public javax.swing.JCheckBox cksistem_setting_pengguna;
@@ -1474,6 +1545,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
     public javax.swing.JPanel jPanel26;
     public javax.swing.JPanel jPanel27;
     public javax.swing.JPanel jPanel28;
+    public javax.swing.JPanel jPanel29;
     public javax.swing.JPanel jPanel3;
     public javax.swing.JPanel jPanel4;
     public javax.swing.JPanel jPanel5;
@@ -1485,6 +1557,7 @@ public class Hak_akses_inner_panel extends javax.swing.JPanel {
     public javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JLabel ljudullabel;
+    public javax.swing.JPanel pdatamaster_tb;
     public javax.swing.JTabbedPane tab_hak_akses;
     public javax.swing.JTextArea taketerangan_hak_akses;
     public javax.swing.JTable tbmaster_limitasi_departement;

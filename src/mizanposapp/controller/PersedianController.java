@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Persedian_panel;
@@ -72,15 +73,21 @@ public class PersedianController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.psp = pp;
-                    Daftarpenyesuaian_inner_panel pane = new Daftarpenyesuaian_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.persediaan_penyesuaian.equals("1")) {
+                        System.gc();
+                        Staticvar.psp = pp;
+                        Daftarpenyesuaian_inner_panel pane = new Daftarpenyesuaian_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 
@@ -111,15 +118,21 @@ public class PersedianController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.psp = pp;
-                    Daftarstokopname_inner_panel pane = new Daftarstokopname_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.persediaan_stok_opname.equals("1")) {
+                        System.gc();
+                        Staticvar.psp = pp;
+                        Daftarstokopname_inner_panel pane = new Daftarstokopname_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 
@@ -150,15 +163,21 @@ public class PersedianController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.psp = pp;
-                    Daftartransferpersediaan_inner_panel pane = new Daftartransferpersediaan_inner_panel();
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.persediaan_transfer.equals("1")) {
+                        System.gc();
+                        Staticvar.psp = pp;
+                        Daftartransferpersediaan_inner_panel pane = new Daftartransferpersediaan_inner_panel();
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 

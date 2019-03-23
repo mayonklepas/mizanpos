@@ -142,17 +142,22 @@ public class MainmenuController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    isclick = true;
-                    mm.ppembelian.setBackground(new Color(3, 3, 3));
-                    isclick = true;
-                    Pengaturan_inner_panel pp = new Pengaturan_inner_panel();
-                    mm.panel_tengah.removeAll();
-                    mm.panel_tengah.setLayout(new BorderLayout());
-                    mm.panel_tengah.add(pp, BorderLayout.CENTER);
-                    mm.panel_tengah.revalidate();
-                    mm.panel_tengah.repaint();
-                    Staticvar.inputmode = false;
+                    if (Globalsession.sistem_setup_program.equals("1")) {
+                        System.gc();
+                        isclick = true;
+                        mm.ppembelian.setBackground(new Color(3, 3, 3));
+                        isclick = true;
+                        Pengaturan_inner_panel pp = new Pengaturan_inner_panel();
+                        mm.panel_tengah.removeAll();
+                        mm.panel_tengah.setLayout(new BorderLayout());
+                        mm.panel_tengah.add(pp, BorderLayout.CENTER);
+                        mm.panel_tengah.revalidate();
+                        mm.panel_tengah.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+
+                    }
+
                 }
             }
 

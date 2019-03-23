@@ -123,6 +123,7 @@ public class DaftarfakturpembelianinputController {
     public DaftarfakturpembelianinputController(Daftarfakturpembelian_input_panel pane) {
         this.pane = pane;
         Staticvar.inputmode = true;
+        hakakses();
         setpopup();
         skinning();
         loaddata();
@@ -145,6 +146,21 @@ public class DaftarfakturpembelianinputController {
         tambahbaris();
         batal();
 
+    }
+
+    private void hakakses() {
+        if (Globalsession.pembelian_faktur_kredit.equals("1")) {
+            pane.cmb_tipe_bayar.setEnabled(true);
+        } else {
+            pane.cmb_tipe_bayar.setSelectedIndex(0);
+            pane.cmb_tipe_bayar.setEnabled(false);
+        }
+
+        if (Globalsession.pembelian_faktur_tarik_order.equals("1")) {
+            pane.bcarinopo.setEnabled(true);
+        } else {
+            pane.bcarinopo.setEnabled(false);
+        }
     }
 
     private void setpopup() {

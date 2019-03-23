@@ -254,6 +254,7 @@ public class BayarposController {
         pane.ltotal_pajak.setText(nf.format(total_pajak));
         pane.ltotal_service.setText(nf.format(total_service));
         pane.lsubtotal.setText(nf.format(sub_total));
+        pane.edbiaya_lain.setText(nf.format(FuncHelper.getpembulatan(sub_total)));
         rawkalkulasi();
 
     }

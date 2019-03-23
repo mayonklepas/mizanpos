@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.Akunting_panel;
@@ -69,15 +70,21 @@ public class AkuntansiController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Daftarjurnalumum_inner_panel pane = new Daftarjurnalumum_inner_panel();
-                    Staticvar.ap = pp;
-                    pp.container.removeAll();
-                    pp.container.setLayout(new BorderLayout());
-                    pp.container.add(pane, BorderLayout.CENTER);
-                    pp.container.revalidate();
-                    pp.container.repaint();
-                    Staticvar.inputmode = false;
+
+                    if (Globalsession.akuntansi_jurnal_umum.equals("1")) {
+                        System.gc();
+                        Daftarjurnalumum_inner_panel pane = new Daftarjurnalumum_inner_panel();
+                        Staticvar.ap = pp;
+                        pp.container.removeAll();
+                        pp.container.setLayout(new BorderLayout());
+                        pp.container.add(pane, BorderLayout.CENTER);
+                        pp.container.revalidate();
+                        pp.container.repaint();
+                        Staticvar.inputmode = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             }
 
@@ -107,29 +114,34 @@ public class AkuntansiController {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.gc();
-                    Staticvar.sfilter = "";
-                    JDialog jd = new JDialog(new Mainmenu());
-                    jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
-                    jd.pack();
-                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                    jd.setLocationRelativeTo(null);
-                    jd.setVisible(true);
-                    jd.toFront();
-                    if (Staticvar.resid.equals("")) {
-                        JOptionPane.showMessageDialog(null, "Anda Belum Memilih Akun", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    if (Globalsession.akuntansi_buku_besar.equals("1")) {
+                        System.gc();
+                        Staticvar.sfilter = "";
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Popupcari("akun", "popupdaftarakun", "Daftar Akun"));
+                        jd.pack();
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setLocationRelativeTo(null);
+                        jd.setVisible(true);
+                        jd.toFront();
+                        if (Staticvar.resid.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Anda Belum Memilih Akun", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            Staticvar.ids = Staticvar.resid;
+                            Staticvar.resid = "";
+                            Daftarbukubesar_inner_panel pane = new Daftarbukubesar_inner_panel();
+                            Staticvar.ap = pp;
+                            pp.container.removeAll();
+                            pp.container.setLayout(new BorderLayout());
+                            pp.container.add(pane, BorderLayout.CENTER);
+                            pp.container.revalidate();
+                            pp.container.repaint();
+                            Staticvar.inputmode = false;
+                        }
                     } else {
-                        Staticvar.ids = Staticvar.resid;
-                        Staticvar.resid = "";
-                        Daftarbukubesar_inner_panel pane = new Daftarbukubesar_inner_panel();
-                        Staticvar.ap = pp;
-                        pp.container.removeAll();
-                        pp.container.setLayout(new BorderLayout());
-                        pp.container.add(pane, BorderLayout.CENTER);
-                        pp.container.revalidate();
-                        pp.container.repaint();
-                        Staticvar.inputmode = false;
+                        JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     }
+
                 }
             }
 
@@ -159,13 +171,18 @@ public class AkuntansiController {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Settingakunpenting_inner_panel());
-                jd.pack();
-                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setLocationRelativeTo(null);
-                jd.setVisible(true);
-                jd.toFront();
+
+                if (Globalsession.akuntansi_jurnal_umum.equals("1")) {
+                    JDialog jd = new JDialog(new Mainmenu());
+                    jd.add(new Settingakunpenting_inner_panel());
+                    jd.pack();
+                    jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                    jd.setLocationRelativeTo(null);
+                    jd.setVisible(true);
+                    jd.toFront();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Akses Ditolak !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                }
 
             }
 

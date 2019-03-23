@@ -133,6 +133,7 @@ public class DaftarfakturpenjualaninputController {
     public DaftarfakturpenjualaninputController(Daftarfakturpenjualan_input_panel pane) {
         this.pane = pane;
         Staticvar.inputmode = true;
+        hakakses();
         setpopup();
         skinning();
         loadsession();
@@ -156,6 +157,21 @@ public class DaftarfakturpenjualaninputController {
         tambahbaris();
         batal();
 
+    }
+
+    private void hakakses() {
+        if (Globalsession.penjualan_faktur_kredit.equals("1")) {
+            pane.cmb_tipe_bayar.setEnabled(true);
+        } else {
+            pane.cmb_tipe_bayar.setSelectedIndex(0);
+            pane.cmb_tipe_bayar.setEnabled(false);
+        }
+
+        if (Globalsession.penjualan_faktur_tarik_order.equals("1")) {
+            pane.bcarinoso.setEnabled(true);
+        } else {
+            pane.bcarinoso.setEnabled(false);
+        }
     }
 
     private void setpopup() {
@@ -233,7 +249,12 @@ public class DaftarfakturpenjualaninputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == gx(nama) || column == gx(order) || column == gx(satuan) || column == gx(harga_beli) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
+                if (Globalsession.penjualan_faktur_rubah_harga.equals("1")) {
+                    return column == gx(nama) || column == gx(order) || column == gx(satuan) || column == gx(harga_beli) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
+                } else {
+                    return column == gx(nama) || column == gx(order) || column == gx(satuan) || column == gx(harga_jual) || column == gx(harga_beli) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
+                }
+
             }
 
         };

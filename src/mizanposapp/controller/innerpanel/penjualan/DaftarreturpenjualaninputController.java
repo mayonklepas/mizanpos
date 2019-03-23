@@ -125,6 +125,7 @@ public class DaftarreturpenjualaninputController {
     public DaftarreturpenjualaninputController(Daftarreturpenjualan_input_panel pane) {
         this.pane = pane;
         Staticvar.inputmode = true;
+        hakakses();
         skinning();
         loadsession();
         loaddata();
@@ -147,6 +148,15 @@ public class DaftarreturpenjualaninputController {
         tambahbaris();
         batal();
 
+    }
+
+    private void hakakses() {
+        if (Globalsession.penjualan_retur_kredit.equals("1")) {
+            pane.cmb_tipe_bayar.setEnabled(true);
+        } else {
+            pane.cmb_tipe_bayar.setSelectedIndex(0);
+            pane.cmb_tipe_bayar.setEnabled(false);
+        }
     }
 
     private void loadsession() {

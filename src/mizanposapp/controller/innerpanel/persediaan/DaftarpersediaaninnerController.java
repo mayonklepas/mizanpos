@@ -28,6 +28,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.helper.Tablestyle;
 import mizanposapp.view.Mainmenu;
@@ -55,6 +56,7 @@ public class DaftarpersediaaninnerController {
 
     public DaftarpersediaaninnerController(Daftarpersediaan_inner_panel pane) {
         this.pane = pane;
+        userakses();
         loadheader();
         loaddata("0");
         loaddatadetail();
@@ -102,6 +104,14 @@ public class DaftarpersediaaninnerController {
             }
         } catch (ParseException ex) {
             Logger.getLogger(DaftarpersediaaninnerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void userakses() {
+        if (Globalsession.dm_baru_edit_hapus.equals("0")) {
+            pane.btambah.setEnabled(false);
+            pane.bedit.setEnabled(false);
+            pane.bhapus.setEnabled(false);
         }
     }
 
@@ -349,8 +359,14 @@ public class DaftarpersediaaninnerController {
     }
 
     private void enablebutton() {
-        pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
+        if (Globalsession.dm_baru_edit_hapus.equals("1")) {
+            pane.bedit.setEnabled(true);
+            pane.bhapus.setEnabled(true);
+        } else {
+            pane.bedit.setEnabled(false);
+            pane.bhapus.setEnabled(false);
+        }
+
     }
 
     private void koreksistock() {

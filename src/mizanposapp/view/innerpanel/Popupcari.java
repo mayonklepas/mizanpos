@@ -40,8 +40,8 @@ public class Popupcari extends javax.swing.JPanel {
         bhapus = new javax.swing.JButton();
         bok = new javax.swing.JButton();
         tcari = new javax.swing.JTextField();
+        jPanel30 = new javax.swing.JPanel();
         lheader = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         jLabel1.setText("jLabel1");
 
@@ -78,34 +78,39 @@ public class Popupcari extends javax.swing.JPanel {
         tcari.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         tcari.setText("Cari Data");
 
-        lheader.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        lheader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lheader.setText("Daftar");
+        jPanel30.setBackground(new java.awt.Color(41, 39, 40));
+        jPanel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jPanel30.setPreferredSize(new java.awt.Dimension(284, 46));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.setForeground(new java.awt.Color(153, 153, 153));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 1));
+        lheader.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        lheader.setForeground(new java.awt.Color(255, 255, 255));
+        lheader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/ic_view_module_white_36dp.png"))); // NOI18N
+        lheader.setText("Data");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lheader)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lheader)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lheader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(bbaru)
@@ -120,14 +125,12 @@ public class Popupcari extends javax.swing.JPanel {
                         .addGap(2, 2, 2)
                         .addComponent(bok)))
                 .addContainerGap())
+            .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lheader)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,7 +152,7 @@ public class Popupcari extends javax.swing.JPanel {
     public javax.swing.JButton bok;
     public javax.swing.JButton btutup;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel30;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel lheader;
     public javax.swing.JTable tabledata;

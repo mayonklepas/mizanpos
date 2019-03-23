@@ -299,16 +299,32 @@ public class DaftarstokopnameinputController {
         try {
             id = Staticvar.ids;
             if (id.equals("")) {
-                pane.rbgunakan_hpp.setSelected(true);
-                pane.edakun_stokopname.setVisible(false);
-                pane.lakunstokopname.setVisible(false);
-                pane.ltitik2akunstokopname.setVisible(false);
-                pane.bcari_akun_stokopname.setVisible(false);
+                if (Globalsession.Persediaan_OpnameGunakanAkunHPP.equals("1")) {
+                    pane.rbgunakan_hpp.setSelected(true);
+                    pane.rbgunakan_akunlainnya.setSelected(false);
+                    pane.edakun_stokopname.setVisible(false);
+                    pane.lakunstokopname.setVisible(false);
+                    pane.ltitik2akunstokopname.setVisible(false);
+                    pane.bcari_akun_stokopname.setVisible(false);
+                } else {
+                    pane.rbgunakan_hpp.setSelected(false);
+                    pane.rbgunakan_akunlainnya.setSelected(true);
+                    pane.edakun_stokopname.setVisible(true);
+                    pane.lakunstokopname.setVisible(true);
+                    pane.ltitik2akunstokopname.setVisible(true);
+                    pane.bcari_akun_stokopname.setVisible(true);
+                    String[] akunlain = Globalsession.Persediaan_OpnameAkunLain.split("#");
+                    pane.edakun_stokopname.setText(akunlain[0] + " - " + akunlain[1]);
+                    valakun_stokopname = akunlain[0];
+                }
+
                 getkodetransaksi();
                 pane.dtanggal.setDate(new Date());
                 pane.edno_transaksi.setText("");
                 pane.eddept.setText(Globalsession.Setting_DeptDefaultnama);
                 valdept = Globalsession.Setting_DeptDefault;
+                valgudang = Globalsession.Setting_GudangDefault;
+                pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
                 pane.edketerangan.setText("");
                 tabeldatalist.add(new Entitytabledata("", "", "", "", "0", "0", "0", "", "", "0", "", "0", "", "", "0"));
                 dtmtabeldata.addRow(rowtabledata);
@@ -329,6 +345,8 @@ public class DaftarstokopnameinputController {
                     pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
                     pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
                     valdept = String.valueOf(joingenjur.get("id_dept"));
+                    valgudang = String.valueOf(joingenjur.get("id_gudang"));
+                    pane.edgudang.setText(String.valueOf(joingenjur.get("nama_gudang")));
                     try {
                         pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
                     } catch (java.text.ParseException ex) {

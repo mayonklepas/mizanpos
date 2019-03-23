@@ -59,6 +59,7 @@ public class DaftartransferkasinnerController {
 
     public DaftartransferkasinnerController(Daftartransferkas_inner_panel pane) {
         this.pane = pane;
+        userakses();
         loadheader();
         loaddata();
         loaddatadetail();
@@ -69,6 +70,23 @@ public class DaftartransferkasinnerController {
         selectdata();
         oncarienter();
         onbuttoncari();
+
+    }
+
+    private void userakses() {
+        if (Globalsession.keuangan_transfer_kas_input.equals("1")) {
+            pane.btambah.setEnabled(true);
+        } else {
+            pane.btambah.setEnabled(false);
+        }
+
+        if (Globalsession.keuangan_transfer_kas_edit.equals("1")) {
+            pane.bedit.setEnabled(true);
+            pane.bhapus.setEnabled(true);
+        } else {
+            pane.bedit.setEnabled(false);
+            pane.bhapus.setEnabled(false);
+        }
 
     }
 
@@ -268,8 +286,7 @@ public class DaftartransferkasinnerController {
     }
 
     private void enablebutton() {
-        pane.bedit.setEnabled(true);
-        pane.bhapus.setEnabled(true);
+        userakses();
     }
 
     private void tambahdata() {
