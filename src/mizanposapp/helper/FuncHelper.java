@@ -5,14 +5,22 @@
  */
 package mizanposapp.helper;
 
+import java.awt.Dialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 import mizanposapp.controller.innerpanel.penjualan.PosframeController;
+import mizanposapp.view.Mainmenu;
+import mizanposapp.view.frameform.Informasi;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -158,6 +166,17 @@ public class FuncHelper {
             }
         }
         return result;
+    }
+
+    public static void showmessage(String header, String sub) {
+        JDialog jd = new JDialog(new Mainmenu());
+        jd.add(new Informasi(header, sub));
+        jd.pack();
+        jd.setLocationRelativeTo(null);
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setTitle("Informasi");
+        jd.setVisible(true);
+
     }
 
 }

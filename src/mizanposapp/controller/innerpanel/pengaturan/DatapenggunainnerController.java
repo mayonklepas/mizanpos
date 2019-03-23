@@ -22,10 +22,12 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.innerpanel.pengaturan.Data_pengguna_inner_panel;
 import mizanposapp.view.innerpanel.pengaturan.Data_pengguna_input_panel;
+import mizanposapp.view.innerpanel.pengaturan.Gantipassword_panel;
 import mizanposapp.view.innerpanel.pengaturan.Hak_akses_inner_panel;
 import mizanposapp.view.innerpanel.pengaturan.Login_panel;
 import org.json.simple.JSONArray;
@@ -50,6 +52,7 @@ public class DatapenggunainnerController {
         editdata();
         edithakakses();
         btcontrol();
+        gantipassword();
     }
 
     private void btcontrol() {
@@ -157,6 +160,37 @@ public class DatapenggunainnerController {
                     jdin.setLocationRelativeTo(null);
                     jdin.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
                     jdin.setTitle("Pengaturan Hak Akses");
+                    jdin.setVisible(true);
+                    if (Staticvar.isupdate == true) {
+                        loaddata();
+                        Staticvar.isupdate = false;
+                    }
+                }
+
+            }
+        });
+    }
+
+    private void gantipassword() {
+        pane.bgantipass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoginController.username = Globalsession.nama_user;
+                JDialog jd = new JDialog(new Mainmenu());
+                jd.add(new Login_panel());
+                jd.pack();
+                jd.setLocationRelativeTo(null);
+                jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                jd.setTitle("Login");
+                jd.setVisible(true);
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
+                    JDialog jdin = new JDialog(new Mainmenu());
+                    jdin.add(new Gantipassword_panel());
+                    jdin.pack();
+                    jdin.setLocationRelativeTo(null);
+                    jdin.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                    jdin.setTitle("Ganti Password");
                     jdin.setVisible(true);
                     if (Staticvar.isupdate == true) {
                         loaddata();

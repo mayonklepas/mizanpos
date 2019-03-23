@@ -38,6 +38,7 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
         bedit = new javax.swing.JButton();
         bhapus = new javax.swing.JButton();
         bhakakses = new javax.swing.JButton();
+        bgantipass = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -57,7 +58,7 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel91)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,19 +72,26 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
         treedata.setForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(treedata);
 
+        bbaru.setBackground(new java.awt.Color(255, 255, 255));
         bbaru.setText("Baru");
 
+        bedit.setBackground(new java.awt.Color(255, 255, 255));
         bedit.setText("Edit");
 
+        bhapus.setBackground(new java.awt.Color(255, 255, 255));
         bhapus.setText("Hapus");
 
+        bhakakses.setBackground(new java.awt.Color(255, 255, 255));
         bhakakses.setText("Hak Akses");
+
+        bgantipass.setBackground(new java.awt.Color(255, 255, 255));
+        bgantipass.setText("Ganti Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,6 +99,8 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(bhakakses)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bgantipass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bhapus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bedit)
@@ -109,7 +119,8 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
                     .addComponent(bbaru)
                     .addComponent(bedit)
                     .addComponent(bhapus)
-                    .addComponent(bhakakses))
+                    .addComponent(bhakakses)
+                    .addComponent(bgantipass))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -117,6 +128,7 @@ public class Data_pengguna_inner_panel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbaru;
     public javax.swing.JButton bedit;
+    public javax.swing.JButton bgantipass;
     public javax.swing.JButton bhakakses;
     public javax.swing.JButton bhapus;
     public javax.swing.JLabel jLabel91;

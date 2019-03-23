@@ -50,8 +50,9 @@ public class Errorpanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         ederror = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         bhapus = new javax.swing.JButton();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel91 = new javax.swing.JLabel();
 
         ederror.setEditable(false);
         ederror.setBackground(new java.awt.Color(255, 255, 255));
@@ -65,10 +66,6 @@ public class Errorpanel extends javax.swing.JPanel {
         ederror.setEnabled(false);
         jScrollPane1.setViewportView(ederror);
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/ic_lightbulb_outline_black_36dp.png"))); // NOI18N
-        jLabel1.setText("Terjadi Kesalahan");
-
         bhapus.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bhapus.setText("Tutup");
         bhapus.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +73,32 @@ public class Errorpanel extends javax.swing.JPanel {
                 bhapusActionPerformed(evt);
             }
         });
+
+        jPanel28.setBackground(new java.awt.Color(41, 39, 40));
+        jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jPanel28.setPreferredSize(new java.awt.Dimension(284, 46));
+
+        jLabel91.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel91.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/ic_highlight_off_white_36dp.png"))); // NOI18N
+        jLabel91.setText("Terjadi Kesalahan");
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel91)
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel91)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,19 +110,16 @@ public class Errorpanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bhapus))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bhapus)
                 .addContainerGap())
@@ -115,7 +135,8 @@ public class Errorpanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bhapus;
     public javax.swing.JTextArea ederror;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JPanel jPanel28;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

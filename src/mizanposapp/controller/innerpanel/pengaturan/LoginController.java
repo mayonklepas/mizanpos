@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
@@ -32,6 +33,7 @@ public class LoginController {
         this.pane = pane;
         loaddata();
         login();
+        batal();
     }
 
     private void loaddata() {
@@ -82,7 +84,7 @@ public class LoginController {
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
         } else if (Staticvar.getresult.equals("gagal")) {
-            JOptionPane.showMessageDialog(pane, "Username atau Password Gagal");
+            FuncHelper.showmessage("Gagal Mengautentifikasi", "Username atau Password yang anda masukan salah, cek kemudian coba ulang kembali");
         } else {
             Staticvar.isupdate = false;
             JDialog jd = new JDialog(new Mainmenu());
@@ -95,6 +97,17 @@ public class LoginController {
             jd.setVisible(true);
             jd.toFront();
         }
+    }
+
+    private void batal() {
+        pane.bbatal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Staticvar.isupdate = false;
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.dispose();
+            }
+        });
     }
 
 }
