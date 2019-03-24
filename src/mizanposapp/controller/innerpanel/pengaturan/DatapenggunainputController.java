@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Errorpanel;
@@ -53,6 +54,7 @@ public class DatapenggunainputController {
                 pane.edhakakses.setText("");
                 pane.edparent.setText("");
             } else {
+
                 JSONParser jpdata = new JSONParser();
                 String param = String.format("id=%s", ids);
                 Object objdata = jpdata.parse(ch.getdatadetails("dm/datapengguna", param));
@@ -67,6 +69,7 @@ public class DatapenggunainputController {
                     valparent = String.valueOf(joindata.get("id_parent"));
                     pane.edrepassword.setText("");
                 }
+                pane.edpassword.setEnabled(false);
             }
         } catch (ParseException ex) {
             Logger.getLogger(DatapenggunainputController.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,7 +90,7 @@ public class DatapenggunainputController {
         }
 
         if (Staticvar.getresult.equals("berhasil")) {
-            JOptionPane.showMessageDialog(null, "Data Pengguna Berhasil Disimpan");
+            FuncHelper.showmessage("Proses Berhasil", "Data telah berhasil disimpan");
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
@@ -112,9 +115,11 @@ public class DatapenggunainputController {
                      || pane.edpassword.getText().equals("")
                      || pane.edrepassword.getText().equals("")
                      || pane.edhakakses.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Field Hak Akses,Username,Password dan Retype Password, Tidak Boleh kosong");
-                } else {
+                    FuncHelper.showmessage("Data tidak lengkap", "Field Hak Akses,Username,Password dan Retype Password, Tidak Boleh kosong");
+                } else if (pane.edpassword.getText().equals(pane.edrepassword.getText())) {
                     rawsimpan();
+                } else {
+                    FuncHelper.showmessage("Gagal Menyimpan Data", "Retype password tidak sama dengan password awal");
                 }
             }
         });

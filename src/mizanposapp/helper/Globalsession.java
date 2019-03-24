@@ -194,7 +194,7 @@ public class Globalsession {
     public static String POS_Font_Tombol = "";
 
     //user
-    public static String id_user = "1-190227135837378103454";
+    public static String id_user = "";
     public static String nama_user = "";
     public static String keterangan_user = "";
     public static String dm_saldo_awal_akun = "";
@@ -275,7 +275,7 @@ public class Globalsession {
     public static String laporan_penjualan = "";
     public static String laporan_persediaan = "";
 
-    public Globalsession() {
+    public Globalsession(String id_user_aktif) {
         StringBuilder sb = new StringBuilder();
         try {
             URL url = new URL(Staticvar.url + "getglobalvarrest");
@@ -569,7 +569,7 @@ public class Globalsession {
             }
 
             loadconfigprop();
-            loaddatahakakses();
+            loaddatahakakses(id_user_aktif);
 
         } catch (MalformedURLException ex) {
             Logger.getLogger(Globalsession.class
@@ -646,9 +646,9 @@ public class Globalsession {
         }
     }
 
-    private void loaddatahakakses() {
+    private void loaddatahakakses(String id_user_aktif) {
         StringBuilder sb = new StringBuilder();
-        String param = "id=" + id_user;
+        String param = "id=" + id_user_aktif;
         try {
             URL url = new URL(Staticvar.url + "dm/datapengguna");
             HttpURLConnection huc = (HttpURLConnection) url.openConnection();

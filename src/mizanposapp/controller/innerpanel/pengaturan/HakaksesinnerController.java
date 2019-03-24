@@ -32,13 +32,13 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class HakaksesinnerController {
-    
+
     Hak_akses_inner_panel pane;
     CrudHelper ch = new CrudHelper();
     String ids = "";
     String urlget = "";
     String urlsave = "";
-    
+
     public HakaksesinnerController(Hak_akses_inner_panel pane) {
         ids = Staticvar.ids;
         Staticvar.ids = "";
@@ -59,7 +59,7 @@ public class HakaksesinnerController {
         simpandata();
         tutup();
         hidecontrol();
-        
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -69,20 +69,20 @@ public class HakaksesinnerController {
                     public void windowClosing(WindowEvent e) {
                         pane.bbatal.doClick();
                     }
-                    
+
                 });
             }
         });
     }
-    
+
     private void hidecontrol() {
         pane.ckmaster_limitasi_departement.setVisible(false);
         pane.ckmaster_limitasi_gudang.setVisible(false);
         pane.pdatamaster_tb.setVisible(false);
         pane.ckpersediaan_perakitan.setVisible(false);
-        
+
     }
-    
+
     private void disabletab() {
         pane.tab_hak_akses.setEnabledAt(0, false);
         pane.tab_hak_akses.setEnabledAt(1, false);
@@ -92,9 +92,9 @@ public class HakaksesinnerController {
         pane.tab_hak_akses.setEnabledAt(5, false);
         pane.tab_hak_akses.setEnabledAt(6, false);
         pane.tab_hak_akses.setEnabledAt(7, false);
-        
+
     }
-    
+
     private void loaddata() {
         if (ids.equals("")) {
             autocheckcontrol();
@@ -242,12 +242,12 @@ public class HakaksesinnerController {
                     String penjualan_faktur_rubah_harga = String.valueOf(jo.get("penjualan_faktur_rubah_harga"));
                     if (penjualan_faktur_rubah_harga.equals("1")) {
                         pane.ckpenjualan_rubah_harga_jual_faktur.setSelected(true);
-                        
+
                     } else {
                         pane.ckpenjualan_rubah_harga_jual_faktur.setSelected(false);
-                        
+
                     }
-                    
+
                     String penjualan_retur = String.valueOf(jo.get("penjualan_retur"));
                     if (penjualan_retur.equals("1")) {
                         pane.ckpenjualan_retur.setSelected(true);
@@ -260,7 +260,7 @@ public class HakaksesinnerController {
                         pane.ckpenjualan_edit_hapus_retur.setEnabled(false);
                         pane.ckpenjualan_secara_kredit_retur.setEnabled(false);
                     }
-                    
+
                     String penjualan_retur_input = String.valueOf(jo.get("penjualan_retur_input"));
                     if (penjualan_retur_input.equals("1")) {
                         pane.ckpenjualan_input_retur.setSelected(true);
@@ -338,7 +338,7 @@ public class HakaksesinnerController {
                         pane.ckpembelian_edit_hapus_faktur.setEnabled(true);
                         pane.ckpembelian_faktur_secara_kredit.setEnabled(true);
                         pane.ckpembelian_tarik_order_dari_faktur.setEnabled(true);
-                        
+
                     } else {
                         pane.ckpembelian_faktur.setSelected(false);
                         pane.ckpembelian_input_faktur.setEnabled(false);
@@ -430,7 +430,7 @@ public class HakaksesinnerController {
                     } else {
                         pane.ckpembelian_hapus_hutang_tidak_tertagih.setSelected(false);
                     }
-                    
+
                     String persediaan_tampilkan_modal = String.valueOf(jo.get("persediaan_tampilkan_modal"));
                     if (persediaan_tampilkan_modal.equals("1")) {
                         pane.ckpersediaan_tampilkan_harga_beli_harga_pokok.setSelected(true);
@@ -449,14 +449,14 @@ public class HakaksesinnerController {
                     } else {
                         pane.ckpersediaan_stock_opname.setSelected(false);
                     }
-                    
+
                     String persediaan_perakitan = String.valueOf(jo.get("persediaan_perakitan"));
                     if (persediaan_perakitan.equals("1")) {
                         pane.ckpersediaan_perakitan.setSelected(true);
                     } else {
                         pane.ckpersediaan_perakitan.setSelected(false);
                     }
-                    
+
                     String persediaan_penyesuaian = String.valueOf(jo.get("persediaan_penyesuaian"));
                     if (persediaan_penyesuaian.equals("1")) {
                         pane.ckpersediaan_penyesuaian.setSelected(true);
@@ -501,7 +501,7 @@ public class HakaksesinnerController {
                     } else {
                         pane.ckpersediaan_edit_hapus_transfer_barang.setSelected(false);
                     }
-                    
+
                     String keuangan_kas_masuk = String.valueOf(jo.get("keuangan_kas_masuk"));
                     if (keuangan_kas_masuk.equals("1")) {
                         pane.ckakuntansi_kas_masuk.setSelected(true);
@@ -524,7 +524,7 @@ public class HakaksesinnerController {
                     } else {
                         pane.ckakuntansi_edit_hapus_kas_masuk.setSelected(false);
                     }
-                    
+
                     String keuangan_kas_keluar = String.valueOf(jo.get("keuangan_kas_keluar"));
                     if (keuangan_kas_keluar.equals("1")) {
                         pane.ckakuntansi_kas_keluar.setSelected(true);
@@ -588,7 +588,7 @@ public class HakaksesinnerController {
                         pane.ckakuntansi_tutup_buku_bulanan_dan_tahun.setSelected(false);
                     }
                     String akuntansi_hitung_ulang_saldo = String.valueOf(jo.get("akuntansi_hitung_ulang_saldo"));
-                    
+
                     if (akuntansi_hitung_ulang_saldo.equals("1")) {
                         pane.ckakuntansi_hitung_ulang_saldo.setSelected(true);
                     } else {
@@ -636,15 +636,15 @@ public class HakaksesinnerController {
                     } else {
                         pane.cklaporan_persediaan.setSelected(false);
                     }
-                    
+
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(HakaksesinnerController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
-    
+
     private void autocheckcontrol() {
         if (pane.ckpenjualan_order.isSelected()) {
             pane.ckpenjualan_edit_hapus_order.setEnabled(true);
@@ -672,7 +672,7 @@ public class HakaksesinnerController {
             pane.ckpenjualan_secara_kredit_retur.setEnabled(false);
             pane.ckpenjualan_secara_kredit_retur.setSelected(false);
         }
-        
+
         if (pane.ckpenjualan_faktur.isSelected()) {
             pane.ckpenjualan_edit_hapus_faktur.setEnabled(true);
             pane.ckpenjualan_edit_hapus_faktur.setSelected(true);
@@ -696,7 +696,7 @@ public class HakaksesinnerController {
             pane.ckpenjualan_rubah_harga_jual_faktur.setEnabled(false);
             pane.ckpenjualan_rubah_harga_jual_faktur.setSelected(false);
         }
-        
+
         if (pane.ckpembelian_order.isSelected()) {
             pane.ckpembelian_edit_hapus_order.setEnabled(true);
             pane.ckpembelian_edit_hapus_order.setSelected(true);
@@ -708,7 +708,7 @@ public class HakaksesinnerController {
             pane.ckpembelian_input_order.setEnabled(false);
             pane.ckpembelian_input_order.setSelected(false);
         }
-        
+
         if (pane.ckpembelian_faktur.isSelected()) {
             pane.ckpembelian_edit_hapus_faktur.setEnabled(true);
             pane.ckpembelian_edit_hapus_faktur.setSelected(true);
@@ -728,7 +728,7 @@ public class HakaksesinnerController {
             pane.ckpembelian_tarik_order_dari_faktur.setEnabled(false);
             pane.ckpembelian_tarik_order_dari_faktur.setSelected(false);
         }
-        
+
         if (pane.ckpembelian_hutang_usaha.isSelected()) {
             pane.ckpembelian_edit_hapus_pembayaran_hutang_usaha.setEnabled(true);
             pane.ckpembelian_edit_hapus_pembayaran_hutang_usaha.setSelected(true);
@@ -744,7 +744,7 @@ public class HakaksesinnerController {
             pane.ckpembelian_hapus_hutang_tidak_tertagih.setEnabled(false);
             pane.ckpembelian_hapus_hutang_tidak_tertagih.setSelected(false);
         }
-        
+
         if (pane.ckpersediaan_penyesuaian.isSelected()) {
             pane.ckpersediaan_edit_hapus_penyesuaian.setEnabled(true);
             pane.ckpersediaan_edit_hapus_penyesuaian.setSelected(true);
@@ -756,7 +756,7 @@ public class HakaksesinnerController {
             pane.ckpersediaan_input_penyesuaian.setEnabled(false);
             pane.ckpersediaan_input_penyesuaian.setSelected(false);
         }
-        
+
         if (pane.ckpersediaan_transfer_barang_antar_gudang.isSelected()) {
             pane.ckpersediaan_edit_hapus_transfer_barang.setEnabled(true);
             pane.ckpersediaan_edit_hapus_transfer_barang.setSelected(true);
@@ -768,7 +768,7 @@ public class HakaksesinnerController {
             pane.ckpersediaan_input_transfer_barang.setEnabled(false);
             pane.ckpersediaan_input_transfer_barang.setSelected(false);
         }
-        
+
         if (pane.ckakuntansi_kas_masuk.isSelected()) {
             pane.ckakuntansi_edit_hapus_kas_masuk.setEnabled(true);
             pane.ckakuntansi_edit_hapus_kas_masuk.setSelected(true);
@@ -780,7 +780,7 @@ public class HakaksesinnerController {
             pane.ckakuntansi_input_kas_masuk.setEnabled(false);
             pane.ckakuntansi_input_kas_masuk.setSelected(false);
         }
-        
+
         if (pane.ckakuntansi_jurnal_umum.isSelected()) {
             pane.ckakuntansi_edit_hapus_jurnal_umum.setEnabled(true);
             pane.ckakuntansi_edit_hapus_jurnal_umum.setSelected(true);
@@ -792,7 +792,7 @@ public class HakaksesinnerController {
             pane.ckakuntansi_input_jurnal_umum.setEnabled(false);
             pane.ckakuntansi_input_jurnal_umum.setSelected(false);
         }
-        
+
         if (pane.ckakuntansi_kas_keluar.isSelected()) {
             pane.ckakuntansi_edit_hapus_kas_keluar.setEnabled(true);
             pane.ckakuntansi_edit_hapus_kas_keluar.setSelected(true);
@@ -804,7 +804,7 @@ public class HakaksesinnerController {
             pane.ckakuntansi_input_kas_keluar.setEnabled(false);
             pane.ckakuntansi_input_kas_keluar.setSelected(false);
         }
-        
+
         if (pane.ckakuntansi_transfer_kas.isSelected()) {
             pane.ckakuntansi_edit_hapus_transfer_kas.setEnabled(true);
             pane.ckakuntansi_edit_hapus_transfer_kas.setSelected(true);
@@ -816,9 +816,9 @@ public class HakaksesinnerController {
             pane.ckakuntansi_input_transfer_kas.setEnabled(false);
             pane.ckakuntansi_input_transfer_kas.setSelected(false);
         }
-        
+
     }
-    
+
     private void checkcontrolpenjualan() {
         pane.ckpenjualan_order.addActionListener(new ActionListener() {
             @Override
@@ -836,7 +836,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpenjualan_retur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -857,7 +857,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpenjualan_faktur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -886,7 +886,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpenjualan_piutang_usaha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -907,9 +907,9 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
     }
-    
+
     private void checkcontrolpembelian() {
         pane.ckpembelian_order.addActionListener(new ActionListener() {
             @Override
@@ -927,7 +927,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpembelian_retur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -948,7 +948,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpembelian_faktur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -973,7 +973,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpembelian_hutang_usaha.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -994,9 +994,9 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
     }
-    
+
     private void checkcontrolpersediaan() {
         pane.ckpersediaan_penyesuaian.addActionListener(new ActionListener() {
             @Override
@@ -1014,7 +1014,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckpersediaan_transfer_barang_antar_gudang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1031,9 +1031,9 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
     }
-    
+
     private void checkcontrolakuntansi() {
         pane.ckakuntansi_kas_masuk.addActionListener(new ActionListener() {
             @Override
@@ -1051,7 +1051,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckakuntansi_jurnal_umum.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1068,7 +1068,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckakuntansi_kas_keluar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1085,7 +1085,7 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
         pane.ckakuntansi_transfer_kas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1102,9 +1102,9 @@ public class HakaksesinnerController {
                 }
             }
         });
-        
+
     }
-    
+
     private void simpandata() {
         pane.blanjut.addActionListener(new ActionListener() {
             @Override
@@ -1138,16 +1138,16 @@ public class HakaksesinnerController {
                         if (opt == 0) {
                             rawsimpan();
                         }
-                        
+
                         break;
                     default:
                         break;
                 }
             }
         });
-        
+
     }
-    
+
     private void rawsimpan() {
         String nama = pane.ednama_hak_akses.getText();
         String keterangan = pane.taketerangan_hak_akses.getText();
@@ -1178,587 +1178,587 @@ public class HakaksesinnerController {
         String dm_baru_edit_hapus = "0";
         if (pane.ckdm_buat_baru_edit_hapus.isSelected()) {
             dm_baru_edit_hapus = "1";
-            
+
         } else {
             dm_baru_edit_hapus = "0";
         }
         String dm_limitasi_gudang = "0";
         if (pane.ckmaster_limitasi_gudang.isSelected()) {
             dm_limitasi_gudang = "1";
-            
+
         } else {
             dm_limitasi_gudang = "0";
-            
+
         }
         String dm_limitasi_dept = "0";
         if (pane.ckmaster_limitasi_departement.isSelected()) {
             dm_limitasi_dept = "1";
-            
+
         } else {
             dm_limitasi_dept = "0";
-            
+
         }
         String sistem_setup_program = "0";
         if (pane.cksistem_setup_program.isSelected()) {
             sistem_setup_program = "1";
         } else {
             sistem_setup_program = "0";
-            
+
         }
         String sistem_backup_data = "0";
         if (pane.cksistem_bakcup_data.isSelected()) {
             sistem_backup_data = "1";
         } else {
             sistem_backup_data = "0";
-            
+
         }
         String sistem_setting_pengguna = "0";
         if (pane.cksistem_setting_pengguna.isSelected()) {
             sistem_setting_pengguna = "1";
         } else {
             sistem_setting_pengguna = "0";
-            
+
         }
         String sistem_sql_editor = "0";
         if (pane.cksistem_buka_sql_editor.isSelected()) {
             sistem_sql_editor = "1";
-            
+
         } else {
             sistem_sql_editor = "0";
-            
+
         }
         String penjualan_order = "0";
         if (pane.ckpenjualan_order.isSelected()) {
             penjualan_order = "1";
-            
+
         } else {
             penjualan_order = "0";
-            
+
         }
         String penjualan_order_input = "0";
         if (pane.ckpenjualan_input_order.isSelected()) {
             penjualan_order_input = "1";
-            
+
         } else {
             penjualan_order_input = "0";
-            
+
         }
         String penjualan_order_edit = "0";
         if (pane.ckpenjualan_edit_hapus_order.isSelected()) {
             penjualan_order_edit = "1";
-            
+
         } else {
             penjualan_order_edit = "0";
-            
+
         }
         String penjualan_faktur = "0";
         if (pane.ckpenjualan_faktur.isSelected()) {
             penjualan_faktur = "1";
-            
+
         } else {
             penjualan_faktur = "0";
-            
+
         }
         String penjualan_faktur_input = "0";
         if (pane.ckpenjualan_input_faktur.isSelected()) {
             penjualan_faktur_input = "1";
-            
+
         } else {
             penjualan_faktur_input = "0";
-            
+
         }
         String penjualan_faktur_edit = "0";
         if (pane.ckpenjualan_edit_hapus_faktur.isSelected()) {
             penjualan_faktur_edit = "1";
-            
+
         } else {
             penjualan_faktur_edit = "0";
-            
+
         }
         String penjualan_faktur_kredit = "0";
         if (pane.ckpenjualan_faktur_secara_kredit.isSelected()) {
             penjualan_faktur_kredit = "1";
-            
+
         } else {
             penjualan_faktur_kredit = "0";
-            
+
         }
         String penjualan_faktur_tarik_order = "0";
         if (pane.ckpenjualan_tarik_order_dari_faktur.isSelected()) {
             penjualan_faktur_tarik_order = "1";
-            
+
         } else {
             penjualan_faktur_tarik_order = "0";
-            
+
         }
         String penjualan_faktur_rubah_harga = "0";
         if (pane.ckpenjualan_rubah_harga_jual_faktur.isSelected()) {
             penjualan_faktur_rubah_harga = "1";
-            
+
         } else {
             penjualan_faktur_rubah_harga = "0";
-            
+
         }
-        
+
         String penjualan_retur = "0";
         if (pane.ckpenjualan_retur.isSelected()) {
             penjualan_retur = "1";
-            
+
         } else {
             penjualan_retur = "0";
-            
+
         }
-        
+
         String penjualan_retur_input = "0";
         if (pane.ckpenjualan_input_retur.isSelected()) {
             penjualan_retur_input = "1";
-            
+
         } else {
             penjualan_retur_input = "0";
-            
+
         }
         String penjualan_retur_edit = "0";
         if (pane.ckpenjualan_edit_hapus_retur.isSelected()) {
             penjualan_retur_edit = "1";
-            
+
         } else {
             penjualan_retur_edit = "0";
-            
+
         }
         String penjualan_retur_kredit = "0";
         if (pane.ckpenjualan_secara_kredit_retur.isSelected()) {
             penjualan_retur_kredit = "1";
-            
+
         } else {
             penjualan_retur_kredit = "0";
-            
+
         }
         String penjualan_piutang = "0";
         if (pane.ckpenjualan_piutang_usaha.isSelected()) {
             penjualan_piutang = "1";
-            
+
         } else {
             penjualan_piutang = "0";
-            
+
         }
         String penjualan_piutang_input = "0";
         if (pane.ckpenjualan_input_pembayaran_piutang_usaha.isSelected()) {
             penjualan_piutang_input = "1";
-            
+
         } else {
             penjualan_piutang_input = "0";
-            
+
         }
         String penjualan_piutang_edit = "0";
         if (pane.ckpenjualan_edit_hapus_pembayaran_piutang.isSelected()) {
             penjualan_piutang_edit = "1";
-            
+
         } else {
             penjualan_piutang_edit = "0";
-            
+
         }
         String penjualan_piutang_writeoff = "0";
         if (pane.ckpenjualan_hapus_hutang_tak_tertagih.isSelected()) {
             penjualan_piutang_writeoff = "1";
-            
+
         } else {
             penjualan_piutang_writeoff = "0";
-            
+
         }
         String pembelian_order = "0";
         if (pane.ckpembelian_order.isSelected()) {
             pembelian_order = "1";
-            
+
         } else {
             pembelian_order = "0";
-            
+
         }
         String pembelian_order_input = "0";
         if (pane.ckpembelian_input_order.isSelected()) {
             pembelian_order_input = "1";
-            
+
         } else {
             pembelian_order_input = "0";
-            
+
         }
         String pembelian_order_edit = "0";
         if (pane.ckpembelian_edit_hapus_order.isSelected()) {
             pembelian_order_edit = "1";
-            
+
         } else {
             pembelian_order_edit = "0";
-            
+
         }
         String pembelian_faktur = "0";
         if (pane.ckpembelian_faktur.isSelected()) {
             pembelian_faktur = "1";
-            
+
         } else {
             pembelian_faktur = "0";
-            
+
         }
         String pembelian_faktur_input = "0";
         if (pane.ckpembelian_input_faktur.isSelected()) {
             pembelian_faktur_input = "1";
-            
+
         } else {
             pembelian_faktur_input = "0";
-            
+
         }
         String pembelian_faktur_edit = "0";
         if (pane.ckpembelian_edit_hapus_faktur.isSelected()) {
             pembelian_faktur_edit = "1";
-            
+
         } else {
             pembelian_faktur_edit = "0";
-            
+
         }
         String pembelian_faktur_kredit = "0";
         if (pane.ckpembelian_faktur_secara_kredit.isSelected()) {
             pembelian_faktur_kredit = "1";
-            
+
         } else {
             pembelian_faktur_kredit = "0";
-            
+
         }
         String pembelian_faktur_tarik_order = "0";
         if (pane.ckpembelian_tarik_order_dari_faktur.isSelected()) {
             pembelian_faktur_tarik_order = "1";
-            
+
         } else {
             pembelian_faktur_tarik_order = "0";
-            
+
         }
         String pembelian_retur = "0";
         if (pane.ckpembelian_retur.isSelected()) {
             pembelian_retur = "1";
-            
+
         } else {
             pembelian_retur = "0";
-            
+
         }
         String pembelian_retur_input = "0";
         if (pane.ckpembelian_input_retur.isSelected()) {
             pembelian_retur_input = "1";
-            
+
         } else {
             pembelian_retur_input = "0";
-            
+
         }
         String pembelian_retur_edit = "0";
         if (pane.ckpembelian_edit_hapus_retur.isSelected()) {
             pembelian_retur_edit = "1";
-            
+
         } else {
             pembelian_retur_edit = "0";
-            
+
         }
         String pembelian_retur_kredit = "0";
         if (pane.ckpembelian_secara_kredit_retur.isSelected()) {
             pembelian_retur_kredit = "1";
-            
+
         } else {
             pembelian_retur_kredit = "0";
-            
+
         }
         String pembelian_hutang = "0";
         if (pane.ckpembelian_hutang_usaha.isSelected()) {
             pembelian_hutang = "1";
-            
+
         } else {
             pembelian_hutang = "0";
-            
+
         }
         String pembelian_hutang_input = "0";
         if (pane.ckpembelian_input_pembayaran_hutang.isSelected()) {
             pembelian_hutang_input = "1";
-            
+
         } else {
             pembelian_hutang_input = "0";
-            
+
         }
         String pembelian_hutang_edit = "0";
         if (pane.ckpembelian_edit_hapus_pembayaran_hutang_usaha.isSelected()) {
             pembelian_hutang_edit = "1";
-            
+
         } else {
             pembelian_hutang_edit = "0";
-            
+
         }
         String pembelian_hutang_writeoff = "0";
         if (pane.ckpembelian_hapus_hutang_tidak_tertagih.isSelected()) {
             pembelian_hutang_writeoff = "1";
-            
+
         } else {
             pembelian_hutang_writeoff = "0";
-            
+
         }
         String persediaan_tampilkan_modal = "0";
         if (pane.ckpersediaan_tampilkan_harga_beli_harga_pokok.isSelected()) {
             persediaan_tampilkan_modal = "1";
-            
+
         } else {
             persediaan_tampilkan_modal = "0";
-            
+
         }
         String persediaan_rubah_harga_jual = "0";
         if (pane.ckpersediaan_merubah_harga_jual.isSelected()) {
             persediaan_rubah_harga_jual = "1";
-            
+
         } else {
             persediaan_rubah_harga_jual = "0";
-            
+
         }
         String persediaan_stok_opname = "0";
         if (pane.ckpersediaan_stock_opname.isSelected()) {
             persediaan_stok_opname = "1";
-            
+
         } else {
             persediaan_stok_opname = "0";
-            
+
         }
         String persediaan_perakitan = "0";
         if (pane.ckpersediaan_perakitan.isSelected()) {
             persediaan_perakitan = "1";
-            
+
         } else {
             persediaan_perakitan = "0";
-            
+
         }
         String persediaan_penyesuaian = "0";
         if (pane.ckpersediaan_penyesuaian.isSelected()) {
             persediaan_penyesuaian = "1";
-            
+
         } else {
             persediaan_penyesuaian = "0";
-            
+
         }
         String persediaan_penyesuaian_input = "0";
         if (pane.ckpersediaan_input_penyesuaian.isSelected()) {
             persediaan_penyesuaian_input = "1";
-            
+
         } else {
             persediaan_penyesuaian_input = "0";
-            
+
         }
         String persediaan_penyesuaian_edit = "0";
         if (pane.ckpersediaan_edit_hapus_penyesuaian.isSelected()) {
             persediaan_penyesuaian_edit = "1";
-            
+
         } else {
             persediaan_penyesuaian_edit = "0";
-            
+
         }
         String persediaan_transfer = "0";
         if (pane.ckpersediaan_input_transfer_barang.isSelected()) {
             persediaan_transfer = "1";
-            
+
         } else {
             persediaan_transfer = "0";
-            
+
         }
         String persediaan_transfer_input = "0";
         if (pane.ckpersediaan_input_transfer_barang.isSelected()) {
             persediaan_transfer_input = "1";
-            
+
         } else {
             persediaan_transfer_input = "0";
-            
+
         }
         String persediaan_transfer_edit = "0";
         if (pane.ckpersediaan_edit_hapus_transfer_barang.isSelected()) {
             persediaan_transfer_edit = "1";
-            
+
         } else {
             persediaan_transfer_edit = "0";
-            
+
         }
         String keuangan_kas_masuk = "0";
         if (pane.ckakuntansi_kas_masuk.isSelected()) {
             keuangan_kas_masuk = "1";
-            
+
         } else {
             keuangan_kas_masuk = "0";
-            
+
         }
         String keuangan_kas_masuk_input = "0";
         if (pane.ckakuntansi_input_kas_masuk.isSelected()) {
             keuangan_kas_masuk_input = "1";
-            
+
         } else {
             keuangan_kas_masuk_input = "0";
-            
+
         }
         String keuangan_kas_masuk_edit = "0";
         if (pane.ckakuntansi_edit_hapus_kas_masuk.isSelected()) {
             keuangan_kas_masuk_edit = "1";
-            
+
         } else {
             keuangan_kas_masuk_edit = "0";
-            
+
         }
         String keuangan_kas_keluar = "0";
         if (pane.ckakuntansi_kas_keluar.isSelected()) {
             keuangan_kas_keluar = "1";
-            
+
         } else {
             keuangan_kas_keluar = "0";
-            
+
         }
         String keuangan_kas_keluar_input = "0";
         if (pane.ckakuntansi_input_kas_keluar.isSelected()) {
             keuangan_kas_keluar_input = "1";
-            
+
         } else {
             keuangan_kas_keluar_input = "0";
-            
+
         }
         String keuangan_kas_keluar_edit = "0";
         if (pane.ckakuntansi_edit_hapus_kas_keluar.isSelected()) {
             keuangan_kas_keluar_edit = "1";
-            
+
         } else {
             keuangan_kas_keluar_edit = "0";
-            
+
         }
-        
+
         String keuangan_transfer_kas = "0";
         if (pane.ckakuntansi_transfer_kas.isSelected()) {
             keuangan_transfer_kas = "1";
-            
+
         } else {
             keuangan_transfer_kas = "0";
-            
+
         }
         String keuangan_transfer_kas_input = "0";
         if (pane.ckakuntansi_input_transfer_kas.isSelected()) {
             keuangan_transfer_kas_input = "1";
-            
+
         } else {
             keuangan_transfer_kas_input = "0";
-            
+
         }
         String keuangan_transfer_kas_edit = "0";
         if (pane.ckakuntansi_edit_hapus_transfer_kas.isSelected()) {
             keuangan_transfer_kas_edit = "1";
-            
+
         } else {
             keuangan_transfer_kas_edit = "0";
-            
+
         }
-        
+
         String akuntansi_jurnal_umum = "0";
         if (pane.ckakuntansi_jurnal_umum.isSelected()) {
             akuntansi_jurnal_umum = "1";
-            
+
         } else {
             akuntansi_jurnal_umum = "0";
-            
+
         }
         String akuntansi_jurnal_umum_input = "0";
         if (pane.ckakuntansi_input_jurnal_umum.isSelected()) {
             akuntansi_jurnal_umum_input = "1";
-            
+
         } else {
             akuntansi_jurnal_umum_input = "0";
-            
+
         }
         String akuntansi_jurnal_umum_edit = "0";
         if (pane.ckakuntansi_edit_hapus_jurnal_umum.isSelected()) {
             akuntansi_jurnal_umum_edit = "1";
-            
+
         } else {
             akuntansi_jurnal_umum_edit = "0";
-            
+
         }
         String akuntansi_buku_besar = "0";
         if (pane.ckakuntansi_buku_besar.isSelected()) {
             akuntansi_buku_besar = "1";
-            
+
         } else {
             akuntansi_buku_besar = "0";
-            
+
         }
         String akuntansi_setting_akun_penting = "0";
         if (pane.ckakuntansi_setting_akun_penting.isSelected()) {
             akuntansi_setting_akun_penting = "1";
-            
+
         } else {
             akuntansi_setting_akun_penting = "0";
-            
+
         }
         String akuntansi_tutup_buku = "0";
         if (pane.ckakuntansi_tutup_buku_bulanan_dan_tahun.isSelected()) {
             akuntansi_tutup_buku = "1";
-            
+
         } else {
             akuntansi_tutup_buku = "0";
-            
+
         }
         String akuntansi_hitung_ulang_saldo = "0";
-        
+
         if (pane.ckakuntansi_hitung_ulang_saldo.isSelected()) {
             akuntansi_hitung_ulang_saldo = "1";
-            
+
         } else {
             akuntansi_hitung_ulang_saldo = "0";
-            
+
         }
         String akuntansi_reposting = "0";
         if (pane.ckakuntansi_reposting_transaksi.isSelected()) {
             akuntansi_reposting = "1";
-            
+
         } else {
             akuntansi_reposting = "0";
-            
+
         }
         String akuntansi_ganti_periode = "0";
         if (pane.ckakuntansi_periode_akuntansi.isSelected()) {
             akuntansi_ganti_periode = "1";
-            
+
         } else {
             akuntansi_ganti_periode = "0";
-            
+
         }
         String laporan_kuangan = "0";
         if (pane.cklaporan_keuangan.isSelected()) {
             laporan_kuangan = "1";
-            
+
         } else {
             laporan_kuangan = "0";
-            
+
         }
         String laporan_buku_besar = "0";
         if (pane.cklaporan_buku_besar.isSelected()) {
             laporan_buku_besar = "1";
-            
+
         } else {
             laporan_buku_besar = "0";
         }
         String laporan_pembelian = "0";
         if (pane.cklaporan_pembelian_dan_hutang_usaha.isSelected()) {
             laporan_pembelian = "1";
-            
+
         } else {
             laporan_pembelian = "0";
         }
         String laporan_penjualan = "0";
         if (pane.cklaporan_penjualan_dan_piutang_usaha.isSelected()) {
             laporan_penjualan = "1";
-            
+
         } else {
             laporan_penjualan = "0";
-            
+
         }
         String laporan_persediaan = "0";
         if (pane.cklaporan_persediaan.isSelected()) {
             laporan_persediaan = "1";
-            
+
         } else {
             laporan_persediaan = "0";
-            
+
         }
-        
+
         String data = "data="
              + "nama='" + nama + "'::"
              + "keterangan='" + keterangan + "'::"
@@ -1844,10 +1844,10 @@ public class HakaksesinnerController {
         } else {
             ch.updatedata(urlsave, data, ids);
         }
-        
+
         if (Staticvar.getresult.equals("berhasil")) {
             JOptionPane.showMessageDialog(null, "Hak Akses Berhasil Disimpan");
-            new Globalsession();
+            new Globalsession(Staticvar.id_user_aktif);
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
@@ -1863,7 +1863,7 @@ public class HakaksesinnerController {
             jd.toFront();
         }
     }
-    
+
     private void tutup() {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override

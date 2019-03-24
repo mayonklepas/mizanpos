@@ -46,10 +46,10 @@ import org.json.simple.parser.ParseException;
  * @author Minami
  */
 public class PengaturaninnerController {
-    
+
     Pengaturan_inner_panel pane;
     CrudHelper ch = new CrudHelper();
-    
+
     String kode = "kode";
     String kelompok = "kelompok";
     String suplier = "suplier";
@@ -66,14 +66,14 @@ public class PengaturaninnerController {
     String hpp = "hpp";
     String service = "service";
     String stok = "stok";
-    
+
     ArrayList listheaderpembelian = new ArrayList();
     ArrayList listheaderpenjualan = new ArrayList();
     ArrayList listheaderpersediaan = new ArrayList();
-    
+
     Properties prop = new Properties();
     String valgudang = "", valdept = "", valpelanggan = "", valcurrency = "", validcompany = "", valopnameakunlain = "";
-    
+
     public PengaturaninnerController(Pengaturan_inner_panel pane) {
         this.pane = pane;
         ButtonGroup bg = new ButtonGroup();
@@ -92,9 +92,9 @@ public class PengaturaninnerController {
         caridepartment();
         pane.kontrolserial.setVisible(false);
         pane.ptampildaftarpersediaan.setVisible(false);
-        
+
     }
-    
+
     private void hidecontrol() {
         pane.ckbarcodedenganserialbarangpos.setVisible(false);
         pane.ckbarisbarupos.setVisible(false);
@@ -108,7 +108,7 @@ public class PengaturaninnerController {
                 pane.bcariakunstockopnamepersediaan.setVisible(false);
             }
         });
-        
+
         pane.rbgunakanakunlainnyapersediaan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,7 +118,7 @@ public class PengaturaninnerController {
                 pane.bcariakunstockopnamepersediaan.setVisible(true);
             }
         });
-        
+
         pane.ckgunakanpembulatanpos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,388 +132,388 @@ public class PengaturaninnerController {
             }
         });
     }
-    
+
     private void loadjsonpembelian() {
         try {
             String dataheader = ch.getheaderinputs();
             JSONParser jp = new JSONParser();
             Object isijson = jp.parse(dataheader);
             JSONObject jo = (JSONObject) isijson;
-            
+
             Object objfieldorderpembelian = jo.get("inputorderpembelian");
             Object objfieldfakturpembelian = jo.get("inputfakturpembelian");
             Object objfieldreturpembelian = jo.get("inputreturpembelian");
-            
+
             JSONArray jafieldorderpembelian = (JSONArray) objfieldorderpembelian;
             for (int i = 0; i < jafieldorderpembelian.size(); i++) {
                 JSONObject jofieldpembelian = (JSONObject) jafieldorderpembelian.get(i);
                 JSONArray jajafieldpembelian = (JSONArray) jofieldpembelian.get("key");
                 if (jajafieldpembelian.get(0).equals(keterangan)) {
-                    
+
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilorderketeranganpembelian.setSelected(true);
                     } else {
                         pane.cktampilorderketeranganpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(pajak)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilorderpajakpembelian.setSelected(true);
                     } else {
                         pane.cktampilorderpajakpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(harga_jual)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilorderhargajualpembelian.setSelected(true);
                     } else {
                         pane.cktampilorderhargajualpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(gudang)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilordergudangpembelian.setSelected(true);
                     } else {
                         pane.cktampilordergudangpembelian.setSelected(false);
                     }
-                    
+
                 }
-                
+
             }
-            
+
             JSONArray jafieldfakturpembelian = (JSONArray) objfieldfakturpembelian;
             for (int i = 0; i < jafieldfakturpembelian.size(); i++) {
                 JSONObject jofieldpembelian = (JSONObject) jafieldfakturpembelian.get(i);
                 JSONArray jajafieldpembelian = (JSONArray) jofieldpembelian.get("key");
                 if (jajafieldpembelian.get(0).equals(order)) {
-                    
+
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilfakturorderpembelian.setSelected(true);
                     } else {
                         pane.cktampilfakturorderpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(keterangan)) {
-                    
+
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilfakturketeranganpembelian.setSelected(true);
                     } else {
                         pane.cktampilfakturketeranganpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(pajak)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilfakturpajakpembelian.setSelected(true);
                     } else {
                         pane.cktampilfakturpajakpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(harga_jual)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilfakturhargajualpembelian.setSelected(true);
                     } else {
                         pane.cktampilfakturhargajualpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(gudang)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilfakturgudangpembelian.setSelected(true);
                     } else {
                         pane.cktampilfakturgudangpembelian.setSelected(false);
                     }
-                    
+
                 }
-                
+
             }
-            
+
             JSONArray jafieldreturpembelian = (JSONArray) objfieldreturpembelian;
             for (int i = 0; i < jafieldreturpembelian.size(); i++) {
                 JSONObject jofieldpembelian = (JSONObject) jafieldreturpembelian.get(i);
                 JSONArray jajafieldpembelian = (JSONArray) jofieldpembelian.get("key");
                 if (jajafieldpembelian.get(0).equals(order)) {
-                    
+
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilreturorderpembelian.setSelected(true);
                     } else {
                         pane.cktampilreturorderpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(keterangan)) {
-                    
+
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilreturketeranganpembelian.setSelected(true);
                     } else {
                         pane.cktampilreturketeranganpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(pajak)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilreturpajakpembelian.setSelected(true);
                     } else {
                         pane.cktampilreturpajakpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(harga_jual)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilreturhargajualpembelian.setSelected(true);
                     } else {
                         pane.cktampilreturhargajualpembelian.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpembelian.get(0).equals(gudang)) {
                     if (jajafieldpembelian.get(2).equals("1")) {
                         pane.cktampilreturgudangpembelian.setSelected(true);
                     } else {
                         pane.cktampilreturgudangpembelian.setSelected(false);
                     }
-                    
+
                 }
-                
+
             }
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void loadjsonpenjualan() {
         try {
             String dataheader = ch.getheaderinputs();
             JSONParser jp = new JSONParser();
             Object isijson = jp.parse(dataheader);
             JSONObject jo = (JSONObject) isijson;
-            
+
             Object objfieldorderpenjualan = jo.get("inputorderpenjualan");
             Object objfieldfakturpenjualan = jo.get("inputfakturpenjualan");
             Object objfieldreturpenjualan = jo.get("inputreturpenjualan");
-            
+
             JSONArray jafieldorderpenjualan = (JSONArray) objfieldorderpenjualan;
             for (int i = 0; i < jafieldorderpenjualan.size(); i++) {
                 JSONObject jofieldpenjualan = (JSONObject) jafieldorderpenjualan.get(i);
                 JSONArray jajafieldpenjualan = (JSONArray) jofieldpenjualan.get("key");
                 if (jajafieldpenjualan.get(0).equals(keterangan)) {
-                    
+
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilorderketeranganpenjualan.setSelected(true);
                     } else {
                         pane.cktampilorderketeranganpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(pajak)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilorderpajakpenjualan.setSelected(true);
                     } else {
                         pane.cktampilorderpajakpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(gudang)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilordergudangpenjualan.setSelected(true);
                     } else {
                         pane.cktampilordergudangpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(stok)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilorderstockpenjualan.setSelected(true);
                     } else {
                         pane.cktampilorderstockpenjualan.setSelected(false);
                     }
-                    
+
                 }
-                
+
             }
-            
+
             JSONArray jafieldfakturpenjualan = (JSONArray) objfieldfakturpenjualan;
             for (int i = 0; i < jafieldfakturpenjualan.size(); i++) {
                 JSONObject jofieldpenjualan = (JSONObject) jafieldfakturpenjualan.get(i);
                 JSONArray jajafieldpenjualan = (JSONArray) jofieldpenjualan.get("key");
                 if (jajafieldpenjualan.get(0).equals(order)) {
-                    
+
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilfakturorderpenjualan.setSelected(true);
                     } else {
                         pane.cktampilfakturorderpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(keterangan)) {
-                    
+
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilfakturketeranganpenjualan.setSelected(true);
                     } else {
                         pane.cktampilfakturketeranganpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(pajak)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilfakturpajakpenjualan.setSelected(true);
                     } else {
                         pane.cktampilfakturpajakpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(gudang)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilfakturgudangpenjualan.setSelected(true);
                     } else {
                         pane.cktampilfakturgudangpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(stok)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilfakturstockpenjualan.setSelected(true);
                     } else {
                         pane.cktampilfakturstockpenjualan.setSelected(false);
                     }
-                    
+
                 }
-                
+
             }
-            
+
             JSONArray jafieldreturpenjualan = (JSONArray) objfieldreturpenjualan;
             for (int i = 0; i < jafieldreturpenjualan.size(); i++) {
                 JSONObject jofieldpenjualan = (JSONObject) jafieldreturpenjualan.get(i);
                 JSONArray jajafieldpenjualan = (JSONArray) jofieldpenjualan.get("key");
                 if (jajafieldpenjualan.get(0).equals(order)) {
-                    
+
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilreturorderpenjualan.setSelected(true);
                     } else {
                         pane.cktampilreturorderpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(keterangan)) {
-                    
+
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilreturketeranganpenjualan.setSelected(true);
                     } else {
                         pane.cktampilreturketeranganpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(pajak)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilreturpajakpenjualan.setSelected(true);
                     } else {
                         pane.cktampilreturpajakpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(gudang)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilreturgudangpenjualan.setSelected(true);
                     } else {
                         pane.cktampilreturgudangpenjualan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpenjualan.get(0).equals(stok)) {
                     if (jajafieldpenjualan.get(2).equals("1")) {
                         pane.cktampilreturstockpenjualan.setSelected(true);
                     } else {
                         pane.cktampilreturstockpenjualan.setSelected(false);
                     }
-                    
+
                 }
-                
+
             }
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void loadjsonpersediaan() {
-        
+
         try {
-            
+
             String dataheader = ch.getheaderinputs();
             JSONParser jp = new JSONParser();
             Object isijson = jp.parse(dataheader);
             JSONObject jo = (JSONObject) isijson;
             Object objfieldpersediaan = jo.get("persediaan");
-            
+
             JSONArray jafieldpersediaan = (JSONArray) objfieldpersediaan;
             for (int i = 0; i < jafieldpersediaan.size(); i++) {
                 JSONObject jofieldpersediaan = (JSONObject) jafieldpersediaan.get(i);
                 JSONArray jajafieldpersediaan = (JSONArray) jofieldpersediaan.get("key");
                 if (jajafieldpersediaan.get(0).equals(kode)) {
-                    
+
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldkodepersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldkodepersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(kelompok)) {
-                    
+
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldkelompokpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldkelompokpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(satuan)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldsatuanpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldsatuanpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(suplier)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldsuplierpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldsuplierpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(merek)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldmerekpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldmerekpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(lokasi)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldlokasipersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldlokasipersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(harga_beli)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldhargebeliterakhirpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldhargebeliterakhirpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(harga_jual)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldhargajualpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldhargajualpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(keterangan)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldketeranganpersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldketeranganpersediaan.setSelected(false);
                     }
-                    
+
                 } else if (jajafieldpersediaan.get(0).equals(hpp)) {
                     if (jajafieldpersediaan.get(2).equals("1")) {
                         pane.cktampilfieldhpppersediaan.setSelected(true);
                     } else {
                         pane.cktampilfieldhpppersediaan.setSelected(false);
                     }
-                    
+
                 }
             }
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private JSONArray setjsonpersediaan() {
         JSONArray jaroot = new JSONArray();
         for (int i = 0; i < 14; i++) {
@@ -645,19 +645,19 @@ public class PengaturaninnerController {
                 default:
                     break;
             }
-            
+
             jainroot.add(val);
             jainroot.add(head);
             jainroot.add(show);
             jainroot.add(size);
             joinroot.put("key", jainroot);
             jaroot.add(joinroot);
-            
+
         }
-        
+
         return jaroot;
     }
-    
+
     private void loadconfigprop() {
         try {
             InputStream ins = new FileInputStream(new File("config.properties"));
@@ -695,7 +695,7 @@ public class PengaturaninnerController {
             String Penjualan_FileRetur = prop.getProperty("Penjualan_FileRetur");
             pane.edfilereturpenjualan.setText(Penjualan_FileRetur);
             String Penjualan_Printer = prop.getProperty("Penjualan_Printer");
-            
+
             String Penjualan_DotMatrixPrinter = prop.getProperty("Penjualan_DotMatrixPrinter");
             String Penjualan_HargaJualIncTaxService = prop.getProperty("Penjualan_HargaJualIncTaxService");
             //[POS]
@@ -769,14 +769,14 @@ public class PengaturaninnerController {
             pane.sptinggitombollbawahpos.setValue(Integer.parseInt(POS_Tinggi_Tombol));
             String POS_Font_Tombol = prop.getProperty("POS_Font_Tombol");
             pane.spfonttombolbawahpos.setValue(Integer.parseInt(POS_Font_Tombol));
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void loadsettingfromdb() {
         try {
             JSONParser jpdata = new JSONParser();
@@ -865,7 +865,7 @@ public class PengaturaninnerController {
                             pane.cksetselesaiorderpembelian.setSelected(false);
                         }
                         break;
-                    
+
                     case "Penjualan_PembHutangPiutangSimple":
                         if (nilai.equals("1")) {
                             pane.ckpembayaranhutangpiutangformtotalpenjualan.setSelected(true);
@@ -873,7 +873,7 @@ public class PengaturaninnerController {
                             pane.ckpembayaranhutangpiutangformtotalpenjualan.setSelected(false);
                         }
                         break;
-                    
+
                     case "Persediaan_BatasiPanjangSerial":
                         if (nilai.equals("1")) {
                             pane.ckbatasipenjangserialpersediaan.setSelected(true);
@@ -895,7 +895,7 @@ public class PengaturaninnerController {
                             //pane.ckhpphargabeliterakhirpersediaan.setSelected(false);
                         }
                         break;
-                    
+
                     case "Persediaan_HPPdariHargaBeli":
                         if (nilai.equals("1")) {
                             pane.ckhpphargabeliterakhirpersediaan.setSelected(true);
@@ -972,7 +972,7 @@ public class PengaturaninnerController {
                         break;
                 }
             }
-            
+
             Object objprefix = jodata.get("prefix");
             JSONArray japrefix = (JSONArray) objprefix;
             for (int i = 0; i < japrefix.size(); i++) {
@@ -1056,7 +1056,7 @@ public class PengaturaninnerController {
                         break;
                 }
             }
-            
+
             if (pane.rbgunakanakunhpppersediaan.isSelected()) {
                 pane.lakunstockopnamepersediaan.setVisible(false);
                 pane.ltitik2akunstockopnamepersediaan.setVisible(false);
@@ -1068,7 +1068,7 @@ public class PengaturaninnerController {
                 pane.edakunstockopnamepersediaan.setVisible(true);
                 pane.bcariakunstockopnamepersediaan.setVisible(true);
             }
-            
+
             if (pane.ckgunakanpembulatanpos.isSelected()) {
                 pane.sppembulatanpos.setVisible(true);
                 pane.lpembulatanpos.setVisible(true);
@@ -1076,10 +1076,10 @@ public class PengaturaninnerController {
                 pane.sppembulatanpos.setVisible(false);
                 pane.lpembulatanpos.setVisible(false);
             }
-            
+
             Object objcompany = jodata.get("company");
             JSONArray jacompany = (JSONArray) objcompany;
-            
+
             for (int i = 0; i < jacompany.size(); i++) {
                 JSONObject joindata = (JSONObject) jacompany.get(i);
                 validcompany = String.valueOf(joindata.get("id"));
@@ -1104,16 +1104,16 @@ public class PengaturaninnerController {
                 pane.edjabatanpenandatanganfakturpajakperusahaan.setText(String.valueOf(joindata.get("ttd_pajak_jabatan")));
                 pane.edmatauangutama.setText(String.valueOf(joindata.get("nama_currency")));
                 valcurrency = String.valueOf(joindata.get("id_currency"));
-                
+
             }
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (java.text.ParseException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void simpankedb() {
         String POS_BarcodeMenggunakanSerial,
              POS_BuatBarisBaru, POS_GunakanPembulatan,
@@ -1125,103 +1125,103 @@ public class PengaturaninnerController {
              Persediaan_CekStockSebelumSimpan, Persediaan_EdMenggunakanFIFO, Persediaan_HPPdariHargaBeli,
              Persediaan_OpnameGunakanAkunHPP, Persediaan_OpnameGunakanAkunLain, Persediaan_OpnameAkunLain, Persediaan_PanjangSerial,
              Persediaan_SerialIsDigit, Persediaan_SerialUnique;
-        
+
         if (pane.ckbarcodedenganserialbarangpos.isSelected()) {
             POS_BarcodeMenggunakanSerial = "1";
         } else {
             POS_BarcodeMenggunakanSerial = "0";
         }
-        
+
         if (pane.ckbarisbarupos.isSelected()) {
             POS_BuatBarisBaru = "1";
         } else {
             POS_BuatBarisBaru = "0";
         }
-        
+
         if (pane.ckgunakanpembulatanpos.isSelected()) {
             POS_GunakanPembulatan = "1";
         } else {
             POS_GunakanPembulatan = "0";
         }
-        
+
         if (pane.ckhargajualtidakbolehkecildarimasterpos.isSelected()) {
             POS_HargaJualMinimum = "1";
         } else {
             POS_HargaJualMinimum = "0";
         }
-        
+
         if (pane.cktransaksiharussalesmanpos.isSelected()) {
             POS_HarusMenggunakanSalesman = "1";
         } else {
             POS_HarusMenggunakanSalesman = "0";
         }
-        
+
         if (pane.cktampilpiutangpos.isSelected()) {
             POS_TampilkanPiutangTotal = "1";
         } else {
             POS_TampilkanPiutangTotal = "0";
         }
-        
+
         if (pane.ckmasukanpajakpembelian.isSelected()) {
             Pembelian_MasukkanPajakKeHargaPokok = "1";
         } else {
             Pembelian_MasukkanPajakKeHargaPokok = "0";
         }
-        
+
         if (pane.cksetselesaiorderpembelian.isSelected()) {
             Pembelian_SetOrderSelesai = "1";
         } else {
             Pembelian_SetOrderSelesai = "0";
         }
-        
+
         if (pane.ckhitungtotalbarispembelian.isSelected()) {
             Pembelian_HitungTotalBuatBarisBaru = "1";
         } else {
             Pembelian_HitungTotalBuatBarisBaru = "0";
         }
-        
+
         if (pane.ckfakturtanpapengecekanmutasipembelian.isSelected()) {
             Pembelian_EditFakturTanpaMutasi = "1";
         } else {
             Pembelian_EditFakturTanpaMutasi = "0";
         }
-        
+
         if (pane.cksetselesaiorderpenjualan.isSelected()) {
             Penjualan_SetOrderSelesai = "1";
         } else {
             Penjualan_SetOrderSelesai = "0";
         }
-        
+
         if (pane.ckhargajualtermasukpajakdanservicepenjualan.isSelected()) {
             Penjualan_HargaJualIncTaxService = "1";
         } else {
             Penjualan_HargaJualIncTaxService = "0";
         }
-        
+
         if (pane.ckpembayaranhutangpiutangformtotalpenjualan.isSelected()) {
             Penjualan_PembHutangPiutangSimple = "1";
         } else {
             Penjualan_PembHutangPiutangSimple = "0";
         }
-        
+
         if (pane.ckbatasipenjangserialpersediaan.isSelected()) {
             Persediaan_BatasiPanjangSerial = "1";
         } else {
             Persediaan_BatasiPanjangSerial = "0";
         }
-        
+
         if (pane.ckcekstocksebelumsimpanpersediaan.isSelected()) {
             Persediaan_CekStockSebelumSimpan = "1";
         } else {
             Persediaan_CekStockSebelumSimpan = "0";
         }
-        
+
         if (pane.ckhpphargabeliterakhirpersediaan.isSelected()) {
             Persediaan_HPPdariHargaBeli = "1";
         } else {
             Persediaan_HPPdariHargaBeli = "0";
         }
-        
+
         if (pane.rbgunakanakunhpppersediaan.isSelected()) {
             Persediaan_OpnameGunakanAkunHPP = "1";
             Persediaan_OpnameGunakanAkunLain = "0";
@@ -1229,19 +1229,19 @@ public class PengaturaninnerController {
             Persediaan_OpnameGunakanAkunHPP = "0";
             Persediaan_OpnameGunakanAkunLain = "1";
         }
-        
+
         if (pane.ckserialhanyadigitpersediaan.isSelected()) {
             Persediaan_SerialIsDigit = "1";
         } else {
             Persediaan_SerialIsDigit = "0";
         }
-        
+
         if (pane.ckserialunikpersediaan.isSelected()) {
             Persediaan_SerialUnique = "1";
         } else {
             Persediaan_SerialUnique = "0";
         }
-        
+
         String data = "setupprogram="
              + "POS_BarcodeMenggunakanSerial='" + POS_BarcodeMenggunakanSerial + "'::"
              + "POS_BuatBarisBaru='" + POS_BuatBarisBaru + "'::"
@@ -1318,9 +1318,9 @@ public class PengaturaninnerController {
         ch.insertdata("insertdatasetupprogram", data);
         if (Staticvar.getresult.equals("berhasil")) {
             simpankefile();
-            new Globalsession();
+            new Globalsession(Staticvar.id_user_aktif);
             JOptionPane.showMessageDialog(null, "Pengaturan Disimpan, Jika Tidak Ada perubahan Restart Aplikasi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            
+
         } else {
             JDialog jd = new JDialog(new Mainmenu());
             Errorpanel ep = new Errorpanel();
@@ -1333,9 +1333,9 @@ public class PengaturaninnerController {
             jd.toFront();
         }
     }
-    
+
     private void simpankeproperties() {
-        
+
         try {
             OutputStream outs = new FileOutputStream(new File("config.properties"));
             //[SETUPUMUM]
@@ -1363,9 +1363,9 @@ public class PengaturaninnerController {
             String Penjualan_FileFaktur = pane.edfilefakturpenjualan.getText();
             String Penjualan_FileRetur = pane.edfilereturpenjualan.getText();
             String Penjualan_Printer = prop.getProperty("Penjualan_Printer");
-            
+
             String Penjualan_DotMatrixPrinter = "";
-            
+
             String Penjualan_HargaJualIncTaxService = "";
             //[POS]
             String POS_OtomatisCetakStruk = "";
@@ -1416,7 +1416,7 @@ public class PengaturaninnerController {
             String POS_Lebar_Tombol = String.valueOf(pane.splebartombolbawahpos.getValue());
             String POS_Tinggi_Tombol = String.valueOf(pane.sptinggitombollbawahpos.getValue());
             String POS_Font_Tombol = String.valueOf(pane.spfonttombolbawahpos.getValue());
-            
+
             prop.setProperty("Setting_GudangDefaultnama", Setting_GudangDefaultnama);
             prop.setProperty("Setting_DeptDefaultnama", Setting_DeptDefaultnama);
             prop.setProperty("Setting_GudangDefault", Setting_GudangDefault);
@@ -1432,7 +1432,7 @@ public class PengaturaninnerController {
             prop.setProperty("Penjualan_HargaJualIncTaxService", Penjualan_HargaJualIncTaxService);
             prop.setProperty("POS_OtomatisCetakStruk", POS_OtomatisCetakStruk);
             prop.setProperty("POS_FileStruk", POS_FileStruk);
-            
+
             prop.setProperty("POS_Printer", POS_Printer);
             prop.setProperty("POS_DotMatrixPrinter", POS_DotMatrixPrinter);
             prop.setProperty("POS_ContinuousForm", POS_ContinuousForm);
@@ -1449,17 +1449,17 @@ public class PengaturaninnerController {
             prop.setProperty("POS_Lebar_Tombol", POS_Lebar_Tombol);
             prop.setProperty("POS_Tinggi_Tombol", POS_Tinggi_Tombol);
             prop.setProperty("POS_Font_Tombol", POS_Font_Tombol);
-            
+
             prop.store(outs, null);
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private JSONArray setjson(boolean termasukorder, boolean termasukstok, boolean order, boolean stok, boolean harga_beli, boolean harga_jual, boolean pajak, boolean gudang, boolean keterangan) {
         JSONArray jaroot = new JSONArray();
         for (int i = 0; i < 14; i++) {
@@ -1582,11 +1582,11 @@ public class PengaturaninnerController {
                     show = "1";
                     size = "10";
                     break;
-                
+
                 default:
                     break;
             }
-            
+
             if (i == 3) {
                 if (termasukorder == true) {
                     jainroot.add(val);
@@ -1613,34 +1613,34 @@ public class PengaturaninnerController {
                 joinroot.put("key", jainroot);
                 jaroot.add(joinroot);
             }
-            
+
         }
-        
+
         return jaroot;
     }
-    
+
     private void simpankefile() {
         try {
             simpankeproperties();
             JSONObject jsobj = new JSONObject();
-            
+
             boolean stok_order_penjualan = false,
                  pajak_order_penjualan = false,
                  gudang_order_penjualan = false,
                  keterangan_order_penjualan = false;
-            
+
             stok_order_penjualan = pane.cktampilorderstockpenjualan.isSelected();
             pajak_order_penjualan = pane.cktampilorderpajakpenjualan.isSelected();
             gudang_order_penjualan = pane.cktampilordergudangpenjualan.isSelected();
             keterangan_order_penjualan = pane.cktampilorderketeranganpenjualan.isSelected();
             jsobj.put("inputorderpenjualan", setjson(true, true, false, stok_order_penjualan, false, true, pajak_order_penjualan, gudang_order_penjualan, keterangan_order_penjualan));
-            
+
             boolean order_faktur_penjualan = false,
                  stok_faktur_penjualan = false,
                  pajak_faktur_penjualan = false,
                  gudang_faktur_penjualan = false,
                  keterangan_faktur_penjualan = false;
-            
+
             order_faktur_penjualan = pane.cktampilfakturorderpenjualan.isSelected();
             stok_faktur_penjualan = pane.cktampilfakturstockpenjualan.isSelected();
             pajak_faktur_penjualan = pane.cktampilfakturpajakpenjualan.isSelected();
@@ -1655,13 +1655,13 @@ public class PengaturaninnerController {
                  pajak_faktur_penjualan,
                  gudang_faktur_penjualan,
                  keterangan_faktur_penjualan));
-            
+
             boolean order_retur_penjualan = false,
                  stok_retur_penjualan = false,
                  pajak_retur_penjualan = false,
                  gudang_retur_penjualan = false,
                  keterangan_retur_penjualan = false;
-            
+
             order_retur_penjualan = pane.cktampilreturorderpenjualan.isSelected();
             stok_retur_penjualan = pane.cktampilreturstockpenjualan.isSelected();
             pajak_retur_penjualan = pane.cktampilreturpajakpenjualan.isSelected();
@@ -1673,50 +1673,50 @@ public class PengaturaninnerController {
                  pajak_order_pembelian = false,
                  gudang_order_pembelian = false,
                  keterangan_order_pembelian = false;
-            
+
             harga_jual_order_pembelian = pane.cktampilorderhargajualpembelian.isSelected();
             pajak_order_pembelian = pane.cktampilorderpajakpembelian.isSelected();
             gudang_order_pembelian = pane.cktampilordergudangpembelian.isSelected();
             keterangan_order_pembelian = pane.cktampilorderketeranganpembelian.isSelected();
             jsobj.put("inputorderpembelian", setjson(false, false, false, false, true, harga_jual_order_pembelian, pajak_order_pembelian, gudang_order_pembelian, keterangan_order_pembelian));
-            
+
             boolean order_faktur_pembelian = false,
                  harga_jual_faktur_pembelian = false,
                  pajak_faktur_pembelian = false,
                  gudang_faktur_pembelian = false,
                  keterangan_faktur_pembelian = false;
-            
+
             order_faktur_pembelian = pane.cktampilfakturorderpembelian.isSelected();
             harga_jual_faktur_pembelian = pane.cktampilfakturhargajualpembelian.isSelected();
             pajak_faktur_pembelian = pane.cktampilfakturpajakpembelian.isSelected();
             gudang_faktur_pembelian = pane.cktampilfakturgudangpembelian.isSelected();
             keterangan_faktur_pembelian = pane.cktampilfakturketeranganpembelian.isSelected();
             jsobj.put("inputfakturpembelian", setjson(true, false, order_faktur_pembelian, false, true, harga_jual_faktur_pembelian, pajak_faktur_pembelian, gudang_faktur_pembelian, keterangan_faktur_pembelian));
-            
+
             boolean order_retur_pembelian = false,
                  harga_jual_retur_pembelian = false,
                  pajak_retur_pembelian = false,
                  gudang_retur_pembelian = false,
                  keterangan_retur_pembelian = false;
-            
+
             order_retur_pembelian = pane.cktampilreturorderpembelian.isSelected();
             harga_jual_retur_pembelian = pane.cktampilreturhargajualpembelian.isSelected();
             pajak_retur_pembelian = pane.cktampilreturpajakpembelian.isSelected();
             gudang_retur_pembelian = pane.cktampilreturgudangpembelian.isSelected();
             keterangan_retur_pembelian = pane.cktampilreturketeranganpembelian.isSelected();
             jsobj.put("inputreturpembelian", setjson(true, false, order_retur_pembelian, false, true, harga_jual_retur_pembelian, pajak_retur_pembelian, gudang_retur_pembelian, keterangan_retur_pembelian));
-            
+
             jsobj.put("persediaan", setjsonpersediaan());
-            
+
             FileWriter fw = new FileWriter("configtableinput.json");
             fw.write(jsobj.toJSONString());
             fw.flush();
         } catch (IOException ex) {
             Logger.getLogger(PengaturaninnerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private void kusimpankau() {
         pane.bsimpan.addActionListener(new ActionListener() {
             @Override
@@ -1725,7 +1725,7 @@ public class PengaturaninnerController {
             }
         });
     }
-    
+
     private void carigudang() {
         pane.bcarigudang.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -1741,9 +1741,9 @@ public class PengaturaninnerController {
             valgudang = Staticvar.resid;
             pane.edgudangdef.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void caridepartment() {
         pane.bcarideptgudang.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -1760,9 +1760,9 @@ public class PengaturaninnerController {
             valdept = Staticvar.resid;
             pane.eddefdept.setText(Staticvar.resvalue);
         });
-        
+
     }
-    
+
     private void caripelanggan() {
         pane.bcaripelangganpenjualan.addActionListener((ActionEvent e) -> {
             Staticvar.sfilter = "";
@@ -1778,9 +1778,9 @@ public class PengaturaninnerController {
             valpelanggan = Staticvar.resid;
             pane.edpelangganpenjualan.setText(Staticvar.reslabel);
         });
-        
+
     }
-    
+
     private void rawgetidakun(String prevlabel, String previd) {
         Staticvar.sfilter = "";
         Staticvar.preid = previd;
@@ -1793,7 +1793,7 @@ public class PengaturaninnerController {
         jd.setVisible(true);
         jd.toFront();
     }
-    
+
     private void cariakunstockopname() {
         pane.bcariakunstockopnamepersediaan.addActionListener((ActionEvent e) -> {
             rawgetidakun(pane.edakunstockopnamepersediaan.getText(), valopnameakunlain);
@@ -1803,7 +1803,7 @@ public class PengaturaninnerController {
                 pane.edakunstockopnamepersediaan.setText(val);
             }
         });
-        
+
     }
-    
+
 }

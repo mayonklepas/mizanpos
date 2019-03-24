@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import mizanposapp.controller.innerpanel.pengaturan.LoginController;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Akunting_panel;
@@ -94,10 +95,9 @@ public class MainmenuController {
             System.exit(0);
         } else {
             Staticvar.isupdate = false;
-            Globalsession.nama_user = LoginController.username;
             LoginController.username = "";
             new CrudHelper();
-            new Globalsession();
+            new Globalsession(Staticvar.id_user_aktif);
         }
     }
 
@@ -125,7 +125,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     if (JOptionPane.showConfirmDialog(mm, "Yain Ingin Keluar Dari Aplikasi?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
                         System.exit(0);
@@ -160,7 +160,8 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(mm, "", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     if (Globalsession.sistem_setup_program.equals("1")) {
                         System.gc();
@@ -175,7 +176,7 @@ public class MainmenuController {
                         mm.panel_tengah.repaint();
                         Staticvar.inputmode = false;
                     } else {
-
+                        FuncHelper.showmessage("Akses Ditolak", "Maaf akun anda tidak diizinkan mengakses menu Pengaturan Aplikasi");
                     }
 
                 }
@@ -221,7 +222,7 @@ public class MainmenuController {
                     jd.setTitle("Daftar Data Pengguna");
                     jd.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(mm, "Akses Ditolak", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Akses Ditolak", "Maaf akun anda tidak diizinkan mengakses menu Pengaturan Akun");
                 }
 
             }
@@ -253,7 +254,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -294,7 +295,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -336,7 +337,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -384,7 +385,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -432,7 +433,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -474,7 +475,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;

@@ -79,8 +79,11 @@ public class LoginController {
     private void rawlogin() {
         String data = "nama=" + pane.edusername.getText().trim() + "&pwd=" + pane.edpassword.getText() + "";
         ch.insertdata("dm/cekpengguna", data);
-        if (Staticvar.getresult.equals("berhasil")) {
+        if (Staticvar.getresult.split("#")[0].equals("berhasil")) {
             Staticvar.isupdate = true;
+            if (pane.edusername.isEnabled() == true) {
+                Staticvar.id_user_aktif = Staticvar.getresult.split("#")[1];
+            }
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
             username = pane.edusername.getText();

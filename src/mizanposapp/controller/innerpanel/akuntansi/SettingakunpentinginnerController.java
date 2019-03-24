@@ -238,7 +238,7 @@ public class SettingakunpentinginnerController {
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
-            new Globalsession();
+            new Globalsession(Staticvar.id_user_aktif);
         } else {
             JDialog jd = new JDialog(new Mainmenu());
             Errorpanel ep = new Errorpanel();

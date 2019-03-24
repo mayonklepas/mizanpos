@@ -91,28 +91,47 @@ public class DatapenggunainnerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String namatree = "";
+                String namaparent = "";
                 String idtree = "";
                 TreePath[] tpath = pane.treedata.getSelectionPaths();
                 for (TreePath treePath : tpath) {
                     namatree = String.valueOf(treePath.getLastPathComponent());
+                    String rawnamaparent = String.valueOf(treePath.getParentPath().getLastPathComponent());
+                    if (rawnamaparent.equals("Daftar Pengguna")) {
+                        namaparent = String.valueOf(treePath.getLastPathComponent());
+                    } else {
+                        namaparent = String.valueOf(treePath.getParentPath().getLastPathComponent());
+                    }
                 }
                 for (int i = 0; i < lsdatatree.size(); i++) {
                     if (lsdatatree.get(i).getNama().equals(namatree)) {
                         idtree = lsdatatree.get(i).getId();
                     }
                 }
-                //JOptionPane.showMessageDialog(null, idtree);
                 Staticvar.ids = idtree;
+                Staticvar.labels = namatree;
+                LoginController.username = namaparent;
                 JDialog jd = new JDialog(new Mainmenu());
-                jd.add(new Data_pengguna_input_panel());
+                jd.add(new Login_panel());
                 jd.pack();
                 jd.setLocationRelativeTo(null);
                 jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                jd.setTitle("Edit Data Pengguna");
+                jd.setTitle("Login");
                 jd.setVisible(true);
                 if (Staticvar.isupdate == true) {
-                    loaddata();
                     Staticvar.isupdate = false;
+                    JDialog jdin = new JDialog(new Mainmenu());
+                    jdin.add(new Data_pengguna_input_panel());
+                    jdin.pack();
+                    jdin.setLocationRelativeTo(null);
+                    jdin.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                    jdin.setTitle("Pengaturan Hak Akses");
+                    jdin.setVisible(true);
+                    if (Staticvar.isupdate == true) {
+                        LoginController.username = "";
+                        loaddata();
+                        Staticvar.isupdate = false;
+                    }
                 }
 
             }

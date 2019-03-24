@@ -37,10 +37,8 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         edusername = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
         bbatal = new javax.swing.JButton();
         bsimpan = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         edhakakses = new javax.swing.JTextField();
@@ -53,6 +51,8 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
         edpassword = new javax.swing.JPasswordField();
         edrepassword = new javax.swing.JPasswordField();
         bcariparent = new javax.swing.JButton();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel91 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
 
@@ -84,30 +84,11 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
 
         edusername.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.setForeground(new java.awt.Color(153, 153, 153));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 1));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
-
         bbatal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bbatal.setText("Batal");
 
         bsimpan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bsimpan.setText("Simpan");
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Input Data Pengguna");
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel8.setText("Hak Akses");
@@ -161,6 +142,32 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
             }
         });
 
+        jPanel28.setBackground(new java.awt.Color(41, 39, 40));
+        jPanel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        jPanel28.setPreferredSize(new java.awt.Dimension(284, 46));
+
+        jLabel91.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel91.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mizanposapp/icon/ic_supervisor_account_white_36dp.png"))); // NOI18N
+        jLabel91.setText("Input Data User");
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel91)
+                .addContainerGap(229, Short.MAX_VALUE))
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel91)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,7 +180,6 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                         .addComponent(bsimpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bbatal))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -194,27 +200,24 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                             .addComponent(jLabel11)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addGap(14, 14, 14)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(edrepassword)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(edparent, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edhakakses))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edhakakses)
+                                    .addComponent(edparent))
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bcariparent)
-                                    .addComponent(bcarihakakses, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(bcarihakakses, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(edrepassword))))
                 .addContainerGap())
+            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -242,7 +245,7 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
                     .addComponent(jLabel11)
                     .addComponent(edparent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcariparent, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bbatal)
                     .addComponent(bsimpan))
@@ -285,9 +288,9 @@ public class Data_pengguna_input_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JPanel jPanel28;
     // End of variables declaration//GEN-END:variables
 }
