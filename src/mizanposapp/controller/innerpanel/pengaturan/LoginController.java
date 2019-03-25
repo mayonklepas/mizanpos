@@ -10,8 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Staticvar;
@@ -28,12 +32,27 @@ public class LoginController {
     Login_panel pane;
     CrudHelper ch = new CrudHelper();
     public static String username = "";
+    public static boolean jaga_pane = false;
 
     public LoginController(Login_panel pane) {
         this.pane = pane;
         loaddata();
         login();
         batal();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JDialog jd = (JDialog) pane.getRootPane().getParent();
+                jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                jd.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        pane.bbatal.doClick();
+                    }
+
+                });
+            }
+        });
     }
 
     private void loaddata() {
@@ -88,7 +107,7 @@ public class LoginController {
             jd.dispose();
             username = pane.edusername.getText();
         } else if (Staticvar.getresult.equals("gagal")) {
-            FuncHelper.showmessage("Gagal Mengautentifikasi", "Username atau Password yang anda masukan salah, cek kemudian coba ulang kembali");
+            FuncHelper.info("Gagal Mengautentifikasi", "Username atau Password yang anda masukan salah, cek kemudian coba ulang kembali");
         } else {
             Staticvar.isupdate = false;
             JDialog jd = new JDialog(new Mainmenu());
@@ -108,8 +127,17 @@ public class LoginController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = false;
-                JDialog jd = (JDialog) pane.getRootPane().getParent();
-                jd.dispose();
+                if (pane.edusername.isEnabled() == false) {
+                    JDialog jd = (JDialog) pane.getRootPane().getParent();
+                    jd.dispose();
+                } else {
+                    FuncHelper.konfir("Anda ingin mematikan Komputer?", "Jika anda menekan ya maka komputer akan dimatikan ", "Ya");
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
+                        System.exit(0);
+                    }
+                }
+
             }
         });
     }

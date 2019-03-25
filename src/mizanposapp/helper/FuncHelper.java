@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 import mizanposapp.controller.innerpanel.penjualan.PosframeController;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.frameform.Informasi;
+import mizanposapp.view.frameform.Konfirmasi;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -168,13 +169,24 @@ public class FuncHelper {
         return result;
     }
 
-    public static void showmessage(String header, String sub) {
+    public static void info(String header, String sub) {
         JDialog jd = new JDialog(new Mainmenu());
         jd.add(new Informasi(header, sub));
         jd.pack();
         jd.setLocationRelativeTo(null);
         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         jd.setTitle("Informasi");
+        jd.setVisible(true);
+
+    }
+
+    public static void konfir(String header, String sub, String aksi) {
+        JDialog jd = new JDialog(new Mainmenu());
+        jd.add(new Konfirmasi(header, sub, aksi));
+        jd.pack();
+        jd.setLocationRelativeTo(null);
+        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        jd.setTitle("Konfirmasi");
         jd.setVisible(true);
 
     }

@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import mizanposapp.controller.innerpanel.pengaturan.LoginController;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.FuncHelper;
@@ -32,6 +33,7 @@ import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.Persedian_panel;
 import mizanposapp.view.frameform.Bantuan;
 import mizanposapp.view.innerpanel.pengaturan.Data_pengguna_inner_panel;
+import mizanposapp.view.innerpanel.pengaturan.Gantipassword_panel;
 import mizanposapp.view.innerpanel.pengaturan.Login_panel;
 import mizanposapp.view.innerpanel.pengaturan.Pengaturan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_inner_panel;
@@ -54,13 +56,16 @@ public class MainmenuController {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                mm.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
                 mm.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
                         if (Staticvar.inputmode == true) {
-                            JOptionPane.showMessageDialog(mm, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                         } else {
-                            if (JOptionPane.showConfirmDialog(mm, "Yain Ingin Keluar Dari Aplikasi?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                            FuncHelper.konfir("Yakin anda ingin keluar?", "Saat aplikasi ditutup maka komputer akan otomatis melakukan shutdown", "Ya");
+                            if (Staticvar.isupdate == true) {
+                                Staticvar.isupdate = false;
                                 System.exit(0);
                             }
                         }
@@ -84,6 +89,7 @@ public class MainmenuController {
         panel9mouseevent();
         panel10mouseevent();
         LoginController.username = "";
+        LoginController.jaga_pane = true;
         JDialog jd = new JDialog(new Mainmenu());
         jd.add(new Login_panel());
         jd.pack();
@@ -91,13 +97,12 @@ public class MainmenuController {
         jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         jd.setTitle("Login");
         jd.setVisible(true);
-        if (Staticvar.isupdate == false) {
-            System.exit(0);
-        } else {
+        if (Staticvar.isupdate == true) {
             Staticvar.isupdate = false;
             LoginController.username = "";
             new CrudHelper();
             new Globalsession(Staticvar.id_user_aktif);
+
         }
     }
 
@@ -125,9 +130,11 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
-                    if (JOptionPane.showConfirmDialog(mm, "Yain Ingin Keluar Dari Aplikasi?", "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                    FuncHelper.konfir("Yakin anda ingin keluar?", "Saat aplikasi ditutup maka komputer akan otomatis melakukan shutdown", "Shutdown");
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
                         System.exit(0);
                     }
                 }
@@ -161,7 +168,7 @@ public class MainmenuController {
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
                     JOptionPane.showMessageDialog(mm, "", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     if (Globalsession.sistem_setup_program.equals("1")) {
                         System.gc();
@@ -176,7 +183,7 @@ public class MainmenuController {
                         mm.panel_tengah.repaint();
                         Staticvar.inputmode = false;
                     } else {
-                        FuncHelper.showmessage("Akses Ditolak", "Maaf akun anda tidak diizinkan mengakses menu Pengaturan Aplikasi");
+                        FuncHelper.info("Akses Ditolak", "Maaf akun anda tidak diizinkan mengakses menu Pengaturan Aplikasi");
                     }
 
                 }
@@ -222,7 +229,35 @@ public class MainmenuController {
                     jd.setTitle("Daftar Data Pengguna");
                     jd.setVisible(true);
                 } else {
-                    FuncHelper.showmessage("Akses Ditolak", "Maaf akun anda tidak diizinkan mengakses menu Pengaturan Akun");
+                    FuncHelper.konfir("Akses Ditolak", "Maaf akun anda tidak diizinkan mengakses menu Pengaturan Akun,"
+                         + " tapi anda masih bisa mengganti password", "Ganti Password");
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
+                        LoginController.username = Globalsession.nama_user;
+                        JDialog jd = new JDialog(new Mainmenu());
+                        jd.add(new Login_panel());
+                        jd.pack();
+                        jd.setLocationRelativeTo(null);
+                        jd.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                        jd.setTitle("Login");
+                        jd.setVisible(true);
+                        if (Staticvar.isupdate == true) {
+                            Staticvar.isupdate = false;
+                            JDialog jdin = new JDialog(new Mainmenu());
+                            jdin.add(new Gantipassword_panel());
+                            jdin.pack();
+                            jdin.setLocationRelativeTo(null);
+                            jdin.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+                            jdin.setTitle("Ganti Password");
+                            jdin.setVisible(true);
+                            if (Staticvar.isupdate == true) {
+                                LoginController.username = "";
+                                Staticvar.isupdate = false;
+                                FuncHelper.info("Proses Berhasil", "Password anda sudah berhasil diubah, anda bisa melakukan login menggunakan pasword baru anda");
+                            }
+                        }
+
+                    }
                 }
 
             }
@@ -254,7 +289,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -295,7 +330,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -337,7 +372,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -385,7 +420,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -433,7 +468,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;
@@ -475,7 +510,7 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    FuncHelper.showmessage("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
+                    FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     System.gc();
                     isclick = true;

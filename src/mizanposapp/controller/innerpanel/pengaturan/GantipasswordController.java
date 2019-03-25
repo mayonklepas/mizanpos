@@ -50,7 +50,7 @@ public class GantipasswordController {
                 if (pane.edpass.getText().equals(pane.edrepass.getText())) {
                     rawsimpan();
                 } else {
-                    FuncHelper.showmessage("Konfirmasi Password Salah", "Password dan Retype Password tidak cocok, Cek kembali kemudian ulangi");
+                    FuncHelper.info("Konfirmasi Password Salah", "Password dan Retype Password tidak cocok, Cek kembali kemudian ulangi");
                 }
 
             }
@@ -63,7 +63,7 @@ public class GantipasswordController {
                     if (pane.edpass.getText().equals(pane.edrepass.getText())) {
                         rawsimpan();
                     } else {
-                        FuncHelper.showmessage("Konfirmasi Password Salah", "Password dan Retype Password tidak cocok, Cek kembali kemudian ulangi");
+                        FuncHelper.info("Konfirmasi Password Salah", "Password dan Retype Password tidak cocok, Cek kembali kemudian ulangi");
                     }
                 }
             }

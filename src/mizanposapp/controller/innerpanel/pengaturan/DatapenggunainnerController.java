@@ -22,6 +22,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.view.Mainmenu;
@@ -214,8 +215,10 @@ public class DatapenggunainnerController {
                     jdin.setVisible(true);
                     if (Staticvar.isupdate == true) {
                         LoginController.username = "";
-                        loaddata();
                         Staticvar.isupdate = false;
+                        FuncHelper.info("Proses Berhasil", "Password anda sudah berhasil diubah, anda bisa melakukan login menggunakan pasword baru anda");
+                        loaddata();
+
                     }
                 }
 

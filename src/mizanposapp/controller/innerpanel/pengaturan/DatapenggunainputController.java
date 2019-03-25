@@ -90,7 +90,7 @@ public class DatapenggunainputController {
         }
 
         if (Staticvar.getresult.equals("berhasil")) {
-            FuncHelper.showmessage("Proses Berhasil", "Data telah berhasil disimpan");
+            FuncHelper.info("Proses Berhasil", "Data telah berhasil disimpan");
             Staticvar.isupdate = true;
             JDialog jd = (JDialog) pane.getRootPane().getParent();
             jd.dispose();
@@ -115,11 +115,11 @@ public class DatapenggunainputController {
                      || pane.edpassword.getText().equals("")
                      || pane.edrepassword.getText().equals("")
                      || pane.edhakakses.getText().equals("")) {
-                    FuncHelper.showmessage("Data tidak lengkap", "Field Hak Akses,Username,Password dan Retype Password, Tidak Boleh kosong");
+                    FuncHelper.info("Data tidak lengkap", "Field Hak Akses,Username,Password dan Retype Password, Tidak Boleh kosong");
                 } else if (pane.edpassword.getText().equals(pane.edrepassword.getText())) {
                     rawsimpan();
                 } else {
-                    FuncHelper.showmessage("Gagal Menyimpan Data", "Retype password tidak sama dengan password awal");
+                    FuncHelper.info("Gagal Menyimpan Data", "Retype password tidak sama dengan password awal");
                 }
             }
         });

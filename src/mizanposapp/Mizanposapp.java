@@ -7,6 +7,7 @@ package mizanposapp;
 
 import java.util.Locale;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import mizanposapp.controller.MainmenuController;
 import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.Globalsession;
@@ -30,7 +31,6 @@ public class Mizanposapp {
             ex.printStackTrace();
         }
         Locale.setDefault(new Locale("en", "en_US"));
-
         new MainmenuController();
 
     }
