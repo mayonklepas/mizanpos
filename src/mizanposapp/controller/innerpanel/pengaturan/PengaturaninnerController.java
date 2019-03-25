@@ -514,150 +514,6 @@ public class PengaturaninnerController {
 
     }
 
-    private JSONArray setjsonpersediaan() {
-        JSONArray jaroot = new JSONArray();
-        for (int i = 0; i < 14; i++) {
-            JSONArray jainroot = new JSONArray();
-            JSONObject joinroot = new JSONObject();
-            String val = "";
-            String head = "";
-            String show = "";
-            String size = "";
-            switch (i) {
-                case 0:
-                    val = "id";
-                    head = "ID";
-                    show = "1";
-                    size = "10";
-                    break;
-                case 1:
-                    val = "kode";
-                    head = "Kode";
-                    if (pane.cktampilfieldkodepersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 2:
-                    val = "nama";
-                    head = "Nama";
-                    show = "1";
-                    size = "10";
-                    break;
-                case 3:
-                    val = "kelompok";
-                    head = "Kelompok";
-                    if (pane.cktampilfieldkelompokpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 4:
-                    val = "merek";
-                    head = "Merek";
-                    if (pane.cktampilfieldmerekpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 5:
-                    val = "satuan";
-                    head = "Satuan";
-                    if (pane.cktampilfieldsatuanpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 6:
-                    val = "harga_jual";
-                    head = "Harga Jual";
-                    if (pane.cktampilfieldhargajualpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 7:
-                    val = "harga_beli";
-                    head = "Harga Beli";
-                    if (pane.cktampilfieldhargebeliterakhirpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 8:
-                    val = "stok";
-                    head = "Stok";
-                    show = "0";
-                    size = "10";
-                    break;
-                case 9:
-                    val = "lokasi";
-                    head = "Lokasi";
-                    if (pane.cktampilfieldlokasipersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 10:
-                    val = "hpp";
-                    head = "HPP";
-                    if (pane.cktampilfieldhpppersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 11:
-                    val = "suplier";
-                    head = "Suplier";
-                    if (pane.cktampilfieldsuplierpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                case 12:
-                    val = "keterangan";
-                    head = "Keterangan";
-                    if (pane.cktampilfieldketeranganpersediaan.isSelected()) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
-                    size = "10";
-                    break;
-                default:
-                    break;
-            }
-
-            jainroot.add(val);
-            jainroot.add(head);
-            jainroot.add(show);
-            jainroot.add(size);
-            joinroot.put("key", jainroot);
-            jaroot.add(joinroot);
-
-        }
-
-        return jaroot;
-    }
-
     private void loadconfigprop() {
         try {
             InputStream ins = new FileInputStream(new File("config.properties"));
@@ -1460,9 +1316,153 @@ public class PengaturaninnerController {
 
     }
 
-    private JSONArray setjson(boolean termasukorder, boolean termasukstok, boolean order, boolean stok, boolean harga_beli, boolean harga_jual, boolean pajak, boolean gudang, boolean keterangan) {
+    private JSONArray setjsonpersediaan() {
         JSONArray jaroot = new JSONArray();
         for (int i = 0; i < 14; i++) {
+            JSONArray jainroot = new JSONArray();
+            JSONObject joinroot = new JSONObject();
+            String val = "";
+            String head = "";
+            String show = "";
+            String size = "";
+            switch (i) {
+                case 0:
+                    val = "id";
+                    head = "ID";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 1:
+                    val = "kode";
+                    head = "Kode";
+                    if (pane.cktampilfieldkodepersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 2:
+                    val = "nama";
+                    head = "Nama";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 3:
+                    val = "kelompok";
+                    head = "Kelompok";
+                    if (pane.cktampilfieldkelompokpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 4:
+                    val = "merek";
+                    head = "Merek";
+                    if (pane.cktampilfieldmerekpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 5:
+                    val = "satuan";
+                    head = "Satuan";
+                    if (pane.cktampilfieldsatuanpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 6:
+                    val = "harga_jual";
+                    head = "Harga Jual";
+                    if (pane.cktampilfieldhargajualpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 7:
+                    val = "harga_beli";
+                    head = "Harga Beli";
+                    if (pane.cktampilfieldhargebeliterakhirpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 8:
+                    val = "stok";
+                    head = "Stok";
+                    show = "0";
+                    size = "10";
+                    break;
+                case 9:
+                    val = "lokasi";
+                    head = "Lokasi";
+                    if (pane.cktampilfieldlokasipersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 10:
+                    val = "hpp";
+                    head = "HPP";
+                    if (pane.cktampilfieldhpppersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 11:
+                    val = "suplier";
+                    head = "Suplier";
+                    if (pane.cktampilfieldsuplierpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 12:
+                    val = "keterangan";
+                    head = "Keterangan";
+                    if (pane.cktampilfieldketeranganpersediaan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                default:
+                    break;
+            }
+
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
+
+        }
+
+        return jaroot;
+    }
+
+    private JSONArray setjsonorderpenjualan() {
+        JSONArray jaroot = new JSONArray();
+        for (int i = 0; i < 12; i++) {
             JSONArray jainroot = new JSONArray();
             JSONObject joinroot = new JSONObject();
             String val = "";
@@ -1485,7 +1485,122 @@ public class PengaturaninnerController {
                 case 2:
                     val = "stok";
                     head = "Stok";
-                    if (stok == true) {
+                    if (pane.cktampilorderstockpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 3:
+                    val = "jumlah";
+                    head = "Jumlah";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 4:
+                    val = "satuan";
+                    head = "Satuan";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 5:
+                    val = "harga_jual";
+                    head = "Harga Jual";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 6:
+                    val = "disc_persen";
+                    head = "Diskon %";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 7:
+                    val = "disc_rp";
+                    head = "Diskon Rp";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 8:
+                    val = "pajak";
+                    head = "Pajak";
+                    if (pane.cktampilorderpajakpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 9:
+                    val = "gudang";
+                    head = "Gudang";
+                    if (pane.cktampilordergudangpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 10:
+                    val = "keterangan";
+                    head = "Keterangan";
+                    if (pane.cktampilorderketeranganpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 11:
+                    val = "total";
+                    head = "Total";
+                    show = "1";
+                    size = "10";
+                    break;
+
+                default:
+                    break;
+            }
+
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
+
+        }
+
+        return jaroot;
+    }
+
+    private JSONArray setjsonfakturpenjualan() {
+        JSONArray jaroot = new JSONArray();
+        for (int i = 0; i < 13; i++) {
+            JSONArray jainroot = new JSONArray();
+            JSONObject joinroot = new JSONObject();
+            String val = "";
+            String head = "";
+            String show = "";
+            String size = "";
+            switch (i) {
+                case 0:
+                    val = "kode";
+                    head = "Kode";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 1:
+                    val = "nama";
+                    head = "Nama";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 2:
+                    val = "stok";
+                    head = "Stok";
+                    if (pane.cktampilfakturstockpenjualan.isSelected()) {
                         show = "1";
                     } else {
                         show = "0";
@@ -1495,7 +1610,358 @@ public class PengaturaninnerController {
                 case 3:
                     val = "order";
                     head = "Order";
-                    if (order == true) {
+                    if (pane.cktampilfakturorderpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 4:
+                    val = "jumlah";
+                    head = "Jumlah";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 5:
+                    val = "satuan";
+                    head = "Satuan";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 6:
+                    val = "harga_jual";
+                    head = "Harga Jual";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 7:
+                    val = "disc_persen";
+                    head = "Diskon %";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 8:
+                    val = "disc_rp";
+                    head = "Diskon Rp";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 9:
+                    val = "pajak";
+                    head = "Pajak";
+                    if (pane.cktampilfakturpajakpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 10:
+                    val = "gudang";
+                    head = "Gudang";
+                    if (pane.cktampilfakturgudangpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 11:
+                    val = "keterangan";
+                    head = "Keterangan";
+                    if (pane.cktampilfakturketeranganpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 12:
+                    val = "total";
+                    head = "Total";
+                    show = "1";
+                    size = "10";
+                    break;
+
+                default:
+                    break;
+            }
+
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
+
+        }
+
+        return jaroot;
+    }
+
+    private JSONArray setjsonreturpenjualan() {
+        JSONArray jaroot = new JSONArray();
+        for (int i = 0; i < 12; i++) {
+            JSONArray jainroot = new JSONArray();
+            JSONObject joinroot = new JSONObject();
+            String val = "";
+            String head = "";
+            String show = "";
+            String size = "";
+            switch (i) {
+                case 0:
+                    val = "kode";
+                    head = "Kode";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 1:
+                    val = "nama";
+                    head = "Nama";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 2:
+                    val = "stok";
+                    head = "Stok";
+                    if (pane.cktampilreturstockpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 3:
+                    val = "order";
+                    head = "Order";
+                    if (pane.cktampilreturorderpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 4:
+                    val = "jumlah";
+                    head = "Jumlah";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 5:
+                    val = "satuan";
+                    head = "Satuan";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 6:
+                    val = "harga_jual";
+                    head = "Harga Jual";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 7:
+                    val = "disc_persen";
+                    head = "Diskon %";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 8:
+                    val = "disc_rp";
+                    head = "Diskon Rp";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 9:
+                    val = "pajak";
+                    head = "Pajak";
+                    if (pane.cktampilreturpajakpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 10:
+                    val = "gudang";
+                    head = "Gudang";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 11:
+                    val = "keterangan";
+                    head = "Keterangan";
+                    if (pane.cktampilreturketeranganpenjualan.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 12:
+                    val = "total";
+                    head = "Total";
+                    show = "1";
+                    size = "10";
+                    break;
+
+                default:
+                    break;
+            }
+
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
+
+        }
+
+        return jaroot;
+    }
+
+    private JSONArray setjsonorderpembelian() {
+        JSONArray jaroot = new JSONArray();
+        for (int i = 0; i < 14; i++) {
+            JSONArray jainroot = new JSONArray();
+            JSONObject joinroot = new JSONObject();
+            String val = "";
+            String head = "";
+            String show = "";
+            String size = "";
+            switch (i) {
+                case 0:
+                    val = "kode";
+                    head = "Kode";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 1:
+                    val = "nama";
+                    head = "Nama";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 2:
+                    val = "jumlah";
+                    head = "Jumlah";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 3:
+                    val = "satuan";
+                    head = "Satuan";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 4:
+                    val = "harga_beli";
+                    head = "Harga Beli";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 5:
+                    val = "harga_jual";
+                    head = "Harga Jual";
+                    if (pane.cktampilorderhargajualpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 6:
+                    val = "disc_persen";
+                    head = "Diskon %";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 7:
+                    val = "disc_rp";
+                    head = "Diskon Rp";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 8:
+                    val = "pajak";
+                    head = "Pajak";
+                    if (pane.cktampilorderpajakpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 9:
+                    val = "gudang";
+                    head = "Gudang";
+                    if (pane.cktampilordergudangpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 10:
+                    val = "keterangan";
+                    head = "Keterangan";
+                    if (pane.cktampilorderketeranganpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 11:
+                    val = "total";
+                    head = "Total";
+                    show = "1";
+                    size = "10";
+                    break;
+
+                default:
+                    break;
+            }
+
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
+
+        }
+
+        return jaroot;
+    }
+
+    private JSONArray setjsonfakturpembelian() {
+        JSONArray jaroot = new JSONArray();
+        for (int i = 0; i < 14; i++) {
+            JSONArray jainroot = new JSONArray();
+            JSONObject joinroot = new JSONObject();
+            String val = "";
+            String head = "";
+            String show = "";
+            String size = "";
+            switch (i) {
+                case 0:
+                    val = "kode";
+                    head = "Kode";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 1:
+                    val = "nama";
+                    head = "Nama";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 3:
+                    val = "order";
+                    head = "Order";
+                    if (pane.cktampilfakturorderpembelian.isSelected()) {
                         show = "1";
                     } else {
                         show = "0";
@@ -1517,17 +1983,13 @@ public class PengaturaninnerController {
                 case 6:
                     val = "harga_beli";
                     head = "Harga Beli";
-                    if (harga_beli == true) {
-                        show = "1";
-                    } else {
-                        show = "0";
-                    }
+                    show = "1";
                     size = "10";
                     break;
                 case 7:
                     val = "harga_jual";
                     head = "Harga Jual";
-                    if (harga_jual == true) {
+                    if (pane.cktampilorderhargajualpembelian.isSelected()) {
                         show = "1";
                     } else {
                         show = "0";
@@ -1549,7 +2011,7 @@ public class PengaturaninnerController {
                 case 10:
                     val = "pajak";
                     head = "Pajak";
-                    if (pajak == true) {
+                    if (pane.cktampilfakturpajakpembelian.isSelected()) {
                         show = "1";
                     } else {
                         show = "0";
@@ -1559,7 +2021,7 @@ public class PengaturaninnerController {
                 case 11:
                     val = "gudang";
                     head = "Gudang";
-                    if (gudang == true) {
+                    if (pane.cktampilfakturgudangpembelian.isSelected()) {
                         show = "1";
                     } else {
                         show = "0";
@@ -1569,7 +2031,7 @@ public class PengaturaninnerController {
                 case 12:
                     val = "keterangan";
                     head = "Keterangan";
-                    if (keterangan) {
+                    if (pane.cktampilfakturketeranganpembelian.isSelected()) {
                         show = "1";
                     } else {
                         show = "0";
@@ -1587,32 +2049,133 @@ public class PengaturaninnerController {
                     break;
             }
 
-            if (i == 3) {
-                if (termasukorder == true) {
-                    jainroot.add(val);
-                    jainroot.add(head);
-                    jainroot.add(show);
-                    jainroot.add(size);
-                    joinroot.put("key", jainroot);
-                    jaroot.add(joinroot);
-                }
-            } else if (i == 2) {
-                if (termasukstok == true) {
-                    jainroot.add(val);
-                    jainroot.add(head);
-                    jainroot.add(show);
-                    jainroot.add(size);
-                    joinroot.put("key", jainroot);
-                    jaroot.add(joinroot);
-                }
-            } else {
-                jainroot.add(val);
-                jainroot.add(head);
-                jainroot.add(show);
-                jainroot.add(size);
-                joinroot.put("key", jainroot);
-                jaroot.add(joinroot);
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
+
+        }
+
+        return jaroot;
+    }
+
+    private JSONArray setjsonreturpembelian() {
+        JSONArray jaroot = new JSONArray();
+        for (int i = 0; i < 14; i++) {
+            JSONArray jainroot = new JSONArray();
+            JSONObject joinroot = new JSONObject();
+            String val = "";
+            String head = "";
+            String show = "";
+            String size = "";
+            switch (i) {
+                case 0:
+                    val = "kode";
+                    head = "Kode";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 1:
+                    val = "nama";
+                    head = "Nama";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 3:
+                    val = "order";
+                    head = "Order";
+                    if (pane.cktampilreturorderpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 4:
+                    val = "jumlah";
+                    head = "Jumlah";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 5:
+                    val = "satuan";
+                    head = "Satuan";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 6:
+                    val = "harga_beli";
+                    head = "Harga Beli";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 7:
+                    val = "harga_jual";
+                    head = "Harga Jual";
+                    if (pane.cktampilorderhargajualpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 8:
+                    val = "disc_persen";
+                    head = "Diskon %";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 9:
+                    val = "disc_rp";
+                    head = "Diskon Rp";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 10:
+                    val = "pajak";
+                    head = "Pajak";
+                    if (pane.cktampilreturpajakpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 11:
+                    val = "gudang";
+                    head = "Gudang";
+                    show = "1";
+                    size = "10";
+                    break;
+                case 12:
+                    val = "keterangan";
+                    head = "Keterangan";
+                    if (pane.cktampilreturketeranganpembelian.isSelected()) {
+                        show = "1";
+                    } else {
+                        show = "0";
+                    }
+                    size = "10";
+                    break;
+                case 13:
+                    val = "total";
+                    head = "Total";
+                    show = "1";
+                    size = "10";
+                    break;
+
+                default:
+                    break;
             }
+
+            jainroot.add(val);
+            jainroot.add(head);
+            jainroot.add(show);
+            jainroot.add(size);
+            joinroot.put("key", jainroot);
+            jaroot.add(joinroot);
 
         }
 
@@ -1623,89 +2186,15 @@ public class PengaturaninnerController {
         try {
             simpankeproperties();
             JSONObject jsobj = new JSONObject();
-
-            boolean stok_order_penjualan = false,
-                 pajak_order_penjualan = false,
-                 gudang_order_penjualan = false,
-                 keterangan_order_penjualan = false;
-
-            stok_order_penjualan = pane.cktampilorderstockpenjualan.isSelected();
-            pajak_order_penjualan = pane.cktampilorderpajakpenjualan.isSelected();
-            gudang_order_penjualan = pane.cktampilordergudangpenjualan.isSelected();
-            keterangan_order_penjualan = pane.cktampilorderketeranganpenjualan.isSelected();
-            jsobj.put("inputorderpenjualan", setjson(true, true, false, stok_order_penjualan, false, true, pajak_order_penjualan, gudang_order_penjualan, keterangan_order_penjualan));
-
-            boolean order_faktur_penjualan = false,
-                 stok_faktur_penjualan = false,
-                 pajak_faktur_penjualan = false,
-                 gudang_faktur_penjualan = false,
-                 keterangan_faktur_penjualan = false;
-
-            order_faktur_penjualan = pane.cktampilfakturorderpenjualan.isSelected();
-            stok_faktur_penjualan = pane.cktampilfakturstockpenjualan.isSelected();
-            pajak_faktur_penjualan = pane.cktampilfakturpajakpenjualan.isSelected();
-            gudang_faktur_penjualan = pane.cktampilfakturgudangpenjualan.isSelected();
-            keterangan_faktur_penjualan = pane.cktampilfakturketeranganpenjualan.isSelected();
-            jsobj.put("inputfakturpenjualan", setjson(true,
-                 true,
-                 order_faktur_penjualan,
-                 stok_faktur_penjualan,
-                 false,
-                 true,
-                 pajak_faktur_penjualan,
-                 gudang_faktur_penjualan,
-                 keterangan_faktur_penjualan));
-
-            boolean order_retur_penjualan = false,
-                 stok_retur_penjualan = false,
-                 pajak_retur_penjualan = false,
-                 gudang_retur_penjualan = false,
-                 keterangan_retur_penjualan = false;
-
-            order_retur_penjualan = pane.cktampilreturorderpenjualan.isSelected();
-            stok_retur_penjualan = pane.cktampilreturstockpenjualan.isSelected();
-            pajak_retur_penjualan = pane.cktampilreturpajakpenjualan.isSelected();
-            gudang_retur_penjualan = pane.cktampilreturgudangpenjualan.isSelected();
-            keterangan_retur_penjualan = pane.cktampilreturketeranganpenjualan.isSelected();
-            jsobj.put("inputreturpenjualan", setjson(true, true, order_retur_penjualan, stok_retur_penjualan, false, true, pajak_retur_penjualan, gudang_retur_penjualan, keterangan_retur_penjualan));
+            //penjualan
+            jsobj.put("inputorderpenjualan", setjsonorderpenjualan());
+            jsobj.put("inputfakturpenjualan", setjsonfakturpenjualan());
+            jsobj.put("inputreturpenjualan", setjsonreturpenjualan());
             //pembelian
-            boolean harga_jual_order_pembelian = false,
-                 pajak_order_pembelian = false,
-                 gudang_order_pembelian = false,
-                 keterangan_order_pembelian = false;
-
-            harga_jual_order_pembelian = pane.cktampilorderhargajualpembelian.isSelected();
-            pajak_order_pembelian = pane.cktampilorderpajakpembelian.isSelected();
-            gudang_order_pembelian = pane.cktampilordergudangpembelian.isSelected();
-            keterangan_order_pembelian = pane.cktampilorderketeranganpembelian.isSelected();
-            jsobj.put("inputorderpembelian", setjson(false, false, false, false, true, harga_jual_order_pembelian, pajak_order_pembelian, gudang_order_pembelian, keterangan_order_pembelian));
-
-            boolean order_faktur_pembelian = false,
-                 harga_jual_faktur_pembelian = false,
-                 pajak_faktur_pembelian = false,
-                 gudang_faktur_pembelian = false,
-                 keterangan_faktur_pembelian = false;
-
-            order_faktur_pembelian = pane.cktampilfakturorderpembelian.isSelected();
-            harga_jual_faktur_pembelian = pane.cktampilfakturhargajualpembelian.isSelected();
-            pajak_faktur_pembelian = pane.cktampilfakturpajakpembelian.isSelected();
-            gudang_faktur_pembelian = pane.cktampilfakturgudangpembelian.isSelected();
-            keterangan_faktur_pembelian = pane.cktampilfakturketeranganpembelian.isSelected();
-            jsobj.put("inputfakturpembelian", setjson(true, false, order_faktur_pembelian, false, true, harga_jual_faktur_pembelian, pajak_faktur_pembelian, gudang_faktur_pembelian, keterangan_faktur_pembelian));
-
-            boolean order_retur_pembelian = false,
-                 harga_jual_retur_pembelian = false,
-                 pajak_retur_pembelian = false,
-                 gudang_retur_pembelian = false,
-                 keterangan_retur_pembelian = false;
-
-            order_retur_pembelian = pane.cktampilreturorderpembelian.isSelected();
-            harga_jual_retur_pembelian = pane.cktampilreturhargajualpembelian.isSelected();
-            pajak_retur_pembelian = pane.cktampilreturpajakpembelian.isSelected();
-            gudang_retur_pembelian = pane.cktampilreturgudangpembelian.isSelected();
-            keterangan_retur_pembelian = pane.cktampilreturketeranganpembelian.isSelected();
-            jsobj.put("inputreturpembelian", setjson(true, false, order_retur_pembelian, false, true, harga_jual_retur_pembelian, pajak_retur_pembelian, gudang_retur_pembelian, keterangan_retur_pembelian));
-
+            jsobj.put("inputorderpembelian", setjsonorderpembelian());
+            jsobj.put("inputfakturpembelian", setjsonfakturpembelian());
+            jsobj.put("inputreturpembelian", setjsonreturpembelian());
+            //persediaan
             jsobj.put("persediaan", setjsonpersediaan());
 
             FileWriter fw = new FileWriter("configtableinput.json");
