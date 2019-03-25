@@ -5,6 +5,8 @@
  */
 package mizanposapp.view.frameform;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -22,6 +24,7 @@ import mizanposapp.helper.CrudHelper;
 import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
+import mizanposapp.view.Beranda_panel;
 import mizanposapp.view.Mainmenu;
 import mizanposapp.view.innerpanel.pengaturan.Login_panel;
 
@@ -193,8 +196,10 @@ public class Konfirmasi extends javax.swing.JPanel {
 
     private void blainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blainActionPerformed
         // TODO add your handling code here:
+
         JDialog jdroot = (JDialog) this.getRootPane().getParent();
         jdroot.dispose();
+        Staticvar.inputmode = false;
         LoginController.username = "";
         JDialog jd = new JDialog(new Mainmenu());
         jd.add(new Login_panel());

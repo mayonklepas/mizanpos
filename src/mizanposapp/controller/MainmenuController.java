@@ -132,6 +132,15 @@ public class MainmenuController {
                 if (Staticvar.inputmode == true) {
                     FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
+                    isclick = true;
+                    mm.pberanda.setBackground(new Color(3, 3, 3));
+                    Beranda_panel bp = new Beranda_panel();
+                    mm.panel_tengah.removeAll();
+                    mm.panel_tengah.setLayout(new BorderLayout());
+                    mm.panel_tengah.add(bp, BorderLayout.CENTER);
+                    mm.panel_tengah.revalidate();
+                    mm.panel_tengah.repaint();
+                    Staticvar.inputmode = false;
                     FuncHelper.konfir("Yakin anda ingin keluar?", "Saat aplikasi ditutup maka komputer akan otomatis melakukan shutdown", "Shutdown");
                     if (Staticvar.isupdate == true) {
                         Staticvar.isupdate = false;
