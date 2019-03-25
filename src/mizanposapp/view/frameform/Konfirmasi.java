@@ -116,7 +116,7 @@ public class Konfirmasi extends javax.swing.JPanel {
 
         b2.setBackground(new java.awt.Color(255, 255, 255));
         b2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        b2.setText("Tutup");
+        b2.setText("Batal");
         b2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b2ActionPerformed(evt);
