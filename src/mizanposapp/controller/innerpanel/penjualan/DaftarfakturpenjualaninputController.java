@@ -804,14 +804,13 @@ public class DaftarfakturpenjualaninputController {
                     rowtabledata[3] = tabeldatalist.get(i).getOrder();
                     rowtabledata[4] = tabeldatalist.get(i).getJumlah();
                     rowtabledata[5] = tabeldatalist.get(i).getNama_satuan();
-                    rowtabledata[6] = tabeldatalist.get(i).getHarga_beli();
-                    rowtabledata[7] = tabeldatalist.get(i).getHarga_jual();
-                    rowtabledata[8] = tabeldatalist.get(i).getDiskon_persen();
-                    rowtabledata[9] = tabeldatalist.get(i).getDiskon_nominal();
-                    rowtabledata[10] = tabeldatalist.get(i).getNama_pajak();
-                    rowtabledata[11] = tabeldatalist.get(i).getNama_gudang();
-                    rowtabledata[12] = tabeldatalist.get(i).getKeterangan();
-                    rowtabledata[13] = tabeldatalist.get(i).getTotal();
+                    rowtabledata[6] = tabeldatalist.get(i).getHarga_jual();
+                    rowtabledata[7] = tabeldatalist.get(i).getDiskon_persen();
+                    rowtabledata[8] = tabeldatalist.get(i).getDiskon_nominal();
+                    rowtabledata[9] = tabeldatalist.get(i).getNama_pajak();
+                    rowtabledata[10] = tabeldatalist.get(i).getNama_gudang();
+                    rowtabledata[11] = tabeldatalist.get(i).getKeterangan();
+                    rowtabledata[12] = tabeldatalist.get(i).getTotal();
                     dtmtabeldata.addRow(rowtabledata);
                 }
                 kalkulasitotal();
