@@ -22,6 +22,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -155,6 +157,7 @@ public class DaftarfakturpenjualaninputController {
         hapusbaris();
         tambahbaris();
         batal();
+        gantitanggal();
 
     }
 
@@ -241,6 +244,35 @@ public class DaftarfakturpenjualaninputController {
             }
         });
 
+    }
+
+    private void gantitanggal() {
+        pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("date")) {
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
+                    int periodetahunbulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
+                    if (tahunbulan >= periodetahunbulan) {
+                        Date zaman_old = (Date) evt.getOldValue();
+                        Date zaman_now = (Date) evt.getNewValue();
+                        int tahunbulanold = Integer.parseInt(new SimpleDateFormat("yyyyM").format(zaman_old));
+                        int tahunbulannow = Integer.parseInt(new SimpleDateFormat("yyyyM").format(zaman_now));
+                        if (tahunbulannow != tahunbulanold) {
+                            new FuncHelper().insertnogagal("2", zaman_old, valdept, String.valueOf(no_urut));
+                            HashMap hm = new FuncHelper().getkodetransaksi("2", zaman_now, valdept);
+                            pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                            no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
+                        }
+
+                    } else {
+                        FuncHelper.info("Proses Ditolak", "Tanggal input tidak boleh lebih kecil dari tanggal periode");
+                        pane.dtanggal.setDate(new Date());
+                    }
+
+                }
+            }
+        });
     }
 
     private void customtable() {
@@ -1127,7 +1159,7 @@ public class DaftarfakturpenjualaninputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        new FuncHelper().insertnogagal("2", new Date(), valdept, String.valueOf(no_urut));
+                        new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, String.valueOf(no_urut));
                         Staticvar.inputmode = false;
                         JPanel inpane = new JPanel();
                         if (Staticvar.frame.endsWith("rincian_piutang")) {
@@ -1353,6 +1385,12 @@ public class DaftarfakturpenjualaninputController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
+            if (!Staticvar.preid.equals(valdept)) {
+                new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), Staticvar.preid, String.valueOf(no_urut));
+                HashMap hm = new FuncHelper().getkodetransaksi("2", new Date(), valdept);
+                pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
+            }
         });
 
     }

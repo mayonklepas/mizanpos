@@ -1147,7 +1147,7 @@ public class DaftarorderpenjualaninputController {
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
             if (!Staticvar.preid.equals(valdept)) {
-                new FuncHelper().insertnogagal("22", new Date(), Staticvar.preid, String.valueOf(no_urut));
+                new FuncHelper().insertnogagal("22", pane.dtanggal.getDate(), Staticvar.preid, String.valueOf(no_urut));
                 HashMap hm = new FuncHelper().getkodetransaksi("22", new Date(), valdept);
                 pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
                 no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
