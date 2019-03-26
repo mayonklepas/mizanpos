@@ -364,8 +364,12 @@ public class DaftarreturpenjualaninputController {
                     pane.bcari_gudang.setVisible(true);
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                    lshide.set(gx(stok), lsoldhide.get(gx(stok)));
+                    lshide.set(gx(order), lsoldhide.get(gx(order)));
                     lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                     lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                    lsresize.set(gx(order), lsoldsize.get(gx(order)));
+                    lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -392,8 +396,12 @@ public class DaftarreturpenjualaninputController {
                     pane.bcari_gudang.setVisible(false);
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(gudang), 0);
+                    lshide.set(gx(stok), 0);
+                    lshide.set(gx(order), 0);
                     lsresize.set(gx(satuan), 0);
                     lsresize.set(gx(gudang), 0);
+                    lsresize.set(gx(stok), 0);
+                    lsresize.set(gx(order), 0);
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -758,8 +766,12 @@ public class DaftarreturpenjualaninputController {
                         pane.bcari_gudang.setVisible(true);
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                         lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                        lshide.set(gx(stok), lsoldhide.get(gx(stok)));
+                        lshide.set(gx(order), lsoldhide.get(gx(order)));
                         lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                         lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                        lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
+                        lsresize.set(gx(order), lsoldsize.get(gx(order)));
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
@@ -785,8 +797,12 @@ public class DaftarreturpenjualaninputController {
                         pane.bcari_gudang.setVisible(false);
                         lshide.set(gx(satuan), 0);
                         lshide.set(gx(gudang), 0);
+                        lshide.set(gx(stok), 0);
+                        lshide.set(gx(order), 0);
                         lsresize.set(gx(satuan), 0);
                         lsresize.set(gx(gudang), 0);
+                        lsresize.set(gx(stok), 0);
+                        lsresize.set(gx(order), 0);
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
@@ -915,9 +931,10 @@ public class DaftarreturpenjualaninputController {
             ch.insertdata("insertreturpenjualan", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
-                    int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    if (dialog == 0) {
+                    FuncHelper.konfir("Ingin Melanjutkan transaksi ? ",
+                         "Data sudah berhasil disimpan, Klik Ya jika ingin menginput data baru lagi ", "Ya");
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
                         Runnable run = new Runnable() {
                             @Override
                             public void run() {
@@ -1036,26 +1053,27 @@ public class DaftarreturpenjualaninputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (pane.edpelanggan.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Supplier tidak boleh kosong");
 
                 } else if (tabeldatalist.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Table Tidak Boleh Kosong");
                 } else {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
-                        int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                        if (dialog == 0) {
+                        FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
+                             "Tanggal transaksi anda setelah periode akuntansi, jika ingin tetap melanjutkan tekan ya", "Ya");
+                        if (Staticvar.isupdate == true) {
+                            Staticvar.isupdate = false;
                             double inuangmuka = FuncHelper.ToDouble(pane.eduang_muka.getText());
                             if (inuangmuka >= total_penjualan_all) {
-                                JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                FuncHelper.info("Proses Ditolak", "Uang Muka tidak boleh lebih besar dari Grand Total");
                             } else {
                                 if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                                     rawsimpan();
                                 } else {
                                     if (total_penjualan_all > total_piutang) {
-                                        JOptionPane.showMessageDialog(null, "Total retur tidak boleh lebih besar dari sisa", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                        FuncHelper.info("Proses Ditolak", "Total retur tidak boleh lebih besar dari sisa");
                                     } else {
                                         rawsimpan();
                                     }
@@ -1078,13 +1096,13 @@ public class DaftarreturpenjualaninputController {
                     } else {
                         double inuangmuka = FuncHelper.ToDouble(pane.eduang_muka.getText());
                         if (inuangmuka >= total_penjualan_all) {
-                            JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            FuncHelper.info("Proses Ditolak", "Uang Muka tidak boleh lebih besar dari Grand Total");
                         } else {
                             if (pane.cmb_tipe_bayar.getSelectedIndex() == 0) {
                                 rawsimpan();
                             } else {
                                 if (total_penjualan_all > total_piutang) {
-                                    JOptionPane.showMessageDialog(null, "Total retur tidak boleh lebih besar dari sisa", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                    FuncHelper.info("Proses Ditolak", "Total retur tidak boleh lebih besar dari sisa");
                                 } else {
                                     rawsimpan();
                                 }
@@ -1137,11 +1155,11 @@ public class DaftarreturpenjualaninputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                int dialog = JOptionPane.showConfirmDialog(null,
-                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                     + pane.tabledata.getValueAt(row, gx(nama)),
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
+                FuncHelper.konfir("Yakin akan menghapus data ini?",
+                     "Data yang akan anda hapus adalah " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(nama)) + " Tekan Ya untuk menghapus", "Ya");
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     Runnable rn = new Runnable() {
                         @Override
                         public void run() {
@@ -1245,7 +1263,7 @@ public class DaftarreturpenjualaninputController {
         pane.bcari_po.addActionListener((ActionEvent e) -> {
             sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
             if (pane.edpelanggan.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Pelanggan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                FuncHelper.info("Proses Ditolak", "Data Pelanggan tidak boleh kosong");
             } else {
                 Staticvar.sfilter = "";
                 Staticvar.preid = valreturatas;
@@ -1758,7 +1776,7 @@ public class DaftarreturpenjualaninputController {
                             double curjumlah = FuncHelper.ToDouble(tm.getValueAt(row, gx(jumlah))) * FuncHelper.ToDouble(tabeldatalist.get(row).getIsi_satuan());
                             double curorder = FuncHelper.ToDouble(tm.getValueAt(row, gx(order))) * FuncHelper.ToDouble(tabeldatalist.get(row).getIsi_satuan_tetap());
                             if ((curjumlah > curorder) && (curorder > 0)) {
-                                JOptionPane.showMessageDialog(null, "Jumlah retur tidak boleh lebih besar dari jumlah penjualan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                FuncHelper.info("Proses Ditolak", "Jumlah retur tidak boleh lebih besar dari jumlah penjualan");
                                 tabeldatalist.get(row).setJumlah("0");
                                 tm.setValueAt("0", row, gx(jumlah));
                                 pane.tabledata.requestFocus();
@@ -2333,7 +2351,7 @@ public class DaftarreturpenjualaninputController {
                     total_penjualan_all = subtotal + biayalain - diskon + pajak;
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }
@@ -2355,7 +2373,7 @@ public class DaftarreturpenjualaninputController {
                     pane.eddiskon2.setText(nf.format(diskon_nominal));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }
@@ -2377,7 +2395,7 @@ public class DaftarreturpenjualaninputController {
                     pane.eddiskon1.setText(FuncHelper.rounding(indiskon_persen));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }

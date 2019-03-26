@@ -868,9 +868,12 @@ public class DaftarfakturpenjualaninputController {
             ch.insertdata("insertpenjualan", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
-                    int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    if (dialog == 0) {
+
+                    FuncHelper.konfir("Ingin Melanjutkan transaksi ? ",
+                         "Data sudah berhasil disimpan, Klik Ya jika ingin menginput data baru lagi ", "Ya");
+
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
                         Runnable run = new Runnable() {
                             @Override
                             public void run() {
@@ -997,8 +1000,6 @@ public class DaftarfakturpenjualaninputController {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
-                        int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                             + "", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
                         FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
                              "Tanggal transaksi anda setelah periode akuntansi, jika ingin tetap melanjutkan tekan ya", "Ya");
                         if (Staticvar.isupdate == true) {

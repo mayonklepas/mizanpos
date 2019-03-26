@@ -386,7 +386,7 @@ public class DaftarorderpembelianinputController {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 lsresize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
-                lsoldhide.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lsoldhide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
                 lsoldsize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 lshide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
             }
