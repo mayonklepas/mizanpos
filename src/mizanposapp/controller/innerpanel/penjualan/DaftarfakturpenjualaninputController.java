@@ -1266,7 +1266,10 @@ public class DaftarfakturpenjualaninputController {
                                 pane.eddiskon1.setText(String.valueOf(joinpenjualan.get("diskon_persen")));
                                 pane.eddiskon2.setText(String.valueOf(joinpenjualan.get("diskon_nominal")));
                                 pane.edbiayalain.setText(String.valueOf(joinpenjualan.get("total_biaya")));
-
+                                valsalesman = String.valueOf(joinpenjualan.get("id_bagian_penjualan"));
+                                pane.edsalesman.setText(String.valueOf(joinpenjualan.get("nama_bagian_penjualan")));
+                                valshipvia = String.valueOf(joinpenjualan.get("id_pengantaran"));
+                                pane.edshipvia.setText(String.valueOf(joinpenjualan.get("nama_pengantaran")));
                                 valcheck = FuncHelper.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
                                     pane.ckdiskon.setSelected(true);

@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import mizanposapp.helper.CrudHelper;
+import mizanposapp.helper.FuncHelper;
 import mizanposapp.helper.Globalsession;
 import mizanposapp.helper.Staticvar;
 import mizanposapp.helper.Tablestyle;
@@ -247,10 +248,11 @@ public class DaftarreturpenjualaninnerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                System.out.println(idlist.get(row));
-                int dialog = JOptionPane.showConfirmDialog(null, "Yakin akan menghapus data ini?",
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
+                FuncHelper.konfir("Yakin akan menghapus data ini?",
+                     "Data yang akan anda hapus adalah " + pane.tabledata.getValueAt(row, 1) + " | "
+                     + pane.tabledata.getValueAt(row, 2) + " Tekan Ya untuk menghapus", "Ya");
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     String data = String.format("id=%s", idlist.get(row));
                     ch.deletedata("deletereturpenjualan", data);
                     if (!Staticvar.getresult.equals("berhasil")) {
