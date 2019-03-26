@@ -364,7 +364,6 @@ public class PosframeController {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("date")) {
-
                     Date zaman_old = (Date) evt.getOldValue();
                     Date zaman_now = (Date) evt.getNewValue();
                     new FuncHelper().insertnogagal("2", zaman_old, valdept, no_urut);
@@ -948,7 +947,6 @@ public class PosframeController {
             Staticvar.sfilter = "";
             Staticvar.preid = valdept;
             Staticvar.prelabel = pane.eddept.getText();
-            Staticvar.prevalue = pane.eddept.getText();
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("department", "popupdaftardept", "Daftar Department"));
             jd.pack();
@@ -957,7 +955,7 @@ public class PosframeController {
             jd.setVisible(true);
             jd.toFront();
             valdept = Staticvar.resid;
-            pane.eddept.setText(Staticvar.resvalue);
+            pane.eddept.setText(Staticvar.reslabel);
             new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), Staticvar.preid, no_urut);
             HashMap hm = new FuncHelper().getkodetransaksi("2", pane.dtanggal.getDate(), valdept);
             pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));

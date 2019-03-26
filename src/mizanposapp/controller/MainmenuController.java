@@ -175,7 +175,6 @@ public class MainmenuController {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (Staticvar.inputmode == true) {
-                    JOptionPane.showMessageDialog(mm, "", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     FuncHelper.info("Anda Dalam Mode Input", " Selesaikan Transaksi Untuk Berpindah Menu");
                 } else {
                     if (Globalsession.sistem_setup_program.equals("1")) {

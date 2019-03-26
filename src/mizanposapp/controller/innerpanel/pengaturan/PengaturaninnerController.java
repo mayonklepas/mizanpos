@@ -1702,7 +1702,7 @@ public class PengaturaninnerController {
 
     private JSONArray setjsonreturpenjualan() {
         JSONArray jaroot = new JSONArray();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             JSONArray jainroot = new JSONArray();
             JSONObject joinroot = new JSONObject();
             String val = "";

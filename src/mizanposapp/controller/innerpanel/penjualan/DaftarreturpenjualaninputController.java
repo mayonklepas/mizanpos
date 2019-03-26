@@ -76,7 +76,8 @@ public class DaftarreturpenjualaninputController {
     CrudHelper ch = new CrudHelper();
     Daftarreturpenjualan_input_panel pane;
     String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
-         valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valreturatas = "";
+         valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valreturatas = "",
+         valuser_input = "";
     double total_piutang = 0;
     int valcheck = 0;
     int tipe_bayar = 0, tipe_jual = 0;
@@ -169,6 +170,8 @@ public class DaftarreturpenjualaninputController {
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPENJUALAN;
         pane.edpelanggan.setText(Globalsession.Penjualan_PelangganUmumnama);
         valpelanggan = Globalsession.Penjualan_PelangganUmum;
+        pane.eduser_input.setText(Globalsession.nama_user);
+        valuser_input = Globalsession.id_user;
     }
 
     private void skinning() {
@@ -205,7 +208,7 @@ public class DaftarreturpenjualaninputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == gx(nama) || column == gx(order) || column == gx(satuan) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
+                return column == gx(nama) || column == gx(order) || column == gx(stok) || column == gx(satuan) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
             }
 
         };
@@ -561,7 +564,6 @@ public class DaftarreturpenjualaninputController {
                 valshipvia = "";
                 pane.edtop.setText("");
                 valtop = "";
-                pane.eduser_input.setText("Sementara Admin");
                 pane.lsubtotal.setText("0");
                 pane.edbiayalain.setText("0");
                 pane.eddiskon1.setText("0");
@@ -1058,7 +1060,7 @@ public class DaftarreturpenjualaninputController {
                 } else if (tabeldatalist.size() == 0) {
                     FuncHelper.info("Proses Ditolak", "Table Tidak Boleh Kosong");
                 } else {
-                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
                         FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",

@@ -20,6 +20,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -75,7 +77,8 @@ public class DaftarorderpenjualaninputController {
     CrudHelper ch = new CrudHelper();
     Daftarorderpenjualan_input_panel pane;
     String valpelanggan = "", valgudang = "", valdept = "", valsalesman = "", valshipvia = "", valtop = "",
-         valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "";
+         valakun_penjualan = "", valakun_ongkir = "", valakun_diskon = "", valakun_uang_muka = "", valgolongan = "",
+         valuser_input = "";
     int valcheck = 0;
     int tipe_bayar = 0, tipe_jual = 0, status_selesai = 0;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -139,6 +142,8 @@ public class DaftarorderpenjualaninputController {
         hapusbaris();
         tambahbaris();
         batal();
+        gantitanggal();
+        pane.tabdata.setEnabledAt(1, false);
 
     }
 
@@ -153,6 +158,8 @@ public class DaftarorderpenjualaninputController {
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPENJUALAN;
         pane.edpelanggan.setText(Globalsession.Penjualan_PelangganUmumnama);
         valpelanggan = Globalsession.Penjualan_PelangganUmum;
+        pane.eduser_input.setText(Globalsession.nama_user);
+        valuser_input = Globalsession.id_user;
     }
 
     private void skinning() {
@@ -177,6 +184,27 @@ public class DaftarorderpenjualaninputController {
 
     }
 
+    private void gantitanggal() {
+        pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("date")) {
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
+                    int periodetahunbulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
+                    if (tahunbulan != periodetahunbulan) {
+                        Date zaman_old = (Date) evt.getOldValue();
+                        Date zaman_now = (Date) evt.getNewValue();
+                        new FuncHelper().insertnogagal("2", zaman_old, valdept, String.valueOf(no_urut));
+                        HashMap hm = new FuncHelper().getkodetransaksi("22", zaman_now, valdept);
+                        pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                        no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
+                    }
+
+                }
+            }
+        });
+    }
+
     private void customtable() {
         pane.tabledata.setRowSelectionAllowed(false);
         pane.tabledata.setCellSelectionEnabled(true);
@@ -184,7 +212,7 @@ public class DaftarorderpenjualaninputController {
         dtmtabeldata = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == gx(nama) || column == gx(satuan) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
+                return column == gx(nama) || column == gx(satuan) || column == gx(stok) || column == gx(pajak) || column == gx(gudang) || column == gx(total) ? false : true;
             }
 
         };
@@ -473,7 +501,6 @@ public class DaftarorderpenjualaninputController {
                 valshipvia = "";
                 pane.edtop.setText("");
                 valtop = "";
-                pane.eduser_input.setText("Sementara Admin");
                 pane.lsubtotal.setText("0");
                 pane.edbiayalain.setText("0");
                 pane.eddiskon1.setText("0");
@@ -907,7 +934,7 @@ public class DaftarorderpenjualaninputController {
                 } else if (tabeldatalist.size() == 0) {
                     FuncHelper.info("Proses Ditolak", "Table tidak boleh kosong");
                 } else {
-                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
                         FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
@@ -1111,6 +1138,13 @@ public class DaftarorderpenjualaninputController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
+            if (!Staticvar.preid.equals(valdept)) {
+                new FuncHelper().insertnogagal("22", new Date(), Staticvar.preid, String.valueOf(no_urut));
+                HashMap hm = new FuncHelper().getkodetransaksi("22", new Date(), valdept);
+                pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
+            }
+
         });
 
     }
@@ -1954,7 +1988,7 @@ public class DaftarorderpenjualaninputController {
                     double pajak = FuncHelper.ToDouble(pane.ltotal_pajak.getText());
                     total_penjualan_all = subtotal + biayalain - indiskon_nominal + pajak;
 
-                    pane.eddiskon2.setText(nf.format(diskon_nominal));
+                    pane.eddiskon2.setText(nf.format(indiskon_nominal));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
                     FuncHelper.info("Proses Ditolak", "Kolom Hanya memperbolehkan angka");
