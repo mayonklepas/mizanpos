@@ -1344,6 +1344,11 @@ public class DaftarreturpenjualaninputController {
                                 JSONObject joinpenjualan = (JSONObject) japenjualan.get(i);
                                 valgudang = String.valueOf(joinpenjualan.get("id_gudang"));
                                 pane.edgudang.setText(String.valueOf(joinpenjualan.get("nama_gudang")));
+                                valsalesman = String.valueOf(joinpenjualan.get("id_bagian_penjualan"));
+                                pane.edsalesman.setText(String.valueOf(joinpenjualan.get("nama_bagian_penjualan")));
+                                valshipvia = String.valueOf(joinpenjualan.get("id_pengantaran"));
+                                pane.edshipvia.setText(String.valueOf(joinpenjualan.get("nama_pengantaran")));
+
                                 valcheck = FuncHelper.ToInt(joinpenjualan.get("diskon_dalam"));
                                 if (valcheck == 0) {
                                     pane.ckdiskon.setSelected(true);
