@@ -373,9 +373,11 @@ public class DaftarfakturpenjualaninputController {
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
                     lshide.set(gx(stok), lsoldhide.get(gx(stok)));
+                    lshide.set(gx(order), lsoldhide.get(gx(order)));
                     lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                     lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
                     lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
+                    lsresize.set(gx(order), lsoldsize.get(gx(order)));
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -397,9 +399,11 @@ public class DaftarfakturpenjualaninputController {
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(gudang), 0);
                     lshide.set(gx(stok), 0);
+                    lshide.set(gx(order), 0);
                     lsresize.set(gx(satuan), 0);
                     lsresize.set(gx(gudang), 0);
                     lsresize.set(gx(stok), 0);
+                    lsresize.set(gx(order), 0);
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -468,8 +472,8 @@ public class DaftarfakturpenjualaninputController {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
                 lsresize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
-                lsoldhide.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 lsoldsize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lsoldhide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
                 lshide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
             }
 
@@ -713,9 +717,11 @@ public class DaftarfakturpenjualaninputController {
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                         lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
                         lshide.set(gx(stok), lsoldhide.get(gx(stok)));
+                        lshide.set(gx(order), lsoldhide.get(gx(order)));
                         lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                         lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
                         lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
+                        lsresize.set(gx(order), lsoldsize.get(gx(order)));
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
@@ -737,9 +743,11 @@ public class DaftarfakturpenjualaninputController {
                         lshide.set(gx(satuan), 0);
                         lshide.set(gx(gudang), 0);
                         lshide.set(gx(stok), 0);
+                        lshide.set(gx(order), 0);
                         lsresize.set(gx(satuan), 0);
                         lsresize.set(gx(gudang), 0);
                         lsresize.set(gx(stok), 0);
+                        lsresize.set(gx(order), 0);
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {

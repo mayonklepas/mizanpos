@@ -387,9 +387,9 @@ public class DaftarorderpenjualaninputController {
             for (int i = 0; i < jaheader.size(); i++) {
                 JSONObject jodata = (JSONObject) jaheader.get(i);
                 JSONArray jaaray = (JSONArray) jodata.get("key");
-                lsresize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
-                lsoldhide.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
                 lsoldsize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lsresize.add(Integer.parseInt(String.valueOf(jaaray.get(3))));
+                lsoldhide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
                 lshide.add(Integer.parseInt(String.valueOf(jaaray.get(2))));
             }
 
@@ -578,11 +578,14 @@ public class DaftarorderpenjualaninputController {
                         valgudang = "";
                         tipe_jual = 0;
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
-                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
-                        lshide.set(gx(stok), lsoldhide.get(gx(stok)));
                         lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
+
+                        lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
                         lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+
+                        lshide.set(gx(stok), lsoldhide.get(gx(stok)));
                         lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
+
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
