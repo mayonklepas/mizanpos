@@ -1062,7 +1062,7 @@ public class DaftarorderpenjualaninputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        new FuncHelper().insertnogagal("22", new Date(), valdept, String.valueOf(no_urut));
+                        new FuncHelper().insertnogagal("22", pane.dtanggal.getDate(), valdept, String.valueOf(no_urut));
                         Staticvar.inputmode = false;
                         Daftarorderpenjualan_inner_panel inpane = new Daftarorderpenjualan_inner_panel();
                         Staticvar.pp.container.removeAll();
