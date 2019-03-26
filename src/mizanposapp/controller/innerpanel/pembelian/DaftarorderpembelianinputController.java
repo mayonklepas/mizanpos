@@ -660,11 +660,11 @@ public class DaftarorderpembelianinputController {
                     }
 
                     if (pane.ckdiskon.isSelected()) {
-                        hidetable(7);
-                        showtable(6);
+                        hidetable(gx(diskon_nominal));
+                        showtable(gx(diskon_persen));
                     } else {
-                        hidetable(6);
-                        showtable(7);
+                        hidetable(gx(diskon_persen));
+                        showtable(gx(diskon_nominal));
                     }
 
                     valsalesman = String.valueOf(joinpembelian.get("id_bagian_pembelian"));
@@ -710,18 +710,18 @@ public class DaftarorderpembelianinputController {
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
-                    rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
-                    rowtabledata[1] = tabeldatalist.get(i).getNama_barang();
-                    rowtabledata[2] = tabeldatalist.get(i).getJumlah();
-                    rowtabledata[3] = tabeldatalist.get(i).getNama_satuan();
-                    rowtabledata[4] = tabeldatalist.get(i).getHarga_beli();
-                    rowtabledata[5] = tabeldatalist.get(i).getHarga_jual();
-                    rowtabledata[6] = tabeldatalist.get(i).getDiskon_persen();
-                    rowtabledata[7] = tabeldatalist.get(i).getDiskon_nominal();
-                    rowtabledata[8] = tabeldatalist.get(i).getNama_pajak();
-                    rowtabledata[9] = tabeldatalist.get(i).getNama_gudang();
-                    rowtabledata[10] = tabeldatalist.get(i).getKeterangan();
-                    rowtabledata[11] = tabeldatalist.get(i).getTotal();
+                    rowtabledata[gx(kode)] = tabeldatalist.get(i).getKode_barang();
+                    rowtabledata[gx(nama)] = tabeldatalist.get(i).getNama_barang();
+                    rowtabledata[gx(jumlah)] = tabeldatalist.get(i).getJumlah();
+                    rowtabledata[gx(satuan)] = tabeldatalist.get(i).getNama_satuan();
+                    rowtabledata[gx(harga_beli)] = tabeldatalist.get(i).getHarga_beli();
+                    rowtabledata[gx(harga_jual)] = tabeldatalist.get(i).getHarga_jual();
+                    rowtabledata[gx(diskon_persen)] = tabeldatalist.get(i).getDiskon_persen();
+                    rowtabledata[gx(diskon_nominal)] = tabeldatalist.get(i).getDiskon_nominal();
+                    rowtabledata[gx(pajak)] = tabeldatalist.get(i).getNama_pajak();
+                    rowtabledata[gx(gudang)] = tabeldatalist.get(i).getNama_gudang();
+                    rowtabledata[gx(keterangan)] = tabeldatalist.get(i).getKeterangan();
+                    rowtabledata[gx(total)] = tabeldatalist.get(i).getTotal();
                     dtmtabeldata.addRow(rowtabledata);
                 }
                 kalkulasitotal();

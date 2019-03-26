@@ -372,8 +372,10 @@ public class DaftarfakturpenjualaninputController {
                     pane.bcari_gudang.setVisible(true);
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                    lshide.set(gx(stok), lsoldhide.get(gx(stok)));
                     lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                     lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                    lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -394,8 +396,10 @@ public class DaftarfakturpenjualaninputController {
                     pane.bcari_gudang.setVisible(false);
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(gudang), 0);
+                    lshide.set(gx(stok), 0);
                     lsresize.set(gx(satuan), 0);
                     lsresize.set(gx(gudang), 0);
+                    lsresize.set(gx(stok), 0);
                     setheader();
                     setheader();
                     if (pane.ckdiskon.isSelected()) {
@@ -708,8 +712,10 @@ public class DaftarfakturpenjualaninputController {
                         pane.bcari_gudang.setVisible(true);
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                         lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
+                        lshide.set(gx(stok), lsoldhide.get(gx(stok)));
                         lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
                         lsresize.set(gx(gudang), lsoldsize.get(gx(gudang)));
+                        lsresize.set(gx(stok), lsoldsize.get(gx(stok)));
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
@@ -730,8 +736,10 @@ public class DaftarfakturpenjualaninputController {
                         pane.bcari_gudang.setVisible(false);
                         lshide.set(gx(satuan), 0);
                         lshide.set(gx(gudang), 0);
+                        lshide.set(gx(stok), 0);
                         lsresize.set(gx(satuan), 0);
                         lsresize.set(gx(gudang), 0);
+                        lsresize.set(gx(stok), 0);
                         setheader();
                         setheader();
                         if (pane.ckdiskon.isSelected()) {
@@ -788,19 +796,19 @@ public class DaftarfakturpenjualaninputController {
 
                 }
                 for (int i = 0; i < tabeldatalist.size(); i++) {
-                    rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
-                    rowtabledata[1] = tabeldatalist.get(i).getNama_barang();
-                    rowtabledata[2] = tabeldatalist.get(i).getStok();
-                    rowtabledata[3] = tabeldatalist.get(i).getOrder();
-                    rowtabledata[4] = tabeldatalist.get(i).getJumlah();
-                    rowtabledata[5] = tabeldatalist.get(i).getNama_satuan();
-                    rowtabledata[6] = tabeldatalist.get(i).getHarga_jual();
-                    rowtabledata[7] = tabeldatalist.get(i).getDiskon_persen();
-                    rowtabledata[8] = tabeldatalist.get(i).getDiskon_nominal();
-                    rowtabledata[9] = tabeldatalist.get(i).getNama_pajak();
-                    rowtabledata[10] = tabeldatalist.get(i).getNama_gudang();
-                    rowtabledata[11] = tabeldatalist.get(i).getKeterangan();
-                    rowtabledata[12] = tabeldatalist.get(i).getTotal();
+                    rowtabledata[gx(kode)] = tabeldatalist.get(i).getKode_barang();
+                    rowtabledata[gx(nama)] = tabeldatalist.get(i).getNama_barang();
+                    rowtabledata[gx(stok)] = tabeldatalist.get(i).getStok();
+                    rowtabledata[gx(order)] = tabeldatalist.get(i).getOrder();
+                    rowtabledata[gx(jumlah)] = tabeldatalist.get(i).getJumlah();
+                    rowtabledata[gx(satuan)] = tabeldatalist.get(i).getNama_satuan();
+                    rowtabledata[gx(harga_jual)] = tabeldatalist.get(i).getHarga_jual();
+                    rowtabledata[gx(diskon_persen)] = tabeldatalist.get(i).getDiskon_persen();
+                    rowtabledata[gx(diskon_nominal)] = tabeldatalist.get(i).getDiskon_nominal();
+                    rowtabledata[gx(pajak)] = tabeldatalist.get(i).getNama_pajak();
+                    rowtabledata[gx(gudang)] = tabeldatalist.get(i).getNama_gudang();
+                    rowtabledata[gx(keterangan)] = tabeldatalist.get(i).getKeterangan();
+                    rowtabledata[gx(total)] = tabeldatalist.get(i).getTotal();
                     dtmtabeldata.addRow(rowtabledata);
                 }
                 kalkulasitotal();
@@ -973,20 +981,23 @@ public class DaftarfakturpenjualaninputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (pane.edpelanggan.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Supplier tidak boleh kosong");
 
                 } else if (tabeldatalist.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Table Tidak Boleh Kosong");
                 } else {
                     int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
                         int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                        if (dialog == 0) {
+                             + "", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
+                        FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
+                             "Tanggal transaksi anda setelah periode akuntansi, jika ingin tetap melanjutkan tekan ya", "Ya");
+                        if (Staticvar.isupdate == true) {
+                            Staticvar.isupdate = false;
                             double inuangmuka = FuncHelper.ToDouble(pane.eduang_muka.getText());
                             if (inuangmuka >= total_penjualan_all) {
-                                JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                FuncHelper.info("Proses Ditolak", "Uang Muka tidak boleh lebih besar dari Grand Total");
                             } else {
                                 rawsimpan();
                             }
@@ -1007,7 +1018,7 @@ public class DaftarfakturpenjualaninputController {
                     } else {
                         double inuangmuka = FuncHelper.ToDouble(pane.eduang_muka.getText());
                         if (inuangmuka >= total_penjualan_all) {
-                            JOptionPane.showMessageDialog(null, "Uang Muka tidak boleh lebih besar dari Grand Total", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            FuncHelper.info("Proses Ditolak", "Uang Muka tidak boleh lebih besar dari Grand Total");
                         } else {
                             rawsimpan();
                         }
@@ -1058,11 +1069,11 @@ public class DaftarfakturpenjualaninputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                int dialog = JOptionPane.showConfirmDialog(null,
-                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                     + pane.tabledata.getValueAt(row, gx(nama)),
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
+                FuncHelper.konfir("Yakin akan menghapus data ini?",
+                     "Data yang akan anda hapus adalah " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(nama)) + " Tekan Ya untuk menghapus", "Ya");
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     Runnable rn = new Runnable() {
                         @Override
                         public void run() {
@@ -1168,7 +1179,7 @@ public class DaftarfakturpenjualaninputController {
         pane.bcarinoso.addActionListener((ActionEvent e) -> {
             sudah_jangan_set_lagi_kau_membuat_semua_kacau = true;
             if (pane.edpelanggan.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Pelanggan tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                FuncHelper.info("Proses Ditolak", "Data Pelanggan tidak boleh kosong");
             } else {
                 Staticvar.sfilter = "";
                 Staticvar.preid = valorder;
@@ -1270,19 +1281,19 @@ public class DaftarfakturpenjualaninputController {
                             }
                             System.out.println(tabeldatalist.size());
                             for (int i = 0; i < tabeldatalist.size(); i++) {
-                                rowtabledata[0] = tabeldatalist.get(i).getKode_barang();
-                                rowtabledata[1] = tabeldatalist.get(i).getNama_barang();
-                                rowtabledata[2] = tabeldatalist.get(i).getStok();
-                                rowtabledata[3] = tabeldatalist.get(i).getOrder();
-                                rowtabledata[4] = tabeldatalist.get(i).getJumlah();
-                                rowtabledata[5] = tabeldatalist.get(i).getNama_satuan();
-                                rowtabledata[6] = tabeldatalist.get(i).getHarga_jual();
-                                rowtabledata[7] = tabeldatalist.get(i).getDiskon_persen();
-                                rowtabledata[8] = tabeldatalist.get(i).getDiskon_nominal();
-                                rowtabledata[9] = tabeldatalist.get(i).getNama_pajak();
-                                rowtabledata[10] = tabeldatalist.get(i).getNama_gudang();
-                                rowtabledata[11] = tabeldatalist.get(i).getKeterangan();
-                                rowtabledata[12] = tabeldatalist.get(i).getTotal();
+                                rowtabledata[gx(kode)] = tabeldatalist.get(i).getKode_barang();
+                                rowtabledata[gx(nama)] = tabeldatalist.get(i).getNama_barang();
+                                rowtabledata[gx(stok)] = tabeldatalist.get(i).getStok();
+                                rowtabledata[gx(order)] = tabeldatalist.get(i).getOrder();
+                                rowtabledata[gx(jumlah)] = tabeldatalist.get(i).getJumlah();
+                                rowtabledata[gx(satuan)] = tabeldatalist.get(i).getNama_satuan();
+                                rowtabledata[gx(harga_jual)] = tabeldatalist.get(i).getHarga_jual();
+                                rowtabledata[gx(diskon_persen)] = tabeldatalist.get(i).getDiskon_persen();
+                                rowtabledata[gx(diskon_nominal)] = tabeldatalist.get(i).getDiskon_nominal();
+                                rowtabledata[gx(pajak)] = tabeldatalist.get(i).getNama_pajak();
+                                rowtabledata[gx(gudang)] = tabeldatalist.get(i).getNama_gudang();
+                                rowtabledata[gx(keterangan)] = tabeldatalist.get(i).getKeterangan();
+                                rowtabledata[gx(total)] = tabeldatalist.get(i).getTotal();
                                 dtmtabeldata.addRow(rowtabledata);
                             }
                             kalkulasitotal();
@@ -2200,7 +2211,7 @@ public class DaftarfakturpenjualaninputController {
                     total_penjualan_all = subtotal + biayalain - diskon + pajak;
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }
@@ -2222,7 +2233,7 @@ public class DaftarfakturpenjualaninputController {
                     pane.eddiskon2.setText(nf.format(indiskon_nominal));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }
@@ -2243,7 +2254,7 @@ public class DaftarfakturpenjualaninputController {
                     pane.eddiskon1.setText(FuncHelper.rounding(indiskon_persen));
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }

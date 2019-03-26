@@ -1823,7 +1823,7 @@ public class PengaturaninnerController {
 
     private JSONArray setjsonorderpembelian() {
         JSONArray jaroot = new JSONArray();
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 12; i++) {
             JSONArray jainroot = new JSONArray();
             JSONObject joinroot = new JSONObject();
             String val = "";
@@ -1938,7 +1938,7 @@ public class PengaturaninnerController {
 
     private JSONArray setjsonfakturpembelian() {
         JSONArray jaroot = new JSONArray();
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 13; i++) {
             JSONArray jainroot = new JSONArray();
             JSONObject joinroot = new JSONObject();
             String val = "";
@@ -1958,7 +1958,7 @@ public class PengaturaninnerController {
                     show = "1";
                     size = "10";
                     break;
-                case 3:
+                case 2:
                     val = "order";
                     head = "Order";
                     if (pane.cktampilfakturorderpembelian.isSelected()) {
@@ -1968,25 +1968,25 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 4:
+                case 3:
                     val = "jumlah";
                     head = "Jumlah";
                     show = "1";
                     size = "10";
                     break;
-                case 5:
+                case 4:
                     val = "satuan";
                     head = "Satuan";
                     show = "1";
                     size = "10";
                     break;
-                case 6:
+                case 5:
                     val = "harga_beli";
                     head = "Harga Beli";
                     show = "1";
                     size = "10";
                     break;
-                case 7:
+                case 6:
                     val = "harga_jual";
                     head = "Harga Jual";
                     if (pane.cktampilorderhargajualpembelian.isSelected()) {
@@ -1996,19 +1996,19 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 8:
+                case 7:
                     val = "disc_persen";
                     head = "Diskon %";
                     show = "1";
                     size = "10";
                     break;
-                case 9:
+                case 8:
                     val = "disc_rp";
                     head = "Diskon Rp";
                     show = "1";
                     size = "10";
                     break;
-                case 10:
+                case 9:
                     val = "pajak";
                     head = "Pajak";
                     if (pane.cktampilfakturpajakpembelian.isSelected()) {
@@ -2018,7 +2018,7 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 11:
+                case 10:
                     val = "gudang";
                     head = "Gudang";
                     if (pane.cktampilfakturgudangpembelian.isSelected()) {
@@ -2028,7 +2028,7 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 12:
+                case 11:
                     val = "keterangan";
                     head = "Keterangan";
                     if (pane.cktampilfakturketeranganpembelian.isSelected()) {
@@ -2038,7 +2038,7 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 13:
+                case 12:
                     val = "total";
                     head = "Total";
                     show = "1";
@@ -2063,7 +2063,7 @@ public class PengaturaninnerController {
 
     private JSONArray setjsonreturpembelian() {
         JSONArray jaroot = new JSONArray();
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 13; i++) {
             JSONArray jainroot = new JSONArray();
             JSONObject joinroot = new JSONObject();
             String val = "";
@@ -2083,7 +2083,7 @@ public class PengaturaninnerController {
                     show = "1";
                     size = "10";
                     break;
-                case 3:
+                case 2:
                     val = "order";
                     head = "Order";
                     if (pane.cktampilreturorderpembelian.isSelected()) {
@@ -2093,25 +2093,25 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 4:
+                case 3:
                     val = "jumlah";
                     head = "Jumlah";
                     show = "1";
                     size = "10";
                     break;
-                case 5:
+                case 4:
                     val = "satuan";
                     head = "Satuan";
                     show = "1";
                     size = "10";
                     break;
-                case 6:
+                case 5:
                     val = "harga_beli";
                     head = "Harga Beli";
                     show = "1";
                     size = "10";
                     break;
-                case 7:
+                case 6:
                     val = "harga_jual";
                     head = "Harga Jual";
                     if (pane.cktampilorderhargajualpembelian.isSelected()) {
@@ -2121,19 +2121,19 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 8:
+                case 7:
                     val = "disc_persen";
                     head = "Diskon %";
                     show = "1";
                     size = "10";
                     break;
-                case 9:
+                case 8:
                     val = "disc_rp";
                     head = "Diskon Rp";
                     show = "1";
                     size = "10";
                     break;
-                case 10:
+                case 9:
                     val = "pajak";
                     head = "Pajak";
                     if (pane.cktampilreturpajakpembelian.isSelected()) {
@@ -2143,13 +2143,13 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 11:
+                case 10:
                     val = "gudang";
                     head = "Gudang";
                     show = "1";
                     size = "10";
                     break;
-                case 12:
+                case 11:
                     val = "keterangan";
                     head = "Keterangan";
                     if (pane.cktampilreturketeranganpembelian.isSelected()) {
@@ -2159,7 +2159,7 @@ public class PengaturaninnerController {
                     }
                     size = "10";
                     break;
-                case 13:
+                case 12:
                     val = "total";
                     head = "Total";
                     show = "1";
