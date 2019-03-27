@@ -359,7 +359,9 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
         jLabel40.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel40.setText("User Input");
 
+        eduser_input.setEditable(false);
         eduser_input.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        eduser_input.setEnabled(false);
 
         bcaritop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcaritop.setText("Cari");
@@ -381,11 +383,17 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
         ltop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ltop.setText("Term Of Payment");
 
+        edtop.setEditable(false);
         edtop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edtop.setEnabled(false);
 
+        edshipvia.setEditable(false);
         edshipvia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edshipvia.setEnabled(false);
 
+        edsalesman.setEditable(false);
         edsalesman.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        edsalesman.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -400,12 +408,13 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
                                 .addComponent(jLabel15)
                                 .addComponent(jLabel16)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(edshipvia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(edshipvia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(3, 3, 3)
-                                    .addComponent(bcarishipvia)))
-                            .addComponent(dtanggal_pengantaran, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
+                                    .addComponent(bcarishipvia, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(dtanggal_pengantaran, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -419,7 +428,7 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
                             .addComponent(ltop)))
                     .addComponent(jLabel40)
                     .addComponent(eduser_input, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -478,6 +487,7 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
         ltitik2gudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ltitik2gudang.setText(":");
 
+        edgudang.setEditable(false);
         edgudang.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edgudang.setPreferredSize(new java.awt.Dimension(51, 20));
         edgudang.addActionListener(new java.awt.event.ActionListener() {
@@ -813,7 +823,6 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
 
         ckselesai.setText("Selesai");
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
