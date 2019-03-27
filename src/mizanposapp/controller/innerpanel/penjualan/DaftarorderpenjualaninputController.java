@@ -553,6 +553,8 @@ public class DaftarorderpenjualaninputController {
                     pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
                     pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
                     valdept = String.valueOf(joingenjur.get("id_dept"));
+                    valuser_input = String.valueOf(joingenjur.get("id_user"));
+                    pane.eduser_input.setText(String.valueOf(joingenjur.get("nama_user")));
                     try {
                         pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
                     } catch (java.text.ParseException ex) {
@@ -799,6 +801,7 @@ public class DaftarorderpenjualaninputController {
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                  + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "user_input='" + FuncHelper.EncodeString(valuser_input) + "'::"
                  + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&penjualan="
                  + "id_pelanggan='" + valpelanggan + "'::"
@@ -883,6 +886,7 @@ public class DaftarorderpenjualaninputController {
                  + "id_dept='" + valdept + "'::"
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                  + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
+                 + "user_input='" + FuncHelper.EncodeString(valuser_input) + "'::"
                  + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&penjualan="
                  + "id_pelanggan='" + valpelanggan + "'::"

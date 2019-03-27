@@ -356,6 +356,7 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                     pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
                     pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
                     valdept = String.valueOf(joingenjur.get("id_dept"));
+
                     try {
                         pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
                     } catch (java.text.ParseException ex) {
