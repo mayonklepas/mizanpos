@@ -1533,7 +1533,7 @@ public class DaftarreturpenjualaninputController {
             pane.eddept.setText(Staticvar.reslabel);
             if (!Staticvar.preid.equals(valdept)) {
                 new FuncHelper().insertnogagal("21", pane.dtanggal.getDate(), Staticvar.preid, String.valueOf(no_urut));
-                HashMap hm = new FuncHelper().getkodetransaksi("21", new Date(), valdept);
+                HashMap hm = new FuncHelper().getkodetransaksi("21", pane.dtanggal.getDate(), valdept);
                 pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
                 no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
             }
