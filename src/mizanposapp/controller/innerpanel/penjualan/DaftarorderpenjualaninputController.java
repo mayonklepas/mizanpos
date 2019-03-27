@@ -887,6 +887,7 @@ public class DaftarorderpenjualaninputController {
                  + "tanggal='" + new SimpleDateFormat("yyyy-MM-dd").format(pane.dtanggal.getDate()) + "'::"
                  + "noref='" + FuncHelper.EncodeString(pane.edno_transaksi.getText()) + "'::"
                  + "user_input='" + FuncHelper.EncodeString(valuser_input) + "'::"
+                 + "user_edit='" + FuncHelper.EncodeString(Globalsession.id_user) + "'::"
                  + "keterangan='" + FuncHelper.EncodeString(pane.edketerangan.getText()) + "'"
                  + "&penjualan="
                  + "id_pelanggan='" + valpelanggan + "'::"
