@@ -471,6 +471,7 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel13.setText(":");
 
+        eddept.setEditable(false);
         eddept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         eddept.setPreferredSize(new java.awt.Dimension(51, 20));
         eddept.addActionListener(new java.awt.event.ActionListener() {
@@ -612,6 +613,7 @@ public class Daftarorderpenjualan_input_panel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        edpelanggan.setEditable(false);
         edpelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edpelangganActionPerformed(evt);
