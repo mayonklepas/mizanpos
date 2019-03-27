@@ -1292,6 +1292,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="edakun_penjualan">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
@@ -1333,6 +1334,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="edakun_ongkir">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
@@ -1375,6 +1377,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="edakun_diskon_penjualan">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>
@@ -1418,6 +1421,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="edakun_uang_muka">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="11" style="0"/>
                 </Property>

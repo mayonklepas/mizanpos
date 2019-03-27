@@ -715,6 +715,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         jLabel37.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel37.setText(":");
 
+        edakun_penjualan.setEditable(false);
         edakun_penjualan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edakun_penjualan.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -752,6 +753,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
             }
         });
 
+        edakun_ongkir.setEditable(false);
         edakun_ongkir.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edakun_ongkir.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -778,6 +780,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
             }
         });
 
+        edakun_diskon_penjualan.setEditable(false);
         edakun_diskon_penjualan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edakun_diskon_penjualan.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -793,6 +796,7 @@ public class Daftarreturpenjualan_input_panel extends javax.swing.JPanel {
         jLabel44.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel44.setText(":");
 
+        edakun_uang_muka.setEditable(false);
         edakun_uang_muka.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         edakun_uang_muka.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
