@@ -44,7 +44,8 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
         bcari = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         bupdate = new javax.swing.JButton();
-        bfilter = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cmbfilter = new javax.swing.JComboBox<>();
 
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -115,13 +116,9 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
         bupdate.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bupdate.setText("Update");
 
-        bfilter.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
-        bfilter.setText("Filter");
-        bfilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bfilterActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Filter :");
+
+        cmbfilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Sudah Lunas", "Belum Lunas" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,15 +131,17 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
                 .addComponent(bdetailbayar)
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bfilter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(bupdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbfilter, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tcari, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bcari)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +154,8 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
                         .addComponent(tcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(bcari)
                         .addComponent(bupdate)
-                        .addComponent(bfilter))
+                        .addComponent(jLabel2)
+                        .addComponent(cmbfilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -164,7 +164,7 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
         );
@@ -179,18 +179,15 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bfilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bfilterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bfilterActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bbayar;
     public javax.swing.JButton bcari;
     public javax.swing.JButton bdetailbayar;
-    public javax.swing.JButton bfilter;
     public javax.swing.JButton bupdate;
+    public javax.swing.JComboBox<String> cmbfilter;
     public javax.swing.JLabel indi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;

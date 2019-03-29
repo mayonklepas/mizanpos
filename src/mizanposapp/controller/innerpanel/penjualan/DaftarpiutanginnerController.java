@@ -55,7 +55,9 @@ public class DaftarpiutanginnerController {
     public DaftarpiutanginnerController(Daftarpiutang_inner_panel pane) {
         this.pane = pane;
         loadheader();
-        loaddata();
+        filterdata();
+        pane.cmbfilter.setSelectedIndex(0);
+        loaddata("0");
         loaddatadetail();
         pembayaran();
         detailpembayaran();
@@ -113,7 +115,7 @@ public class DaftarpiutanginnerController {
         }
     }
 
-    private void loaddata() {
+    private void loaddata(String tipe) {
         cleardata();
         disablebutton();
         dtm.getDataVector().removeAllElements();
@@ -123,8 +125,8 @@ public class DaftarpiutanginnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                //String param = String.format("tahun=%s&bulan=%s", Globalsession.periode_year, Globalsession.periode_month);
-                Object objdata = jpdata.parse(ch.getdatas("daftarpiutang"));
+                String param = "tipe=" + tipe;
+                Object objdata = jpdata.parse(ch.getdatadetails("daftarpiutang", param));
                 System.out.println(objdata);
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -153,7 +155,22 @@ public class DaftarpiutanginnerController {
 
     }
 
-    private void loaddatadetailraw() {
+    private void filterdata() {
+        pane.cmbfilter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (pane.cmbfilter.getSelectedIndex() == 0) {
+                    loaddata("0");
+                } else if (pane.cmbfilter.getSelectedIndex() == 1) {
+                    loaddata("1");
+                } else if (pane.cmbfilter.getSelectedIndex() == 2) {
+                    loaddata("2");
+                }
+            }
+        });
+    }
+
+    private void loaddatadetailraw(String tipe) {
         cleardata();
         disablebutton();
         dtm.getDataVector().removeAllElements();
@@ -163,7 +180,7 @@ public class DaftarpiutanginnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("cari=%s", pane.tcari.getText());
+                String param = String.format("tipe=%s&cari=%s", tipe, pane.tcari.getText());
                 Object objdata = jpdata.parse(ch.getdatadetails("caripiutang", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -202,7 +219,15 @@ public class DaftarpiutanginnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw();
+                    if (pane.cmbfilter.getSelectedIndex() == 0) {
+                        loaddatadetailraw("0");
+                    } else if (pane.cmbfilter.getSelectedIndex() == 1) {
+                        loaddatadetailraw("1");
+                    } else if (pane.cmbfilter.getSelectedIndex() == 2) {
+                        loaddatadetailraw("2");
+                    } else {
+
+                    }
                 }
             }
 
@@ -235,7 +260,7 @@ public class DaftarpiutanginnerController {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata();
+                pane.cmbfilter.setSelectedIndex(0);
                 pane.tcari.setText("Cari Data");
             }
         });
@@ -260,7 +285,13 @@ public class DaftarpiutanginnerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw();
+                    if (pane.cmbfilter.getSelectedIndex() == 0) {
+                        loaddatadetailraw("0");
+                    } else if (pane.cmbfilter.getSelectedIndex() == 1) {
+                        loaddatadetailraw("1");
+                    } else if (pane.cmbfilter.getSelectedIndex() == 2) {
+                        loaddatadetailraw("2");
+                    }
                 }
             }
         });
