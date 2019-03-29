@@ -2238,7 +2238,6 @@ public class PengaturaninnerController {
             Staticvar.sfilter = "";
             Staticvar.preid = valdept;
             Staticvar.prelabel = pane.eddefdept.getText();
-            Staticvar.prevalue = pane.eddefdept.getText();
             JDialog jd = new JDialog(new Mainmenu());
             jd.add(new Popupcari("department", "popupdaftardept", "Daftar Department"));
             jd.pack();
@@ -2247,7 +2246,7 @@ public class PengaturaninnerController {
             jd.setVisible(true);
             jd.toFront();
             valdept = Staticvar.resid;
-            pane.eddefdept.setText(Staticvar.resvalue);
+            pane.eddefdept.setText(Staticvar.reslabel);
         });
 
     }
