@@ -84,6 +84,8 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
         jLabel42 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel12.setBackground(new java.awt.Color(41, 39, 40));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
@@ -152,12 +154,15 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
+        bsimpan.setBackground(new java.awt.Color(255, 255, 255));
         bsimpan.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bsimpan.setText("Simpan");
 
+        bbatal.setBackground(new java.awt.Color(255, 255, 255));
         bbatal.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bbatal.setText("Batal");
 
+        bhapus_baris.setBackground(new java.awt.Color(255, 255, 255));
         bhapus_baris.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bhapus_baris.setText("Hapus Baris");
 
@@ -165,6 +170,7 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
         ckcetak_faktur.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ckcetak_faktur.setText("Cetak Faktur");
 
+        btambah_baris.setBackground(new java.awt.Color(255, 255, 255));
         btambah_baris.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         btambah_baris.setText("Tambah Baris");
 
@@ -222,6 +228,8 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
         lterbilang.setForeground(new java.awt.Color(51, 51, 255));
         lterbilang.setText("Terbilang");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel18.setText("Dept");
 
@@ -270,6 +278,7 @@ public class Daftarpembayaranpiutangperinvoice_input_panel extends javax.swing.J
         ltitik2tempo.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ltitik2tempo.setText(":");
 
+        bcari_dept.setBackground(new java.awt.Color(255, 255, 255));
         bcari_dept.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         bcari_dept.setText("Cari");
         bcari_dept.addActionListener(new java.awt.event.ActionListener() {

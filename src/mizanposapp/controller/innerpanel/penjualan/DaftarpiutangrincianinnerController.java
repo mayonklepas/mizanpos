@@ -75,13 +75,14 @@ public class DaftarpiutangrincianinnerController {
         loadheader();
         loadheaderrincian();
         if (Staticvar.isupdate == false) {
-            loaddata(0);
+            loaddata(0, String.valueOf(pane.cmbfilter.getSelectedIndex()));
         } else {
-            loaddata(Staticvar.rowfokus);
+            loaddata(Staticvar.rowfokus, String.valueOf(pane.cmbfilter.getSelectedIndex()));
             Staticvar.isupdate = false;
             Staticvar.rowfokus = 0;
             Staticvar.rowfokusext = 0;
         }
+        filterdata();
         selectdata();
         loaddatadetail();
         inputpembayaran();
@@ -189,7 +190,7 @@ public class DaftarpiutangrincianinnerController {
         }
     }
 
-    private void loaddata(int row) {
+    private void loaddata(int row, String tipe) {
         cleardata();
         disablebutton();
         dtm.getDataVector().removeAllElements();
@@ -199,7 +200,7 @@ public class DaftarpiutangrincianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("id=%s", id_pelanggan);
+                String param = String.format("id=%s&tipe=%s", id_pelanggan, tipe);
                 Object objdata = jpdata.parse(ch.getdatadetails("daftarpiutangperpelanggan", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -229,7 +230,7 @@ public class DaftarpiutangrincianinnerController {
 
     }
 
-    private void loaddatadetailraw() {
+    private void loaddatadetailraw(String tipe) {
         cleardata2();
         disablebutton();
         dtm.getDataVector().removeAllElements();
@@ -239,7 +240,7 @@ public class DaftarpiutangrincianinnerController {
             protected Void doInBackground() throws Exception {
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
-                String param = String.format("id=%s&cari=%s", id, pane.tcari.getText());
+                String param = String.format("id=%s&tipe=%s&cari=%s", id, tipe, pane.tcari.getText());
                 Object objdata = jpdata.parse(ch.getdatadetails("caripiutangperpelanggan", param));
                 JSONArray jadata = (JSONArray) objdata;
                 dtm.setRowCount(0);
@@ -329,6 +330,21 @@ public class DaftarpiutangrincianinnerController {
 
     }
 
+    private void filterdata() {
+        pane.cmbfilter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (pane.cmbfilter.getSelectedIndex() == 0) {
+                    loaddata(0, "0");
+                } else if (pane.cmbfilter.getSelectedIndex() == 1) {
+                    loaddata(0, "1");
+                } else if (pane.cmbfilter.getSelectedIndex() == 2) {
+                    loaddata(0, "2");
+                }
+            }
+        });
+    }
+
     private void loaddatadetail() {
         pane.tcari.addKeyListener(new KeyListener() {
             @Override
@@ -338,7 +354,7 @@ public class DaftarpiutangrincianinnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loaddatadetailraw();
+                    loaddatadetailraw(String.valueOf(pane.cmbfilter.getSelectedIndex()));
                 }
             }
 
@@ -395,7 +411,8 @@ public class DaftarpiutangrincianinnerController {
         pane.bupdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loaddata(0);
+                pane.cmbfilter.setSelectedIndex(0);
+                loaddata(0, "0");
                 loaddatadetailrincian(idlist.get(0));
                 pane.tcari.setText("Cari Data");
             }
@@ -421,7 +438,7 @@ public class DaftarpiutangrincianinnerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    loaddatadetailraw();
+                    loaddatadetailraw(String.valueOf(pane.cmbfilter.getSelectedIndex()));
                 }
             }
         });
@@ -519,7 +536,7 @@ public class DaftarpiutangrincianinnerController {
                 jd.setVisible(true);
                 jd.toFront();
                 if (Staticvar.isupdate == true) {
-                    loaddata(row);
+                    loaddata(row, String.valueOf(pane.cmbfilter.getSelectedIndex()));
                     Staticvar.isupdate = false;
                 }
             }
@@ -552,11 +569,11 @@ public class DaftarpiutangrincianinnerController {
                         Staticvar.isupdate = true;
                         if (pane.tcari.getText().equals("Cari Data") || pane.tcari.getText().equals("")) {
                             if (Staticvar.isupdate == true) {
-                                loaddata(row);
+                                loaddata(row, String.valueOf(pane.cmbfilter.getSelectedIndex()));
                             }
                         } else {
                             if (Staticvar.isupdate == true) {
-                                loaddata(row);
+                                loaddata(row, String.valueOf(pane.cmbfilter.getSelectedIndex()));
                             }
                         }
                         Staticvar.isupdate = false;
@@ -582,7 +599,7 @@ public class DaftarpiutangrincianinnerController {
             jd.setVisible(true);
             jd.toFront();
             if (Staticvar.isupdate == true) {
-                loaddata(row);
+                loaddata(row, String.valueOf(pane.cmbfilter.getSelectedIndex()));
                 Staticvar.isupdate = false;
             }
         });

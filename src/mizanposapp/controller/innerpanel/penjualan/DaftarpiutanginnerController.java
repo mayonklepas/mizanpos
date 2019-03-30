@@ -219,15 +219,7 @@ public class DaftarpiutanginnerController {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (pane.cmbfilter.getSelectedIndex() == 0) {
-                        loaddatadetailraw("0");
-                    } else if (pane.cmbfilter.getSelectedIndex() == 1) {
-                        loaddatadetailraw("1");
-                    } else if (pane.cmbfilter.getSelectedIndex() == 2) {
-                        loaddatadetailraw("2");
-                    } else {
-
-                    }
+                    loaddatadetailraw(String.valueOf(pane.cmbfilter.getSelectedIndex()));
                 }
             }
 
@@ -285,13 +277,7 @@ public class DaftarpiutanginnerController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!pane.tcari.getText().equals("Cari Data")) {
-                    if (pane.cmbfilter.getSelectedIndex() == 0) {
-                        loaddatadetailraw("0");
-                    } else if (pane.cmbfilter.getSelectedIndex() == 1) {
-                        loaddatadetailraw("1");
-                    } else if (pane.cmbfilter.getSelectedIndex() == 2) {
-                        loaddatadetailraw("2");
-                    }
+                    loaddatadetailraw(String.valueOf(pane.cmbfilter.getSelectedIndex()));
                 }
             }
         });

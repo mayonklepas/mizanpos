@@ -825,9 +825,11 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             ch.insertdata("insertpembayaranpiutang", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
-                    int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    if (dialog == 0) {
+                    FuncHelper.konfir("Ingin Melanjutkan transaksi ? ",
+                         "Data sudah berhasil disimpan, Klik Ya jika ingin menginput data baru lagi ", "Ya");
+
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
                         Runnable run = new Runnable() {
                             @Override
                             public void run() {
@@ -924,17 +926,18 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                 Staticvar.isupdate = true;
                 boolean status = true;
                 if (pane.edpelanggan.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Pelanggan tidak boleh kosong");
 
                 } else if (tabeldatalist.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Table Tidak Boleh Kosong");
                 } else {
-                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
-                        int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                        if (dialog == 0) {
+                        FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
+                             "Tanggal transaksi anda setelah periode akuntansi, jika ingin tetap melanjutkan tekan ya", "Ya");
+                        if (Staticvar.isupdate == true) {
+                            Staticvar.isupdate = false;
                             int jumlahrow = pane.tabledata.getRowCount();
                             for (int i = 0; i < jumlahrow; i++) {
                                 if (!tabeldatalist.get(i).getNoref().equals("")) {
@@ -944,10 +947,10 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                                     double diskon = FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon());
                                     double totabayartambahdiskon = jumlahbayar + diskon;
                                     if (jumlahbayar <= 0) {
-                                        JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh Nol", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                        FuncHelper.info("Proses Ditolak", "Jumlah Bayar " + noref + " Tidak boleh Nol");
                                         status = false;
                                     } else if (totabayartambahdiskon > sisa) {
-                                        JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Piutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                        FuncHelper.info("Proses Ditolak", "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Piutang + Diskon");
                                         status = false;
                                     }
                                 }
@@ -978,10 +981,10 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
                                 double diskon = FuncHelper.ToDouble(tabeldatalist.get(i).getDiskon());
                                 double totabayartambahdiskon = jumlahbayar + diskon;
                                 if (jumlahbayar <= 0) {
-                                    JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh Nol", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                    FuncHelper.info("Proses Ditolak", "Jumlah Bayar " + noref + " Tidak boleh Nol");
                                     status = false;
                                 } else if (totabayartambahdiskon > sisa) {
-                                    JOptionPane.showMessageDialog(null, "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Piutang + Diskon", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                    FuncHelper.info("Proses Ditolak", "Jumlah Bayar " + noref + " Tidak boleh lebih besar dari Piutang + Diskon");
                                     status = false;
                                 }
                             }
@@ -1171,11 +1174,11 @@ public class DaftarpembayaranpiutangperinvoiceinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                int dialog = JOptionPane.showConfirmDialog(null,
-                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(noref)) + " - "
-                     + pane.tabledata.getValueAt(row, gx(total)),
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
+                FuncHelper.konfir("Yakin akan menghapus data ini ?",
+                     "Data yang akan anda hapus adalah : " + pane.tabledata.getValueAt(row, gx(noref)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(total)), "Ya");
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     Runnable rn = new Runnable() {
                         @Override
                         public void run() {

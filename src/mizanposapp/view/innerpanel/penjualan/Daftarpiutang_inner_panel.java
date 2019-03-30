@@ -118,7 +118,7 @@ public class Daftarpiutang_inner_panel extends javax.swing.JPanel {
 
         jLabel2.setText("Filter :");
 
-        cmbfilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Sudah Lunas", "Belum Lunas" }));
+        cmbfilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Lunas", "Sudah Lunas", "Semua" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
