@@ -118,11 +118,11 @@ public class DaftarpiutanginnerController {
     private void loaddata(String tipe) {
         cleardata();
         disablebutton();
-        dtm.getDataVector().removeAllElements();
-        dtm.fireTableDataChanged();
         SwingWorker worker = new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
+                dtm.getDataVector().removeAllElements();
+                dtm.fireTableDataChanged();
                 pane.indi.setVisible(true);
                 JSONParser jpdata = new JSONParser();
                 String param = "tipe=" + tipe;
