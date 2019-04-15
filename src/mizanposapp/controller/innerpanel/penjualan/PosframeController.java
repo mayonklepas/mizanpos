@@ -583,7 +583,7 @@ public class PosframeController {
                     if (tabeldatalist.size() == 0) {
                         JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                        int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
                         int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                         if (tahunbulan > periodetahunnulan) {
                             int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
