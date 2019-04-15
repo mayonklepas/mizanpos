@@ -238,11 +238,11 @@ public class PosframeController {
                     if (pane.tabledata.getSelectionModel().isSelectionEmpty()) {
                         row = pane.tabledata.getRowCount() - 1;
                     }
-                    int dialog = JOptionPane.showConfirmDialog(null,
-                         "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                         + pane.tabledata.getValueAt(row, gx(nama)),
-                         "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    if (dialog == 0) {
+                    FuncHelper.konfir("Yakin akan menghapus data ini?",
+                         "Data yang akan anda hapus adalah " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                         + pane.tabledata.getValueAt(row, gx(nama)) + " Tekan Ya untuk menghapus", "Ya");
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
                         Runnable rn = new Runnable() {
                             @Override
                             public void run() {
@@ -578,17 +578,24 @@ public class PosframeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
-                int dialogpending = JOptionPane.showConfirmDialog(null, "Apakah anda ingin melakukan pending transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                if (dialogpending == 0) {
+
+                FuncHelper.konfir("Apakah anda ingin melakukan pending transaksi ? ",
+                     "Data Akan disimpan sebagai transaksi pending ", "Ya");
+
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     if (tabeldatalist.size() == 0) {
                         JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        FuncHelper.info("Proses Ditolak", "Table Tidak Boleh Kosong");
                     } else {
                         int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
                         int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                         if (tahunbulan > periodetahunnulan) {
-                            int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                                 + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                            if (dialog == 0) {
+                            FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
+                                 "Tanggal transaksi anda berada setelah periode akuntansi", "Ya");
+
+                            if (Staticvar.isupdate == true) {
+                                Staticvar.isupdate = false;
                                 rawsimpan();
                             }
                         } else if (tahunbulan < periodetahunnulan) {
@@ -619,7 +626,7 @@ public class PosframeController {
             public void actionPerformed(ActionEvent e) {
                 if (pane.edbarcode.getText().equals("") || pane.edbarcode.equals("Barcode Scanner Atau Kode Barang [F2]")) {
                     if (pane.tabledata.getRowCount() == 0) {
-                        JOptionPane.showMessageDialog(null, "Data Belum dimasukan");
+                        FuncHelper.info("Proses Ditolak", "Tabel tidak boleh kosong");
                     } else {
                         KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                         Staticvar.isupdate = false;
@@ -684,7 +691,8 @@ public class PosframeController {
                 } else {
                     if (Globalsession.POS_HarusMenggunakanSalesman.equals("1")) {
                         if (pane.edsalesman.getText().equals("")) {
-                            JOptionPane.showMessageDialog(null, "Anda Harus Mengisi Salesman !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                            FuncHelper.info("Proses Ditolak", "Anda Harus Mengisi Salesman !!");
+
                         } else {
                             additemtotable();
                         }
@@ -831,9 +839,9 @@ public class PosframeController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        int dialog = JOptionPane.showConfirmDialog(null, "Yakin ingin keluar dari Point Of Sales",
-                             "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                        if (dialog == 0) {
+                        FuncHelper.konfir("Yakin ingin keluar dari POS", "Cek kembali transaksi anda sebelum keluar dari POS", "Ya");
+                        if (Staticvar.isupdate == true) {
+                            Staticvar.isupdate = false;
                             KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keydis);
                             new FuncHelper().insertnogagal("2", pane.dtanggal.getDate(), valdept, no_urut);
                             pane.dispose();
@@ -850,10 +858,9 @@ public class PosframeController {
         pane.bbatal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int dialog = JOptionPane.showConfirmDialog(null,
-                     "Yakin akan membatalkan Transaksi ini ",
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
+                FuncHelper.konfir("Yakin ingin membatalkan trnasaksi ini", "Cek kembali sebelum anda yakin ingn membatalkan transaksi ini", "Ya");
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     Runnable rn = new Runnable() {
                         @Override
                         public void run() {
