@@ -157,7 +157,8 @@ public class PosframeController {
                         if (Globalsession.POS_HarusMenggunakanSalesman.equals("1")) {
 
                             if (pane.edsalesman.getText().equals("")) {
-                                JOptionPane.showMessageDialog(null, "Anda Harus Mengisi Salesman !!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                                FuncHelper.info("Proses Ditolak", "Anda Harus Mengisi Salesman !!");
+                                pane.bcari_salesman.doClick();
                             } else {
                                 additemtotable();
                             }
@@ -692,6 +693,7 @@ public class PosframeController {
                     if (Globalsession.POS_HarusMenggunakanSalesman.equals("1")) {
                         if (pane.edsalesman.getText().equals("")) {
                             FuncHelper.info("Proses Ditolak", "Anda Harus Mengisi Salesman !!");
+                            pane.bcari_salesman.doClick();
 
                         } else {
                             additemtotable();
