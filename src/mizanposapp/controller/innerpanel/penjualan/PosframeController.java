@@ -359,6 +359,10 @@ public class PosframeController {
 
     }
 
+    private void changekreditortunai() {
+
+    }
+
     private void gantitanggal() {
         pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
@@ -629,7 +633,6 @@ public class PosframeController {
                         BayarposController.valsalesman = valsalesman;
                         BayarposController.valshipvia = valshipvia;
                         BayarposController.valtop = valtop;
-                        BayarposController.valakun_penjualan = valakun_penjualan;
                         BayarposController.valakun_ongkir = valakun_ongkir;
                         BayarposController.valakun_diskon = valakun_diskon;
                         BayarposController.valakun_uang_muka = valakun_uang_muka;
@@ -642,14 +645,18 @@ public class PosframeController {
                         BayarposController.jumlah_piutang = jumlah_piutang;
                         if (pane.ckdiskon.isSelected()) {
                             BayarposController.ispersen = true;
+
                         } else {
                             BayarposController.ispersen = false;
+
                         }
 
                         if (pane.ckjenisbayar.isSelected()) {
                             BayarposController.istunai = true;
+                            BayarposController.valakun_penjualan = valakun_penjualan;
                         } else {
                             BayarposController.istunai = false;
+                            BayarposController.valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                         }
                         JDialog jd = new JDialog(new Mainmenu());
                         jd.add(new Bayarpos_pane());
@@ -748,8 +755,10 @@ public class PosframeController {
                                 tipe_jual = FuncHelper.ToInt(joinpenjualan.get("tipe_penjualan"));
                                 if (tipe_jual == 0) {
                                     pane.ckjenisbayar.setSelected(true);
+                                    valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
                                 } else {
                                     pane.ckjenisbayar.setSelected(false);
+                                    valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
                                 }
 
                             }
@@ -1587,8 +1596,10 @@ public class PosframeController {
         String tipe_beli = "0";
         if (pane.ckjenisbayar.isSelected()) {
             tipe_beli = "0";
+            valakun_penjualan = Globalsession.AKUNPENJUALANTUNAI;
         } else {
             tipe_beli = "1";
+            valakun_penjualan = Globalsession.AKUNPIUTANGUSAHA;
         }
 
         String diskon_dalam = "0";
