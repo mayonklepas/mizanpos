@@ -971,8 +971,8 @@ public class DaftarpersediaaninputController {
                  + "akun_retur_pembelian='%s'::"
                  + "akun_retur_penjualan='%s'::"
                  + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
-                 pane.edkode_persediaan.getText(),
-                 pane.ednama_persediaan.getText(),
+                 FuncHelper.EncodeString(pane.edkode_persediaan.getText()),
+                 FuncHelper.EncodeString(pane.ednama_persediaan.getText()),
                  valkelompok,
                  valsatuan,
                  valgudang,
@@ -990,7 +990,7 @@ public class DaftarpersediaaninputController {
                  vallokasi,
                  valmerek,
                  valsupplier,
-                 pane.edketerangan_persediaan.getText(),
+                 FuncHelper.EncodeString(pane.edketerangan_persediaan.getText()),
                  "0",
                  tipe_harga_jual,
                  "0",
@@ -1050,8 +1050,8 @@ public class DaftarpersediaaninputController {
                  + "akun_retur_pembelian='%s'::"
                  + "akun_retur_penjualan='%s'::"
                  + "harga_jual_berdasar='%s'&" + kirimtextsatuan(0) + "&" + kirimtextharga(0) + "&" + kirimtextlokasi(0),
-                 pane.edkode_persediaan.getText(),
-                 pane.ednama_persediaan.getText(),
+                 FuncHelper.EncodeString(pane.edkode_persediaan.getText()),
+                 FuncHelper.EncodeString(pane.ednama_persediaan.getText()),
                  valkelompok,
                  valsatuan,
                  valgudang,
@@ -1069,7 +1069,7 @@ public class DaftarpersediaaninputController {
                  vallokasi,
                  valmerek,
                  valsupplier,
-                 pane.edketerangan_persediaan.getText(),
+                 FuncHelper.EncodeString(pane.edketerangan_persediaan.getText()),
                  "0",
                  tipe_harga_jual,
                  "0",
