@@ -34,8 +34,8 @@ public class Staticvar {
     public static Beranda_panel bp = null;
     public static String form_aktif = "";
     //public static String url = "http://192.168.1.2:556/";
-    //public static String url = "http://172619802710.ip-dynamic.com:556/";
-    public static String url = "http://36.75.177.56 :556/";
+    public static String url = "http://172619802710.ip-dynamic.com:556/";
+    //public static String url = "http://36.75.177.56 :556/";
     public static ArrayList<Integer> stylecolum = new ArrayList<>();
     public static String id_user_aktif = "";
     public static String getresult = "";

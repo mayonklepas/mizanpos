@@ -20,6 +20,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,7 +79,7 @@ public class DaftarorderpembelianinputController {
     CrudHelper ch = new CrudHelper();
     Daftarorderpembelian_input_panel pane;
     String valsupplier, valgudang, valdept, valsalesman, valshipvia, valtop,
-         valakun_pembelian, valakun_ongkir, valakun_diskon, valakun_uang_muka;
+         valakun_pembelian, valakun_ongkir, valakun_diskon, valakun_uang_muka, valuser_input;
     int valcheck;
     int tipe_bayar, tipe_beli, status_selesai;
     DefaultTableModel dtmtabeldata = new DefaultTableModel();
@@ -142,6 +144,8 @@ public class DaftarorderpembelianinputController {
         hapusbaris();
         tambahbaris();
         batal();
+        gantitanggal();
+        pane.tabdata.setEnabledAt(1, false);
 
     }
 
@@ -154,6 +158,8 @@ public class DaftarorderpembelianinputController {
         valakun_uang_muka = Globalsession.AKUNUANGMUKAPEMBELIAN;
         valakun_diskon = Globalsession.AKUNDISKONPEMBELIAN;
         valakun_ongkir = Globalsession.AKUNONGKOSKIRIMPEMBELIAN;
+        pane.eduser_input.setText(Globalsession.nama_user);
+        valuser_input = Globalsession.id_user;
     }
 
     private void skinning() {
@@ -176,6 +182,35 @@ public class DaftarorderpembelianinputController {
             }
         });
 
+    }
+
+    private void gantitanggal() {
+        pane.dtanggal.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals("date")) {
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
+                    int periodetahunbulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
+                    if (tahunbulan >= periodetahunbulan) {
+                        Date zaman_old = (Date) evt.getOldValue();
+                        Date zaman_now = (Date) evt.getNewValue();
+                        int tahunbulanold = Integer.parseInt(new SimpleDateFormat("yyyyM").format(zaman_old));
+                        int tahunbulannow = Integer.parseInt(new SimpleDateFormat("yyyyM").format(zaman_now));
+                        if (tahunbulannow != tahunbulanold) {
+                            new FuncHelper().insertnogagal("32", zaman_old, valdept, String.valueOf(no_urut));
+                            HashMap hm = new FuncHelper().getkodetransaksi("32", zaman_now, valdept);
+                            pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                            no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
+                        }
+
+                    } else {
+                        FuncHelper.info("Proses Ditolak", "Tanggal input tidak boleh lebih kecil dari tanggal periode");
+                        pane.dtanggal.setDate(new Date());
+                    }
+
+                }
+            }
+        });
     }
 
     private void customtable() {
@@ -294,6 +329,7 @@ public class DaftarorderpembelianinputController {
                     pane.edgudang.setVisible(true);
                     pane.bcari_gudang.setVisible(true);
                     valgudang = "";
+                    pane.edgudang.setText("");
                     tipe_beli = 0;
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
@@ -318,7 +354,8 @@ public class DaftarorderpembelianinputController {
                     pane.ltitik2gudang.setVisible(false);
                     pane.edgudang.setVisible(false);
                     pane.bcari_gudang.setVisible(false);
-                    valgudang = "";
+                    pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
+                    valgudang = Globalsession.Setting_GudangDefault;
                     tipe_beli = 1;
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(harga_jual), 0);
@@ -469,7 +506,6 @@ public class DaftarorderpembelianinputController {
                 valshipvia = "";
                 pane.edtop.setText("");
                 valtop = "";
-                pane.eduser_input.setText("Sementara Admin");
                 pane.lsubtotal.setText("0");
                 pane.edbiayalain.setText("0");
                 pane.eddiskon1.setText("0");
@@ -513,6 +549,8 @@ public class DaftarorderpembelianinputController {
                     pane.edketerangan.setText(String.valueOf(joingenjur.get("keterangan")));
                     pane.eddept.setText(String.valueOf(joingenjur.get("nama_dept")));
                     valdept = String.valueOf(joingenjur.get("id_dept"));
+                    valuser_input = String.valueOf(joingenjur.get("id_user"));
+                    pane.eduser_input.setText(String.valueOf(joingenjur.get("nama_user")));
                     try {
                         pane.dtanggal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(joingenjur.get("tanggal"))));
                     } catch (java.text.ParseException ex) {
@@ -566,6 +604,7 @@ public class DaftarorderpembelianinputController {
                         pane.edgudang.setVisible(true);
                         pane.bcari_gudang.setVisible(true);
                         valgudang = "";
+                        pane.edgudang.setText("");
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                         lshide.set(gx(harga_jual), lsoldhide.get(gx(harga_jual)));
                         lshide.set(gx(gudang), lsoldhide.get(gx(gudang)));
@@ -589,7 +628,8 @@ public class DaftarorderpembelianinputController {
                         pane.ltitik2gudang.setVisible(false);
                         pane.edgudang.setVisible(false);
                         pane.bcari_gudang.setVisible(false);
-                        valgudang = "";
+                        pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
+                        valgudang = Globalsession.Setting_GudangDefault;
                         lshide.set(gx(satuan), 0);
                         lshide.set(gx(harga_jual), 0);
                         lshide.set(gx(gudang), 0);
@@ -775,9 +815,10 @@ public class DaftarorderpembelianinputController {
             ch.insertdata("insertorderpembelian", data);
             if (Staticvar.getresult.equals("berhasil")) {
                 try {
-                    int dialog = JOptionPane.showConfirmDialog(null, "Data berhasil disimpan. \n "
-                         + "Ingin Melanjutkan transaksi", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                    if (dialog == 0) {
+                    FuncHelper.konfir("Ingin Melanjutkan transaksi ? ",
+                         "Data berhasil disimpan, jika ingin melakukan transaksi baru, tekan ya", "Ya");
+                    if (Staticvar.isupdate == true) {
+                        Staticvar.isupdate = false;
                         Runnable run = new Runnable() {
                             @Override
                             public void run() {
@@ -883,17 +924,17 @@ public class DaftarorderpembelianinputController {
             public void actionPerformed(ActionEvent e) {
                 Staticvar.isupdate = true;
                 if (pane.edsupplier.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Supplier tidak boleh kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-
+                    FuncHelper.info("Proses Ditolak", "Supplier tidak boleh kosong");
                 } else if (tabeldatalist.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Table Tidak Boleh Kosong", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    FuncHelper.info("Proses Ditolak", "Table tidak boleh kosong");
                 } else {
-                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyMM").format(pane.dtanggal.getDate()));
+                    int tahunbulan = Integer.parseInt(new SimpleDateFormat("yyyyM").format(pane.dtanggal.getDate()));
                     int periodetahunnulan = Integer.parseInt(Globalsession.periode_year + Globalsession.periode_month);
                     if (tahunbulan > periodetahunnulan) {
-                        int dialog = JOptionPane.showConfirmDialog(null, "Tanggal transaksi setelah periode akuntansi.\n"
-                             + "Apakah anda ingin melanjutkan transaksi ?", "Konfirmasi", JOptionPane.YES_NO_OPTION, 1);
-                        if (dialog == 0) {
+                        FuncHelper.konfir("Apakah anda ingin melanjutkan transaksi ?",
+                             "Tanggal transaksi anda setelah periode akuntansi, jika ingin tetap melanjuktan tekan Ya, jika tidak tekan batal", "Ya");
+                        if (Staticvar.isupdate == true) {
+                            Staticvar.isupdate = false;
                             rawsimpan();
 
                         }
@@ -957,11 +998,12 @@ public class DaftarorderpembelianinputController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = pane.tabledata.getSelectedRow();
-                int dialog = JOptionPane.showConfirmDialog(null,
-                     "Yakin akan menghapus " + pane.tabledata.getValueAt(row, gx(kode)) + " - "
-                     + pane.tabledata.getValueAt(row, gx(nama)),
-                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-                if (dialog == 0) {
+                FuncHelper.konfir("Yakin akan menghapus data ini?",
+                     "Data yang akan anda hapus adalah" + pane.tabledata.getValueAt(row, gx(kode)) + " - "
+                     + pane.tabledata.getValueAt(row, gx(nama)) + " Tekan Ya jika ingin menghapus", "Ya");
+
+                if (Staticvar.isupdate == true) {
+                    Staticvar.isupdate = false;
                     Runnable rn = new Runnable() {
                         @Override
                         public void run() {
@@ -1004,7 +1046,7 @@ public class DaftarorderpembelianinputController {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        new FuncHelper().insertnogagal("32", new Date(), valdept, String.valueOf(no_urut));
+                        new FuncHelper().insertnogagal("32", pane.dtanggal.getDate(), valdept, String.valueOf(no_urut));
                         Staticvar.inputmode = false;
                         Daftarorderpembelian_inner_panel inpane = new Daftarorderpembelian_inner_panel();
                         Staticvar.pmp.container.removeAll();
@@ -1087,6 +1129,12 @@ public class DaftarorderpembelianinputController {
             jd.toFront();
             valdept = Staticvar.resid;
             pane.eddept.setText(Staticvar.reslabel);
+            if (!Staticvar.preid.equals(valdept)) {
+                new FuncHelper().insertnogagal("32", pane.dtanggal.getDate(), Staticvar.preid, String.valueOf(no_urut));
+                HashMap hm = new FuncHelper().getkodetransaksi("32", pane.dtanggal.getDate(), valdept);
+                pane.edno_transaksi.setText(String.valueOf(hm.get("no_transaksi")));
+                no_urut = FuncHelper.ToInt(String.valueOf(hm.get("no_urut")));
+            }
         });
 
     }
@@ -1894,7 +1942,7 @@ public class DaftarorderpembelianinputController {
                     total_pembelian_all = subtotal + biayalain - diskon + pajak;
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya Memperbolehkan Angka");
                     pane.edbiayalain.setText("");
                 }
             }
@@ -1916,7 +1964,7 @@ public class DaftarorderpembelianinputController {
                     pane.eddiskon2.setText(nf.format(diskon_nominal));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya Memperbolehkan Angka");
                     pane.edbiayalain.setText("");
                 }
             }
@@ -1938,7 +1986,7 @@ public class DaftarorderpembelianinputController {
                     pane.eddiskon1.setText(FuncHelper.rounding(indiskon_persen));
                     pane.ltotal_pembelian.setText(nf.format(total_pembelian_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya Memperbolehkan Angka");
                     pane.edbiayalain.setText("");
                 }
             }

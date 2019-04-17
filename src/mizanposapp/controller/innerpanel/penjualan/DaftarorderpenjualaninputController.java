@@ -325,6 +325,7 @@ public class DaftarorderpenjualaninputController {
                     pane.edgudang.setVisible(true);
                     pane.bcari_gudang.setVisible(true);
                     valgudang = "";
+                    pane.edgudang.setText("");
                     tipe_jual = 0;
                     lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                     lshide.set(gx(stok), lsoldhide.get(gx(stok)));
@@ -349,7 +350,8 @@ public class DaftarorderpenjualaninputController {
                     pane.ltitik2gudang.setVisible(false);
                     pane.edgudang.setVisible(false);
                     pane.bcari_gudang.setVisible(false);
-                    valgudang = "";
+                    pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
+                    valgudang = Globalsession.Setting_GudangDefault;
                     tipe_jual = 1;
                     lshide.set(gx(satuan), 0);
                     lshide.set(gx(gudang), 0);
@@ -613,6 +615,7 @@ public class DaftarorderpenjualaninputController {
                         pane.edgudang.setVisible(true);
                         pane.bcari_gudang.setVisible(true);
                         valgudang = "";
+                        pane.edgudang.setText("");
                         tipe_jual = 0;
                         lshide.set(gx(satuan), lsoldhide.get(gx(satuan)));
                         lsresize.set(gx(satuan), lsoldsize.get(gx(satuan)));
@@ -640,7 +643,8 @@ public class DaftarorderpenjualaninputController {
                         pane.ltitik2gudang.setVisible(false);
                         pane.edgudang.setVisible(false);
                         pane.bcari_gudang.setVisible(false);
-                        valgudang = "";
+                        pane.edgudang.setText(Globalsession.Setting_GudangDefaultnama);
+                        valgudang = Globalsession.Setting_GudangDefault;
                         tipe_jual = 1;
                         lshide.set(gx(satuan), 0);
                         lshide.set(gx(gudang), 0);
@@ -1982,7 +1986,7 @@ public class DaftarorderpenjualaninputController {
                     total_penjualan_all = subtotal + biayalain - diskon + pajak;
                     pane.ltotal_penjualan.setText(nf.format(total_penjualan_all));
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya memperbolehkan angka");
+                    FuncHelper.info("Proses Ditolak", "Hanya memperbolehkan angka");
                     pane.edbiayalain.setText("");
                 }
             }

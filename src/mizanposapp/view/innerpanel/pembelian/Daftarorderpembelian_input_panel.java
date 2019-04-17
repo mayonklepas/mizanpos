@@ -98,7 +98,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         edsupplier = new javax.swing.JTextField();
         cmb_tipe_pembelian = new javax.swing.JComboBox<>();
         ckdiskon = new javax.swing.JCheckBox();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabdata = new javax.swing.JTabbedPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         tabledata = new Tablestyle(1,new int[]{2,4,5,6,7,11});
         jPanel3 = new javax.swing.JPanel();
@@ -356,6 +356,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         jLabel40.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel40.setText("User Input");
 
+        eduser_input.setEditable(false);
         eduser_input.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         bcaritop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -378,10 +379,13 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         ltop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         ltop.setText("Term Of Payment");
 
+        edtop.setEditable(false);
         edtop.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        edshipvia.setEditable(false);
         edshipvia.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
+        edsalesman.setEditable(false);
         edsalesman.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -616,8 +620,8 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
 
         ckdiskon.setText("Diskon (%)");
 
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
-        jTabbedPane1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        tabdata.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+        tabdata.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
 
         tabledata.setAutoCreateRowSorter(true);
         tabledata.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -635,7 +639,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
         tabledata.setGridColor(new java.awt.Color(204, 204, 204));
         jScrollPane6.setViewportView(tabledata);
 
-        jTabbedPane1.addTab("Detail Pembelian", jScrollPane6);
+        tabdata.addTab("Detail Pembelian", jScrollPane6);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -810,7 +814,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Kontrol Akun", jPanel3);
+        tabdata.addTab("Kontrol Akun", jPanel3);
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel22.setText("Tipe :");
@@ -866,7 +870,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
                                 .addComponent(ckselesai))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(tabdata, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -908,7 +912,7 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
                             .addComponent(bcari_dept)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(tabdata, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -1076,13 +1080,13 @@ public class Daftarorderpembelian_input_panel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JLabel lgudang;
     public javax.swing.JLabel lsubtotal;
     public javax.swing.JLabel ltitik2gudang;
     public javax.swing.JLabel ltop;
     public javax.swing.JLabel ltotal_pajak;
     public javax.swing.JLabel ltotal_pembelian;
+    public javax.swing.JTabbedPane tabdata;
     public javax.swing.JTable tabledata;
     // End of variables declaration//GEN-END:variables
 }
