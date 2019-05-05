@@ -1043,6 +1043,9 @@
           </SubComponents>
         </Container>
         <Component class="com.toedter.calendar.JDateChooser" name="dtanggal">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckdiskon">
           <Properties>

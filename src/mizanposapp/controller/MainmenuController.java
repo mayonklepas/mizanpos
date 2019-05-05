@@ -37,10 +37,6 @@ import mizanposapp.view.innerpanel.pengaturan.Login_panel;
 import mizanposapp.view.innerpanel.pengaturan.Pengaturan_inner_panel;
 import mizanposapp.view.innerpanel.penjualan.Daftardatapelanggan_inner_panel;
 import mizanposapp.view.innerpanel.persediaan.Daftarpersediaan_inner_panel;
-import org.panda_lang.pandomium.Pandomium;
-import org.panda_lang.pandomium.settings.PandomiumSettings;
-import org.panda_lang.pandomium.wrapper.PandomiumBrowser;
-import org.panda_lang.pandomium.wrapper.PandomiumClient;
 
 /**
  *
@@ -103,18 +99,6 @@ public class MainmenuController {
             new Globalsession(Staticvar.id_user_aktif);
 
         }
-    }
-
-    private void loadbrowser() {
-        PandomiumSettings panset = PandomiumSettings.getDefaultSettings();
-        Pandomium pan = new Pandomium(panset);
-        pan.initialize();
-        PandomiumClient panclient = pan.createClient();
-        PandomiumBrowser panbro = panclient.loadURL("https://google.com");
-        mm.panel_tengah.removeAll();
-        mm.panel_tengah.add(panbro.toAWTComponent(), BorderLayout.CENTER);
-        mm.panel_tengah.revalidate();
-        mm.panel_tengah.repaint();
     }
 
     private void panel1mouseevent() {

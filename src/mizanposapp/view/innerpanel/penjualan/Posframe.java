@@ -563,6 +563,8 @@ public class Posframe extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        dtanggal.setEnabled(false);
+
         ckdiskon.setBackground(new java.awt.Color(255, 255, 255));
         ckdiskon.setText("Diskon (%)");
 
