@@ -6,6 +6,7 @@
 package mizanposapp.controller;
 
 import java.awt.BorderLayout;
+import mizanchart.Mizanchart;
 import mizanposapp.view.Beranda_panel;
 
 /**
@@ -18,6 +19,12 @@ public class BerandaController {
 
     public BerandaController(Beranda_panel pane) {
         this.pane = pane;
+        showchart();
+    }
+
+    private void showchart() {
+        Mizanchart mc = new Mizanchart();
+        pane.mainpane.add(mc.showchart());
     }
 
 }

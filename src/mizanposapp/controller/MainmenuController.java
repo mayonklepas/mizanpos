@@ -31,6 +31,7 @@ import mizanposapp.view.Pembelian_panel;
 import mizanposapp.view.Penjualan_panel;
 import mizanposapp.view.Persedian_panel;
 import mizanposapp.view.frameform.Bantuan;
+import mizanposapp.view.innerpanel.pembelian.Daftardatasupplier_inner_panel;
 import mizanposapp.view.innerpanel.pengaturan.Data_pengguna_inner_panel;
 import mizanposapp.view.innerpanel.pengaturan.Gantipassword_panel;
 import mizanposapp.view.innerpanel.pengaturan.Login_panel;
@@ -48,6 +49,8 @@ public class MainmenuController {
     boolean isclick = false;
 
     public MainmenuController() {
+        berandapanel();
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -85,6 +88,7 @@ public class MainmenuController {
         panel10mouseevent();
         LoginController.username = "";
         LoginController.jaga_pane = true;
+        /*
         JDialog jd = new JDialog(new Mainmenu());
         jd.add(new Login_panel());
         jd.pack();
@@ -98,6 +102,23 @@ public class MainmenuController {
             new CrudHelper();
             new Globalsession(Staticvar.id_user_aktif);
 
+        }*/
+    }
+
+    private void berandapanel() {
+        if (Staticvar.inputmode == true) {
+            JOptionPane.showMessageDialog(null, "Anda Dalam Mode Input, Selesaikan Transaksi Untuk Berpindah Menu", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            System.gc();
+            isclick = true;
+            mm.pberanda.setBackground(new Color(3, 3, 3));
+            Beranda_panel bp = new Beranda_panel();
+            mm.panel_tengah.removeAll();
+            mm.panel_tengah.setLayout(new BorderLayout());
+            mm.panel_tengah.add(bp, BorderLayout.CENTER);
+            mm.panel_tengah.revalidate();
+            mm.panel_tengah.repaint();
+            Staticvar.inputmode = false;
         }
     }
 
